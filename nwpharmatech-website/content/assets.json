@@ -8,7 +8,9 @@
       "used_on": [
         "header (all pages)",
         "footer (all pages)",
-        "favicon"
+        "favicon",
+        "programme brief PDF (header)",
+        "appointment preparation sheet PDF (header)"
       ],
       "fallback": "interim mark (assets/img/mark.svg) with the text wordmark",
       "note": "Official logo from the brand guidelines (Studio P+P, 2021). Supply as SVG; replace the file and set authorised to true."

@@ -12,7 +12,7 @@ A production build is refused while any of these remain.
 | 2 | **Leadership titles** confirmed by management, and consent to publish each profile. The discrepancies and the questions for management are in [`leadership-reconciliation.md`](leadership-reconciliation.md) | NWPharmaTech management | `people.json` `role_status` |
 | 3 | **Board and legal approval** of the funding and financing wording (financing page, homepage, Q&A, programme brief PDF) | Board and legal counsel | `content/review.json` |
 | 4 | **Legal review of the privacy notice**, including the retention period and a data protection contact | Legal counsel | `content/review.json` |
-| 5 | **Crisis-line re-check** on the official sites immediately before launch | Site editor | `content/review.json` |
+| 5 | **Crisis-line re-check** on the official sites immediately before launch. The numbers are kept once, in `content/services.json` → `crisis_lines`, which fills the Q&A urgent-help section and the appointment preparation sheet PDF | Site editor | `content/review.json` |
 | 6 | **Head-office address spelling** ("Wisely" or "Wisley" Court) | NWPharmaTech management | `content/review.json` |
 | 7 | **Phase 1 start date:** company records (first consent 27 August 2025) against ClinicalTrials.gov (start 22 September 2025) | Clinical operations | `content/review.json` |
 | 8 | **Current Phase 2B status:** "Protocol being finalised" was last documented on 23 February 2026; confirm it, and give the next milestone date if one is set | NWPharmaTech management | `content/review.json` |
@@ -38,5 +38,6 @@ The site omits these modules, or says only what is known, until the input arrive
 - Disclosures for each person; approved funding figures; a monitored public enquiries mailbox
 - Investor platform, KYC provider and registrar, with counsel review (restricted demonstration only); email provider and a recorded live test (`docs/email-signup.md`)
 - Live-site URL list for old-to-new redirects (`docs/url-map.md`); checked nhs.uk links for the families guide; the UK Specials / expanded access decision
+- A company record for each of three milestones kept off the public pages because their only source is a development instruction: a Phase 1 results summary on the registries and the site, Phase 2B registration before first enrolment, and the programme financing route (`study.json` review notes). The build refuses a public milestone or update whose source is an instruction or a draft
 - Management decisions on two proposals removed from the public pages: [`proposals/publication-policy.md`](proposals/publication-policy.md) and [`proposals/editorial-standards.md`](proposals/editorial-standards.md)
 - A lived-experience adviser appointment (no adviser is listed until one is appointed)

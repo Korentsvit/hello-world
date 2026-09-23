@@ -16,35 +16,7 @@ section: about
       <div class="container">
         <h2 id="urgent-heading">Urgent help</h2>
         <p class="status-note">NWPharmaTech cannot respond to emergencies or give individual medical advice. If someone is in immediate danger, call the emergency number for your country.</p>
-        <div class="help-grid">
-          <div class="card">
-            <h3>United Kingdom</h3>
-            <ul>
-              <li>Emergency: <a href="tel:999">999</a></li>
-              <li>England and Wales, urgent mental health help: <a href="tel:111">111</a>, option 2</li>
-              <li>Scotland: NHS 24 on <a href="tel:111">111</a> (mental health option)</li>
-              <li>Northern Ireland: Lifeline <a href="tel:08088088000">0808 808 8000</a></li>
-              <li>Samaritans (free, 24 hours): <a href="tel:116123">116 123</a></li>
-              <li>Shout (text service): text SHOUT to <a href="sms:85258">85258</a></li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Ireland</h3>
-            <ul>
-              <li>Emergency: <a href="tel:112">112</a> or <a href="tel:999">999</a></li>
-              <li>Samaritans (free, 24 hours): <a href="tel:116123">116 123</a></li>
-              <li>Pieta (suicide and self-harm crisis support, free, 24 hours): <a href="tel:1800247247">1800 247 247</a></li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>United States</h3>
-            <ul>
-              <li>Emergency: <a href="tel:911">911</a></li>
-              <li>988 Suicide &amp; Crisis Lifeline: call or text <a href="tel:988">988</a></li>
-            </ul>
-          </div>
-        </div>
-        <p class="help-verified mt">Last checked 23 September 2026. Elsewhere, contact your local emergency services.</p>
+        {{block:crisis_lines}}
       </div>
     </section>
 
@@ -77,11 +49,11 @@ section: about
         <h2 class="mt">About taking part</h2>
         <details>
           <summary>Is the Phase 2B study recruiting?</summary>
-          <div><p>Not yet. It needs regulatory and research ethics approval before it can start, and it will be registered publicly before anyone is enrolled.</p></div>
+          <div><p>Not yet. It needs regulatory and research ethics approval before it can start.</p></div>
         </details>
         <details>
           <summary>Who might be able to take part?</summary>
-          <div><p>The study is planned for {{fact:phase2b.population}}. Its full eligibility criteria will be listed in its public registry entry.</p></div>
+          <div><p>The study is planned for {{fact:phase2b.population}}. Its detailed eligibility criteria have not been published.</p></div>
         </details>
         <details>
           <summary>Would taking part affect my usual care?</summary>
@@ -94,8 +66,8 @@ section: about
           <div><p>What funding supports, who controls spending and how progress is reported are explained under <a href="financing.html">funding and financing</a>. We are developing a financing route for eligible investors, but no investment is being accepted. Clinical decisions are kept independent of funding.</p></div>
         </details>
         <details>
-          <summary>Will study results be published?</summary>
-          <div><p>Results of the completed Phase 1 study have not been published yet. A results summary is planned for both trial registries and this site; see the <a href="phase-1.html#results">Phase 1 study</a>. The Phase 2B study will be registered publicly before anyone is enrolled.</p></div>
+          <summary>Have the Phase 1 study results been published?</summary>
+          <div><p>{{fact:phase1.results_status}} See the <a href="phase-1.html#results">Phase 1 study</a>.</p></div>
         </details>
         <details id="not-medical-advice">
           <summary>Is this website medical advice?</summary>

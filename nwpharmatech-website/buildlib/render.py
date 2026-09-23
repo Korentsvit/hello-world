@@ -9,7 +9,11 @@ Placeholders in src/pages/*.html:
 """
 from datetime import date
 from html import escape
+import base64
+import mimetypes
 import re
+
+from buildlib.content import RECORD_TYPES, ContentError
 
 TOKEN = re.compile(r"\{\{(fact|cite|ui|block):([a-z0-9_.\-]+)(?::([a-z0-9_.\-]+))?\}\}")
 STATUS_CLASS = {"Planned": "st-planned", "In progress": "st-progress", "Completed": "st-done"}
@@ -215,6 +219,9 @@ class Renderer:
                 continue
             when = f'<time datetime="{m["date"]}">{fmt_date(m["date"])}</time>' if m.get("date") else escape(m.get("date_text", ""))
             label = self.src_label(m["source"])
+            if not label and self.c.sources[m["source"]].get("type") not in RECORD_TYPES:
+                # content.py refuses this; an instruction or a draft is never shown as 'Company records'
+                raise ContentError(f"{self.page}: milestone '{m['title']}' has no record as its source")
             src = escape(label) if label else "Company records"
             rows.append(f'<tr><th scope="row">{escape(m["title"])}</th>'
                         f'<td data-label="Status"><span class="st {STATUS_CLASS[m["status"]]}">{m["status"]}</span></td>'
@@ -276,12 +283,25 @@ class Renderer:
                 '<h2 id="doc-h">Document history</h2><p class="status-note">Substantive changes to published documents.</p>'
                 + "".join(out) + "</div></section>")
 
-    def b_document_version(self, did):
-        """'Version 3' for a document in content/documents.json (history is newest first). Used in PDF headers."""
+    def _newest_version(self, did):
         d = next((x for x in self.c.documents if x["id"] == did), None)
         if not d or not d["history"]:
             raise KeyError(f"{self.page}: no document history for {did}")
-        return f'Version {escape(d["history"][0]["version"])}'
+        return d["history"][0]
+
+    def b_document_version(self, did):
+        """'Version 3' for a document in content/documents.json (history is newest first). Used in PDF headers."""
+        return f'Version {escape(self._newest_version(did)["version"])}'
+
+    def b_document_status(self, did):
+        """' · Draft for review': the newest version's status from content/documents.json, printed in the PDF
+        header until that version is published, then nothing. A status, never an instruction to the reader."""
+        h = self._newest_version(did)
+        if h.get("published"):
+            return ""
+        if not h.get("status"):
+            raise KeyError(f"{self.page}: unpublished version {h['version']} of {did} has no status")
+        return f' · {escape(h["status"])}'
 
     # ---------- brand ----------
     def b_brand(self, where):
@@ -291,6 +311,14 @@ class Renderer:
         official = a["authorised"] and (self.root / "src" / a["file"]).exists()
         if where == "icon":
             return a["file"] if official else "assets/img/mark.svg"
+        if where == "print":
+            # PDF templates (src/print): the logo is embedded, so the PDF needs no asset files, and a new or
+            # replaced logo changes the PDF source, which makes the build regenerate the PDFs
+            if not official:
+                return "nw <span>pharmatech</span>"
+            data = base64.b64encode((self.root / "src" / a["file"]).read_bytes()).decode()
+            mime = mimetypes.guess_type(a["file"])[0] or "image/svg+xml"
+            return f'<img class="brand-logo" src="data:{mime};base64,{data}" alt="{escape(a["alt"])}" height="30">'
         if official:
             return f'<img class="brand-logo" src="{a["file"]}" alt="" height="36">' if where == "header" else \
                    f'<img class="brand-logo" src="{a["file"]}" alt="{escape(a["alt"])}" height="32">'
@@ -314,15 +342,18 @@ class Renderer:
     def b_phase1_results(self):
         p = self.c.study["phase1"]
         r = p.get("results")
-        if not r:
+        if not r:   # the status is the shared fact, which the programme brief prints too
             return (f'<p><span class="st st-planned">Not yet published</span></p>'
-                    f'<p>{escape(self.c.fact("phase1.results_status", self.page))}</p>'
-                    '<p>A results summary is planned for both trial registries and this page. No date has been set.</p>')
+                    f'<p>{escape(self.c.fact("phase1.results_status", self.page))}</p>')
         rows = "".join(f'<tr><th scope="row">{escape(x["measure"])}</th><td>{escape(x["finding"])}</td></tr>' for x in r["table"])
         return (f'<p class="as-of">Results as of <time datetime="{r["as_of"]}">{fmt_date(r["as_of"])}</time>. Source: {escape(r["source"])}</p>'
                 f'<p>{escape(r["summary"])}</p><div class="table-wrap"><table><caption>Phase 1 results</caption>'
                 f'<thead><tr><th scope="col">Measure</th><th scope="col">Finding</th></tr></thead><tbody>{rows}</tbody></table></div>'
                 f'<h3>Limitations</h3><p>{escape(r["limitations"])}</p>')
+
+    def b_phase1_results_short(self):
+        """The 'Results' entry of the Phase 1 summary: follows study.json phase1.results, as the results section does."""
+        return '<a href="#results">Published: see below</a>' if self.c.study["phase1"].get("results") else "Not yet published"
 
     def b_phase1_list(self, key):
         return '<ul class="checklist">' + "".join(f"<li>{escape(x)}</li>" for x in self.c.study["phase1"][key]) + "</ul>"
@@ -442,6 +473,32 @@ class Renderer:
         out.append("</div>")
         out.append(f'<p class="small">Routes checked <time datetime="{s["checked"]}">{fmt_date(s["checked"])}</time>. Services change: always confirm with your GP or local service.</p>')
         return "".join(out)
+
+    def _crisis_line(self, line, key="text"):
+        """One crisis line: its text with each {n} replaced by number n, linked for calling (or texting, for an
+        'sms:' number) on the web, plain and unbroken across lines in print."""
+        nums = [n.split(":", 1)[-1] for n in line["numbers"]]
+        if key == "print":
+            return escape(line["print"]).format(*(escape(n).replace(" ", "&nbsp;") for n in nums))
+        links = [f'<a href="{"sms" if raw.startswith("sms:") else "tel"}:{n.replace(" ", "")}">{escape(n)}</a>'
+                 for raw, n in zip(line["numbers"], nums)]
+        return escape(line["text"]).format(*links)
+
+    def b_crisis_lines(self, variant=None):
+        """Urgent-help numbers from content/services.json 'crisis_lines', the one place they are kept: the cards
+        and 'Last checked' date on faq.html, or {{block:crisis_lines:print}}, the short line and check date
+        printed on the appointment preparation sheet PDF."""
+        c = self._json("services.json")["crisis_lines"]
+        checked = f'<time datetime="{c["checked"]}">{fmt_date(c["checked"])}</time>'
+        if variant == "print":
+            parts = [f'{escape(g["print_name"])}: ' + ", ".join(self._crisis_line(x, "print") for x in g["lines"] if x.get("print"))
+                     for g in c["regions"] if g.get("print_name")]
+            return "; ".join(parts) + f". Numbers checked {checked}."
+        cards = "".join(f'<div class="card"><h3>{escape(g["name"])}</h3><ul>'
+                        + "".join(f"<li>{self._crisis_line(x)}</li>" for x in g["lines"]) + "</ul></div>"
+                        for g in c["regions"])
+        return (f'<div class="help-grid">{cards}</div>'
+                f'<p class="help-verified mt">Last checked {checked}. Elsewhere, contact your local emergency services.</p>')
 
     def b_education_work(self):
         s = self._json("services.json")
