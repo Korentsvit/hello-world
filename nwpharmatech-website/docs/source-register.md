@@ -7,16 +7,19 @@ The machine-readable register is `content/sources.json`: every fact, milestone a
 | Source | Date | Used for |
 |---|---|---|
 | Website brief (your message) | Sep 2026 | Programme framing, CHR-P focus, financing description, homepage brief text (verbatim in the PDF) |
-| NWPharmaTech_SeriesA_Teaser_FINAL_v2 (Drive, marked "Non-Confidential") | Aug 2026 | Formulation facts (300 mg softgel, SEDDS, U Toronto, Thermo Fisher cGMP, THC not detected), leadership list and roles |
+| NWPharmaTech_SeriesA_Teaser_FINAL_v2 (Drive, marked "Non-Confidential") | Aug 2026 | Formulation facts (300 mg softgel, SEDDS, U Toronto, Thermo Fisher cGMP, THC not detected). Leadership list used only to corroborate other records, never as sole authority for an appointment |
 | trialdesign_v1.xlsx: SDTM TS/TI/TA domains for NWPharma_CH_001 | Mar 2026 | Phase 1 design, N=14, ages 18–55, doses, comparator, sponsor, registry ID, start/end/lock dates, bovine gelatine capsule |
 | NWPharma_CH_001 TFL / statistics documents (Drive) | Mar 2026 | Confirmed that the analysis was delivered. Results **not** published (your instruction) |
 | "Обновление по программе" email (Feb 2026) | Feb 2026 | CHR-P Phase 2b planned for the UK/Europe with protocol being finalised; GMP; ~$5M invested privately |
 | "Web3" draft deck (Oct 2025) | Oct 2025 | Background to the financing structure only. Projections and return claims were **not** used |
 | SAP v5.1 email (Nov 2025) | Nov 2025 | Reconciliation only (schizophrenia relapse-prevention design) |
-| Pitch Deck FK2 (2023) | Aug 2023 | Biographies (UCL, Goldman Sachs, VTB, Oxford Saïd, Harvard/Tufts, KCL PhD) |
+| Pitch Deck FK2 (2023) | Aug 2023 | Biographies (UCL, Goldman Sachs, VTB, Oxford Saïd, Harvard/Tufts, KCL PhD); titles recorded in 2023, used only where later records agree |
+| Draft outreach email to the Brain & Behavior Research Foundation (Gmail) | Apr 2025 | Woods and Kane writing on the company's behalf about the CHR-P programme (no titles) |
+| Board circulation email (Gmail) | Jul 2026 | Who is on the current senior circulation list (includes Trevor Jones); no titles |
+| Management instruction, round 4 (this project) | 23 Sep 2026 | Leadership corrections: Woods not an adviser, one chair, Trevor Jones restored |
 | Branding guidelines (Studio P+P, Oct 2021) | 2021 | Colours #005EB8 / #00A3E0, lowercase wordmark |
 | Email signature | 2026 | Head office address and phone |
-| Web search (reference-verification.md) | 23 Sep 2026 | Literature, NICE, Companies House, registries, crisis lines, advisers' titles |
+| Web search (reference-verification.md, leadership-reconciliation.md) | 23 Sep 2026 | Literature, NICE, Companies House, registries, crisis lines, academic titles, Trevor Jones's biography |
 
 ## Conflicts and how each was resolved
 
@@ -28,7 +31,8 @@ The machine-readable register is `content/sources.json`: every fact, milestone a
 | Company address | Signature: 5 Wisely Court, Beaufort Gardens. Companies House: Kemp House, 160 City Road | Registered office (Companies House) in the footer and legal page; Beaufort Gardens as head office on the contact page |
 | Company name | "NW PharmaTech Ltd" (sponsor field, signatures) vs "NWPHARMATECH LTD" (Companies House) | "NWPharmaTech Ltd" for legal statements; the registry citation is quoted as registered |
 | API supplier | "VantageHemp" (2023) vs "VantageAMP" (2026) | Supplier not named on the site |
-| Chair titles | Jarosz "Executive Chairman" and Barker "Non-Executive Chairman" in the same teaser | Both shown, flagged (unresolved #5) |
+| Chair titles | Jarosz "Executive Chairman" and Barker "Non-Executive Chairman" in the same teaser; 2023 deck: Barker "Senior Advisor, Head of Advisory Board" | Both chair titles withheld until management confirms who chairs the board ([leadership-reconciliation.md](leadership-reconciliation.md)) |
+| Leadership titles generally | 2023 deck, 2025 draft and 2026 teaser disagree on several titles; the teaser omits Trevor Jones | A title is shown only when two or more records agree; otherwise a neutral descriptor. Every title blocks production until management confirms it ([leadership-reconciliation.md](leadership-reconciliation.md)) |
 | Availability | Site says "not available outside approved studies"; July 2026 internal draft proposes UK Specials and US expanded access | Kept as true today; flagged |
 | Clinical evidence | Teaser cites a CBD-vs-risperidone trial (Rasmussen/Baandrup 2026) as "comparable efficacy" | Excluded: only the protocol is peer-reviewed (BMC Psychiatry 2021); results are sponsor-reported |
 | McGuire 2018 | Teaser "p = 0.019" | Not used. The verified value is p = 0.02; the site gives no p-values |
