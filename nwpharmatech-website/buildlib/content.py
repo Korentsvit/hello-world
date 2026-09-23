@@ -6,8 +6,39 @@ updates every page and the generated PDFs consistently.
 from datetime import date
 from pathlib import Path
 import json
+import re
 
 ALLOWED_PROD = {"document", "primary"}
+
+# People: the title rules in docs/leadership-reconciliation.md, applied to the records logged in people.json.
+TEASER_SOURCES = {"teaser-2026-08"}       # management (brief-2026-09-c): never sole authority for a current appointment
+CONFIRMATION_TYPES = {"company-instruction", "confirmation"}
+CONFIRMED_AFTER = "2026-09-23"            # a confirmation must postdate the round-4 instruction (brief-2026-09-c)
+CURRENT_FROM = "2025-01-01"               # a current title or remit needs a record from 2025 onwards
+CHAIR_OR_COMMITTEE = re.compile(r"\bchair|\badvisory (?:board|committee|council)\b|\bsteering committee\b|\bSAB\b", re.I)
+_ABBREVIATIONS = {"ceo": "chief executive officer", "cso": "chief scientific officer", "coo": "chief operating officer",
+                  "cfo": "chief financial officer", "ned": "non-executive director board member"}
+
+
+def title_words(text):
+    """A title as comparable words: case, '&', advisor/adviser, plurals of adviser and the usual abbreviations
+    normalised ('NED' reads as a non-executive director, who is a board member)."""
+    out = []
+    for w in re.findall(r"[a-z]+(?:-[a-z]+)*", text.lower().replace("&", " and ")):
+        w = re.sub(r"^advis[eo]rs?$", "adviser", w)
+        out += _ABBREVIATIONS.get(w, w).split()
+    return out
+
+
+def title_agrees(role, title):
+    """A record's title agrees with a shown title when it has every word of it: 'Senior Adviser' agrees with
+    'Partner & Senior Regulatory and Clinical Advisor', 'Chief Executive Officer' with 'Founder & CEO'."""
+    return bool(title) and set(title_words(role)) <= set(title_words(title))
+
+
+def mentions(text, phrase):
+    """True when the normalised words of phrase appear, in order and together, in text."""
+    return f" {' '.join(title_words(phrase))} " in f" {' '.join(title_words(text))} "
 
 
 class ContentError(Exception):
@@ -67,36 +98,107 @@ class Content:
             date.fromisoformat(u["date"])
             if u["source"] not in self.sources:
                 errs.append(f"update {u['title']}: unknown source")
-        # people: a title ('role') is held only when management confirmed it or company records agree
-        # (docs/leadership-reconciliation.md); a withheld title lives in role_records, never in 'role'
+        # people: a title ('role') is held only when management confirmed it or company records agree, and both are
+        # checked here against the logged records (docs/leadership-reconciliation.md, "Title rules"); a withheld
+        # title lives in role_records, never in 'role'
         groups = {g["id"] for g in self.people["groups"]}
         for p in self.people["people"]:
             who = f"person {p.get('id')}"
-            for k in ("group", "name", "role", "role_status", "role_records", "public", "portrait"):
+            for k in ("group", "name", "role", "role_status", "role_records", "public", "portrait", "descriptor",
+                      "descriptor_records", "responsibilities", "bio", "bio_verification", "consent_to_publish"):
                 if k not in p:
                     errs.append(f"{who}: missing '{k}'")
             if p.get("group") not in groups:
                 errs.append(f"{who}: unknown group {p.get('group')}")
-            status = p.get("role_status")
-            if status not in ("confirmed", "records-agree", "unconfirmed"):
-                errs.append(f"{who}: bad role_status {status}")
-            elif bool(p.get("role")) != (status != "unconfirmed"):
-                errs.append(f"{who}: 'role' must be set exactly when role_status is confirmed or records-agree")
-            if not p.get("descriptor"):
-                errs.append(f"{who}: missing descriptor")
+            if not isinstance(p.get("consent_to_publish"), bool):
+                errs.append(f"{who}: consent_to_publish must be true or false")
+            if p.get("bio_verification") not in self.verification_levels:
+                errs.append(f"{who}: bad bio_verification {p.get('bio_verification')}")
+            elif p.get("public") and p["bio_verification"] == "unconfirmed":
+                errs.append(f"{who}: an unconfirmed biography must not be public")
+            records = []
             for r in p.get("role_records", []):
-                if r.get("source") not in self.sources:
+                src = self.sources.get(r.get("source"))
+                if not src:
                     errs.append(f"{who}: role record with unknown source {r.get('source')}")
-                elif r.get("date") != self.sources[r["source"]]["date"]:
+                    continue
+                if r.get("date") != src["date"]:
                     errs.append(f"{who}: role record date {r.get('date')} does not match source {r.get('source')}")
                 if not r.get("wording"):
                     errs.append(f"{who}: role record without wording")
+                elif r.get("title") and not mentions(r["wording"], r["title"]):
+                    errs.append(f"{who}: role record title '{r['title']}' is not in its wording ({r['source']})")
+                records.append((r, src))
+            errs += [f"{who}: {e}" for e in self._title_problems(p, records) + self._remit_problems(p)]
             for s in p.get("sources", []):
                 if s not in self.sources:
                     errs.append(f"{who}: unknown source {s}")
         self.ref_ids = ref_ids
         if errs:
             raise ContentError("\n".join(errs))
+
+    @staticmethod
+    def _title_problems(p, records):
+        """'confirmed' needs a management confirmation that names the title. 'records-agree' needs two records
+        giving it, one dated 2025 or later other than the teaser (which only corroborates), no record giving a
+        different title unless marked 'compatible', and never a chair or committee title."""
+        status, role = p.get("role_status"), p.get("role")
+        if status not in ("confirmed", "records-agree", "unconfirmed"):
+            return [f"bad role_status {status}"]
+        if bool(role) != (status != "unconfirmed"):
+            return ["'role' must be set exactly when role_status is confirmed or records-agree"]
+        if status == "confirmed":
+            if not any(src["type"] in CONFIRMATION_TYPES and src["date"] > CONFIRMED_AFTER and mentions(r["wording"], role)
+                       for r, src in records):
+                return [f"'confirmed' needs a role record from a management confirmation (source type "
+                        f"{' or '.join(sorted(CONFIRMATION_TYPES))}, dated after {CONFIRMED_AFTER}) whose wording contains '{role}'"]
+            return []
+        if status == "unconfirmed":
+            return []
+        out = []
+        if CHAIR_OR_COMMITTEE.search(role):
+            out.append(f"'{role}' is a chair or committee title: shown only once management has confirmed it")
+        agree = [(r, src) for r, src in records if title_agrees(role, r.get("title"))]
+        if len(agree) < 2 or not any(r["source"] not in TEASER_SOURCES and src["date"] >= CURRENT_FROM for r, src in agree):
+            out.append(f"'records-agree' needs two records giving '{role}', at least one dated 2025 or later other than "
+                       f"the teaser (agreeing: {', '.join(r['source'] for r, _ in agree) or 'none'})")
+        conflicts = [r["source"] for r, _ in records if r.get("title") and not title_agrees(role, r["title"]) and not r.get("compatible")]
+        if conflicts:
+            out.append(f"'records-agree' but {', '.join(conflicts)} give a different title than '{role}'")
+        return out
+
+    def _remit_problems(self, p):
+        """A descriptor needs two supporting records and a responsibility (a current remit) one dated 2025 or later;
+        in both, at least one of them is not the teaser, which can only corroborate. Neither may carry a chair or
+        committee role unless management confirmed the title."""
+        out = []
+
+        def support(what, recs, least, current):
+            ok = []
+            for s in recs or []:
+                src = self.sources.get(s.get("source"))
+                if not src or not s.get("wording"):
+                    out.append(f"{what}: supporting record needs a known source and its wording ({s.get('source')})")
+                else:
+                    ok.append((s["source"], src["date"]))
+            if len(ok) < least or not any(s not in TEASER_SOURCES and (not current or d >= CURRENT_FROM) for s, d in ok):
+                out.append(f"{what}: needs {'two supporting records' if least > 1 else 'a supporting record'}, "
+                           f"at least one {'dated 2025 or later ' if current else ''}other than the teaser")
+
+        if not p.get("descriptor"):
+            out.append("missing descriptor")
+        elif CHAIR_OR_COMMITTEE.search(p["descriptor"]):
+            out.append("descriptor names a chair or committee role (a descriptor is never a title)")
+        else:
+            support(f"descriptor '{p['descriptor']}'", p.get("descriptor_records"), 2, False)
+        for r in p.get("responsibilities") or []:
+            if not isinstance(r, dict) or not r.get("text"):
+                out.append("responsibility needs 'text' and 'records'")
+                continue
+            if CHAIR_OR_COMMITTEE.search(r["text"]) and p.get("role_status") != "confirmed":
+                out.append(f"responsibility '{r['text']}' names a chair or committee role that management has not confirmed")
+            support(f"responsibility '{r['text']}'", r.get("records"), 1, True)
+        return out
 
     # ---- lookups used by templates ----
     def fact(self, fid, page, public=True):
@@ -144,13 +246,20 @@ class Content:
         return [f"{i['page']}: {i['item']}" for i in self.review if not i.get("done")]
 
     def leadership_blockers(self):
-        """Every public title must be confirmed by management (see docs/leadership-reconciliation.md).
+        """Every public profile needs its title confirmed by management, the person's consent to publish, and a
+        biography checked at document or primary level, as for facts (see docs/leadership-reconciliation.md).
         A title the records agree on is shown on staging; a withheld title leaves only the descriptor."""
         out = []
         for p in self.people["people"]:
-            if p["public"] and p["role_status"] != "confirmed":
+            if not p["public"]:
+                continue
+            if p["role_status"] != "confirmed":
                 shown = f"shows '{p['role']}'" if p["role"] else "no title shown"
                 out.append(f"people.json: title for {p['name']} not confirmed by management ({p['role_status']}; {shown})")
+            if not p["consent_to_publish"]:
+                out.append(f"people.json: no consent to publish recorded for {p['name']}")
+            if p["bio_verification"] not in ALLOWED_PROD:
+                out.append(f"people.json: biography of {p['name']} checked only at {p['bio_verification']} level")
         return out
 
     def optional_assets_missing(self):

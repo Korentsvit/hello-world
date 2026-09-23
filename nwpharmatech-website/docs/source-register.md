@@ -14,9 +14,9 @@ The machine-readable register is `content/sources.json`: every fact, milestone a
 | "Web3" draft deck (Oct 2025) | Oct 2025 | Background to the financing structure only. Projections and return claims were **not** used |
 | SAP v5.1 email (Nov 2025) | Nov 2025 | Reconciliation only (schizophrenia relapse-prevention design) |
 | Pitch Deck FK2 (2023) | Aug 2023 | Biographies (UCL, Goldman Sachs, VTB, Oxford Saïd, Harvard/Tufts, KCL PhD); titles recorded in 2023, used only where later records agree |
-| Draft outreach email to the Brain & Behavior Research Foundation (Gmail) | Apr 2025 | Woods and Kane writing on the company's behalf about the CHR-P programme (no titles) |
+| Draft outreach email to the Brain & Behavior Research Foundation (Gmail) | Apr 2025 | Drafted as from Woods and Kane on the company's behalf about the CHR-P programme; not known to have been sent (no titles) |
 | Board circulation email (Gmail) | Jul 2026 | Who is on the current senior circulation list (includes Trevor Jones); no titles |
-| Management instruction, round 4 (this project) | 23 Sep 2026 | Leadership corrections: Woods not an adviser, one chair, Trevor Jones restored |
+| Management instruction, round 4 (this project) | 23 Sep 2026 | Leadership corrections: Woods not an adviser; not both an Executive and a Non-Executive Chairman (no chair title is shown pending management confirmation); Trevor Jones restored |
 | Branding guidelines (Studio P+P, Oct 2021) | 2021 | Colours #005EB8 / #00A3E0, lowercase wordmark |
 | Email signature | 2026 | Head office address and phone |
 | Web search (reference-verification.md, leadership-reconciliation.md) | 23 Sep 2026 | Literature, NICE, Companies House, registries, crisis lines, academic titles, Trevor Jones's biography |
@@ -32,7 +32,7 @@ The machine-readable register is `content/sources.json`: every fact, milestone a
 | Company name | "NW PharmaTech Ltd" (sponsor field, signatures) vs "NWPHARMATECH LTD" (Companies House) | "NWPharmaTech Ltd" for legal statements; the registry citation is quoted as registered |
 | API supplier | "VantageHemp" (2023) vs "VantageAMP" (2026) | Supplier not named on the site |
 | Chair titles | Jarosz "Executive Chairman" and Barker "Non-Executive Chairman" in the same teaser; 2023 deck: Barker "Senior Advisor, Head of Advisory Board" | Both chair titles withheld until management confirms who chairs the board ([leadership-reconciliation.md](leadership-reconciliation.md)) |
-| Leadership titles generally | 2023 deck, 2025 draft and 2026 teaser disagree on several titles; the teaser omits Trevor Jones | A title is shown only when two or more records agree; otherwise a neutral descriptor. Every title blocks production until management confirms it ([leadership-reconciliation.md](leadership-reconciliation.md)) |
+| Leadership titles generally | 2023 deck, 2025 draft and 2026 teaser disagree on several titles; the teaser omits Trevor Jones | A title is shown only when two or more records agree and at least one of them is a 2025–2026 record other than the teaser (so Gutseriev's COO title is withheld); otherwise a neutral descriptor. The build checks this against the logged records. Every title blocks production until management confirms it in writing ([leadership-reconciliation.md](leadership-reconciliation.md)) |
 | Availability | Site says "not available outside approved studies"; July 2026 internal draft proposes UK Specials and US expanded access | Kept as true today; flagged |
 | Clinical evidence | Teaser cites a CBD-vs-risperidone trial (Rasmussen/Baandrup 2026) as "comparable efficacy" | Excluded: only the protocol is peer-reviewed (BMC Psychiatry 2021); results are sponsor-reported |
 | McGuire 2018 | Teaser "p = 0.019" | Not used. The verified value is p = 0.02; the site gives no p-values |
