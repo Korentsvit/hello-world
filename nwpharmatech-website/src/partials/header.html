@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="robots" content="{{robots}}">
+  <link rel="canonical" href="{{canonical}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f3b4c">
+  <link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="notice-bar" role="note">
+    <div class="container">
+      <strong>NWPT-SM32300 is an investigational product.</strong>
+      It is not approved for any use, and whether it is effective is not yet known.
+      <a href="faq.html#not-medical-advice">This website is not medical advice.</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="NWPharmaTech home">
+        <img src="assets/img/mark.svg" alt="" width="36" height="36">
+        <span class="brand-name">NW<span>PharmaTech</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          {{nav}}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
