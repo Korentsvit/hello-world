@@ -1,117 +1,197 @@
 {
-  "_doc": "Profiles. Public fields render on people.html and the press kit. 'review' and 'sources' are internal. A portrait renders only if 'portrait.file' exists under src/assets AND 'portrait.authorised' is true. 'disclosures' renders only when non-empty and sourced. Interview modules render only when complete (see interviews.json).",
+  "_doc": "Profiles. Public fields render on people.html and the press kit; people with public: false are not rendered. 'role' is the title and is shown only when role_status is 'confirmed' (by management in writing) or 'records-agree' (see docs/leadership-reconciliation.md); it is null when role_status is 'unconfirmed'. 'descriptor' is a field of expertise or remit the records support, never a job title, and is always shown. Every title that is not 'confirmed' blocks a production build. 'role_records', 'review' and 'sources' are internal. A portrait renders only if 'portrait.file' exists under src/assets AND 'portrait.authorised' is true; otherwise nothing is rendered in its place. 'disclosures' renders only when non-empty and sourced. Interview modules render only when complete (see interviews.json).",
   "groups": [
     {"id": "clinical", "title": "Clinical and scientific leadership"},
-    {"id": "board", "title": "Company leadership and board"}
+    {"id": "management", "title": "Management"},
+    {"id": "board", "title": "Board and senior advisers"}
   ],
   "people": [
     {
-      "id": "scott-woods", "group": "clinical", "featured": true,
-      "name": "Dr Scott W. Woods", "initials": "SW",
-      "role": "Adviser on clinical high risk of psychosis",
-      "focus": "Clinical high risk of psychosis",
-      "responsibilities": ["Advises the programme on clinical high risk of psychosis: how the condition is identified and how studies in this group should be designed."],
+      "id": "scott-woods", "group": "clinical", "featured": true, "public": true,
+      "name": "Dr Scott W. Woods",
+      "role": null,
+      "role_status": "unconfirmed",
+      "role_records": [
+        {"source": "outreach-2025-04", "date": "2025-04-27", "wording": "Co-signatory with Dr John Kane 'on behalf of NW PharmaTech'; no programme title"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "'Dr. Scott Woods (Yale, CHR-P expert)'; 'Additional Advisor Input: Dr. Scott Woods (Yale, CHR-P diagnostics expert) on trial design'"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'Yale PRIME; CHR-P authority'"}
+      ],
+      "descriptor": "Clinical high risk of psychosis (CHR-P)",
+      "responsibilities": ["Brings expertise in clinical high risk of psychosis, including how it is assessed, to the design of the programme's studies."],
       "affiliations": ["Professor of Psychiatry, Yale School of Medicine", "Director, PRIME Clinic, which specialises in people at clinical high risk of psychosis"],
       "bio": "Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/scott-woods.jpg", "authorised": false},
       "interview": "woods",
-      "sources": ["teaser-2026-08", "web3-2025-10", "verification-2026-09-23"],
-      "review": "Formal title with the programme unconfirmed (teaser lists him under leadership as 'Yale PRIME; CHR-P authority'). Bio sentence pending round-2 verification of CHR-P research leadership."
+      "sources": ["outreach-2025-04", "web3-2025-10", "teaser-2026-08", "verification-2026-09-23", "verification-2026-09-23b", "brief-2026-09-c"],
+      "review": "No programme title in any record. Management (round 4) rejects the adviser framing; confirm how his role is described."
     },
     {
-      "id": "john-kane", "group": "clinical", "featured": false,
-      "name": "Dr John M. Kane", "initials": "JK",
-      "role": "Chair, Scientific Advisory Board",
-      "focus": "Clinical trial design",
-      "responsibilities": ["Chairs the programme's Scientific Advisory Board.", "Advises on clinical trial design."],
+      "id": "john-kane", "group": "clinical", "featured": false, "public": true,
+      "name": "Dr John M. Kane",
+      "role": null,
+      "role_status": "unconfirmed",
+      "role_records": [
+        {"source": "deck-2023-08", "date": "2023-08-15", "wording": "'Partner & Senior Psychiatric Advisor'"},
+        {"source": "outreach-2025-04", "date": "2025-04-27", "wording": "Co-signatory with Dr Scott Woods 'on behalf of NW PharmaTech'; no programme title"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "'Principal Investigator, relapse-prevention studies'; Phase 2 relapse-prevention design 'led by Prof. John Kane'"},
+        {"source": "board-circulation-2026-07", "date": "2026-07-14", "wording": "Recipient; no title stated"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'SAB Chair; schizophrenia trial design'; 'clinical trial design led by Dr John Kane'"}
+      ],
+      "descriptor": "Clinical trial design",
+      "responsibilities": ["Leads the programme's clinical trial design."],
       "affiliations": ["Professor of Psychiatry and Molecular Medicine, Donald and Barbara Zucker School of Medicine at Hofstra/Northwell", "Co-director, Institute for Behavioral Science, Feinstein Institutes for Medical Research"],
       "bio": "Psychiatrist and schizophrenia researcher with long experience of leading clinical trials.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/john-kane.jpg", "authorised": false},
       "interview": "kane",
-      "sources": ["teaser-2026-08", "verification-2026-09-23"],
-      "review": "Early-intervention research statement pending round-2 verification (RAISE)."
+      "sources": ["deck-2023-08", "web3-2025-10", "teaser-2026-08", "verification-2026-09-23", "verification-2026-09-23b"],
+      "review": "Titles conflict across records; 'SAB Chair' is teaser-only (committee appointment: withheld). Trial-design lead is in the 2025 draft and the 2026 teaser; confirm it covers the CHR-P Phase 2B."
     },
     {
-      "id": "grace-blest-hopley", "group": "clinical", "featured": false,
-      "name": "Dr Grace Blest-Hopley", "initials": "GB",
+      "id": "grace-blest-hopley", "group": "clinical", "featured": false, "public": true,
+      "name": "Dr Grace Blest-Hopley",
       "role": "Chief Scientific Officer",
-      "focus": "Cannabinoid neuropharmacology",
+      "role_status": "records-agree",
+      "role_records": [
+        {"source": "deck-2023-08", "date": "2023-08-15", "wording": "'Partner & Chief Scientific Officer'"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "'CSO, translational neuroscience'"},
+        {"source": "board-circulation-2026-07", "date": "2026-07-14", "wording": "Copied; no title stated"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'CSO; cannabinoid neuropharmacology'"}
+      ],
+      "descriptor": "Cannabinoid neuropharmacology",
       "responsibilities": ["Responsible for the programme's scientific strategy as Chief Scientific Officer."],
       "affiliations": [],
       "bio": "Neuroscientist specialising in cannabinoid neuropharmacology. PhD from King's College London on the actions and effects of cannabinoids.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/grace-blest-hopley.jpg", "authorised": false},
       "interview": "blest-hopley",
-      "sources": ["teaser-2026-08", "deck-2023-08"],
+      "sources": ["deck-2023-08", "web3-2025-10", "teaser-2026-08", "verification-2026-09-23b"],
       "review": "Specific responsibility for formulation research not documented; do not state it until confirmed."
     },
     {
-      "id": "filipp-korentsvit", "group": "board", "featured": false,
-      "name": "Filipp Korentsvit", "initials": "FK",
-      "role": "Chief Executive Officer and Founding Partner",
-      "focus": "Strategy and programme leadership",
+      "id": "filipp-korentsvit", "group": "management", "featured": false, "public": true,
+      "name": "Filipp Korentsvit",
+      "role": "Chief Executive Officer",
+      "role_status": "records-agree",
+      "role_records": [
+        {"source": "deck-2023-08", "date": "2023-08-15", "wording": "'Co-Founder & Chief Executive Officer'"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "'Founder & CEO, strategic architect'"},
+        {"source": "signature-2026", "date": "2026-07-14", "wording": "'Founding Partner'"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'CEO; strategy; ex-Goldman Sachs'"}
+      ],
+      "descriptor": "Strategy and programme leadership",
       "responsibilities": ["Leads company strategy and the development programme."],
       "affiliations": [],
       "bio": "Previously an Executive Director at Goldman Sachs. BSc in Economics and Statistics, University College London.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/filipp-korentsvit.jpg", "authorised": false},
       "interview": null,
-      "sources": ["teaser-2026-08", "deck-2023-08", "signature-2026"]
+      "sources": ["deck-2023-08", "web3-2025-10", "teaser-2026-08", "signature-2026"],
+      "review": "'Founding Partner' rests on the 2026 signature alone; add it only if management confirms."
     },
     {
-      "id": "daud-gutseriev", "group": "board", "featured": false,
-      "name": "Daud Gutseriev", "initials": "DG",
+      "id": "daud-gutseriev", "group": "management", "featured": false, "public": true,
+      "name": "Daud Gutseriev",
       "role": "Chief Operating Officer",
-      "focus": "Programme execution",
+      "role_status": "records-agree",
+      "role_records": [
+        {"source": "deck-2023-08", "date": "2023-08-15", "wording": "'Co-Founder & Chief Operating Officer'"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "Listed as co-founder; no title stated"},
+        {"source": "board-circulation-2026-07", "date": "2026-07-14", "wording": "Copied; no title stated"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'COO; execution; ex-VTB Capital'"}
+      ],
+      "descriptor": "Programme execution",
       "responsibilities": ["Leads programme execution."],
       "affiliations": [],
       "bio": "Previously an Associate Director at VTB Capital in infrastructure and project financing. Executive MBA, University of Oxford Saïd Business School.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/daud-gutseriev.jpg", "authorised": false},
       "interview": null,
-      "sources": ["teaser-2026-08", "deck-2023-08"]
+      "sources": ["deck-2023-08", "web3-2025-10", "teaser-2026-08"]
     },
     {
-      "id": "william-jarosz", "group": "board", "featured": false,
-      "name": "William Jarosz", "initials": "WJ",
-      "role": "Executive Chairman",
-      "focus": "Biotech partnerships",
-      "responsibilities": ["Chairs the board; focuses on biotech partnerships."],
+      "id": "william-jarosz", "group": "board", "featured": false, "public": true,
+      "name": "William Jarosz",
+      "role": null,
+      "role_status": "unconfirmed",
+      "role_records": [
+        {"source": "deck-2023-08", "date": "2023-08-15", "wording": "'Partner & Executive Chairman of the Board of Directors'"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "Not listed"},
+        {"source": "board-circulation-2026-07", "date": "2026-07-14", "wording": "Recipient; no title stated"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'Executive Chairman; biotech partnerships' (the same teaser names Richard Barker 'Non-Executive Chairman')"}
+      ],
+      "descriptor": "Pharmaceutical business and finance",
+      "responsibilities": [],
       "affiliations": [],
       "bio": "Business leader with a background in finance and the pharmaceutical industry. JD, Harvard Law School; MA in Law and Diplomacy, Tufts University.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/william-jarosz.jpg", "authorised": false},
       "interview": null,
-      "sources": ["teaser-2026-08", "deck-2023-08"],
-      "review": "Teaser lists both Jarosz (Executive Chairman) and Barker (Non-Executive Chairman). Confirm titles."
+      "sources": ["deck-2023-08", "teaser-2026-08", "brief-2026-09-c"],
+      "review": "Chair position contested (Jarosz 'Executive Chairman' and Barker 'Non-Executive Chairman' in the same teaser). Title withheld until management confirms who chairs the board."
     },
     {
-      "id": "richard-barker", "group": "board", "featured": false,
-      "name": "Professor Richard Barker OBE", "initials": "RB",
-      "role": "Non-Executive Chairman",
-      "focus": "Life-sciences leadership",
-      "responsibilities": ["Non-executive board role."],
+      "id": "richard-barker", "group": "board", "featured": false, "public": true,
+      "name": "Professor Richard Barker OBE",
+      "role": null,
+      "role_status": "unconfirmed",
+      "role_records": [
+        {"source": "deck-2023-08", "date": "2023-08-15", "wording": "'Partner & Senior Advisor, Head of Advisory Board'"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "'Senior Advisors' (with Trevor Jones)"},
+        {"source": "board-circulation-2026-07", "date": "2026-07-14", "wording": "Recipient; no title stated"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'Non-Executive Chairman; ex-ABPI' (the same teaser names William Jarosz 'Executive Chairman')"}
+      ],
+      "descriptor": "Life-sciences leadership",
+      "responsibilities": [],
       "affiliations": [],
       "bio": "Director General of the Association of the British Pharmaceutical Industry (ABPI) from 2004 to 2011, former Chief Executive of Chiron, and former non-executive director of Celgene.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/richard-barker.jpg", "authorised": false},
       "interview": null,
-      "sources": ["teaser-2026-08", "deck-2023-08", "verification-2026-09-23"]
+      "sources": ["deck-2023-08", "web3-2025-10", "teaser-2026-08", "verification-2026-09-23", "brief-2026-09-c"],
+      "review": "2023 and 2025 records say Senior Adviser; the 2026 teaser says Non-Executive Chairman. Title withheld until management confirms."
     },
     {
-      "id": "gillian-cannon", "group": "board", "featured": false,
-      "name": "Dr Gillian Cannon", "initials": "GC",
-      "role": "Non-Executive Director",
-      "focus": "Pharmaceutical industry",
-      "responsibilities": ["Non-executive board role."],
+      "id": "gillian-cannon", "group": "board", "featured": false, "public": true,
+      "name": "Dr Gillian Cannon",
+      "role": "Board Member",
+      "role_status": "records-agree",
+      "role_records": [
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "'Board Member & Commercial Strategy Advisor'"},
+        {"source": "board-circulation-2026-07", "date": "2026-07-14", "wording": "Recipient; no title stated"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "'NED; ex-Merck & Otsuka'"}
+      ],
+      "descriptor": "Pharmaceutical commercial strategy",
+      "responsibilities": [],
       "affiliations": [],
       "bio": "Pharmaceutical executive with senior roles at Merck, Otsuka and UCB.",
       "disclosures": [],
       "portrait": {"file": "assets/img/people/gillian-cannon.jpg", "authorised": false},
       "interview": null,
-      "sources": ["teaser-2026-08", "verification-2026-09-23"]
+      "sources": ["web3-2025-10", "teaser-2026-08", "verification-2026-09-23"],
+      "review": "Records agree on board membership; 'non-executive' is teaser-only. Confirm 'Non-Executive Director'."
+    },
+    {
+      "id": "trevor-jones", "group": "board", "featured": false, "public": true,
+      "name": "Professor Trevor Jones CBE",
+      "role": "Senior Adviser",
+      "role_status": "records-agree",
+      "role_records": [
+        {"source": "deck-2023-08", "date": "2023-08-15", "wording": "'Partner & Senior Regulatory and Clinical Advisor'"},
+        {"source": "web3-2025-10", "date": "2025-10-30", "wording": "'Senior Advisors' (with Richard Barker)"},
+        {"source": "board-circulation-2026-07", "date": "2026-07-14", "wording": "Recipient; no title stated"},
+        {"source": "teaser-2026-08", "date": "2026-08-07", "wording": "Not listed"}
+      ],
+      "descriptor": "Regulatory and clinical development",
+      "responsibilities": [],
+      "affiliations": ["Visiting Professor, King's College London"],
+      "bio": "Senior leader in the pharmaceutical sector. Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/trevor-jones.jpg", "authorised": false},
+      "interview": null,
+      "sources": ["deck-2023-08", "web3-2025-10", "board-circulation-2026-07", "verification-leadership-2026-09-23", "brief-2026-09-c"],
+      "review": "Restored (round 4). Bio limited to statements in company records that a web search summary confirmed (docs/leadership-reconciliation.md). Consent to publish and portrait not yet received."
     }
   ]
 }

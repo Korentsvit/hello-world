@@ -15,7 +15,7 @@ Suggested questions; the speaker answers in their own words:
 3. What happens to most people who meet the criteria over time?
 4. What support helps now, and what does the evidence say about preventing psychosis?
 5. What would a useful study in this group need to show?
-**Guardrails:** no statements about NWPT-SM32300's effects; state his advisory role.
+**Guardrails:** no statements about NWPT-SM32300's effects; describe his involvement as his profile does (CHR-P expertise brought to study design), without calling him an adviser or giving a title until management confirms one.
 
 ## Dr John M. Kane: what early intervention has demonstrated
 1. What have studies of early, coordinated care for first-episode psychosis shown?
