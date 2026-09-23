@@ -1,0 +1,1064 @@
+{
+  "base": "http://127.0.0.1:38495/",
+  "generated": "2026-09-23T05:07:57.770Z",
+  "pages": {
+    "index@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "clinical-need@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "The clinical need | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "science@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "The science | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "evidence@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Evidence and references | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "programme@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "NWPT-SM32300 and the Phase 2B study | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 10,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 8,
+          "overflow": false
+        }
+      ]
+    },
+    "people@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "People and governance | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "updates@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Programme updates | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "financing@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Programme financing | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "faq@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Questions and answers | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "contact@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Contact | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "legal@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Legal, privacy and accessibility | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "index@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "clinical-need@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "The clinical need | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "science@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "The science | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "evidence@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Evidence and references | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "programme@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "NWPT-SM32300 and the Phase 2B study | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 10,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 8,
+          "overflow": false
+        }
+      ]
+    },
+    "people@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "People and governance | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "updates@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Programme updates | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "financing@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Programme financing | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "faq@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Questions and answers | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "contact@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Contact | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
+    "legal@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Legal, privacy and accessibility | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    }
+  },
+  "checks": [
+    {
+      "name": "index@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "index@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "clinical-need@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "science@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "evidence@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "programme@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: table 2 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@desktop: table 2 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "people@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "updates@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "financing@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "faq@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "contact@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "legal@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "index@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clinical-need@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "clinical-need@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "science@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "evidence@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "programme@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: table 2 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "programme@mobile: table 2 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "people@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "updates@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "updates@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "financing@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "faq@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "contact@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legal@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "legal@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "widths 320-1440px: no horizontal scroll or header overflow on any page",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "internal links and anchors resolve (409 checked)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: toggle visible on mobile",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: starts collapsed (aria-expanded=false, panel hidden)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: opens (aria-expanded=true, panel visible)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: current page's group open, others closed",
+      "pass": true,
+      "detail": "[{\"t\":\"The research\",\"open\":true},{\"t\":\"The programme\",\"open\":false},{\"t\":\"About\",\"open\":false}]"
+    },
+    {
+      "name": "menu: focus moves into panel on open",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: tapping a closed group expands it",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: current page marked aria-current",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: Escape closes and returns focus to toggle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu: visible touch targets at least 44px tall",
+      "pass": true,
+      "detail": "52,53,46,46,46,53,46,46,46,53,46,46,46,46"
+    },
+    {
+      "name": "menu: link navigates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop: primary nav visible, toggle hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "keyboard: first Tab reaches visible skip link",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "keyboard: skip link moves focus to main",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "keyboard: all 34 tab stops on home show a visible focus outline",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "faq: all answers start collapsed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq: Enter on a question opens it",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq: Enter again closes it",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq: deep link (#not-medical-advice) opens the target answer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq: notice-bar link opens the answer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "download: programme brief PDF served (200, application/pdf, valid header, >10 KB)",
+      "pass": true,
+      "detail": "200 application/pdf 57733 bytes"
+    },
+    {
+      "name": "download: homepage 'Download the brief' triggers a file download",
+      "pass": true,
+      "detail": "nwpharmatech-programme-brief.pdf"
+    },
+    {
+      "name": "contact: all tel: links are well-formed digit strings",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact: head office tel link present (+442036933791)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact: public email route present",
+      "pass": false,
+      "detail": "none: public mailbox not yet confirmed"
+    },
+    {
+      "name": "contact: postal address rendered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-JS (mobile): menu shown expanded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-JS (mobile): accordion groups open natively and links are reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "staging: every page noindex",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "staging: robots.txt disallows all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "staging: banner shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted material absent from public build",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "public build contains no <form> elements",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted: unconfigured environment returns 503",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted: missing Access token returns 403",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted: unverifiable token is refused (403/503)",
+      "pass": true,
+      "detail": "503"
+    }
+  ],
+  "contactRoutes": {
+    "tel:999": 2,
+    "tel:111": 2,
+    "tel:08088088000": 1,
+    "tel:116123": 2,
+    "sms:85258": 1,
+    "tel:112": 1,
+    "tel:1800247247": 1,
+    "tel:911": 1,
+    "tel:988": 1,
+    "tel:+442036933791": 1
+  },
+  "summary": {
+    "total": 155,
+    "passed": 154,
+    "failed": 1
+  }
+}

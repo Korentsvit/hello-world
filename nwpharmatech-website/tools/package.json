@@ -1,0 +1,8 @@
+{
+  "name": "nwpharmatech-site-qa",
+  "private": true,
+  "type": "module",
+  "description": "Browser QA for the NWPharmaTech static site",
+  "scripts": { "qa": "node qa.mjs", "pdf": "node make-pdf.mjs" },
+  "devDependencies": { "axe-core": "^4.10.0", "playwright-core": "~1.56.0" }
+}

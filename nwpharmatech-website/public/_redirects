@@ -1,0 +1,16 @@
+# Cloudflare Pages redirects. Old-to-new URL map: docs/url-map.md
+# Draft v1 (commit b7ffb4b) used the same page URLs; only the anchors below changed.
+/index.html                 /                        301
+/brief                      /#programme-brief        301
+/programme-brief            /#programme-brief        301
+/study                      /programme.html          301
+/phase-2b                   /programme.html          301
+/team                       /people.html             301
+/news                       /updates.html            301
+/references                 /evidence.html           301
+/privacy                    /legal.html#privacy      301
+/accessibility              /legal.html#accessibility 301
+/invest                     /financing.html          301
+/investors                  /financing.html          301
+# Live-site (nwpharmatech.com / nwpharmatech.org) paths: not retrievable from the build environment.
+# Add one line per old URL once the live sitemap is exported (see docs/url-map.md).
