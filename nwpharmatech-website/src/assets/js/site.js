@@ -1,30 +1,6 @@
-// Mobile menu (accordion groups use native <details>), footer year.
+// Mobile menu (accordion groups use native <details>, one open at a time), in-page targets, footer year.
 // Without JavaScript the mobile menu is shown expanded below the header (see site.css).
 document.addEventListener("DOMContentLoaded", function () {
-  var toggle = document.querySelector(".nav-toggle");
-  var panel = document.getElementById("mobile-nav");
-  if (toggle && panel) {
-    var setOpen = function (open, returnFocus) {
-      toggle.setAttribute("aria-expanded", String(open));
-      panel.hidden = !open;
-      document.body.classList.toggle("menu-open", open);
-      if (open) {
-        var first = panel.querySelector("a, summary");
-        if (first) first.focus();
-      } else if (returnFocus) {
-        toggle.focus();
-      }
-    };
-    toggle.addEventListener("click", function () {
-      setOpen(toggle.getAttribute("aria-expanded") !== "true", false);
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") setOpen(false, true);
-    });
-    window.matchMedia("(min-width: 1100px)").addEventListener("change", function (mq) {
-      if (mq.matches) setOpen(false, false);
-    });
-  }
   // Open a collapsed Q&A item when a link targets it (e.g. faq.html#not-medical-advice).
   var openTarget = function () {
     var id = decodeURIComponent(location.hash.slice(1));
@@ -35,6 +11,79 @@ document.addEventListener("DOMContentLoaded", function () {
       if (s) s.focus();
     }
   };
+  var toggle = document.querySelector(".nav-toggle");
+  var panel = document.getElementById("mobile-nav");
+  if (toggle && panel) {
+    var isOpen = function () { return toggle.getAttribute("aria-expanded") === "true"; };
+    // Keep the open panel inside the viewport (the header may sit below the notice bars), so it scrolls.
+    var fit = function () {
+      panel.style.maxHeight = Math.max(160, window.innerHeight - panel.getBoundingClientRect().top) + "px";
+    };
+    var setOpen = function (open, returnFocus) {
+      toggle.setAttribute("aria-expanded", String(open));
+      panel.hidden = !open;
+      document.body.classList.toggle("menu-open", open);
+      if (open) {
+        fit();
+        var first = panel.querySelector("a, summary");
+        if (first) first.focus();
+      } else if (returnFocus) {
+        toggle.focus();
+      }
+    };
+    toggle.addEventListener("click", function () {
+      setOpen(!isOpen(), false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && isOpen()) setOpen(false, true);
+    });
+    var refit = function () {
+      if (isOpen()) fit();
+    };
+    window.addEventListener("resize", refit);
+    window.addEventListener("scroll", refit, { passive: true });
+    // Returning through the browser's history cache: show the page with the menu closed.
+    window.addEventListener("pageshow", function (e) {
+      if (e.persisted) setOpen(false, false);
+    });
+    // Tabbing out of the open menu closes it, so focus never lands on content hidden behind the panel.
+    panel.addEventListener("focusout", function (e) {
+      var to = e.relatedTarget;
+      if (isOpen() && to && to !== toggle && !panel.contains(to)) setOpen(false, false);
+    });
+    // One group open at a time where <details name> is not supported. "toggle" does not bubble: capture it.
+    panel.addEventListener("toggle", function (e) {
+      if (!e.target.open || !e.target.classList.contains("nav-group")) return;
+      panel.querySelectorAll("details.nav-group[open]").forEach(function (d) {
+        if (d !== e.target) d.open = false;
+      });
+    }, true);
+    // A destination on this page (the page's own link, or one of its #sections): close the menu, let the
+    // browser go to the fragment, then put keyboard focus on the destination instead of the toggle.
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest("a[href]");
+      if (!a || e.button || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      if (a.origin !== location.origin || a.pathname !== location.pathname || a.search !== location.search) return;
+      var id = decodeURIComponent(a.hash.slice(1));
+      var dest = document.getElementById(id || "main");
+      if (!dest) return;
+      a.blur();   // focus leaves the header first, so the page scrolls clear of it (site.css)
+      setOpen(false, false);
+      if (!id) {   // the current page itself: stay, back at the top
+        e.preventDefault();
+        if (location.hash) history.pushState(null, "", a.href);
+        window.scrollTo(0, 0);
+      }
+      setTimeout(function () {
+        if (dest.tagName === "DETAILS") return openTarget();
+        if (!dest.matches("a[href], button, input, select, textarea, summary, [tabindex]")) dest.setAttribute("tabindex", "-1");
+        dest.focus({ preventScroll: true });
+      }, 0);
+    });
+    window.matchMedia("(min-width: 1100px)").addEventListener("change", function (mq) {
+      if (mq.matches) setOpen(false, false);
+    });
+  }
   openTarget();
   window.addEventListener("hashchange", openTarget);
   document.querySelectorAll("[data-year]").forEach(function (el) {
