@@ -1,0 +1,26 @@
+{
+ "appointment-preparation-sheet.pdf": {
+  "source": "appointment-sheet.html",
+  "source_sha256": "408e45cf755d6d4a36d8a7a730809a681da7bd96cd1e0bc50db85692c084d49c",
+  "generated": "2026-09-23T13:43:14.608Z",
+  "pages": 1,
+  "expected_pages": 1,
+  "bytes": 37085,
+  "tagged": true,
+  "facts_checked": 1,
+  "missing_facts": [],
+  "pass": true
+ },
+ "nwpharmatech-programme-brief.pdf": {
+  "source": "programme-brief.html",
+  "source_sha256": "451082c7d8f6b05351d778db47d530c16eb544e7d1a435af015bb31150ccd29c",
+  "generated": "2026-09-23T13:43:14.976Z",
+  "pages": 2,
+  "expected_pages": 2,
+  "bytes": 68585,
+  "tagged": true,
+  "facts_checked": 22,
+  "missing_facts": [],
+  "pass": true
+ }
+}

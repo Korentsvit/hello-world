@@ -2,7 +2,17 @@
   "name": "nwpharmatech-site-qa",
   "private": true,
   "type": "module",
-  "description": "Browser QA for the NWPharmaTech static site",
-  "scripts": { "qa": "node qa.mjs", "pdf": "node make-pdf.mjs" },
-  "devDependencies": { "axe-core": "^4.10.0", "playwright-core": "~1.56.0" }
+  "description": "Build tools for the NWPharmaTech static site: browser QA, route tests under Cloudflare Pages (wrangler), PDF generation and checks",
+  "scripts": {
+    "qa": "node qa.mjs",
+    "routes": "node test-routes.mjs",
+    "pdf": "node make-pdf.mjs",
+    "signup": "node test-signup.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.0",
+    "pdfjs-dist": "^4.10.38",
+    "playwright-core": "~1.56.0",
+    "wrangler": "^4.40.0"
+  }
 }

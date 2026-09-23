@@ -28,6 +28,8 @@ class Content:
         self.updates = self._load(c / "updates.json")["updates"]
         self.documents = self._load(c / "documents.json")["documents"]
         self.interviews = self._load(c / "interviews.json")["modules"]
+        self.assets = self._load(c / "assets.json")["assets"]
+        self.review = self._load(c / "review.json")["items"] if (c / "review.json").exists() else []
         self.ui = self._load(c / "ui" / f"{locale}.json")
         self.used_facts = {}   # fact id -> set(pages)
         self.used_refs = {}
@@ -108,3 +110,42 @@ class Content:
             if not ok:
                 out.append(f"reference {rid} ({r['verification']}) on {', '.join(sorted(pages))}")
         return out
+
+    def review_items(self):
+        """Open items in content/review.json (approvals and checks the team must complete before publication).
+        They are never rendered on a page."""
+        return [f"{i['page']}: {i['item']}" for i in self.review if not i.get("done")]
+
+    def leadership_blockers(self):
+        """Every public title must be confirmed by management (see docs/leadership-reconciliation.md)."""
+        out = []
+        for p in self.people["people"]:
+            if p.get("public", True) and p.get("role_status") != "confirmed":
+                out.append(f"people.json: title for {p['name']} not confirmed by management ({p.get('role_status', 'not recorded')})")
+        return out
+
+    def optional_assets_missing(self):
+        """Assets whose slots render nothing until supplied and authorised. Never a publication blocker."""
+        out = []
+        for aid, a in self.assets.items():
+            if not (a.get("authorised") and a.get("caption_approved", True) and (self.root / "src" / a["file"]).exists()):
+                out.append(f"asset {aid}: {a['file']} (not supplied or not authorised)")
+        for p in self.people["people"]:
+            if p.get("public", True) and not (p["portrait"]["authorised"] and (self.root / "src" / p["portrait"]["file"]).exists()):
+                out.append(f"portrait {p['id']}: {p['portrait']['file']} (not supplied or not authorised)")
+        for mid, m in self.interviews.items():
+            if not m.get("approved"):
+                out.append(f"interview {mid}: recording, transcript and captions not supplied")
+        return out
+
+    def signup_provider_problem(self):
+        """The sign-up form may be built only after a live provider test has been recorded and passed."""
+        p = self.root / "content" / "signup-provider-test.json"
+        if not p.exists():
+            return "no live provider test recorded in content/signup-provider-test.json"
+        t = self._load(p)
+        required = {"new_address", "repeat_address", "invalid_address", "confirmation_email", "unsubscribe", "provider_outage"}
+        missing = sorted(required - {k for k, v in t.get("cases", {}).items() if v.get("pass")})
+        if missing or not t.get("provider") or not t.get("date") or not t.get("tested_by"):
+            return f"live provider test incomplete (cases not passed: {', '.join(missing) or 'none'}; provider, date and tested_by are required)"
+        return None

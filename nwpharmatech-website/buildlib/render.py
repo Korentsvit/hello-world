@@ -25,10 +25,11 @@ def fmt_date(iso):
 
 
 class Renderer:
-    def __init__(self, content, env, root, available=None):
+    def __init__(self, content, env, root, available=None, pdfs=None):
         self.c = content
         self.env = env
         self.root = root
+        self.pdfs = pdfs or {}   # pdf-manifest.json of the PDFs being published
         # pages present in this build; navigation omits pages that are not built yet
         self.available = available
 
@@ -421,6 +422,14 @@ class Renderer:
             qa = "".join(f"<h4>{escape(q)}</h4><p>{escape(r[k])}</p>" for q, k in (("What changed?", "changed"), ("What supports it?", "support"), ("What remains unresolved?", "unresolved"), ("What happens next?", "next")))
             out.append(f'<article class="report"><h3>{escape(r["title"])}</h3><p class="small">Period: {escape(r["period"])} · Published <time datetime="{r["published"]}">{fmt_date(r["published"])}</time></p>{qa}</article>')
         return "".join(out)
+
+    def b_pdf_label(self, pdf):
+        """'PDF, 2 pages, 150 KB' from the checked manifest of the PDF actually published."""
+        e = self.pdfs.get(pdf + ".pdf")
+        if not e:
+            raise KeyError(f"{self.page}: no checked PDF {pdf}.pdf")
+        kb = max(1, round(e["bytes"] / 1024))
+        return f'PDF, {e["pages"]} page{"s" if e["pages"] != 1 else ""}, {kb} KB'
 
     def b_summary(self, field):
         """A single field of the study summary (keeps the brief and pages in step)."""

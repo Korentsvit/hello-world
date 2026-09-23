@@ -1,24 +1,27 @@
-# Cloudflare Pages redirects. Route map: docs/url-map.md
-/index.html            /                          301
+# Cloudflare Pages redirects (build.py validates these and writes public/_redirects). Route map: docs/url-map.md
+#
+# Page URLs are extensionless: Cloudflare Pages serves /study from study.html and itself answers
+# /study.html and /study/ with a 308 to /study, and /index.html with a 308 to /. Never add a rule for a
+# page's own route or those forms: a rule such as "/study /study.html" loops with Cloudflare's 308.
+# Every target must be a page route (optionally with a #fragment); a target must not itself be redirected.
+#
+# Short aliases
 /brief                 /#programme-brief          301
 /programme-brief       /#programme-brief          301
-/study                 /study.html                301
-/phase-2b              /study.html                301
-/phase-1               /phase-1.html              301
-/phase1                /phase-1.html              301
-/science               /science.html              301
-/formulation           /science.html#formulation  301
-/evidence              /evidence.html             301
-/references            /evidence.html             301
-/families              /families.html             301
-/team                  /people.html               301
-/people                /people.html               301
-/news                  /newsroom.html             301
-/press                 /newsroom.html             301
-/updates               /updates.html              301
-/funding               /financing.html            301
-/invest                /financing.html            301
-/investors             /financing.html            301
-/privacy               /legal.html#privacy        301
-/accessibility         /legal.html#accessibility  301
-# Live-site (nwpharmatech.org / .com) paths: add one line per old URL once the live URL list is supplied (missing input 22).
+/phase-2b              /study                     301
+/phase2b               /study                     301
+/phase1                /phase-1                   301
+/formulation           /science#formulation       301
+/references            /evidence                  301
+/team                  /people                    301
+/news                  /newsroom                  301
+/press                 /newsroom                  301
+/funding               /financing                 301
+/invest                /financing                 301
+/investors             /financing                 301
+/privacy               /legal#privacy             301
+/accessibility         /legal#accessibility       301
+/help                  /faq#urgent-help           301
+#
+# Live-site (nwpharmatech.org / .com) paths: add one line per old URL once the live URL list is supplied
+# (docs/missing-inputs.md). Point each at its final route so no visitor passes through two redirects.

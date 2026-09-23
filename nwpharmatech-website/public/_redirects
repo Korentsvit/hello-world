@@ -1,24 +1,17 @@
-# Cloudflare Pages redirects. Route map: docs/url-map.md
-/index.html            /                          301
-/brief                 /#programme-brief          301
-/programme-brief       /#programme-brief          301
-/study                 /study.html                301
-/phase-2b              /study.html                301
-/phase-1               /phase-1.html              301
-/phase1                /phase-1.html              301
-/science               /science.html              301
-/formulation           /science.html#formulation  301
-/evidence              /evidence.html             301
-/references            /evidence.html             301
-/families              /families.html             301
-/team                  /people.html               301
-/people                /people.html               301
-/news                  /newsroom.html             301
-/press                 /newsroom.html             301
-/updates               /updates.html              301
-/funding               /financing.html            301
-/invest                /financing.html            301
-/investors             /financing.html            301
-/privacy               /legal.html#privacy        301
-/accessibility         /legal.html#accessibility  301
-# Live-site (nwpharmatech.org / .com) paths: add one line per old URL once the live URL list is supplied (missing input 22).
+# Generated from src/redirects.txt by build.py. Route map: docs/url-map.md
+/brief /#programme-brief 301
+/programme-brief /#programme-brief 301
+/phase-2b /study 301
+/phase2b /study 301
+/phase1 /phase-1 301
+/formulation /science#formulation 301
+/references /evidence 301
+/team /people 301
+/news /newsroom 301
+/press /newsroom 301
+/funding /financing 301
+/invest /financing 301
+/investors /financing 301
+/privacy /legal#privacy 301
+/accessibility /legal#accessibility 301
+/help /faq#urgent-help 301
