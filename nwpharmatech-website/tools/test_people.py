@@ -93,8 +93,12 @@ refused("an unknown role_status", "bad role_status", setp("gillian-cannon", role
 
 # ---- descriptors and responsibilities ----
 teaser = lambda w: {"source": "teaser-2026-08", "wording": w}
-refused("descriptor resting on the teaser alone (Gutseriev 'Programme execution')", "needs two supporting records",
-        setp("daud-gutseriev", descriptor="Programme execution", descriptor_records=[teaser("'COO; execution'")]))
+refused("descriptor resting on the teaser alone (Gutseriev 'Operations')", "needs two supporting records",
+        setp("daud-gutseriev", descriptor="Operations", descriptor_records=[teaser("'COO; execution'")]))
+refused("descriptor carrying a remit withheld as a responsibility (Kane 'Leads the programme's clinical trial design')", "role or remit word",
+        setp("john-kane", descriptor="Leads the programme's clinical trial design"))
+refused("biography naming a current chair role (Barker 'Non-Executive Chairman of NW PharmaTech')", "current chair or committee role",
+        lambda ps: ps["richard-barker"].update(bio="Non-Executive Chairman of NW PharmaTech. " + ps["richard-barker"]["bio"]))
 refused("empty descriptor (always shown in place of a title)", "missing descriptor", setp("john-kane", descriptor=""))
 refused("descriptor with one record", "needs two supporting records",
         lambda ps: ps["john-kane"].update(descriptor_records=ps["john-kane"]["descriptor_records"][:1]))

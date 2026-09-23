@@ -16,16 +16,16 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 8729,
-   "sha256": "003dfb9c2ee7fd7c4882c53a3fed851755244964839cc108bd133f80764e1084"
+   "bytes": 7847,
+   "sha256": "da74d34a9413a619fcb608296b4e9c1f9ba8a9d761c9316d5be9b9a54f5affc3"
   },
   "module.css": {
-   "bytes": 10366,
-   "sha256": "0a8c3b84be93dd91df55719c0c89c940bbb722fd0f7bcedb566ce0850cada244"
+   "bytes": 10238,
+   "sha256": "9cd76470597d218db437e4c1f38361589a19f0a7ec48b0b0b0c0450895a83b31"
   },
   "preview.html": {
-   "bytes": 9406,
-   "sha256": "1c9a633a133b5935ffd435c86965b416d81e0c89bf9258437481e3577fda038f"
+   "bytes": 8524,
+   "sha256": "0d5329c3002816da9f6ab7d07781be60f7d0c4b6ad072097e3a027aa42757d9c"
   }
  },
  "left_out": [],
@@ -124,8 +124,8 @@
   {
    "file": "downloads/nwpharmatech-programme-brief.pdf",
    "href": "/downloads/nwpharmatech-programme-brief.pdf",
-   "bytes": 68367,
-   "sha256": "1de2490c2420c0506ecdf4b70ac0846e27aaded424d5ee9406664e2ea94b7d87"
+   "bytes": 68125,
+   "sha256": "12c15da664d977a7d5368aa2b99c26404345fe0cce13ca004606852cdd4a2ba4"
   }
  ],
  "assets": [],
@@ -165,6 +165,22 @@
    "kind": "alias",
    "required": false,
    "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/phase-2b/",
+   "to": "/study",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /phase-2b/ (Cloudflare Pages treats it as a different path)"
+  },
+  {
+   "from": "/phase2b/",
+   "to": "/study",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /phase2b/ (Cloudflare Pages treats it as a different path)"
   }
  ],
  "javascript": [],
@@ -180,7 +196,7 @@
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
  },
  "publication_blockers": [
-  "financing.html, index.html, faq.html, programme brief PDF: board and legal approval of the funding and financing wording before publication",
+  "financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)",
   "study.html, updates.html: reconcile the Phase 1 start date: company records give first consent on 27 August 2025, ClinicalTrials.gov gives a study start of 22 September 2025",
   "index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
   "fact company.name (index) on study.html"

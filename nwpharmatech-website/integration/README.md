@@ -10,7 +10,7 @@ brand assets and security configuration. Step-by-step instructions for each modu
 | `phase-1` | Phase 1 study | `/phase-1` | no | none | 7 | 0 |
 | `formulation` | Formulation explanation | `/science#formulation` | no | none | 2 | 1 |
 | `evidence-library` | Evidence library | `/evidence` | yes | `downloads/nwpharmatech-references.bib`, `downloads/nwpharmatech-references.ris` | 25 | 0 |
-| `family-guide` | Guide for young people and families | `/families` | no | `downloads/appointment-preparation-sheet.pdf` | 7 | 0 |
+| `family-guide` | Guide for young people and families | `/families` | no | `downloads/appointment-preparation-sheet.pdf` | 6 | 0 |
 | `newsroom` | Newsroom | `/newsroom` | no | `downloads/nwpharmatech-programme-brief.pdf`, `downloads/nwpharmatech-references.ris` | 7 | 0 |
 
 Each `modules/<id>/` folder holds `fragment.html` (the markup), `module.css` (styles scoped under `.nwpt-module`,
@@ -34,7 +34,7 @@ live-site dependencies that must be checked first (`manifest.json` → `dependen
 listed in `manifest.json` → `publication_blockers`; the build report (`build/build-report.json`) lists the whole site's content blockers.
 
 - **study-hub**
-  - financing.html, index.html, faq.html, programme brief PDF: board and legal approval of the funding and financing wording before publication
+  - financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
   - study.html, updates.html: reconcile the Phase 1 start date: company records give first consent on 27 August 2025, ClinicalTrials.gov gives a study start of 22 September 2025
   - index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
   - fact company.name (index) on study.html
@@ -82,9 +82,8 @@ listed in `manifest.json` → `publication_blockers`; the build report (`build/b
   - reference nice-cg155 (index) on families.html
   - reference salazar-2021 (index) on families.html
   - dependency urgent-help: /faq#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)
-  - faq.html, appointment preparation sheet PDF: re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date
 - **newsroom**
-  - financing.html, index.html, faq.html, programme brief PDF: board and legal approval of the funding and financing wording before publication
+  - financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
   - index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
   - fact company.jurisdiction (index) on newsroom.html
   - fact company.name (index) on newsroom.html

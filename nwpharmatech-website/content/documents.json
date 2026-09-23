@@ -12,8 +12,8 @@
           "date": "2026-09-23",
           "published": false,
           "status": "Draft for review",
-          "change": "Current stage and completed work taken from the study summary, as on the study page; results status taken from the Phase 1 record; draft status shown in the header.",
-          "source_sha256": "7e715e39aae2bfe3f83e07967f6cac1ff69e40b2eeb482178609dc509b641e7f"
+          "change": "Current stage, completed work and next milestone taken from the study summary, as on the study page; results status taken from the Phase 1 record; financing paragraph as on the home page, with the investment statement limited to this website and the financing route; draft status and version date shown in the header.",
+          "source_sha256": "d917781b836036f8595f41eede333905ee34a9823ec3f1cd471b81cd7f232cb5"
         },
         {
           "version": "3",
@@ -49,8 +49,8 @@
           "date": "2026-09-23",
           "published": false,
           "status": "Draft for review",
-          "change": "Adds a header with the logo slot, version and draft status, and the date the crisis-line numbers were checked; the numbers come from the same list as the Q&A page.",
-          "source_sha256": "d415d2421da902b88020fc83cd90b5051851590ac0eca41245d0cbe878dbd6da"
+          "change": "Adds a header with the logo slot, version, date and draft status; crisis lines for every UK nation, from the same list as the Q&A page, with the date they were checked.",
+          "source_sha256": "a56b4e5d23d3730ddfb6235fceda37232ad69a728b8bf14424f33ccc945f6e96"
         },
         {
           "version": "1",

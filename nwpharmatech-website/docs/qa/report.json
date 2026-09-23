@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:44005",
-  "generated": "2026-09-23T17:36:02.009Z",
+  "base": "http://127.0.0.1:45987",
+  "generated": "2026-09-23T19:00:40.782Z",
   "pages": {
     "clinical-need@desktop": {
       "status": 200,
@@ -72,13 +72,7 @@
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
-      "tables": [
-        {
-          "caption": true,
-          "rowHeaders": 5,
-          "overflow": false
-        }
-      ]
+      "tables": []
     },
     "index@desktop": {
       "status": 200,
@@ -181,17 +175,12 @@
       "tables": [
         {
           "caption": true,
-          "rowHeaders": 9,
+          "rowHeaders": 8,
           "overflow": false
         },
         {
           "caption": true,
-          "rowHeaders": 7,
-          "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 5,
+          "rowHeaders": 6,
           "overflow": false
         },
         {
@@ -282,13 +271,7 @@
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
-      "tables": [
-        {
-          "caption": true,
-          "rowHeaders": 5,
-          "overflow": false
-        }
-      ]
+      "tables": []
     },
     "index@mobile": {
       "status": 200,
@@ -391,17 +374,12 @@
       "tables": [
         {
           "caption": true,
-          "rowHeaders": 9,
+          "rowHeaders": 8,
           "overflow": false
         },
         {
           "caption": true,
-          "rowHeaders": 7,
-          "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 5,
+          "rowHeaders": 6,
           "overflow": false
         },
         {
@@ -581,16 +559,6 @@
     },
     {
       "name": "financing@desktop: axe (WCAG 2.2 AA + best practice) no violations",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "financing@desktop: table 1 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "financing@desktop: table 1 fits its container",
       "pass": true,
       "detail": ""
     },
@@ -845,16 +813,6 @@
       "detail": ""
     },
     {
-      "name": "study@desktop: table 4 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@desktop: table 4 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
       "name": "updates@desktop: HTTP 200 at /updates without redirect",
       "pass": true,
       "detail": ""
@@ -1036,16 +994,6 @@
     },
     {
       "name": "financing@mobile: axe (WCAG 2.2 AA + best practice) no violations",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "financing@mobile: table 1 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "financing@mobile: table 1 fits its container",
       "pass": true,
       "detail": ""
     },
@@ -1300,16 +1248,6 @@
       "detail": ""
     },
     {
-      "name": "study@mobile: table 4 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@mobile: table 4 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
       "name": "updates@mobile: HTTP 200 at /updates without redirect",
       "pass": true,
       "detail": ""
@@ -1475,6 +1413,16 @@
       "detail": ""
     },
     {
+      "name": "evidence: a link to a card in a hidden topic shows every topic and moves to the card (#ref-fusarpoli-2013)",
+      "pass": true,
+      "detail": "{\"shown\":true,\"inView\":true,\"hash\":\"#ref-fusarpoli-2013\",\"all\":\"true\"}"
+    },
+    {
+      "name": "evidence: the same link again, with the address already naming the card, still shows it",
+      "pass": true,
+      "detail": "{\"shown\":true,\"inView\":true,\"hash\":\"#ref-fusarpoli-2013\",\"all\":\"true\"}"
+    },
+    {
       "name": "evidence: all 24 cards have population, product, design, finding, limitations and source",
       "pass": true,
       "detail": ""
@@ -1542,7 +1490,7 @@
     {
       "name": "download: programme brief PDF served (200, application/pdf, valid header, >10 KB)",
       "pass": true,
-      "detail": "200 application/pdf 68367 bytes"
+      "detail": "200 application/pdf 68125 bytes"
     },
     {
       "name": "download: homepage 'Download the brief' triggers a file download",
@@ -1690,7 +1638,7 @@
       "detail": ""
     },
     {
-      "name": "people: at most one chair title confirmed (not both an Executive and a Non-Executive Chairman)",
+      "name": "people: at most one person holds a chair title (confirmed), so the site never shows two chairs",
       "pass": true,
       "detail": ""
     },
@@ -1715,6 +1663,21 @@
       "detail": ""
     },
     {
+      "name": "restricted 404.html @320px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted 404.html @1100px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted 404.html @1280px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
       "name": "restricted financing-structure.html: axe WCAG 2.2 AA no violations (forms included)",
       "pass": true,
       "detail": ""
@@ -1728,6 +1691,21 @@
       "name": "restricted financing-structure.html: states access is not eligibility confirmation",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "restricted financing-structure.html @320px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted financing-structure.html @1100px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted financing-structure.html @1280px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
     },
     {
       "name": "restricted funding-figures.html: axe WCAG 2.2 AA no violations (forms included)",
@@ -1745,6 +1723,21 @@
       "detail": ""
     },
     {
+      "name": "restricted funding-figures.html @320px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted funding-figures.html @1100px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted funding-figures.html @1280px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
       "name": "restricted index.html: axe WCAG 2.2 AA no violations (forms included)",
       "pass": true,
       "detail": ""
@@ -1760,6 +1753,21 @@
       "detail": ""
     },
     {
+      "name": "restricted index.html @320px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted index.html @1100px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted index.html @1280px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
       "name": "restricted investor-journey.html: axe WCAG 2.2 AA no violations (forms included)",
       "pass": true,
       "detail": ""
@@ -1773,6 +1781,21 @@
       "name": "restricted investor-journey.html: states access is not eligibility confirmation",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "restricted investor-journey.html @320px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted investor-journey.html @1100px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
+    },
+    {
+      "name": "restricted investor-journey.html @1280px: no horizontal scroll",
+      "pass": true,
+      "detail": "0px too wide"
     },
     {
       "name": "restricted: unconfigured environment returns 503",
@@ -1803,8 +1826,8 @@
     "tel:988": 1
   },
   "summary": {
-    "total": 273,
-    "passed": 273,
+    "total": 282,
+    "passed": 282,
     "failed": 0
   }
 }

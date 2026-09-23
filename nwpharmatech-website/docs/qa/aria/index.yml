@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -15,7 +15,7 @@
   - button "Menu"
 - main:
   - paragraph: Research programme · Clinical high risk of psychosis
-  - heading "Careful research for young people at clinical high risk of psychosis" [level=1]
+  - heading "Careful research for people at clinical high risk of psychosis" [level=1]
   - paragraph: We are developing NWPT-SM32300, an investigational oral cannabidiol medicine, and planning a Phase 2B study. Whether it helps is not yet known. Finding out is the purpose of the research.
   - link "Read the programme brief":
     - /url: "#programme-brief"
@@ -101,7 +101,7 @@
           - /url: /people
   - region "Funding and financing":
     - heading "Funding and financing" [level=2]
-    - paragraph: We are developing platform-integrated programme financing through a dedicated programme vehicle, potentially with permissioned tokens issued at closing where feasible. No investment is being accepted, and clinical decisions are kept independent of financing.
+    - paragraph: We are developing platform-integrated programme financing through a dedicated programme vehicle, potentially with permissioned tokens issued at closing where feasible. No investment is being accepted through this website or through the financing route described here. Clinical decisions are kept independent of financing.
     - paragraph:
       - link "How funding works and how progress is reported":
         - /url: /financing

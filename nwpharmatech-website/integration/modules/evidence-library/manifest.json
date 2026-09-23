@@ -12,24 +12,24 @@
   "where": "The main content of the live /evidence page, between the live header and footer.",
   "first_heading": "h1",
   "page_title": "Evidence library | NWPharmaTech",
-  "page_description": "The published evidence behind the NWPharmaTech programme: clinical need, current care, prediction, interventions, CBD research and programme records, with limitations, negative findings and verified links."
+  "page_description": "The published evidence behind the NWPharmaTech programme: clinical need, current care, prediction, interventions, CBD research and programme records, with limitations, negative findings, sources and links."
  },
  "files": {
   "fragment.html": {
-   "bytes": 39495,
-   "sha256": "93b0090bdce8bc21774e55f9617efc08c172c79cb821db3905e8ae91f807015b"
+   "bytes": 39405,
+   "sha256": "4133d6ee4eeb2088c3a7a6cb1686b893cf5ea9a126359911f0a62ce27544bb25"
   },
   "module.css": {
-   "bytes": 13154,
-   "sha256": "582b6d6d3d7f47d0feeea9bd92b4bf5cab0bc164e69e6ab3a8fd78fd20bba997"
+   "bytes": 13144,
+   "sha256": "750c8e97dc67a46f94ae316bd3fd8ae041601dd76cd7096f58c9afcdf67cbda3"
   },
   "module.js": {
-   "bytes": 2809,
-   "sha256": "6e37b17b361d570bd8b1a2025fb8dccf6bb3c23959ae4e285663a03e6266f336"
+   "bytes": 3003,
+   "sha256": "d9133636c5d0917973a4a7df3ca81f433f8a0594ade081bc6a62e127b9b46499"
   },
   "preview.html": {
-   "bytes": 40205,
-   "sha256": "2a711a88c692ca2a3676f2247a56f8cad1a69216ecbd3cadcc1cd61d63fe0cb7"
+   "bytes": 40115,
+   "sha256": "68c8ca9aace6e17ad554d54e889038610b30f6e46fa00a66d4b3fa61890b91b4"
   }
  },
  "left_out": [],
@@ -347,6 +347,14 @@
    "kind": "alias",
    "required": false,
    "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/references/",
+   "to": "/evidence",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /references/ (Cloudflare Pages treats it as a different path)"
   }
  ],
  "javascript": [

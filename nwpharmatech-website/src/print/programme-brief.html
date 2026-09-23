@@ -17,11 +17,11 @@
   ul { margin: 4pt 0; padding-left: 14pt; break-inside: avoid; }
 </style></head>
 <body>
-<header><div><p class="brand">{{block:brand:print}}</p><h1>Programme brief</h1></div><p class="small">{{block:document_version:brief}} · {{fact:site.as_of}}{{block:document_status:brief}}</p></header>
+<header><div><p class="brand">{{block:brand:print}}</p><h1>Programme brief</h1></div><p class="small"><span class="doc-version">{{block:document_version:brief}} · {{block:document_date:brief}}{{block:document_status:brief}}</span></p></header>
 <main>
   <p>NWPharmaTech presents our research programme for people at clinical high risk of psychosis, explaining the clinical need, the science and the people behind it.</p>
   <p>The programme centres on <strong>{{fact:product.name}}</strong>, an investigational oral cannabidiol formulation, and a planned <strong>Phase 2B study</strong> evaluating {{fact:phase2b.aims}}. The website brings together accessible explanations, supporting evidence and programme updates, clearly distinguishing established findings from questions our research aims to answer.</p>
-  <p>Alongside the clinical programme, we are developing a financing route through which eligible investors, including those in the crypto and mental-health communities, could participate through a dedicated programme vehicle, potentially using permissioned tokens. Our ambition is to connect rigorous pharmaceutical development with transparent communication and broader access to research financing, while keeping clinical decisions independent and recognising that the effectiveness of {{fact:product.name}} remains unproven.</p>
+  <p>Alongside the clinical programme, we are developing a financing route through which eligible investors could take part through a dedicated programme vehicle, potentially using permissioned tokens. Clinical decisions remain independent of financing, and the effectiveness of {{fact:product.name}} is unproven.</p>
   <p class="notice"><strong>Investigational medicine.</strong> {{fact:product.name}} is {{fact:product.status}}. Its effectiveness is unproven. This brief is not medical advice and is not an offer of any security or token.</p>
 
   <h2>Where the programme stands</h2>
@@ -30,7 +30,7 @@
     <tr><th scope="row">Completed</th><td>{{block:summary:completed}} Design: {{fact:phase1.design}}; {{fact:phase1.treatments}}. Registered as {{fact:phase1.nct}} and {{fact:phase1.isrctn}}. {{fact:phase1.results_status}}</td></tr>
     <tr><th scope="row">Current stage</th><td>{{block:summary:stage}}</td></tr>
     <tr><th scope="row">Next milestone</th><td>{{block:summary:next}}</td></tr>
-    <tr><th scope="row">Financing</th><td>In development: platform-integrated programme financing through a dedicated vehicle, with permissioned tokens at closing where feasible and register-first as the fallback. No investment is being accepted.</td></tr>
+    <tr><th scope="row">Financing</th><td>In development: platform-integrated programme financing through a dedicated vehicle, with permissioned tokens at closing where feasible and register-first as the fallback. No investment is being accepted through this website or through the financing route described here.</td></tr>
     <tr><th scope="row">Company</th><td>{{fact:company.name}}, company number {{fact:company.number}}, {{fact:company.jurisdiction}}</td></tr>
   </table>
 
@@ -40,6 +40,6 @@
     <li><strong>Emerging:</strong> small, short studies of other CBD preparations in schizophrenia (mixed results) and in clinical high risk (brain activity, stress response, and one 21-day symptom study).</li>
     <li><strong>Open:</strong> whether {{fact:product.name}} reduces symptoms, which dose is best, and its safety and tolerability in this population.</li>
   </ul>
-  <p class="small">Sources, evidence labels and verification dates: www.nwpharmatech.org/evidence · Study milestones and sources: www.nwpharmatech.org/study</p>
+  <p class="small">Sources, evidence labels and verification dates: {{block:site_url:evidence}} · Study milestones and sources: {{block:site_url:study}}</p>
 </main>
 </body></html>

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-23T17:41:49.730Z",
+ "generated": "2026-09-23T19:00:12.045Z",
  "modules": [
   "evidence-library",
   "family-guide",
@@ -78,6 +78,16 @@
    "name": "evidence-library: redirects are marked required (staging route) or optional (alias), and none points at its own path",
    "pass": true,
    "detail": "[]"
+  },
+  {
+   "name": "evidence-library: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
   },
   {
    "name": "evidence-library: manifest exports no internal fields",
@@ -175,6 +185,16 @@
    "detail": "[]"
   },
   {
+   "name": "family-guide: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
    "name": "family-guide: manifest exports no internal fields",
    "pass": true,
    "detail": ""
@@ -265,6 +285,16 @@
    "detail": "[]"
   },
   {
+   "name": "formulation: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
    "name": "formulation: manifest exports no internal fields",
    "pass": true,
    "detail": ""
@@ -290,7 +320,7 @@
    "detail": ""
   },
   {
-   "name": "newsroom: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (55 selectors)",
+   "name": "newsroom: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (53 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -335,7 +365,7 @@
    "detail": ""
   },
   {
-   "name": "newsroom: all 4 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "name": "newsroom: all 5 links resolve (routes.json, integration/ files, in-module anchors or external)",
    "pass": true,
    "detail": ""
   },
@@ -353,6 +383,16 @@
    "name": "newsroom: redirects are marked required (staging route) or optional (alias), and none points at its own path",
    "pass": true,
    "detail": "[]"
+  },
+  {
+   "name": "newsroom: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
   },
   {
    "name": "newsroom: manifest exports no internal fields",
@@ -445,6 +485,16 @@
    "detail": "[]"
   },
   {
+   "name": "phase-1: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
    "name": "phase-1: manifest exports no internal fields",
    "pass": true,
    "detail": ""
@@ -470,7 +520,7 @@
    "detail": ""
   },
   {
-   "name": "study-hub: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (82 selectors)",
+   "name": "study-hub: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (81 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -533,6 +583,16 @@
    "name": "study-hub: redirects are marked required (staging route) or optional (alias), and none points at its own path",
    "pass": true,
    "detail": "[]"
+  },
+  {
+   "name": "study-hub: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
   },
   {
    "name": "study-hub: manifest exports no internal fields",
@@ -742,42 +802,42 @@
   {
    "name": "routes: the manifest lists the redirects the new path needs (staging route required, alias optional)",
    "pass": true,
-   "detail": "/evidence>/research/evidence:true, /references>/research/evidence:false"
+   "detail": "/evidence>/research/evidence:true, /references>/research/evidence:false, /evidence/>/research/evidence:true, /references/>/research/evidence:false"
   },
   {
    "name": "routes: a .html live path is refused (Cloudflare Pages would redirect it)",
    "pass": true,
-   "detail": "^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 439, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r}); \"\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html'); Cloudflare Pages answers /x.html with a 308 to /x\n"
+   "detail": "^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 447, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r}); \"\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html'); Cloudflare Pages answers /x.html with a 308 to /x\n"
   },
   {
    "name": "routes: a trailing-slash live path is refused (Cloudflare Pages redirects /x/ itself, so the redirect loops)",
    "pass": true,
-   "detail": "^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 442, in load_routes\n    raise ExportError(f\"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects \"\nbuildlib.export.ExportError: integration export: route for 'study' must not end with / (got '/study/'); Cloudflare Pages redirects between /x and /x/ itself, so a redirect rule to /x/ can loop\n"
+   "detail": "^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 450, in load_routes\n    raise ExportError(f\"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects \"\nbuildlib.export.ExportError: integration export: route for 'study' must not end with / (got '/study/'); Cloudflare Pages redirects between /x and /x/ itself, so a redirect rule to /x/ can loop\n"
   },
   {
    "name": "routes: a live path with _redirects pattern syntax is refused",
    "pass": true,
-   "detail": "/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 445, in load_routes\n    raise ExportError(f\"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single \"\nbuildlib.export.ExportError: integration export: route for 'study' must be a plain path: letters, digits and . _ ~ % - between single slashes (got '/:slug'); _redirects reads :name and * as patterns\n"
+   "detail": "/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 453, in load_routes\n    raise ExportError(f\"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single \"\nbuildlib.export.ExportError: integration export: route for 'study' must be a plain path: letters, digits and . _ ~ % - between single slashes (got '/:slug'); _redirects reads :name and * as patterns\n"
   },
   {
    "name": "routes: two pages on one live path are refused",
    "pass": true,
-   "detail": ".py\", line 846, in export_modules\n    routes = load_routes(root, page_names)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 448, in load_routes\n    raise ExportError(f\"routes for '{live[path]}' and '{pid}' are both {path}\")\nbuildlib.export.ExportError: integration export: routes for 'evidence' and 'study' are both /evidence\n"
+   "detail": ".py\", line 861, in export_modules\n    routes = load_routes(root, page_names)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 456, in load_routes\n    raise ExportError(f\"routes for '{live[path]}' and '{pid}' are both {path}\")\nbuildlib.export.ExportError: integration export: routes for 'evidence' and 'study' are both /evidence\n"
   },
   {
    "name": "routes: a live path that another module's alias would take over is refused (/news: newsroom alias)",
    "pass": true,
-   "detail": "s (src/integration-routes.json):\n  study-hub: redirect /study -> /news: target is itself redirected (chain or loop)\n  study-hub: redirect /phase-2b -> /news: target is itself redirected (chain or loop)\n  study-hub: redirect /phase2b -> /news: target is itself redirected (chain or loop)\n  newsroom: redirect /news -> /newsroom shadows a live page (Cloudflare Pages already serves or redirects /news)\n"
+   "detail": " study-hub: redirect /phase-2b/ -> /news: target is itself redirected (chain or loop)\n  study-hub: redirect /phase2b/ -> /news: target is itself redirected (chain or loop)\n  newsroom: redirect /news -> /newsroom shadows a live page (Cloudflare Pages already serves or redirects /news)\n  newsroom: redirect /news/ -> /newsroom shadows a live page (Cloudflare Pages already serves or redirects /news/)\n"
   },
   {
    "name": "routes: swapped live paths are refused (each staging-route redirect would shadow the other page, a loop)",
    "pass": true,
-   "detail": "lf redirected (chain or loop)\n  study-hub: redirect /phase2b -> /phase-1: target is itself redirected (chain or loop)\n  phase-1: redirect /phase-1 -> /study shadows a live page (Cloudflare Pages already serves or redirects /phase-1)\n  phase-1: redirect /phase-1 -> /study: target is itself redirected (chain or loop)\n  phase-1: redirect /phase1 -> /study: target is itself redirected (chain or loop)\n"
+   "detail": "elf redirected (chain or loop)\n  phase-1: redirect /phase1 -> /study: target is itself redirected (chain or loop)\n  phase-1: redirect /phase-1/ -> /study shadows a live page (Cloudflare Pages already serves or redirects /phase-1/)\n  phase-1: redirect /phase-1/ -> /study: target is itself redirected (chain or loop)\n  phase-1: redirect /phase1/ -> /study: target is itself redirected (chain or loop)\n"
   },
   {
    "name": "routes: a live path equal to an alias drops that alias and keeps a one-hop redirect from every other address",
    "pass": true,
-   "detail": "/newsroom>/press:true, /news>/press:false | /science>/formulation:true | /evidence>/references:true"
+   "detail": "/newsroom>/press:true, /news>/press:false, /newsroom/>/press:true, /news/>/press:false | /science>/formulation:true, /science/>/formulation:true | /evidence>/references:true, /evidence/>/references:true"
   },
   {
    "name": "dependency: a recorded check clears the urgent-help blocker; the FAQ crisis-line review item stays while the link is the staging /faq",
@@ -792,7 +852,7 @@
   {
    "name": "routes: a check recorded for an unknown dependency is refused",
    "pass": true,
-   "detail": " ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 464, in load_confirmed\n    raise ExportError(f\"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})\")\nbuildlib.export.ExportError: integration export: integration-routes.json: confirmed_dependencies: unknown dependency 'no-such' (known: ['urgent-help'])\n"
+   "detail": " ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 472, in load_confirmed\n    raise ExportError(f\"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})\")\nbuildlib.export.ExportError: integration export: integration-routes.json: confirmed_dependencies: unknown dependency 'no-such' (known: ['urgent-help'])\n"
   },
   {
    "name": "content/: a published document version is exported (without 'status'); unpublished ones are not",
@@ -800,12 +860,12 @@
    "detail": "[{\"version\":\"3\",\"date\":\"2026-09-23\",\"published\":true,\"change\":\"Generated from the shared content source; adds study stage, completed work and next milestone.\"}]"
   },
   {
-   "name": "routes (default paths): under Cloudflare's runtime every live page answers 200 and each of the 7 manifest redirects takes one hop",
+   "name": "routes (default paths): under Cloudflare's runtime every live page answers 200 and each of the 14 manifest redirects takes one hop",
    "pass": true,
    "detail": ""
   },
   {
-   "name": "routes (live paths on alias addresses, and a nested path): under Cloudflare's runtime every live page answers 200 and each of the 8 manifest redirects takes one hop",
+   "name": "routes (live paths on alias addresses, and a nested path): under Cloudflare's runtime every live page answers 200 and each of the 16 manifest redirects takes one hop",
    "pass": true,
    "detail": ""
   },
@@ -847,7 +907,7 @@
   {
    "name": "negative control: axe in the host page detects unmarked links when a host !important rule removes underlines (the documented limit)",
    "pass": true,
-   "detail": "link-in-text-block(serious) x38: #ref-fusarpoli-2013 > .nwpt-source-line > a[rel=\"external\"]:nth-child(3)"
+   "detail": "link-in-text-block(serious) x37: #ref-fusarpoli-2013 > .nwpt-source-line > a[rel=\"external\"]:nth-child(3)"
   },
   {
    "name": "evidence-library: host elements keep exactly their host styles when module.css is added (70 elements)",
@@ -1010,7 +1070,7 @@
    "detail": ""
   },
   {
-   "name": "newsroom: the host's generic class rules and custom properties do not change any module element (65 elements)",
+   "name": "newsroom: the host's generic class rules and custom properties do not change any module element (55 elements)",
    "pass": true,
    "detail": ""
   },
@@ -1110,7 +1170,7 @@
    "detail": ""
   },
   {
-   "name": "study-hub: the host's generic class rules and custom properties do not change any module element (173 elements)",
+   "name": "study-hub: the host's generic class rules and custom properties do not change any module element (146 elements)",
    "pass": true,
    "detail": ""
   },
@@ -1146,6 +1206,11 @@
   },
   {
    "name": "evidence-library: an address naming a card in a hidden topic shows every topic and moves to the card (#ref-nice-cg178)",
+   "pass": true,
+   "detail": "{\"hash\":\"#ref-nice-cg178\",\"shown\":true,\"inView\":true,\"pressed\":\"all\",\"status\":\"Showing 24 sources\"}"
+  },
+  {
+   "name": "evidence-library: a live-page link outside the module to the card the address already names shows it (#ref-nice-cg178)",
    "pass": true,
    "detail": "{\"hash\":\"#ref-nice-cg178\",\"shown\":true,\"inView\":true,\"pressed\":\"all\",\"status\":\"Showing 24 sources\"}"
   }

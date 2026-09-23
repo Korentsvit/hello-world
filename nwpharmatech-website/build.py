@@ -128,7 +128,7 @@ def build_tree(content, src_pages, out_dir, env, restricted=False, with_signup=F
     shutil.copytree(SRC / "assets", out_dir / "assets")
     names = sorted(p.name for p in src_pages.glob("*.html"))
     # the restricted project has its own navigation: its index and pages, never the public page groups
-    nav_pages = [(n, parse((src_pages / n).read_text(), n)[0]["title"])
+    nav_pages = [(n, (lambda m: m.get("nav_title", m["title"]))(parse((src_pages / n).read_text(), n)[0]))
                  for n in sorted(names, key=lambda n: n != "index.html")] if restricted else None
     r = Renderer(content, env, ROOT, available=set(names), pdfs=pdfs, nav_pages=nav_pages)
     review = []
@@ -143,9 +143,7 @@ def build_tree(content, src_pages, out_dir, env, restricted=False, with_signup=F
         r.page_name = name
         desk, mob = r.nav(meta)
         if restricted:
-            banner = (f'<aside class="env-banner env-restricted" aria-label="{html.escape(ui["environment_region"])}"><strong>Restricted staging.</strong> '
-                      'Unapproved financing material for internal and legal review only. Access to this area does not '
-                      'confirm that anyone is eligible to invest. No investment, payment or token function is active.</aside>')
+            banner = f'<aside class="env-banner env-restricted" aria-label="{html.escape(ui["environment_region"])}">{ui["restricted_banner"]}</aside>'
         elif env == "staging":
             banner = f'<aside class="env-banner" aria-label="{html.escape(ui["environment_region"])}">{ui["staging_banner"]}</aside>'
         else:
@@ -180,6 +178,10 @@ def build_tree(content, src_pages, out_dir, env, restricted=False, with_signup=F
 
 
 # ---------- redirects, headers, robots, sitemap ----------
+FILE_PREFIXES = ("/assets/", "/downloads/", "/functions/", "/api/", "/_")
+FILE_ROUTES = {"/robots.txt", "/sitemap.xml", "/404", "/404.html", "/favicon.ico"}
+
+
 def load_redirects(page_names):
     """src/redirects.txt, validated: every target is a page route (optionally with a fragment), no rule
     shadows a page or a form of it that Cloudflare already redirects, and no rule points at another rule."""
@@ -195,6 +197,13 @@ def load_redirects(page_names):
             errs.append(f"redirects.txt:{i}: expected 'source target status'")
             continue
         src, dst, code = parts
+        if any(src == r[0] for r in rules):
+            errs.append(f"redirects.txt:{i}: {src} already has a rule (Cloudflare uses only the first)")
+            continue
+        if not src.startswith("/") or src.startswith(FILE_PREFIXES) or src in FILE_ROUTES:
+            errs.append(f"redirects.txt:{i}: {src} is not a free path (files under /assets/ and /downloads/, "
+                        f"and {', '.join(sorted(FILE_ROUTES))}, are served as files)")
+            continue
         rules.append((src, dst, code))
     for src, dst, code in list(rules):
         if "*" in src + dst or ":" in src + dst:
@@ -299,8 +308,11 @@ def build_print_sources(content, env, out):
         (out / t.name).write_text(expanded)
         m = re.search(r'<meta name="expected-pages" content="(\d+)">', expanded)
         values = sorted({content.facts[f]["value"] for f, pages in content.used_facts.items() if t.name in pages})
+        # the document's content, without its own version label: recording a version cannot change this hash
+        versionless = re.sub(r'<span class="doc-version">.*?</span>', "", expanded, flags=re.S)
         checks[t.name] = {"source": t.name, "pdf": PRINT_OUTPUTS[t.name],
                           "sha256": hashlib.sha256(expanded.encode()).hexdigest(),
+                          "content_sha256": hashlib.sha256(versionless.encode()).hexdigest(),
                           "expected_pages": int(m.group(1)) if m else None, "facts": values}
         (out / (t.stem + ".checks.json")).write_text(json.dumps(checks[t.name], indent=1))
     return checks
@@ -368,16 +380,38 @@ def ensure_pdfs(checks, build_dir, tmp, allow_stale):
                       "npm install) or, for a staging preview only, pass --allow-stale-pdf.")
 
 
-def document_version_blockers(checks):
-    """A regenerated PDF must be recorded as a version: the newest history entry of the document in
-    content/documents.json carries the SHA-256 of the source it was made from."""
+def document_version_blockers(checks, env):
+    """Each PDF must be a recorded version: the newest entry of its document in content/documents.json carries the
+    SHA-256 of the PDF's content (without its own version label). A version, once built, keeps its content: the
+    hashes are logged in src/downloads/document-versions.json, so changing a version's hash instead of adding a
+    version is refused. Production also needs the newest version marked published (the PDF header otherwise shows
+    its draft status). Returns (blockers, updated issued-versions log)."""
+    try:
+        issued = json.loads((SRC / "downloads" / "document-versions.json").read_text())
+    except (OSError, json.JSONDecodeError):
+        issued = {}
     out = []
     for d in json.loads((ROOT / "content" / "documents.json").read_text())["documents"]:
         c = next((c for c in checks.values() if c["pdf"] == Path(d.get("file", "")).name), None)
-        if c and d["history"][0].get("source_sha256") != c["sha256"]:
-            out.append(f"{c['pdf']}: content differs from version {d['history'][0]['version']} in documents.json; "
-                       f"add a version entry with source_sha256 {c['sha256']}")
-    return out
+        if not c:
+            continue
+        newest = d["history"][0]
+        v, recorded, pdf = newest["version"], newest.get("source_sha256"), c["pdf"]
+        nxt = str(int(v) + 1) if v.isdigit() else "a new version"
+        if recorded is None:
+            out.append(f"{pdf}: set source_sha256 of version {v} in documents.json to {c['content_sha256']}")
+        elif recorded != c["content_sha256"]:
+            out.append(f"{pdf}: content differs from version {v}; add version {nxt} to documents.json (newest first) "
+                       f"with source_sha256 {c['content_sha256']}")
+        elif issued.get(pdf, {}).get(v, recorded) != recorded:
+            out.append(f"{pdf}: version {v} was already built with other content; add version {nxt} instead of "
+                       "changing its source_sha256")
+        else:
+            issued.setdefault(pdf, {})[v] = recorded
+        if env == "production" and not newest.get("published"):
+            out.append(f"{pdf}: version {v} is not marked published in documents.json (its header shows "
+                       f"'{newest.get('status')}')")
+    return out, issued
 
 
 # ---------- validation of the built output ----------
@@ -452,6 +486,13 @@ def validate_output(out, env, page_names, restricted_names, pdf_manifest):
                 errs.append(f"restricted/{name}: link to {url}, which the restricted project does not serve")
     if not (res / "_worker.js").exists() or "noindex" not in (res / "_headers").read_text():
         errs.append("restricted: access worker or noindex header missing")
+    # both projects carry a CSP that forbids framing and allows only the one inline script
+    js_hash = base64.b64encode(hashlib.sha256(INLINE_JS.encode()).digest()).decode()
+    for label, hdrs in (("public", headers), ("restricted", (res / "_headers").read_text() if (res / "_headers").exists() else "")):
+        csp = re.search(r"^/\*\n(?:  .*\n)*?  Content-Security-Policy: ([^\n]+)", hdrs, re.M)
+        if not csp or "frame-ancestors 'none'" not in csp.group(1) or f"'sha256-{js_hash}'" not in csp.group(1) \
+                or "unsafe-inline" in csp.group(1):
+            errs.append(f"{label}/_headers: Content-Security-Policy for /* is missing, allows framing or does not match the inline script")
     if (res / "functions").exists():
         errs.append("restricted: functions/ must not be shipped (the _worker.js guard replaces it)")
     for tree in (pub, res):
@@ -479,6 +520,13 @@ def build_lock():
     return lock
 
 
+class RollbackFailed(Exception):
+    """The install failed and restoring the previous output also failed. The previous output is still in `aside`."""
+    def __init__(self, aside):
+        super().__init__(aside)
+        self.aside = aside
+
+
 def install(built, names, source_files):
     """Replace ROOT/<name> with built/<name> for each output, and copy regenerated PDFs (source_files: pairs of
     built file -> source path) into src/downloads. Everything old is moved aside first and restored if any step
@@ -502,16 +550,25 @@ def install(built, names, source_files):
             sources_written.append(i)
             shutil.copy2(src, dst)
     except BaseException:
-        for n in reversed(placed):
-            os.rename(ROOT / n, built / n)
-        for n in reversed(moved):
-            os.rename(aside / n, ROOT / n)
-        for i in sources_written:
-            _, dst = source_files[i]
-            if i in sources_saved:
-                shutil.copy2(aside / f"source-{i}", dst)
-            else:
-                dst.unlink(missing_ok=True)
+        # A second Ctrl-C, SIGTERM or SIGHUP must not cut the rollback short.
+        stop = (signal.SIGINT, signal.SIGTERM, signal.SIGHUP)
+        saved = {sig: signal.signal(sig, signal.SIG_IGN) for sig in stop}
+        try:
+            for n in reversed(placed):
+                os.rename(ROOT / n, built / n)
+            for n in reversed(moved):
+                os.rename(aside / n, ROOT / n)
+            for i in sources_written:
+                _, dst = source_files[i]
+                if i in sources_saved:
+                    shutil.copy2(aside / f"source-{i}", dst)
+                else:
+                    dst.unlink(missing_ok=True)
+        except BaseException as e:
+            raise RollbackFailed(aside) from e
+        finally:
+            for sig, handler in saved.items():
+                signal.signal(sig, handler)
         raise
 
 
@@ -541,9 +598,11 @@ def main(argv=None):
     def terminated(signum, frame):   # run the same clean-up and rollback as Ctrl-C
         raise KeyboardInterrupt(f"signal {signum}")
     signal.signal(signal.SIGTERM, terminated)
+    signal.signal(signal.SIGHUP, terminated)
     lock = build_lock()
     tmp = Path(tempfile.mkdtemp(prefix=".build-tmp-", dir=ROOT))
     built = tmp / "out"
+    keep_tmp = False
     try:
         try:
             content = Content(ROOT, a.locale)
@@ -581,7 +640,9 @@ def main(argv=None):
 
             blockers = ([f"{p}: {t}" for p, t in review] + content.review_items()
                         + content.production_blockers(a.accept_index) + content.leadership_blockers()
-                        + [f"PDF out of date: {p}" for p in stale_pdfs] + document_version_blockers(checks))
+                        + [f"PDF out of date: {p}" for p in stale_pdfs])
+            version_blockers, issued_versions = document_version_blockers(checks, env)
+            blockers += version_blockers
             optional = content.optional_assets_missing()
             validate_output(built, env, page_names, restricted_names, pdf_manifest)
         except ContentError as e:
@@ -610,8 +671,17 @@ def main(argv=None):
         regenerated = [] if pdf_dir.name == "pdf-current" else \
             [(pdf_dir / n, SRC / "downloads" / n) for n in sorted(pdf_manifest)] + \
             [(pdf_dir / "pdf-manifest.json", SRC / "downloads" / "pdf-manifest.json")]
+        (tmp / "document-versions.json").write_text(json.dumps(issued_versions, indent=1, sort_keys=True) + "\n")
+        regenerated.append((tmp / "document-versions.json", SRC / "downloads" / "document-versions.json"))
         install(built, OUTPUTS, regenerated)
         print("Installed: " + ", ".join(OUTPUTS))
+    except RollbackFailed as e:
+        keep_tmp = True
+        traceback.print_exc()
+        print(f"Install failed AND restoring the previous output failed. Nothing has been deleted: the previous output is "
+              f"in {e.aside} and the new build in {built}. Move the previous output back by hand before building again.",
+              file=sys.stderr)
+        return 2
     except BuildFailed as e:
         print(str(e), file=sys.stderr)
         print("Build not installed; previous output left unchanged.", file=sys.stderr)
@@ -624,7 +694,8 @@ def main(argv=None):
         print("Build interrupted and not installed; previous output left unchanged.", file=sys.stderr)
         return 130
     finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+        if not keep_tmp:
+            shutil.rmtree(tmp, ignore_errors=True)
         lock.close()
     return 0
 

@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -45,7 +45,7 @@
     - paragraph: NWPT-SM32300 (development code NW300EMCBD), a 300 mg oral softgel capsule of highly purified cannabidiol. The study compared how much cannabidiol reached the blood after NWPT-SM32300 and after Epidyolex, a licensed cannabidiol oral solution, and recorded side effects.
     - paragraph: "Registered title: A Phase 1 study to assess the safety and pharmacokinetics of novel cannabidiol (CBD) soft-gel capsule formulation (NW300EMCBD) in healthy subjects."
     - heading "Who took part" [level=2]
-    - paragraph: 14 healthy adult volunteers aged 18 to 55, at one clinical research unit in Leeds, United Kingdom. Participants were in good health and were not taking regular medicines. People with a history of mental disorder, recent cannabis use, or abnormal liver tests were not eligible.
+    - paragraph: 14 healthy adult volunteers aged 18 to 55, at one clinical research unit in Leeds, United Kingdom. Participants were in good health and were not taking regular medicines. People with a history of mental disorder, cannabis use in the 28 days before screening, or abnormal liver tests were not eligible.
     - complementary:
       - heading "At a glance" [level=3]
       - term: Participants
@@ -63,9 +63,9 @@
   - region "Study design, doses and comparator":
     - heading "Study design, doses and comparator" [level=2]
     - paragraph:
-      - text: Each participant received three treatments, one in each of three periods, in a randomly assigned order (a
+      - text: Each participant received three study doses, one in each of three periods, in a randomly assigned order (a
       - strong: crossover
-      - text: design, so each person acts as their own comparison). Participants knew which treatment they received (
+      - text: design, so each person acts as their own comparison). Participants knew which product they received (
       - strong: open-label
       - text: ).
     - list:
@@ -79,7 +79,7 @@
         - strong: Epidyolex
         - text: ": a licensed cannabidiol oral solution, as the comparator."
     - paragraph:
-      - text: There were about 25 days between doses, with blood samples for up to 192 hours (8 days) after each dose. Taking part lasted about 105 days per participant, including screening and follow-up. Study procedures included a standardised high-fat meal, because food changes how much cannabidiol is absorbed.
+      - text: There were about 25 days between doses, with blood samples for up to 192 hours (8 days) after each dose. Taking part lasted about 105 days per participant, including screening and follow-up. Study procedures included a standardised high-fat, high-calorie meal. Food, particularly fatty food, increases how much cannabidiol is absorbed.
       - 'link "Source: Perucca and Bialer 2020"':
         - /url: /evidence#ref-perucca-2020
   - region "What was measured":

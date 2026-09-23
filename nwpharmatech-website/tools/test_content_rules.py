@@ -17,6 +17,7 @@
 from pathlib import Path
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -119,7 +120,8 @@ with tempfile.TemporaryDirectory() as tmp:
         case("published brief version: no status in the header", f"Version {docs['brief']['version']} · " in brief
              and docs["brief"]["status"] not in brief, brief[:200])
         newest = docs["appointment-sheet"]
-        case("unpublished sheet version: status in the header", f"Version {newest['version']} · {newest['status']}" in sheet, sheet[:200])
+        case("unpublished sheet version: version, its date and status in the header",
+             re.search(rf"Version {newest['version']} · \d{{1,2}} \w+ \d{{4}} · {re.escape(newest['status'])}", sheet) is not None, sheet[:200])
         # 4. logo
         src = {n: (site / "build" / n).read_text() for n in ("programme-brief.html", "appointment-sheet.html")}
         case("official logo embedded in both PDF sources", all('src="data:image/svg+xml;base64,' in s for s in src.values()))

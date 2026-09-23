@@ -5,7 +5,7 @@
     "investigates": "Whether {{fact:product.name}}, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in {{fact:phase2b.population}}.",
     "stage": "Phase 2B study: {{fact:phase2b.status}} {{fact:phase2b.protocol_status}}.",
     "completed": "Phase 1 study in {{fact:phase1.n}} healthy volunteers: completed {{fact:phase1.end}}; database locked {{fact:phase1.db_lock}}; analysis outputs delivered {{fact:phase1.outputs_delivered}}.",
-    "next": "Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set.",
+    "next": "Finalisation of the Phase 2B protocol, reported as in progress in February 2026. No date has been announced.",
     "sources": [
       "brief-2026-09",
       "update-2026-02",
@@ -107,7 +107,7 @@
         "title": "Phase 1: results summary on registries and this site",
         "status": "Planned",
         "date": null,
-        "date_text": "Date not set",
+        "date_text": "Not announced",
         "source": "brief-2026-09-b",
         "public": false,
         "review": "Not a recorded plan: it comes from the unadopted publication policy (docs/proposals/publication-policy.md), and its only source is a development instruction. Publish only if management adopts the policy and the adoption is recorded as a source; cite that record."
@@ -124,15 +124,16 @@
         "title": "Phase 2B: regulatory and research ethics submissions",
         "status": "Planned",
         "date": null,
-        "date_text": "Date not set",
+        "date_text": "Not announced",
         "source": "update-2026-02",
-        "public": true
+        "public": false,
+        "review": "Not in the February 2026 update (it names protocol finalisation, scientific advice and initiation, not submissions or Phase 2B supply). Keep off public pages until a record states it."
       },
       {
         "title": "Phase 2B: public registration before first enrolment",
         "status": "Planned",
         "date": null,
-        "date_text": "Date not set",
+        "date_text": "Not announced",
         "source": "brief-2026-09",
         "public": false,
         "review": "No record states this plan: the website brief does not mention registration. When the study is registered, add a Completed milestone citing the registry entry, and add the entry to 'registrations'."
@@ -158,9 +159,10 @@
         "title": "Clinical supply for Phase 2B",
         "status": "Planned",
         "date": null,
-        "date_text": "Date not set",
+        "date_text": "Not announced",
         "source": "update-2026-02",
-        "public": true
+        "public": false,
+        "review": "Not in the February 2026 update (it names protocol finalisation, scientific advice and initiation, not submissions or Phase 2B supply). Keep off public pages until a record states it."
       }
     ],
     "funding": [
@@ -179,7 +181,8 @@
         "date": null,
         "date_text": "As at August 2026",
         "source": "teaser-2026-08",
-        "public": true
+        "public": false,
+        "review": "Only source is the August 2026 teaser, whose lead study is an acute schizophrenia Phase 2B, not the CHR-P study; the teaser is not approved for public release. Keep off public pages until a record links current financing to the CHR-P Phase 2B."
       },
       {
         "title": "Programme financing route for eligible investors",

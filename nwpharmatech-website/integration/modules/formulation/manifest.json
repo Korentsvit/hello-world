@@ -20,8 +20,8 @@
    "sha256": "02dadd32a5725bf294245a37341432c8c2e9ca74d32074ab924e07705f2b4672"
   },
   "module.css": {
-   "bytes": 5842,
-   "sha256": "19644ddb2f13b1027144063625757ccfe790f6edc09dee659bfce2a649483075"
+   "bytes": 5832,
+   "sha256": "a6a63a21bcf4e6ab8cb4d3f762c274e30f8e0a9fc71a3807f69ff305964f5534"
   },
   "preview.html": {
    "bytes": 7272,
@@ -141,6 +141,14 @@
    "kind": "alias",
    "required": false,
    "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/formulation/",
+   "to": "/science#formulation",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /formulation/ (Cloudflare Pages treats it as a different path)"
   }
  ],
  "javascript": [],

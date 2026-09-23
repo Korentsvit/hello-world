@@ -9,19 +9,20 @@ Date: 23 September 2026. Base: increment C (`a4e31c4`). The release commit is in
 2. Six independent reviewers then tried to show that each item was not done. They worked on private copies and ran their own browser and Cloudflare-runtime probes.
 3. Ten serious findings survived a separate refutation check (one was later rated minor), and about fifty minor findings were reported. All of them are fixed, or listed as not fixed with the reason.
 4. A second round of independent checkers re-ran the original reproductions against the fixed tree (results in `completion-report.md`).
+5. A final verification pass confirmed 57 of 61 findings fixed and found new defects, mostly in the restricted project, the Access guard, rollback edge cases and unrecorded wording. The four open findings and the new defects are fixed; see "Verification pass" below.
 
 Every test count below comes from a run on the final tree. Passing tests do not prove that the science is right or that a person has checked every page; those checks are listed under "Still open".
 
 | Suite | What it proves | Result |
 |---|---|---|
-| `tools/test_build_gate.py` | Failed, refused or interrupted builds leave every output unchanged | 60 / 60 |
+| `tools/test_build_gate.py` | Failed, refused or interrupted builds leave every output unchanged, even when the rollback fails | 75 / 75 |
 | `tools/test-routes.mjs` | Routes, redirects, headers and the restricted guard under Cloudflare's own runtime | 175 / 175 |
-| `tools/test-access.mjs` | The restricted Access guard: valid, forged, expired and tampered tokens, and writes | 12 / 12 |
+| `tools/test-access.mjs` | The restricted Access guard: valid, forged, expired, tampered and malformed tokens, key rotation, audience tags, writes | 22 / 22 |
 | `tools/test-menu.mjs` | Mobile menu behaviour, keyboard, narrow and short screens, forced colours | 66 / 66 |
-| `tools/qa.mjs` | Every page at two widths, axe, links, downloads, content rules | 273 / 273 |
-| `tools/test-integration.mjs` | The six modules: CSP, axe, scoping, collisions, routes, dependencies | 228 / 228 |
+| `tools/qa.mjs` | Every page at two widths, axe, links, downloads, content rules, restricted layout | 282 / 282 |
+| `tools/test-integration.mjs` | The six modules: CSP, axe, scoping, collisions, routes, redirects, dependencies | 241 / 241 |
 | `tools/test-signup.mjs` (`--browser`) | Sign-up outcomes, redirects, the provider-test gate, the live harness | 75 / 75 (99 / 99) |
-| `tools/test_people.py` | The leadership title, consent and biography gate | 28 / 28 |
+| `tools/test_people.py` | The leadership title, consent and biography gate | 30 / 30 |
 | `tools/test_content_rules.py` | Brief and study hub from the same content, crisis lines, PDF status, logo, source rules | 22 / 22 |
 | `tools/test_consistency.py` | One fact change reaches every page, the brief and its regenerated PDF | Pass |
 
@@ -30,7 +31,8 @@ Every test count below comes from a run on the final tree. Passing tests do not 
 
 **Changes:**
 - `build.py` builds everything in a temporary directory, validates it, and only then installs `public/`, `restricted/`, `build/` and `integration/`, together with any regenerated PDFs in `src/downloads`, as one transaction.
-- The build holds a lock for its whole run (on POSIX systems). Any exception, Ctrl-C or SIGTERM rolls everything back.
+- The build holds a lock for its whole run (on POSIX systems). Any exception, Ctrl-C, SIGTERM or SIGHUP rolls everything back, and further signals are ignored until the rollback has finished.
+- If the rollback itself fails (for example a disk error), nothing is deleted: the build exits with status 2 and names the kept temporary directory that holds the previous output.
 - Validation covers:
   - canonical URLs;
   - no link to a `.html` address, to a redirect or to a missing `#fragment`;
@@ -38,6 +40,7 @@ Every test count below comes from a run on the final tree. Passing tests do not 
   - staging protections;
   - published PDFs byte-identical to their checked manifest;
   - the restricted guard, headers and links;
+  - a Content-Security-Policy in both projects that forbids framing and allows only the one inline script;
   - every integration module present;
   - no hidden files in deployable folders.
 - If the module exporter fails to load, the build fails. Before, it installed an empty `integration/`.
@@ -47,13 +50,14 @@ Every test count below comes from a run on the final tree. Passing tests do not 
 - a refused production build, including one refused after PDFs were regenerated;
 - `--allow-stale-pdf` in production;
 - a content error;
-- looping, pattern and broken-fragment redirects;
+- looping, pattern, duplicate and broken-fragment redirects, and redirects from paths served as files (`/downloads/…`, `/robots.txt`);
 - a failed validation;
 - an exporter that cannot load;
 - a stale PDF that cannot be regenerated;
 - a swapped PDF file;
 - `OSError` and Ctrl-C during installation;
 - SIGTERM during PDF regeneration;
+- an installation failure followed by a failed rollback (exit 2, temporary directory kept, previous output recoverable);
 - positive controls.
 
 ## 2. Cloudflare routing
@@ -65,14 +69,15 @@ Every test count below comes from a run on the final tree. Passing tests do not 
   - Canonical URLs and sitemap entries are absolute and extensionless.
 - **Redirects:**
   - `_redirects` holds only short aliases, each also answered with a trailing slash, plus the one known live address (`/contactus`, from the company site).
-  - The build rejects any rule that shadows a page or a form Cloudflare already redirects, chains, uses a splat or placeholder, or points to a missing fragment.
+  - The build rejects any rule that shadows a page or a form Cloudflare already redirects, chains, uses a splat or placeholder, points to a missing fragment, repeats a path, or starts from a path served as a file.
 - **Production robots and headers:**
   - `robots.txt` blocks nothing, so `/financing` stays crawlable and its noindex is seen.
   - `/financing` keeps its `X-Robots-Tag` noindex.
 - **Restricted project** (found while testing; see below):
   - The guard is now `restricted/_worker.js`.
   - The project has its own navigation, a Not Found page and a CSP.
-  - It links only to its own pages.
+  - It links only to its own pages, with short navigation labels that fit the header at every width.
+  - The guard answers a malformed token with 403 (not 503), refetches Access's signing keys when a new key id appears (at most once a minute), accepts several comma-separated audience tags, and marks every response it serves with `x-nwpt-guard: verified`, so reviewers can confirm after a deploy that it is running.
 
 **Found while testing:** the draft-3 guard was a `functions/` directory, which Cloudflare runs only when the deploy is made from inside the folder. Deployed from the parent folder, the restricted pages were served unguarded.
 
@@ -127,13 +132,15 @@ One table in [`leadership-reconciliation.md`](leadership-reconciliation.md) comp
 - The August 2026 teaser can only corroborate another record.
 
 **On the people page now:**
-- **Scott Woods** is featured first, with no title and no adviser wording. One line, taken from the October 2025 draft deck, describes the CHR-P expertise he brings to the design of the planned Phase 2B study. Management is asked for his role wording.
+- **Scott Woods** is featured first, with no title, no adviser wording and no responsibility line: the October 2025 draft's "Additional Advisor Input" is not an appointment. Management is asked for his role wording.
+- **Grace Blest-Hopley** keeps "Chief Scientific Officer". Her responsibility line is withheld because the records give only the title; management is asked for her responsibilities, as the round-3 instruction requires.
 - **William Jarosz and Richard Barker** are shown with no chair title. The records conflict, and management is asked who chairs the board.
 - **Trevor Jones:** Professor Trevor Jones CBE is restored as Senior Adviser. His biography uses only statements that are in the company records and were confirmed by a logged search.
 - **John Kane** has neither "Chair, Scientific Advisory Board" (teaser only) nor "leads clinical trial design" (only the teaser links him to this programme's design). He is shown with the descriptor "Clinical trial design".
 - **Daud Gutseriev:** "Chief Operating Officer" is withheld. Apart from the teaser, only the 2023 deck gives it. He is shown as "Co-founder".
 - **Gillian Cannon** is shown as "Board Member". "Non-executive" is teaser-only.
-- **Filipp Korentsvit** is shown as "Chief Executive Officer".
+- **Filipp Korentsvit** is shown as "Chief Executive Officer", with "Leads company strategy." No record says he leads the development programme, so that part was removed.
+- **Richard Barker:** the table now also shows the 2023 deck's "Head of Advisory Board", and asks whether an advisory board exists now.
 - **Biographies:** Trevor Jones's drops an unchecked opening, and Gillian Cannon's drops UCB, which is in no company record.
 - **Production blockers:** every unconfirmed title, every profile without written consent to publish, and every index-level biography blocks production.
 - **Portraits** render nothing until authorised.
@@ -153,12 +160,12 @@ Each module has five files:
   - only the rules the fragment uses;
   - every selector under `.nwpt-module:not(#nwpt-a):not(#nwpt-b)`, a two-id weight so content-area host rules don't override it;
   - `nwpt-`-prefixed classes and custom properties;
-  - links underlined explicitly.
-- **`module.js`:** only where needed; CSP-compatible.
+  - links underlined explicitly with the `text-decoration` shorthand, so a live rule that changes the underline's colour or style cannot hide it.
+- **`module.js`:** only where needed; CSP-compatible. A link anywhere on the live page to an evidence card hidden by the filter shows every topic first, including when the address already names that card.
 - **`manifest.json`:**
   - facts with their verification level, references, downloads, anchors and links;
   - dependencies on pages outside the package;
-  - redirects, marked required (the staging route) or optional (an alias, to skip if the path already exists on the live site);
+  - redirects, marked required (the staging route) or optional (an alias, to skip if the path already exists on the live site), each with its trailing-slash form;
   - the blockers that apply to the module.
 - **`preview.html`:** to review the module on its own.
 
@@ -196,7 +203,9 @@ It is not in this package. It was not built in this workspace, and it isn't in t
   - **Unsourced claims:** the unsourced DMC "usual" clause and the untested screen-reader claim were removed.
   - **Wording:** "treatment" wording for the investigational medicine was corrected.
   - **Brief:** its stage, completed-work and results rows now come from the same study summary and fact as the study hub.
-  - **Crisis numbers:** these are kept once in `services.json` and used by both the Q&A and the appointment sheet.
+  - **Crisis numbers:** these are kept once in `services.json` and used by both the Q&A and the appointment sheet, which now prints the lines for every UK nation.
+  - **Unrecorded plans** (verification pass): the programme-report format and the corrections procedure (from the unadopted editorial standards), the "Lived experience" intention, the Phase 2B submission and supply milestones, and the funding milestone sourced only to the unapproved teaser were removed. The next milestone now says what the February 2026 update records.
+  - **Investment wording:** "No investment is being accepted" is limited to "through this website or through the financing route described here", on every page and in the brief. A blanket statement could be untrue of the company as a whole. The Q&A now answers "Can I invest in the programme through this website?" directly.
 
   Every change is listed with its reason in [`editorial-pass-notes.md`](editorial-pass-notes.md).
 - **Optional assets are kept separate from publication blockers**, in the build output, `build/build-report.json` and `docs/missing-inputs.md`.
@@ -218,7 +227,17 @@ It is not in this package. It was not built in this workspace, and it isn't in t
   - every fact value;
   - every line of source text.
 - **Publishing:** only files byte-identical to their manifest entry are published, and download labels come from the manifest.
-- **Versions:** a PDF whose content differs from its recorded version in `documents.json` is a publication blocker until a new version is recorded.
+- **Versions:** a PDF whose content differs from its recorded version in `documents.json` is a publication blocker until a new version is recorded. Brief version 4 and sheet version 2 were never issued before this release; they are now bound to their final content (`source_sha256`), and `src/downloads/document-versions.json` logs them. Any later change needs version 5 and version 3.
+
+## Verification pass
+The last round of checks re-ran every earlier finding and looked for new defects. Fixed:
+- **Restricted project:** navigation overflowed the header between 1100 and 1460 px and the investor journey overflowed at 320 px (short labels; the form's fieldsets and selects now shrink); the banner text moved to `content/ui/en.json`; the footer's link to the public legal page was removed; the build now checks the restricted CSP. `tools/qa.mjs` checks restricted pages for overflow at 320, 1100 and 1280 px.
+- **Access guard:** malformed tokens, key rotation, several audience tags and a canary header (see §2); `docs/deployment.md` explains how to check the guard when Access covers every hostname, and how to set the audience tags for preview deployments.
+- **Build:** rollback that itself fails, SIGHUP, duplicate redirects and redirects from file paths (see §1).
+- **Integration:** trailing-slash redirect forms, blockers listed once, the underline shorthand and page-wide link handling (see §5). The staging evidence page got the same link handling.
+- **QA:** the chair-title detector also catches plural and derived forms and committee names, and allows a confirmed title only on that person's own card; `qa.mjs` now exits non-zero on any failure.
+- **Wording:** see §4 and §7, and pass W in `editorial-pass-notes.md`.
+- **Docs:** `/contactus` and the trailing-slash forms added to `url-map.md`; the leadership table updated.
 
 ## Still open
 - Everything in `docs/missing-inputs.md`. That includes primary-source verification, and management confirmation of every title, consent and biography.

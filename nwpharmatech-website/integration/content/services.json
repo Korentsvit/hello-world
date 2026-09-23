@@ -21,19 +21,21 @@
       "numbers": [
        "111"
       ],
-      "print": "NHS {0} (option 2 in England and Wales)"
+      "print": "NHS {0} (option 2) in England and Wales"
      },
      {
       "text": "Scotland: NHS 24 on {0} (mental health option)",
       "numbers": [
        "111"
-      ]
+      ],
+      "print": "NHS 24 on {0} in Scotland"
      },
      {
       "text": "Northern Ireland: Lifeline {0}",
       "numbers": [
        "0808 808 8000"
-      ]
+      ],
+      "print": "Lifeline {0} in Northern Ireland"
      },
      {
       "text": "Samaritans (free, 24 hours): {0}",

@@ -3,7 +3,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Open a collapsed Q&A item when a link targets it (e.g. faq.html#not-medical-advice).
   var openTarget = function () {
-    var id = decodeURIComponent(location.hash.slice(1));
+    var id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (err) { return; }
     var el = id && document.getElementById(id);
     if (el && el.tagName === "DETAILS") {
       el.open = true;
@@ -95,7 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
       var a = e.target.closest("a[href]");
       if (!a || e.button || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       if (a.origin !== location.origin || a.pathname !== location.pathname || a.search !== location.search) return;
-      var id = decodeURIComponent(a.hash.slice(1));
+      var id;
+      try { id = decodeURIComponent(a.hash.slice(1)); } catch (err) { return; }
       var dest = document.getElementById(id || "main");
       if (!dest) return;
       a.blur();   // focus leaves the header first, so the page scrolls clear of it (site.css)
@@ -129,9 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
   bar.hidden = false;
   var status = document.querySelector(".filter-status");
   var sections = document.querySelectorAll(".lib-section");
-  bar.addEventListener("click", function (e) {
-    var btn = e.target.closest("button[data-filter]");
-    if (!btn) return;
+  var apply = function (btn) {
     var f = btn.getAttribute("data-filter");
     bar.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
     var shown = 0;
@@ -141,6 +141,30 @@ document.addEventListener("DOMContentLoaded", function () {
       if (on) shown += s.querySelectorAll(".study-card").length;
     });
     if (status) status.textContent = "Showing " + shown + (shown === 1 ? " source" : " sources") + (f === "all" ? "" : " in " + btn.firstChild.textContent.trim());
+  };
+  bar.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-filter]");
+    if (btn) apply(btn);
+  });
+  // A link to a card in a topic the filter hides shows every topic again, so the page can move to the card.
+  var reveal = function (hash) {
+    var id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch (err) { return null; }
+    var el = id && document.getElementById(id);
+    var s = el && el.closest(".lib-section");
+    var all = bar.querySelector('button[data-filter="all"]');
+    if (!s || !s.hidden || !all) return null;
+    apply(all);
+    return el;
+  };
+  // Any link on this page to one of its cards, wherever the link is (capture: before the browser follows it).
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (a && a.hash && a.origin === location.origin && a.pathname === location.pathname) reveal(a.hash);
+  }, true);
+  window.addEventListener("hashchange", function () {
+    var el = reveal(location.hash);   // the address changed some other way: the browser found nothing to show
+    if (el) el.scrollIntoView();
   });
 });
 

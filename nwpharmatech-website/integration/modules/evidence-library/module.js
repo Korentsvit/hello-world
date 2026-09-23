@@ -38,10 +38,12 @@
           apply(all);
           return el;
         };
-        root.addEventListener("click", function (e) {
-          var a = e.target.closest('a[href^="#"]');
-          if (a && root.contains(a)) reveal(a.getAttribute("href"));   // before the browser follows the link
-        });
+        // Any link on this page to one of the module's cards, inside the module or anywhere else on the live page
+        // (capture: before the browser follows it).
+        document.addEventListener("click", function (e) {
+          var a = e.target.closest && e.target.closest("a[href]");
+          if (a && a.hash && a.origin === location.origin && a.pathname === location.pathname) reveal(a.hash);
+        }, true);
         window.addEventListener("hashchange", function () {
           var el = reveal(location.hash);   // a link from elsewhere on the page: the browser found nothing to show
           if (el) el.scrollIntoView();

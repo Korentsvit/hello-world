@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -79,31 +79,19 @@
         - link "contact details":
           - /url: /contact
         - text: .
-  - region "How we report progress":
-    - heading "How we report progress" [level=2]
-    - paragraph: "Each programme report is written to answer four questions:"
-    - list:
-      - listitem:
-        - strong: What changed?
-        - text: Events since the last report, with dates.
-      - listitem:
-        - strong: What supports it?
-        - text: The record or source for each statement.
-      - listitem:
-        - strong: What remains unresolved?
-        - text: Open questions, delays and risks.
-      - listitem:
-        - strong: What happens next?
-        - text: The next steps, marked as planned.
+  - region "Progress":
+    - heading "Progress" [level=2]
     - paragraph:
-      - text: Individual events are listed on the
+      - text: Dated events are listed on the
       - link "updates page":
         - /url: /updates
-      - text: as they happen.
+      - text: ", and study milestones with their sources on the"
+      - link "study page":
+        - /url: /study#milestones
+      - text: . No programme reports have been published.
   - region "Corrections log":
     - heading "Corrections log" [level=2]
     - paragraph: No corrections have been made since publication.
-    - paragraph: When we correct a substantive error in published content, we record the date, what was wrong and what we changed. Typographical fixes are not listed.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.

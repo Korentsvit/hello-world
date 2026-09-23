@@ -357,6 +357,20 @@
    "source": "verification-2026-09-23b",
    "verification": "document",
    "as_of": "2026-09-23"
+  },
+  "phase1.eligibility_summary": {
+   "value": "Participants were in good health and were not taking regular medicines. People with a history of mental disorder, cannabis use in the 28 days before screening, or abnormal liver tests were not eligible.",
+   "public": true,
+   "source": "sdtm-ts-2026-03",
+   "verification": "document",
+   "as_of": "2026-03-20"
+  },
+  "phase1.meal": {
+   "value": "a standardised high-fat, high-calorie meal",
+   "public": true,
+   "source": "sdtm-ts-2026-03",
+   "verification": "document",
+   "as_of": "2026-03-20"
   }
  }
 }

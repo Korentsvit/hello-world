@@ -103,7 +103,7 @@ for (const id of MODULES) {
   check(`${id}: every selector in module.css starts with ${SCOPE} (${sels.length} selectors)`, sels.length > 0 && unscoped.length === 0, unscoped.join(" | "));
   if (/<a\s/.test(frag)) {
     check(`${id}: module.css underlines links explicitly (a live "a { text-decoration: none }" cannot remove it)`,
-      new RegExp(`^${reEsc(SCOPE)} a \\{[^}]*text-decoration-line: underline`, "m").test(css));
+      new RegExp(`^${reEsc(SCOPE)} a \\{[^}]*text-decoration: underline`, "m").test(css));
   }
   check(`${id}: module.css has no @font-face, @import, :root or url()`, !/@font-face|@import|:root|url\(/.test(stripComments(css)), ats.join(" | "));
   const cssClasses = new Set([...stripComments(css).matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)].map((m) => m[1]).filter((c) => !/^\d/.test(c)));
@@ -147,6 +147,9 @@ for (const id of MODULES) {
   check(`${id}: every dependency that blocks publication is a publication blocker`, unlisted.length === 0, unlisted.map((d) => d.id).join(", "));
   const selfRedirect = man.redirects.filter((r) => r.from === r.to.split("#")[0] || typeof r.required !== "boolean" || r.required !== (r.kind === "staging route"));
   check(`${id}: redirects are marked required (staging route) or optional (alias), and none points at its own path`, selfRedirect.length === 0, JSON.stringify(selfRedirect));
+  const noSlash = man.redirects.filter((r) => !r.from.endsWith("/") && !man.redirects.some((x) => x.from === r.from + "/" && x.to === r.to && x.required === r.required));
+  check(`${id}: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)`, noSlash.length === 0, noSlash.map((r) => r.from).join(", "));
+  check(`${id}: publication blockers are listed once each`, new Set(man.publication_blockers).size === man.publication_blockers.length);
   const leaks = findInternal(man);
   check(`${id}: manifest exports no internal fields`, leaks.length === 0, leaks.join(", "));
   const hashBad = [];
@@ -306,8 +309,9 @@ if (MODULES.includes("family-guide")) {
   const al = exportWith({ pages: { newsroom: "/press", science: "/formulation", evidence: "/references" } }, "alias");
   const rules = (id) => (al.status === 0 ? JSON.parse(rdo("alias", "modules", id, "manifest.json")).redirects.map((x) => `${x.from}>${x.to}:${x.required}`).join(", ") : "");
   check("routes: a live path equal to an alias drops that alias and keeps a one-hop redirect from every other address",
-    al.status === 0 && rules("newsroom") === "/newsroom>/press:true, /news>/press:false" && rules("formulation") === "/science>/formulation:true"
-    && rules("evidence-library") === "/evidence>/references:true", al.stderr || `${rules("newsroom")} | ${rules("formulation")} | ${rules("evidence-library")}`);
+    al.status === 0 && rules("newsroom") === "/newsroom>/press:true, /news>/press:false, /newsroom/>/press:true, /news/>/press:false"
+    && rules("formulation") === "/science>/formulation:true, /science/>/formulation:true"
+    && rules("evidence-library") === "/evidence>/references:true, /evidence/>/references:true", al.stderr || `${rules("newsroom")} | ${rules("formulation")} | ${rules("evidence-library")}`);
 
   // The family guide's urgent-help dependency clears only with a recorded check for the link as it now is.
   const fgManifest = (out) => JSON.parse(rdo(out, "modules", "family-guide", "manifest.json"));
@@ -631,6 +635,23 @@ try {
     const t2 = other && await target(other);
     check(`evidence-library: an address naming a card in a hidden topic shows every topic and moves to the card (${other})`,
       t2 && t2.hash === other && t2.shown && t2.inView && t2.pressed === "all", JSON.stringify(t2) || "no card in a hidden topic");
+    // A link on the live page outside the module, to the card the address already names: no hashchange fires,
+    // so only the click can reveal it.
+    await page.locator(".nwpt-filters button").nth(1).click();
+    const stillHidden = other && await page.evaluate((h) => !!document.getElementById(h.slice(1)).closest(".nwpt-lib-section").hidden, other);
+    if (stillHidden) {
+      await page.evaluate((h) => {
+        const a = document.createElement("a");
+        a.href = h; a.id = "host-link"; a.textContent = "Host page link";
+        document.body.prepend(a);
+        window.scrollTo(0, 0);
+      }, other);
+      await page.locator("#host-link").click();
+      await page.waitForTimeout(150);
+    }
+    const t3 = stillHidden && await target(other);
+    check(`evidence-library: a live-page link outside the module to the card the address already names shows it (${other})`,
+      t3 && t3.shown && t3.inView && t3.pressed === "all", JSON.stringify(t3) || "card was not hidden by the filter");
     await ctx.close();
   }
 } finally {

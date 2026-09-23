@@ -221,9 +221,9 @@ class Renderer:
             when = f'<time datetime="{m["date"]}">{fmt_date(m["date"])}</time>' if m.get("date") else escape(m.get("date_text", ""))
             label = self.src_label(m["source"])
             if not label and self.c.sources[m["source"]].get("type") not in RECORD_TYPES:
-                # content.py refuses this; an instruction or a draft is never shown as 'Company records'
+                # content.py refuses this; an instruction or a draft is never shown as a company record
                 raise ContentError(f"{self.page}: milestone '{m['title']}' has no record as its source")
-            src = escape(label) if label else "Company records"
+            src = escape(label) if label else "NWPharmaTech records (not published)"
             rows.append(f'<tr><th scope="row">{escape(m["title"])}</th>'
                         f'<td data-label="Status"><span class="st {STATUS_CLASS[m["status"]]}">{m["status"]}</span></td>'
                         f'<td data-label="Date">{when}</td><td class="small" data-label="Source">{src}</td></tr>')
@@ -232,6 +232,8 @@ class Renderer:
     def b_milestones(self, kind):
         titles = {"clinical": "Clinical milestones", "operational": "Operational milestones", "funding": "Funding milestones"}
         body = self._milestone_rows(self.c.study["milestones"][kind])
+        if not body:   # no empty table: say that nothing is published
+            return f'<p class="status-note">No {titles[kind].lower()} have been published.</p>'
         return (f'<div class="table-wrap"><table class="table-stack milestones"><caption>{titles[kind]}</caption>'
                 f'<thead><tr><th scope="col">Milestone</th><th scope="col">Status</th><th scope="col">Date</th><th scope="col">Source</th></tr></thead>'
                 f'<tbody>{body}</tbody></table></div>')
@@ -293,6 +295,19 @@ class Renderer:
     def b_document_version(self, did):
         """'Version 3' for a document in content/documents.json (history is newest first). Used in PDF headers."""
         return f'Version {escape(self._newest_version(did)["version"])}'
+
+    def b_site_url(self, page):
+        """'www.nwpharmatech.org/study' for printed documents, following the live route map
+        (src/integration-routes.json) when it moves a page, so a route change also changes the PDF."""
+        import json
+        over = self.root / "src" / "integration-routes.json"
+        pages = json.loads(over.read_text()).get("pages", {}) if over.exists() else {}
+        path = pages.get(page, "/" if page == "index" else "/" + page)
+        return "www.nwpharmatech.org" + ("" if path == "/" else path)
+
+    def b_document_date(self, did):
+        """The newest version's date, for PDF headers (not the site-wide as-of date)."""
+        return fmt_date(self._newest_version(did)["date"])
 
     def b_document_status(self, did):
         """' · Draft for review': the newest version's status from content/documents.json, printed in the PDF

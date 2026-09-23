@@ -83,16 +83,23 @@ The restricted material is protected in two layers:
    - Create a Cloudflare Access application allowing named reviewers only.
    - It must cover the custom hostname, **`<project>.pages.dev`**, and **preview deployments** (`*.<project>.pages.dev`). In the Pages project settings, enable the Access policy for preview deployments.
    - An Access application on the custom hostname alone leaves `<project>.pages.dev` open.
-3. **Set `ACCESS_TEAM_DOMAIN` and `ACCESS_AUD`** as the project's environment variables. The guard then refuses:
-   - with 503 when they are not set;
-   - with 403 when there is no valid token (wrong audience, issuer, key or signature, or an expired or malformed token);
-   - with 405 for any submission.
+3. **Set `ACCESS_TEAM_DOMAIN` and `ACCESS_AUD`** as the project's environment variables, for **both** the Production and the Preview environment of the Pages project (Settings → Variables). Preview deployments do not inherit Production variables; unset, the guard answers 503 there, which is safe but blocks reviewers.
+   - **Audience tags:** the token's audience is the AUD tag of the Access application that covered the request. Simplest is **one** Access application whose destinations include the custom hostname, `<project>.pages.dev` and `*.<project>.pages.dev`; `ACCESS_AUD` is then that one tag. If the hostnames are split across applications, list every tag, separated by commas (`ACCESS_AUD=tag-one,tag-two`); a hostname whose tag is missing gets 403.
+   - The guard then refuses:
+     - with 503 when the variables are not set, or when Access's signing keys cannot be fetched;
+     - with 403 when there is no valid token (wrong audience, issuer, key or signature, or an expired or malformed token);
+     - with 405 for any submission.
+   - When Access rotates its signing keys, a token with a new key id makes the guard refetch the keys (at most once a minute); cached keys are otherwise reused for an hour.
 
    These cases are unit-tested in `tools/test-access.mjs`.
 4. **Verify after every deploy, before sharing any link**, from a browser or terminal that is *not* signed in to Access. Run these against the `pages.dev` hostname and a preview URL as well as the custom hostname:
    - `curl -s -o /dev/null -w '%{http_code}' https://<host>/` must be 302 or 403 (Access login or refusal) or 503. It must never be 200.
    - `curl -s https://<host>/financing-structure | head -c 200` must not contain HTML page content.
-   - To check the guard itself behind Access, sign in and confirm the pages load. Then, from a signed-out session on a hostname Access does not cover, confirm the response is 403 or 503 plain text.
+   - **Check that the guard itself is deployed.** When Access covers every hostname (as it should), a signed-out request never reaches the guard, so the checks above test Access, not the guard. Check the guard with one of these, after every deploy:
+     - in the Cloudflare dashboard, the deployment's details (Workers & Pages → the project → the deployment) list a `_worker.js` / "Functions" bundle; a deployment without it serves the pages unguarded to anyone Access lets through;
+     - or, from the terminal, `npx wrangler pages deployment list --project-name <restricted-project>` and open the newest deployment; its build must show the worker;
+     - or, signed in to Access, open any page and look at its response headers (browser network panel): every response the guard serves carries `x-nwpt-guard: verified`. A page without that header did not come through the guard. (The `noindex` and `no-store` headers do not show this: `_headers` sets them too.)
+   - Do not create an Access bypass rule to test the guard: a bypass path would be served to anyone.
 5. `noindex` is not relied on for protection.
 
 ## Optional email sign-up

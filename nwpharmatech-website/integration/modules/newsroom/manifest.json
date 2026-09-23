@@ -16,16 +16,16 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 3933,
-   "sha256": "d44b812054bb46addeecb88af3b13be9f0235243976e11be340ba37c872f30ba"
+   "bytes": 3391,
+   "sha256": "fd86dbc24945e12d3c8eba848daf99c6910662f4a8778ea779a04d4ab1b20a14"
   },
   "module.css": {
-   "bytes": 6570,
-   "sha256": "ea072117835c6d02cae9f9a057aaec445cac70b55e9f757aeb18275ed2d31885"
+   "bytes": 6418,
+   "sha256": "5ba336391c717f26999f10236a53aff4de1a97c6e65573c7d2da6a7ea615d85f"
   },
   "preview.html": {
-   "bytes": 4585,
-   "sha256": "b8113b2698f71990f9732120b690069e0915d49d1f300e0607bb6437958faa7a"
+   "bytes": 4043,
+   "sha256": "16e1c7d081e0b2c2ea8341511fae3fdf38903448de83b344f932b48e57b23e6a"
   }
  },
  "left_out": [],
@@ -164,8 +164,8 @@
   {
    "file": "downloads/nwpharmatech-programme-brief.pdf",
    "href": "/downloads/nwpharmatech-programme-brief.pdf",
-   "bytes": 68367,
-   "sha256": "1de2490c2420c0506ecdf4b70ac0846e27aaded424d5ee9406664e2ea94b7d87"
+   "bytes": 68125,
+   "sha256": "12c15da664d977a7d5368aa2b99c26404345fe0cce13ca004606852cdd4a2ba4"
   },
   {
    "file": "downloads/nwpharmatech-references.ris",
@@ -193,6 +193,10 @@
     "href": "/contact"
    },
    {
+    "page": "study",
+    "href": "/study#milestones"
+   },
+   {
     "page": "updates",
     "href": "/updates"
    }
@@ -208,6 +212,16 @@
     "/contact"
    ],
    "needs": "a live page at /contact (set its path in src/integration-routes.json)",
+   "blocks_publication": false
+  },
+  {
+   "id": "study-hub",
+   "kind": "module",
+   "page": "study",
+   "links": [
+    "/study#milestones"
+   ],
+   "needs": "module study-hub imported first or at the same time, so these links and anchors resolve",
    "blocks_publication": false
   },
   {
@@ -237,6 +251,22 @@
    "kind": "alias",
    "required": false,
    "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/news/",
+   "to": "/newsroom",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /news/ (Cloudflare Pages treats it as a different path)"
+  },
+  {
+   "from": "/press/",
+   "to": "/newsroom",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /press/ (Cloudflare Pages treats it as a different path)"
   }
  ],
  "javascript": [],
@@ -252,7 +282,7 @@
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
  },
  "publication_blockers": [
-  "financing.html, index.html, faq.html, programme brief PDF: board and legal approval of the funding and financing wording before publication",
+  "financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)",
   "index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
   "fact company.jurisdiction (index) on newsroom.html",
   "fact company.name (index) on newsroom.html",

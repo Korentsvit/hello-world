@@ -5,7 +5,7 @@
   "investigates": "Whether NWPT-SM32300, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.",
   "stage": "Phase 2B study: Planned. Not recruiting. Protocol being finalised.",
   "completed": "Phase 1 study in 14 healthy volunteers: completed 10 December 2025; database locked 11 March 2026; analysis outputs delivered 30 March 2026.",
-  "next": "Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set.",
+  "next": "Finalisation of the Phase 2B protocol, reported as in progress in February 2026. No date has been announced.",
   "sources": [
    "brief-2026-09",
    "update-2026-02",
@@ -99,14 +99,6 @@
     "date_text": "As reported 23 February 2026",
     "source": "update-2026-02",
     "public": true
-   },
-   {
-    "title": "Phase 2B: regulatory and research ethics submissions",
-    "status": "Planned",
-    "date": null,
-    "date_text": "Date not set",
-    "source": "update-2026-02",
-    "public": true
    }
   ],
   "operational": [
@@ -124,26 +116,9 @@
     "date": "2026-03-30",
     "source": "tfl-2026-03",
     "public": true
-   },
-   {
-    "title": "Clinical supply for Phase 2B",
-    "status": "Planned",
-    "date": null,
-    "date_text": "Date not set",
-    "source": "update-2026-02",
-    "public": true
    }
   ],
-  "funding": [
-   {
-    "title": "Financing for the Phase 2B study",
-    "status": "In progress",
-    "date": null,
-    "date_text": "As at August 2026",
-    "source": "teaser-2026-08",
-    "public": true
-   }
-  ]
+  "funding": []
  },
  "phase1": {
   "measured": {

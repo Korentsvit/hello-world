@@ -10,9 +10,9 @@ import re
 
 ALLOWED_PROD = {"document", "primary"}
 # Source types that are records of the programme: a public milestone or update without a public citation label
-# is shown as 'Company records' only when its source is one of these. An instruction to the web team
+# is shown as 'NWPharmaTech records (not published)' only when its source is one of these. An instruction to the web team
 # ('company-instruction') or an unadopted draft ('company-draft') records nothing the programme did or decided.
-RECORD_TYPES = {"company-study-record", "company-record", "company-correspondence", "company-investor-document"}
+RECORD_TYPES = {"company-study-record", "company-record", "company-correspondence"}   # not investor documents: the teaser is not approved for public release
 
 # People: the title rules in docs/leadership-reconciliation.md, applied to the records logged in people.json.
 TEASER_SOURCES = {"teaser-2026-08"}       # management (brief-2026-09-c): never sole authority for a current appointment
@@ -20,6 +20,10 @@ CONFIRMATION_TYPES = {"company-instruction", "confirmation"}
 CONFIRMED_AFTER = "2026-09-23"            # a confirmation must postdate the round-4 instruction (brief-2026-09-c)
 CURRENT_FROM = "2025-01-01"               # a current title or remit needs a record from 2025 onwards
 CHAIR_OR_COMMITTEE = re.compile(r"\bchair|\badvisory (?:board|committee|council)\b|\bsteering committee\b|\bSAB\b", re.I)
+# A descriptor is a field of expertise or a neutral description: it may not carry a role or remit, so a title or
+# remit withheld under the rules cannot return through it.
+REMIT_WORDS = re.compile(r"\b(?:lead|leads|leading|chief|officer|director|executive|head|heads|manag\w*|responsible|"
+                         r"execution|president|principal investigator|advis\w*|partner)\b", re.I)
 _ABBREVIATIONS = {"ceo": "chief executive officer", "cso": "chief scientific officer", "coo": "chief operating officer",
                   "cfo": "chief financial officer", "ned": "non-executive director board member"}
 
@@ -204,8 +208,16 @@ class Content:
             out.append("missing descriptor")
         elif CHAIR_OR_COMMITTEE.search(p["descriptor"]):
             out.append("descriptor names a chair or committee role (a descriptor is never a title)")
+        elif REMIT_WORDS.search(p["descriptor"]):
+            out.append(f"descriptor '{p['descriptor']}' carries a role or remit word; a descriptor is a field of expertise")
         else:
             support(f"descriptor '{p['descriptor']}'", p.get("descriptor_records"), 2, False)
+        # biographies and affiliations may mention a chair or committee only as a past post ('former chair of ...')
+        for field in [p.get("bio", "")] + list(p.get("affiliations") or []):
+            for m in CHAIR_OR_COMMITTEE.finditer(field):
+                if not re.search(r"\bformer\s+$", field[max(0, m.start() - 8):m.start()], re.I):
+                    out.append(f"biography or affiliation names a current chair or committee role: '{field}'")
+                    break
         for r in p.get("responsibilities") or []:
             if not isinstance(r, dict) or not r.get("text"):
                 out.append("responsibility needs 'text' and 'records'")

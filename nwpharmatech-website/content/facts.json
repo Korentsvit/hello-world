@@ -417,6 +417,22 @@
       "verification": "document",
       "as_of": "2026-09-23",
       "review": "Update to 'checked against the original publications' once primary verification is recorded."
+    },
+    "phase1.eligibility_summary": {
+      "value": "Participants were in good health and were not taking regular medicines. People with a history of mental disorder, cannabis use in the 28 days before screening, or abnormal liver tests were not eligible.",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20",
+      "review": "SDTM TI domain: IC1, IC5 (healthy), EC4 (regular medication within 28 days), EC10 (history of mental disorder), EC2 (cannabis products within 28 days), EC5 (abnormal liver tests)."
+    },
+    "phase1.meal": {
+      "value": "a standardised high-fat, high-calorie meal",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20",
+      "review": "SDTM TI domain IC4: 'consuming the protocol specified high-fat, high-calorie meal in 30 minutes'. The protocol's reason for the meal is not in the record; do not state one."
     }
   }
 }

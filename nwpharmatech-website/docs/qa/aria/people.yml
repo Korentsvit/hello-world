@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -44,9 +44,6 @@
       - paragraph: Clinical high risk of psychosis (CHR-P)
       - heading "Dr Scott W. Woods" [level=3]
       - paragraph: Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.
-      - heading "Responsibilities" [level=4]
-      - list:
-        - listitem: Brings expertise in clinical high risk of psychosis to the design of the planned Phase 2B study.
       - heading "Affiliations" [level=4]
       - list:
         - listitem: Professor of Psychiatry, Yale School of Medicine
@@ -64,20 +61,17 @@
       - heading "Dr Grace Blest-Hopley" [level=3]
       - paragraph: Chief Scientific Officer
       - paragraph: Neuroscientist specialising in cannabinoid neuropharmacology. PhD from King's College London on the actions and effects of cannabinoids.
-      - heading "Responsibilities" [level=4]
-      - list:
-        - listitem: Responsible for the programme's scientific strategy as Chief Scientific Officer.
     - paragraph: Naming a university, hospital or company on this page does not mean that it endorses the programme.
   - region "Management":
     - heading "Management" [level=2]
     - article:
-      - paragraph: Strategy and programme leadership
+      - paragraph: Company strategy
       - heading "Filipp Korentsvit" [level=3]
       - paragraph: Chief Executive Officer
       - paragraph: Previously an Executive Director at Goldman Sachs. BSc in Economics and Statistics, University College London.
       - heading "Responsibilities" [level=4]
       - list:
-        - listitem: Leads company strategy and the development programme.
+        - listitem: Leads company strategy.
     - article:
       - paragraph: Co-founder
       - heading "Daud Gutseriev" [level=3]
@@ -110,9 +104,6 @@
     - list:
       - listitem: Clinical decisions, including study design, eligibility, safety and conduct, are kept independent of funding and financing.
       - listitem: Each study needs approval from the medicines regulator and a research ethics committee before it can start.
-    - complementary:
-      - heading "Lived experience" [level=3]
-      - paragraph: We want people with lived experience of mental health difficulties, and their families, to shape how the programme communicates and how studies are run. No lived-experience adviser has been appointed yet.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.

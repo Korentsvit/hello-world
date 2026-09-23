@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -613,8 +613,7 @@
     - heading "Corrections" [level=2]
     - paragraph: No corrections have been made since publication.
     - paragraph:
-      - text: Substantive corrections to a published summary are recorded here with the date.
-      - link "Site-wide corrections log":
+      - link "Corrections log":
         - /url: /newsroom#corrections
       - text: .
     - heading "Review history" [level=2]

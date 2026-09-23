@@ -17,15 +17,15 @@
  "files": {
   "fragment.html": {
    "bytes": 9698,
-   "sha256": "b946a588032524c26aad4058fa04fd3ba4ca63c26f1638a672327fa4b2c5795e"
+   "sha256": "13ba81563d27aaabdc63e09874c2dad3578a96b3ade113acbdba0b0e0ee3d432"
   },
   "module.css": {
-   "bytes": 7283,
-   "sha256": "26ab7ffac053b85e5dd9a47c57d645d3ef8624da2b694537e0d37090a59d2afa"
+   "bytes": 7273,
+   "sha256": "50fe53a944c8a9c2813e465e43d29e8b3b2543886d72451168cbb65da893bc86"
   },
   "preview.html": {
    "bytes": 10381,
-   "sha256": "e7e199d14af975580f2785003942ea864d531830ed70eb30fec816199986febd"
+   "sha256": "aa36e739b16a6ff009fe466374effb0cbcf080baeb8d873019f56c104c1cc831"
   }
  },
  "left_out": [],
@@ -63,8 +63,8 @@
   {
    "file": "downloads/appointment-preparation-sheet.pdf",
    "href": "/downloads/appointment-preparation-sheet.pdf",
-   "bytes": 43254,
-   "sha256": "c50be9a45aa75c31e89092e5df7ed60954ec1b78a5acff0217aa30c430c2d5c0"
+   "bytes": 43752,
+   "sha256": "1b4fe755efb72965401855bf0f53f0e53eb987838846e2652e42151b74cbb4d2"
   }
  ],
  "assets": [],
@@ -147,8 +147,7 @@
   "reference fusarpoli-2013 (index) on families.html",
   "reference nice-cg155 (index) on families.html",
   "reference salazar-2021 (index) on families.html",
-  "dependency urgent-help: /faq#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)",
-  "faq.html, appointment preparation sheet PDF: re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date"
+  "dependency urgent-help: /faq#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)"
  ],
  "optional_assets": []
 }

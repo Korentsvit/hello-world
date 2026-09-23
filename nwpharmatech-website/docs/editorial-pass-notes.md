@@ -14,6 +14,7 @@ Every change to text that a visitor can see, made in the correction release (aft
 | F | Follow-ups after the merge | `abf8f72`, `7a4011f` |
 | R | Review follow-up: records, PDFs and unsourced claims | `6eb186a` |
 | V | Review follow-up: leadership records, menu, restricted area | `1bb7645`, `8c6f4c2`, `7a4011f`, `e92e79d` |
+| W | Verification pass: unrecorded plans, investment wording, restricted area | the final commit (see `COMMIT.txt`) |
 
 A change marked *superseded* was replaced by a later one, which is listed with it. Quoted text shows the rendered wording, with shared facts filled in.
 
@@ -29,6 +30,8 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **E** "…and financing has no influence on clinical decisions." → "…and clinical decisions are kept independent of financing." *Same wording as the brief.*
 - **B** "Download the brief (PDF, 2 pages)" → "Download the brief (PDF, 2 pages, 67 KB)". *Page count and size come from the checked PDF, not fixed text, so the size follows the file.*
 - **R** Latest update: "The statistical and pharmacokinetic analysis outputs for the Phase 1 study were delivered. A results summary will be published after review." → "…were delivered." *No record states a publication plan. The analysis record says only that results are not to be published until reconciled. An update states what happened.*
+- **W** Hero heading "Careful research for young people at clinical high risk of psychosis" → "Careful research for people at clinical high risk of psychosis". *No record gives the Phase 2B age range; the brief says "people".*
+- **W** "…No investment is being accepted, and clinical decisions are kept independent of financing." → "…No investment is being accepted through this website or through the financing route described here. Clinical decisions are kept independent of financing." *A blanket "no investment is being accepted" could be untrue of the company as a whole (the August 2026 teaser describes a separate raise). The statement now covers what the website can vouch for.*
 
 ## Programme updates (`updates.html`)
 
@@ -58,6 +61,10 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **R** Sponsor: "…NWPharmaTech Ltd was the sponsor of the Phase 1 study. The sponsor of the Phase 2B study will be named in its registry entry." → "…NWPharmaTech Ltd was the sponsor of the Phase 1 study." *It relied on the unrecorded registration plan. The oversight list still says Phase 2B arrangements have not yet been published.*
 - **R** Clinical milestones: rows "Phase 1: results summary on registries and this site · Planned · Date not set · Company records" and "Phase 2B: public registration before first enrolment · Planned · Date not set · Company records" → removed. *Neither is a recorded plan. Their sources were management instructions to the web team, which the table showed as "Company records". The first came from the unadopted publication policy.*
 - **R** Funding milestones: row "Programme financing route for eligible investors · In progress · In development; not available · Company records" → removed. *Its only source is a development instruction. The funding and financing page still describes the route as in development.*
+- **W** Next milestone: "Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set." → "Finalisation of the Phase 2B protocol, reported as in progress in February 2026. No date has been announced." (also in the programme brief) *The February 2026 update records protocol finalisation in progress; it does not mention submissions.*
+- **W** Clinical milestones: rows "Phase 2B: regulatory and research ethics submissions · Planned · Date not set" and "Clinical supply for Phase 2B · Planned · Date not set" → removed. *Neither is in the February 2026 update.*
+- **W** Milestone source label "Company records" → "NWPharmaTech records (not published)"; "Date not set" → "Not announced". *Readers can see that the records behind a row are not public.*
+- **W** Funding milestones: row "Financing for the Phase 2B study · In progress · As at August 2026 · Company records" → "No funding milestones have been published." *The only source is the August 2026 teaser, which is not approved for release and whose lead study is an acute schizophrenia Phase 2B, not the CHR-P study.*
 
 ## Phase 1 study (`phase-1.html`, phase-1 module)
 
@@ -65,6 +72,9 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **R** Results publication status: "Results will be published after the study report and plain-language wording have been reconciled and approved. A results summary is planned for both trial registries and this page. No date has been set." → "Results have not been published. They will not be published until the clinical study report and the plain-language wording of the results have been reconciled." *The analysis record says results are not to be published until reconciled. No record states a plan to publish a summary on the registries or this site; that comes from the unadopted publication policy.*
 - **V** "Results have not been published. They will not be published until the clinical study report and the plain-language wording of the results have been reconciled." → "Results have not been published yet." (also in the programme brief) *"Until reconciled" came from an internal working note, not from a company record; only the fact that results are unpublished is recorded.*
 - **R** "The study had pre-specified stopping rules and did not use a data monitoring committee, which is usual for a small single-dose study in healthy volunteers." → "…and did not use a data monitoring committee." *The study records support only that no committee was used; "usual" was an unsourced general claim.*
+- **W** Eligibility: "…recent cannabis use…" → "…cannabis use in the 28 days before screening…". *The study's inclusion and exclusion record (SDTM trial inclusion domain) gives 28 days.*
+- **W** "Each participant received three treatments… which treatment they received" → "three study doses… which product they received". *Healthy volunteers were not treated for anything.*
+- **W** "Study procedures included a standardised high-fat meal, because food changes how much cannabidiol is absorbed." → "…a standardised high-fat, high-calorie meal. Food, particularly fatty food, increases how much cannabidiol is absorbed." with the Perucca 2020 citation. *The record says high-fat, high-calorie; it does not give the protocol's reason for the meal, so none is stated.*
 
 ## Questions and answers (`faq.html`)
 
@@ -83,12 +93,17 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **E** *(superseded)* Q "Will you publish results if they are negative?" A "That is our intention. A publication policy … has been drafted for management adoption." → Q "Will study results be published?" A "Results of the completed Phase 1 study have not been published yet. A results summary is planned for both trial registries and this site; see the Phase 1 study. The Phase 2B study will be registered publicly before anyone is enrolled."
 - **R** → Q "Have the Phase 1 study results been published?" A "Results have not been published. They will not be published until the clinical study report and the plain-language wording of the results have been reconciled. See the Phase 1 study." *The results summary and the registration plan are in no record. The question now asks what the records can answer, and the answer is the shared fact used on the Phase 1 page and in the brief.*
 - **R** Urgent help: no change to the wording or numbers. The numbers now come from one list (`content/services.json` → `crisis_lines`), which also fills the appointment preparation sheet.
+- **W** Q "How is the programme funded?" A "What funding supports, who controls spending and how progress is reported are explained under funding and financing. We are developing a financing route for eligible investors, but no investment is being accepted…" → Q "Can I invest in the programme through this website?" A "No. We are developing a financing route for eligible investors, but no investment is being accepted through this website or through that route, and no investment, payment or token function on this website is active. What funding would support and who controls spending are explained under funding and financing. Clinical decisions are kept independent of funding." *No progress reports exist; the answer now answers its question, with the scoped investment statement.*
 
 ## Funding and financing (`financing.html`)
 
 - **E** `[TBC: board and legal approval of the funding and financing wording on this page before publication]` → removed from the template; now a `content/review.json` blocker.
 - **E** "Clinical decisions (study design, eligibility, dosing, safety, analysis and publication) are made by the clinical and scientific leadership and approved by regulators and research ethics committees. Funders and investors have no say in them and no access to participant data." → "Clinical decisions, including study design, eligibility, dosing and safety, are kept independent of funding and financing. Each study needs approval from a medicines regulator and a research ethics committee before it can start." *Commitments in no record.*
 - **E** "We never make unsolicited investment approaches; please report any you receive." → "If you are unsure whether a message comes from us, please contact us." *Unsupported: the company has approached investors.*
+- **W** Lead and status line: "no investment is being accepted" → "no investment is being accepted through this website or through the financing route described here" (and "…through this route" in the status line). *As on the home page.*
+- **W** Funding milestones table → "No funding milestones have been published." *As on the study page.*
+- **W** "Programme reports, answering what changed, what supports it, what remains unresolved and what happens next, are planned; see the newsroom. Reports are written for the public and are not investment communications." → "No programme reports have been published. Updates on this website are not investment communications." *The report format came from the unadopted editorial standards; no record plans reports.*
+- **W** Risk: "NWPT-SM32300 may not work; most investigational medicines are never approved; any money invested could be lost…" → "NWPT-SM32300 may not work and may never be approved; any money invested could be lost…". *The approval statistic had no source in the evidence library.*
 
 ## Evidence library (`evidence.html`)
 
@@ -96,6 +111,7 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **E** "A monthly review process has been prepared. A review is listed here only after it has taken place." → removed. *Internal process; unadopted commitment.*
 - **E** "Last checked … official pages. The original pages are being opened and checked before launch." → second sentence removed. *Internal staging process.*
 - **F** Review log, method: "Search-engine summaries of publisher, PubMed, registry and official pages (primary pages blocked from the build environment)" → "Search-engine summaries of publisher, PubMed, registry and official pages". *Internal detail of the staging environment.*
+- **W** "Substantive corrections to a published summary are recorded here with the date. Site-wide corrections log." → "Corrections log." *The corrections procedure is part of the unadopted editorial standards; the link to the log stays.*
 
 ## Clinical need (`clinical-need.html`)
 
@@ -107,6 +123,7 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 
 - **E** "A fixed 300 mg capsule also avoids measuring doses from an oil." → "A fixed-strength capsule also avoids measuring doses from an oil." *The strength comes only from the shared fact.*
 - **E** "Each capsule contains 300 mg, so doses are multiples of 300 mg. … The doses for the Phase 2B study will be published with its design." → "…so doses are whole numbers of capsules. … The doses for the Phase 2B study have not been confirmed." *Unrecorded commitment; Phase 2B doses are unconfirmed.*
+- **W** Evidence label on the background section: "Established · Biological rationale" → "Established · Background". *"Established" applies to the background findings; whether they give NWPT-SM32300 a rationale is an open question.*
 
 ## Families guide (`families.html`, family-guide module)
 
@@ -126,6 +143,10 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **L** Richard Barker: "Non-Executive Chairman" and "Non-executive board role." removed; descriptor "Life-sciences leadership". *Same conflict.*
 - **L** Gillian Cannon: "Non-Executive Director" → "Board Member"; descriptor "Pharmaceutical commercial strategy"; "Non-executive board role." removed. *Only the shared part of the records is shown; "non-executive" is in the teaser only.*
 - **L** New profile: Professor Trevor Jones CBE, Senior Adviser; descriptor "Regulatory and clinical development"; biography "Senior leader in the pharmaceutical sector. Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association."; affiliation "Visiting Professor, King's College London". *Management instruction not to omit him; only statements in the company records and confirmed by a search summary are used.*
+- **W** Scott Woods: "Brings expertise in clinical high risk of psychosis to the design of the planned Phase 2B study." → removed; descriptor kept. *The October 2025 draft's "Additional Advisor Input" is not an appointment, and no adviser is listed until appointed (`leadership-reconciliation.md`).*
+- **W** Grace Blest-Hopley: "Responsible for the programme's scientific strategy as Chief Scientific Officer." → removed; title and descriptor kept. *The records give only the title; management is asked for her responsibilities.*
+- **W** Filipp Korentsvit: descriptor "Strategy and programme leadership" → "Company strategy"; "Leads company strategy and the development programme." → "Leads company strategy." *No record says he leads the programme.*
+- **W** Section "Lived experience" ("We want people with lived experience of mental health difficulties, and their families, to shape how the programme communicates and how studies are run. No lived-experience adviser has been appointed yet.") → removed. *An intention no record contains; nothing about advisers is said until someone is appointed.*
 
 ## Newsroom (`newsroom.html`, newsroom module)
 
@@ -140,6 +161,8 @@ A change marked *superseded* was replaced by a later one, which is listed with i
   - New, for a provider refusing the request (other 4xx): "Our email provider did not accept the sign-up. Please try again later." *Previously the outage message.*
   - Honeypot: "Thank you. Please check your inbox to confirm your email address." → the accepted message, "Thank you. Please check your inbox and confirm your email address. You will not receive updates until you confirm." *Bots cannot tell the difference.*
   - No-JavaScript answer page: link back to `/newsroom#signup` instead of `/newsroom.html#signup`. *Extensionless route.*
+- **W** Section "How we report progress" (the four questions each programme report answers) → "Progress": "Dated events are listed on the updates page, and study milestones with their sources on the study page. No programme reports have been published." *The report format came from the unadopted editorial standards.*
+- **W** Corrections: "When we correct a substantive error in published content, we record the date, what was wrong and what we changed. Typographical fixes are not listed." → removed; the log remains. *An unadopted procedure.*
 
 ## Contact (`contact.html`)
 
@@ -156,6 +179,7 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **V** Daud Gutseriev: title "Chief Operating Officer" and "Leads programme execution." removed; descriptor "Co-founder". *Apart from the teaser, only the 2023 deck gives the title; the teaser is never the only 2025–2026 support. "Co-founder" is in the 2023 deck and the 2025 draft.*
 - **V** Trevor Jones: biography "Senior leader in the pharmaceutical sector. Former research…" → "Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association." *The present-tense opening had no logged check.*
 - **V** Gillian Cannon: biography "…senior roles at Merck, Otsuka and UCB." → "…senior roles at Merck and Otsuka." *UCB is in no company record.*
+- **W** Not an offer: "…No investment is being accepted." → "…No investment is being accepted through this website or through the financing route described here." *As on the home page.*
 
 ## Navigation (every page)
 
@@ -163,6 +187,7 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **M** Mobile menu: new quick link "Programme brief" to the home page's brief section (`/#programme-brief`). *Keep the brief one tap away.*
 - **V** Citation links: screen readers heard "Source: Source: …"; the link now reads "Source: …" once (the visible text is unchanged). *Duplicate prefix.*
 - **B** Footer: "Programme brief (PDF)" → "Programme brief (PDF, 2 pages, 67 KB)". *From the checked PDF.*
+- **W** Staging banner: "…Content is under scientific, legal and regulatory review." → "…Content is awaiting review and approval." *No record shows those reviews under way.*
 
 ## Programme brief PDF
 
@@ -175,13 +200,20 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **R** Completed: "Phase 1 study: 14 healthy adult volunteers aged 18 to 55; randomised, open-label, three-period crossover; single oral doses of NWPT-SM32300 600 mg and 900 mg, and the licensed cannabidiol oral solution Epidyolex as comparator. Completed 10 December 2025; database locked 11 March 2026. Registered as NCT07186283 and ISRCTN25163383. Results not yet published." → "Phase 1 study in 14 healthy volunteers: completed 10 December 2025; database locked 11 March 2026; analysis outputs delivered 30 March 2026. Design: randomised, open-label, three-period crossover; single oral doses of NWPT-SM32300 600 mg and 900 mg, and the licensed cannabidiol oral solution Epidyolex as comparator. Registered as NCT07186283 and ISRCTN25163383. Results have not been published. They will not be published until the clinical study report and the plain-language wording of the results have been reconciled." *The row is now the study hub's "Completed so far" text and the shared results status, so a change to either reaches the PDF and regenerates it.*
 - **R** Current stage: "Phase 2B study in people at clinical high risk of psychosis: Planned. Not recruiting. Protocol being finalised." → "Phase 2B study: Planned. Not recruiting. Protocol being finalised." *The study hub's "Current stage" text, for the same reason.*
 - **R** The "nw pharmatech" wordmark now comes from the logo slot. *No visible change until the official logo is authorised; then the logo appears here too.*
+- **W** "…eligible investors, including those in the crypto and mental-health communities, could participate through a dedicated programme vehicle, potentially using permissioned tokens. Our ambition is to connect rigorous pharmaceutical development with transparent communication and broader access to research financing…" → "…eligible investors could take part through a dedicated programme vehicle, potentially using permissioned tokens. Clinical decisions remain independent of financing, and the effectiveness of NWPT-SM32300 is unproven." *Matches the home page. Whether to name investor audiences again, as management's original brief did, is a review item for board and legal approval.*
+- **W** Financing row: "No investment is being accepted." → "No investment is being accepted through this website or through the financing route described here."; Next milestone row as on the study page. *As on the site.*
+- **W** The date beside the version now comes from `documents.json` (the version's date), not from the site's as-of date. *No visible change today; the date can no longer move without a new version.*
 
 ## Appointment preparation sheet PDF
 
 - **R** New header line: "nw pharmatech" and "Version 2 · Draft for review". *The logo slot reaches this PDF too, and the sheet is still an unapproved draft. Version 2 because the sheet changed.*
 - **R** "…UK: 999, NHS 111 (option 2 in England and Wales), Samaritans 116 123. General information…" → "…UK: 999, NHS 111 (option 2 in England and Wales), Samaritans 116 123. Numbers checked 23 September 2026. General information…". *The numbers now come from the same list as the Q&A urgent-help section, and the date of the last check goes with them.*
+- **W** "UK: 999, NHS 111 (option 2 in England and Wales), Samaritans 116 123." → "UK: 999, NHS 111 (option 2) in England and Wales, NHS 24 on 111 in Scotland, Lifeline 0808 808 8000 in Northern Ireland, Samaritans 116 123." *The sheet is for readers in every UK nation; the Scotland and Northern Ireland lines were on the Q&A page but not in print.*
+- **W** Header: "Version 2 · Draft for review" → "Version 2 · 23 September 2026 · Draft for review". *Each version carries its date.*
 
 ## Restricted staging area (not public)
 
 - **F** Restricted pages link only to restricted pages: the footer's public links and the urgent-help link are left out, and a restricted "Not found" page says "There is no page at this address in the restricted area." with a link to the restricted index. *The restricted project serves nothing from the public site.*
 - **V** Restricted navigation: the public page groups (shown there as plain, unlinked text) are replaced by links to the restricted index and its three pages; the restricted "Not found" page adds "Access to this area does not confirm that anyone is eligible to invest." *The restricted project serves nothing from the public site, and every restricted page carries the eligibility statement.*
+- **W** Navigation labels: "Restricted staging index", "Financing structure (draft)", "Funding figures (restricted)", "Investor journey (demonstration)" → "Index", "Financing structure", "Funding figures", "Investor journey" (page headings unchanged). *The full titles overflowed the header between 1100 and 1460 px; the banner on every page still marks the area as restricted and unapproved.*
+- **W** Footer: "See legal information." → removed on restricted pages. *It linked to a public page the restricted project does not serve.*

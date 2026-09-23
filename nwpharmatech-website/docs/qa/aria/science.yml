@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -46,7 +46,7 @@
     - paragraph: Question 1
     - heading "Why investigate CBD in this setting?" [level=2]
     - text: Established
-    - paragraph: Biological rationale
+    - paragraph: Background
     - paragraph:
       - text: Cannabidiol (CBD) and THC both come from the cannabis plant but act differently. CBD does not produce a "high". Daily use of high-THC cannabis is associated with higher odds of psychotic disorder.
       - 'link "Source: Di Forti et al. 2019"':

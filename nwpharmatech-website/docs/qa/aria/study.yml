@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -44,7 +44,7 @@
     - term: Completed so far
     - definition: "Phase 1 study in 14 healthy volunteers: completed 10 December 2025; database locked 11 March 2026; analysis outputs delivered 30 March 2026."
     - term: Next milestone
-    - definition: Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set.
+    - definition: Finalisation of the Phase 2B protocol, reported as in progress in February 2026. No date has been announced.
   - region "Public synopsis":
     - heading "Public synopsis" [level=2]
     - text: Programme information
@@ -88,23 +88,18 @@
             - text: "Date:"
             - time: 10 December 2025
           - 'cell "Source: Phase 1 study records (NW PharmaTech)"'
-        - 'row "Phase 1: database locked Status: Completed Date: 11 March 2026 Source: Company records"':
+        - 'row "Phase 1: database locked Status: Completed Date: 11 March 2026 Source: NWPharmaTech records (not published)"':
           - 'rowheader "Phase 1: database locked"'
           - 'cell "Status: Completed"'
           - 'cell "Date: 11 March 2026"':
             - text: "Date:"
             - time: 11 March 2026
-          - 'cell "Source: Company records"'
-        - 'row "Phase 2B: protocol finalised Status: In progress Date: As reported 23 February 2026 Source: Company records"':
+          - 'cell "Source: NWPharmaTech records (not published)"'
+        - 'row "Phase 2B: protocol finalised Status: In progress Date: As reported 23 February 2026 Source: NWPharmaTech records (not published)"':
           - 'rowheader "Phase 2B: protocol finalised"'
           - 'cell "Status: In progress"'
           - 'cell "Date: As reported 23 February 2026"'
-          - 'cell "Source: Company records"'
-        - 'row "Phase 2B: regulatory and research ethics submissions Status: Planned Date: Date not set Source: Company records"':
-          - 'rowheader "Phase 2B: regulatory and research ethics submissions"'
-          - 'cell "Status: Planned"'
-          - 'cell "Date: Date not set"'
-          - 'cell "Source: Company records"'
+          - 'cell "Source: NWPharmaTech records (not published)"'
     - table "Operational milestones":
       - caption: Operational milestones
       - rowgroup:
@@ -114,37 +109,19 @@
           - columnheader "Date"
           - columnheader "Source"
       - rowgroup:
-        - 'row "Final formulation and GMP clinical supply for Phase 1 Status: Completed Date: Before Phase 1 dosing (2025) Source: Company records"':
+        - 'row "Final formulation and GMP clinical supply for Phase 1 Status: Completed Date: Before Phase 1 dosing (2025) Source: NWPharmaTech records (not published)"':
           - rowheader "Final formulation and GMP clinical supply for Phase 1"
           - 'cell "Status: Completed"'
           - 'cell "Date: Before Phase 1 dosing (2025)"'
-          - 'cell "Source: Company records"'
-        - 'row "Phase 1 analysis outputs delivered Status: Completed Date: 30 March 2026 Source: Company records"':
+          - 'cell "Source: NWPharmaTech records (not published)"'
+        - 'row "Phase 1 analysis outputs delivered Status: Completed Date: 30 March 2026 Source: NWPharmaTech records (not published)"':
           - rowheader "Phase 1 analysis outputs delivered"
           - 'cell "Status: Completed"'
           - 'cell "Date: 30 March 2026"':
             - text: "Date:"
             - time: 30 March 2026
-          - 'cell "Source: Company records"'
-        - 'row "Clinical supply for Phase 2B Status: Planned Date: Date not set Source: Company records"':
-          - rowheader "Clinical supply for Phase 2B"
-          - 'cell "Status: Planned"'
-          - 'cell "Date: Date not set"'
-          - 'cell "Source: Company records"'
-    - table "Funding milestones":
-      - caption: Funding milestones
-      - rowgroup:
-        - row "Milestone Status Date Source":
-          - columnheader "Milestone"
-          - columnheader "Status"
-          - columnheader "Date"
-          - columnheader "Source"
-      - rowgroup:
-        - 'row "Financing for the Phase 2B study Status: In progress Date: As at August 2026 Source: Company records"':
-          - rowheader "Financing for the Phase 2B study"
-          - 'cell "Status: In progress"'
-          - 'cell "Date: As at August 2026"'
-          - 'cell "Source: Company records"'
+          - 'cell "Source: NWPharmaTech records (not published)"'
+    - paragraph: No funding milestones have been published.
   - region "Registrations":
     - heading "Registrations" [level=2]
     - paragraph: "The completed Phase 1 study is registered on two public registries. Both entries describe the same study: a single-dose, three-period crossover study of NW300EMCBD (the development code for NWPT-SM32300) in healthy adults aged 18 to 55, sponsored by NWPharmaTech Ltd."

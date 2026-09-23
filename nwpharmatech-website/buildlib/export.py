@@ -290,7 +290,8 @@ def module_css(site_css, classes, ids, tags, module_id):
                 if sels and "url(" in body:
                     raise ExportError(f"site.css: '{prelude}' loads a file with url(); module styles cannot carry it")
                 if prelude == "a" and "text-decoration" not in body:
-                    body = body.rstrip().rstrip(";") + "; text-decoration-line: underline;"
+                    # the shorthand also resets colour, style and thickness a live rule may have changed
+                    body = body.rstrip().rstrip(";") + "; text-decoration: underline;"
                     underlined.append(prelude)
                 if sels:
                     out.append((", ".join(dict.fromkeys(sels)), _rename_vars(body)))
@@ -363,10 +364,12 @@ JS_FILTERS = """
           apply(all);
           return el;
         };
-        root.addEventListener("click", function (e) {
-          var a = e.target.closest('a[href^="#"]');
-          if (a && root.contains(a)) reveal(a.getAttribute("href"));   // before the browser follows the link
-        });
+        // Any link on this page to one of the module's cards, inside the module or anywhere else on the live page
+        // (capture: before the browser follows it).
+        document.addEventListener("click", function (e) {
+          var a = e.target.closest && e.target.closest("a[href]");
+          if (a && a.hash && a.origin === location.origin && a.pathname === location.pathname) reveal(a.hash);
+        }, true);
         window.addEventListener("hashchange", function () {
           var el = reveal(location.hash);   // a link from elsewhere on the page: the browser found nothing to show
           if (el) el.scrollIntoView();
@@ -375,9 +378,9 @@ JS_FILTERS = """
 """
 JS_DETAILS = """
       // Open a collapsed item when the address names it (for example /page#item-id).
-      var openTarget = function () {
+      var openTarget = function (hash) {
         var id;
-        try { id = decodeURIComponent(location.hash.slice(1)); } catch (err) { return; }
+        try { id = decodeURIComponent(hash.slice(1)); } catch (err) { return; }
         var el = id && document.getElementById(id);
         if (el && el.tagName === "DETAILS" && root.contains(el)) {
           el.open = true;
@@ -385,8 +388,13 @@ JS_DETAILS = """
           if (s) s.focus();
         }
       };
-      openTarget();
-      window.addEventListener("hashchange", openTarget);
+      openTarget(location.hash);
+      window.addEventListener("hashchange", function () { openTarget(location.hash); });
+      // A link to an item that is already the address fires no hashchange: open it on the click as well.
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest && e.target.closest("a[href]");
+        if (a && a.hash && a.origin === location.origin && a.pathname === location.pathname) openTarget(a.hash);
+      });
 """
 
 
@@ -773,6 +781,13 @@ def _module(spec, root, content, public_dir, routes, page_names, site_css, redir
                           "kind": "alias", "required": False,
                           "why": "short alias in src/redirects.txt; add it only if nothing on the live site already "
                                  "answers at this path (a page, file or redirect), otherwise skip it"})
+    # Cloudflare treats /team and /team/ as different paths: every redirect also needs its trailing-slash form
+    # (the staging build adds the same forms to its own _redirects)
+    for r in list(redir):
+        if not r["from"].endswith("/") and "." not in r["from"].rsplit("/", 1)[-1] \
+                and r["from"] + "/" not in {x["from"] for x in redir} and r["from"] + "/" != routes["pages"][pid] + "/":
+            redir.append({**r, "from": r["from"] + "/", "kind": r["kind"] + ", trailing-slash form",
+                          "why": f"the same redirect for {r['from']}/ (Cloudflare Pages treats it as a different path)"})
     downloads = []
     for f in sorted(links["downloads"]):
         p = public_dir / "downloads" / f
@@ -817,7 +832,7 @@ def _module(spec, root, content, public_dir, routes, page_names, site_css, redir
         "redirects": redir,
         "javascript": ["evidence filters" if p is JS_FILTERS else "open a <details> named by the URL fragment" for p in js_parts],
         "csp": csp,
-        "publication_blockers": blockers,
+        "publication_blockers": list(dict.fromkeys(blockers)),
         "optional_assets": optional,
     }
     files["manifest.json"] = json.dumps(manifest, indent=1, ensure_ascii=False) + "\n"

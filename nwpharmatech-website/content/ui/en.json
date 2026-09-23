@@ -12,7 +12,8 @@
   "home": "Home",
   "brief_link": "Programme brief",
   "notice": "<strong>NWPT-SM32300 is an investigational medicine.</strong> It is not approved for any use, and whether it is effective is not known. <a href=\"faq.html#not-medical-advice\">This website is not medical advice.</a>",
-  "staging_banner": "<strong>Staging draft.</strong> Not the live website. Content is under scientific, legal and regulatory review.",
+  "staging_banner": "<strong>Staging draft.</strong> Not the live website. Content is awaiting review and approval.",
+  "restricted_banner": "<strong>Restricted staging.</strong> Unapproved financing material for internal and legal review only. Access to this area does not confirm that anyone is eligible to invest. No investment, payment or token function is active.",
   "source": "Source",
   "primary_nav": [
     [

@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -37,7 +37,7 @@
 - main:
   - paragraph: About
   - heading "Funding and financing" [level=1]
-  - paragraph: How the programme is paid for, who decides how money is spent, and how we report progress. Nothing on this page is an offer, and no investment is being accepted.
+  - paragraph: How the programme is paid for, who decides how money is spent, and how we report progress. Nothing on this page is an offer, and no investment is being accepted through this website or through the financing route described here.
   - region "What funding supports":
     - heading "What funding supports" [level=2]
     - list:
@@ -46,20 +46,7 @@
       - listitem: Regulatory, safety and quality work
       - listitem: Programme operations, data management and analysis
     - heading "What is and is not funded" [level=2]
-    - table "Funding milestones":
-      - caption: Funding milestones
-      - rowgroup:
-        - row "Milestone Status Date Source":
-          - columnheader "Milestone"
-          - columnheader "Status"
-          - columnheader "Date"
-          - columnheader "Source"
-      - rowgroup:
-        - 'row "Financing for the Phase 2B study Status: In progress Date: As at August 2026 Source: Company records"':
-          - rowheader "Financing for the Phase 2B study"
-          - 'cell "Status: In progress"'
-          - 'cell "Date: As at August 2026"'
-          - 'cell "Source: Company records"'
+    - paragraph: No funding milestones have been published.
     - paragraph: "Figures are published only once they are approved and can be shown as one of: planning target, committed funding, cash received, or money spent. Expressions of interest are never counted as funding."
   - region "Who controls spending and clinical decisions":
     - heading "Who controls spending and clinical decisions" [level=2]
@@ -77,11 +64,8 @@
       - text: ", and study milestones with their sources on the"
       - link "study page":
         - /url: /study#milestones
-      - text: . Programme reports, answering what changed, what supports it, what remains unresolved and what happens next, are planned; see the
-      - link "newsroom":
-        - /url: /newsroom
-      - text: .
-    - paragraph: Reports are written for the public and are not investment communications.
+      - text: . No programme reports have been published.
+    - paragraph: Updates on this website are not investment communications.
   - region "The financing route in development":
     - heading "The financing route in development" [level=2]
     - text: Programme information
@@ -95,10 +79,10 @@
     - complementary:
       - heading "Current status" [level=3]
       - paragraph: Not available
-      - paragraph: No tokens have been issued, no investment is being accepted, and no investment, payment or token function on this website is active.
+      - paragraph: No tokens have been issued, no investment is being accepted through this website or through this route, and no investment, payment or token function on this website is active.
       - paragraph:
         - strong: "Risk, in brief:"
-        - text: NWPT-SM32300 may not work; most investigational medicines are never approved; any money invested could be lost; interests may be impossible to sell.
+        - text: NWPT-SM32300 may not work and may never be approved; any money invested could be lost; interests may be impossible to sell.
       - paragraph:
         - strong: Beware of scams.
         - text: Any token, coin or "presale" claiming a link to us is not ours. If you are unsure whether a message comes from us, please

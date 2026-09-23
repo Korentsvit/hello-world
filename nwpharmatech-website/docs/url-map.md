@@ -23,7 +23,9 @@ Page URLs are **extensionless**. Cloudflare Pages serves `/study` from `study.ht
 
 **Downloads:** `/downloads/nwpharmatech-programme-brief.pdf`, `/downloads/appointment-preparation-sheet.pdf`, `/downloads/nwpharmatech-references.ris` and `.bib`.
 
-**Short aliases** (301, one hop, defined in `src/redirects.txt`): `/brief` and `/programme-brief` → `/#programme-brief`; `/phase-2b`, `/phase2b` → `/study`; `/phase1` → `/phase-1`; `/formulation` → `/science#formulation`; `/references` → `/evidence`; `/team` → `/people`; `/news`, `/press` → `/newsroom`; `/funding`, `/invest`, `/investors` → `/financing`; `/privacy`, `/accessibility` → `/legal#…`; `/help` → `/faq#urgent-help`.
+**Short aliases** (301, one hop, defined in `src/redirects.txt`): `/brief` and `/programme-brief` → `/#programme-brief`; `/phase-2b`, `/phase2b` → `/study`; `/phase1` → `/phase-1`; `/formulation` → `/science#formulation`; `/references` → `/evidence`; `/team` → `/people`; `/news`, `/press` → `/newsroom`; `/funding`, `/invest`, `/investors` → `/financing`; `/privacy`, `/accessibility` → `/legal#…`; `/help` → `/faq#urgent-help`. `/contactus` → `/contact` (an address used on the live site).
+
+Every alias also answers with a trailing slash (`/team/`, `/contactus/` …), which Cloudflare treats as a different path; the build adds those forms itself. `src/redirects.txt` refuses splats and placeholders, a second rule for the same path, a rule for a page's own route or a form Cloudflare already redirects, a rule whose target is itself redirected, and a rule for a path served as a file (`/assets/…`, `/downloads/…`, `/robots.txt`, `/sitemap.xml`, `/404`).
 
 ## Removed anchors
 

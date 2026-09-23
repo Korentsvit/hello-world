@@ -89,6 +89,9 @@ These steps are the same for every module. The module sections below add what is
    - The build has already checked the whole set against the live paths in `routes.json`, with the rules the site
      build applies to its own redirects: no rule shadows a live page, points at another redirected path (a chain or
      loop) or shares a path with another rule. An alias that is now a page's own live path is left out.
+   - Every redirect is listed twice: once as `/x` and once as `/x/` (`"kind"` ends in "trailing-slash form").
+     Cloudflare Pages treats the two as different paths and redirects `/x/` to `/x` only when a page exists at `/x`,
+     so without the second rule `/x/` would be a 404. Add or skip both forms together.
 7. **Headings.** Page modules start with their own `h1` (in the `.nwpt-page-hero` section). Do not add a second `h1`
    in the live template. `formulation` starts at `h2`, so it goes under the science page's `h1`.
 8. **Ids.** Every id is kept as on the staging page, because other pages and published material link to them (for
@@ -193,7 +196,7 @@ These steps are the same for every module. The module sections below add what is
   - downloads: `downloads/nwpharmatech-programme-brief.pdf`.
 - **Anchors:** `#milestones` (other pages link to it). The section headings carry `#sum-h`, `#synopsis-h`, `#ms-h`
   and `#reg-h`.
-- **Redirects:** aliases `/phase-2b` and `/phase2b` to the study page.
+- **Redirects:** aliases `/phase-2b` and `/phase2b` (with `/phase-2b/` and `/phase2b/`) to the study page.
 - **Accessibility:**
   - Tables have captions and scoped row headers.
   - Below 560px each row is stacked, with its column name shown before each value (`data-label`). This needs
@@ -222,7 +225,7 @@ These steps are the same for every module. The module sections below add what is
 - **Links:** `/study` and `/evidence#ref-perucca-2020`. Import `evidence-library` first, or at the same time, so the
   reference anchor exists.
 - **Anchors:** `#results` (other pages link to it).
-- **Redirects:** alias `/phase1` to the Phase 1 page.
+- **Redirects:** alias `/phase1` (with `/phase1/`) to the Phase 1 page.
 - **Accessibility:** one `h1`, then an `h2` per section; tables have captions.
 - **Publication blockers:**
   - registry identifiers, registry URLs, location and status checked only through search summaries of the registry
@@ -252,7 +255,7 @@ These steps are the same for every module. The module sections below add what is
   - When it is authorised in `content/assets.json` and supplied under `src/`, a rebuild adds the image to the
     fragment and to `integration/assets/`, and adds `img-src 'self'` to the manifest's CSP needs.
   - No other image has an agreed place in this module.
-- **Anchors:** `#formulation` (the section itself); the alias `/formulation` redirects to `/science#formulation`.
+- **Anchors:** `#formulation` (the section itself); the alias `/formulation` (with `/formulation/`) redirects to `/science#formulation`.
   - The heading uses `#q2-h`, and the diagram uses `#dg-title`, `#dg-desc` and `#ar` internally. Check that they
     are free on the live page.
 - **Accessibility:**
@@ -284,7 +287,7 @@ These steps are the same for every module. The module sections below add what is
   - `#ref-<id>` for every card (other pages and the brief link to these);
   - `#cat-<topic>` for every topic heading;
   - `#labels`, the section on how evidence is labelled (other pages link to it).
-- **Redirects:** alias `/references` to the evidence page.
+- **Redirects:** alias `/references` (with `/references/`) to the evidence page.
 - **CSP:** `script-src 'self'` for `module.js`.
 - **JavaScript behaviour:** `module.js` acts only inside `[data-nwpt-module="evidence-library"]`.
   - It shows the filter bar, which is hidden without JavaScript, when every section is shown.
@@ -363,7 +366,7 @@ These steps are the same for every module. The module sections below add what is
   `manifest.json` → `dependencies`).
 - **Anchors:** `#corrections` (the evidence library links to it). The section headings carry `#kit-h`, `#rep-h` and
   `#corr-h`.
-- **Redirects:** aliases `/news` and `/press` to the newsroom. Skip either if the live site already has a page there.
+- **Redirects:** aliases `/news` and `/press` (with `/news/` and `/press/`) to the newsroom. Skip either if the live site already has a page there.
 - **Programme reports:** none are shown until a real report is approved in `content/reports.json`.
 - **Publication blockers:** company facts and registry identifiers verified only through search summaries, and review
   items for the programme brief it offers for download.
@@ -437,7 +440,8 @@ Keep the ids, `verification` and `as_of` fields if you import it. Make changes i
 - the manifest is complete, free of internal fields and its hashes match;
 - every link resolves;
 - every dependency that blocks publication is a publication blocker, and the family guide's urgent-help link is one;
-- redirects are marked required or optional, and none points at its own path;
+- redirects are marked required or optional, none points at its own path, and each has its trailing-slash form;
+- each publication blocker is listed once;
 - this document matches the manifests: every `#anchor` a module section names exists, every anchor other pages
   link to and every alias is named, and the images named are the module's optional assets.
 

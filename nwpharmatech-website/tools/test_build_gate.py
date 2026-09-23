@@ -40,9 +40,11 @@ def build(site, *args, env=None):
 
 
 def build_with_failing_rename(site, at, exc):
-    """Runs build.main() with os.rename raising `exc` on its `at`-th call (a failure or Ctrl-C mid-install)."""
+    """Runs build.main() with os.rename raising `exc` on its `at`-th call (a failure or Ctrl-C mid-install).
+    `at` may be a tuple, to fail several calls (for example one during the install and one during its rollback)."""
+    ats = at if isinstance(at, tuple) else (at,)
     code = (f"import os, sys; sys.path.insert(0, '.'); orig = os.rename; n = [0]\n"
-            f"def rename(a, b):\n    n[0] += 1\n    if n[0] == {at}: raise {exc}('injected at rename {at}')\n    return orig(a, b)\n"
+            f"def rename(a, b):\n    n[0] += 1\n    if n[0] in {ats}: raise {exc}('injected at rename ' + str(n[0]))\n    return orig(a, b)\n"
             f"os.rename = rename\nimport build\nsys.exit(build.main([]))\n")
     return subprocess.run([sys.executable, "-c", code], cwd=site, capture_output=True, text=True)
 
@@ -106,7 +108,10 @@ with tempfile.TemporaryDirectory() as tmp:
     redirects = site / "src" / "redirects.txt"
     original_redirects = redirects.read_text()
     for rule, says in (("/study /study.html 301", "shadows a page"), ("/:slug /study 301", "splats and placeholders"),
-                       ("/privacy-policy /legal#no-such-anchor 301", "no id 'no-such-anchor'")):
+                       ("/privacy-policy /legal#no-such-anchor 301", "no id 'no-such-anchor'"),
+                       ("/contactus /faq 301", "already has a rule"),
+                       ("/downloads/old-brief.pdf /study 301", "not a free path"),
+                       ("/robots.txt /study 301", "not a free path")):
         redirects.write_text(original_redirects + rule + "\n")
         before = snapshot(site)
         p = build(site)
@@ -142,6 +147,25 @@ with tempfile.TemporaryDirectory() as tmp:
         before = snapshot(site)
         p = build_with_failing_rename(site, at, exc)
         expect_unchanged(site, f"{exc} during installation (rename {at})", p, before, "previous output left unchanged", code)
+
+    # the install fails (rename 6: placing the second output) and so does the rollback (rename 9: moving the
+    # last-moved previous output back). Nothing may be deleted: the previous output stays in the kept temp directory.
+    before = snapshot(site)
+    p = build_with_failing_rename(site, (6, 9), "OSError")
+    kept = sorted(site.glob(".build-tmp-*"))
+    aside = kept[0] / "previous" if kept else None
+    case("rollback failure: build exits 2 and says so", p.returncode == 2 and "restoring the previous output failed" in p.stderr,
+         f"exit {p.returncode}: {p.stderr[-600:]}")
+    case("rollback failure: temporary directory kept and named", len(kept) == 1 and str(aside) in p.stderr, str(kept))
+    if aside and aside.exists():
+        for n in ("public", "restricted", "build", "integration"):
+            if (aside / n).exists() and not (site / n).exists():
+                os.rename(aside / n, site / n)
+        shutil.rmtree(kept[0])
+    case("rollback failure: previous output recoverable from the kept directory", snapshot(site) == before,
+         str(sorted(set(before) ^ set(snapshot(site)))[:10]))
+    for extra in site.glob(".build-tmp-*"):
+        shutil.rmtree(extra)
 
     before = snapshot(site)
     proc = subprocess.Popen([sys.executable, "build.py"], cwd=site, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)

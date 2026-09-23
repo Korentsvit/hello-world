@@ -2,7 +2,7 @@
   - /url: "#main"
 - complementary "Environment":
   - strong: Staging draft.
-  - text: Not the live website. Content is under scientific, legal and regulatory review.
+  - text: Not the live website. Content is awaiting review and approval.
 - complementary "Important notice":
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
@@ -86,7 +86,7 @@
       - heading "Prepare for an appointment" [level=3]
       - paragraph: "A sheet to fill in by hand before an appointment: what you have noticed, what helps, your questions, and who is coming with you. Nothing is sent to us."
       - paragraph:
-        - link "Download the sheet (PDF, 1 page, 42 KB)":
+        - link "Download the sheet (PDF, 1 page, 43 KB)":
           - /url: /downloads/appointment-preparation-sheet.pdf
   - region "Questions you might ask a clinician":
     - heading "Questions you might ask a clinician" [level=2]

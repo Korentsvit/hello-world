@@ -222,6 +222,36 @@ if (PAGES.includes("evidence")) {
   check("evidence: pressed state and live status update", (await page.getAttribute('.chip[data-filter="cbd"]', "aria-pressed")) === "true" && /Showing \d+ sources in CBD research/.test(await page.textContent(".filter-status")));
   await page.locator('.chip[data-filter="all"]').click();
   check("evidence: 'All' restores every section", (await page.$$eval(".lib-section", (ss) => ss.every((s) => !s.hidden))));
+  // A link on the page to a card in a topic the filter hides: every topic is shown and the page moves to the card,
+  // also when the address already names that card (no hashchange fires).
+  await page.locator('.chip[data-filter="cbd"]').click();
+  const hiddenCard = await page.evaluate(() => {
+    const c = document.querySelector(".lib-section[hidden] .study-card[id]");
+    if (!c) return null;
+    const a = document.createElement("a");
+    a.href = "#" + c.id; a.id = "qa-link"; a.textContent = "Link to a hidden card";
+    document.querySelector("main").prepend(a);
+    return "#" + c.id;
+  });
+  const revealed = async () => page.evaluate((h) => {
+    const el = document.getElementById(h.slice(1));
+    const r = el.getBoundingClientRect();
+    return { shown: !!el.offsetParent, inView: r.top >= -1 && r.top < innerHeight, hash: location.hash,
+      all: document.querySelector('.chip[data-filter="all"]').getAttribute("aria-pressed") };
+  }, hiddenCard);
+  // the page scrolls smoothly (site.css): wait until the card has arrived, up to 3 s
+  const settled = (h) => page.waitForFunction((x) => { const r = document.getElementById(x.slice(1)).getBoundingClientRect(); return r.top >= -1 && r.top < innerHeight; }, h, { timeout: 3000 }).catch(() => {});
+  if (hiddenCard) { await page.locator("#qa-link").click(); await settled(hiddenCard); }
+  const r1 = hiddenCard && await revealed();
+  check(`evidence: a link to a card in a hidden topic shows every topic and moves to the card (${hiddenCard})`,
+    r1 && r1.shown && r1.inView && r1.hash === hiddenCard && r1.all === "true", JSON.stringify(r1) || "no hidden card");
+  await page.locator('.chip[data-filter="cbd"]').click();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  if (hiddenCard) { await page.locator("#qa-link").click(); await settled(hiddenCard); }
+  const r2 = hiddenCard && await revealed();
+  check("evidence: the same link again, with the address already naming the card, still shows it",
+    r2 && r2.shown && r2.inView && r2.all === "true", JSON.stringify(r2) || "no hidden card");
+  await page.locator('.chip[data-filter="all"]').click();
   const cards = await page.$$eval(".study-card", (cs) => cs.map((c) => ({ id: c.id, dts: [...c.querySelectorAll("dt")].map((d) => d.textContent), src: !!c.querySelector(".source-line") })));
   check(`evidence: all ${total} cards have population, product, design, finding, limitations and source`, cards.every((c) => ["Population", "Product", "Design", "Finding", "Limitations"].every((k) => c.dts.includes(k)) && c.src));
   check("evidence: negative finding flagged (Boggs 2018)", (await page.textContent("#ref-boggs-2018")).includes("Negative finding"));
@@ -384,21 +414,28 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   // PDFs and their sources, and the integration fragments. Allowed only as a title management has confirmed
   // (content/people.json), and never more than one chair title.
   const people = JSON.parse(fs.readFileSync(path.resolve(here, "../content/people.json"), "utf8")).people;
-  const confirmed = people.filter((p) => p.public && p.role_status === "confirmed" && p.role).map((p) => p.role);
-  const CHAIR = /\b(?:vice[- ]?|co-)?chair(?:man|woman|person|s|ed|ing)?\b/gi;
-  const COMMITTEE = /\b(?:scientific |clinical |medical )?advisory (?:board|committee|council)\b|\bsteering committee\b/gi;
+  const CHAIR = /\b(?:vice[- ]?|co-)?chair(?:man|men|woman|women|person|persons|people|manship|womanship|s|ed|ing)?\b/gi;
+  const COMMITTEE = /\b(?:scientific |clinical |medical )?advisory (?:board|committee|council|panel)s?\b|\bsteering committees?\b|\bscientific (?:committee|panel)s?\b/gi;
   const SAB = /\bSAB\b/g;
   const ELSEWHERE = [/former chair of the European Medicinal Cannabis Association/gi];   // Trevor Jones's biography: a past post outside the company
-  const quote = (s) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
-  const titleHits = (text, allowed = confirmed) => {
+  // A confirmed title is allowed only as the whole phrase (not inside "Non-Executive Chairman" or "Chairman"),
+  // and only within that person's own profile card; elsewhere it counts like any other chair wording.
+  const quote = (s) => new RegExp(`(?<![-\\w])${s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![-\\w])`, "gi");
+  const titleHits = (text, allowed = []) => {
     let t = text;
     for (const r of [...ELSEWHERE, ...allowed.map(quote)]) t = t.replace(r, " ");
     return [...t.matchAll(CHAIR), ...t.matchAll(COMMITTEE), ...t.matchAll(SAB)].map((m) => m[0]);
   };
+  const confirmedBy = JSON.parse(fs.readFileSync(path.resolve(here, "../content/people.json"), "utf8")).people
+    .filter((p) => p.role_status === "confirmed" && p.role).map((p) => ({ id: p.id, role: p.role }));
+  const withoutConfirmedCards = (h) => confirmedBy.reduce((acc, p) =>
+    acc.replace(new RegExp(`<article[^>]*id="${p.id}"[\\s\\S]*?</article>`, "g"), (card) => card.replace(quote(p.role), " ")), h);
   const variants = ["Chairman", "Non-Executive Chairman", "Executive Chair", "Non-executive Chair", "Chair of the Board", "Chairs the board",
-    "Chairwoman", "Chairperson", "Co-chair", "Vice-Chair", "SAB Chair", "Scientific Advisory Board", "member of the advisory board", "SAB"];
+    "Chairwoman", "Chairperson", "Co-chair", "Vice-Chair", "SAB Chair", "Scientific Advisory Board", "member of the advisory board", "SAB",
+    "two chairmen", "two chairwomen", "holds the chairmanship", "Head of the Scientific Advisory Panel", "Member of the Scientific Committee"];
   check("chair/committee detector: flags every chair and committee wording, not the logged past post elsewhere",
-    variants.every((v) => titleHits(`Dr A. ${v}.`, []).length > 0) && titleHits("former chair of the European Medicinal Cannabis Association", []).length === 0,
+    variants.every((v) => titleHits(`Dr A. ${v}.`, []).length > 0) && titleHits("former chair of the European Medicinal Cannabis Association", []).length === 0
+    && titleHits("Non-Executive Chairman", ["Executive Chairman"]).length > 0 && titleHits("Chairman", ["Chair"]).length > 0,
     variants.filter((v) => titleHits(`Dr A. ${v}.`, []).length === 0).join(", "));
   const attrText = (h) => [...h.matchAll(/\b(?:alt|title|content|aria-label)="([^"]*)"/g)].map((m) => m[1]).join(" ");
   const texts = [];
@@ -407,7 +444,8 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   for (const f of [...htmlIn(root), ...htmlIn(path.resolve(here, "../restricted")), ...htmlIn(path.resolve(here, "../build")),
     ...(fs.existsSync(modDir) ? fs.readdirSync(modDir).flatMap((m) => htmlIn(path.join(modDir, m))) : [])]) {
     const h = fs.readFileSync(f, "utf8");
-    texts.push([path.relative(path.resolve(here, ".."), f), visible(h) + " " + attrText(h)]);
+    const shown = withoutConfirmedCards(h);
+    texts.push([path.relative(path.resolve(here, ".."), f), visible(shown) + " " + attrText(shown)]);
   }
   for (const f of fs.readdirSync(path.join(root, "downloads")).filter((f) => f.endsWith(".pdf"))) {
     const doc = await pdfjs.getDocument({ data: new Uint8Array(fs.readFileSync(path.join(root, "downloads", f))), isEvalSupported: false }).promise;
@@ -415,9 +453,10 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
     for (let i = 1; i <= doc.numPages; i++) t += " " + (await (await doc.getPage(i)).getTextContent()).items.map((x) => x.str).join(" ");
     texts.push([`public/downloads/${f}`, t]);
   }
-  const hits = texts.flatMap(([f, t]) => titleHits(t).map((h) => `${f}: ${h}`));
+  const hits = texts.flatMap(([f, t]) => titleHits(t).map((h) => `${f}: ${h}`));   // confirmed titles only inside their own cards
   check(`no chair or committee title unless confirmed by management (${texts.length} pages, PDFs and fragments scanned)`, hits.length === 0 && texts.length > 0, hits.join("; "));
-  check("people: at most one chair title confirmed (not both an Executive and a Non-Executive Chairman)", confirmed.filter((r) => /\bchair/i.test(r)).length <= 1);
+  check("people: at most one person holds a chair title (confirmed), so the site never shows two chairs",
+    confirmedBy.filter((p) => /\bchair/i.test(p.role)).length <= 1);
   check("no empty image slots: no initials avatars or figures without an image", PAGES.every((p) => !/class="avatar"/.test(read(p)) && !/<figure[^>]*>(?:(?!<img|<svg|<video)[\s\S])*?<\/figure>/.test(read(p))));
 }
 
@@ -446,6 +485,13 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
     const txt = await page.textContent("body");
     check(`restricted ${f}: states access is not eligibility confirmation`, /does not confirm that anyone is eligible/.test(txt));
     await page.screenshot({ path: path.join(shots, `restricted-${f.replace(".html", "")}-mobile.png`), fullPage: true });
+    for (const w of [320, 1100, 1280]) {   // restricted pages have their own navigation and forms: no horizontal scroll
+      await page.setViewportSize({ width: w, height: 800 });
+      const over = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+      check(`restricted ${f} @${w}px: no horizontal scroll`, over <= 1, `${over}px too wide`);
+      if (w === 1100 && f === "index.html") await page.screenshot({ path: path.join(shots, "restricted-index-1100.png") });   // the narrowest desktop header
+    }
+    await page.setViewportSize(VIEWPORTS.mobile);
   }
   await ctx.close();
   rsrv.close();
@@ -472,3 +518,4 @@ report.summary = { total: report.checks.length, passed: report.checks.length - f
 fs.writeFileSync(path.join(outDir, "report.json"), JSON.stringify(report, null, 2));
 console.log(`QA: ${report.summary.passed}/${report.summary.total} checks passed`);
 for (const c of failed) console.log(`FAIL  ${c.name}${c.detail ? "  --  " + c.detail : ""}`);
+process.exit(failed.length ? 1 : 0);
