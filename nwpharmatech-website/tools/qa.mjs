@@ -1,9 +1,11 @@
 // Browser QA for the built site. Usage (from tools/):
 //   npm install && node qa.mjs
-// Serves ../public on a local port, then checks every page at desktop and mobile widths.
+// Serves ../public with Cloudflare's own Pages runtime (wrangler pages dev, so extensionless routes, _redirects
+// and _headers behave as on Cloudflare), then checks every page at desktop and mobile widths.
 // Writes ../docs/qa/report.json and screenshots to ../docs/qa/screenshots/.
 import { chromium } from "playwright-core";
 import http from "node:http";
+import { serve } from "./lib/cf-serve.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -18,22 +20,12 @@ const shots = path.join(outDir, "screenshots");
 fs.mkdirSync(shots, { recursive: true });
 
 const PAGES = fs.readdirSync(root).filter((f) => f.endsWith(".html") && f !== "404.html").map((f) => f.replace(/\.html$/, "")).sort();
+const route = (name) => (name === "index" ? "/" : "/" + name);
 const VIEWPORTS = { desktop: { width: 1280, height: 900 }, mobile: { width: 390, height: 844 } };
 const TYPES = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".pdf": "application/pdf", ".jpg": "image/jpeg", ".png": "image/png", ".xml": "application/xml", ".txt": "text/plain" };
 
-const server = http.createServer((req, res) => {
-  let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
-  if (p.endsWith("/")) p += "index.html";
-  const file = path.join(root, p);
-  if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-    res.writeHead(404, { "content-type": "text/html" });
-    return res.end(fs.readFileSync(path.join(root, "404.html")));
-  }
-  res.writeHead(200, { "content-type": TYPES[path.extname(file)] || "application/octet-stream" });
-  fs.createReadStream(file).pipe(res);
-});
-await new Promise((r) => server.listen(0, r));
-const base = `http://127.0.0.1:${server.address().port}/`;
+const server = await serve(root);
+const base = server.base;
 
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM || "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
 const report = { base, generated: new Date().toISOString(), pages: {}, checks: [] };
@@ -48,7 +40,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
     page.on("pageerror", (e) => errors.push(e.message));
     page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
     page.on("requestfailed", (r) => errors.push(`request failed: ${r.url()}`));
-    const resp = await page.goto(base + name + ".html", { waitUntil: "load" });
+    const resp = await page.goto(base + route(name), { waitUntil: "load" });
     const r = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
       title: document.title,
@@ -64,7 +56,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
     });
     await page.screenshot({ path: path.join(shots, `${name}-${vpName}.png`), fullPage: true });
     report.pages[`${name}@${vpName}`] = { status: resp.status(), errors, axe, ...r };
-    check(`${name}@${vpName}: HTTP 200`, resp.status() === 200);
+    check(`${name}@${vpName}: HTTP 200 at ${route(name)} without redirect`, resp.status() === 200 && !resp.request().redirectedFrom());
     check(`${name}@${vpName}: no console/request errors`, errors.length === 0, errors.join("; "));
     check(`${name}@${vpName}: no horizontal scroll`, !r.overflow);
     check(`${name}@${vpName}: exactly one h1`, r.h1 === 1, `h1=${r.h1}`);
@@ -84,7 +76,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
     const ctx = await browser.newContext({ viewport: { width: w, height: 800 } });
     const page = await ctx.newPage();
     for (const name of PAGES) {
-      await page.goto(base + name + ".html");
+      await page.goto(base + route(name));
       const o = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1 || document.querySelector(".header-inner").scrollWidth > document.querySelector(".header-inner").clientWidth + 1);
       if (o) bad.push(`${name}@${w}`);
     }
@@ -100,21 +92,22 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   const bad = [];
   let count = 0;
   for (const name of PAGES) {
-    await page.goto(base + name + ".html");
+    await page.goto(base + route(name));
     const hrefs = await page.$$eval("a[href]", (as) => as.map((a) => a.getAttribute("href")));
     for (const h of hrefs) {
       if (/^(mailto:|tel:|sms:|https?:)/.test(h)) continue;
       count++;
-      const u = new URL(h, base + name + ".html");
-      const res = await fetch(u.href.split("#")[0]);
-      if (res.status !== 200) { bad.push(`${name}: ${h} -> ${res.status}`); continue; }
+      if (/\.html(#|$)/.test(h)) { bad.push(`${name}: ${h} -> links a .html address (Cloudflare redirects it)`); continue; }
+      const u = new URL(h, base + route(name));
+      const res = await fetch(u.href.split("#")[0], { redirect: "manual" });
+      if (res.status !== 200) { bad.push(`${name}: ${h} -> ${res.status}${res.headers.get("location") ? " to " + res.headers.get("location") : ""}`); continue; }
       if (u.hash) {
         const html = await res.text();
         if (!html.includes(`id="${decodeURIComponent(u.hash.slice(1))}"`)) bad.push(`${name}: ${h} -> missing anchor`);
       }
     }
   }
-  check(`internal links and anchors resolve (${count} checked)`, bad.length === 0, bad.join("; "));
+  check(`internal links and anchors resolve directly, with no redirect (${count} checked)`, bad.length === 0, bad.join("; "));
   await ctx.close();
 }
 
@@ -122,7 +115,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
 {
   const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
   const page = await ctx.newPage();
-  await page.goto(base + "science.html");
+  await page.goto(base + "/science");
   const toggle = page.locator(".nav-toggle");
   check("menu: toggle visible on mobile", await toggle.isVisible());
   check("menu: starts collapsed (aria-expanded=false, panel hidden)", (await toggle.getAttribute("aria-expanded")) === "false" && !(await page.locator("#mobile-nav").isVisible()));
@@ -131,8 +124,10 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   const groups = await page.$$eval("#mobile-nav details", (ds) => ds.map((d) => ({ t: d.querySelector("summary").textContent, open: d.open })));
   check("menu: current page's group open, others closed", groups.filter((g) => g.open).map((g) => g.t).join() === "The research", JSON.stringify(groups));
   check("menu: focus moves into panel on open", await page.evaluate(() => document.getElementById("mobile-nav").contains(document.activeElement)));
+  check("menu: exactly one Home link", (await page.locator("#mobile-nav a", { hasText: /^Home$/ }).count()) === 1);
   await page.locator("#mobile-nav summary", { hasText: "About" }).click();
-  check("menu: tapping a closed group expands it", await page.$eval("#mobile-nav details:nth-of-type(3)", (d) => d.open));
+  const afterOpen = await page.$$eval("#mobile-nav details", (ds) => ds.filter((d) => d.open).map((d) => d.querySelector("summary").textContent));
+  check("menu: opening a group closes the others (one expanded at a time)", afterOpen.join() === "About", afterOpen.join());
   check("menu: current page marked aria-current", (await page.locator('#mobile-nav a[aria-current="page"]').textContent()) === "Science and formulation");
   await page.keyboard.press("Escape");
   check("menu: Escape closes and returns focus to toggle", (await toggle.getAttribute("aria-expanded")) === "false" && (await page.evaluate(() => document.activeElement.classList.contains("nav-toggle"))));
@@ -143,7 +138,18 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   await page.screenshot({ path: path.join(shots, "menu-open-mobile.png") });
   await page.locator("#mobile-nav a", { hasText: "Programme updates" }).isVisible().then(async (v) => { if (!v) await page.locator("#mobile-nav summary", { hasText: "The programme" }).click(); });
   await page.locator("#mobile-nav a", { hasText: "Programme updates" }).click();
-  check("menu: link navigates", page.url().endsWith("updates.html"));
+  await page.waitForURL(/\/updates$/);
+  check("menu: link navigates to the extensionless route", page.url().endsWith("/updates"));
+  // In-page destination: on the home page, the brief link closes the menu and moves focus to the brief.
+  await page.goto(base + "/");
+  await toggle.click();
+  const briefLink = page.locator('#mobile-nav a[href="/#programme-brief"]');
+  if (await briefLink.count()) {
+    await briefLink.first().click();
+    await page.waitForTimeout(200);
+    const st = await page.evaluate(() => ({ exp: document.querySelector(".nav-toggle").getAttribute("aria-expanded"), hidden: document.getElementById("mobile-nav").hidden, hash: location.hash, focusIn: !!document.activeElement.closest("#programme-brief") || document.activeElement.id === "programme-brief" }));
+    check("menu: in-page destination closes the menu and focuses the destination", st.exp === "false" && st.hidden && st.hash === "#programme-brief" && st.focusIn, JSON.stringify(st));
+  } else check("menu: in-page 'Programme brief' link present", false);
   await ctx.close();
 }
 
@@ -151,7 +157,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
 {
   const ctx = await browser.newContext({ viewport: VIEWPORTS.desktop });
   const page = await ctx.newPage();
-  await page.goto(base + "index.html");
+  await page.goto(base + "/");
   check("desktop: primary nav visible, toggle hidden", (await page.locator(".site-nav").isVisible()) && !(await page.locator(".nav-toggle").isVisible()));
   // Keyboard: skip link first, then focus lands on main
   await page.keyboard.press("Tab");
@@ -160,7 +166,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   await page.keyboard.press("Enter");
   check("keyboard: skip link moves focus to main", await page.evaluate(() => document.activeElement.id === "main" || location.hash === "#main"));
   // Walk the whole tab order and check every stop shows a focus indicator
-  await page.goto(base + "index.html");
+  await page.goto(base + "/");
   const stops = [];
   for (let i = 0; i < 60; i++) {
     await page.keyboard.press("Tab");
@@ -184,7 +190,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
 {
   const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
   const page = await ctx.newPage();
-  await page.goto(base + "faq.html");
+  await page.goto(base + "/faq");
   const closed = await page.$$eval(".faq details", (ds) => ds.every((d) => !d.open));
   check("faq: all answers start collapsed", closed);
   await page.locator(".faq summary").first().focus();
@@ -192,10 +198,12 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   check("faq: Enter on a question opens it", await page.$eval(".faq details", (d) => d.open));
   await page.keyboard.press("Enter");
   check("faq: Enter again closes it", await page.$eval(".faq details", (d) => !d.open));
-  await page.goto(base + "faq.html#not-medical-advice");
+  await page.goto(base + "/faq#not-medical-advice");
   check("faq: deep link (#not-medical-advice) opens the target answer", await page.$eval("#not-medical-advice", (d) => d.open));
-  await page.goto(base + "index.html");
-  await page.locator('.notice-bar a[href="faq.html#not-medical-advice"]').click();
+  await page.goto(base + "/faq.html#not-medical-advice");
+  check("faq: old .html deep link redirects to /faq and still opens the answer", page.url().endsWith("/faq#not-medical-advice") && await page.$eval("#not-medical-advice", (d) => d.open));
+  await page.goto(base + "/");
+  await page.locator('.notice-bar a[href="/faq#not-medical-advice"]').click();
   await page.waitForURL(/not-medical-advice/);
   check("faq: notice-bar link opens the answer", await page.$eval("#not-medical-advice", (d) => d.open));
   await ctx.close();
@@ -205,7 +213,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
 if (PAGES.includes("evidence")) {
   const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
   const page = await ctx.newPage();
-  await page.goto(base + "evidence.html");
+  await page.goto(base + "/evidence");
   const total = await page.locator(".study-card").count();
   check("evidence: filters visible with JS", await page.locator(".filters").isVisible());
   await page.locator('.chip[data-filter="cbd"]').click();
@@ -221,11 +229,11 @@ if (PAGES.includes("evidence")) {
   await ctx.close();
   const nojs = await browser.newContext({ javaScriptEnabled: false });
   const p2 = await nojs.newPage();
-  await p2.goto(base + "evidence.html");
+  await p2.goto(base + "/evidence");
   check("evidence (no JS): filter bar hidden and all sections shown", !(await p2.locator(".filters").isVisible()) && (await p2.locator(".lib-section:visible").count()) === (await p2.locator(".lib-section").count()));
   await nojs.close();
   for (const [f, head] of [["nwpharmatech-references.ris", "TY  - "], ["nwpharmatech-references.bib", "@"]]) {
-    const res = await fetch(base + "downloads/" + f);
+    const res = await fetch(base + "/downloads/" + f);
     const t = await res.text();
     const n = (t.match(f.endsWith(".ris") ? /^TY  - /gm : /^@/gm) || []).length;
     check(`download: ${f} valid with ${n} records (= ${total} cards)`, res.status === 200 && t.startsWith(head) && n === total);
@@ -247,13 +255,13 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
 
 // ---- Downloads ----
 {
-  const res = await fetch(base + "downloads/nwpharmatech-programme-brief.pdf");
+  const res = await fetch(base + "/downloads/nwpharmatech-programme-brief.pdf");
   const buf = Buffer.from(await res.arrayBuffer());
   check("download: programme brief PDF served (200, application/pdf, valid header, >10 KB)", res.status === 200 && res.headers.get("content-type") === "application/pdf" && buf.subarray(0, 5).toString() === "%PDF-" && buf.length > 10000, `${res.status} ${res.headers.get("content-type")} ${buf.length} bytes`);
   const ctx = await browser.newContext({ acceptDownloads: true });
   const page = await ctx.newPage();
-  await page.goto(base + "index.html");
-  const [dl] = await Promise.all([page.waitForEvent("download"), page.locator(".brief-actions a[download]").click()]);
+  await page.goto(base + "/");
+  const [dl] = await Promise.all([page.waitForEvent("download"), page.locator('#programme-brief a[download][href$="nwpharmatech-programme-brief.pdf"]').first().click()]);
   check("download: homepage 'Download the brief' triggers a file download", dl.suggestedFilename() === "nwpharmatech-programme-brief.pdf", dl.suggestedFilename());
   await ctx.close();
 }
@@ -264,7 +272,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const page = await ctx.newPage();
   const routes = {};
   for (const name of PAGES) {
-    await page.goto(base + name + ".html");
+    await page.goto(base + route(name));
     for (const h of await page.$$eval('a[href^="tel:"], a[href^="mailto:"], a[href^="sms:"]', (as) => as.map((a) => a.getAttribute("href")))) routes[h] = (routes[h] || 0) + 1;
   }
   const badTel = Object.keys(routes).filter((h) => h.startsWith("tel:") && !/^tel:\+?\d{3,15}$/.test(h));
@@ -272,7 +280,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   check("contact: all tel: links are well-formed digit strings", badTel.length === 0, badTel.join(","));
   check("contact: head office tel link present (+442036933791)", "tel:+442036933791" in routes);
   check("contact: no email address published until a monitored mailbox is confirmed", mailtos.length === 0, mailtos.join(","));
-  await page.goto(base + "contact.html");
+  await page.goto(base + "/contact");
   check("contact: postal address rendered", (await page.locator("address").textContent()).includes("SW3 1PW"));
   report.contactRoutes = routes;
   await ctx.close();
@@ -282,7 +290,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
 {
   const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile, javaScriptEnabled: false });
   const page = await ctx.newPage();
-  await page.goto(base + "programme.html");
+  await page.goto(base + "/programme");
   check("no-JS (mobile): menu shown expanded", await page.locator("#mobile-nav").isVisible());
   await page.locator("#mobile-nav summary", { hasText: "About" }).click();
   check("no-JS (mobile): accordion groups open natively and links are reachable", await page.locator("#mobile-nav a", { hasText: "Contact" }).isVisible());
@@ -309,7 +317,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile, reducedMotion: "reduce" });
   const page = await ctx.newPage();
   for (const name of PAGES) {
-    await page.goto(base + name + ".html");
+    await page.goto(base + route(name));
     // WCAG 1.4.12 text spacing: content must not overflow or be clipped
     await page.addStyleTag({ content: "*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}p{margin-bottom:2em!important}" });
     if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) bad.spacing.push(name);
@@ -327,7 +335,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   await ctx.close();
   const fc = await browser.newContext({ viewport: VIEWPORTS.desktop, forcedColors: "active" });
   const fp = await fc.newPage();
-  await fp.goto(base + "index.html");
+  await fp.goto(base + "/");
   await fp.screenshot({ path: path.join(shots, "index-forced-colors.png") });
   await fp.keyboard.press("Tab");
   check("forced colours: skip link focusable and visible", await fp.evaluate(() => document.activeElement.classList.contains("skip-link") && document.activeElement.getBoundingClientRect().top >= 0));
@@ -336,7 +344,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const z = await browser.newContext({ viewport: { width: 640, height: 450 } });
   const zp = await z.newPage();
   const zbad = [];
-  for (const name of PAGES) { await zp.goto(base + name + ".html"); if (await zp.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) zbad.push(name); }
+  for (const name of PAGES) { await zp.goto(base + route(name)); if (await zp.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) zbad.push(name); }
   check("200% zoom (640 CSS px): no horizontal scroll", zbad.length === 0, zbad.join(","));
   await z.close();
   for (const f of fs.readdirSync(path.join(root, "downloads")).filter((f) => f.endsWith(".pdf"))) {
@@ -349,11 +357,37 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   }
 }
 
+// ---- Correction release: content rules that a clean build alone would not catch ----
+{
+  const read = (p) => fs.readFileSync(path.join(root, p + ".html"), "utf8");
+  const visible = (h) => h.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<aside class="env-banner[\s\S]*?<\/aside>/, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+  const drafty = /\[TBC|Draft for (management )?adoption|draft publication policy|to be set by management|once adopted|staging drafts?|will be added once/i;
+  const offenders = PAGES.filter((p) => drafty.test(visible(read(p))));
+  check("editorial: no draft instructions or review notes on public pages", offenders.length === 0, offenders.join(","));
+  const homeHtml = read("index");
+  const home = visible(homeHtml);
+  check("home: brief heading does not say 'one page' beside a two-page PDF", !/programme on one page/i.test(home));
+  const man = JSON.parse(fs.readFileSync(path.resolve(here, "../src/downloads/pdf-manifest.json"), "utf8"));
+  const briefPages = man["nwpharmatech-programme-brief.pdf"].pages;
+  check(`home: brief download label matches the checked PDF (${briefPages} pages)`, new RegExp(`PDF, ${briefPages} pages?`).test(home));
+  check("home: programme brief comes straight after the hero", homeHtml.indexOf('id="programme-brief"') > -1 && homeHtml.indexOf('id="programme-brief"') < homeHtml.indexOf("The programme in 90 seconds"));
+  check("PDFs: every published PDF passed its page-count, tagging and fact checks", Object.values(man).every((e) => e.pass), JSON.stringify(Object.fromEntries(Object.entries(man).map(([k, v]) => [k, v.pass]))));
+  const ppl = read("people");
+  const woods = (ppl.match(/<article[^>]*id="scott-woods"[\s\S]*?<\/article>/) || [""])[0];
+  check("people: Scott Woods is not presented as an adviser", woods && !/advis/i.test(visible(woods)));
+  check("people: Trevor Jones listed", /Trevor Jones/.test(ppl));
+  const pv = visible(ppl);
+  check("people: not both an Executive Chairman and a Non-Executive Chairman", !(/Non-Executive Chairman/.test(pv) && /(^|[^-])Executive Chairman/.test(pv.replace(/Non-Executive Chairman/g, ""))));
+  check("no empty image slots: no initials avatars or figures without an image", PAGES.every((p) => !/class="avatar"/.test(read(p)) && !/<figure[^>]*>(?:(?!<img|<svg|<video)[\s\S])*?<\/figure>/.test(read(p))));
+}
+
 // ---- Restricted staging build ----
 {
   const rroot = path.resolve(here, "../restricted");
+  // Content review of the restricted pages without the Access layer (the layer itself is tested in test-routes.mjs).
   const rsrv = http.createServer((req, res) => {
     let p = decodeURIComponent(new URL(req.url, "http://x").pathname); if (p.endsWith("/")) p += "index.html";
+    if (!path.extname(p)) p += ".html";
     const f = path.join(rroot, p);
     if (!f.startsWith(rroot) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }
     res.writeHead(200, { "content-type": TYPES[path.extname(f)] || "application/octet-stream" }); fs.createReadStream(f).pipe(res);
@@ -363,7 +397,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
   const page = await ctx.newPage();
   for (const f of fs.readdirSync(rroot).filter((f) => f.endsWith(".html"))) {
-    await page.goto(rbase + f);
+    await page.goto(rbase + (f === "index.html" ? "" : f.replace(/\.html$/, "")));
     await page.addScriptTag({ content: axeSource });
     const v = await page.evaluate(async () => (await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } })).violations.map((x) => x.id));
     check(`restricted ${f}: axe WCAG 2.2 AA no violations (forms included)`, v.length === 0, v.join(","));
@@ -378,7 +412,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
 }
 
 await browser.close();
-server.close();
+server.stop();
 
 // ---- Restricted middleware (fail-closed behaviour) ----
 {
