@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "The programme":
@@ -18,16 +18,16 @@
   - list:
     - listitem:
       - link "Programme overview":
-        - /url: programme.html
+        - /url: /programme
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "Programme updates":
-        - /url: updates.html
+        - /url: /updates
 - main:
   - paragraph: The programme
   - 'heading "The study: progress and evidence" [level=1]'
@@ -51,26 +51,20 @@
     - paragraph: The planned Phase 2B study will evaluate dose response, symptoms, safety and tolerability of NWPT-SM32300 in people at clinical high risk of psychosis. It follows a completed Phase 1 study in healthy volunteers, which looked at how the body absorbs and handles the medicine and at short-term tolerability.
     - paragraph: The Phase 2B study is not recruiting. It will start only after regulatory and research ethics approval, and will be registered publicly before anyone is enrolled.
     - heading "Proposed design" [level=3]
-    - 'heading "Programme brief: Phase 2B aims" [level=3]'
-    - paragraph: "Source and version: Website brief, September 2026"
+    - heading "Population and aims" [level=3]
+    - paragraph: "Source and version: NWPharmaTech, September 2026"
     - list:
       - listitem: "Population: people at clinical high risk of psychosis."
       - listitem: "Aims: dose response, symptoms, safety and tolerability."
-    - paragraph: Further design details will be published here when the protocol is final and approved.
     - complementary:
       - heading "Programme brief" [level=3]
-      - paragraph: A two-page summary of the programme, generated from the same facts as this page.
+      - paragraph: A summary of the programme, generated from the same facts as this page.
       - paragraph:
-        - link "Download the brief (PDF)":
-          - /url: downloads/nwpharmatech-programme-brief.pdf
-      - paragraph:
-        - text: Version history is shown under
-        - link "Document history":
-          - /url: "#documents"
-        - text: .
+        - link "Download the brief (PDF, 2 pages, 66 KB)":
+          - /url: /downloads/nwpharmatech-programme-brief.pdf
   - region "Milestones":
     - heading "Milestones" [level=2]
-    - paragraph: Statuses are Planned, In progress or Completed. Dates are exact where a record gives one; otherwise we say what the record states. No completion percentages or recruitment numbers are shown, because none exist yet.
+    - paragraph: Statuses are Planned, In progress or Completed. Dates are exact where a record gives one; otherwise we say what the record states.
     - table "Clinical milestones":
       - caption: Clinical milestones
       - rowgroup:
@@ -201,92 +195,7 @@
       - listitem: No data monitoring committee was used.
       - listitem: Statistical outputs were produced by an external biostatistics provider under documented quality testing.
     - heading "Phase 2B study (planned)" [level=3]
-    - paragraph: Oversight arrangements for the Phase 2B study have not yet been established. They will be described here when they are.
-  - region "Document history":
-    - heading "Document history" [level=2]
-    - paragraph: Substantive changes to public documents. Staging drafts are listed as unpublished.
-    - table "Programme brief":
-      - caption: Programme brief
-      - rowgroup:
-        - row "Version Date Status Substantive change":
-          - columnheader "Version"
-          - columnheader "Date"
-          - columnheader "Status"
-          - columnheader "Substantive change"
-      - rowgroup:
-        - 'row "3 Date: 23 September 2026 Status: Staging draft (not published) Change: Generated from the shared content source; adds study stage, completed work and next milestone."':
-          - rowheader "3"
-          - 'cell "Date: 23 September 2026"':
-            - text: "Date:"
-            - time: 23 September 2026
-          - 'cell "Status: Staging draft (not published)"'
-          - 'cell "Change: Generated from the shared content source; adds study stage, completed work and next milestone."'
-        - 'row "2 Date: 23 September 2026 Status: Staging draft (not published) Change: Adds completed Phase 1 study and registry identifiers."':
-          - rowheader "2"
-          - 'cell "Date: 23 September 2026"':
-            - text: "Date:"
-            - time: 23 September 2026
-          - 'cell "Status: Staging draft (not published)"'
-          - 'cell "Change: Adds completed Phase 1 study and registry identifiers."'
-        - 'row "1 Date: 23 September 2026 Status: Staging draft (not published) Change: First draft from the website brief."':
-          - rowheader "1"
-          - 'cell "Date: 23 September 2026"':
-            - text: "Date:"
-            - time: 23 September 2026
-          - 'cell "Status: Staging draft (not published)"'
-          - 'cell "Change: First draft from the website brief."'
-    - table "Appointment preparation sheet":
-      - caption: Appointment preparation sheet
-      - rowgroup:
-        - row "Version Date Status Substantive change":
-          - columnheader "Version"
-          - columnheader "Date"
-          - columnheader "Status"
-          - columnheader "Substantive change"
-      - rowgroup:
-        - 'row "1 Date: 23 September 2026 Status: Staging draft (not published) Change: First version."':
-          - rowheader "1"
-          - 'cell "Date: 23 September 2026"':
-            - text: "Date:"
-            - time: 23 September 2026
-          - 'cell "Status: Staging draft (not published)"'
-          - 'cell "Change: First version."'
-    - table "Publication policy":
-      - caption: Publication policy
-      - rowgroup:
-        - row "Version Date Status Substantive change":
-          - columnheader "Version"
-          - columnheader "Date"
-          - columnheader "Status"
-          - columnheader "Substantive change"
-      - rowgroup:
-        - 'row "0.1 Date: 23 September 2026 Status: Draft for management adoption (not adopted) Change: First draft."':
-          - rowheader "0.1"
-          - 'cell "Date: 23 September 2026"':
-            - text: "Date:"
-            - time: 23 September 2026
-          - 'cell "Status: Draft for management adoption (not adopted)"'
-          - 'cell "Change: First draft."'
-  - region "Publication policy":
-    - heading "Publication policy" [level=2]
-    - text: Draft for management adoption
-    - paragraph: This is a proposed policy. It has not been adopted, and no timetable in it is yet a commitment.
-    - list:
-      - listitem:
-        - strong: Disclosure regardless of outcome.
-        - text: Results of every study of NWPT-SM32300 would be made public whether they are positive, negative or inconclusive, including studies stopped early.
-      - listitem:
-        - strong: Registry results.
-        - text: Summary results would be posted on each registry where the study is registered, within the period the registry or applicable law requires.
-      - listitem:
-        - strong: Plain-language summary.
-        - text: A plain-language summary would be published on this site and offered to participants, reviewed for accuracy and readability before release.
-      - listitem:
-        - strong: Journal submission.
-        - text: Full results of each Phase 2 or later study would be submitted to a peer-reviewed journal, with authorship decided by recognised authorship criteria and no funder or investor right to delay or alter the manuscript.
-      - listitem:
-        - strong: Timing.
-        - text: The proposed timings for each step are to be set by management when the policy is adopted.
+    - paragraph: Oversight arrangements for the Phase 2B study have not yet been published.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
@@ -295,54 +204,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

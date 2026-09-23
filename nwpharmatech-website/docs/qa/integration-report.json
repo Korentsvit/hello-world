@@ -1,0 +1,783 @@
+{
+ "generated": "2026-09-23T15:14:47.492Z",
+ "modules": [
+  "evidence-library",
+  "family-guide",
+  "formulation",
+  "newsroom",
+  "phase-1",
+  "study-hub"
+ ],
+ "checks": [
+  {
+   "name": "integration: the six agreed modules are exported",
+   "pass": true,
+   "detail": "evidence-library, family-guide, formulation, newsroom, phase-1, study-hub"
+  },
+  {
+   "name": "evidence-library: every selector in module.css starts with .nwpt-module (104 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (min-width: 800px) | @media (max-width: 560px) | @media print | @media (min-width: 900px) | @media (min-width: 900px) | @media (max-width: 480px) | @media (max-width: 560px)"
+  },
+  {
+   "name": "evidence-library: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: all 42 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: manifest has 15 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.js acts only inside its wrapper, with prefixed classes",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: every selector in module.css starts with .nwpt-module (60 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media print | @media (min-width: 900px)"
+  },
+  {
+   "name": "family-guide: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: all 8 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: manifest has 15 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: every selector in module.css starts with .nwpt-module (44 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media print | @media (min-width: 760px)"
+  },
+  {
+   "name": "formulation: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: all 3 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: manifest has 15 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: every selector in module.css starts with .nwpt-module (55 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (max-width: 560px) | @media print | @media (max-width: 560px)"
+  },
+  {
+   "name": "newsroom: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: all 4 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: manifest has 15 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: every selector in module.css starts with .nwpt-module (83 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (max-width: 560px) | @media print | @media (max-width: 560px) | @media (min-width: 900px) | @media (max-width: 560px)"
+  },
+  {
+   "name": "phase-1: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: all 4 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: manifest has 15 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: every selector in module.css starts with .nwpt-module (82 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (max-width: 560px) | @media print | @media (min-width: 900px) | @media (max-width: 560px)"
+  },
+  {
+   "name": "study-hub: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: all 3 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: manifest has 15 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: 8 files, public items only, no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: people.json not exported (titles await management confirmation)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: only public, confirmed facts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: sources carry public labels only",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "downloads/: exactly the files the modules link to",
+   "pass": true,
+   "detail": "needed downloads/nwpharmatech-references.bib,downloads/nwpharmatech-references.ris,downloads/appointment-preparation-sheet.pdf,downloads/nwpharmatech-programme-brief.pdf present downloads/appointment-preparation-sheet.pdf,downloads/nwpharmatech-programme-brief.pdf,downloads/nwpharmatech-references.bib,downloads/nwpharmatech-references.ris"
+  },
+  {
+   "name": "export is deterministic: two fresh exports and the built integration/ are byte-identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "routes: a path changed in src/integration-routes.json reaches every fragment link and download",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "routes: the manifest lists the redirects the new path needs (staging route and aliases)",
+   "pass": true,
+   "detail": "/evidence>/research/evidence, /references>/research/evidence"
+  },
+  {
+   "name": "routes: a .html live path is refused (Cloudflare Pages would redirect it)",
+   "pass": true,
+   "detail": "rmatech-website/buildlib/export.py\", line 377, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r})\")\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html')\n"
+  },
+  {
+   "name": "evidence-library: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.css applies and module.js runs",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: the host's generic class rules and custom properties do not change any module element (742 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "negative control: the collision checks detect an unscoped rule and a host rule on a module class",
+   "pass": true,
+   "detail": "div.card (element 12): before [letter-spacing:normal; ::beforeletter-spacing:normal; ::afterletter-spacing:normal] after [letter-spacing:3px; ::beforeletter-spacing:3px; ::afterletter-spacing:3px] / section.nwpt-page-hero (element 1): before [letter-spacing:normal; ::beforeletter-spacing:normal; ::afterletter-spacing:normal] after [letter-spacing:3px; ::beforeletter-spacing:3px; ::afterletter-spacing:3px]"
+  },
+  {
+   "name": "family-guide: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: the host's generic class rules and custom properties do not change any module element (127 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: the host's generic class rules and custom properties do not change any module element (75 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: the host's generic class rules and custom properties do not change any module element (65 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: the host's generic class rules and custom properties do not change any module element (112 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: the host's generic class rules and custom properties do not change any module element (192 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: filter bar shown with JavaScript, 'All' pressed, every section visible",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"all\"],\"visible\":[\"need\",\"care\",\"prediction\",\"interventions\",\"cbd\",\"programme\"],\"cards\":24,\"all\":6,\"status\":\"\"}"
+  },
+  {
+   "name": "evidence-library: clicking a topic filter shows only that topic (need)",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"need\"],\"visible\":[\"need\"],\"cards\":2,\"all\":6,\"status\":\"Showing 2 sources in Clinical need\"}"
+  },
+  {
+   "name": "evidence-library: 'All' by keyboard shows every section again",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"all\"],\"visible\":[\"need\",\"care\",\"prediction\",\"interventions\",\"cbd\",\"programme\"],\"cards\":24,\"all\":6,\"status\":\"Showing 24 sources\"}"
+  },
+  {
+   "name": "evidence-library: Space on a filter works too",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"care\"],\"visible\":[\"care\"],\"cards\":2,\"all\":6,\"status\":\"Showing 2 sources in Current care\"}"
+  }
+ ]
+}

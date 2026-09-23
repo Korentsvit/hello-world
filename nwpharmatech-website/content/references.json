@@ -635,7 +635,7 @@
       "date": "2026-09-23",
       "type": "initial verification",
       "scope": "All items",
-      "method": "Search-engine summaries of publisher, PubMed, registry and official pages (primary pages blocked from the build environment)",
+      "method": "Search-engine summaries of publisher, PubMed, registry and official pages",
       "by": "Build assistant (not a scientific reviewer)"
     }
   ]

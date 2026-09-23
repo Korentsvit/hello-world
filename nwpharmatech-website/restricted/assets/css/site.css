@@ -65,6 +65,12 @@ p, ul, ol, dl { margin: 0 0 1em; }
 .notice-bar { background: var(--brand-dark); color: #e3eef8; font-size: .88rem; padding: .5rem 0; }
 .notice-bar a { color: #fff; }
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .97); border-bottom: 1px solid var(--line); }
+/* In-page destinations and focused content land clear of the sticky header. Not while focus is in the header
+   or the menu is open: the header is always in view, and focusing it must not scroll the page. */
+@supports selector(:has(a)) {
+  html { scroll-padding-top: 80px; }
+  html:has(body.menu-open), html:has(.site-header :focus) { scroll-padding-top: 0; }
+}
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 64px; }
 .brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--brand); flex-shrink: 0; }
 .brand-name, .footer-brand { font-weight: 700; font-size: 1.2rem; letter-spacing: -.01em; text-transform: lowercase; }
@@ -82,12 +88,15 @@ p, ul, ol, dl { margin: 0 0 1em; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar::before { top: 0; transform: rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar::after { top: 0; transform: rotate(-45deg); }
 
-.mobile-nav { border-top: 1px solid var(--line); background: #fff; max-height: calc(100vh - 64px); overflow-y: auto; padding: .5rem 0 1rem; }
-.mobile-home { display: block; padding: .75rem .25rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); }
+/* The open menu scrolls inside the panel; site.js fits its height to the space below the header. */
+.mobile-nav { border-top: 1px solid var(--line); background: #fff; max-height: calc(100vh - 64px); overflow-y: auto; overscroll-behavior: contain; padding: .5rem 0 1rem; overflow-wrap: break-word; }
+.mobile-quick { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+.mobile-quick a { display: flex; align-items: center; min-height: 44px; padding: .5rem .25rem; font-weight: 600; text-decoration: none; border-radius: 6px; }
+.mobile-quick a[aria-current="page"] { color: var(--brand); background: var(--surface-alt); padding-left: .9rem; }
 .nav-group { border-bottom: 1px solid var(--line); }
-.nav-group summary { list-style: none; cursor: pointer; padding: .8rem .25rem; font-weight: 650; color: var(--brand-dark); display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+.nav-group summary { list-style: none; cursor: pointer; padding: .8rem .25rem; font-weight: 650; color: var(--brand-dark); display: flex; justify-content: space-between; align-items: center; gap: .75rem; min-height: 44px; }
 .nav-group summary::-webkit-details-marker { display: none; }
-.nav-group summary::after { content: ""; width: .55em; height: .55em; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); margin-right: .3rem; }
+.nav-group summary::after { content: ""; flex-shrink: 0; width: .55em; height: .55em; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); margin-right: .3rem; }
 .nav-group[open] summary::after { transform: rotate(-135deg); }
 .nav-group ul { list-style: none; margin: 0 0 .5rem; padding: 0; }
 .nav-group a { display: block; padding: .6rem .9rem; min-height: 44px; text-decoration: none; color: var(--ink-soft); border-radius: 6px; }
@@ -106,7 +115,7 @@ p, ul, ol, dl { margin: 0 0 1em; }
 }
 /* No JavaScript: show the mobile menu expanded (it is otherwise controlled by the toggle). */
 html:not(.js) .nav-toggle { display: none; }
-@media (max-width: 1099px) { html:not(.js) .mobile-nav { display: block !important; max-height: none; } html:not(.js) .site-header { position: static; } }
+@media (max-width: 1099px) { html:not(.js) .mobile-nav { display: block !important; max-height: none; } html:not(.js) .site-header { position: static; } html:not(.js) { scroll-padding-top: 0; } }
 
 /* ---------- Sections ---------- */
 .section { padding: 56px 0; }
@@ -175,6 +184,10 @@ html:not(.js) .nav-toggle { display: none; }
 .evidence-key { display: grid; gap: 14px; }
 @media (min-width: 800px) { .evidence-key { grid-template-columns: repeat(4, 1fr); } }
 .evidence-key p { margin: .5rem 0 0; font-size: .95rem; }
+/* compact key (homepage): the three evidence grades on one row, "Programme information" on its own below */
+.evidence-key-compact { display: grid; justify-items: start; gap: .75rem; margin: 0 0 1rem; }
+.key-grades { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; }
+.key-company { margin: 0; font-size: .95rem; color: var(--ink-soft); }
 
 .studies { display: grid; gap: 14px; margin-bottom: 1.4rem; }
 .study { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
@@ -200,24 +213,24 @@ tbody th { font-weight: 650; color: var(--brand-dark); width: 32%; }
   .table-stack th, .table-stack td { display: block; width: auto; border: 0; padding: 2px 16px; }
 }
 
-/* ---------- Figures / image slots ---------- */
-.asset { margin: 0 0 1.2rem; }
-.asset img { border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface-alt); }
-.asset figcaption { font-size: .88rem; color: var(--muted); margin-top: .5rem; }
-.asset-slot { aspect-ratio: 4 / 3; border: 2px dashed #9fb3c4; border-radius: var(--radius); background: repeating-linear-gradient(45deg, #f5f8fb, #f5f8fb 12px, #eef3f8 12px, #eef3f8 24px); display: grid; place-content: center; text-align: center; gap: .3rem; padding: 1rem; color: var(--muted); font-size: .9rem; }
-.asset-slot code { font-size: .78rem; word-break: break-all; }
-.renders { display: grid; gap: 18px; }
-@media (min-width: 720px) { .renders { grid-template-columns: repeat(2, 1fr); } }
-
 /* ---------- People ---------- */
-.person { display: grid; grid-template-columns: 76px 1fr; grid-template-rows: auto auto 1fr; gap: 0 16px; align-items: start; }
-.person .asset { margin: 0; grid-row: span 3; }
-.person .asset img { width: 76px; height: 76px; object-fit: cover; border-radius: 50%; }
-.avatar { width: 76px; height: 76px; border-radius: 50%; background: var(--surface-alt); display: grid; place-items: center; font-weight: 700; font-size: 1.2rem; color: var(--brand); border: 1px solid var(--line); }
-.slot-note { font-size: .7rem; color: var(--muted); margin: .3rem 0 0; text-align: center; line-height: 1.2; }
-.person h3 { margin: 0 0 .15rem; }
-.person .role { color: var(--brand); font-weight: 600; margin-bottom: .4rem; font-size: .95rem; }
-.person p { font-size: .95rem; }
+.people-grid { display: grid; gap: 18px; }
+@media (min-width: 820px) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
+.people-grid > * { min-width: 0; }
+.person { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; overflow-wrap: break-word; }
+.person-featured { border: 2px solid var(--brand); }
+@media (min-width: 820px) { .person-featured { grid-column: 1 / -1; } }
+/* the portrait is present only when authorised; without it the name block stands alone,
+   and on narrow cards the name block moves below the portrait */
+.person-head { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin-bottom: .8rem; }
+.person-head > div { min-width: 0; flex: 1 1 14rem; }
+.person .portrait { width: 96px; height: 96px; flex-shrink: 0; border-radius: 50%; object-fit: cover; background: var(--surface-alt); }
+.person p, .person li { font-size: .95rem; }
+.person .person-focus { font-size: .8rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--brand); margin: 0 0 .2rem; }
+.person-featured .person-focus { font-size: .88rem; }
+.person h3 { margin: 0; }
+.person .role { color: var(--brand); font-weight: 600; margin: .15rem 0 0; }
+.person h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 1rem 0 .3rem; }
 
 /* ---------- Timeline ---------- */
 .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); }
@@ -306,17 +319,6 @@ dl.facts dt { font-weight: 650; color: var(--brand-dark); }
 dl.facts dd { margin: 0; }
 @media (max-width: 560px) { dl.facts > div { grid-template-columns: 1fr; gap: .1rem; } }
 
-.people-grid { display: grid; gap: 18px; }
-@media (min-width: 820px) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
-.person { display: block; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-.person-featured { border: 2px solid var(--brand); }
-@media (min-width: 820px) { .person-featured { grid-column: 1 / -1; } }
-.person-head { display: flex; gap: 16px; align-items: center; margin-bottom: .8rem; }
-.person-head h3 { margin: 0; }
-.person .avatar, .person .portrait { width: 72px; height: 72px; flex-shrink: 0; border-radius: 50%; object-fit: cover; }
-.person-focus { font-size: .76rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--brand); margin: 0 0 .15rem; }
-.person .role { margin: .1rem 0 0; }
-.person h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 1rem 0 .3rem; }
 ul.plain { list-style: none; padding: 0; margin: 0; }
 ul.plain li { margin-bottom: .25rem; }
 .interview { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: .6rem; }
@@ -334,15 +336,12 @@ ul.plain li { margin-bottom: .25rem; }
 .st-progress { background: var(--emg-bg); color: var(--emg-ink); }
 .st-planned { background: var(--co-bg); color: var(--co-ink); }
 .evidence-key > div { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
-.people-grid > *, .person-head > div { min-width: 0; }
-.person { overflow-wrap: break-word; }
 
 /* ---------- Increment B: study hub, Phase 1, explainer, evidence library ---------- */
 .two-col.equal { grid-template-columns: 1fr; }
 @media (min-width: 900px) { .two-col.equal { grid-template-columns: 1fr 1fr; } }
 .milestones td, .milestones th { vertical-align: middle; }
 .milestones tbody th { width: 45%; }
-ol.policy li { margin-bottom: .7rem; }
 .checklist { list-style: none; padding: 0; }
 .checklist li { position: relative; padding-left: 1.6rem; margin-bottom: .6rem; }
 .checklist li::before { content: ""; position: absolute; left: .2rem; top: .45em; width: .7rem; height: .7rem; border-radius: 50%; border: 2px solid var(--brand); }

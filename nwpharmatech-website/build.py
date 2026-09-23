@@ -456,7 +456,9 @@ def main(argv=None):
                     raise BuildFailed(f"--with-signup refused: {problem} (see docs/email-signup.md)")
                 shutil.copytree(SRC / "optional" / "signup" / "functions", built / "public" / "functions")
             restricted_names = sorted(p.name for p in (SRC / "restricted").glob("*.html"))
-            build_tree(content, SRC / "restricted", built / "restricted", "staging", restricted=True, pdfs=pdf_manifest)
+            restricted_review, _ = build_tree(content, SRC / "restricted", built / "restricted", "staging", restricted=True, pdfs=pdf_manifest)
+            # The restricted project is never published, but its review notes are still owed before legal review.
+            restricted_review = [f"restricted/{p}: {t}" for p, t in restricted_review if not t.startswith("link to unbuilt page")]
             (built / "restricted" / "_headers").write_text(
                 "/*\n  X-Robots-Tag: noindex, nofollow, noarchive\n  Cache-Control: private, no-store\n"
                 "  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n")
@@ -482,13 +484,16 @@ def main(argv=None):
         report = {"env": env, "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                   "source_commit": sha, "uncommitted_changes": dirty, "public_pages": page_names,
                   "restricted_pages": restricted_names, "publication_blockers": blockers,
-                  "optional_assets_missing": optional, "pdfs": pdf_manifest}
+                  "optional_assets_missing": optional, "restricted_review_items": restricted_review, "pdfs": pdf_manifest}
         (built / "build" / "build-report.json").write_text(json.dumps(report, indent=1))
         print(f"env={env} public_pages={len(page_names)} restricted_pages={len(restricted_names)}")
         print(f"facts used publicly={len(content.used_facts)} references cited={len(content.used_refs)}")
         print(f"publication blockers={len(blockers)}")
         for b in blockers:
             print("  " + b)
+        print(f"restricted review items (restricted staging only)={len(restricted_review)}")
+        for x in restricted_review:
+            print("  " + x)
         print(f"optional assets not yet supplied (do not block)={len(optional)}")
         for o in optional:
             print("  " + o)

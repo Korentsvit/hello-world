@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "About":
@@ -18,30 +18,30 @@
   - list:
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
 - main:
   - paragraph: About
   - heading "Newsroom" [level=1]
-  - paragraph: Verified facts for journalists and others writing about the programme, how we report progress, and how we correct mistakes.
+  - paragraph: Key facts for journalists and others writing about the programme, how we report progress, and how we correct mistakes.
   - region "Press kit":
     - heading "Press kit" [level=2]
     - heading "About us" [level=3]
-    - paragraph: NWPharmaTech Ltd is a UK company developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis. A Phase 1 study in healthy volunteers (NCT07186283) was completed in 10 December 2025; a Phase 2B study is planned. NWPT-SM32300 is not approved for any use and its effectiveness is unproven.
+    - paragraph: NWPharmaTech Ltd is a UK company developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis. A Phase 1 study in healthy volunteers (NCT07186283) was completed on 10 December 2025; a Phase 2B study is planned. NWPT-SM32300 is not approved for any use and its effectiveness is unproven.
     - table "Fact sheet (as of 23 September 2026)":
       - caption: Fact sheet (as of 23 September 2026)
       - rowgroup:
@@ -67,17 +67,17 @@
       - heading "Downloads" [level=3]
       - list:
         - listitem:
-          - link "Programme brief (PDF)":
-            - /url: downloads/nwpharmatech-programme-brief.pdf
+          - link "Programme brief (PDF, 2 pages, 66 KB)":
+            - /url: /downloads/nwpharmatech-programme-brief.pdf
         - listitem:
           - link "References (RIS)":
-            - /url: downloads/nwpharmatech-references.ris
+            - /url: /downloads/nwpharmatech-references.ris
       - heading "When writing about the programme" [level=3]
       - paragraph: Please describe NWPT-SM32300 as investigational, and do not describe it as a treatment or cure. Results from other cannabidiol products are not results for NWPT-SM32300.
       - paragraph:
         - text: "Media enquiries:"
         - link "contact details":
-          - /url: contact.html
+          - /url: /contact
         - text: .
   - region "How we report progress":
     - heading "How we report progress" [level=2]
@@ -98,26 +98,12 @@
     - paragraph:
       - text: Individual events are listed on the
       - link "updates page":
-        - /url: updates.html
+        - /url: /updates
       - text: as they happen.
   - region "Corrections log":
     - heading "Corrections log" [level=2]
     - paragraph: No corrections have been made since publication.
     - paragraph: When we correct a substantive error in published content, we record the date, what was wrong and what we changed. Typographical fixes are not listed.
-  - region "Editorial standards":
-    - heading "Editorial standards" [level=2]
-    - text: Draft for adoption
-    - paragraph: Proposed standards for content on this site. They will apply once adopted by management.
-    - heading "Scientific review" [level=3]
-    - paragraph: A qualified scientific reviewer checks each clinical or scientific statement against its source, confirms the evidence label, and checks that findings from other products are not presented as findings for NWPT-SM32300.
-    - heading "Editorial review" [level=3]
-    - paragraph: An editor checks clarity, accessibility, plain language and consistency with the shared content source, and that nothing reads as promotion of an unapproved medicine.
-    - heading "Publication approval" [level=3]
-    - paragraph: A named approver, who is not the author, signs off publication. Content about funding or investment also needs legal approval before publication.
-    - list:
-      - listitem: Every update carries the date it was published; reviews are never backdated.
-      - listitem: Corrections are recorded in the log above.
-      - listitem: Programme updates and reports are not investment communications.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
@@ -126,54 +112,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

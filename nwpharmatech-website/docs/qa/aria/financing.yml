@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "About":
@@ -18,22 +18,22 @@
   - list:
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
 - main:
   - paragraph: About
   - heading "Funding and financing" [level=1]
@@ -73,18 +73,18 @@
       - text: is controlled by the board of NWPharmaTech Ltd, the programme's company.
     - paragraph:
       - strong: Clinical decisions
-      - text: (study design, eligibility, dosing, safety, analysis and publication) are made by the clinical and scientific leadership and approved by regulators and research ethics committees. Funders and investors have no say in them and no access to participant data.
+      - text: ", including study design, eligibility, dosing and safety, are kept independent of funding and financing. Each study needs approval from a medicines regulator and a research ethics committee before it can start."
     - heading "How progress is reported" [level=2]
     - paragraph:
       - text: Dated events appear on the
       - link "updates page":
-        - /url: updates.html
+        - /url: /updates
       - text: ", and study milestones with their sources on the"
       - link "study page":
-        - /url: study.html#milestones
+        - /url: /study#milestones
       - text: . Programme reports, answering what changed, what supports it, what remains unresolved and what happens next, are planned; see the
       - link "newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
       - text: .
     - paragraph: Reports are written for the public and are not investment communications.
   - region "The financing route in development":
@@ -97,7 +97,6 @@
       - strong: "Fallback: register-first."
       - text: Interests would be recorded on a conventional register of holders, with any digital representation added only if and when lawful and approved.
     - paragraph: Eligibility would be set by the law of each country, is likely to be limited to professional, qualified or accredited investors, and would exclude some countries.
-    - paragraph: "[TBC: board and legal approval of the funding and financing wording on this page before publication]"
     - complementary:
       - heading "Current status" [level=3]
       - paragraph: Not available
@@ -107,10 +106,10 @@
         - text: NWPT-SM32300 may not work; most investigational medicines are never approved; any money invested could be lost; interests may be impossible to sell.
       - paragraph:
         - strong: Beware of scams.
-        - text: Any token, coin or "presale" claiming a link to us is not ours. We never make unsolicited investment approaches; please
-        - link "report":
-          - /url: contact.html
-        - text: any you receive.
+        - text: Any token, coin or "presale" claiming a link to us is not ours. If you are unsure whether a message comes from us, please
+        - link "contact us":
+          - /url: /contact
+        - text: .
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
@@ -119,54 +118,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

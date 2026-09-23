@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "The research":
@@ -18,16 +18,16 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
 - main:
   - paragraph: For young people and families
   - heading "If you have been told you may be at risk of psychosis" [level=1]
@@ -35,7 +35,7 @@
   - paragraph:
     - text: Need help now?
     - link "Urgent help by country":
-      - /url: faq.html#urgent-help
+      - /url: /faq#urgent-help
   - region "What it means":
     - heading "What it means" [level=2]
     - list:
@@ -53,13 +53,13 @@
         - strong: not
         - text: mean psychosis will happen. Most people in this group do not develop psychosis; in pooled studies about one in four did within three years.
         - 'link "Source: Source: Salazar de Pablo et al. 2021"':
-          - /url: evidence.html#ref-salazar-2021
+          - /url: /evidence#ref-salazar-2021
       - listitem:
         - text: It does
         - strong: not
         - text: mean you need medicine. In England, psychological therapy is the recommended first step.
         - 'link "Source: Source: NICE CG155"':
-          - /url: evidence.html#ref-nice-cg155
+          - /url: /evidence#ref-nice-cg155
   - region "What a specialist assessment may involve":
     - heading "What a specialist assessment may involve" [level=2]
     - list:
@@ -81,13 +81,13 @@
     - paragraph:
       - text: Assessment approaches are described in the research literature.
       - 'link "Source: Source: Fusar-Poli et al. 2013"':
-        - /url: evidence.html#ref-fusarpoli-2013
+        - /url: /evidence#ref-fusarpoli-2013
     - complementary:
       - heading "Prepare for an appointment" [level=3]
-      - paragraph: "A one-page sheet to fill in by hand before an appointment: what you have noticed, what helps, your questions, and who is coming with you. Nothing is sent to us."
+      - paragraph: "A sheet to fill in by hand before an appointment: what you have noticed, what helps, your questions, and who is coming with you. Nothing is sent to us."
       - paragraph:
-        - link "Download the sheet (PDF, 1 page)":
-          - /url: downloads/appointment-preparation-sheet.pdf
+        - link "Download the sheet (PDF, 1 page, 36 KB)":
+          - /url: /downloads/appointment-preparation-sheet.pdf
   - region "Questions you might ask a clinician":
     - heading "Questions you might ask a clinician" [level=2]
     - list:
@@ -140,54 +140,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

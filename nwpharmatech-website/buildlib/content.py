@@ -177,6 +177,10 @@ class Content:
             return "content/signup-provider-test.json is the example file, not a recorded test"
         required = {"new_address", "repeat_address", "invalid_address", "confirmation_email", "unsubscribe", "provider_outage"}
         missing = sorted(required - {k for k, v in t.get("cases", {}).items() if v.get("pass")})
+        import hashlib
+        fn = self.root / "src" / "optional" / "signup" / "functions" / "api" / "subscribe.js"
+        if t.get("function_sha256") != hashlib.sha256(fn.read_bytes()).hexdigest():
+            return "the live provider test was run on a different version of subscribe.js; rerun tools/test-signup-live.mjs"
         if missing or not t.get("provider") or not t.get("date") or not t.get("tested_by"):
             return f"live provider test incomplete (cases not passed: {', '.join(missing) or 'none'}; provider, date and tested_by are required)"
         return None

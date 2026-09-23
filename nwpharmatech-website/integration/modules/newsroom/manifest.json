@@ -1,0 +1,238 @@
+{
+ "id": "newsroom",
+ "title": "Newsroom",
+ "source": {
+  "page": "newsroom.html",
+  "template": "src/pages/newsroom.html",
+  "staging_route": "/newsroom",
+  "part": "the content of <main>"
+ },
+ "placement": {
+  "live_route": "/newsroom",
+  "where": "The main content of the live /newsroom page, between the live header and footer.",
+  "first_heading": "h1",
+  "page_title": "Newsroom | NWPharmaTech",
+  "page_description": "Press kit, fact sheet, how progress is reported and the corrections log for the NWPharmaTech research programme."
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 3933,
+   "sha256": "a6efa7c966663c30071639adf8c0ae0a8690bc15d470517fb5cf53018fb7bff2"
+  },
+  "module.css": {
+   "bytes": 4831,
+   "sha256": "f27487b93b250485b91453be6233be264b15f186f63e3e5f044a92744be69734"
+  },
+  "preview.html": {
+   "bytes": 4585,
+   "sha256": "f8c7b08efd90400e3da53c40b1275fc1c4d728375b5954bd7a3dc04c327a5a6b"
+  }
+ },
+ "left_out": [],
+ "facts": [
+  {
+   "id": "company.jurisdiction",
+   "value": "England and Wales",
+   "verification": "index",
+   "as_of": "2026-09-23",
+   "source_label": "Companies House",
+   "production_ready": false
+  },
+  {
+   "id": "company.name",
+   "value": "NWPharmaTech Ltd",
+   "verification": "index",
+   "as_of": "2026-09-23",
+   "source_label": "Companies House",
+   "production_ready": false
+  },
+  {
+   "id": "company.number",
+   "value": "13572461",
+   "verification": "index",
+   "as_of": "2026-09-23",
+   "source_label": "Companies House",
+   "production_ready": false
+  },
+  {
+   "id": "company.phone_display",
+   "value": "+44 20 3693 3791",
+   "verification": "document",
+   "as_of": "2026-07-14",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase1.end",
+   "value": "10 December 2025",
+   "verification": "document",
+   "as_of": "2025-12-10",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.isrctn",
+   "value": "ISRCTN25163383",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ISRCTN25163383",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.nct",
+   "value": "NCT07186283",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ClinicalTrials.gov NCT07186283",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.population",
+   "value": "14 healthy adult volunteers aged 18 to 55",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.population",
+   "value": "people at clinical high risk of psychosis",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.status",
+   "value": "Planned. Not recruiting.",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.api",
+   "value": "highly purified cannabidiol",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.form",
+   "value": "oral softgel capsule",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.name",
+   "value": "NWPT-SM32300",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.status",
+   "value": "investigational; not approved by any medicines regulator for any use",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.strength",
+   "value": "300 mg",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "site.as_of",
+   "value": "23 September 2026",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  }
+ ],
+ "references": [],
+ "downloads": [
+  {
+   "file": "downloads/nwpharmatech-programme-brief.pdf",
+   "href": "/downloads/nwpharmatech-programme-brief.pdf",
+   "bytes": 67874,
+   "sha256": "60c701bb01ce719fd47136d4bb64317b90930e8356b4c37304def815650ed720"
+  },
+  {
+   "file": "downloads/nwpharmatech-references.ris",
+   "href": "/downloads/nwpharmatech-references.ris",
+   "bytes": 6509,
+   "sha256": "4b13d0c203da16de333fac5387c5a31512fb79094df276d81d56c723c508090a"
+  }
+ ],
+ "assets": [],
+ "anchors": {
+  "ids": [
+   "kit-h",
+   "rep-h",
+   "corrections",
+   "corr-h"
+  ],
+  "linked_from_site": [
+   "corrections"
+  ]
+ },
+ "links": {
+  "pages": [
+   {
+    "page": "contact",
+    "href": "/contact"
+   },
+   {
+    "page": "updates",
+    "href": "/updates"
+   }
+  ],
+  "external": []
+ },
+ "redirects": [
+  {
+   "from": "/news",
+   "to": "/newsroom",
+   "status": 301,
+   "why": "short alias in src/redirects.txt"
+  },
+  {
+   "from": "/press",
+   "to": "/newsroom",
+   "status": 301,
+   "why": "short alias in src/redirects.txt"
+  }
+ ],
+ "javascript": [],
+ "csp": {
+  "script-src": [],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "publication_blockers": [
+  "financing.html, index.html, faq.html, programme brief PDF: board and legal approval of the funding and financing wording before publication",
+  "index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
+  "fact company.jurisdiction (index) on newsroom.html",
+  "fact company.name (index) on newsroom.html",
+  "fact company.number (index) on newsroom.html",
+  "fact phase1.isrctn (registry-index) on newsroom.html",
+  "fact phase1.nct (registry-index) on newsroom.html"
+ ],
+ "optional_assets": []
+}

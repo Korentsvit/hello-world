@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "About":
@@ -18,36 +18,35 @@
   - list:
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
 - main:
   - paragraph: People and governance
   - heading "The people behind the programme" [level=1]
-  - paragraph: Clinical and scientific expertise in clinical high risk of psychosis, clinical trials and cannabinoid science, with a company board responsible for running the programme.
+  - paragraph: Expertise in clinical high risk of psychosis, clinical trial design and cannabinoid science, alongside the company's management, board members and senior advisers.
   - region "Clinical and scientific leadership":
     - heading "Clinical and scientific leadership" [level=2]
     - article:
-      - paragraph: Clinical high risk of psychosis
+      - paragraph: Clinical high risk of psychosis (CHR-P)
       - heading "Dr Scott W. Woods" [level=3]
-      - paragraph: Adviser on clinical high risk of psychosis
       - paragraph: Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.
       - heading "Responsibilities" [level=4]
       - list:
-        - listitem: "Advises the programme on clinical high risk of psychosis: how the condition is identified and how studies in this group should be designed."
+        - listitem: Brings expertise in clinical high risk of psychosis, including how it is assessed, to the design of the programme's studies.
       - heading "Affiliations" [level=4]
       - list:
         - listitem: Professor of Psychiatry, Yale School of Medicine
@@ -55,12 +54,10 @@
     - article:
       - paragraph: Clinical trial design
       - heading "Dr John M. Kane" [level=3]
-      - paragraph: Chair, Scientific Advisory Board
       - paragraph: Psychiatrist and schizophrenia researcher with long experience of leading clinical trials.
       - heading "Responsibilities" [level=4]
       - list:
-        - listitem: Chairs the programme's Scientific Advisory Board.
-        - listitem: Advises on clinical trial design.
+        - listitem: Leads the programme's clinical trial design.
       - heading "Affiliations" [level=4]
       - list:
         - listitem: Professor of Psychiatry and Molecular Medicine, Donald and Barbara Zucker School of Medicine at Hofstra/Northwell
@@ -73,13 +70,13 @@
       - heading "Responsibilities" [level=4]
       - list:
         - listitem: Responsible for the programme's scientific strategy as Chief Scientific Officer.
-    - paragraph: Advisers are independent experts. Their involvement does not mean their institutions endorse the programme.
-  - region "Company leadership and board":
-    - heading "Company leadership and board" [level=2]
+    - paragraph: Naming a university, hospital or company on this page does not mean that it endorses the programme.
+  - region "Management":
+    - heading "Management" [level=2]
     - article:
       - paragraph: Strategy and programme leadership
       - heading "Filipp Korentsvit" [level=3]
-      - paragraph: Chief Executive Officer and Founding Partner
+      - paragraph: Chief Executive Officer
       - paragraph: Previously an Executive Director at Goldman Sachs. BSc in Economics and Statistics, University College London.
       - heading "Responsibilities" [level=4]
       - list:
@@ -92,41 +89,34 @@
       - heading "Responsibilities" [level=4]
       - list:
         - listitem: Leads programme execution.
+  - region "Board and senior advisers":
+    - heading "Board and senior advisers" [level=2]
     - article:
-      - paragraph: Biotech partnerships
+      - paragraph: Pharmaceutical business and finance
       - heading "William Jarosz" [level=3]
-      - paragraph: Executive Chairman
       - paragraph: Business leader with a background in finance and the pharmaceutical industry. JD, Harvard Law School; MA in Law and Diplomacy, Tufts University.
-      - heading "Responsibilities" [level=4]
-      - list:
-        - listitem: Chairs the board; focuses on biotech partnerships.
     - article:
       - paragraph: Life-sciences leadership
       - heading "Professor Richard Barker OBE" [level=3]
-      - paragraph: Non-Executive Chairman
       - paragraph: Director General of the Association of the British Pharmaceutical Industry (ABPI) from 2004 to 2011, former Chief Executive of Chiron, and former non-executive director of Celgene.
-      - heading "Responsibilities" [level=4]
-      - list:
-        - listitem: Non-executive board role.
     - article:
-      - paragraph: Pharmaceutical industry
+      - paragraph: Pharmaceutical commercial strategy
       - heading "Dr Gillian Cannon" [level=3]
-      - paragraph: Non-Executive Director
+      - paragraph: Board Member
       - paragraph: Pharmaceutical executive with senior roles at Merck, Otsuka and UCB.
-      - heading "Responsibilities" [level=4]
+    - article:
+      - paragraph: Regulatory and clinical development
+      - heading "Professor Trevor Jones CBE" [level=3]
+      - paragraph: Senior Adviser
+      - paragraph: Senior leader in the pharmaceutical sector. Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association.
+      - heading "Affiliations" [level=4]
       - list:
-        - listitem: Non-executive board role.
+        - listitem: Visiting Professor, King's College London
   - region "How clinical decisions stay independent":
     - heading "How clinical decisions stay independent" [level=2]
     - list:
-      - listitem: Decisions on study design, eligibility, safety and conduct are made by the clinical and scientific leadership and approved by regulators and research ethics committees.
-      - listitem: The statistical analysis plan is finalised before study data are unblinded.
-      - listitem: Investors and token holders have no right to influence clinical decisions, see participant data, or delay or shape publications.
-    - paragraph:
-      - text: How results will be published is set out in the
-      - link "draft publication policy":
-        - /url: study.html#publication-policy
-      - text: .
+      - listitem: Clinical decisions, including study design, eligibility, safety and conduct, are kept independent of funding and financing.
+      - listitem: Each study needs approval from the medicines regulator and a research ethics committee before it can start.
     - complementary:
       - heading "Lived experience" [level=3]
       - paragraph: We want people with lived experience of mental health difficulties, and their families, to shape how the programme communicates and how studies are run. No lived-experience adviser has been appointed yet.
@@ -138,54 +128,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

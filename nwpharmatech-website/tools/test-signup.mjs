@@ -207,8 +207,11 @@ async function browserTests() {
       fs.copyFileSync(path.join(proj, "content/signup-provider-test.example.json"), record);
       refused("the example record", "example file");
       const cases = ["new_address", "repeat_address", "invalid_address", "confirmation_email", "unsubscribe", "provider_outage"];
-      fs.writeFileSync(record, JSON.stringify({ provider: "webhook", date: new Date().toISOString().slice(0, 10), tested_by: "tools/test-signup.mjs fixture (temporary copy; no provider was tested)",
-        cases: Object.fromEntries(cases.map((c) => [c, { pass: true, observed: "fixture" }])) }));
+      const fixture = (sha) => fs.writeFileSync(record, JSON.stringify({ provider: "webhook", date: new Date().toISOString().slice(0, 10), tested_by: "tools/test-signup.mjs fixture (temporary copy; no provider was tested)",
+        function_sha256: sha, cases: Object.fromEntries(cases.map((c) => [c, { pass: true, observed: "fixture" }])) }));
+      fixture("0".repeat(64));
+      refused("a record made with a different version of subscribe.js", "different version of subscribe.js");
+      fixture(crypto.createHash("sha256").update(fs.readFileSync(path.join(proj, "src/optional/signup/functions/api/subscribe.js"))).digest("hex"));
       const p = build();
       check("gate: with a passed provider record the --with-signup build succeeds", p.status === 0 && fs.existsSync(path.join(proj, "public/functions/api/subscribe.js")), p.stderr.slice(-400));
       if (p.status !== 0) return;

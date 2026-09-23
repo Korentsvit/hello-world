@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:41551/",
-  "generated": "2026-09-23T06:48:15.872Z",
+  "base": "http://127.0.0.1:38563",
+  "generated": "2026-09-23T15:16:32.857Z",
   "pages": {
     "clinical-need@desktop": {
       "status": 200,
@@ -192,21 +192,6 @@
         {
           "caption": true,
           "rowHeaders": 6,
-          "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 5,
-          "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 7,
-          "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 5,
           "overflow": false
         },
         {
@@ -423,21 +408,6 @@
           "caption": true,
           "rowHeaders": 5,
           "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 7,
-          "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 5,
-          "overflow": false
-        },
-        {
-          "caption": true,
-          "rowHeaders": 5,
-          "overflow": false
         }
       ]
     },
@@ -455,7 +425,7 @@
   },
   "checks": [
     {
-      "name": "clinical-need@desktop: HTTP 200",
+      "name": "clinical-need@desktop: HTTP 200 at /clinical-need without redirect",
       "pass": true,
       "detail": ""
     },
@@ -480,7 +450,7 @@
       "detail": ""
     },
     {
-      "name": "contact@desktop: HTTP 200",
+      "name": "contact@desktop: HTTP 200 at /contact without redirect",
       "pass": true,
       "detail": ""
     },
@@ -505,7 +475,7 @@
       "detail": ""
     },
     {
-      "name": "evidence@desktop: HTTP 200",
+      "name": "evidence@desktop: HTTP 200 at /evidence without redirect",
       "pass": true,
       "detail": ""
     },
@@ -540,7 +510,7 @@
       "detail": ""
     },
     {
-      "name": "families@desktop: HTTP 200",
+      "name": "families@desktop: HTTP 200 at /families without redirect",
       "pass": true,
       "detail": ""
     },
@@ -565,7 +535,7 @@
       "detail": ""
     },
     {
-      "name": "faq@desktop: HTTP 200",
+      "name": "faq@desktop: HTTP 200 at /faq without redirect",
       "pass": true,
       "detail": ""
     },
@@ -590,7 +560,7 @@
       "detail": ""
     },
     {
-      "name": "financing@desktop: HTTP 200",
+      "name": "financing@desktop: HTTP 200 at /financing without redirect",
       "pass": true,
       "detail": ""
     },
@@ -625,7 +595,7 @@
       "detail": ""
     },
     {
-      "name": "index@desktop: HTTP 200",
+      "name": "index@desktop: HTTP 200 at / without redirect",
       "pass": true,
       "detail": ""
     },
@@ -650,7 +620,7 @@
       "detail": ""
     },
     {
-      "name": "legal@desktop: HTTP 200",
+      "name": "legal@desktop: HTTP 200 at /legal without redirect",
       "pass": true,
       "detail": ""
     },
@@ -675,7 +645,7 @@
       "detail": ""
     },
     {
-      "name": "newsroom@desktop: HTTP 200",
+      "name": "newsroom@desktop: HTTP 200 at /newsroom without redirect",
       "pass": true,
       "detail": ""
     },
@@ -710,7 +680,7 @@
       "detail": ""
     },
     {
-      "name": "people@desktop: HTTP 200",
+      "name": "people@desktop: HTTP 200 at /people without redirect",
       "pass": true,
       "detail": ""
     },
@@ -735,7 +705,7 @@
       "detail": ""
     },
     {
-      "name": "phase-1@desktop: HTTP 200",
+      "name": "phase-1@desktop: HTTP 200 at /phase-1 without redirect",
       "pass": true,
       "detail": ""
     },
@@ -770,7 +740,7 @@
       "detail": ""
     },
     {
-      "name": "programme@desktop: HTTP 200",
+      "name": "programme@desktop: HTTP 200 at /programme without redirect",
       "pass": true,
       "detail": ""
     },
@@ -795,7 +765,7 @@
       "detail": ""
     },
     {
-      "name": "science@desktop: HTTP 200",
+      "name": "science@desktop: HTTP 200 at /science without redirect",
       "pass": true,
       "detail": ""
     },
@@ -820,7 +790,7 @@
       "detail": ""
     },
     {
-      "name": "study@desktop: HTTP 200",
+      "name": "study@desktop: HTTP 200 at /study without redirect",
       "pass": true,
       "detail": ""
     },
@@ -885,37 +855,7 @@
       "detail": ""
     },
     {
-      "name": "study@desktop: table 5 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@desktop: table 5 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@desktop: table 6 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@desktop: table 6 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@desktop: table 7 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@desktop: table 7 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "updates@desktop: HTTP 200",
+      "name": "updates@desktop: HTTP 200 at /updates without redirect",
       "pass": true,
       "detail": ""
     },
@@ -940,7 +880,7 @@
       "detail": ""
     },
     {
-      "name": "clinical-need@mobile: HTTP 200",
+      "name": "clinical-need@mobile: HTTP 200 at /clinical-need without redirect",
       "pass": true,
       "detail": ""
     },
@@ -965,7 +905,7 @@
       "detail": ""
     },
     {
-      "name": "contact@mobile: HTTP 200",
+      "name": "contact@mobile: HTTP 200 at /contact without redirect",
       "pass": true,
       "detail": ""
     },
@@ -990,7 +930,7 @@
       "detail": ""
     },
     {
-      "name": "evidence@mobile: HTTP 200",
+      "name": "evidence@mobile: HTTP 200 at /evidence without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1025,7 +965,7 @@
       "detail": ""
     },
     {
-      "name": "families@mobile: HTTP 200",
+      "name": "families@mobile: HTTP 200 at /families without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1050,7 +990,7 @@
       "detail": ""
     },
     {
-      "name": "faq@mobile: HTTP 200",
+      "name": "faq@mobile: HTTP 200 at /faq without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1075,7 +1015,7 @@
       "detail": ""
     },
     {
-      "name": "financing@mobile: HTTP 200",
+      "name": "financing@mobile: HTTP 200 at /financing without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1110,7 +1050,7 @@
       "detail": ""
     },
     {
-      "name": "index@mobile: HTTP 200",
+      "name": "index@mobile: HTTP 200 at / without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1135,7 +1075,7 @@
       "detail": ""
     },
     {
-      "name": "legal@mobile: HTTP 200",
+      "name": "legal@mobile: HTTP 200 at /legal without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1160,7 +1100,7 @@
       "detail": ""
     },
     {
-      "name": "newsroom@mobile: HTTP 200",
+      "name": "newsroom@mobile: HTTP 200 at /newsroom without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1195,7 +1135,7 @@
       "detail": ""
     },
     {
-      "name": "people@mobile: HTTP 200",
+      "name": "people@mobile: HTTP 200 at /people without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1220,7 +1160,7 @@
       "detail": ""
     },
     {
-      "name": "phase-1@mobile: HTTP 200",
+      "name": "phase-1@mobile: HTTP 200 at /phase-1 without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1255,7 +1195,7 @@
       "detail": ""
     },
     {
-      "name": "programme@mobile: HTTP 200",
+      "name": "programme@mobile: HTTP 200 at /programme without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1280,7 +1220,7 @@
       "detail": ""
     },
     {
-      "name": "science@mobile: HTTP 200",
+      "name": "science@mobile: HTTP 200 at /science without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1305,7 +1245,7 @@
       "detail": ""
     },
     {
-      "name": "study@mobile: HTTP 200",
+      "name": "study@mobile: HTTP 200 at /study without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1370,37 +1310,7 @@
       "detail": ""
     },
     {
-      "name": "study@mobile: table 5 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@mobile: table 5 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@mobile: table 6 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@mobile: table 6 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@mobile: table 7 has caption and scoped headers",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "study@mobile: table 7 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "updates@mobile: HTTP 200",
+      "name": "updates@mobile: HTTP 200 at /updates without redirect",
       "pass": true,
       "detail": ""
     },
@@ -1430,7 +1340,7 @@
       "detail": ""
     },
     {
-      "name": "internal links and anchors resolve (744 checked)",
+      "name": "internal links and anchors resolve directly, with no redirect (747 checked)",
       "pass": true,
       "detail": ""
     },
@@ -1460,9 +1370,14 @@
       "detail": ""
     },
     {
-      "name": "menu: tapping a closed group expands it",
+      "name": "menu: exactly one Home link",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "menu: opening a group closes the others (one expanded at a time)",
+      "pass": true,
+      "detail": "About"
     },
     {
       "name": "menu: current page marked aria-current",
@@ -1477,12 +1392,17 @@
     {
       "name": "menu: visible touch targets at least 44px tall",
       "pass": true,
-      "detail": "52,52,53,46,46,46,46,53,46,46,46,46,53,46,46,46,46,46,46"
+      "detail": "44,44,53,46,46,46,46,53,46,46,46,46,53,46,46,46,46,46,46"
     },
     {
-      "name": "menu: link navigates",
+      "name": "menu: link navigates to the extensionless route",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "menu: in-page destination closes the menu and focuses the destination",
+      "pass": true,
+      "detail": "{\"exp\":\"false\",\"hidden\":true,\"hash\":\"#programme-brief\",\"focusIn\":true}"
     },
     {
       "name": "desktop: primary nav visible, toggle hidden",
@@ -1500,7 +1420,7 @@
       "detail": ""
     },
     {
-      "name": "keyboard: all 36 tab stops on home show a visible focus outline",
+      "name": "keyboard: all 37 tab stops on home show a visible focus outline",
       "pass": true,
       "detail": "[]"
     },
@@ -1521,6 +1441,11 @@
     },
     {
       "name": "faq: deep link (#not-medical-advice) opens the target answer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "faq: old .html deep link redirects to /faq and still opens the answer",
       "pass": true,
       "detail": ""
     },
@@ -1617,7 +1542,7 @@
     {
       "name": "download: programme brief PDF served (200, application/pdf, valid header, >10 KB)",
       "pass": true,
-      "detail": "200 application/pdf 68585 bytes"
+      "detail": "200 application/pdf 67874 bytes"
     },
     {
       "name": "download: homepage 'Download the brief' triggers a file download",
@@ -1716,6 +1641,51 @@
     },
     {
       "name": "families: no forms, inputs, quiz, scoring or investment prompts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "editorial: no draft instructions or review notes on public pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "home: brief heading does not say 'one page' beside a two-page PDF",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "home: brief download label matches the checked PDF (2 pages)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "home: programme brief comes straight after the hero",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "PDFs: every published PDF passed its page-count, tagging and fact checks",
+      "pass": true,
+      "detail": "{\"appointment-preparation-sheet.pdf\":true,\"nwpharmatech-programme-brief.pdf\":true}"
+    },
+    {
+      "name": "people: Scott Woods is not presented as an adviser",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people: Trevor Jones listed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people: not both an Executive Chairman and a Non-Executive Chairman",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no empty image slots: no initials avatars or figures without an image",
       "pass": true,
       "detail": ""
     },

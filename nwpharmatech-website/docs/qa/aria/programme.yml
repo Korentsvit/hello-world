@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "The programme":
@@ -18,16 +18,16 @@
   - list:
     - listitem:
       - link "Programme overview":
-        - /url: programme.html
+        - /url: /programme
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "Programme updates":
-        - /url: updates.html
+        - /url: /updates
 - main:
   - paragraph: The programme
   - heading "Programme overview" [level=1]
@@ -50,7 +50,7 @@
   - definition: Investigational; not approved by any medicines regulator; available only within authorised clinical research
   - paragraph:
     - link "Why a micellar softgel, and why study a range of doses":
-      - /url: science.html
+      - /url: /science
   - complementary:
     - heading "What \"Phase 2B\" means" [level=3]
     - paragraph: Medicines are tested in stages. Phase 1 studies look mainly at safety and how the body handles a medicine, usually in healthy volunteers. Phase 2 studies look at whether it may work in people with the condition, and at what dose.
@@ -58,32 +58,36 @@
   - region "Where the programme stands":
     - heading "Where the programme stands" [level=2]
     - link "Completed Phase 1 study 14 healthy adult volunteers aged 18 to 55; single doses of 600 mg and 900 mg compared with Epidyolex. Completed 10 December 2025. Results not yet published. Phase 1 study":
-      - /url: phase-1.html
+      - /url: /phase-1
       - paragraph: Completed
       - heading "Phase 1 study" [level=3]
       - paragraph: 14 healthy adult volunteers aged 18 to 55; single doses of 600 mg and 900 mg compared with Epidyolex. Completed 10 December 2025. Results not yet published.
       - text: Phase 1 study
     - 'link "Planned Phase 2B study In people at clinical high risk of psychosis, to evaluate dose response, symptoms, safety and tolerability. Protocol being finalised. Not recruiting. The study: progress and evidence"':
-      - /url: study.html
+      - /url: /study
       - paragraph: Planned
       - heading "Phase 2B study" [level=3]
       - paragraph: In people at clinical high risk of psychosis, to evaluate dose response, symptoms, safety and tolerability. Protocol being finalised. Not recruiting.
       - text: "The study: progress and evidence"
     - link "Record Programme updates Dated events, each supported by a programme record. Programme updates":
-      - /url: updates.html
+      - /url: /updates
       - paragraph: Record
       - heading "Programme updates" [level=3]
       - paragraph: Dated events, each supported by a programme record.
       - text: Programme updates
   - heading "Protecting participants" [level=2]
-  - paragraph: Any Phase 2B study will start only after approval by a research ethics committee and the relevant medicines regulators. Participants will give informed consent, keep their usual care, and be free to leave at any time. Because cannabidiol can affect liver tests and interact with other medicines, safety monitoring will include blood tests and medicine checks.
+  - paragraph:
+    - text: The Phase 2B study can start only after approval by a research ethics committee and the relevant medicines regulators. Anyone taking part would give informed consent and could leave at any time. Cannabidiol can raise liver enzymes and interact with other medicines,
+    - 'link "Source: Source: Epidyolex SmPC"':
+      - /url: /evidence#ref-epidyolex-smpc
+    - text: so safety monitoring will be set out in the study protocol.
   - complementary:
     - heading "Can I take part?" [level=3]
     - paragraph:
       - text: "Not yet: the Phase 2B study is"
       - strong: not recruiting
       - text: ", and we cannot supply NWPT-SM32300 outside an approved study."
-    - paragraph: When recruitment opens, eligibility and study sites will be published here and on the public trial registry.
+    - paragraph: The study will be registered publicly before anyone is enrolled, and its registry entry will list the eligibility criteria and study sites.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
@@ -92,54 +96,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

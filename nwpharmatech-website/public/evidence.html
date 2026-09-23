@@ -45,11 +45,10 @@
     </div>
     <nav id="mobile-nav" class="mobile-nav" aria-label="Main (mobile)" hidden>
       <div class="container">
-        <a class="mobile-home" href="/">Home</a>
-        <a class="mobile-home" href="/">Home</a>
-        <details class="nav-group" open><summary>The research</summary><ul><li><a href="/clinical-need">Clinical need</a></li><li><a href="/science">Science and formulation</a></li><li><a href="/evidence" aria-current="page">Evidence library</a></li><li><a href="/families">For young people and families</a></li></ul></details>
-        <details class="nav-group"><summary>The programme</summary><ul><li><a href="/programme">Programme overview</a></li><li><a href="/study">The study: progress and evidence</a></li><li><a href="/phase-1">Phase 1 study</a></li><li><a href="/updates">Programme updates</a></li></ul></details>
-        <details class="nav-group"><summary>About</summary><ul><li><a href="/people">People</a></li><li><a href="/financing">Funding and financing</a></li><li><a href="/newsroom">Newsroom</a></li><li><a href="/faq">Questions and answers</a></li><li><a href="/contact">Contact</a></li><li><a href="/legal">Legal, privacy and accessibility</a></li></ul></details>
+        <ul class="mobile-quick"><li><a href="/">Home</a></li><li><a href="/#programme-brief">Programme brief</a></li></ul>
+        <details class="nav-group" name="mobile-nav-group" open><summary>The research</summary><ul><li><a href="/clinical-need">Clinical need</a></li><li><a href="/science">Science and formulation</a></li><li><a href="/evidence" aria-current="page">Evidence library</a></li><li><a href="/families">For young people and families</a></li></ul></details>
+        <details class="nav-group" name="mobile-nav-group"><summary>The programme</summary><ul><li><a href="/programme">Programme overview</a></li><li><a href="/study">The study: progress and evidence</a></li><li><a href="/phase-1">Phase 1 study</a></li><li><a href="/updates">Programme updates</a></li></ul></details>
+        <details class="nav-group" name="mobile-nav-group"><summary>About</summary><ul><li><a href="/people">People</a></li><li><a href="/financing">Funding and financing</a></li><li><a href="/newsroom">Newsroom</a></li><li><a href="/faq">Questions and answers</a></li><li><a href="/contact">Contact</a></li><li><a href="/legal">Legal, privacy and accessibility</a></li></ul></details>
       </div>
     </nav>
   </header>
@@ -70,7 +69,6 @@
           <h2 id="ov-h">In plain language</h2>
           <p>Clinical high risk of psychosis is well described: most people who meet the criteria do not develop psychosis, and about one in four do within three years. <a class="cite" href="/evidence#ref-salazar-2021"><span class="visually-hidden">Source: </span>Salazar de Pablo et al. 2021</a> Psychological therapy is the recommended first step, but no treatment has been proven to prevent psychosis. <a class="cite" href="/evidence#ref-davies-2018"><span class="visually-hidden">Source: </span>Davies et al. 2018</a></p>
           <p>Research on cannabidiol (CBD) in psychosis is early: small, short studies of other CBD products, with mixed results. None of them used NWPT-SM32300. Evidence about NWPT-SM32300 itself so far comes only from a Phase 1 study in healthy volunteers, whose results are not yet published.</p>
-          <p class="small">Evidence labels (Established, Emerging evidence) describe the strength of evidence. <strong>Programme information</strong> marks records about our own studies; it is not an assessment of evidence strength. Negative, mixed and inconclusive findings are flagged on each card.</p>
         </div>
         <aside class="aside">
           <h3>Download citations</h3>
@@ -78,8 +76,16 @@
             <li><a href="/downloads/nwpharmatech-references.ris" download>RIS (EndNote, Zotero, Mendeley)</a></li>
             <li><a href="/downloads/nwpharmatech-references.bib" download>BibTeX</a></li>
           </ul>
-          <p class="small">Last checked: <time datetime="2026-09-23">23 September 2026</time>. Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages. The original pages are being opened and checked before launch.</p>
+          <p class="small">Last checked: <time datetime="2026-09-23">23 September 2026</time>. Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages.</p>
         </aside>
+      </div>
+    </section>
+
+    <section class="section-tight" id="labels" aria-labelledby="labels-h">
+      <div class="container">
+        <h2 id="labels-h">How evidence is labelled</h2>
+        <p class="status-note">These labels are used on the research sections of this website and on the study cards below, one label at a time. Negative, mixed, inconclusive and not-conducted findings are also flagged on the cards.</p>
+        <div class="evidence-key"><div><span class="tag tag-established">Established</span><p>Consistent evidence, systematic reviews, regulatory decisions or clinical guidelines.</p></div><div><span class="tag tag-emerging">Emerging evidence</span><p>Small, short or early studies. Informative, not confirmed.</p></div><div><span class="tag tag-open">Open question</span><p>Not yet known; what research aims to answer.</p></div><div><span class="tag tag-company">Programme information</span><p>Facts about NWPT-SM32300 and our own studies. Not an assessment of evidence strength.</p></div></div>
       </div>
     </section>
 
@@ -100,8 +106,7 @@
         </div>
         <div>
           <h2>Review history</h2>
-          <div class="table-wrap"><table class="table-stack"><caption>Evidence reviews</caption><thead><tr><th scope="col">Date</th><th scope="col">Review</th><th scope="col">Method</th></tr></thead><tbody><tr><td data-label="Date"><time datetime="2026-09-23">23 September 2026</time></td><td data-label="Review">initial verification</td><td data-label="Method">Search-engine summaries of publisher, PubMed, registry and official pages (primary pages blocked from the build environment)</td></tr></tbody></table></div>
-          <p class="small">A monthly review process has been prepared. A review is listed here only after it has taken place.</p>
+          <div class="table-wrap"><table class="table-stack"><caption>Evidence reviews</caption><thead><tr><th scope="col">Date</th><th scope="col">Review</th><th scope="col">Method</th></tr></thead><tbody><tr><td data-label="Date"><time datetime="2026-09-23">23 September 2026</time></td><td data-label="Review">initial verification</td><td data-label="Method">Search-engine summaries of publisher, PubMed, registry and official pages</td></tr></tbody></table></div>
         </div>
       </div>
     </section>
@@ -128,7 +133,7 @@
       <div>
         <h2 class="footer-heading">Information</h2>
         <ul class="footer-links">
-          <li><a href="/downloads/nwpharmatech-programme-brief.pdf" download>Programme brief (PDF, 2 pages, 67 KB)</a></li>
+          <li><a href="/downloads/nwpharmatech-programme-brief.pdf" download>Programme brief (PDF, 2 pages, 66 KB)</a></li>
           <li><a href="/people">People</a></li>
           <li><a href="/newsroom">Newsroom</a></li>
           <li><a href="/financing">Funding and financing</a></li>

@@ -49,7 +49,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
       imgsNoAlt: [...document.querySelectorAll("img")].filter((i) => !i.hasAttribute("alt")).length,
       tables: [...document.querySelectorAll("table")].map((t) => ({ caption: !!t.querySelector("caption"), rowHeaders: t.querySelectorAll("th[scope]").length, overflow: t.scrollWidth > t.parentElement.clientWidth + 1 })),
     }));
-    await page.addScriptTag({ content: axeSource });
+    await page.evaluate(axeSource);   // through DevTools: an inline <script> would be refused by the CSP
     const axe = await page.evaluate(async () => {
       const res = await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"] } });
       return res.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, help: v.help }));
@@ -314,7 +314,8 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const bad = { spacing: [], motion: [], landmarks: [] };
   const ariaDir = path.join(outDir, "aria");
   fs.mkdirSync(ariaDir, { recursive: true });
-  const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile, reducedMotion: "reduce" });
+  // bypassCSP: the text-spacing check injects a user stylesheet, which the site CSP (rightly) refuses from pages
+  const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile, reducedMotion: "reduce", bypassCSP: true });
   const page = await ctx.newPage();
   for (const name of PAGES) {
     await page.goto(base + route(name));
@@ -398,7 +399,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const page = await ctx.newPage();
   for (const f of fs.readdirSync(rroot).filter((f) => f.endsWith(".html"))) {
     await page.goto(rbase + (f === "index.html" ? "" : f.replace(/\.html$/, "")));
-    await page.addScriptTag({ content: axeSource });
+    await page.evaluate(axeSource);   // through DevTools: an inline <script> would be refused by the CSP
     const v = await page.evaluate(async () => (await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } })).violations.map((x) => x.id));
     check(`restricted ${f}: axe WCAG 2.2 AA no violations (forms included)`, v.length === 0, v.join(","));
     const live = await page.evaluate(() => [...document.querySelectorAll("input,select,textarea,button")].filter((e) => !e.disabled && !e.closest("fieldset[disabled]") && !e.closest("header") && !e.closest("nav")).length);

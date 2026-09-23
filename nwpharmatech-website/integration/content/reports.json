@@ -1,0 +1,4 @@
+{
+ "_doc": "Published programme reports and evidence digests. Empty until a real report is approved. Each report must answer the four questions. Template: docs/templates/quarterly-report.example.json. Never backdate: 'published' is the real publication date; 'period' is the quarter covered.",
+ "reports": []
+}

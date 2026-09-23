@@ -1,0 +1,83 @@
+{
+ "_doc": "Region-specific routes to services for the families guide. 'checked' is the date the entry was checked and 'verification' the level. Do not state that a first-episode service accepts people at clinical high risk unless an official source says so.",
+ "checked": "2026-09-23",
+ "regions": [
+  {
+   "id": "england",
+   "name": "England",
+   "verification": "index",
+   "routes": [
+    "Start with your GP, who can refer to local mental health services.",
+    "NHS England guidance expects early intervention in psychosis (EIP) teams, which work with people aged 14 to 65, to offer care to people at risk of psychosis as well as to people with a first episode. How this works differs between areas, so ask your GP what your local team offers.",
+    "Under 18: children and young people's mental health services (CAMHS), usually after a referral from a GP, school or other professional."
+   ],
+   "links": []
+  },
+  {
+   "id": "wales",
+   "name": "Wales",
+   "verification": "index",
+   "routes": [
+    "Start with your GP. NHS Wales early intervention in psychosis services describe themselves as working with people who have a first episode of psychosis or who are at risk.",
+    "Referral is usually through a GP, community mental health team or CAMHS; some areas also accept referrals from families. Ask what your local service offers."
+   ],
+   "links": []
+  },
+  {
+   "id": "scotland",
+   "name": "Scotland",
+   "verification": "index",
+   "routes": [
+    "Start with your GP. Early intervention services in Scotland are developing through a national programme focused on first-episode psychosis; whether your local service sees people at risk varies, so ask your GP."
+   ],
+   "links": []
+  },
+  {
+   "id": "northern-ireland",
+   "name": "Northern Ireland",
+   "verification": "index",
+   "routes": [
+    "Start with your GP, who can refer to local mental health services. Ask whether the local early intervention team sees people who may be at risk."
+   ],
+   "links": []
+  },
+  {
+   "id": "ireland",
+   "name": "Ireland",
+   "verification": "index",
+   "routes": [
+    "Start with your GP. The HSE early intervention in psychosis programme is designed for people with a first episode of psychosis; ask your GP what support is available if you may be at risk."
+   ],
+   "links": []
+  },
+  {
+   "id": "us",
+   "name": "United States",
+   "verification": "index",
+   "routes": [
+    "Start with a primary care provider or mental health professional.",
+    "SAMHSA's Early Serious Mental Illness Treatment Locator lists programmes for recent-onset serious mental illness. Some programmes also see people at clinical high risk; ask when you contact them."
+   ],
+   "links": [
+    [
+     "SAMHSA Early Serious Mental Illness Treatment Locator",
+     "https://www.samhsa.gov/find-help/locators/esmi"
+    ]
+   ]
+  }
+ ],
+ "education_work_uk": [
+  [
+   "If mental health difficulties have a substantial, long-term effect on daily life, the Equality Act 2010 may require schools, colleges, universities and employers to make reasonable adjustments.",
+   null
+  ],
+  [
+   "Access to Work can help people in paid work, including through a Mental Health Support Service.",
+   "https://www.gov.uk/access-to-work"
+  ],
+  [
+   "Schools in England can provide special educational needs (SEN) support, including for social, emotional and mental health needs.",
+   "https://www.gov.uk/children-with-special-educational-needs"
+  ]
+ ]
+}

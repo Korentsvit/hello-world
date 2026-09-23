@@ -1,0 +1,145 @@
+{
+ "id": "formulation",
+ "title": "Formulation explanation",
+ "source": {
+  "page": "science.html",
+  "template": "src/pages/science.html",
+  "staging_route": "/science#formulation",
+  "part": "section#formulation"
+ },
+ "placement": {
+  "live_route": "/science#formulation",
+  "where": "A section of the live /science page, in the page's main content.",
+  "first_heading": "h2",
+  "page_title": null,
+  "page_description": null
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 6686,
+   "sha256": "1b2673aa483ff5df6609fe0967b9171785512626385dba58ee070e1edab13c66"
+  },
+  "module.css": {
+   "bytes": 4653,
+   "sha256": "d9990daf6b9cf9641164f3f36a8c03410cdbe25bb9fd4bc7eb430030c6366ec5"
+  },
+  "preview.html": {
+   "bytes": 7356,
+   "sha256": "37da525a18bd5dba341bdea13289d900dd1c1beccdac8444a71a334c07c6287d"
+  }
+ },
+ "left_out": [
+  "The 'Question 2' label numbers the question within the staging science page."
+ ],
+ "facts": [
+  {
+   "id": "product.form",
+   "value": "oral softgel capsule",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.formulation",
+   "value": "self-emulsifying (micellar) lipid formulation",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.name",
+   "value": "NWPT-SM32300",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.strength",
+   "value": "300 mg",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  }
+ ],
+ "references": [
+  {
+   "id": "perucca-2020",
+   "short": "Perucca and Bialer 2020",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "taylor-2018",
+   "short": "Taylor et al. 2018",
+   "verification": "index",
+   "production_ready": false
+  }
+ ],
+ "downloads": [],
+ "assets": [],
+ "anchors": {
+  "ids": [
+   "formulation",
+   "q2-h",
+   "dg-title",
+   "dg-desc",
+   "ar"
+  ],
+  "linked_from_site": [
+   "formulation"
+  ]
+ },
+ "links": {
+  "pages": [
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-perucca-2020"
+   },
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-taylor-2018"
+   },
+   {
+    "page": "phase-1",
+    "href": "/phase-1"
+   }
+  ],
+  "external": []
+ },
+ "redirects": [
+  {
+   "from": "/formulation",
+   "to": "/science#formulation",
+   "status": 301,
+   "why": "short alias in src/redirects.txt"
+  }
+ ],
+ "javascript": [],
+ "csp": {
+  "script-src": [],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "publication_blockers": [
+  "reference perucca-2020 (index) on science.html",
+  "reference taylor-2018 (index) on science.html"
+ ],
+ "optional_assets": [
+  {
+   "asset": "softgel-render",
+   "file": "assets/img/renders/nwpt-sm32300-softgel.jpg",
+   "status": "not supplied or not authorised: the slot renders nothing",
+   "fallback": "nothing: the diagram fills the column on its own"
+  }
+ ]
+}

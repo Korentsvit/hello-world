@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "The programme":
@@ -18,16 +18,16 @@
   - list:
     - listitem:
       - link "Programme overview":
-        - /url: programme.html
+        - /url: /programme
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "Programme updates":
-        - /url: updates.html
+        - /url: /updates
 - main:
   - paragraph: The programme · Completed study
   - heading "Phase 1 study" [level=1]
@@ -81,7 +81,7 @@
     - paragraph:
       - text: There were about 25 days between doses, with blood samples for up to 192 hours (8 days) after each dose. Taking part lasted about 105 days per participant, including screening and follow-up. Study procedures included a standardised high-fat meal, because food changes how much cannabidiol is absorbed.
       - 'link "Source: Source: Perucca and Bialer 2020"':
-        - /url: evidence.html#ref-perucca-2020
+        - /url: /evidence#ref-perucca-2020
   - region "What was measured":
     - heading "What was measured" [level=2]
     - term: Absorption
@@ -93,7 +93,7 @@
     - heading "Results publication status" [level=2]
     - paragraph: Not yet published
     - paragraph: Results will be published after the study report and plain-language wording have been reconciled and approved.
-    - paragraph: When results are published, this section will show each measure, what was found, the limitations and the source report, and a plain-language summary will be posted on both registries.
+    - paragraph: A results summary is planned for both trial registries and this page. No date has been set.
   - region "What this study can establish":
     - heading "What this study can establish" [level=2]
     - list:
@@ -108,7 +108,7 @@
     - paragraph:
       - text: Evidence about whether NWPT-SM32300 helps people at clinical high risk of psychosis can only come from studies in that population, such as the planned
       - link "Phase 2B study":
-        - /url: study.html
+        - /url: /study
       - text: .
   - region "Protocol history":
     - heading "Protocol history" [level=2]
@@ -136,54 +136,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

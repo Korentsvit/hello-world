@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "The research":
@@ -18,16 +18,16 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
 - main:
   - paragraph: The research
   - heading "Evidence library" [level=1]
@@ -37,28 +37,35 @@
     - paragraph:
       - text: "Clinical high risk of psychosis is well described: most people who meet the criteria do not develop psychosis, and about one in four do within three years."
       - 'link "Source: Source: Salazar de Pablo et al. 2021"':
-        - /url: evidence.html#ref-salazar-2021
+        - /url: /evidence#ref-salazar-2021
       - text: Psychological therapy is the recommended first step, but no treatment has been proven to prevent psychosis.
       - 'link "Source: Source: Davies et al. 2018"':
-        - /url: evidence.html#ref-davies-2018
+        - /url: /evidence#ref-davies-2018
     - paragraph: "Research on cannabidiol (CBD) in psychosis is early: small, short studies of other CBD products, with mixed results. None of them used NWPT-SM32300. Evidence about NWPT-SM32300 itself so far comes only from a Phase 1 study in healthy volunteers, whose results are not yet published."
-    - paragraph:
-      - text: Evidence labels (Established, Emerging evidence) describe the strength of evidence.
-      - strong: Programme information
-      - text: marks records about our own studies; it is not an assessment of evidence strength. Negative, mixed and inconclusive findings are flagged on each card.
     - complementary:
       - heading "Download citations" [level=3]
       - list:
         - listitem:
           - link "RIS (EndNote, Zotero, Mendeley)":
-            - /url: downloads/nwpharmatech-references.ris
+            - /url: /downloads/nwpharmatech-references.ris
         - listitem:
           - link "BibTeX":
-            - /url: downloads/nwpharmatech-references.bib
+            - /url: /downloads/nwpharmatech-references.bib
       - paragraph:
         - text: "Last checked:"
         - time: 23 September 2026
-        - text: . Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages. The original pages are being opened and checked before launch.
+        - text: . Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages.
+  - region "How evidence is labelled":
+    - heading "How evidence is labelled" [level=2]
+    - paragraph: These labels are used on the research sections of this website and on the study cards below, one label at a time. Negative, mixed, inconclusive and not-conducted findings are also flagged on the cards.
+    - text: Established
+    - paragraph: Consistent evidence, systematic reviews, regulatory decisions or clinical guidelines.
+    - text: Emerging evidence
+    - paragraph: Small, short or early studies. Informative, not confirmed.
+    - text: Open question
+    - paragraph: Not yet known; what research aims to answer.
+    - text: Programme information
+    - paragraph: Facts about NWPT-SM32300 and our own studies. Not an assessment of evidence strength.
   - region "Library":
     - heading "Library" [level=2]
     - group "Filter the evidence library by topic":
@@ -608,7 +615,7 @@
     - paragraph:
       - text: Substantive corrections to a published summary are recorded here with the date.
       - link "Site-wide corrections log":
-        - /url: newsroom.html#corrections
+        - /url: /newsroom#corrections
       - text: .
     - heading "Review history" [level=2]
     - table "Evidence reviews":
@@ -619,13 +626,12 @@
           - columnheader "Review"
           - columnheader "Method"
       - rowgroup:
-        - 'row "Date: 23 September 2026 Review: initial verification Method: Search-engine summaries of publisher, PubMed, registry and official pages (primary pages blocked from the build environment)"':
+        - 'row "Date: 23 September 2026 Review: initial verification Method: Search-engine summaries of publisher, PubMed, registry and official pages"':
           - 'cell "Date: 23 September 2026"':
             - text: "Date:"
             - time: 23 September 2026
           - 'cell "Review: initial verification"'
-          - 'cell "Method: Search-engine summaries of publisher, PubMed, registry and official pages (primary pages blocked from the build environment)"'
-    - paragraph: A monthly review process has been prepared. A review is listed here only after it has taken place.
+          - 'cell "Method: Search-engine summaries of publisher, PubMed, registry and official pages"'
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
@@ -634,54 +640,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

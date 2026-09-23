@@ -7,7 +7,9 @@
     "qa": "node qa.mjs",
     "routes": "node test-routes.mjs",
     "pdf": "node make-pdf.mjs",
-    "signup": "node test-signup.mjs"
+    "signup": "node test-signup.mjs",
+    "menu": "node test-menu.mjs",
+    "integration": "node test-integration.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.10.0",

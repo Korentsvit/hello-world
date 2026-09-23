@@ -7,10 +7,10 @@
   - strong: NWPT-SM32300 is an investigational medicine.
   - text: It is not approved for any use, and whether it is effective is not known.
   - link "This website is not medical advice.":
-    - /url: faq.html#not-medical-advice
+    - /url: /faq#not-medical-advice
 - banner:
   - link "NWPharmaTech home":
-    - /url: index.html
+    - /url: /
     - text: nw pharmatech
   - button "Menu"
 - navigation "The research":
@@ -18,16 +18,16 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
 - main:
   - text: The clinical need
   - heading "People at clinical high risk of psychosis" [level=1]
@@ -45,14 +45,14 @@
     - listitem:
       - strong: "Genetic risk with functional decline:"
       - text: a close relative with a psychotic disorder, plus a recent fall in day-to-day functioning.
-  - paragraph: "Most people who meet these criteria do not go on to develop psychosis. In pooled studies, about one in four has done so within three years, with wide variation between services. Those who do not develop psychosis are a mixed group: some recover, while others continue to have milder symptoms and difficulties with day-to-day life."
+  - paragraph: "Most people who meet these criteria do not go on to develop psychosis. In pooled studies, about one in four has done so within three years, with wide variation between studies. Those who do not develop psychosis are a mixed group: some recover, while others continue to have milder symptoms and difficulties with day-to-day life."
   - paragraph:
     - 'link "Source: Source: Fusar-Poli et al. 2013"':
-      - /url: evidence.html#ref-fusarpoli-2013
+      - /url: /evidence#ref-fusarpoli-2013
     - 'link "Source: Source: Salazar de Pablo et al. 2021"':
-      - /url: evidence.html#ref-salazar-2021
+      - /url: /evidence#ref-salazar-2021
     - 'link "Source: Source: Addington et al. 2011"':
-      - /url: evidence.html#ref-addington-2011
+      - /url: /evidence#ref-addington-2011
   - complementary:
     - heading "A note on language" [level=3]
     - paragraph: Being at clinical high risk is not a diagnosis of psychosis, and it does not mean psychosis is inevitable.
@@ -68,25 +68,32 @@
   - paragraph: No medicine is licensed for this group. NICE advises against offering antipsychotic medication to people considered at increased risk, or with the aim of reducing the risk of or preventing psychosis.
   - paragraph:
     - 'link "Source: Source: NICE CG178"':
-      - /url: evidence.html#ref-nice-cg178
+      - /url: /evidence#ref-nice-cg178
     - 'link "Source: Source: NICE CG155"':
-      - /url: evidence.html#ref-nice-cg155
+      - /url: /evidence#ref-nice-cg155
   - heading "Why new options are being studied" [level=2]
   - text: Open question
-  - paragraph: Psychological therapy helps many people, but not everyone can access it and not everyone benefits. Antipsychotic side effects are generally considered too great a burden for people who do not have psychosis, most of whom will not develop it. Researchers are therefore looking for treatments that could be both helpful and well tolerated.
   - paragraph:
-    - text: Psychological therapy is recommended first, but no intervention has been shown to be better than the others at preventing psychosis.
+    - text: Psychological therapy is the recommended first step, but it does not prevent psychosis in everyone.
+    - 'link "Source: Source: Stafford et al. 2013"':
+      - /url: /evidence#ref-stafford-2013
+    - text: Antipsychotics are not recommended for people at clinical high risk, most of whom will not develop psychosis.
+    - 'link "Source: Source: NICE CG178"':
+      - /url: /evidence#ref-nice-cg178
+    - text: Researchers are therefore looking for treatments that could be both helpful and well tolerated.
+  - paragraph:
+    - text: No intervention has been shown to be better than the others at preventing psychosis.
     - 'link "Source: Source: Davies et al. 2018"':
-      - /url: evidence.html#ref-davies-2018
+      - /url: /evidence#ref-davies-2018
     - text: Cannabidiol (CBD) is one candidate. Whether it, or any medicine, can safely reduce symptoms, improve functioning or lower the risk of psychosis in this group is not yet known.
     - link "What the science shows so far":
-      - /url: science.html
+      - /url: /science
     - text: .
   - heading "If you are worried about yourself or someone else" [level=3]
   - paragraph:
     - text: Talk to your GP or a mental health professional. In the UK, NHS early intervention in psychosis services can assess young people who may be at risk. For urgent help, see
     - link "urgent help by country":
-      - /url: faq.html#urgent-help
+      - /url: /faq#urgent-help
     - text: .
 - contentinfo:
   - paragraph: nw pharmatech
@@ -96,54 +103,54 @@
   - list:
     - listitem:
       - link "Clinical need":
-        - /url: clinical-need.html
+        - /url: /clinical-need
     - listitem:
       - link "Science and formulation":
-        - /url: science.html
+        - /url: /science
     - listitem:
       - link "Evidence library":
-        - /url: evidence.html
+        - /url: /evidence
     - listitem:
       - 'link "The study: progress and evidence"':
-        - /url: study.html
+        - /url: /study
     - listitem:
       - link "Phase 1 study":
-        - /url: phase-1.html
+        - /url: /phase-1
     - listitem:
       - link "For young people and families":
-        - /url: families.html
+        - /url: /families
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF)":
-        - /url: downloads/nwpharmatech-programme-brief.pdf
+      - link "Programme brief (PDF, 2 pages, 66 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: people.html
+        - /url: /people
     - listitem:
       - link "Newsroom":
-        - /url: newsroom.html
+        - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: financing.html
+        - /url: /financing
     - listitem:
       - link "Questions and answers":
-        - /url: faq.html
+        - /url: /faq
     - listitem:
       - link "Contact":
-        - /url: contact.html
+        - /url: /contact
     - listitem:
       - link "Legal, privacy and accessibility":
-        - /url: legal.html
+        - /url: /legal
   - region "Need help now?":
     - heading "Need help now?" [level=2]
     - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
     - paragraph:
       - 'link "Urgent help by country: UK, Ireland, United States"':
-        - /url: faq.html#urgent-help
+        - /url: /faq#urgent-help
   - paragraph:
     - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
     - link "legal information":
-      - /url: legal.html
+      - /url: /legal
     - text: .
   - paragraph: © 2026 NWPharmaTech Ltd.

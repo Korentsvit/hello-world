@@ -80,9 +80,9 @@ class Renderer:
         # Mobile: the only Home link, then the programme brief (a section of the public home page; restricted
         # pages have their own index), then one accordion group per section. The shared name makes the groups
         # exclusive (one open at a time); the group holding the current page starts open.
-        quick = [f'<li><a href="index.html"{cur_attr if active == "home" else ""}>Home</a></li>']
+        quick = [f'<li><a href="index.html"{cur_attr if active == "home" else ""}>{escape(ui["home"])}</a></li>']
         if self.available and "index.html" in self.available:
-            quick.append('<li><a href="index.html#programme-brief">Programme brief</a></li>')
+            quick.append(f'<li><a href="index.html#programme-brief">{escape(ui["brief_link"])}</a></li>')
         mob = [f'<ul class="mobile-quick">{"".join(quick)}</ul>']
         for g in ui["groups"]:
             is_open = any(k == active for k, _, _ in g["items"])
@@ -443,7 +443,7 @@ class Renderer:
     def b_boilerplate(self):
         f = lambda k: escape(self.c.fact(k, self.page))
         return (f'<p>{f("company.name")} is a UK company developing {f("product.name")}, an investigational oral cannabidiol medicine, '
-                f'for people at clinical high risk of psychosis. A Phase 1 study in healthy volunteers ({f("phase1.nct")}) was completed in '
+                f'for people at clinical high risk of psychosis. A Phase 1 study in healthy volunteers ({f("phase1.nct")}) was completed on '
                 f'{f("phase1.end")}; a Phase 2B study is planned. {f("product.name")} is not approved for any use and its effectiveness is unproven.</p>')
 
     def b_fact_sheet(self):

@@ -1,0 +1,126 @@
+{
+ "id": "family-guide",
+ "title": "Guide for young people and families",
+ "source": {
+  "page": "families.html",
+  "template": "src/pages/families.html",
+  "staging_route": "/families",
+  "part": "the content of <main>"
+ },
+ "placement": {
+  "live_route": "/families",
+  "where": "The main content of the live /families page, between the live header and footer.",
+  "first_heading": "h1",
+  "page_title": "For young people and families | NWPharmaTech",
+  "page_description": "A guide to clinical high risk of psychosis for young people and families: what it means, what an assessment involves, questions to ask, support with school, work and family life, and where to get help."
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 9824,
+   "sha256": "425dde1510c5bd0cdf9a4f6137726ab535546fff60bcaeea9e8c9e63dee57f01"
+  },
+  "module.css": {
+   "bytes": 5678,
+   "sha256": "219558b4f9cef2c9df205262d68653ab56edc6fc5a7de0950ef532921821fd4f"
+  },
+  "preview.html": {
+   "bytes": 10507,
+   "sha256": "ad0712ab7d46aeb4d5139b9ea48e80b817b979207a860b5629aa4bf66f6a9230"
+  }
+ },
+ "left_out": [],
+ "facts": [
+  {
+   "id": "evidence.transition_3y",
+   "value": "about one in four",
+   "verification": "index",
+   "as_of": "2021-07-14",
+   "source_label": null,
+   "production_ready": false
+  }
+ ],
+ "references": [
+  {
+   "id": "fusarpoli-2013",
+   "short": "Fusar-Poli et al. 2013",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "nice-cg155",
+   "short": "NICE CG155",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "salazar-2021",
+   "short": "Salazar de Pablo et al. 2021",
+   "verification": "index",
+   "production_ready": false
+  }
+ ],
+ "downloads": [
+  {
+   "file": "downloads/appointment-preparation-sheet.pdf",
+   "href": "/downloads/appointment-preparation-sheet.pdf",
+   "bytes": 37085,
+   "sha256": "7fac98e9af2e4b9ff9860dba8c519ce3f2b3097e4fec6560740e6fceacfc8667"
+  }
+ ],
+ "assets": [],
+ "anchors": {
+  "ids": [
+   "means-h",
+   "assess-h",
+   "ask-h",
+   "life-h",
+   "routes-h"
+  ],
+  "linked_from_site": []
+ },
+ "links": {
+  "pages": [
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-fusarpoli-2013"
+   },
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-nice-cg155"
+   },
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-salazar-2021"
+   },
+   {
+    "page": "faq",
+    "href": "/faq#urgent-help"
+   }
+  ],
+  "external": [
+   "https://www.gov.uk/access-to-work",
+   "https://www.gov.uk/children-with-special-educational-needs",
+   "https://www.samhsa.gov/find-help/locators/esmi"
+  ]
+ },
+ "redirects": [],
+ "javascript": [],
+ "csp": {
+  "script-src": [],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "publication_blockers": [
+  "fact evidence.transition_3y (index) on families.html",
+  "reference fusarpoli-2013 (index) on families.html",
+  "reference nice-cg155 (index) on families.html",
+  "reference salazar-2021 (index) on families.html"
+ ],
+ "optional_assets": []
+}
