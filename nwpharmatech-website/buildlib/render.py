@@ -76,14 +76,21 @@ class Renderer:
             if key == section and active != key:
                 cur = ' aria-current="true"'
             desk.append(f'<li><a href="{href}"{cur}>{escape(label)}</a></li>')
-        mob = ['<a class="mobile-home" href="index.html">Home</a>']
         cur_attr = ' aria-current="page"'
+        # Mobile: the only Home link, then the programme brief (a section of the public home page; restricted
+        # pages have their own index), then one accordion group per section. The shared name makes the groups
+        # exclusive (one open at a time); the group holding the current page starts open.
+        quick = [f'<li><a href="index.html"{cur_attr if active == "home" else ""}>Home</a></li>']
+        if self.available and "index.html" in self.available:
+            quick.append('<li><a href="index.html#programme-brief">Programme brief</a></li>')
+        mob = [f'<ul class="mobile-quick">{"".join(quick)}</ul>']
         for g in ui["groups"]:
             is_open = any(k == active for k, _, _ in g["items"])
             links = "".join(
                 f'<li><a href="{h}"{cur_attr if k == active else ""}>{escape(l)}</a></li>'
                 for k, h, l in g["items"] if self._has(h))
-            mob.append(f'<details class="nav-group"{" open" if is_open else ""}><summary>{escape(g["title"])}</summary><ul>{links}</ul></details>')
+            mob.append(f'<details class="nav-group" name="mobile-nav-group"{" open" if is_open else ""}>'
+                       f'<summary>{escape(g["title"])}</summary><ul>{links}</ul></details>')
         return "\n          ".join(desk), "\n        ".join(mob)
 
     def b_subnav(self, gid=None):
