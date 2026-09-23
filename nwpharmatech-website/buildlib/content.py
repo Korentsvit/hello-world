@@ -144,6 +144,8 @@ class Content:
         if not p.exists():
             return "no live provider test recorded in content/signup-provider-test.json"
         t = self._load(p)
+        if t.get("example"):
+            return "content/signup-provider-test.json is the example file, not a recorded test"
         required = {"new_address", "repeat_address", "invalid_address", "confirmation_email", "unsubscribe", "provider_outage"}
         missing = sorted(required - {k for k, v in t.get("cases", {}).items() if v.get("pass")})
         if missing or not t.get("provider") or not t.get("date") or not t.get("tested_by"):
