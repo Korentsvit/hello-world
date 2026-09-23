@@ -1,9 +1,9 @@
 {
-  "_doc": "Review items the team must complete before publication: checks, approvals and accuracy questions that were previously [TBC: ...] markers in templates. Never rendered. Every item with done: false is a publication blocker (build.py lists it; a production build is refused). 'page' says where the affected text appears; 'owner' is the role that closes the item. Set done: true only when the check or approval has actually happened, and record it where it belongs (for example the 'Last checked' date on faq.html). Missing optional assets (logo, renders, portraits, interviews) never go here: they are reported separately and never block.",
+  "_doc": "Review items the team must complete before publication: checks, approvals and accuracy questions that were previously [TBC: ...] markers in templates. Never rendered. Every item with done: false is a publication blocker (build.py lists it; a production build is refused). 'page' says where the affected text appears; 'owner' is the role that closes the item. Set done: true only when the check or approval has actually happened, and record it where it belongs (for example the crisis-line 'checked' date in content/services.json). Missing optional assets (logo, renders, portraits, interviews) never go here: they are reported separately and never block.",
   "items": [
     {
-      "page": "faq.html",
-      "item": "re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, then update the 'Last checked' date",
+      "page": "faq.html, appointment preparation sheet PDF",
+      "item": "re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date",
       "owner": "Site editor",
       "done": false
     },

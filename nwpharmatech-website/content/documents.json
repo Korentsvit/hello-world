@@ -1,5 +1,5 @@
 {
-  "_doc": "Public document register and substantive change history, newest version first. Only versions with published: true appear on the public page (study.html 'Document history'); until one is published that section is omitted. The newest version number is printed in the PDF header ({{block:document_version:<id>}}), so changing it regenerates the PDF. 'status' is internal and never rendered.",
+  "_doc": "Public document register and substantive change history, newest version first. Only versions with published: true appear on the public page (study.html 'Document history'); until one is published that section is omitted. The newest version number is printed in the PDF header (render.py b_document_version), so changing it regenerates the PDF. While the newest version is unpublished, its 'status' is printed after it (b_document_status), for example 'Version 4 · 23 September 2026 · Draft for review': a status such as 'Draft for review', never an instruction to the reader. Once that version is published, no status is printed. The status of older versions is never rendered.",
   "documents": [
     {
       "id": "brief",
@@ -7,6 +7,13 @@
       "file": "downloads/nwpharmatech-programme-brief.pdf",
       "public": true,
       "history": [
+        {
+          "version": "4",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Current stage and completed work taken from the study summary, as on the study page; results status taken from the Phase 1 record; draft status shown in the header."
+        },
         {
           "version": "3",
           "date": "2026-09-23",
@@ -36,6 +43,13 @@
       "file": "downloads/appointment-preparation-sheet.pdf",
       "public": true,
       "history": [
+        {
+          "version": "2",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Adds a header with the logo slot, version and draft status, and the date the crisis-line numbers were checked; the numbers come from the same list as the Q&A page."
+        },
         {
           "version": "1",
           "date": "2026-09-23",

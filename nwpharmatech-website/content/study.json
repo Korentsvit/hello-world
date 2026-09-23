@@ -1,9 +1,9 @@
 {
-  "_doc": "Study hub content. Status values: Planned | In progress | Completed. 'date' is ISO (exact) or null; 'date_text' is shown when there is no exact date. Every milestone needs a source id. 'public': false keeps an item out of public pages. No percentages, recruitment counts, approvals or committee appointments may be added unless sourced.",
+  "_doc": "Study hub content. Status values: Planned | In progress | Completed. 'date' is ISO (exact) or null; 'date_text' is shown when there is no exact date. Every milestone needs a source id; a public milestone's source must be citable publicly or a company record, never an instruction or a draft (content.py refuses the build otherwise). 'public': false keeps an item out of public pages. The summary fields also fill the programme brief PDF, so the study hub and the brief say the same. No percentages, recruitment counts, approvals or committee appointments may be added unless sourced.",
   "summary": {
     "as_of": "2026-09-23",
     "investigates": "Whether {{fact:product.name}}, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in {{fact:phase2b.population}}.",
-    "stage": "Phase 2B study planned. {{fact:phase2b.protocol_status}}. Not recruiting.",
+    "stage": "Phase 2B study: {{fact:phase2b.status}} {{fact:phase2b.protocol_status}}.",
     "completed": "Phase 1 study in {{fact:phase1.n}} healthy volunteers: completed {{fact:phase1.end}}; database locked {{fact:phase1.db_lock}}; analysis outputs delivered {{fact:phase1.outputs_delivered}}.",
     "next": "Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set.",
     "sources": [
@@ -109,7 +109,8 @@
         "date": null,
         "date_text": "Date not set",
         "source": "brief-2026-09-b",
-        "public": true
+        "public": false,
+        "review": "Not a recorded plan: it comes from the unadopted publication policy (docs/proposals/publication-policy.md), and its only source is a development instruction. Publish only if management adopts the policy and the adoption is recorded as a source; cite that record."
       },
       {
         "title": "Phase 2B: protocol finalised",
@@ -133,7 +134,8 @@
         "date": null,
         "date_text": "Date not set",
         "source": "brief-2026-09",
-        "public": true
+        "public": false,
+        "review": "No record states this plan: the website brief does not mention registration. When the study is registered, add a Completed milestone citing the registry entry, and add the entry to 'registrations'."
       }
     ],
     "operational": [
@@ -185,7 +187,8 @@
         "date": null,
         "date_text": "In development; not available",
         "source": "brief-2026-09-b",
-        "public": true
+        "public": false,
+        "review": "Its only source is a development instruction, not a record of a programme decision. The financing page describes the route in development; show it here once a company record (for example a board minute) supports it, and cite that record."
       }
     ]
   },

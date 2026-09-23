@@ -9,6 +9,10 @@ import json
 import re
 
 ALLOWED_PROD = {"document", "primary"}
+# Source types that are records of the programme: a public milestone or update without a public citation label
+# is shown as 'Company records' only when its source is one of these. An instruction to the web team
+# ('company-instruction') or an unadopted draft ('company-draft') records nothing the programme did or decided.
+RECORD_TYPES = {"company-study-record", "company-record", "company-correspondence", "company-investor-document"}
 
 # People: the title rules in docs/leadership-reconciliation.md, applied to the records logged in people.json.
 TEASER_SOURCES = {"teaser-2026-08"}       # management (brief-2026-09-c): never sole authority for a current appointment
@@ -88,16 +92,27 @@ class Content:
         for r in self.refs["items"]:
             if r["category"] not in cats:
                 errs.append(f"ref {r['id']}: unknown category")
+        def not_a_record(sid):
+            """Why a public milestone or update may not rest on this source, or None if it may: it must be
+            citable publicly (public_label) or be a company record (RECORD_TYPES)."""
+            s = self.sources[sid]
+            if s.get("public_label") or s.get("type") in RECORD_TYPES:
+                return None
+            return f"source {sid} is a {s.get('type')}, not a record; set public: false until a record supports it"
         for group in self.study["milestones"].values():
             for m in group:
                 if m["status"] not in ("Planned", "In progress", "Completed"):
                     errs.append(f"milestone {m['title']}: bad status")
                 if not m.get("source") or m["source"] not in self.sources:
                     errs.append(f"milestone {m['title']}: missing/unknown source")
+                elif m.get("public") and not_a_record(m["source"]):
+                    errs.append(f"milestone {m['title']}: {not_a_record(m['source'])}")
         for u in self.updates:
             date.fromisoformat(u["date"])
             if u["source"] not in self.sources:
                 errs.append(f"update {u['title']}: unknown source")
+            elif u.get("public") and not_a_record(u["source"]):
+                errs.append(f"update {u['title']}: {not_a_record(u['source'])}")
         # people: a title ('role') is held only when management confirmed it or company records agree, and both are
         # checked here against the logged records (docs/leadership-reconciliation.md, "Title rules"); a withheld
         # title lives in role_records, never in 'role'

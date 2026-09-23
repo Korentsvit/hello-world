@@ -17,7 +17,7 @@
   ul { margin: 4pt 0; padding-left: 14pt; break-inside: avoid; }
 </style></head>
 <body>
-<header><div><p class="brand">nw <span>pharmatech</span></p><h1>Programme brief</h1></div><p class="small">{{block:document_version:brief}} · {{fact:site.as_of}}</p></header>
+<header><div><p class="brand">{{block:brand:print}}</p><h1>Programme brief</h1></div><p class="small">{{block:document_version:brief}} · {{fact:site.as_of}}{{block:document_status:brief}}</p></header>
 <main>
   <p>NWPharmaTech presents our research programme for people at clinical high risk of psychosis, explaining the clinical need, the science and the people behind it.</p>
   <p>The programme centres on <strong>{{fact:product.name}}</strong>, an investigational oral cannabidiol formulation, and a planned <strong>Phase 2B study</strong> evaluating {{fact:phase2b.aims}}. The website brings together accessible explanations, supporting evidence and programme updates, clearly distinguishing established findings from questions our research aims to answer.</p>
@@ -27,8 +27,8 @@
   <h2>Where the programme stands</h2>
   <table>
     <tr><th scope="row">Investigational medicine</th><td>{{fact:product.strength}} {{fact:product.form}}; {{fact:product.api}} in a {{fact:product.formulation}}; GMP manufacture</td></tr>
-    <tr><th scope="row">Completed</th><td>Phase 1 study: {{fact:phase1.population}}; {{fact:phase1.design}}; {{fact:phase1.treatments}}. Completed {{fact:phase1.end}}; database locked {{fact:phase1.db_lock}}. Registered as {{fact:phase1.nct}} and {{fact:phase1.isrctn}}. Results not yet published.</td></tr>
-    <tr><th scope="row">Current stage</th><td>Phase 2B study in {{fact:phase2b.population}}: {{fact:phase2b.status}} {{fact:phase2b.protocol_status}}.</td></tr>
+    <tr><th scope="row">Completed</th><td>{{block:summary:completed}} Design: {{fact:phase1.design}}; {{fact:phase1.treatments}}. Registered as {{fact:phase1.nct}} and {{fact:phase1.isrctn}}. {{fact:phase1.results_status}}</td></tr>
+    <tr><th scope="row">Current stage</th><td>{{block:summary:stage}}</td></tr>
     <tr><th scope="row">Next milestone</th><td>{{block:summary:next}}</td></tr>
     <tr><th scope="row">Financing</th><td>In development: platform-integrated programme financing through a dedicated vehicle, with permissioned tokens at closing where feasible and register-first as the fallback. No investment is being accepted.</td></tr>
     <tr><th scope="row">Company</th><td>{{fact:company.name}}, company number {{fact:company.number}}, {{fact:company.jurisdiction}}</td></tr>
