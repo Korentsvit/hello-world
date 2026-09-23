@@ -62,7 +62,7 @@
 
 ## Staging
 1. `python3 build.py`
-2. Run the test suites (`python3 tools/test_build_gate.py`, `python3 tools/test_consistency.py`, then `cd tools && node test-routes.mjs && node test-access.mjs && node test-menu.mjs && node qa.mjs && node test-signup.mjs --browser && node test-integration.mjs`). All checks should pass.
+2. Run the test suites (`python3 tools/test_build_gate.py`, `python3 tools/test_consistency.py`, `python3 tools/test_people.py`, `python3 tools/test_content_rules.py`, then `cd tools && node test-routes.mjs && node test-access.mjs && node test-menu.mjs && node qa.mjs && node test-signup.mjs --browser && node test-integration.mjs`). All checks should pass.
 3. Deploy `public/` to a staging project (for example `staging.nwpharmatech.org` or `*.pages.dev`). The staging build:
    - is `noindex` everywhere (meta tag and `X-Robots-Tag` header);
    - disallows everything in `robots.txt`;

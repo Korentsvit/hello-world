@@ -4,182 +4,226 @@ Date: 23 September 2026. Base: increment C (`a4e31c4`). The release commit is in
 
 **Nothing has been deployed, no DNS has changed, the live website is untouched, and nothing has been pushed to GitHub.** The live-site bots integrate the reviewed modules themselves (`docs/integration.md`).
 
-Every test count below comes from a run on the final tree. Passing tests are not proof that the scientific content is right or that a person has checked every page. Those checks are listed as still open under "Still open".
+## How this release was checked
+1. The eight items were implemented.
+2. Six independent reviewers then tried to show that each item was not done. They worked on private copies and ran their own browser and Cloudflare-runtime probes.
+3. Ten serious findings survived a separate refutation check (one was later rated minor), and about fifty minor findings were reported. All of them are fixed, or listed as not fixed with the reason.
+4. A second round of independent checkers re-ran the original reproductions against the fixed tree (results in `completion-report.md`).
+
+Every test count below comes from a run on the final tree. Passing tests do not prove that the science is right or that a person has checked every page; those checks are listed under "Still open".
+
+| Suite | What it proves | Result |
+|---|---|---|
+| `tools/test_build_gate.py` | Failed, refused or interrupted builds leave every output unchanged | 60 / 60 |
+| `tools/test-routes.mjs` | Routes, redirects, headers and the restricted guard under Cloudflare's own runtime | 175 / 175 |
+| `tools/test-access.mjs` | The restricted Access guard: valid, forged, expired and tampered tokens, and writes | 12 / 12 |
+| `tools/test-menu.mjs` | Mobile menu behaviour, keyboard, narrow and short screens, forced colours | 66 / 66 |
+| `tools/qa.mjs` | Every page at two widths, axe, links, downloads, content rules | 273 / 273 |
+| `tools/test-integration.mjs` | The six modules: CSP, axe, scoping, collisions, routes, dependencies | 228 / 228 |
+| `tools/test-signup.mjs` (`--browser`) | Sign-up outcomes, redirects, the provider-test gate, the live harness | 75 / 75 (99 / 99) |
+| `tools/test_people.py` | The leadership title, consent and biography gate | 28 / 28 |
+| `tools/test_content_rules.py` | Brief and study hub from the same content, crisis lines, PDF status, logo, source rules | 22 / 22 |
+| `tools/test_consistency.py` | One fact change reaches every page, the brief and its regenerated PDF | Pass |
 
 ## 1. Production build gate
 **Problem:** a refused production build had already overwritten `public/`. It left production-style output with the staging protections removed and unresolved content still present.
 
 **Changes:**
-- `build.py` now builds everything in a temporary directory beside the project.
-- It validates the result before installing anything:
+- `build.py` builds everything in a temporary directory, validates it, and only then installs `public/`, `restricted/`, `build/` and `integration/`, together with any regenerated PDFs in `src/downloads`, as one transaction.
+- The build holds a lock for its whole run (on POSIX systems). Any exception, Ctrl-C or SIGTERM rolls everything back.
+- Validation covers:
   - canonical URLs;
-  - no link to a `.html` address or to a redirect;
-  - redirect rules (no loops, no shadowed pages, no chains);
-  - staging protections on every page;
-  - restricted protections;
+  - no link to a `.html` address, to a redirect or to a missing `#fragment`;
+  - redirect rules;
+  - staging protections;
+  - published PDFs byte-identical to their checked manifest;
+  - the restricted guard, headers and links;
+  - every integration module present;
   - no hidden files in deployable folders.
-- Only then does it replace `public/`, `restricted/`, `build/` and `integration/` together, under a lock, with rollback if any step fails.
-- A refused or failed build prints "Build not installed; previous output left unchanged".
-- `[TBC]` review notes are never rendered.
+- If the module exporter fails to load, the build fails. Before, it installed an empty `integration/`.
+- `[TBC]` review notes are never rendered. They become publication blockers.
 
-**Test:** `tools/test_build_gate.py` works on a copy of the project. For each failure case it compares every output file (path, size, SHA-256 and modification time) before and after the build. The cases:
-- a refused production build;
+**Test:** `tools/test_build_gate.py` compares every file of all five trees before and after the build (path, size, SHA-256, modification time). The five trees are `public/`, `restricted/`, `build/`, `integration/` and `src/downloads`. The cases:
+- a refused production build, including one refused after PDFs were regenerated;
 - `--allow-stale-pdf` in production;
-- a content error part-way through rendering;
-- a redirect that would loop on Cloudflare;
-- a failed output validation;
-- a PDF whose facts changed but which cannot be regenerated.
-
-Positive controls check that a good build installs and that a changed fact reaches the site and its PDF. **Result: 25 of 25 passed.**
+- a content error;
+- looping, pattern and broken-fragment redirects;
+- a failed validation;
+- an exporter that cannot load;
+- a stale PDF that cannot be regenerated;
+- a swapped PDF file;
+- `OSError` and Ctrl-C during installation;
+- SIGTERM during PDF regeneration;
+- positive controls.
 
 ## 2. Cloudflare routing
-**Problem:** draft 3 redirected `/study` to `/study.html`, and Cloudflare Pages redirects `/study.html` back to `/study` (308). Seven routes looped.
+**Problem:** draft 3 redirected `/study` to `/study.html`, and Cloudflare Pages redirects `/study.html` back to `/study` with a 308, so seven routes looped.
 
 **Changes:**
-- Internal links are now extensionless and root-relative (`/study`, `/`). Canonical URLs and sitemap entries are absolute and extensionless (`https://www.nwpharmatech.org/study`).
-- `_redirects` keeps only short aliases (for example `/team` to `/people`).
-- The build rejects any rule that shadows a page, uses a form Cloudflare already redirects (`.html`, trailing slash, `/index.html`), or points at another redirect.
-- `_headers` and `robots.txt` use `/financing`.
-- The 404 page links to `/faq#urgent-help`.
+- **Links and URLs:**
+  - Internal links are extensionless and root-relative (`/study`, `/`).
+  - Canonical URLs and sitemap entries are absolute and extensionless.
+- **Redirects:**
+  - `_redirects` holds only short aliases, each also answered with a trailing slash, plus the one known live address (`/contactus`, from the company site).
+  - The build rejects any rule that shadows a page or a form Cloudflare already redirects, chains, uses a splat or placeholder, or points to a missing fragment.
+- **Production robots and headers:**
+  - `robots.txt` blocks nothing, so `/financing` stays crawlable and its noindex is seen.
+  - `/financing` keeps its `X-Robots-Tag` noindex.
+- **Restricted project** (found while testing; see below):
+  - The guard is now `restricted/_worker.js`.
+  - The project has its own navigation, a Not Found page and a CSP.
+  - It links only to its own pages.
 
-**Test:** `tools/test-routes.mjs` serves both projects with Cloudflare's own Pages runtime (`wrangler pages dev`) and follows every request hop by hop. It covers:
-- every page route (200, no redirect, correct canonical);
-- every earlier `.html` and trailing-slash address (one 308 to the route);
-- earlier deep links;
-- every alias (one 301, no chain);
-- the seven former loops;
-- 404s for unknown addresses;
-- every internal link and sitemap entry reached with no redirect;
-- the CSP, noindex headers and downloads;
-- the restricted project failing closed;
-- nothing left behind in the deployable folders.
+**Found while testing:** the draft-3 guard was a `functions/` directory, which Cloudflare runs only when the deploy is made from inside the folder. Deployed from the parent folder, the restricted pages were served unguarded.
 
-**Result: 143 of 143 passed.** Run against the increment-C build, the same test fails 74 checks; for example, `/study` loops 301 → 308 → 301.
+The Pages advanced-mode `_worker.js` now runs whichever folder the deploy is made from. `docs/deployment.md` also now requires the Access application to cover `<project>.pages.dev` and preview deployments, and gives checks to run after every deploy against those hostnames.
 
-**Found while testing:** Cloudflare runs `functions/_middleware.js` only when the restricted project is deployed from inside `restricted/`. Deployed from the parent folder, the restricted pages were served with Access unconfigured. `docs/deployment.md` now gives the exact command, the Git-integration settings and a check to run after every deploy. The test serves the project the correct way and checks that:
-- it returns 503 when Access is unconfigured;
-- it returns 403 when Access is configured but the request has no token;
-- a request with an invalid token is refused;
-- a write is refused.
+**Test:** `tools/test-routes.mjs` serves the projects with Cloudflare's own Pages runtime (`wrangler pages dev`) and follows every request hop by hop. It covers:
+- page routes;
+- earlier `.html` and trailing-slash addresses;
+- earlier deep links, with their fragments;
+- every alias, for chains and fragments;
+- the former loops;
+- 404s;
+- every internal link;
+- sitemap entries;
+- a production-style header and robots pass;
+- the restricted project failing closed, both from inside its folder and from its parent;
+- no tool state left in deployable folders.
 
-**Limit:** the live site's own URL list was never supplied, so old live addresses can't be mapped or tested yet. `src/redirects.txt` and `docs/url-map.md` say where to add them.
+Run against the increment-C build, the same test fails 74 checks; for example, `/study` loops 301 → 308 → 301.
+
+**Limit:** the live site's URL list was never supplied, so old live addresses can't be mapped or tested yet.
 
 ## 3. Mobile menu
-**Changes:**
-- One Home link, marked as the current page on the home page. A "Programme brief" quick link keeps the brief prominent.
-- The three groups form an exclusive accordion: native `<details name>`, with a script fallback. Only the current page's group starts open.
-- A link to the current page, or to a `#fragment` on it, closes the menu (hidden, `aria-expanded="false"`) and moves focus to the destination.
-- Escape closes the menu and returns focus to the toggle.
-- Tabbing out of the open menu closes it, so focus is never hidden behind the panel.
-- The panel fits and scrolls within the viewport on small screens.
-- A sticky-header scroll padding keeps in-page destinations visible.
-- Without JavaScript, the menu stays visible and its groups still open one at a time.
+- **One Home link**, marked as the current page on the home page. A "Programme brief" quick link keeps the brief one tap away.
+- **One group open at a time**, using native `<details name>` with a script fallback. The current page's group starts open.
+- **In-page destinations:** a link to the current page, or to a `#fragment` on it, closes the menu and moves focus to the destination.
+- **Closing:**
+  - The menu closes whenever focus leaves it and its toggle in either direction (Tab, Shift+Tab or the skip link), and on a click outside, so focus is never hidden behind it.
+  - Escape closes it and returns focus to the toggle.
+- **Short or zoomed screens:** opening the menu brings the header to the top so the panel fits and scrolls. Closing it with the toggle or Escape restores the page.
+- **Forced colours:** the toggle icon stays visible at every width. The current page is marked with a border or underline that forced colours keep, and the pressed evidence filter stays distinguishable.
+- **Labels:** menu landmark labels are translatable, and citation links read "Source:" once.
 
 **Test:** `tools/test-menu.mjs` runs under the Cloudflare runtime with the CSP on. It covers:
-- widths 320, 360, 375, 390 and 414 px, and 1099/1100 px;
-- keyboard and pointer use;
-- touch-target sizes;
-- focus visibility and obscuring;
-- overflow;
+- widths 320–414, 768 and 1099/1100 px;
+- short viewports: 568×320, 341×162 and 320×180;
+- keyboard (including Shift+Tab and the skip link), pointer and touch;
+- reduced motion;
+- forced colours, light and dark;
 - axe with the menu open;
-- no-JS and fallback behaviour.
+- no-JS behaviour.
 
-**Result: 39 of 39 check groups passed.** Screenshots: `docs/qa/screenshots/menu-open-320.png` and `menu-open-390.png`.
+Run on the pre-fix code, it fails 17 checks. Forced colours are Chromium emulation only.
 
 ## 4. Leadership
-The latest management instruction and each dated record are compared person by person in [`leadership-reconciliation.md`](leadership-reconciliation.md), which holds the one-table summary. The August 2026 teaser is used only to corroborate another record, never on its own.
+One table in [`leadership-reconciliation.md`](leadership-reconciliation.md) compares the latest management instruction with each dated record, listing only the people whose display changed or who need a decision.
+
+**Title rules, checked by the build:**
+- A title is shown only when two or more records agree, and at least one of them is a 2025–2026 record other than the teaser.
+- "Confirmed" requires a logged management confirmation that names the title.
+- No chair title or committee appointment is shown anywhere (pages, PDFs, PDF sources or integration fragments) until management confirms it.
+- The August 2026 teaser can only corroborate another record.
 
 **On the people page now:**
-- Scott Woods is featured first. He has no title and no adviser wording; the page describes the CHR-P expertise he brings to study design.
-- No chair title is shown for either William Jarosz or Richard Barker. The records conflict, and management is asked who chairs the board.
-- Professor Trevor Jones CBE is restored as Senior Adviser. The 2023 and 2025 records agree on that title, and he is on the July 2026 circulation list. His short biography is checked against search summaries, with the checks logged.
-- John Kane's "Chair, Scientific Advisory Board" is withheld, because it appears only in the teaser and it is a committee appointment. He is shown as leading clinical trial design.
-- Groups: "Clinical and scientific leadership", "Management", "Board and senior advisers".
-- A title appears only when two or more records agree. Every title blocks a production build until management confirms it in writing.
-- Portraits render nothing until authorised: no initials placeholder.
+- **Scott Woods** is featured first, with no title and no adviser wording. One line, taken from the October 2025 draft deck, describes the CHR-P expertise he brings to the design of the planned Phase 2B study. Management is asked for his role wording.
+- **William Jarosz and Richard Barker** are shown with no chair title. The records conflict, and management is asked who chairs the board.
+- **Trevor Jones:** Professor Trevor Jones CBE is restored as Senior Adviser. His biography uses only statements that are in the company records and were confirmed by a logged search.
+- **John Kane** has neither "Chair, Scientific Advisory Board" (teaser only) nor "leads clinical trial design" (only the teaser links him to this programme's design). He is shown with the descriptor "Clinical trial design".
+- **Daud Gutseriev:** "Chief Operating Officer" is withheld. Apart from the teaser, only the 2023 deck gives it. He is shown as "Co-founder".
+- **Gillian Cannon** is shown as "Board Member". "Non-executive" is teaser-only.
+- **Filipp Korentsvit** is shown as "Chief Executive Officer".
+- **Biographies:** Trevor Jones's drops an unchecked opening, and Gillian Cannon's drops UCB, which is in no company record.
+- **Production blockers:** every unconfirmed title, every profile without written consent to publish, and every index-level biography blocks production.
+- **Portraits** render nothing until authorised.
 
 ## 5. Integration package (not a site replacement)
-`python3 build.py` now also writes `integration/`, with six modules the live-site bots import one at a time: study hub, Phase 1, formulation explanation, evidence library, family guide and newsroom.
+`python3 build.py` writes `integration/`, with six modules the live-site bots import one at a time:
+- study hub;
+- Phase 1;
+- formulation explanation;
+- evidence library;
+- family guide;
+- newsroom.
 
-Each module has:
-- `fragment.html`: main content only. No header, footer, navigation, notice bar, staging banner or skip link.
-- `module.css`: only the rules the fragment uses. Every selector is under `.nwpt-module`, classes and custom properties are `nwpt-` prefixed, and there are no global rules.
-- `module.js`: only where behaviour is needed. It is CSP-compatible, with no inline code.
-- `manifest.json`: facts with their verification level, references, downloads, anchors, links and the blockers that apply to the module.
-- `preview.html`: for reviewing the module on its own.
+Each module has five files:
+- **`fragment.html`:** main content only.
+- **`module.css`:**
+  - only the rules the fragment uses;
+  - every selector under `.nwpt-module:not(#nwpt-a):not(#nwpt-b)`, a two-id weight so content-area host rules don't override it;
+  - `nwpt-`-prefixed classes and custom properties;
+  - links underlined explicitly.
+- **`module.js`:** only where needed; CSP-compatible.
+- **`manifest.json`:**
+  - facts with their verification level, references, downloads, anchors and links;
+  - dependencies on pages outside the package;
+  - redirects, marked required (the staging route) or optional (an alias, to skip if the path already exists on the live site);
+  - the blockers that apply to the module.
+- **`preview.html`:** to review the module on its own.
 
-Also in `integration/`:
-- `routes.json`: a single route map for every link.
-- The shared public-safe content model. Internal source notes are never exported.
-- Instructions for each module in `docs/integration.md`. It opens by saying nothing replaces the live site automatically, and its "Do not change" section keeps the live header, footer, brand assets and security configuration unless a change is agreed.
+**Routes:** one route map, `routes.json`. The export refuses live paths that would loop, chain or take over another page, and trailing-slash routes.
 
-**Test:** `tools/test-integration.mjs` covers:
-- each preview under a strict CSP: no errors or violations, axe clean;
-- scoping of every selector;
-- a collision test with an aggressive host stylesheet, showing no leakage either way for classes and variables;
-- evidence filters;
-- that every link resolves.
+**Content export:** the export includes only citable or cited sources, published document versions and expanded fact values.
 
-**Result: 154 of 154 passed.** Two limits:
-- Host element rules (for example the live site's `h2` styles) can still set properties the module leaves unset. The docs say so.
+**Family guide:** it stays blocked until the live urgent-help link is checked and recorded, and while the crisis-line re-check is open.
+
+**Instructions:** `docs/integration.md` gives module-by-module instructions, and its anchor lists are cross-checked against the manifests by the test. It opens by saying nothing replaces the live site automatically, and its "Do not change" section keeps the live header, footer, brand assets and security configuration.
+
+**Limits:**
+- Host rules for properties a module does not set, `!important` rules, and rules with two or more ids can still restyle a module. The docs say so.
 - The newsroom module ships without the optional sign-up form.
 
 ## 6. Programme Room
-It is not in this package. It was not built in this workspace and is not in the repository, Drive, Gmail or the account's published artifacts. The study hub is not presented as the Programme Room anywhere. [`programme-room.md`](programme-room.md) records this, and sets out what the component must meet when supplied:
-- one consistently labelled pooled risk series, not mixed with Kaplan–Meier estimates, and still unpublished pending primary verification;
+It is not in this package. It was not built in this workspace, and it isn't in the repository, Drive, Gmail or the account's published artifacts. The study hub is not presented as the Programme Room anywhere. [`programme-room.md`](programme-room.md) records this, and lists what the component must meet when supplied:
+- one consistently labelled pooled risk series, not mixed with Kaplan–Meier estimates, and unpublished until primary verification;
 - CSP-compatible, self-hosted assets.
 
 ## 7. Visual and editorial pass
-- **Logo:** one switch (`content/assets.json` → `logo`) replaces the interim mark in the header, footer and favicon once the official SVG is supplied and authorised.
-- **Portraits and renders:** these placements render nothing until authorised. There are no empty frames, initials or orphan captions. Sizes, alt text, captions and switches are in `docs/asset-manifest.md`.
+- **Logo:** one switch (`content/assets.json` → `logo`) replaces the interim mark in the header, footer, favicon and both PDFs once the official SVG is supplied and authorised.
+- **Portraits and renders:** these placements render nothing until authorised. There are no empty frames, initials or orphan captions (`docs/asset-manifest.md`).
 - **Homepage:**
-  - The programme brief now sits directly below the hero, under the heading "The programme at a glance".
-  - Its download label is generated from the checked PDF ("PDF, 2 pages, … KB"), so it can't disagree with the file.
-  - The evidence-label explanation is one sentence plus a compact key and a link to the full explanation (`/evidence#labels`).
-- **Draft instructions removed from public pages:**
-  - `[TBC]` notes moved to `content/review.json`, where they are reported as publication blockers and never shown.
+  - The programme brief sits directly below the hero, under "The programme at a glance". Its label comes from the checked PDF ("PDF, 2 pages, … KB").
+  - The evidence-label explanation is one sentence plus a compact key, linking to `/evidence#labels`.
+- **Draft instructions:**
+  - `[TBC]` notes moved to `content/review.json`, where they are blockers and never shown.
   - The unadopted publication policy and editorial standards moved to `docs/proposals/`.
-  - The note promising a future mailbox and the document-history "staging drafts" note were removed.
-  - "(staging draft)" was removed from the PDF.
-- **Unsupported content resolved or removed:** every public sentence was checked against the content sources. Examples:
-  - unrecorded commitments such as "full ingredients will be listed", "doses will be published with its design" and "we never make unsolicited investment approaches";
-  - "treatment" wording for the investigational medicine;
-  - unsourced statements about CBD products;
-  - independence wording aligned with the brief ("kept independent of funding and financing").
+  - The future-mailbox note and the "staging drafts" note were removed.
+  - The PDF headers show the document status from `documents.json` ("Draft for review") while the newest version is unpublished. It is a status, not an instruction.
+- **Unsupported content:**
+  - **Commitments:** unrecorded ones (registering before enrolment, a registry results summary, "will be published after review") were removed.
+  - **Build rule:** the build refuses public milestones and updates sourced to an instruction or a draft.
+  - **Unsourced claims:** the unsourced DMC "usual" clause and the untested screen-reader claim were removed.
+  - **Wording:** "treatment" wording for the investigational medicine was corrected.
+  - **Brief:** its stage, completed-work and results rows now come from the same study summary and fact as the study hub.
+  - **Crisis numbers:** these are kept once in `services.json` and used by both the Q&A and the appointment sheet.
 
-  Each change and its reason is recorded in the editorial pass notes.
-- **Blockers and optional assets kept separate:** the build prints publication blockers and optional assets as separate lists and writes both to `build/build-report.json`. `docs/missing-inputs.md` keeps the same split.
+  Every change is listed with its reason in [`editorial-pass-notes.md`](editorial-pass-notes.md).
+- **Optional assets are kept separate from publication blockers**, in the build output, `build/build-report.json` and `docs/missing-inputs.md`.
 
 ## 8. Functional claims
-- **Sign-up:**
-  - "Nothing was saved" is gone.
-  - A network failure, a timeout (8 s), a provider 5xx or an unreadable reply now says: "We could not get confirmation that your sign-up was received, so it may or may not have been recorded…". The browser script says the same.
-  - `--with-signup` is refused until `tools/test-signup-live.mjs` has recorded a passing live test on a test list for the exact version of `subscribe.js` in use.
-  - **Live provider behaviour has not been tested**: no provider is configured here.
-  - Tests: 36 of 36 unit and static checks; 59 of 59 including the browser run under the Cloudflare runtime.
-- **PDFs:**
-  - When a fact in a PDF changes, the build regenerates it with `tools/make-pdf.mjs`.
-  - It then checks the page count against the template, that the PDF is tagged, and that every fact value used appears in the PDF text.
-  - The results go in `src/downloads/pdf-manifest.json`.
-  - If regeneration or a check fails, the build stops without installing.
-  - Download labels come from the manifest.
-  - `tools/test_consistency.py` now also proves the brief PDF is regenerated and checked after a fact change.
+**Sign-up:**
+- "Nothing was saved" is gone.
+- A network failure, a timeout, a provider 5xx, a redirect (redirects are no longer followed) or an unreadable reply now shows: "We could not get confirmation that your sign-up was received, so it may or may not have been recorded…". The browser script shows the same.
+- The "unavailable" message now says the address "has not been passed to an email provider or stored".
+- `--with-signup` is refused until `tools/test-signup-live.mjs` records a passing live test on a test list. The record must match the current `subscribe.js`, have every case `true`, and carry a matching digest.
+- The live harness fails if a confirmed subscriber is told to confirm again.
+- **Live provider behaviour has not been tested**: no provider is configured here.
 
-## Other fixes found on the way
-- `qa.mjs` runs under the Cloudflare runtime, uses extensionless routes, and checks that no internal link passes through a redirect. **Result: 268 of 268 passed.** It now also checks:
-  - the brief's heading and label;
-  - the brief sits right after the hero;
-  - draft wording is absent;
-  - Woods is not presented as an adviser, only one chair title is shown, and Trevor Jones is listed;
-  - there are no empty image slots.
-- Test tooling no longer writes into deployable folders (wrangler state is kept in a temporary copy).
-- Review notes on restricted pages are now reported (restricted staging only).
-- The newsroom boilerplate says "completed on 10 December 2025".
+**PDFs:**
+- **When they regenerate:** when their expanded source changes (facts, study summary, results status, crisis lines, logo, template), or when the file no longer matches its checked manifest entry.
+- **What is checked:**
+  - page count;
+  - tagging;
+  - every fact value;
+  - every line of source text.
+- **Publishing:** only files byte-identical to their manifest entry are published, and download labels come from the manifest.
+- **Versions:** a PDF whose content differs from its recorded version in `documents.json` is a publication blocker until a new version is recorded.
 
 ## Still open
-- Everything in `docs/missing-inputs.md`, including primary-source verification and management confirmation of every title.
+- Everything in `docs/missing-inputs.md`. That includes primary-source verification, and management confirmation of every title, consent and biography.
 - Scientific, legal (including financial promotion) and MHRA advertising review.
-- Manual screen-reader, Safari, Firefox and real-device testing.
+- Manual screen-reader, Safari, Firefox, real-device and real Windows contrast-theme testing.
 - A live email-provider test.
 - The live-site URL list.
 - The Programme Room component.

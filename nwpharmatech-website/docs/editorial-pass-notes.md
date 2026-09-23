@@ -12,7 +12,8 @@ Every change to text that a visitor can see, made in the correction release (aft
 | M | Mobile menu | `65eec07` |
 | S | Sign-up messages | `a49be8a` |
 | F | Follow-ups after the merge | `abf8f72`, `7a4011f` |
-| R | Review follow-up: records, PDFs and unsourced claims | this pass |
+| R | Review follow-up: records, PDFs and unsourced claims | `6eb186a` |
+| V | Review follow-up: leadership records, menu, restricted area | `1bb7645`, `8c6f4c2`, `7a4011f`, `e92e79d` |
 
 A change marked *superseded* was replaced by a later one, which is listed with it. Quoted text shows the rendered wording, with shared facts filled in.
 
@@ -62,6 +63,7 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 
 - **E** *(superseded)* "When results are published, this section will show each measure, what was found, the limitations and the source report, and a plain-language summary will be posted on both registries." → "A results summary is planned for both trial registries and this page. No date has been set."
 - **R** Results publication status: "Results will be published after the study report and plain-language wording have been reconciled and approved. A results summary is planned for both trial registries and this page. No date has been set." → "Results have not been published. They will not be published until the clinical study report and the plain-language wording of the results have been reconciled." *The analysis record says results are not to be published until reconciled. No record states a plan to publish a summary on the registries or this site; that comes from the unadopted publication policy.*
+- **V** "Results have not been published. They will not be published until the clinical study report and the plain-language wording of the results have been reconciled." → "Results have not been published yet." (also in the programme brief) *"Until reconciled" came from an internal working note, not from a company record; only the fact that results are unpublished is recorded.*
 - **R** "The study had pre-specified stopping rules and did not use a data monitoring committee, which is usual for a small single-dose study in healthy volunteers." → "…and did not use a data monitoring committee." *The study records support only that no committee was used; "usual" was an unsourced general claim.*
 
 ## Questions and answers (`faq.html`)
@@ -149,10 +151,17 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 - **E** `[TBC: legal review of the full privacy notice, retention period and data protection contact]` → removed from the template; now a `content/review.json` blocker. *No visible change: it was never rendered.*
 - **R** Accessibility: "The site supports keyboard navigation, visible focus, screen readers, text resizing to 200% and use without JavaScript." → "The site is designed for keyboard navigation, visible focus, text resizing to 200% and use without JavaScript, and automated tests check these. It has not yet been tested with screen readers." *No screen reader has been used to test the site (`accessibility-testing.md`).*
 
+- **V** Scott Woods: "Brings expertise in clinical high risk of psychosis, including how it is assessed, to the design of the programme's studies." → "Brings expertise in clinical high risk of psychosis to the design of the planned Phase 2B study." *The only record of his function (October 2025 draft deck: CHR-P expertise "on trial design") concerns the next trial; management is asked for his role wording.*
+- **V** John Kane: "Leads the programme's clinical trial design." removed; descriptor "Clinical trial design" kept. *Only the teaser links him to the current programme's design (the 2025 draft described a relapse-prevention design); management is asked.*
+- **V** Daud Gutseriev: title "Chief Operating Officer" and "Leads programme execution." removed; descriptor "Co-founder". *Apart from the teaser, only the 2023 deck gives the title; the teaser is never the only 2025–2026 support. "Co-founder" is in the 2023 deck and the 2025 draft.*
+- **V** Trevor Jones: biography "Senior leader in the pharmaceutical sector. Former research…" → "Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association." *The present-tense opening had no logged check.*
+- **V** Gillian Cannon: biography "…senior roles at Merck, Otsuka and UCB." → "…senior roles at Merck and Otsuka." *UCB is in no company record.*
+
 ## Navigation (every page)
 
 - **M** Mobile menu: the duplicate "Home" link is removed; one remains. *Two Home links in one menu.*
 - **M** Mobile menu: new quick link "Programme brief" to the home page's brief section (`/#programme-brief`). *Keep the brief one tap away.*
+- **V** Citation links: screen readers heard "Source: Source: …"; the link now reads "Source: …" once (the visible text is unchanged). *Duplicate prefix.*
 - **B** Footer: "Programme brief (PDF)" → "Programme brief (PDF, 2 pages, 67 KB)". *From the checked PDF.*
 
 ## Programme brief PDF
@@ -175,3 +184,4 @@ A change marked *superseded* was replaced by a later one, which is listed with i
 ## Restricted staging area (not public)
 
 - **F** Restricted pages link only to restricted pages: the footer's public links and the urgent-help link are left out, and a restricted "Not found" page says "There is no page at this address in the restricted area." with a link to the restricted index. *The restricted project serves nothing from the public site.*
+- **V** Restricted navigation: the public page groups (shown there as plain, unlinked text) are replaced by links to the restricted index and its three pages; the restricted "Not found" page adds "Access to this area does not confirm that anyone is eligible to invest." *The restricted project serves nothing from the public site, and every restricted page carries the eligibility statement.*

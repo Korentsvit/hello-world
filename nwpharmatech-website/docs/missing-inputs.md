@@ -8,8 +8,8 @@ A production build is refused while any of these remain.
 
 | # | What is needed | Owner | Where it is tracked |
 |---|---|---|---|
-| 1 | **Primary-source verification** of every cited reference and of the Companies House, registry and pooled-risk facts (checked so far only through search summaries) | Scientific reviewer | Build report; `tools/evidence_review.py record`; `facts.json` `verification` |
-| 2 | **Leadership titles** confirmed by management, and consent to publish each profile. The discrepancies and the questions for management are in [`leadership-reconciliation.md`](leadership-reconciliation.md) | NWPharmaTech management | `people.json` `role_status` |
+| 1 | **Primary-source verification** of every cited reference, of the Companies House, registry and pooled-risk facts, and of the index-level biographies (Woods, Kane, Barker, Cannon, Jones), all checked so far only through search summaries | Scientific reviewer; NWPharmaTech management for biographies | Build report; `tools/evidence_review.py record`; `facts.json` `verification`; `people.json` `bio_verification` |
+| 2 | **Leadership titles** confirmed by management, and consent to publish each profile. The discrepancies and the questions for management are in [`leadership-reconciliation.md`](leadership-reconciliation.md) | NWPharmaTech management | `people.json` `role_status`, `role_records`, `consent_to_publish` |
 | 3 | **Board and legal approval** of the funding and financing wording (financing page, homepage, Q&A, programme brief PDF) | Board and legal counsel | `content/review.json` |
 | 4 | **Legal review of the privacy notice**, including the retention period and a data protection contact | Legal counsel | `content/review.json` |
 | 5 | **Crisis-line re-check** on the official sites immediately before launch. The numbers are kept once, in `content/services.json` → `crisis_lines`, which fills the Q&A urgent-help section and the appointment preparation sheet PDF | Site editor | `content/review.json` |
