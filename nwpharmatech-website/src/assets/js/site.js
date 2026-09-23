@@ -65,12 +65,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Optional email sign-up (present only in builds made with --with-signup). Works without JS as a normal POST.
+// Only the server's answer is shown. Without one we cannot know whether the sign-up was recorded (the request
+// may have arrived before the connection failed), so we say so in the server's own words (subscribe.js).
 document.addEventListener("DOMContentLoaded", function () {
   var form = document.querySelector("form.signup");
   if (!form || !window.fetch) return;
   var msg = document.getElementById("su-msg");
+  var unconfirmed = "We could not get confirmation that your sign-up was received, so it may or may not have been recorded. If an email arrives asking you to confirm your address, please follow the link in it. If none arrives, please try again later.";
+  var pending = false;
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    if (pending) return;
     var email = form.querySelector("#su-email");
     if (!email.value || !email.checkValidity()) {
       msg.textContent = "Please enter a valid email address.";
@@ -79,10 +84,20 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     email.removeAttribute("aria-invalid");
+    pending = true;
     msg.textContent = "Sending…";
-    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 20000);   // the server gives up on the provider after 8 s
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" }, signal: ctrl ? ctrl.signal : undefined })
       .then(function (r) { return r.json(); })
-      .then(function (d) { msg.textContent = d.message; })
-      .catch(function () { msg.textContent = "We could not sign you up just now. Nothing was saved. Please try again later."; });
+      .then(function (d) {
+        if (!d || typeof d.message !== "string" || !d.message) throw new Error("unreadable reply");
+        msg.textContent = d.message;
+      })
+      .catch(function () { msg.textContent = unconfirmed; })   // offline, dropped connection, no answer, unreadable reply
+      .then(function () {
+        clearTimeout(timer);
+        pending = false;
+      });
   });
 });
