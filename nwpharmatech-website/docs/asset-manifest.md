@@ -1,23 +1,18 @@
 # Asset manifest
 
-Assets render only when the file exists **and** it is marked authorised in content. Otherwise the page omits the image (portraits fall back to initials). No "pending" box ever appears publicly.
+Every image slot renders **only** when its file exists under `src/` **and** content marks it authorised. Otherwise the slot renders nothing at all: no empty frame, initials, caption or reserved space, and the page around it is laid out to look finished without it. Missing assets are listed by the build as optional; they never block publication.
 
-| File (under `src/`) | Registered in | Subject | Caption or alt (from content) | Status |
-|---|---|---|---|---|
-| assets/img/people/scott-woods.jpg | people.json | Dr Scott W. Woods | alt: empty (the name is adjacent) | Missing |
-| assets/img/people/john-kane.jpg | people.json | Dr John M. Kane | as above | Missing |
-| assets/img/people/grace-blest-hopley.jpg | people.json | Dr Grace Blest-Hopley | as above | Missing |
-| assets/img/people/filipp-korentsvit.jpg | people.json | Filipp Korentsvit | as above | Missing |
-| assets/img/people/daud-gutseriev.jpg | people.json | Daud Gutseriev | as above | Missing |
-| assets/img/people/william-jarosz.jpg | people.json | William Jarosz | as above | Missing |
-| assets/img/people/richard-barker.jpg | people.json | Prof. Richard Barker OBE | as above | Missing |
-| assets/img/people/gillian-cannon.jpg | people.json | Dr Gillian Cannon | as above | Missing |
-| assets/img/renders/nwpt-sm32300-softgel.jpg | assets.json `softgel-render` | Corporate softgel render | "NWPT-SM32300 300 mg oral softgel. Computer-generated render supplied by NWPharmaTech; not to scale. Investigational medicine." | Missing; caption approval needed |
-| assets/img/renders/micellar-dispersion.jpg | assets.json `micelle-render` | Micellar dispersion illustration | "Illustration of self-emulsification… Schematic; not to scale, and not an image of the body." | Missing; caption approval needed. Not yet placed on a page |
-| assets/media/interview-*.mp4, .vtt, transcript | interviews.json | Woods, Kane, Blest-Hopley | Titles in interviews.json | Missing (outlines in docs/interviews) |
-| assets/img/mark.svg | header | Interim mark in brand colours | none | Replace with the official NW monogram |
+To show an asset: put the file at the path below, set the flag(s) in the last column, run `python3 build.py`, and check the page.
 
-**Specifications:**
-- **Portraits:** square JPEG, at least 400×400 px, with written consent to publish.
-- **Renders:** JPEG or WebP, at least 1200×900 px. They must be actual corporate renders; do not use AI-generated likenesses.
-- **Video:** MP4 H.264, with WebVTT captions checked by a human and a full transcript.
+| Slot | File (under `src/`) | Where it appears | Size and shape | Alt text | Caption | To show it |
+|---|---|---|---|---|---|---|
+| Official logo | `assets/img/brand/nwpharmatech-logo.svg` | Header and footer of every page, and the favicon (`b_brand`). Until then: the interim mark `assets/img/mark.svg` with the text wordmark | SVG. Header 36 px high, footer 32 px high; width follows the artwork | Header: empty (the link is labelled "NWPharmaTech home"). Footer: "NWPharmaTech" (`assets.json` `logo.alt`) | None | `content/assets.json` → `logo.authorised: true` |
+| Softgel render | `assets/img/renders/nwpt-sm32300-softgel.jpg` | `science.html#formulation`, right column, above the capsule-to-measurement diagram. Without it the diagram fills the column | 4:3 JPEG, at least 1200 × 900 px. Set `width` and `height` in `assets.json` to the file's pixel size | "Computer-generated render of an NWPT-SM32300 softgel capsule" | "NWPT-SM32300 300 mg oral softgel. Computer-generated render supplied by NWPharmaTech; not to scale. Investigational medicine." | `assets.json` → `softgel-render.authorised: true` and `caption_approved: true` |
+| Micellar illustration | `assets/img/renders/micellar-dispersion.jpg` | **No agreed placement**, so it renders nowhere even when supplied. If a placement is agreed, add `{{block:asset:micelle-render}}` to that page | 4:3 JPEG, at least 1200 × 900 px | "Illustration of a lipid formulation dispersing into small droplets in water" | "Illustration of self-emulsification … Schematic; not to scale, and not an image of the body." | Agree a placement, then as for the softgel render |
+| Portraits (9) | `assets/img/people/<id>.jpg` for `scott-woods`, `john-kane`, `grace-blest-hopley`, `filipp-korentsvit`, `daud-gutseriev`, `william-jarosz`, `richard-barker`, `gillian-cannon`, `trevor-jones` | `people.html`: a 96 × 96 px circle beside the name. Without it the name block starts the card. `newsroom.html`: a "Photographs" press kit with a download link, which appears once at least one portrait is authorised | Square JPEG, at least 400 × 400 px, the face centred (it is cropped to a circle) | Profile card: empty (the name is next to it). Press kit: the person's name | Press kit only: name and title (or, where no title is confirmed, the descriptor) | `content/people.json` → that person's `portrait.authorised: true`, after written consent to publish the photograph |
+| Interview recordings (3) | `assets/media/…` video, WebVTT captions and transcript | Inside the Woods, Kane and Blest-Hopley profile cards | MP4 H.264; human-checked WebVTT captions; full transcript | Video has captions and a transcript link | Title from `content/interviews.json` | `interviews.json` → set the three file paths and `approved: true` (speaker approval) |
+
+**Rules**
+- Renders must be actual corporate renders supplied by NWPharmaTech. Do not use AI-generated images or likenesses, and do not use a photograph of a person without their written consent.
+- A render caption must be approved (`caption_approved`) before the image can appear; an image never appears without its caption.
+- Portraits and interview files are handled through `people.json` and `interviews.json`; `assets.json` holds only the logo and the two render slots.

@@ -1,32 +1,46 @@
 # Routes and redirects
 
-## Public routes (staging draft 3)
+Page URLs are **extensionless**. Cloudflare Pages serves `/study` from `study.html`, and itself answers `/study.html` and `/study/` with a 308 to `/study` (and `/index.html` with a 308 to `/`). Links, canonical URLs and the sitemap all use the extensionless route. Earlier `.html` addresses therefore keep working in one permanent redirect; never add a rule for a page's own route (it would loop). Tested with Cloudflare's runtime by `tools/test-routes.mjs`.
 
-| Route | Page | Section (menu group) | Change since draft 2 (f8e07d8) |
-|---|---|---|---|
-| / | Home | none | Adds "Programme in 90 seconds", the brief near the top and the latest real update |
-| /clinical-need.html | Clinical need | The research | Discreet source links |
-| /science.html | Science and formulation | The research | **Rebuilt:** three questions and a diagram. The study cards moved to the evidence library |
-| /evidence.html | Evidence library | The research | **Rebuilt:** filters, study cards, citations. Anchors are `#ref-<id>` and `#cat-<category>` (the old `#need`, `#cbd` and `#psychosis` anchors are replaced) |
-| /families.html | For young people and families | The research | **New** |
-| /programme.html | Programme overview | The programme | The design table moved to the study hub; `#phase-1` moved to /phase-1.html |
-| /study.html | The study: progress and evidence | The programme | **New.** Anchors: `#milestones`, `#documents`, `#publication-policy` |
-| /phase-1.html | Phase 1 study | The programme | **New.** Anchor: `#results` |
-| /updates.html | Programme updates | The programme | Generated from updates.json |
-| /people.html | People | About | Profile cards from people.json |
-| /financing.html | Funding and financing | About | Adds funding transparency (noindex, not in the sitemap) |
-| /newsroom.html | Newsroom | About | **New.** Anchors: `#corrections`, `#standards`, and `#signup` (optional builds only) |
-| /faq.html | Questions and answers | About | Anchor: `#urgent-help` |
-| /contact.html, /legal.html | Contact; Legal | About | — |
-| /downloads/nwpharmatech-programme-brief.pdf | Brief (v3, generated) | none | Regenerated |
-| /downloads/appointment-preparation-sheet.pdf | Appointment sheet | none | **New** |
-| /downloads/nwpharmatech-references.ris and .bib | Citations | none | **New** |
+## Public routes
 
-**Anchor changes needing care:** `programme.html#phase-1` is now `phase-1.html`. Fragment redirects are not possible server-side, so update any links you control.
+| Route | Page | Anchors |
+|---|---|---|
+| `/` | Home | `#programme-brief` |
+| `/clinical-need` | Clinical need | |
+| `/science` | Science and formulation | `#why-cbd`, `#formulation`, `#dose` |
+| `/evidence` | Evidence library | `#labels` (new), `#ref-<id>`, `#cat-<category>` |
+| `/families` | For young people and families | |
+| `/programme` | Programme overview | |
+| `/study` | The study: progress and evidence | `#milestones`; `#documents` only once a document version is published |
+| `/phase-1` | Phase 1 study | `#results` |
+| `/updates` | Programme updates | |
+| `/people` | People | |
+| `/financing` | Funding and financing (noindex; not in the sitemap) | |
+| `/newsroom` | Newsroom | `#corrections`; `#signup` in sign-up builds only |
+| `/faq` | Questions and answers | `#urgent-help`, `#not-medical-advice` |
+| `/contact`, `/legal` | Contact; Legal, privacy and accessibility | `/legal`: `#disclaimer`, `#privacy`, `#cookies`, `#accessibility` |
 
-**Restricted project** (a separate hostname behind Access): `/`, `/financing-structure.html`, `/investor-journey.html`, `/funding-figures.html`. `interest-registration.html` from draft 2 is replaced by `investor-journey.html`.
+**Downloads:** `/downloads/nwpharmatech-programme-brief.pdf`, `/downloads/appointment-preparation-sheet.pdf`, `/downloads/nwpharmatech-references.ris` and `.bib`.
 
-**Convenience redirects:** see `src/redirects.txt`.
+**Short aliases** (301, one hop, defined in `src/redirects.txt`): `/brief` and `/programme-brief` → `/#programme-brief`; `/phase-2b`, `/phase2b` → `/study`; `/phase1` → `/phase-1`; `/formulation` → `/science#formulation`; `/references` → `/evidence`; `/team` → `/people`; `/news`, `/press` → `/newsroom`; `/funding`, `/invest`, `/investors` → `/financing`; `/privacy`, `/accessibility` → `/legal#…`; `/help` → `/faq#urgent-help`.
+
+## Removed anchors
+
+Fragments cannot be redirected server-side; an old fragment opens the top of its page. Update any links you control.
+
+| Old address | Why | Link instead |
+|---|---|---|
+| `/study#publication-policy` | Unadopted draft, removed from public pages (`docs/proposals/publication-policy.md`) | `/phase-1#results` for results status |
+| `/newsroom#standards` | Unadopted draft, removed from public pages (`docs/proposals/editorial-standards.md`) | `/newsroom#corrections` |
+| `/study#documents` | Shown only when a document version is published; none is yet | `/study` |
+| `/programme#phase-1` (draft 2) | Moved to its own page | `/phase-1` |
+| `/evidence#need`, `#cbd`, `#psychosis` (draft 2) | Library rebuilt | `/evidence#cat-<category>` |
+
+## Restricted project
+
+A separate hostname behind Cloudflare Access: `/`, `/financing-structure`, `/investor-journey`, `/funding-figures`. Never linked from the public site.
 
 ## Old live site to new: not completed
-The live sites couldn't be reached from the build environment. Supply the list of live URLs (missing input 22), and each will be mapped to its nearest route above.
+
+The live sites could not be reached from the build environment. Once the list of live URLs is supplied, add one line per old URL to `src/redirects.txt`, pointing straight at its final route above.

@@ -1,31 +1,42 @@
 # Missing inputs
 
-Each entry gives what is missing, where it goes, and what it blocks. Nothing here is shown as a placeholder on public pages; the affected module is omitted or the text says exactly what is known.
+Nothing below is shown as a placeholder on a public page. `python3 build.py` prints the current publication blockers and the optional assets separately, and writes both to `build/build-report.json`.
 
-| # | Input | Where it goes | What it blocks |
+## Publication blockers
+
+A production build is refused while any of these remain.
+
+| # | What is needed | Owner | Where it is tracked |
 |---|---|---|---|
-| 1 | **CHR-P Phase 2B design document**: control group, the proposed 300/600/900 mg arms, duration, endpoints, size, countries, version and date | `content/study.json` → `design_sources` (add an entry with `version`), `endpoints.confirmed`; dose rationale text in `science.html#dose` | Design details, endpoints and the dose-range rationale on the study and science pages |
-| 2 | **Phase 1 CSR and approved plain-language results** | `study.json` → `phase1.results`; `facts.json` → `phase1.results_status` | Phase 1 results section; registry results |
-| 3 | Phase 1 **ethics and regulatory approval references**, and the **Epidyolex comparator dose** as worded in the protocol | `study.json` → `oversight.phase1`; `facts.json` → `phase1.treatments` | Approval statement; comparator dose |
-| 4 | **Phase 1 start date:** SDTM 26–27 Aug 2025 vs ClinicalTrials.gov 22 Sep 2025 | `facts.json` → `phase1.first_consent`; registry record | Consistent date across site and registry |
-| 5 | **Current status of the Phase 2B protocol** (last documented Feb 2026) and the next milestone date | `facts.json` → `phase2b.protocol_status`; `study.json` → `summary.next` | Accuracy of "In progress"; a dated next milestone |
-| 6 | **Authorised portraits** for 8 people, plus written consent to publish name, biography and photo | `src/assets/img/people/<id>.jpg`; `people.json` → `portrait.authorised` | Photos on people.html and the press kit |
-| 7 | **Titles:** Jarosz (Executive Chairman) vs Barker (Non-Executive Chairman); a formal title for Woods; whether Trevor Jones and Max Moldaschl are listed | `people.json` | Final profile copy |
-| 8 | **Disclosures** for each person | `people.json` → `disclosures` | The disclosures line on each profile (hidden meanwhile) |
-| 9 | **Interview recordings** with transcripts and WebVTT captions, approved by each speaker | `src/assets/media/`; `interviews.json` | Interview modules (hidden meanwhile). Outlines: `docs/interviews/` |
-| 10 | **Corporate softgel and micellar renders** with approved captions | `src/assets/img/renders/`; `assets.json` | Render images (the diagram covers the page meanwhile) |
-| 11 | **Official logo files** (NW monogram) | `src/assets/img/` | Brand mark (an interim mark is used) |
-| 12 | **Primary-source verification** of every reference, the company registration facts and the two graphics | `tools/evidence_review.py record`; `facts.json` `verification`; `graphics.json` `publish` | Production build; the two graphics |
-| 13 | **Public enquiries mailbox** (monitored) | `contact.html` | Email contact route |
-| 14 | **Spelling of the head-office address** ("Wisely" or "Wisley" Court) | `facts.json` → `company.head_office` | Address accuracy |
-| 15 | **Board and counsel approval** of the funding and financing wording, the independence commitments and the editorial standards | `financing.html`, `newsroom.html#standards` | Production build (TBC marker); adoption labels |
-| 16 | **Management adoption** of the publication policy, with timings | `study.html#publication-policy`; `documents.json` | Changing "draft" to "adopted" |
-| 17 | **Approved funding figures** (committed, cash received, expenditure) | `facts.json` → `funding.*` (`public: true` once approved) | Public funding figures |
-| 18 | **Investor platform, KYC provider and registrar** selection; counsel review (UK FSMA s21 and cryptoasset promotions; US securities law; EU MiCA) | `src/restricted/investor-journey.html` | Any move beyond the inactive demonstration |
-| 19 | **Email provider** account, API key and a tested adapter | Cloudflare environment variables (see `docs/email-signup.md`) | Email sign-up (absent from the public build meanwhile) |
-| 20 | **Privacy notice:** data protection contact and retention period | `legal.html` | Production (TBC marker) |
-| 21 | **Crisis-line re-check** on official sites just before launch | `faq.html` | Production (TBC marker) |
-| 22 | **Live-site URL list** (nwpharmatech.org / .com) | `src/redirects.txt`; `docs/url-map.md` | Old-to-new redirects for the live site |
-| 23 | **Lived-experience adviser** appointment (see the private proposal) | `people.json` once appointed | Listing an adviser (not shown until appointed) |
-| 24 | **UK Specials / expanded access** decision | `faq.html`, `programme.html` | "Not available outside approved studies" wording |
-| 25 | Official nhs.uk page URLs for EIP and CAMHS, checked | `content/services.json` | Direct links in the families guide |
+| 1 | **Primary-source verification** of every cited reference and of the Companies House, registry and pooled-risk facts (checked so far only through search summaries) | Scientific reviewer | Build report; `tools/evidence_review.py record`; `facts.json` `verification` |
+| 2 | **Leadership titles** confirmed by management, and consent to publish each profile. The discrepancies and the questions for management are in [`leadership-reconciliation.md`](leadership-reconciliation.md) | NWPharmaTech management | `people.json` `role_status` |
+| 3 | **Board and legal approval** of the funding and financing wording (financing page, homepage, Q&A, programme brief PDF) | Board and legal counsel | `content/review.json` |
+| 4 | **Legal review of the privacy notice**, including the retention period and a data protection contact | Legal counsel | `content/review.json` |
+| 5 | **Crisis-line re-check** on the official sites immediately before launch | Site editor | `content/review.json` |
+| 6 | **Head-office address spelling** ("Wisely" or "Wisley" Court) | NWPharmaTech management | `content/review.json` |
+| 7 | **Phase 1 start date:** company records (first consent 27 August 2025) against ClinicalTrials.gov (start 22 September 2025) | Clinical operations | `content/review.json` |
+| 8 | **Current Phase 2B status:** "Protocol being finalised" was last documented on 23 February 2026; confirm it, and give the next milestone date if one is set | NWPharmaTech management | `content/review.json` |
+
+A PDF whose facts have changed is regenerated and checked by the build; if that fails, the build stops (no action needed unless it does).
+
+## Optional assets (never block publication)
+
+Each slot renders nothing until supplied and authorised. Paths, sizes and switches: [`asset-manifest.md`](asset-manifest.md).
+
+- Official logo (the interim mark and text wordmark are used meanwhile)
+- Softgel render with an approved caption (the diagram stands on its own meanwhile)
+- Micellar illustration (no agreed placement)
+- Portraits of the nine people on the people page, with written consent
+- Interview recordings with captions and transcripts, approved by each speaker (outlines in `docs/interviews/`)
+
+## Content that appears when supplied (not blockers)
+
+The site omits these modules, or says only what is known, until the input arrives.
+
+- CHR-P Phase 2B design document (control group, doses, duration, endpoints, size, countries), then confirmed endpoints
+- Phase 1 study report and approved plain-language results; Phase 1 ethics and regulatory approval references; the Epidyolex comparator dose as worded in the protocol
+- Disclosures for each person; approved funding figures; a monitored public enquiries mailbox
+- Investor platform, KYC provider and registrar, with counsel review (restricted demonstration only); email provider and a recorded live test (`docs/email-signup.md`)
+- Live-site URL list for old-to-new redirects (`docs/url-map.md`); checked nhs.uk links for the families guide; the UK Specials / expanded access decision
+- Management decisions on two proposals removed from the public pages: [`proposals/publication-policy.md`](proposals/publication-policy.md) and [`proposals/editorial-standards.md`](proposals/editorial-standards.md)
+- A lived-experience adviser appointment (no adviser is listed until one is appointed)

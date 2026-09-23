@@ -16,8 +16,8 @@
   "design_sources": [
     {
       "id": "design-aims",
-      "title": "Programme brief: Phase 2B aims",
-      "version": "Website brief, September 2026",
+      "title": "Population and aims",
+      "version": "NWPharmaTech, September 2026",
       "source": "brief-2026-09",
       "public": true,
       "content": [
@@ -77,7 +77,7 @@
       }
     ],
     "phase2b": [],
-    "phase2b_note": "Oversight arrangements for the Phase 2B study have not yet been established. They will be described here when they are.",
+    "phase2b_note": "Oversight arrangements for the Phase 2B study have not yet been published.",
     "review": "Phase 1 regulatory and ethics approval references not supplied; do not state them until provided."
   },
   "milestones": {

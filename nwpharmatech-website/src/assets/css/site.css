@@ -184,6 +184,10 @@ html:not(.js) .nav-toggle { display: none; }
 .evidence-key { display: grid; gap: 14px; }
 @media (min-width: 800px) { .evidence-key { grid-template-columns: repeat(4, 1fr); } }
 .evidence-key p { margin: .5rem 0 0; font-size: .95rem; }
+/* compact key (homepage): the three evidence grades on one row, "Programme information" on its own below */
+.evidence-key-compact { display: grid; justify-items: start; gap: .75rem; margin: 0 0 1rem; }
+.key-grades { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; }
+.key-company { margin: 0; font-size: .95rem; color: var(--ink-soft); }
 
 .studies { display: grid; gap: 14px; margin-bottom: 1.4rem; }
 .study { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
@@ -208,15 +212,6 @@ tbody th { font-weight: 650; color: var(--brand-dark); width: 32%; }
   .table-stack tbody tr:last-child { border-bottom: 0; }
   .table-stack th, .table-stack td { display: block; width: auto; border: 0; padding: 2px 16px; }
 }
-
-/* ---------- Figures / image slots ---------- */
-.asset { margin: 0 0 1.2rem; }
-.asset img { border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface-alt); }
-.asset figcaption { font-size: .88rem; color: var(--muted); margin-top: .5rem; }
-.asset-slot { aspect-ratio: 4 / 3; border: 2px dashed #9fb3c4; border-radius: var(--radius); background: repeating-linear-gradient(45deg, #f5f8fb, #f5f8fb 12px, #eef3f8 12px, #eef3f8 24px); display: grid; place-content: center; text-align: center; gap: .3rem; padding: 1rem; color: var(--muted); font-size: .9rem; }
-.asset-slot code { font-size: .78rem; word-break: break-all; }
-.renders { display: grid; gap: 18px; }
-@media (min-width: 720px) { .renders { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- People ---------- */
 .people-grid { display: grid; gap: 18px; }
@@ -347,7 +342,6 @@ ul.plain li { margin-bottom: .25rem; }
 @media (min-width: 900px) { .two-col.equal { grid-template-columns: 1fr 1fr; } }
 .milestones td, .milestones th { vertical-align: middle; }
 .milestones tbody th { width: 45%; }
-ol.policy li { margin-bottom: .7rem; }
 .checklist { list-style: none; padding: 0; }
 .checklist li { position: relative; padding-left: 1.6rem; margin-bottom: .6rem; }
 .checklist li::before { content: ""; position: absolute; left: .2rem; top: .45em; width: .7rem; height: .7rem; border-radius: 50%; border: 2px solid var(--brand); }
