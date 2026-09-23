@@ -1,0 +1,117 @@
+{
+  "_doc": "Profiles. Public fields render on people.html and the press kit. 'review' and 'sources' are internal. A portrait renders only if 'portrait.file' exists under src/assets AND 'portrait.authorised' is true. 'disclosures' renders only when non-empty and sourced. Interview modules render only when complete (see interviews.json).",
+  "groups": [
+    {"id": "clinical", "title": "Clinical and scientific leadership"},
+    {"id": "board", "title": "Company leadership and board"}
+  ],
+  "people": [
+    {
+      "id": "scott-woods", "group": "clinical", "featured": true,
+      "name": "Dr Scott W. Woods", "initials": "SW",
+      "role": "Adviser on clinical high risk of psychosis",
+      "focus": "Clinical high risk of psychosis",
+      "responsibilities": ["Advises the programme on clinical high risk of psychosis: how the condition is identified and how studies in this group should be designed."],
+      "affiliations": ["Professor of Psychiatry, Yale School of Medicine", "Director, PRIME Clinic, which specialises in people at clinical high risk of psychosis"],
+      "bio": "Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/scott-woods.jpg", "authorised": false},
+      "interview": "woods",
+      "sources": ["teaser-2026-08", "web3-2025-10", "verification-2026-09-23"],
+      "review": "Formal title with the programme unconfirmed (teaser lists him under leadership as 'Yale PRIME; CHR-P authority'). Bio sentence pending round-2 verification of CHR-P research leadership."
+    },
+    {
+      "id": "john-kane", "group": "clinical", "featured": false,
+      "name": "Dr John M. Kane", "initials": "JK",
+      "role": "Chair, Scientific Advisory Board",
+      "focus": "Clinical trial design",
+      "responsibilities": ["Chairs the programme's Scientific Advisory Board.", "Advises on clinical trial design."],
+      "affiliations": ["Professor of Psychiatry and Molecular Medicine, Donald and Barbara Zucker School of Medicine at Hofstra/Northwell", "Co-director, Institute for Behavioral Science, Feinstein Institutes for Medical Research"],
+      "bio": "Psychiatrist and schizophrenia researcher with long experience of leading clinical trials.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/john-kane.jpg", "authorised": false},
+      "interview": "kane",
+      "sources": ["teaser-2026-08", "verification-2026-09-23"],
+      "review": "Early-intervention research statement pending round-2 verification (RAISE)."
+    },
+    {
+      "id": "grace-blest-hopley", "group": "clinical", "featured": false,
+      "name": "Dr Grace Blest-Hopley", "initials": "GB",
+      "role": "Chief Scientific Officer",
+      "focus": "Cannabinoid neuropharmacology",
+      "responsibilities": ["Responsible for the programme's scientific strategy as Chief Scientific Officer."],
+      "affiliations": [],
+      "bio": "Neuroscientist specialising in cannabinoid neuropharmacology. PhD from King's College London on the actions and effects of cannabinoids.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/grace-blest-hopley.jpg", "authorised": false},
+      "interview": "blest-hopley",
+      "sources": ["teaser-2026-08", "deck-2023-08"],
+      "review": "Specific responsibility for formulation research not documented; do not state it until confirmed."
+    },
+    {
+      "id": "filipp-korentsvit", "group": "board", "featured": false,
+      "name": "Filipp Korentsvit", "initials": "FK",
+      "role": "Chief Executive Officer and Founding Partner",
+      "focus": "Strategy and programme leadership",
+      "responsibilities": ["Leads company strategy and the development programme."],
+      "affiliations": [],
+      "bio": "Previously an Executive Director at Goldman Sachs. BSc in Economics and Statistics, University College London.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/filipp-korentsvit.jpg", "authorised": false},
+      "interview": null,
+      "sources": ["teaser-2026-08", "deck-2023-08", "signature-2026"]
+    },
+    {
+      "id": "daud-gutseriev", "group": "board", "featured": false,
+      "name": "Daud Gutseriev", "initials": "DG",
+      "role": "Chief Operating Officer",
+      "focus": "Programme execution",
+      "responsibilities": ["Leads programme execution."],
+      "affiliations": [],
+      "bio": "Previously an Associate Director at VTB Capital in infrastructure and project financing. Executive MBA, University of Oxford Saïd Business School.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/daud-gutseriev.jpg", "authorised": false},
+      "interview": null,
+      "sources": ["teaser-2026-08", "deck-2023-08"]
+    },
+    {
+      "id": "william-jarosz", "group": "board", "featured": false,
+      "name": "William Jarosz", "initials": "WJ",
+      "role": "Executive Chairman",
+      "focus": "Biotech partnerships",
+      "responsibilities": ["Chairs the board; focuses on biotech partnerships."],
+      "affiliations": [],
+      "bio": "Business leader with a background in finance and the pharmaceutical industry. JD, Harvard Law School; MA in Law and Diplomacy, Tufts University.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/william-jarosz.jpg", "authorised": false},
+      "interview": null,
+      "sources": ["teaser-2026-08", "deck-2023-08"],
+      "review": "Teaser lists both Jarosz (Executive Chairman) and Barker (Non-Executive Chairman). Confirm titles."
+    },
+    {
+      "id": "richard-barker", "group": "board", "featured": false,
+      "name": "Professor Richard Barker OBE", "initials": "RB",
+      "role": "Non-Executive Chairman",
+      "focus": "Life-sciences leadership",
+      "responsibilities": ["Non-executive board role."],
+      "affiliations": [],
+      "bio": "Director General of the Association of the British Pharmaceutical Industry (ABPI) from 2004 to 2011, former Chief Executive of Chiron, and former non-executive director of Celgene.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/richard-barker.jpg", "authorised": false},
+      "interview": null,
+      "sources": ["teaser-2026-08", "deck-2023-08", "verification-2026-09-23"]
+    },
+    {
+      "id": "gillian-cannon", "group": "board", "featured": false,
+      "name": "Dr Gillian Cannon", "initials": "GC",
+      "role": "Non-Executive Director",
+      "focus": "Pharmaceutical industry",
+      "responsibilities": ["Non-executive board role."],
+      "affiliations": [],
+      "bio": "Pharmaceutical executive with senior roles at Merck, Otsuka and UCB.",
+      "disclosures": [],
+      "portrait": {"file": "assets/img/people/gillian-cannon.jpg", "authorised": false},
+      "interview": null,
+      "sources": ["teaser-2026-08", "verification-2026-09-23"]
+    }
+  ]
+}

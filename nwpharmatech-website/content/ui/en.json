@@ -1,0 +1,40 @@
+{
+  "_doc": "Interface strings and navigation for locale 'en-GB'. Translations: copy to ui/<locale>.json and translate; clinical content must be translated and reviewed by a qualified human translator and clinical reviewer before publication (see docs/translation.md).",
+  "lang": "en-GB",
+  "site_name": "NWPharmaTech",
+  "skip": "Skip to main content",
+  "menu": "Menu",
+  "notice": "<strong>NWPT-SM32300 is an investigational medicine.</strong> It is not approved for any use, and whether it is effective is not known. <a href=\"faq.html#not-medical-advice\">This website is not medical advice.</a>",
+  "staging_banner": "<strong>Staging draft.</strong> Not the live website. Content is under scientific, legal and regulatory review.",
+  "source": "Source",
+  "primary_nav": [
+    ["research", "clinical-need.html", "The research"],
+    ["programme", "programme.html", "The programme"],
+    ["people", "people.html", "People"],
+    ["updates", "updates.html", "Updates"],
+    ["funding", "financing.html", "Funding"],
+    ["contact", "contact.html", "Contact"]
+  ],
+  "groups": [
+    {"id": "research", "title": "The research", "items": [
+      ["clinical-need", "clinical-need.html", "Clinical need"],
+      ["science", "science.html", "Science and formulation"],
+      ["evidence", "evidence.html", "Evidence library"],
+      ["families", "families.html", "For young people and families"]
+    ]},
+    {"id": "programme", "title": "The programme", "items": [
+      ["programme", "programme.html", "Programme overview"],
+      ["study", "study.html", "The study: progress and evidence"],
+      ["phase-1", "phase-1.html", "Phase 1 study"],
+      ["updates", "updates.html", "Programme updates"]
+    ]},
+    {"id": "about", "title": "About", "items": [
+      ["people", "people.html", "People"],
+      ["funding", "financing.html", "Funding and financing"],
+      ["newsroom", "newsroom.html", "Newsroom"],
+      ["faq", "faq.html", "Questions and answers"],
+      ["contact", "contact.html", "Contact"],
+      ["legal", "legal.html", "Legal, privacy and accessibility"]
+    ]}
+  ]
+}

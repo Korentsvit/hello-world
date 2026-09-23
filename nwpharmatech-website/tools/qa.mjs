@@ -17,7 +17,7 @@ const outDir = path.resolve(here, "../docs/qa");
 const shots = path.join(outDir, "screenshots");
 fs.mkdirSync(shots, { recursive: true });
 
-const PAGES = ["index", "clinical-need", "science", "evidence", "programme", "people", "updates", "financing", "faq", "contact", "legal"];
+const PAGES = fs.readdirSync(root).filter((f) => f.endsWith(".html") && f !== "404.html").map((f) => f.replace(/\.html$/, "")).sort();
 const VIEWPORTS = { desktop: { width: 1280, height: 900 }, mobile: { width: 390, height: 844 } };
 const TYPES = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".pdf": "application/pdf", ".jpg": "image/jpeg", ".png": "image/png", ".xml": "application/xml", ".txt": "text/plain" };
 
@@ -133,7 +133,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   check("menu: focus moves into panel on open", await page.evaluate(() => document.getElementById("mobile-nav").contains(document.activeElement)));
   await page.locator("#mobile-nav summary", { hasText: "About" }).click();
   check("menu: tapping a closed group expands it", await page.$eval("#mobile-nav details:nth-of-type(3)", (d) => d.open));
-  check("menu: current page marked aria-current", (await page.locator('#mobile-nav a[aria-current="page"]').textContent()) === "The science");
+  check("menu: current page marked aria-current", (await page.locator('#mobile-nav a[aria-current="page"]').textContent()) === "Science and formulation");
   await page.keyboard.press("Escape");
   check("menu: Escape closes and returns focus to toggle", (await toggle.getAttribute("aria-expanded")) === "false" && (await page.evaluate(() => document.activeElement.classList.contains("nav-toggle"))));
   const tap = await page.$$eval("#mobile-nav a, #mobile-nav summary, .nav-toggle", (els) => els.map((e) => { const r = e.getBoundingClientRect(); return { h: r.height, t: e.textContent.trim() }; }));
@@ -227,7 +227,7 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   const mailtos = Object.keys(routes).filter((h) => h.startsWith("mailto:"));
   check("contact: all tel: links are well-formed digit strings", badTel.length === 0, badTel.join(","));
   check("contact: head office tel link present (+442036933791)", "tel:+442036933791" in routes);
-  check("contact: public email route present", mailtos.length > 0, mailtos.length ? mailtos.join(",") : "none: public mailbox not yet confirmed");
+  check("contact: no email address published until a monitored mailbox is confirmed", mailtos.length === 0, mailtos.join(","));
   await page.goto(base + "contact.html");
   check("contact: postal address rendered", (await page.locator("address").textContent()).includes("SW3 1PW"));
   report.contactRoutes = routes;

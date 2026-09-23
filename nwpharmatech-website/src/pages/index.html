@@ -5,115 +5,93 @@ nav: home
 ---
     <section class="hero">
       <div class="container">
-        <span class="eyebrow">Research programme · Clinical high risk of psychosis</span>
+        <p class="eyebrow">Research programme · Clinical high risk of psychosis</p>
         <h1>Careful research for young people at clinical high risk of psychosis</h1>
-        <p class="lead">We are developing NWPT-SM32300, an investigational oral cannabidiol medicine, and planning a Phase 2B study. Whether it helps is not yet known; finding out is the purpose of the research.</p>
+        <p class="lead">We are developing {{fact:product.name}}, an investigational oral cannabidiol medicine, and planning a Phase 2B study. Whether it helps is not yet known. Finding out is the purpose of the research.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#programme-brief">Read the programme brief</a>
-          <a class="btn btn-secondary" href="clinical-need.html">Why this research matters</a>
+          <a class="btn btn-secondary" href="families.html">For young people and families</a>
         </div>
       </div>
     </section>
 
-    <section class="section-tight" id="programme-brief" aria-labelledby="brief-heading">
+    <section class="section" aria-labelledby="ninety-h">
+      <div class="container">
+        <h2 id="ninety-h">The programme in 90 seconds</h2>
+        <ol class="steps">
+          <li class="step">
+            <p class="step-n">1 · The clinical need</p>
+            <h3>Young people at risk, with no licensed medicine</h3>
+            <p>Some young people who seek help meet criteria for clinical high risk of psychosis. In pooled studies, {{fact:evidence.transition_3y}} developed psychosis within three years. {{cite:salazar-2021}}</p>
+            <p><a href="clinical-need.html">Clinical need</a></p>
+          </li>
+          <li class="step">
+            <p class="step-n">2 · The investigational candidate</p>
+            <h3>{{fact:product.name}}</h3>
+            <p>A {{fact:product.strength}} {{fact:product.form}} of {{fact:product.api}}, in a {{fact:product.formulation}}. It is {{fact:product.status}}.</p>
+            <p><a href="science.html">Science and formulation</a></p>
+          </li>
+          <li class="step">
+            <p class="step-n">3 · The planned study</p>
+            <h3>A Phase 2B study in clinical high risk</h3>
+            <p>Designed to evaluate {{fact:phase2b.aims}} in {{fact:phase2b.population}}.</p>
+            <p><a href="study.html">The study: progress and evidence</a></p>
+          </li>
+          <li class="step">
+            <p class="step-n">4 · Current status</p>
+            <h3>Phase 1 completed; Phase 2B planned</h3>
+            <p>The Phase 1 study in healthy volunteers was completed in December 2025. The Phase 2B study is not recruiting. {{fact:phase2b.protocol_status}}.</p>
+            <p><a href="study.html#milestones">Milestones and sources</a></p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="programme-brief" aria-labelledby="brief-heading">
       <div class="container">
         <div class="brief">
           <div>
-            <span class="eyebrow">Programme brief</span>
-            <h2 id="brief-heading">What this programme is, in one page</h2>
+            <p class="eyebrow">Programme brief</p>
+            <h2 id="brief-heading">The programme on one page</h2>
             <p>NWPharmaTech presents our research programme for people at clinical high risk of psychosis, explaining the clinical need, the science and the people behind it.</p>
-            <p>The programme centres on <strong>NWPT-SM32300</strong>, an investigational oral cannabidiol formulation, and a planned <strong>Phase 2B study</strong> evaluating dose response, symptoms, safety and tolerability. A Phase 1 study in healthy volunteers has been completed.</p>
+            <p>The programme centres on <strong>{{fact:product.name}}</strong>, an investigational oral cannabidiol formulation, and a planned <strong>Phase 2B study</strong> evaluating {{fact:phase2b.aims}}.</p>
             <p>Alongside the clinical programme, we are developing a financing route through which eligible investors could take part through a dedicated programme vehicle, potentially using permissioned tokens. Clinical decisions remain independent of financing, and the treatment's effectiveness is unproven.</p>
           </div>
           <div class="brief-actions">
-            <a class="btn btn-primary" href="downloads/nwpharmatech-programme-brief.pdf" download>Download the brief (PDF)</a>
-            <a class="btn btn-secondary" href="programme.html">The programme in detail</a>
-            <p class="brief-meta">Phase 2B status: planned, not recruiting.</p>
+            <a class="btn btn-primary" href="downloads/nwpharmatech-programme-brief.pdf" download>Download the brief (PDF, 2 pages)</a>
+            <a class="btn btn-secondary" href="study.html">Study progress and evidence</a>
+            <p class="brief-meta">Brief updated {{fact:site.as_of}}.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Explore the programme</h2>
-        <div class="grid grid-3">
-          <a class="card card-link" href="clinical-need.html">
-            <h3>The clinical need</h3>
-            <p>Who is considered at clinical high risk of psychosis, what care offers today, and why no medicine is licensed for this group.</p>
-            <span class="more">The clinical need</span>
-          </a>
-          <a class="card card-link" href="science.html">
-            <h3>The science</h3>
-            <p>What published studies of cannabidiol show, what they do not show, and how they differ from evidence about NWPT-SM32300 itself.</p>
-            <span class="more">The science</span>
-          </a>
-          <a class="card card-link" href="programme.html">
-            <h3>NWPT-SM32300 &amp; the Phase 2B study</h3>
-            <p>The investigational softgel, the completed Phase 1 study, and the planned Phase 2B study.</p>
-            <span class="more">The programme</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="container">
-        <h2>How we label evidence</h2>
-        <p class="lead">Each section on this site carries one label, so you can see how firm the ground is before you read the detail.</p>
-        <div class="evidence-key">
-          <div class="card"><span class="tag tag-established">Established</span><p>Consistent evidence, systematic reviews, regulatory decisions or clinical guidelines.</p></div>
-          <div class="card"><span class="tag tag-emerging">Emerging evidence</span><p>Small, short or early studies of cannabidiol. Informative, not confirmed.</p></div>
-          <div class="card"><span class="tag tag-company">Programme information</span><p>Facts about NWPT-SM32300 and our studies. Not evidence that it works.</p></div>
-          <div class="card"><span class="tag tag-open">Open question</span><p>Not yet known. What our research, or future research, aims to answer.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="section" aria-labelledby="latest-h">
       <div class="container two-col">
-        <div class="prose">
-          <h2>Independent clinical decisions</h2>
-          <p>Study design, participant safety, data analysis and publication are decided by the clinical and scientific leadership, subject to regulators and research ethics committees. Funders and investors have no say in them.</p>
-          <p>We intend to register every study before it starts and to report results whatever they show. Phase 1 is registered as <a href="programme.html#phase-1">NCT07186283</a>.</p>
+        <div>
+          <h2 id="latest-h">Latest programme update</h2>
+          {{block:latest_update}}
         </div>
         <aside class="aside">
-          <h3>Important</h3>
-          <p>NWPT-SM32300 is not approved by any medicines regulator. Cannabidiol products sold in shops or online are different products and have not been shown to prevent psychosis.</p>
-          <p class="small">Worried about your mental health? Speak to your GP or a mental health professional. <a href="faq.html#urgent-help">Urgent help</a>.</p>
+          <h3>Independent clinical decisions</h3>
+          <p>Study design, participant safety, analysis and publication are decided by the clinical and scientific leadership, subject to regulators and research ethics committees. Funders and investors have no say in them.</p>
+          <p><a href="people.html">People and governance</a></p>
         </aside>
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="container prose">
-        <span class="eyebrow">Programme financing</span>
-        <h2>A financing route in development</h2>
-        <p>We are developing platform-integrated programme financing through a dedicated programme vehicle, potentially with a permissioned token at closing. <strong>This is not an offer.</strong> No investment is being accepted, and financing has no influence on clinical decisions.</p>
-        <p><a href="financing.html">How programme financing would work</a></p>
+    <section class="section section-alt" aria-labelledby="labels-h">
+      <div class="container">
+        <h2 id="labels-h">How we label what is known</h2>
+        <p class="lead">Each section of the site carries one label, so you can see how firm the ground is before reading the detail.</p>
+        {{block:evidence_key}}
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Latest milestones</h2>
-        <div class="grid grid-3">
-          <article class="card">
-            <p class="small"><time datetime="2026-03-11">11 March 2026</time></p>
-            <h3>Phase 1 database locked</h3>
-            <p>Data collection for the Phase 1 study was completed and the database locked for analysis.</p>
-          </article>
-          <article class="card">
-            <p class="small"><time datetime="2025-12-10">10 December 2025</time></p>
-            <h3>Phase 1 study completed</h3>
-            <p>The last study activity took place in the healthy-volunteer study of NWPT-SM32300.</p>
-          </article>
-          <article class="card">
-            <p class="small"><time datetime="2025-08-27">27 August 2025</time></p>
-            <h3>Phase 1 study started</h3>
-            <p>The first healthy volunteers gave consent to take part in the UK Phase 1 study of NWPT-SM32300 (NCT07186283).</p>
-          </article>
-        </div>
-        <p class="mt"><a href="updates.html">All programme updates</a></p>
+    <section class="section" aria-labelledby="fin-h">
+      <div class="container prose">
+        <h2 id="fin-h">Funding and financing</h2>
+        <p>We are developing platform-integrated programme financing through a dedicated programme vehicle, potentially with permissioned tokens issued at closing where feasible. No investment is being accepted, and financing has no influence on clinical decisions.</p>
+        <p><a href="financing.html">How funding works and how progress is reported</a></p>
       </div>
     </section>

@@ -1,0 +1,224 @@
+{
+  "_doc": "Study hub content. Status values: Planned | In progress | Completed. 'date' is ISO (exact) or null; 'date_text' is shown when there is no exact date. Every milestone needs a source id. 'public': false keeps an item out of public pages. No percentages, recruitment counts, approvals or committee appointments may be added unless sourced.",
+  "summary": {
+    "as_of": "2026-09-23",
+    "investigates": "Whether NWPT-SM32300, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.",
+    "stage": "Phase 2B study planned; protocol being finalised. Not recruiting.",
+    "completed": "Phase 1 study in 14 healthy volunteers (completed December 2025; database locked March 2026; analysis outputs delivered March 2026).",
+    "next": "Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set.",
+    "sources": [
+      "brief-2026-09",
+      "update-2026-02",
+      "sdtm-ts-2026-03",
+      "tfl-2026-03"
+    ]
+  },
+  "design_sources": [
+    {
+      "id": "design-aims",
+      "title": "Programme brief: Phase 2B aims",
+      "version": "Website brief, September 2026",
+      "source": "brief-2026-09",
+      "public": true,
+      "content": [
+        "Population: people at clinical high risk of psychosis.",
+        "Aims: dose response, symptoms, safety and tolerability."
+      ]
+    },
+    {
+      "id": "design-chrp",
+      "title": "CHR-P Phase 2B design document",
+      "version": null,
+      "source": null,
+      "public": false,
+      "content": [],
+      "review": "Not supplied. The instruction refers to a proposed 300/600/900 mg range from this source."
+    }
+  ],
+  "endpoints": {
+    "confirmed": [],
+    "review": "No confirmed Phase 2B endpoints supplied. Section is omitted from public output until populated."
+  },
+  "registrations": [
+    {
+      "study": "Phase 1",
+      "registry": "ClinicalTrials.gov",
+      "id": "NCT07186283",
+      "url": "https://clinicaltrials.gov/study/NCT07186283",
+      "verification": "registry-index",
+      "public": true
+    },
+    {
+      "study": "Phase 1",
+      "registry": "ISRCTN",
+      "id": "ISRCTN25163383",
+      "url": "https://www.isrctn.com/ISRCTN25163383",
+      "verification": "registry-index",
+      "public": true
+    }
+  ],
+  "oversight": {
+    "phase1": [
+      {
+        "text": "Sponsor: NWPharmaTech Ltd.",
+        "source": "sdtm-ts-2026-03"
+      },
+      {
+        "text": "Pre-specified stopping rules, including stopping if one participant had a serious reaction possibly related to the study medicine, or two had severe reactions.",
+        "source": "sdtm-ts-2026-03"
+      },
+      {
+        "text": "No data monitoring committee was used.",
+        "source": "sdtm-ts-2026-03"
+      },
+      {
+        "text": "Statistical outputs were produced by an external biostatistics provider under documented quality testing.",
+        "source": "tfl-2026-03"
+      }
+    ],
+    "phase2b": [],
+    "phase2b_note": "Oversight arrangements for the Phase 2B study have not yet been established. They will be described here when they are.",
+    "review": "Phase 1 regulatory and ethics approval references not supplied; do not state them until provided."
+  },
+  "milestones": {
+    "clinical": [
+      {
+        "title": "Phase 1: first participants consented",
+        "status": "Completed",
+        "date": "2025-08-27",
+        "source": "sdtm-ts-2026-03",
+        "public": true
+      },
+      {
+        "title": "Phase 1: last study activity",
+        "status": "Completed",
+        "date": "2025-12-10",
+        "source": "sdtm-ts-2026-03",
+        "public": true
+      },
+      {
+        "title": "Phase 1: database locked",
+        "status": "Completed",
+        "date": "2026-03-11",
+        "source": "tfl-2026-03",
+        "public": true
+      },
+      {
+        "title": "Phase 1: results summary on registries and this site",
+        "status": "Planned",
+        "date": null,
+        "date_text": "Date not set",
+        "source": "brief-2026-09-b",
+        "public": true
+      },
+      {
+        "title": "Phase 2B: protocol finalised",
+        "status": "In progress",
+        "date": null,
+        "date_text": "As reported 23 February 2026",
+        "source": "update-2026-02",
+        "public": true
+      },
+      {
+        "title": "Phase 2B: regulatory and research ethics submissions",
+        "status": "Planned",
+        "date": null,
+        "date_text": "Date not set",
+        "source": "update-2026-02",
+        "public": true
+      },
+      {
+        "title": "Phase 2B: public registration before first enrolment",
+        "status": "Planned",
+        "date": null,
+        "date_text": "Date not set",
+        "source": "brief-2026-09",
+        "public": true
+      }
+    ],
+    "operational": [
+      {
+        "title": "Final formulation and GMP clinical supply for Phase 1",
+        "status": "Completed",
+        "date": null,
+        "date_text": "Before Phase 1 dosing (August 2025)",
+        "source": "update-2026-02",
+        "public": true
+      },
+      {
+        "title": "Phase 1 analysis outputs delivered",
+        "status": "Completed",
+        "date": "2026-03-30",
+        "source": "tfl-2026-03",
+        "public": true
+      },
+      {
+        "title": "Clinical supply for Phase 2B",
+        "status": "Planned",
+        "date": null,
+        "date_text": "Date not set",
+        "source": "update-2026-02",
+        "public": true
+      }
+    ],
+    "funding": [
+      {
+        "title": "Phase 1 funded privately",
+        "status": "Completed",
+        "date": null,
+        "date_text": "As reported 23 February 2026",
+        "source": "update-2026-02",
+        "public": false,
+        "review": "Feb 2026 letter reports outstanding Phase 1 supplier payments; do not publish a funding-completion claim until confirmed."
+      },
+      {
+        "title": "Financing for the Phase 2B study",
+        "status": "In progress",
+        "date": null,
+        "date_text": "As at August 2026",
+        "source": "teaser-2026-08",
+        "public": true
+      },
+      {
+        "title": "Programme financing route for eligible investors",
+        "status": "In progress",
+        "date": null,
+        "date_text": "In development; not available",
+        "source": "brief-2026-09-b",
+        "public": true
+      }
+    ]
+  },
+  "phase1": {
+    "measured": {
+      "absorption": "How much cannabidiol and two of its breakdown products (7-hydroxy-CBD and 7-carboxy-CBD) reached the blood over time, and how quickly (pharmacokinetics).",
+      "safety": "Adverse events, blood and urine tests, vital signs, heart tracings (ECG), gut symptoms, and a structured suicidality questionnaire (C-SSRS)."
+    },
+    "can_establish": [
+      "How NWPT-SM32300 is absorbed after single doses in healthy adults, compared with a licensed cannabidiol medicine.",
+      "Short-term safety and tolerability of single doses in healthy adults."
+    ],
+    "cannot_establish": [
+      "Whether NWPT-SM32300 reduces symptoms or prevents psychosis in anyone.",
+      "Whether it is safe with repeated daily dosing, in young people, or in people at clinical high risk.",
+      "Whether it is bioequivalent to, or better tolerated than, another product: the study was small and not designed to show either.",
+      "Whether it reaches or acts on the brain."
+    ],
+    "results": null,
+    "results_review": "Numerical results withheld until the CSR and plain-language wording are reconciled. When supplied, set results to {as_of, source, summary, table:[{measure, finding}] , limitations} and the page renders them without redesign.",
+    "protocol_history": [
+      {
+        "version": "Eligibility criteria version 2",
+        "date_text": "Date not recorded in the source",
+        "change": "Original eligibility criteria.",
+        "source": "sdtm-ts-2026-03"
+      },
+      {
+        "version": "Eligibility criteria version 3",
+        "date_text": "Date not recorded in the source",
+        "change": "Clarified timing of physical examinations (full examination at screening, symptom-directed examination at baseline) and the wording of the exclusion for recent participation in other trials.",
+        "source": "sdtm-ts-2026-03"
+      }
+    ]
+  }
+}

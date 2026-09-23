@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>NWPharmaTech programme brief</title>
+<meta name="author" content="{{fact:company.name}}"><meta name="subject" content="Programme brief: {{fact:product.name}}">
+<style>
+  @page { size: A4; margin: 17mm 17mm 15mm; }
+  body { font: 10.5pt/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: #14212b; }
+  h1 { color: #00386e; font-size: 20pt; margin: 0 0 2pt; }
+  h2 { color: #005EB8; font-size: 12pt; margin: 12pt 0 4pt; }
+  header { border-bottom: 3px solid #005EB8; padding-bottom: 8pt; margin-bottom: 10pt; display: flex; justify-content: space-between; align-items: flex-end; }
+  .brand { font-weight: 700; color: #005EB8; font-size: 13pt; }
+  .brand span { font-weight: 400; }
+  .notice { background: #fff6f5; border-left: 4px solid #b3261e; padding: 6pt 9pt; margin: 8pt 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+  th, td { text-align: left; padding: 4pt 6pt; border-bottom: 1px solid #d9e2ea; vertical-align: top; }
+  th { width: 28%; color: #00386e; }
+  .small { font-size: 8.5pt; color: #5b6b77; }
+  ul { margin: 4pt 0; padding-left: 14pt; }
+</style></head>
+<body>
+<header><div><p class="brand">nw <span>pharmatech</span></p><h1>Programme brief</h1></div><p class="small">Version 3 (staging draft) · {{fact:site.as_of}}</p></header>
+<main>
+  <p>NWPharmaTech presents our research programme for people at clinical high risk of psychosis, explaining the clinical need, the science and the people behind it.</p>
+  <p>The programme centres on <strong>{{fact:product.name}}</strong>, an investigational oral cannabidiol formulation, and a planned <strong>Phase 2B study</strong> evaluating {{fact:phase2b.aims}}. The website brings together accessible explanations, supporting evidence and programme updates, clearly distinguishing established findings from questions our research aims to answer.</p>
+  <p>Alongside the clinical programme, we are developing a financing route through which eligible investors, including those in the crypto and mental-health communities, could participate through a dedicated programme vehicle, potentially using permissioned tokens. Our ambition is to connect rigorous pharmaceutical development with transparent communication and broader access to research financing, while keeping clinical decisions independent and recognising that the treatment's effectiveness remains unproven.</p>
+  <p class="notice"><strong>Investigational medicine.</strong> {{fact:product.name}} is {{fact:product.status}}. Its effectiveness is unproven. This brief is not medical advice and is not an offer of any security or token.</p>
+
+  <h2>Where the programme stands</h2>
+  <table>
+    <tr><th scope="row">Investigational medicine</th><td>{{fact:product.strength}} {{fact:product.form}}; {{fact:product.api}} in a {{fact:product.formulation}}; GMP manufacture</td></tr>
+    <tr><th scope="row">Completed</th><td>Phase 1 study: {{fact:phase1.population}}; {{fact:phase1.design}}; {{fact:phase1.treatments}}. Completed {{fact:phase1.end}}; database locked {{fact:phase1.db_lock}}. Registered as {{fact:phase1.nct}} and {{fact:phase1.isrctn}}. Results not yet published.</td></tr>
+    <tr><th scope="row">Current stage</th><td>Phase 2B study in {{fact:phase2b.population}}: {{fact:phase2b.status}} {{fact:phase2b.protocol_status}}.</td></tr>
+    <tr><th scope="row">Next milestone</th><td>Finalise the Phase 2B protocol, then submit for regulatory and research ethics review. No date set.</td></tr>
+    <tr><th scope="row">Financing</th><td>In development: platform-integrated programme financing through a dedicated vehicle, with permissioned tokens at closing where feasible and register-first as the fallback. No investment is being accepted.</td></tr>
+    <tr><th scope="row">Sponsor</th><td>{{fact:company.name}}, company number {{fact:company.number}}, {{fact:company.jurisdiction}}</td></tr>
+  </table>
+
+  <h2>What is established, and what is not</h2>
+  <ul>
+    <li><strong>Established:</strong> in pooled studies, {{fact:evidence.transition_3y}} people at clinical high risk developed psychosis within three years; no medicine is licensed for this group; NICE advises against antipsychotics for prevention.</li>
+    <li><strong>Emerging:</strong> small, short studies of other CBD preparations in schizophrenia (mixed results) and in clinical high risk (brain activity, stress response, and one 21-day symptom study).</li>
+    <li><strong>Open:</strong> whether {{fact:product.name}} reduces symptoms, which dose is best, and its safety and tolerability in this population.</li>
+  </ul>
+  <p class="small">Sources, evidence labels and verification dates: www.nwpharmatech.org/evidence.html · Study milestones and sources: www.nwpharmatech.org/study.html</p>
+</main>
+</body></html>
