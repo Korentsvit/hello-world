@@ -32,7 +32,7 @@
       - strong: Phase 2B study
       - text: evaluating dose response, symptoms, safety and tolerability.
     - paragraph: Alongside the clinical programme, we are developing a financing route through which eligible investors could take part through a dedicated programme vehicle, potentially using permissioned tokens. Clinical decisions remain independent of financing, and the effectiveness of NWPT-SM32300 is unproven.
-    - link "Download the brief (PDF, 2 pages, 66 KB)":
+    - link "Download the brief (PDF, 2 pages, 67 KB)":
       - /url: /downloads/nwpharmatech-programme-brief.pdf
     - link "Study progress and evidence":
       - /url: /study
@@ -45,7 +45,7 @@
         - heading "Young people at risk, with no licensed medicine" [level=3]
         - paragraph:
           - text: Some young people who seek help meet criteria for clinical high risk of psychosis. In pooled studies, about one in four developed psychosis within three years.
-          - 'link "Source: Source: Salazar de Pablo et al. 2021"':
+          - 'link "Source: Salazar de Pablo et al. 2021"':
             - /url: /evidence#ref-salazar-2021
         - paragraph:
           - link "Clinical need":
@@ -89,7 +89,7 @@
         - time: 30 March 2026
         - text: · Operational
       - heading "Phase 1 analysis outputs delivered" [level=3]
-      - paragraph: The statistical and pharmacokinetic analysis outputs for the Phase 1 study were delivered. A results summary will be published after review.
+      - paragraph: The statistical and pharmacokinetic analysis outputs for the Phase 1 study were delivered.
       - paragraph:
         - link "All programme updates":
           - /url: /updates
@@ -132,7 +132,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

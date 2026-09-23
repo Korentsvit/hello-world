@@ -52,13 +52,13 @@
         - text: It does
         - strong: not
         - text: mean psychosis will happen. Most people in this group do not develop psychosis; in pooled studies about one in four did within three years.
-        - 'link "Source: Source: Salazar de Pablo et al. 2021"':
+        - 'link "Source: Salazar de Pablo et al. 2021"':
           - /url: /evidence#ref-salazar-2021
       - listitem:
         - text: It does
         - strong: not
         - text: mean you need medicine. In England, psychological therapy is the recommended first step.
-        - 'link "Source: Source: NICE CG155"':
+        - 'link "Source: NICE CG155"':
           - /url: /evidence#ref-nice-cg155
   - region "What a specialist assessment may involve":
     - heading "What a specialist assessment may involve" [level=2]
@@ -80,13 +80,13 @@
         - text: You may be offered support and regular check-ins, therapy, help with other difficulties, or a referral elsewhere. Sometimes the answer is that you do not meet the criteria, and that can change over time.
     - paragraph:
       - text: Assessment approaches are described in the research literature.
-      - 'link "Source: Source: Fusar-Poli et al. 2013"':
+      - 'link "Source: Fusar-Poli et al. 2013"':
         - /url: /evidence#ref-fusarpoli-2013
     - complementary:
       - heading "Prepare for an appointment" [level=3]
       - paragraph: "A sheet to fill in by hand before an appointment: what you have noticed, what helps, your questions, and who is coming with you. Nothing is sent to us."
       - paragraph:
-        - link "Download the sheet (PDF, 1 page, 36 KB)":
+        - link "Download the sheet (PDF, 1 page, 42 KB)":
           - /url: /downloads/appointment-preparation-sheet.pdf
   - region "Questions you might ask a clinician":
     - heading "Questions you might ask a clinician" [level=2]
@@ -159,7 +159,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

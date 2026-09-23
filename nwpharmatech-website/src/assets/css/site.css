@@ -419,3 +419,8 @@ ol.design-steps li { margin-bottom: .4rem; }
 .owner { display: inline-block; margin-left: .4rem; font-size: .75rem; font-weight: 700; color: var(--co-ink); background: var(--co-bg); padding: .2em .6em; border-radius: 999px; vertical-align: middle; }
 .signup-msg { min-height: 1.4em; font-weight: 600; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Evidence filters: keep the pressed filter distinguishable in forced colours */
+@media (forced-colors: active) {
+  .chip[aria-pressed="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
+}

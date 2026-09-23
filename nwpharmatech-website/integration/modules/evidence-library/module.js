@@ -12,9 +12,7 @@
         bar.hidden = false;
         var status = root.querySelector(".nwpt-filter-status");
         var sections = root.querySelectorAll(".nwpt-lib-section");
-        bar.addEventListener("click", function (e) {
-          var btn = e.target.closest("button[data-filter]");
-          if (!btn || !bar.contains(btn)) return;
+        var apply = function (btn) {
           var f = btn.getAttribute("data-filter");
           bar.querySelectorAll("button[data-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
           var shown = 0;
@@ -24,6 +22,29 @@
             if (on) shown += s.querySelectorAll(".nwpt-study-card").length;
           });
           if (status) status.textContent = "Showing " + shown + (shown === 1 ? " source" : " sources") + (f === "all" ? "" : " in " + btn.firstChild.textContent.trim());
+        };
+        bar.addEventListener("click", function (e) {
+          var btn = e.target.closest("button[data-filter]");
+          if (btn && bar.contains(btn)) apply(btn);
+        });
+        // A link to a card in a topic the filter hides shows every topic again, so the page can move to the card.
+        var reveal = function (hash) {
+          var id;
+          try { id = decodeURIComponent(hash.slice(1)); } catch (err) { return false; }
+          var el = id && document.getElementById(id);
+          var s = el && root.contains(el) ? el.closest(".nwpt-lib-section") : null;
+          var all = bar.querySelector('button[data-filter="all"]');
+          if (!s || !s.hidden || !all) return false;
+          apply(all);
+          return el;
+        };
+        root.addEventListener("click", function (e) {
+          var a = e.target.closest('a[href^="#"]');
+          if (a && root.contains(a)) reveal(a.getAttribute("href"));   // before the browser follows the link
+        });
+        window.addEventListener("hashchange", function () {
+          var el = reveal(location.hash);   // a link from elsewhere on the page: the browser found nothing to show
+          if (el) el.scrollIntoView();
         });
       }
     });

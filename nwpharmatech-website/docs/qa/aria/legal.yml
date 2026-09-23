@@ -60,7 +60,7 @@
   - heading "Cookies" [level=2]
   - paragraph: This website does not set cookies, use analytics, or load third-party fonts or scripts. If this changes, this section will be updated and your consent will be requested first where the law requires.
   - heading "Accessibility" [level=2]
-  - paragraph: We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. The site supports keyboard navigation, visible focus, screen readers, text resizing to 200% and use without JavaScript. Automated checks (axe-core) report no violations on any page; a full manual audit, including with assistive technology users, has not yet been carried out.
+  - paragraph: We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. The site is designed for keyboard navigation, visible focus, text resizing to 200% and use without JavaScript, and automated tests check these. It has not yet been tested with screen readers. Automated checks (axe-core) report no violations on any page; a full manual audit, including with assistive technology users, has not yet been carried out.
   - paragraph:
     - text: If you find anything difficult to use, please
     - link "contact us":
@@ -93,7 +93,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

@@ -173,7 +173,7 @@ if (MODULES.includes("family-guide")) {
   check("family-guide: the urgent-help link is a dependency that blocks publication until a check is recorded, with the FAQ crisis-line review item",
     dep && dep.blocks_publication === true && dep.confirmed === null && dep.links.includes(`${routes.pages.faq}#urgent-help`)
     && fg.publication_blockers.some((b) => b.startsWith("dependency urgent-help:"))
-    && (routes.pages.faq !== "/faq" || fg.publication_blockers.some((b) => /^faq\.html: .*crisis-line/.test(b))), JSON.stringify(dep));
+    && fg.publication_blockers.some((b) => /crisis-line/.test(b.split(": ")[1] || "") && /appointment preparation sheet PDF/.test(b.split(": ")[0])), JSON.stringify(dep));
 }
 
 // ---------- docs/integration.md matches the manifests ----------
@@ -319,10 +319,11 @@ if (MODULES.includes("family-guide")) {
     && !m1.publication_blockers.some((b) => b.startsWith("dependency urgent-help")) && m1.publication_blockers.some((b) => /crisis-line/.test(b)), ok1.stderr || JSON.stringify(d1));
   const ok2 = exportWith({ pages: { faq: "/help" }, confirmed_dependencies: { "urgent-help": { href: "/faq#urgent-help", record: "Test record" } } }, "stale");
   const m2 = ok2.status === 0 ? fgManifest("stale") : null;
-  check("dependency: a check recorded for another address does not count (live path changed to /help)",
+  // The crisis-line re-check still applies after the move: the module ships the appointment sheet, which prints the numbers.
+  check("dependency: a check recorded for another address does not count (live path changed to /help); the sheet's crisis-line item stays",
     m2 && (m2.dependencies || []).find((d) => d.id === "urgent-help")?.blocks_publication === true
     && m2.publication_blockers.some((b) => b.startsWith("dependency urgent-help: /help#urgent-help") && /recorded check was for \/faq#urgent-help/.test(b))
-    && !m2.publication_blockers.some((b) => /crisis-line/.test(b)), ok2.stderr || JSON.stringify(m2?.publication_blockers));
+    && m2.publication_blockers.some((b) => /crisis-line/.test(b)), ok2.stderr || JSON.stringify(m2?.publication_blockers));
   refused("a check recorded for an unknown dependency is refused", { confirmed_dependencies: { "no-such": { href: "/x", record: "y" } } }, /unknown dependency/);
 
   // A published document version is exported without its internal status note; unpublished ones are not.

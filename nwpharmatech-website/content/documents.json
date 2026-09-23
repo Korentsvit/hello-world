@@ -12,7 +12,8 @@
           "date": "2026-09-23",
           "published": false,
           "status": "Draft for review",
-          "change": "Current stage and completed work taken from the study summary, as on the study page; results status taken from the Phase 1 record; draft status shown in the header."
+          "change": "Current stage and completed work taken from the study summary, as on the study page; results status taken from the Phase 1 record; draft status shown in the header.",
+          "source_sha256": "7e715e39aae2bfe3f83e07967f6cac1ff69e40b2eeb482178609dc509b641e7f"
         },
         {
           "version": "3",
@@ -48,7 +49,8 @@
           "date": "2026-09-23",
           "published": false,
           "status": "Draft for review",
-          "change": "Adds a header with the logo slot, version and draft status, and the date the crisis-line numbers were checked; the numbers come from the same list as the Q&A page."
+          "change": "Adds a header with the logo slot, version and draft status, and the date the crisis-line numbers were checked; the numbers come from the same list as the Q&A page.",
+          "source_sha256": "d415d2421da902b88020fc83cd90b5051851590ac0eca41245d0cbe878dbd6da"
         },
         {
           "version": "1",

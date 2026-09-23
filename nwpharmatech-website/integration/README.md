@@ -10,23 +10,28 @@ brand assets and security configuration. Step-by-step instructions for each modu
 | `phase-1` | Phase 1 study | `/phase-1` | no | none | 7 | 0 |
 | `formulation` | Formulation explanation | `/science#formulation` | no | none | 2 | 1 |
 | `evidence-library` | Evidence library | `/evidence` | yes | `downloads/nwpharmatech-references.bib`, `downloads/nwpharmatech-references.ris` | 25 | 0 |
-| `family-guide` | Guide for young people and families | `/families` | no | `downloads/appointment-preparation-sheet.pdf` | 4 | 0 |
+| `family-guide` | Guide for young people and families | `/families` | no | `downloads/appointment-preparation-sheet.pdf` | 7 | 0 |
 | `newsroom` | Newsroom | `/newsroom` | no | `downloads/nwpharmatech-programme-brief.pdf`, `downloads/nwpharmatech-references.ris` | 7 | 0 |
 
 Each `modules/<id>/` folder holds `fragment.html` (the markup), `module.css` (styles scoped under `.nwpt-module`,
-classes prefixed `nwpt-`), `module.js` where needed, `manifest.json` (facts, references, links, anchors, CSP needs,
-blockers) and `preview.html` (the module on its own under a strict CSP; open it over HTTP, for review only).
+classes prefixed `nwpt-`), `module.js` where needed, `manifest.json` (facts, references, links, dependencies,
+redirects, anchors, CSP needs, blockers) and `preview.html` (the module on its own under a strict CSP; open it over
+HTTP, for review only).
+
+Redirects in `manifest.json` → `redirects`: add every one with `"required": true`. An alias (`"required": false`)
+is added only if nothing on the live site already answers at its path; otherwise skip it.
 
 Shared files:
 - `routes.json`: page id to live path. Downloads are linked under `/downloads/` and assets under `/assets/`.
   Change paths in `src/integration-routes.json` and rebuild; never edit the fragments by hand.
 - `downloads/`: `appointment-preparation-sheet.pdf`, `nwpharmatech-programme-brief.pdf`, `nwpharmatech-references.bib`, `nwpharmatech-references.ris`. Replace the live copies whenever they change (PDFs are regenerated and checked by the build when their facts change).
 - `assets/`: none needed at present (an image appears here once it is supplied and authorised).
-- `content/`: the public-safe parts of the shared content model (public items only; internal notes removed). `people.json` is not included: no module shows profiles, and leadership titles await management confirmation.
+- `content/`: the public-safe parts of the shared content model (public items only; internal notes, unpublished document versions and uncited source ids removed; fact placeholders replaced by their values). `people.json` is not included: no module shows profiles, and leadership titles await management confirmation.
 
 ## Publication blockers by module
-These must be cleared before the module is published on the live site. They are content and approval items, listed
-in `manifest.json` → `publication_blockers`; the build report (`build/build-report.json`) lists the whole site's.
+These must be cleared before the module is published on the live site. They are content and approval items, and
+live-site dependencies that must be checked first (`manifest.json` → `dependencies` with `"blocks_publication": true`),
+listed in `manifest.json` → `publication_blockers`; the build report (`build/build-report.json`) lists the whole site's content blockers.
 
 - **study-hub**
   - financing.html, index.html, faq.html, programme brief PDF: board and legal approval of the funding and financing wording before publication
@@ -71,10 +76,13 @@ in `manifest.json` → `publication_blockers`; the build report (`build/build-re
   - reference stafford-2013 (index) on evidence.html
   - reference taylor-2018 (index) on evidence.html
 - **family-guide**
+  - faq.html, appointment preparation sheet PDF: re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date
   - fact evidence.transition_3y (index) on families.html
   - reference fusarpoli-2013 (index) on families.html
   - reference nice-cg155 (index) on families.html
   - reference salazar-2021 (index) on families.html
+  - dependency urgent-help: /faq#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)
+  - faq.html, appointment preparation sheet PDF: re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date
 - **newsroom**
   - financing.html, index.html, faq.html, programme brief PDF: board and legal approval of the funding and financing wording before publication
   - index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set

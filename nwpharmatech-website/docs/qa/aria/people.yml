@@ -46,7 +46,7 @@
       - paragraph: Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.
       - heading "Responsibilities" [level=4]
       - list:
-        - listitem: Brings expertise in clinical high risk of psychosis, including how it is assessed, to the design of the programme's studies.
+        - listitem: Brings expertise in clinical high risk of psychosis to the design of the planned Phase 2B study.
       - heading "Affiliations" [level=4]
       - list:
         - listitem: Professor of Psychiatry, Yale School of Medicine
@@ -55,9 +55,6 @@
       - paragraph: Clinical trial design
       - heading "Dr John M. Kane" [level=3]
       - paragraph: Psychiatrist and schizophrenia researcher with long experience of leading clinical trials.
-      - heading "Responsibilities" [level=4]
-      - list:
-        - listitem: Leads the programme's clinical trial design.
       - heading "Affiliations" [level=4]
       - list:
         - listitem: Professor of Psychiatry and Molecular Medicine, Donald and Barbara Zucker School of Medicine at Hofstra/Northwell
@@ -82,13 +79,9 @@
       - list:
         - listitem: Leads company strategy and the development programme.
     - article:
-      - paragraph: Programme execution
+      - paragraph: Co-founder
       - heading "Daud Gutseriev" [level=3]
-      - paragraph: Chief Operating Officer
       - paragraph: Previously an Associate Director at VTB Capital in infrastructure and project financing. Executive MBA, University of Oxford Saïd Business School.
-      - heading "Responsibilities" [level=4]
-      - list:
-        - listitem: Leads programme execution.
   - region "Board and senior advisers":
     - heading "Board and senior advisers" [level=2]
     - article:
@@ -103,12 +96,12 @@
       - paragraph: Pharmaceutical commercial strategy
       - heading "Dr Gillian Cannon" [level=3]
       - paragraph: Board Member
-      - paragraph: Pharmaceutical executive with senior roles at Merck, Otsuka and UCB.
+      - paragraph: Pharmaceutical executive with senior roles at Merck and Otsuka.
     - article:
       - paragraph: Regulatory and clinical development
       - heading "Professor Trevor Jones CBE" [level=3]
       - paragraph: Senior Adviser
-      - paragraph: Senior leader in the pharmaceutical sector. Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association.
+      - paragraph: Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association.
       - heading "Affiliations" [level=4]
       - list:
         - listitem: Visiting Professor, King's College London
@@ -147,7 +140,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

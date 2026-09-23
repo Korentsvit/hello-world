@@ -78,7 +78,7 @@
   - heading "Protecting participants" [level=2]
   - paragraph:
     - text: The Phase 2B study can start only after approval by a research ethics committee and the relevant medicines regulators. Anyone taking part would give informed consent and could leave at any time. Cannabidiol can raise liver enzymes and interact with other medicines,
-    - 'link "Source: Source: Epidyolex SmPC"':
+    - 'link "Source: Epidyolex SmPC"':
       - /url: /evidence#ref-epidyolex-smpc
     - text: so safety monitoring will be set out in the study protocol.
   - complementary:
@@ -87,7 +87,6 @@
       - text: "Not yet: the Phase 2B study is"
       - strong: not recruiting
       - text: ", and we cannot supply NWPT-SM32300 outside an approved study."
-    - paragraph: The study will be registered publicly before anyone is enrolled, and its registry entry will list the eligibility criteria and study sites.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
@@ -115,7 +114,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

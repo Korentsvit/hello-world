@@ -96,7 +96,10 @@
         - text: "988 Suicide & Crisis Lifeline: call or text"
         - link "988":
           - /url: tel:988
-    - paragraph: Last checked 23 September 2026. Elsewhere, contact your local emergency services.
+    - paragraph:
+      - text: Last checked
+      - time: 23 September 2026
+      - text: . Elsewhere, contact your local emergency services.
   - heading "About the investigational medicine" [level=2]
   - group: Does NWPT-SM32300 work? +
   - group: Can I get NWPT-SM32300? +
@@ -109,7 +112,7 @@
   - group: Would taking part affect my usual care? +
   - heading "About the programme" [level=2]
   - group: How is the programme funded? +
-  - group: Will study results be published? +
+  - group: Have the Phase 1 study results been published? +
   - group: Is this website medical advice? +
 - contentinfo:
   - paragraph: nw pharmatech
@@ -138,7 +141,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

@@ -16,16 +16,16 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 6686,
-   "sha256": "1b2673aa483ff5df6609fe0967b9171785512626385dba58ee070e1edab13c66"
+   "bytes": 6602,
+   "sha256": "02dadd32a5725bf294245a37341432c8c2e9ca74d32074ab924e07705f2b4672"
   },
   "module.css": {
-   "bytes": 4653,
-   "sha256": "d9990daf6b9cf9641164f3f36a8c03410cdbe25bb9fd4bc7eb430030c6366ec5"
+   "bytes": 5842,
+   "sha256": "19644ddb2f13b1027144063625757ccfe790f6edc09dee659bfce2a649483075"
   },
   "preview.html": {
-   "bytes": 7356,
-   "sha256": "37da525a18bd5dba341bdea13289d900dd1c1beccdac8444a71a334c07c6287d"
+   "bytes": 7272,
+   "sha256": "d7e703b687d62435933204de8d876e4ca14a756713260a4ef24d8d90c19fb598"
   }
  },
  "left_out": [
@@ -110,12 +110,37 @@
   ],
   "external": []
  },
+ "dependencies": [
+  {
+   "id": "evidence-library",
+   "kind": "module",
+   "page": "evidence",
+   "links": [
+    "/evidence#ref-perucca-2020",
+    "/evidence#ref-taylor-2018"
+   ],
+   "needs": "module evidence-library imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  },
+  {
+   "id": "phase-1",
+   "kind": "module",
+   "page": "phase-1",
+   "links": [
+    "/phase-1"
+   ],
+   "needs": "module phase-1 imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  }
+ ],
  "redirects": [
   {
    "from": "/formulation",
    "to": "/science#formulation",
    "status": 301,
-   "why": "short alias in src/redirects.txt"
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
   }
  ],
  "javascript": [],

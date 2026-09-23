@@ -13,12 +13,26 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   var toggle = document.querySelector(".nav-toggle");
   var panel = document.getElementById("mobile-nav");
-  if (toggle && panel) {
+  var header = document.querySelector(".site-header");
+  if (toggle && panel && header) {
     var isOpen = function () { return toggle.getAttribute("aria-expanded") === "true"; };
-    // Keep the open panel inside the viewport (the header may sit below the notice bars), so it scrolls.
+    var scrolledFrom = null;   // where the page was before opening the menu scrolled it (see fit)
+    // Keep the open panel inside the viewport, so it scrolls within itself and its last item can always be reached.
+    // Page scrolling is locked while the menu is open (site.css). When the notice bars above the header leave the
+    // panel less than half the viewport (a short or zoomed screen), first scroll the page until the sticky header
+    // reaches the top of the viewport, so the panel gets all the height there is.
     var fit = function () {
-      panel.style.maxHeight = Math.max(160, window.innerHeight - panel.getBoundingClientRect().top) + "px";
+      var room = window.innerHeight - panel.getBoundingClientRect().top;
+      var above = header.getBoundingClientRect().top;
+      if (above > 0 && room < Math.min(panel.scrollHeight, window.innerHeight / 2)) {
+        if (scrolledFrom === null) scrolledFrom = window.scrollY;
+        window.scrollTo({ top: window.scrollY + above, behavior: "instant" });
+        room = window.innerHeight - panel.getBoundingClientRect().top;
+      }
+      panel.style.maxHeight = Math.max(0, room) + "px";
     };
+    // returnFocus: the reader dismissed the menu (toggle or Escape). Focus goes back to the toggle and the page
+    // goes back to where it was. Otherwise focus has already moved on, or the page is going somewhere else.
     var setOpen = function (open, returnFocus) {
       toggle.setAttribute("aria-expanded", String(open));
       panel.hidden = !open;
@@ -27,12 +41,16 @@ document.addEventListener("DOMContentLoaded", function () {
         fit();
         var first = panel.querySelector("a, summary");
         if (first) first.focus();
-      } else if (returnFocus) {
+        return;
+      }
+      if (returnFocus) {
+        if (scrolledFrom !== null) window.scrollTo({ top: scrolledFrom, behavior: "instant" });
         toggle.focus();
       }
+      scrolledFrom = null;
     };
     toggle.addEventListener("click", function () {
-      setOpen(!isOpen(), false);
+      setOpen(!isOpen(), true);
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && isOpen()) setOpen(false, true);
@@ -46,10 +64,23 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("pageshow", function (e) {
       if (e.persisted) setOpen(false, false);
     });
-    // Tabbing out of the open menu closes it, so focus never lands on content hidden behind the panel.
-    panel.addEventListener("focusout", function (e) {
-      var to = e.relatedTarget;
-      if (isOpen() && to && to !== toggle && !panel.contains(to)) setOpen(false, false);
+    // Focus moving anywhere outside the open menu and its toggle closes the menu, so focus never sits on content
+    // hidden behind the panel: Tab past the last item, Shift+Tab past the toggle to the brand, notice or skip link.
+    // Closing as focus leaves (focusout) unlocks the page before the browser scrolls to the new focus, so it lands
+    // clear of the sticky header; focusin catches focus that arrives from elsewhere (a script, the address bar).
+    // A click outside also closes it: the skip link activated by a screen reader without focusing it first, or a
+    // link in a browser that does not focus links on click.
+    var outside = function (el) { return el !== toggle && !toggle.contains(el) && !panel.contains(el); };
+    var leave = function (e) {
+      if (isOpen() && e.relatedTarget && outside(e.relatedTarget)) setOpen(false, false);
+    };
+    panel.addEventListener("focusout", leave);
+    toggle.addEventListener("focusout", leave);
+    document.addEventListener("focusin", function (e) {
+      if (isOpen() && outside(e.target)) setOpen(false, false);
+    });
+    document.addEventListener("click", function (e) {
+      if (isOpen() && outside(e.target)) setOpen(false, false);
     });
     // One group open at a time where <details name> is not supported. "toggle" does not bubble: capture it.
     panel.addEventListener("toggle", function (e) {

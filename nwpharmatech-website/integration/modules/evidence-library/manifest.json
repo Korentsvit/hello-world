@@ -16,20 +16,20 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 39579,
-   "sha256": "3d0a8a1f33b74ed17410accfd56a8cf5c48a22ce869348f6fa216fcb720415d5"
+   "bytes": 39495,
+   "sha256": "93b0090bdce8bc21774e55f9617efc08c172c79cb821db3905e8ae91f807015b"
   },
   "module.css": {
-   "bytes": 10015,
-   "sha256": "79d96cd492d757061f31b155cd886d1255f4ceeca80a940282b3e006b2004872"
+   "bytes": 13154,
+   "sha256": "582b6d6d3d7f47d0feeea9bd92b4bf5cab0bc164e69e6ab3a8fd78fd20bba997"
   },
   "module.js": {
-   "bytes": 1731,
-   "sha256": "dec0678ce4fe5f4a2969f9d6237c82e73453f906ff144956a877e69c7283973f"
+   "bytes": 2809,
+   "sha256": "6e37b17b361d570bd8b1a2025fb8dccf6bb3c23959ae4e285663a03e6266f336"
   },
   "preview.html": {
-   "bytes": 40289,
-   "sha256": "989750c5e326a1d77c6661244dd9e916f9cf68e5804018ca01339cf90abeb8ba"
+   "bytes": 40205,
+   "sha256": "2a711a88c692ca2a3676f2247a56f8cad1a69216ecbd3cadcc1cd61d63fe0cb7"
   }
  },
  "left_out": [],
@@ -327,12 +327,26 @@
    "https://www.nice.org.uk/guidance/cg178"
   ]
  },
+ "dependencies": [
+  {
+   "id": "newsroom",
+   "kind": "module",
+   "page": "newsroom",
+   "links": [
+    "/newsroom#corrections"
+   ],
+   "needs": "module newsroom imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  }
+ ],
  "redirects": [
   {
    "from": "/references",
    "to": "/evidence",
    "status": 301,
-   "why": "short alias in src/redirects.txt"
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
   }
  ],
  "javascript": [

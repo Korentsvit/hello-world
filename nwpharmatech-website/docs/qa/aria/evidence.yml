@@ -36,10 +36,10 @@
     - heading "In plain language" [level=2]
     - paragraph:
       - text: "Clinical high risk of psychosis is well described: most people who meet the criteria do not develop psychosis, and about one in four do within three years."
-      - 'link "Source: Source: Salazar de Pablo et al. 2021"':
+      - 'link "Source: Salazar de Pablo et al. 2021"':
         - /url: /evidence#ref-salazar-2021
       - text: Psychological therapy is the recommended first step, but no treatment has been proven to prevent psychosis.
-      - 'link "Source: Source: Davies et al. 2018"':
+      - 'link "Source: Davies et al. 2018"':
         - /url: /evidence#ref-davies-2018
     - paragraph: "Research on cannabidiol (CBD) in psychosis is early: small, short studies of other CBD products, with mixed results. None of them used NWPT-SM32300. Evidence about NWPT-SM32300 itself so far comes only from a Phase 1 study in healthy volunteers, whose results are not yet published."
     - complementary:
@@ -659,7 +659,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

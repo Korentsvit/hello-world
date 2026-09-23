@@ -17,15 +17,15 @@
  "files": {
   "fragment.html": {
    "bytes": 3933,
-   "sha256": "a6efa7c966663c30071639adf8c0ae0a8690bc15d470517fb5cf53018fb7bff2"
+   "sha256": "d44b812054bb46addeecb88af3b13be9f0235243976e11be340ba37c872f30ba"
   },
   "module.css": {
-   "bytes": 4831,
-   "sha256": "f27487b93b250485b91453be6233be264b15f186f63e3e5f044a92744be69734"
+   "bytes": 6570,
+   "sha256": "ea072117835c6d02cae9f9a057aaec445cac70b55e9f757aeb18275ed2d31885"
   },
   "preview.html": {
    "bytes": 4585,
-   "sha256": "f8c7b08efd90400e3da53c40b1275fc1c4d728375b5954bd7a3dc04c327a5a6b"
+   "sha256": "b8113b2698f71990f9732120b690069e0915d49d1f300e0607bb6437958faa7a"
   }
  },
  "left_out": [],
@@ -164,8 +164,8 @@
   {
    "file": "downloads/nwpharmatech-programme-brief.pdf",
    "href": "/downloads/nwpharmatech-programme-brief.pdf",
-   "bytes": 67874,
-   "sha256": "06c788a580da85fd0b362dea889fbdef979b39caa58928e9cd1e828852617541"
+   "bytes": 68367,
+   "sha256": "1de2490c2420c0506ecdf4b70ac0846e27aaded424d5ee9406664e2ea94b7d87"
   },
   {
    "file": "downloads/nwpharmatech-references.ris",
@@ -199,18 +199,44 @@
   ],
   "external": []
  },
+ "dependencies": [
+  {
+   "id": "contact",
+   "kind": "page outside the package",
+   "page": "contact",
+   "links": [
+    "/contact"
+   ],
+   "needs": "a live page at /contact (set its path in src/integration-routes.json)",
+   "blocks_publication": false
+  },
+  {
+   "id": "updates",
+   "kind": "page outside the package",
+   "page": "updates",
+   "links": [
+    "/updates"
+   ],
+   "needs": "a live page at /updates (set its path in src/integration-routes.json)",
+   "blocks_publication": false
+  }
+ ],
  "redirects": [
   {
    "from": "/news",
    "to": "/newsroom",
    "status": 301,
-   "why": "short alias in src/redirects.txt"
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
   },
   {
    "from": "/press",
    "to": "/newsroom",
    "status": 301,
-   "why": "short alias in src/redirects.txt"
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
   }
  ],
  "javascript": [],

@@ -40,7 +40,7 @@
     - term: What the study is intended to investigate
     - definition: Whether NWPT-SM32300, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.
     - term: Current stage
-    - definition: Phase 2B study planned. Protocol being finalised. Not recruiting.
+    - definition: "Phase 2B study: Planned. Not recruiting. Protocol being finalised."
     - term: Completed so far
     - definition: "Phase 1 study in 14 healthy volunteers: completed 10 December 2025; database locked 11 March 2026; analysis outputs delivered 30 March 2026."
     - term: Next milestone
@@ -49,7 +49,7 @@
     - heading "Public synopsis" [level=2]
     - text: Programme information
     - paragraph: The planned Phase 2B study will evaluate dose response, symptoms, safety and tolerability of NWPT-SM32300 in people at clinical high risk of psychosis. It follows a completed Phase 1 study in healthy volunteers, which looked at how the body absorbs and handles the medicine and at short-term tolerability.
-    - paragraph: The Phase 2B study is not recruiting. It will start only after regulatory and research ethics approval, and will be registered publicly before anyone is enrolled.
+    - paragraph: The Phase 2B study is not recruiting. It can start only after regulatory and research ethics approval.
     - heading "Proposed design" [level=3]
     - heading "Population and aims" [level=3]
     - paragraph: "Source and version: NWPharmaTech, September 2026"
@@ -60,7 +60,7 @@
       - heading "Programme brief" [level=3]
       - paragraph: A summary of the programme, generated from the same facts as this page.
       - paragraph:
-        - link "Download the brief (PDF, 2 pages, 66 KB)":
+        - link "Download the brief (PDF, 2 pages, 67 KB)":
           - /url: /downloads/nwpharmatech-programme-brief.pdf
   - region "Milestones":
     - heading "Milestones" [level=2]
@@ -95,11 +95,6 @@
             - text: "Date:"
             - time: 11 March 2026
           - 'cell "Source: Company records"'
-        - 'row "Phase 1: results summary on registries and this site Status: Planned Date: Date not set Source: Company records"':
-          - 'rowheader "Phase 1: results summary on registries and this site"'
-          - 'cell "Status: Planned"'
-          - 'cell "Date: Date not set"'
-          - 'cell "Source: Company records"'
         - 'row "Phase 2B: protocol finalised Status: In progress Date: As reported 23 February 2026 Source: Company records"':
           - 'rowheader "Phase 2B: protocol finalised"'
           - 'cell "Status: In progress"'
@@ -107,11 +102,6 @@
           - 'cell "Source: Company records"'
         - 'row "Phase 2B: regulatory and research ethics submissions Status: Planned Date: Date not set Source: Company records"':
           - 'rowheader "Phase 2B: regulatory and research ethics submissions"'
-          - 'cell "Status: Planned"'
-          - 'cell "Date: Date not set"'
-          - 'cell "Source: Company records"'
-        - 'row "Phase 2B: public registration before first enrolment Status: Planned Date: Date not set Source: Company records"':
-          - 'rowheader "Phase 2B: public registration before first enrolment"'
           - 'cell "Status: Planned"'
           - 'cell "Date: Date not set"'
           - 'cell "Source: Company records"'
@@ -155,11 +145,6 @@
           - 'cell "Status: In progress"'
           - 'cell "Date: As at August 2026"'
           - 'cell "Source: Company records"'
-        - 'row "Programme financing route for eligible investors Status: In progress Date: In development; not available Source: Company records"':
-          - rowheader "Programme financing route for eligible investors"
-          - 'cell "Status: In progress"'
-          - 'cell "Date: In development; not available"'
-          - 'cell "Source: Company records"'
   - region "Registrations":
     - heading "Registrations" [level=2]
     - paragraph: "The completed Phase 1 study is registered on two public registries. Both entries describe the same study: a single-dose, three-period crossover study of NW300EMCBD (the development code for NWPT-SM32300) in healthy adults aged 18 to 55, sponsored by NWPharmaTech Ltd."
@@ -185,9 +170,8 @@
             - text: "Identifier:"
             - link "ISRCTN25163383":
               - /url: https://www.isrctn.com/ISRCTN25163383
-    - paragraph: The Phase 2B study will be registered before the first participant is enrolled, and its registry entries will be listed here.
     - heading "Sponsor and oversight" [level=2]
-    - paragraph: In clinical trial law, the sponsor is the organisation that takes responsibility for starting, managing and financing a study. NWPharmaTech Ltd was the sponsor of the Phase 1 study. The sponsor of the Phase 2B study will be named in its registry entry.
+    - paragraph: In clinical trial law, the sponsor is the organisation that takes responsibility for starting, managing and financing a study. NWPharmaTech Ltd was the sponsor of the Phase 1 study.
     - heading "Phase 1 study (completed)" [level=3]
     - list:
       - listitem: "Sponsor: NWPharmaTech Ltd."
@@ -223,7 +207,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

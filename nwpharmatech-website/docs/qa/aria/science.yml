@@ -49,32 +49,32 @@
     - paragraph: Biological rationale
     - paragraph:
       - text: Cannabidiol (CBD) and THC both come from the cannabis plant but act differently. CBD does not produce a "high". Daily use of high-THC cannabis is associated with higher odds of psychotic disorder.
-      - 'link "Source: Source: Di Forti et al. 2019"':
+      - 'link "Source: Di Forti et al. 2019"':
         - /url: /evidence#ref-diforti-2019
     - paragraph:
       - text: No medicine is licensed for people at clinical high risk of psychosis, and NICE advises against antipsychotics for prevention.
-      - 'link "Source: Source: NICE CG178"':
+      - 'link "Source: NICE CG178"':
         - /url: /evidence#ref-nice-cg178
     - text: Emerging evidence
     - paragraph: Findings from other CBD preparations
     - paragraph:
       - text: In small experiments, CBD and THC had opposite effects on some measures of brain activity.
-      - 'link "Source: Source: Bhattacharyya et al. 2010"':
+      - 'link "Source: Bhattacharyya et al. 2010"':
         - /url: /evidence#ref-bhattacharyya-2010
       - text: In people at clinical high risk, a single CBD dose partly shifted brain activity towards that of healthy volunteers during a memory task,
-      - 'link "Source: Source: Bhattacharyya et al. 2018"':
+      - 'link "Source: Bhattacharyya et al. 2018"':
         - /url: /evidence#ref-bhattacharyya-2018
       - text: and a small three-week study reported lower symptom scores than placebo.
-      - 'link "Source: Source: Bhattacharyya et al. 2024"':
+      - 'link "Source: Bhattacharyya et al. 2024"':
         - /url: /evidence#ref-bhattacharyya-2024
     - paragraph:
       - text: "In schizophrenia, results are mixed: two small trials were favourable"
-      - 'link "Source: Source: McGuire et al. 2018"':
+      - 'link "Source: McGuire et al. 2018"':
         - /url: /evidence#ref-mcguire-2018
-      - 'link "Source: Source: Leweke et al. 2012"':
+      - 'link "Source: Leweke et al. 2012"':
         - /url: /evidence#ref-leweke-2012
       - text: and one found no benefit.
-      - 'link "Source: Source: Boggs et al. 2018"':
+      - 'link "Source: Boggs et al. 2018"':
         - /url: /evidence#ref-boggs-2018
     - text: Programme information
     - paragraph: About NWPT-SM32300
@@ -83,7 +83,7 @@
     - paragraph: Unanswered
     - paragraph:
       - text: Whether CBD reduces symptoms, improves functioning or lowers the risk of psychosis in this group. A larger UK trial that could have answered this did not go ahead.
-      - 'link "Source: Source: CANTOP-RCT report"':
+      - 'link "Source: CANTOP-RCT report"':
         - /url: /evidence#ref-cantop
     - paragraph:
       - link "Full study cards in the evidence library":
@@ -95,9 +95,9 @@
     - paragraph: The delivery problem
     - paragraph:
       - text: CBD dissolves poorly in water. Taken by mouth on an empty stomach, only about 6% of a dose is estimated to reach the bloodstream, and much is broken down by the liver first. A high-fat meal increases absorption several-fold, which makes exposure depend on what someone has eaten.
-      - 'link "Source: Source: Perucca and Bialer 2020"':
+      - 'link "Source: Perucca and Bialer 2020"':
         - /url: /evidence#ref-perucca-2020
-      - 'link "Source: Source: Taylor et al. 2018"':
+      - 'link "Source: Taylor et al. 2018"':
         - /url: /evidence#ref-taylor-2018
     - text: Programme information
     - paragraph: The design of NWPT-SM32300
@@ -119,19 +119,19 @@
     - paragraph: General principle
     - paragraph:
       - text: Benefits and side effects of a medicine can both depend on dose. With CBD, rises in liver enzymes are dose-related.
-      - 'link "Source: Source: Epidyolex SmPC"':
+      - 'link "Source: Epidyolex SmPC"':
         - /url: /evidence#ref-epidyolex-smpc
       - text: A Phase 2B study compares doses so that any later study can use the dose with the best balance of benefit and tolerability, or stop if none is adequate.
     - text: Emerging evidence
     - paragraph: Doses used with other CBD preparations
     - paragraph:
       - text: Studies in people at clinical high risk used 600 mg a day.
-      - 'link "Source: Source: Bhattacharyya et al. 2024"':
+      - 'link "Source: Bhattacharyya et al. 2024"':
         - /url: /evidence#ref-bhattacharyya-2024
       - text: Trials in schizophrenia used between 600 and 1,000 mg a day, with mixed results.
-      - 'link "Source: Source: Boggs et al. 2018"':
+      - 'link "Source: Boggs et al. 2018"':
         - /url: /evidence#ref-boggs-2018
-      - 'link "Source: Source: McGuire et al. 2018"':
+      - 'link "Source: McGuire et al. 2018"':
         - /url: /evidence#ref-mcguire-2018
       - text: Doses cannot be transferred directly between products that are absorbed differently.
     - text: Programme information
@@ -167,7 +167,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

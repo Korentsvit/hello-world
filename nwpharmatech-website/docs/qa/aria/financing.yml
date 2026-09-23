@@ -60,11 +60,6 @@
           - 'cell "Status: In progress"'
           - 'cell "Date: As at August 2026"'
           - 'cell "Source: Company records"'
-        - 'row "Programme financing route for eligible investors Status: In progress Date: In development; not available Source: Company records"':
-          - rowheader "Programme financing route for eligible investors"
-          - 'cell "Status: In progress"'
-          - 'cell "Date: In development; not available"'
-          - 'cell "Source: Company records"'
     - paragraph: "Figures are published only once they are approved and can be shown as one of: planning target, committed funding, cash received, or money spent. Expressions of interest are never counted as funding."
   - region "Who controls spending and clinical decisions":
     - heading "Who controls spending and clinical decisions" [level=2]
@@ -137,7 +132,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

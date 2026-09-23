@@ -80,7 +80,7 @@
         - text: ": a licensed cannabidiol oral solution, as the comparator."
     - paragraph:
       - text: There were about 25 days between doses, with blood samples for up to 192 hours (8 days) after each dose. Taking part lasted about 105 days per participant, including screening and follow-up. Study procedures included a standardised high-fat meal, because food changes how much cannabidiol is absorbed.
-      - 'link "Source: Source: Perucca and Bialer 2020"':
+      - 'link "Source: Perucca and Bialer 2020"':
         - /url: /evidence#ref-perucca-2020
   - region "What was measured":
     - heading "What was measured" [level=2]
@@ -88,12 +88,11 @@
     - definition: How much cannabidiol and two of its breakdown products (7-hydroxy-CBD and 7-carboxy-CBD) reached the blood over time, and how quickly (pharmacokinetics).
     - term: Safety and tolerability
     - definition: Adverse events, blood and urine tests, vital signs, heart tracings (ECG), gut symptoms, and a structured suicidality questionnaire (C-SSRS).
-    - paragraph: The study had pre-specified stopping rules and did not use a data monitoring committee, which is usual for a small single-dose study in healthy volunteers.
+    - paragraph: The study had pre-specified stopping rules and did not use a data monitoring committee.
   - region "Results publication status":
     - heading "Results publication status" [level=2]
     - paragraph: Not yet published
-    - paragraph: Results will be published after the study report and plain-language wording have been reconciled and approved.
-    - paragraph: A results summary is planned for both trial registries and this page. No date has been set.
+    - paragraph: Results have not been published yet.
   - region "What this study can establish":
     - heading "What this study can establish" [level=2]
     - list:
@@ -155,7 +154,7 @@
   - heading "Information" [level=2]
   - list:
     - listitem:
-      - link "Programme brief (PDF, 2 pages, 66 KB)":
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":

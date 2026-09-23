@@ -2,7 +2,7 @@
 
 **Status: proposal for management adoption.** Not adopted, and not shown on the public site. No timetable in it is a commitment.
 
-Moved from the public study page (`study.html#publication-policy`, labelled "Draft for management adoption") in the correction release of 23 September 2026. Until it is adopted, public pages say only what the records support: Phase 1 results are not yet published, a results summary is planned for both registries and the site, and the Phase 2B study will be registered before anyone is enrolled.
+Moved from the public study page (`study.html#publication-policy`, labelled "Draft for management adoption") in the correction release of 23 September 2026. Until it is adopted, public pages say only what the records support: Phase 1 results have not been published. No publication or registration plan is stated. If adopted, record the adoption as a source in `content/sources.json`; the plans it contains can then be shown as milestones citing it.
 
 ## Proposed text
 

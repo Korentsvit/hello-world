@@ -30,7 +30,11 @@ with tempfile.TemporaryDirectory() as tmp:
     # profile role
     pp = dst / "content" / "people.json"
     d = json.loads(pp.read_text())
-    next(p for p in d["people"] if p["role_status"] in ("confirmed", "records-agree"))["role"] = "TESTVALUE-role-7731"
+    p = next(p for p in d["people"] if p["role_status"] == "records-agree")
+    p["role"] = "TESTVALUE-role-7731"   # a shown title must match its records (tools/test_people.py), so change them together
+    for r in p["role_records"]:
+        if r.get("title"):
+            r["title"] = r["wording"] = "TESTVALUE-role-7731"
     pp.write_text(json.dumps(d))
     proc = subprocess.run([sys.executable, "build.py"], cwd=dst, capture_output=True, text=True)
     if proc.returncode:

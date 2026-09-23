@@ -27,7 +27,9 @@ Publication blockers (a production build is refused while any remain)
     - any link to a page that is not built
     - any fact or reference used publicly whose verification is not 'document' or 'primary'
       (unless --accept-index or accept_for_production is set on that item)
-    - any leadership title not confirmed by management (content/people.json)
+    - any leadership title not confirmed by management, profile without consent to publish, or biography below
+      document/primary verification (content/people.json)
+    - any PDF whose content differs from the version recorded in content/documents.json
     - any PDF that is out of date with the facts it contains
 Optional assets that have not been supplied (portraits, renders, the official logo, interview recordings)
 are reported separately and never block a build: their slots render nothing until the asset is authorised.
@@ -141,11 +143,11 @@ def build_tree(content, src_pages, out_dir, env, restricted=False, with_signup=F
         r.page_name = name
         desk, mob = r.nav(meta)
         if restricted:
-            banner = ('<aside class="env-banner env-restricted" aria-label="Environment"><strong>Restricted staging.</strong> '
+            banner = (f'<aside class="env-banner env-restricted" aria-label="{html.escape(ui["environment_region"])}"><strong>Restricted staging.</strong> '
                       'Unapproved financing material for internal and legal review only. Access to this area does not '
                       'confirm that anyone is eligible to invest. No investment, payment or token function is active.</aside>')
         elif env == "staging":
-            banner = f'<aside class="env-banner" aria-label="Environment">{ui["staging_banner"]}</aside>'
+            banner = f'<aside class="env-banner" aria-label="{html.escape(ui["environment_region"])}">{ui["staging_banner"]}</aside>'
         else:
             banner = ""
         page_html = header + body + footer
@@ -371,7 +373,7 @@ def document_version_blockers(checks):
     content/documents.json carries the SHA-256 of the source it was made from."""
     out = []
     for d in json.loads((ROOT / "content" / "documents.json").read_text())["documents"]:
-        c = next((c for c in checks.values() if c["pdf"] == d.get("pdf")), None)
+        c = next((c for c in checks.values() if c["pdf"] == Path(d.get("file", "")).name), None)
         if c and d["history"][0].get("source_sha256") != c["sha256"]:
             out.append(f"{c['pdf']}: content differs from version {d['history'][0]['version']} in documents.json; "
                        f"add a version entry with source_sha256 {c['sha256']}")
@@ -456,10 +458,10 @@ def validate_output(out, env, page_names, restricted_names, pdf_manifest):
         for f in tree.rglob(".*"):
             errs.append(f"{f.relative_to(out)}: hidden file in a deployable folder")
     integ = out / "integration" / "modules"
-    for m in MODULES:
+    for mid in MODULES:
         for f in ("fragment.html", "module.css", "manifest.json", "preview.html"):
-            if not (integ / m["id"] / f).exists():
-                errs.append(f"integration: module {m['id']} is missing {f}")
+            if not (integ / mid / f).exists():
+                errs.append(f"integration: module {mid} is missing {f}")
     if errs:
         raise BuildFailed("Output validation failed:\n  " + "\n  ".join(errs))
 
@@ -571,7 +573,8 @@ def main(argv=None):
                 '<!DOCTYPE html>\n<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, '
                 'initial-scale=1">\n<title>Not found | Restricted staging</title><meta name="robots" content="noindex, nofollow">\n'
                 '<link rel="stylesheet" href="/assets/css/site.css"></head>\n<body><main id="main" class="section"><div class="container prose">\n'
-                '<h1>Not found</h1><p>There is no page at this address in the restricted area.</p>\n'
+                '<h1>Not found</h1><p>There is no page at this address in the restricted area. Access to this area does not '
+                'confirm that anyone is eligible to invest.</p>\n'
                 '<p><a class="btn btn-primary" href="/">Restricted index</a></p>\n</div></main></body></html>\n')
             shutil.copy2(SRC / "restricted-worker" / "_worker.js", built / "restricted" / "_worker.js")
             export_modules(ROOT, content, built / "public", built / "integration")
