@@ -1,17 +1,19 @@
 {
-  "_doc": "Format of content/signup-provider-test.json, which tools/test-signup-live.mjs writes only after a live test on a TEST list in which every case passed. build.py --with-signup is refused without that file, and refuses this example. Do not write the record by hand: run the harness (docs/email-signup.md).",
+  "_doc": "Format of content/signup-provider-test.json, which tools/test-signup-live.mjs writes only after a live test on a TEST list in which every case passed. build.py --with-signup is refused without that file, and refuses this example. It also refuses a record in which any case's pass is not the value true, whose harness is not tools/test-signup-live.mjs, or whose digest (SHA-256 over provider, list, date, tested_by, function_sha256 and cases; src/optional/signup/record.mjs) does not match. Do not write or edit the record by hand: run the harness (docs/email-signup.md).",
   "example": true,
   "provider": "buttondown",
   "list": "Name of the test list or newsletter used (never the live list)",
   "date": "YYYY-MM-DD",
   "tested_by": "Name of the person who ran the test and answered its questions",
   "function_sha256": "SHA-256 of src/optional/signup/functions/api/subscribe.js as tested",
+  "harness": "tools/test-signup-live.mjs",
   "cases": {
-    "invalid_address": {"pass": false, "observed": "e.g. 'not-an-address: 400 invalid, provider not called; nwpt-signup-test@example.invalid: 400 rejected'"},
+    "invalid_address": {"pass": false, "observed": "e.g. 'not-an-address: HTTP 400, outcome invalid, 0 provider calls; nwpt-signup-test-1767225600000@example.invalid: HTTP 400, outcome rejected, 1 provider call'"},
     "new_address": {"pass": false, "observed": "e.g. 'HTTP 200, outcome accepted, 1 provider call'"},
-    "confirmation_email": {"pass": false, "observed": "operator: the confirmation email arrived and its link confirmed the address"},
-    "repeat_address": {"pass": false, "observed": "e.g. 'HTTP 400, outcome rejected; operator: accurate (address listed once, still confirmed)'"},
-    "unsubscribe": {"pass": false, "observed": "operator: the unsubscribe link in a test email worked and the provider shows the address as unsubscribed"},
-    "provider_outage": {"pass": false, "observed": "e.g. 'connection refused: 502 unconfirmed; provider 503: 502 unconfirmed; no answer: 504 unconfirmed after 8.0 s; wrong key: 503 refused'"}
-  }
+    "confirmation_email": {"pass": false, "observed": "e.g. 'operator: email arrived; its link confirmed the address'"},
+    "repeat_address": {"pass": false, "observed": "e.g. 'HTTP 400, outcome rejected, 1 provider call; operator: address listed once and still confirmed; the message is true for a confirmed subscriber'"},
+    "unsubscribe": {"pass": false, "observed": "e.g. 'operator: the unsubscribe link worked and the provider shows the address as unsubscribed'"},
+    "provider_outage": {"pass": false, "observed": "e.g. 'connection refused: 502 unconfirmed; provider 503: 502 unconfirmed; redirect: 502 unconfirmed, not followed; no answer: 504 unconfirmed after 8.0 s; wrong key (real provider): 503 refused'"}
+  },
+  "digest": "SHA-256 written by the harness and recomputed by the build"
 }

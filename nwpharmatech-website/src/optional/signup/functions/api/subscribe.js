@@ -10,8 +10,10 @@
 // form can be built (docs/email-signup.md).
 //
 // Outcomes are either definite (we know what happened and say so) or unconfirmed: the request may have
-// reached the provider but we did not get an answer we can read (network failure, timeout, 5xx, an
-// unexpected reply). Then the sign-up may or may not have been recorded, and we say exactly that.
+// reached the provider but we did not get an answer we can read (network failure, timeout, 5xx, a redirect,
+// an unexpected reply). Then the sign-up may or may not have been recorded, and we say exactly that.
+// Redirects are never followed: a followed redirect is re-sent elsewhere (a 302 as a GET without the address),
+// so the answer that comes back would not be the provider's answer to this sign-up.
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 const TIMEOUT_MS = 8000;              // for the provider's whole answer, body included
@@ -24,7 +26,7 @@ export const MESSAGES = {
   unreadable: "We could not read the form. Please try again.",
   rejected: "We could not sign up that address. It may already be subscribed, or the provider may not accept it. If you already receive updates, there is nothing more to do.",
   refused: "Our email provider did not accept the sign-up. Please try again later.",
-  unavailable: "Email sign-up is not available at the moment, and your address has not been sent anywhere. Please try again later.",
+  unavailable: "Email sign-up is not available at the moment, and your address has not been passed to an email provider or stored. Please try again later.",
   unconfirmed: "We could not get confirmation that your sign-up was received, so it may or may not have been recorded. If an email arrives asking you to confirm your address, please follow the link in it. If none arrives, please try again later.",
   method: "Please use the sign-up form.",
 };
@@ -35,6 +37,7 @@ const adapters = {
     send: (email, env, signal) => fetch("https://api.buttondown.com/v1/subscribers", {
       method: "POST",
       signal,
+      redirect: "manual",
       headers: { Authorization: `Token ${env.SIGNUP_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({ email_address: email, type: "unactivated" }),
     }),
@@ -45,6 +48,7 @@ const adapters = {
     send: (email, env, signal) => fetch(env.SIGNUP_WEBHOOK, {
       method: "POST",
       signal,
+      redirect: "manual",
       headers: { Authorization: `Bearer ${env.SIGNUP_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({ email, double_opt_in: true }),
     }),
@@ -58,6 +62,7 @@ async function ask(adapter, email, env) {
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   try {
     const res = await adapter.send(email, env, ctrl.signal);
+    if (res.type === "opaqueredirect" || (res.status >= 300 && res.status < 400)) return [502, "unconfirmed"];   // not followed
     if (ADDRESS_REJECTED.includes(res.status)) return [400, "rejected"];
     if (res.status >= 400 && res.status < 500) return [503, "refused"];   // e.g. wrong key, rate limit
     if (!res.ok) return [502, "unconfirmed"];                             // 5xx, or a status we do not expect
