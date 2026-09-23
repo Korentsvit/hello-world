@@ -210,14 +210,23 @@ tbody th { font-weight: 650; color: var(--brand-dark); width: 32%; }
 @media (min-width: 720px) { .renders { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- People ---------- */
-.person { display: grid; grid-template-columns: 76px 1fr; grid-template-rows: auto auto 1fr; gap: 0 16px; align-items: start; }
-.person .asset { margin: 0; grid-row: span 3; }
-.person .asset img { width: 76px; height: 76px; object-fit: cover; border-radius: 50%; }
-.avatar { width: 76px; height: 76px; border-radius: 50%; background: var(--surface-alt); display: grid; place-items: center; font-weight: 700; font-size: 1.2rem; color: var(--brand); border: 1px solid var(--line); }
-.slot-note { font-size: .7rem; color: var(--muted); margin: .3rem 0 0; text-align: center; line-height: 1.2; }
-.person h3 { margin: 0 0 .15rem; }
-.person .role { color: var(--brand); font-weight: 600; margin-bottom: .4rem; font-size: .95rem; }
-.person p { font-size: .95rem; }
+.people-grid { display: grid; gap: 18px; }
+@media (min-width: 820px) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
+.people-grid > * { min-width: 0; }
+.person { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; overflow-wrap: break-word; }
+.person-featured { border: 2px solid var(--brand); }
+@media (min-width: 820px) { .person-featured { grid-column: 1 / -1; } }
+/* the portrait is present only when authorised; without it the name block stands alone,
+   and on narrow cards the name block moves below the portrait */
+.person-head { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin-bottom: .8rem; }
+.person-head > div { min-width: 0; flex: 1 1 14rem; }
+.person .portrait { width: 96px; height: 96px; flex-shrink: 0; border-radius: 50%; object-fit: cover; background: var(--surface-alt); }
+.person p, .person li { font-size: .95rem; }
+.person .person-focus { font-size: .8rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--brand); margin: 0 0 .2rem; }
+.person-featured .person-focus { font-size: .88rem; }
+.person h3 { margin: 0; }
+.person .role { color: var(--brand); font-weight: 600; margin: .15rem 0 0; }
+.person h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 1rem 0 .3rem; }
 
 /* ---------- Timeline ---------- */
 .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); }
@@ -306,17 +315,6 @@ dl.facts dt { font-weight: 650; color: var(--brand-dark); }
 dl.facts dd { margin: 0; }
 @media (max-width: 560px) { dl.facts > div { grid-template-columns: 1fr; gap: .1rem; } }
 
-.people-grid { display: grid; gap: 18px; }
-@media (min-width: 820px) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
-.person { display: block; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-.person-featured { border: 2px solid var(--brand); }
-@media (min-width: 820px) { .person-featured { grid-column: 1 / -1; } }
-.person-head { display: flex; gap: 16px; align-items: center; margin-bottom: .8rem; }
-.person-head h3 { margin: 0; }
-.person .avatar, .person .portrait { width: 72px; height: 72px; flex-shrink: 0; border-radius: 50%; object-fit: cover; }
-.person-focus { font-size: .76rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--brand); margin: 0 0 .15rem; }
-.person .role { margin: .1rem 0 0; }
-.person h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 1rem 0 .3rem; }
 ul.plain { list-style: none; padding: 0; margin: 0; }
 ul.plain li { margin-bottom: .25rem; }
 .interview { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: .6rem; }
@@ -334,8 +332,6 @@ ul.plain li { margin-bottom: .25rem; }
 .st-progress { background: var(--emg-bg); color: var(--emg-ink); }
 .st-planned { background: var(--co-bg); color: var(--co-ink); }
 .evidence-key > div { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
-.people-grid > *, .person-head > div { min-width: 0; }
-.person { overflow-wrap: break-word; }
 
 /* ---------- Increment B: study hub, Phase 1, explainer, evidence library ---------- */
 .two-col.equal { grid-template-columns: 1fr; }

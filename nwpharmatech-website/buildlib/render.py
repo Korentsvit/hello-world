@@ -126,10 +126,11 @@ class Renderer:
 
     # ---------- people ----------
     def _portrait(self, p):
+        """The authorised portrait, or nothing at all: no initials, frame or empty slot."""
         path = self.root / "src" / p["portrait"]["file"]
         if p["portrait"]["authorised"] and path.exists():
             return f'<img class="portrait" src="{p["portrait"]["file"]}" alt="" width="96" height="96" loading="lazy">'
-        return f'<div class="avatar" aria-hidden="true">{escape(p["initials"])}</div>'
+        return ""
 
     def _interview(self, p):
         mid = p.get("interview")
@@ -151,21 +152,23 @@ class Renderer:
         if p["disclosures"]:
             disc = "<h4>Disclosures</h4><ul>" + "".join(f"<li>{escape(d)}</li>" for d in p["disclosures"]) + "</ul>"
         feat = " person-featured" if p.get("featured") else ""
-        focus = f'<p class="person-focus">{escape(p["focus"])}</p>' if p.get("focus") else ""
+        # the title only when management confirmed it or company records agree; the descriptor is never a title
+        role = f'<p class="role">{escape(p["role"])}</p>' if p["role_status"] in ("confirmed", "records-agree") else ""
         return (f'<article class="person{feat}" id="{p["id"]}"><div class="person-head">{self._portrait(p)}'
-                f'<div>{focus}<{level}>{escape(p["name"])}</{level}><p class="role">{escape(p["role"])}</p></div></div>'
+                f'<div><p class="person-focus">{escape(p["descriptor"])}</p><{level}>{escape(p["name"])}</{level}>{role}</div></div>'
                 f'<p>{escape(p["bio"])}</p>'
                 + (f'<h4>Responsibilities</h4><ul class="plain">{resp}</ul>' if resp else "")
                 + (f'<h4>Affiliations</h4><ul class="plain">{aff}</ul>' if aff else "")
                 + disc + self._interview(p) + "</article>")
 
     def b_people(self, group):
-        ppl = [p for p in self.c.people["people"] if p["group"] == group]
+        ppl = [p for p in self.c.people["people"] if p["group"] == group and p["public"]]
         ppl.sort(key=lambda p: not p.get("featured"))
         return '<div class="people-grid">' + "".join(self.person_card(p) for p in ppl) + "</div>"
 
     def b_person(self, pid):
-        return self.person_card(self.c.person(pid))
+        p = self.c.person(pid)
+        return self.person_card(p) if p["public"] else ""
 
     # ---------- study ----------
     def b_study_summary(self):
@@ -423,10 +426,12 @@ class Renderer:
         return f'<div class="table-wrap"><table class="table-stack"><caption>Fact sheet (as of {escape(self.c.fact("site.as_of", self.page))})</caption><tbody>{body}</tbody></table></div>'
 
     def b_press_photos(self):
-        people = [p for p in self.c.people["people"] if p["portrait"]["authorised"] and (self.root / "src" / p["portrait"]["file"]).exists()]
+        people = [p for p in self.c.people["people"] if p["public"] and self._portrait(p)]
         if not people:
             return ""
-        figs = "".join(f'<figure><img src="{p["portrait"]["file"]}" alt="{escape(p["name"])}" loading="lazy"><figcaption>{escape(p["name"])}, {escape(p["role"])}. <a href="{p["portrait"]["file"]}" download>Download</a></figcaption></figure>' for p in people)
+        # same rule as the profile cards: a title only when confirmed or agreed by the records
+        label = lambda p: p["role"] if p["role_status"] in ("confirmed", "records-agree") else p["descriptor"]
+        figs = "".join(f'<figure><img src="{p["portrait"]["file"]}" alt="{escape(p["name"])}" loading="lazy"><figcaption>{escape(p["name"])}, {escape(label(p))}. <a href="{p["portrait"]["file"]}" download>Download</a></figcaption></figure>' for p in people)
         return f'<h3>Photographs</h3><div class="press-photos">{figs}</div>'
 
     def b_reports(self):

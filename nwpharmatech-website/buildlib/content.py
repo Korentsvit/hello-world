@@ -67,6 +67,33 @@ class Content:
             date.fromisoformat(u["date"])
             if u["source"] not in self.sources:
                 errs.append(f"update {u['title']}: unknown source")
+        # people: a title ('role') is held only when management confirmed it or company records agree
+        # (docs/leadership-reconciliation.md); a withheld title lives in role_records, never in 'role'
+        groups = {g["id"] for g in self.people["groups"]}
+        for p in self.people["people"]:
+            who = f"person {p.get('id')}"
+            for k in ("group", "name", "role", "role_status", "role_records", "public", "portrait"):
+                if k not in p:
+                    errs.append(f"{who}: missing '{k}'")
+            if p.get("group") not in groups:
+                errs.append(f"{who}: unknown group {p.get('group')}")
+            status = p.get("role_status")
+            if status not in ("confirmed", "records-agree", "unconfirmed"):
+                errs.append(f"{who}: bad role_status {status}")
+            elif bool(p.get("role")) != (status != "unconfirmed"):
+                errs.append(f"{who}: 'role' must be set exactly when role_status is confirmed or records-agree")
+            if not p.get("descriptor"):
+                errs.append(f"{who}: missing descriptor")
+            for r in p.get("role_records", []):
+                if r.get("source") not in self.sources:
+                    errs.append(f"{who}: role record with unknown source {r.get('source')}")
+                elif r.get("date") != self.sources[r["source"]]["date"]:
+                    errs.append(f"{who}: role record date {r.get('date')} does not match source {r.get('source')}")
+                if not r.get("wording"):
+                    errs.append(f"{who}: role record without wording")
+            for s in p.get("sources", []):
+                if s not in self.sources:
+                    errs.append(f"{who}: unknown source {s}")
         self.ref_ids = ref_ids
         if errs:
             raise ContentError("\n".join(errs))
@@ -117,11 +144,13 @@ class Content:
         return [f"{i['page']}: {i['item']}" for i in self.review if not i.get("done")]
 
     def leadership_blockers(self):
-        """Every public title must be confirmed by management (see docs/leadership-reconciliation.md)."""
+        """Every public title must be confirmed by management (see docs/leadership-reconciliation.md).
+        A title the records agree on is shown on staging; a withheld title leaves only the descriptor."""
         out = []
         for p in self.people["people"]:
-            if p.get("public", True) and p.get("role_status") != "confirmed":
-                out.append(f"people.json: title for {p['name']} not confirmed by management ({p.get('role_status', 'not recorded')})")
+            if p["public"] and p["role_status"] != "confirmed":
+                shown = f"shows '{p['role']}'" if p["role"] else "no title shown"
+                out.append(f"people.json: title for {p['name']} not confirmed by management ({p['role_status']}; {shown})")
         return out
 
     def optional_assets_missing(self):
