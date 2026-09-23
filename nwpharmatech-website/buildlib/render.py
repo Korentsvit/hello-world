@@ -116,7 +116,17 @@ class Renderer:
         return '<h2 class="visually-hidden">Timeline</h2><ol class="timeline">' + "".join(items) + "</ol>"
 
     # ---------- evidence key ----------
-    def b_evidence_key(self):
+    def b_evidence_key(self, variant=None):
+        """The four labels with what each means (evidence library), or {{block:evidence_key:compact}}: the tags
+        alone, with "Programme information" set apart because it is not a grade of evidence (homepage)."""
+        if variant == "compact":
+            return ('<div class="evidence-key-compact">'
+                    '<ul class="key-grades" aria-label="Strength of evidence">'
+                    '<li><span class="tag tag-established">Established</span></li>'
+                    '<li><span class="tag tag-emerging">Emerging evidence</span></li>'
+                    '<li><span class="tag tag-open">Open question</span></li></ul>'
+                    '<p class="key-company"><span class="tag tag-company">Programme information</span> '
+                    'Facts about our own studies, not a grade of evidence.</p></div>')
         return ('<div class="evidence-key">'
                 '<div><span class="tag tag-established">Established</span><p>Consistent evidence, systematic reviews, regulatory decisions or clinical guidelines.</p></div>'
                 '<div><span class="tag tag-emerging">Emerging evidence</span><p>Small, short or early studies. Informative, not confirmed.</p></div>'
@@ -229,16 +239,28 @@ class Renderer:
         return "<h2>Endpoints</h2><ul>" + "".join(f"<li>{escape(x)}</li>" for x in e) + "</ul>"
 
     def b_document_history(self):
+        """The whole 'Document history' section, listing published versions only. Unpublished drafts are
+        internal, so until a version is published the section (heading included) is omitted."""
         out = []
         for d in self.c.documents:
-            if not d["public"]:
-                continue
             rows = "".join(f'<tr><th scope="row">{escape(h["version"])}</th><td data-label="Date"><time datetime="{h["date"]}">{fmt_date(h["date"])}</time></td>'
-                           f'<td data-label="Status">{escape(h["status"])}</td><td data-label="Change">{escape(h["change"])}</td></tr>' for h in d["history"])
-            out.append(f'<div class="table-wrap"><table class="table-stack"><caption>{escape(d["title"])}</caption>'
-                       f'<thead><tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Substantive change</th></tr></thead>'
-                       f'<tbody>{rows}</tbody></table></div>')
-        return "".join(out)
+                           f'<td data-label="Change">{escape(h["change"])}</td></tr>' for h in d["history"] if h.get("published"))
+            if d["public"] and rows:
+                out.append(f'<div class="table-wrap"><table class="table-stack"><caption>{escape(d["title"])}</caption>'
+                           f'<thead><tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Substantive change</th></tr></thead>'
+                           f'<tbody>{rows}</tbody></table></div>')
+        if not out:
+            return ""
+        return ('<section class="section section-alt" id="documents" aria-labelledby="doc-h"><div class="container">'
+                '<h2 id="doc-h">Document history</h2><p class="status-note">Substantive changes to published documents.</p>'
+                + "".join(out) + "</div></section>")
+
+    def b_document_version(self, did):
+        """'Version 3' for a document in content/documents.json (history is newest first). Used in PDF headers."""
+        d = next((x for x in self.c.documents if x["id"] == did), None)
+        if not d or not d["history"]:
+            raise KeyError(f"{self.page}: no document history for {did}")
+        return f'Version {escape(d["history"][0]["version"])}'
 
     # ---------- brand ----------
     def b_brand(self, where):
@@ -258,12 +280,14 @@ class Renderer:
 
     # ---------- assets ----------
     def b_asset(self, aid):
-        import json
-        a = json.loads((self.root / "content" / "assets.json").read_text())["assets"][aid]
-        if a["authorised"] and a["caption_approved"] and (self.root / "src" / a["file"]).exists():
-            return (f'<figure class="asset-figure"><img src="{a["file"]}" alt="{escape(a["alt"])}" loading="lazy">'
-                    f'<figcaption>{escape(a["caption"])}</figcaption></figure>')
-        return ""
+        """An authorised image with its approved caption, or nothing at all: no empty figure, orphan caption or
+        reserved space, so the surrounding layout must read as finished without it (docs/asset-manifest.md)."""
+        a = self.c.assets[aid]
+        if not (a["authorised"] and a["caption_approved"] and (self.root / "src" / a["file"]).exists()):
+            return ""
+        return (f'<figure class="asset-figure"><img src="{a["file"]}" alt="{escape(a["alt"])}" '
+                f'width="{a["width"]}" height="{a["height"]}" loading="lazy">'
+                f'<figcaption>{escape(a["caption"])}</figcaption></figure>')
 
     # ---------- Phase 1 ----------
     def b_phase1_results(self):
@@ -272,7 +296,7 @@ class Renderer:
         if not r:
             return (f'<p><span class="st st-planned">Not yet published</span></p>'
                     f'<p>{escape(self.c.fact("phase1.results_status", self.page))}</p>'
-                    '<p>When results are published, this section will show each measure, what was found, the limitations and the source report, and a plain-language summary will be posted on both registries.</p>')
+                    '<p>A results summary is planned for both trial registries and this page. No date has been set.</p>')
         rows = "".join(f'<tr><th scope="row">{escape(x["measure"])}</th><td>{escape(x["finding"])}</td></tr>' for x in r["table"])
         return (f'<p class="as-of">Results as of <time datetime="{r["as_of"]}">{fmt_date(r["as_of"])}</time>. Source: {escape(r["source"])}</p>'
                 f'<p>{escape(r["summary"])}</p><div class="table-wrap"><table><caption>Phase 1 results</caption>'

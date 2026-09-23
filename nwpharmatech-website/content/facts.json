@@ -411,7 +411,7 @@
       "review": "Not supplied."
     },
     "evidence.check_method": {
-      "value": "Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages. The original pages are being opened and checked before launch.",
+      "value": "Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages.",
       "public": true,
       "source": "verification-2026-09-23b",
       "verification": "document",

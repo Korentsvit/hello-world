@@ -16,9 +16,8 @@ section: research
       <div class="container two-col">
         <div class="prose">
           <h2 id="ov-h">In plain language</h2>
-          <p>Clinical high risk of psychosis is well described: most people who meet the criteria do not develop psychosis, and about one in four do within three years. {{cite:salazar-2021}} Psychological therapy is the recommended first step, but no treatment has been proven to prevent psychosis. {{cite:davies-2018}}</p>
+          <p>Clinical high risk of psychosis is well described: most people who meet the criteria do not develop psychosis, and {{fact:evidence.transition_3y}} do within three years. {{cite:salazar-2021}} Psychological therapy is the recommended first step, but no treatment has been proven to prevent psychosis. {{cite:davies-2018}}</p>
           <p>Research on cannabidiol (CBD) in psychosis is early: small, short studies of other CBD products, with mixed results. None of them used {{fact:product.name}}. Evidence about {{fact:product.name}} itself so far comes only from a Phase 1 study in healthy volunteers, whose results are not yet published.</p>
-          <p class="small">Evidence labels (Established, Emerging evidence) describe the strength of evidence. <strong>Programme information</strong> marks records about our own studies; it is not an assessment of evidence strength. Negative, mixed and inconclusive findings are flagged on each card.</p>
         </div>
         <aside class="aside">
           <h3>Download citations</h3>
@@ -28,6 +27,14 @@ section: research
           </ul>
           <p class="small">Last checked: {{block:evidence_last_checked}}. {{fact:evidence.check_method}}</p>
         </aside>
+      </div>
+    </section>
+
+    <section class="section-tight" id="labels" aria-labelledby="labels-h">
+      <div class="container">
+        <h2 id="labels-h">How evidence is labelled</h2>
+        <p class="status-note">These labels are used on the research sections of this website and on the study cards below, one label at a time. Negative, mixed, inconclusive and not-conducted findings are also flagged on the cards.</p>
+        {{block:evidence_key}}
       </div>
     </section>
 
@@ -49,7 +56,6 @@ section: research
         <div>
           <h2>Review history</h2>
           {{block:review_log}}
-          <p class="small">A monthly review process has been prepared. A review is listed here only after it has taken place.</p>
         </div>
       </div>
     </section>

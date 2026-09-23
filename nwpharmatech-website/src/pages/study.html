@@ -26,13 +26,11 @@ section: programme
           <p>The Phase 2B study is not recruiting. It will start only after regulatory and research ethics approval, and will be registered publicly before anyone is enrolled.</p>
           <h3>Proposed design</h3>
           {{block:design_sources}}
-          <p class="small">Further design details will be published here when the protocol is final and approved.</p>
         </div>
         <aside class="aside">
           <h3>Programme brief</h3>
-          <p>A two-page summary of the programme, generated from the same facts as this page.</p>
+          <p>A summary of the programme, generated from the same facts as this page.</p>
           <p><a class="btn btn-primary" href="downloads/nwpharmatech-programme-brief.pdf" download>Download the brief ({{block:pdf_label:nwpharmatech-programme-brief}})</a></p>
-          <p class="small">Version history is shown under <a href="#documents">Document history</a>.</p>
         </aside>
       </div>
       <div class="container">{{block:endpoints}}</div>
@@ -41,7 +39,7 @@ section: programme
     <section class="section section-alt" id="milestones" aria-labelledby="ms-h">
       <div class="container">
         <h2 id="ms-h">Milestones</h2>
-        <p class="status-note">Statuses are Planned, In progress or Completed. Dates are exact where a record gives one; otherwise we say what the record states. No completion percentages or recruitment numbers are shown, because none exist yet.</p>
+        <p class="status-note">Statuses are Planned, In progress or Completed. Dates are exact where a record gives one; otherwise we say what the record states.</p>
         {{block:milestones:clinical}}
         {{block:milestones:operational}}
         {{block:milestones:funding}}
@@ -52,7 +50,7 @@ section: programme
       <div class="container two-col">
         <div class="prose">
           <h2 id="reg-h">Registrations</h2>
-          <p>The completed Phase 1 study is registered on two public registries. Both entries describe the same study: a single-dose, three-period crossover study of NW300EMCBD (the development code for {{fact:product.name}}) in healthy adults aged 18 to 55, sponsored by {{fact:company.name}}.</p>
+          <p>The completed Phase 1 study is registered on two public registries. Both entries describe the same study: a single-dose, three-period crossover study of {{fact:product.dev_code}} (the development code for {{fact:product.name}}) in healthy adults aged 18 to 55, sponsored by {{fact:company.name}}.</p>
           {{block:registrations}}
           <p>The Phase 2B study will be registered before the first participant is enrolled, and its registry entries will be listed here.</p>
         </div>
@@ -64,24 +62,4 @@ section: programme
       </div>
     </section>
 
-    <section class="section section-alt" id="documents" aria-labelledby="doc-h">
-      <div class="container">
-        <h2 id="doc-h">Document history</h2>
-        <p class="status-note">Substantive changes to public documents. Staging drafts are listed as unpublished.</p>
-        {{block:document_history}}
-      </div>
-    </section>
-
-    <section class="section" id="publication-policy" aria-labelledby="pp-h">
-      <div class="container prose">
-        <div class="section-head"><h2 id="pp-h">Publication policy</h2><span class="st st-planned">Draft for management adoption</span></div>
-        <p class="status-note">This is a proposed policy. It has not been adopted, and no timetable in it is yet a commitment.</p>
-        <ol class="policy">
-          <li><strong>Disclosure regardless of outcome.</strong> Results of every study of {{fact:product.name}} would be made public whether they are positive, negative or inconclusive, including studies stopped early.</li>
-          <li><strong>Registry results.</strong> Summary results would be posted on each registry where the study is registered, within the period the registry or applicable law requires.</li>
-          <li><strong>Plain-language summary.</strong> A plain-language summary would be published on this site and offered to participants, reviewed for accuracy and readability before release.</li>
-          <li><strong>Journal submission.</strong> Full results of each Phase 2 or later study would be submitted to a peer-reviewed journal, with authorship decided by recognised authorship criteria and no funder or investor right to delay or alter the manuscript.</li>
-          <li><strong>Timing.</strong> The proposed timings for each step are to be set by management when the policy is adopted.</li>
-        </ol>
-      </div>
-    </section>
+    {{block:document_history}}
