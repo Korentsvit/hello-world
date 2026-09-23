@@ -8,7 +8,7 @@
 
 If it was built in another workspace, attach it from there. It may be in the `nwpt-platform` repository, which this session is not authorised to read.
 
-**The study hub is not the Programme Room.** `/study` (module `study-hub` in `integration/`) is a static page: summary, milestones, registrations, oversight and document history. It has no interactive component and no risk chart. Nothing in this package should be described as delivering the Programme Room.
+**The study hub is not the Programme Room.** `/study` (module `study-hub` in `integration/`) is a static page: summary, public synopsis, milestones, registrations, sponsor and oversight. It has no interactive component and no risk chart. Nothing in this package should be described as delivering the Programme Room.
 
 ## When the component is supplied
 

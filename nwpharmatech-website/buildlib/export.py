@@ -8,13 +8,16 @@ staging banner or skip link, and is written to integration/modules/<id>/:
                     every class carries the nwpt- prefix and every internal link is written from routes.json
     module.css      the rules of src/assets/css/site.css that the fragment uses, scoped under .nwpt-module
     module.js       only where the fragment needs behaviour (evidence filters, opening a named <details>)
-    manifest.json   facts, references, downloads, anchors, links, CSP needs, publication blockers, optional assets
+    manifest.json   facts, references, downloads, anchors, links, dependencies, redirects, CSP needs,
+                    publication blockers, optional assets
     preview.html    the module on its own under a strict CSP, for review (noindex)
 
 Shared files: routes.json (page id -> path on the live site; override in src/integration-routes.json),
 downloads/ and assets/ (exactly the files the modules link to), content/ (public-safe parts of content/)
 and README.md. Nothing here replaces the live site: the live-site bots import each module individually
 (docs/integration.md). The output is deterministic: the same input gives the same bytes.
+
+MODULES lists the module ids; build.py checks that integration/modules/ holds each of them.
 """
 from html import escape, unescape
 from pathlib import Path
@@ -30,19 +33,34 @@ from buildlib.render import Renderer
 
 PREFIX = "nwpt-"
 WRAPPER = "nwpt-module"
+# Every module.css selector starts here. Each :not(#id) always matches (the wrapper never carries those ids) and
+# adds the weight of one id, so live rules written for the page's content area, such as "#content h2" or
+# ".entry-content a", do not override a property the module sets. !important and inline styles still do.
+SCOPE = f".{WRAPPER}:not(#{PREFIX}a):not(#{PREFIX}b)"
+# A live page path: extensionless, no trailing slash (except "/"), nothing _redirects reads as a pattern
+ROUTE_RE = re.compile(r"/(?:[A-Za-z0-9._~%-]+(?:/[A-Za-z0-9._~%-]+)*)?")
+BASE_RE = re.compile(r"/(?:[A-Za-z0-9._~%-]+/)*")
+REDIRECT_CODES = (301, 302, 307, 308)
 
-# id, title, source page, section id (None: the whole <main>), elements left out (attribute, value, why)
-MODULES = (
+# id, title, source page, section id (None: the whole <main>), elements left out (attribute, value, why), and
+# links to pages outside the package that must be checked on the live site before the module is published
+# (id, page, anchor, what the live target must give; review items of that page whose text contains
+# review_match still apply while the link keeps the staging route, that is while it points at the staging page)
+MODULE_SPECS = (
     {"id": "study-hub", "title": "Study hub: progress and evidence", "page": "study.html"},
     {"id": "phase-1", "title": "Phase 1 study", "page": "phase-1.html"},
     {"id": "formulation", "title": "Formulation explanation", "page": "science.html", "section": "formulation",
      "drop": [("class", "q-num", "The 'Question 2' label numbers the question within the staging science page.")]},
     {"id": "evidence-library", "title": "Evidence library", "page": "evidence.html"},
-    {"id": "family-guide", "title": "Guide for young people and families", "page": "families.html"},
+    {"id": "family-guide", "title": "Guide for young people and families", "page": "families.html",
+     "depends": [{"id": "urgent-help", "page": "faq", "anchor": "urgent-help", "review_match": "crisis-line",
+                  "needs": "a live page that gives urgent help by country: emergency numbers and crisis lines for "
+                           "the United Kingdom, Ireland and the United States, checked immediately before launch"}]},
     {"id": "newsroom", "title": "Newsroom", "page": "newsroom.html",
      "drop": [("id", "signup", "Optional email sign-up: not part of the module. It stays off until a live provider "
                                "test is recorded (docs/email-signup.md) and its import is agreed separately.")]},
 )
+MODULES = [s["id"] for s in MODULE_SPECS]
 
 # Site chrome that must never reach a module (it belongs to the live site, or to staging only)
 CHROME = {"site-header", "site-footer", "site-nav", "mobile-nav", "nav-toggle", "notice-bar", "env-banner",
@@ -234,9 +252,11 @@ def _rename_vars(decls):
 
 
 def module_css(site_css, classes, ids, tags, module_id):
-    """The rules of site.css that can apply to the fragment, scoped under .nwpt-module: classes renamed with
-    the nwpt- prefix, :root custom properties (renamed --nwpt-*) moved onto .nwpt-module, html/body rules
-    applied to .nwpt-module itself and element rules re-scoped under it. @font-face is never exported."""
+    """The rules of site.css that can apply to the fragment, scoped under SCOPE (.nwpt-module): classes renamed
+    with the nwpt- prefix, :root custom properties (renamed --nwpt-*) moved onto the wrapper, html/body rules
+    applied to the wrapper itself and element rules re-scoped under it. @font-face is never exported.
+    The site's base link rule also underlines links explicitly: the site relies on the browser default, which a
+    live reset such as "a { text-decoration: none }" would remove, leaving colour alone to mark links in text."""
     root_vars = {}
     known = set(tags) | {"html", "body"}
 
@@ -247,7 +267,7 @@ def module_css(site_css, classes, ids, tags, module_id):
     def scope(sel):
         sel = _outside_strings(sel, lambda p: re.sub(r"\.(-?[_a-zA-Z][\w-]*)", lambda m: "." + PREFIX + m.group(1), p))
         m = re.match(r"(?:html|body)(?![\w-])", sel)
-        return "." + WRAPPER + sel[m.end():] if m else f".{WRAPPER} {sel}"
+        return SCOPE + sel[m.end():] if m else f"{SCOPE} {sel}"
 
     def walk(items):
         out = []
@@ -269,11 +289,17 @@ def module_css(site_css, classes, ids, tags, module_id):
                 sels = [scope(s) for s in _split_selectors(prelude) if keep(s)]
                 if sels and "url(" in body:
                     raise ExportError(f"site.css: '{prelude}' loads a file with url(); module styles cannot carry it")
+                if prelude == "a" and "text-decoration" not in body:
+                    body = body.rstrip().rstrip(";") + "; text-decoration-line: underline;"
+                    underlined.append(prelude)
                 if sels:
                     out.append((", ".join(dict.fromkeys(sels)), _rename_vars(body)))
         return out
 
+    underlined = []
     rules = walk(_css_blocks(re.sub(r"/\*.*?\*/", "", site_css, flags=re.S)))
+    if "a" in tags and not underlined:
+        raise ExportError("site.css: no base 'a { ... }' rule to carry the explicit link underline")
 
     def emit(items, ind=""):
         lines = []
@@ -297,8 +323,10 @@ def module_css(site_css, classes, ids, tags, module_id):
     head = (f'/* NWPharmaTech integration module "{module_id}": styles generated by build.py from\n'
             f"   src/assets/css/site.css. Only the rules this module uses; every selector starts with .{WRAPPER}\n"
             f"   and every class carries the {PREFIX} prefix, so nothing here can style the rest of the page.\n"
-            "   Do not edit: change site.css or the content and rebuild. */\n")
-    return head + (f".{WRAPPER} {{ {props}; }}\n" if props else "") + body + "\n"
+            f"   {SCOPE[len(WRAPPER) + 1:]} always matches the wrapper and adds the weight of two ids, so\n"
+            "   the live page's own content-area rules (#content h2, .entry-content a) do not override what the module\n"
+            "   sets; !important and inline styles still do. Do not edit: change site.css or the content and rebuild. */\n")
+    return head + (f"{SCOPE} {{ {props}; }}\n" if props else "") + body + "\n"
 
 
 # ---------- JavaScript ----------
@@ -309,9 +337,7 @@ JS_FILTERS = """
         bar.hidden = false;
         var status = root.querySelector(".nwpt-filter-status");
         var sections = root.querySelectorAll(".nwpt-lib-section");
-        bar.addEventListener("click", function (e) {
-          var btn = e.target.closest("button[data-filter]");
-          if (!btn || !bar.contains(btn)) return;
+        var apply = function (btn) {
           var f = btn.getAttribute("data-filter");
           bar.querySelectorAll("button[data-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
           var shown = 0;
@@ -321,13 +347,37 @@ JS_FILTERS = """
             if (on) shown += s.querySelectorAll(".nwpt-study-card").length;
           });
           if (status) status.textContent = "Showing " + shown + (shown === 1 ? " source" : " sources") + (f === "all" ? "" : " in " + btn.firstChild.textContent.trim());
+        };
+        bar.addEventListener("click", function (e) {
+          var btn = e.target.closest("button[data-filter]");
+          if (btn && bar.contains(btn)) apply(btn);
+        });
+        // A link to a card in a topic the filter hides shows every topic again, so the page can move to the card.
+        var reveal = function (hash) {
+          var id;
+          try { id = decodeURIComponent(hash.slice(1)); } catch (err) { return false; }
+          var el = id && document.getElementById(id);
+          var s = el && root.contains(el) ? el.closest(".nwpt-lib-section") : null;
+          var all = bar.querySelector('button[data-filter="all"]');
+          if (!s || !s.hidden || !all) return false;
+          apply(all);
+          return el;
+        };
+        root.addEventListener("click", function (e) {
+          var a = e.target.closest('a[href^="#"]');
+          if (a && root.contains(a)) reveal(a.getAttribute("href"));   // before the browser follows the link
+        });
+        window.addEventListener("hashchange", function () {
+          var el = reveal(location.hash);   // a link from elsewhere on the page: the browser found nothing to show
+          if (el) el.scrollIntoView();
         });
       }
 """
 JS_DETAILS = """
       // Open a collapsed item when the address names it (for example /page#item-id).
       var openTarget = function () {
-        var id = decodeURIComponent(location.hash.slice(1));
+        var id;
+        try { id = decodeURIComponent(location.hash.slice(1)); } catch (err) { return; }
         var el = id && document.getElementById(id);
         if (el && el.tagName === "DETAILS" && root.contains(el)) {
           el.open = true;
@@ -356,29 +406,96 @@ def staging_route(name):
     return "/" if name == "index.html" else "/" + name[:-5]
 
 
+def _overrides(root):
+    """src/integration-routes.json, if present: {"pages": {...}, "downloads", "assets", "confirmed_dependencies"}."""
+    src = root / "src" / "integration-routes.json"
+    if not src.exists():
+        return {}
+    try:
+        over = json.loads(src.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise ExportError(f"{src.name}: {e}")
+    unknown = sorted(set(over) - {"_doc", "pages", "downloads", "assets", "confirmed_dependencies"})
+    if unknown:
+        raise ExportError(f"{src.name}: unknown keys {unknown}")
+    return over
+
+
 def load_routes(root, page_names):
     """Page id -> path on the live site. Defaults to the staging routes; src/integration-routes.json (same
-    shape as integration/routes.json, any subset) overrides them so every fragment link changes in one place."""
+    shape as integration/routes.json, any subset) overrides them so every fragment link changes in one place.
+    A live path must be one Cloudflare Pages serves without redirecting it: extensionless, no trailing slash."""
     routes = {"pages": {n[:-5]: staging_route(n) for n in sorted(page_names)}, "downloads": "/downloads/", "assets": "/assets/"}
-    src = root / "src" / "integration-routes.json"
-    if src.exists():
-        try:
-            over = json.loads(src.read_text(encoding="utf-8"))
-        except json.JSONDecodeError as e:
-            raise ExportError(f"{src.name}: {e}")
-        for pid, path in over.get("pages", {}).items():
-            if pid not in routes["pages"]:
-                raise ExportError(f"{src.name}: unknown page id '{pid}'")
-            routes["pages"][pid] = path
-        for k in ("downloads", "assets"):
-            routes[k] = over.get(k, routes[k])
-    for pid, path in routes["pages"].items():
-        if not path.startswith("/") or path.endswith(".html") or "#" in path:
-            raise ExportError(f"route for '{pid}' must be an extensionless path starting with / (got {path!r})")
+    over = _overrides(root)
+    for pid, path in over.get("pages", {}).items():
+        if pid not in routes["pages"]:
+            raise ExportError(f"integration-routes.json: unknown page id '{pid}'")
+        routes["pages"][pid] = path
     for k in ("downloads", "assets"):
-        if not (routes[k].startswith("/") and routes[k].endswith("/")):
+        routes[k] = over.get(k, routes[k])
+    live = {}
+    for pid, path in routes["pages"].items():
+        if not isinstance(path, str) or not path.startswith("/") or path.endswith(".html") or "#" in path:
+            raise ExportError(f"route for '{pid}' must be an extensionless path starting with / (got {path!r}); "
+                              "Cloudflare Pages answers /x.html with a 308 to /x")
+        if path != "/" and path.endswith("/"):
+            raise ExportError(f"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects "
+                              "between /x and /x/ itself, so a redirect rule to /x/ can loop")
+        if not ROUTE_RE.fullmatch(path):
+            raise ExportError(f"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single "
+                              f"slashes (got {path!r}); _redirects reads :name and * as patterns")
+        if path in live:
+            raise ExportError(f"routes for '{live[path]}' and '{pid}' are both {path}")
+        live[path] = pid
+    for k in ("downloads", "assets"):
+        if not (isinstance(routes[k], str) and BASE_RE.fullmatch(routes[k])):
             raise ExportError(f"route '{k}' must start and end with / (got {routes[k]!r})")
     return routes
+
+
+def load_confirmed(root):
+    """Checks recorded in src/integration-routes.json -> confirmed_dependencies: {dependency id: {"href": the live
+    link that was checked, "record": who checked what, and when}}. Only a person responsible for the live site
+    records one; a confirmation counts only while the link still has the href that was checked."""
+    conf = _overrides(root).get("confirmed_dependencies", {})
+    known = {d["id"] for s in MODULE_SPECS for d in s.get("depends", [])}
+    for k, v in conf.items():
+        if k not in known:
+            raise ExportError(f"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})")
+        if not (isinstance(v, dict) and isinstance(v.get("href"), str) and isinstance(v.get("record"), str) and v["record"].strip()):
+            raise ExportError(f"integration-routes.json: confirmed_dependencies.{k} must be "
+                              '{"href": "<the live link checked>", "record": "<who checked what, and when>"}')
+    return conf
+
+
+def check_redirects(live_routes, rules):
+    """The rules build.py's load_redirects applies to src/redirects.txt, applied to every redirect the manifests
+    ask the live site to add: no rule may shadow a live page (its path, its .html or trailing-slash form, or
+    /index.html), every target is a live page (optionally with a fragment), no target is itself redirected (a
+    chain, or a loop), no path has two rules, and the status is a redirect."""
+    routes = set(live_routes)
+    shadowed = routes | {r if r == "/" else r + ".html" for r in routes} | {r + "/" for r in routes if r != "/"} | {"/index.html"}
+    sources = {}
+    errs = []
+    for mid, r in rules:
+        sources.setdefault(r["from"], []).append((mid, r["to"]))
+    for mid, r in rules:
+        src, dst = r["from"], r["to"]
+        if re.search(r"[*:]", src):
+            errs.append(f"{mid}: redirect {src}: a pattern rule cannot be checked here; list each path")
+        if src in shadowed:
+            errs.append(f"{mid}: redirect {src} -> {dst} shadows a live page (Cloudflare Pages already serves or redirects {src})")
+        if dst.split("#")[0] not in routes:
+            errs.append(f"{mid}: redirect {src} -> {dst}: target is not a live page route")
+        if dst.split("#")[0] in sources:
+            errs.append(f"{mid}: redirect {src} -> {dst}: target is itself redirected (chain or loop)")
+        if len({t for _, t in sources[src]}) > 1:
+            errs.append(f"{mid}: redirect {src}: more than one rule for this path {sorted(sources[src])}")
+        if r["status"] not in REDIRECT_CODES:
+            errs.append(f"{mid}: redirect {src}: status {r['status']}")
+    if errs:
+        raise ExportError("redirects the live site would need are unsafe with these routes "
+                          "(src/integration-routes.json):\n  " + "\n  ".join(dict.fromkeys(errs)))
 
 
 def _public_only(o):
@@ -389,8 +506,35 @@ def _public_only(o):
     return o
 
 
+EXPORT_DOCS = {
+    "facts": "Public, confirmed facts only. 'verification' says how each value was checked and 'as_of' the date it "
+             "applies to; 'source' is an id in sources.json.",
+    "sources": "Only sources with a public citation label, or cited by an item in this export ('source' or "
+               "'sources'). public_label null: the source is not citable publicly. Titles, locations and notes are "
+               "internal and not exported.",
+    "documents": "Public documents, with the published versions of each in 'history' (newest first). An empty "
+                 "history means no version has been published yet.",
+}
+
+
+def _source_ids(o, out):
+    """Every source id an exported item cites in a 'source' or 'sources' field."""
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k in ("source", "sources"):
+                out.update(x for x in (v if isinstance(v, list) else [v]) if isinstance(x, str))
+            else:
+                _source_ids(v, out)
+    elif isinstance(o, list):
+        for x in o:
+            _source_ids(x, out)
+    return out
+
+
 def public_content(root):
-    """The public-safe parts of the shared content model: public items only, internal fields removed.
+    """The public-safe parts of the shared content model: public items only, internal fields removed, only
+    published document versions, and only the sources that are citable or that an exported item cites.
+    {{fact:id}} placeholders are replaced by the fact's value, so a consumer never sees template syntax.
     people.json is left out (no module shows profiles, and titles await management confirmation)."""
     c = root / "content"
     out = {}
@@ -398,10 +542,40 @@ def public_content(root):
         data = json.loads((c / f"{name}.json").read_text(encoding="utf-8"))
         if name == "facts":
             data["facts"] = {k: v for k, v in data["facts"].items() if v.get("public") and v.get("verification") != "unconfirmed"}
-        if name == "sources":
-            data = {"_doc": "Public citation labels only (null: not citable publicly). Titles, locations and notes are internal and not exported.",
-                    **{k: {"public_label": v.get("public_label")} for k, v in data.items() if k != "_doc"}}
-        out[name] = _public_only(data)
+        if name == "documents":
+            for d in data["documents"]:
+                d["history"] = [{k: v for k, v in h.items() if k != "status"}   # 'status' is an internal note
+                                for h in d.get("history", []) if h.get("published") is True]
+        if name == "sources":   # labels only; which ids are kept is decided once the other files are known
+            data = {k: {"public_label": v.get("public_label")} for k, v in data.items() if k != "_doc"}
+        data = _public_only({k: v for k, v in data.items() if k != "_doc"})
+        out[name] = {"_doc": f"Public-safe export of content/{name}.json, generated by build.py; do not edit. "
+                             + EXPORT_DOCS.get(name, "Public items only; internal fields removed.")
+                             + " Schema: docs/content-schema.md.", **data}
+    facts = out["facts"]["facts"]
+
+    def expand(o, where):
+        if isinstance(o, dict):
+            return {k: expand(v, where) for k, v in o.items()}
+        if isinstance(o, list):
+            return [expand(x, where) for x in o]
+        if not isinstance(o, str):
+            return o
+
+        def fact(m):
+            if m.group(1) not in facts:
+                raise ExportError(f"content/{where}.json: {m.group(0)} names a fact that is not public and confirmed")
+            return facts[m.group(1)]["value"]
+        o = re.sub(r"\{\{fact:([\w.-]+)\}\}", fact, o)
+        if "{{" in o:
+            raise ExportError(f"content/{where}.json: template token in exported text: {o[o.index('{{'):][:60]!r}")
+        return o
+    out = {name: expand(data, name) for name, data in out.items()}
+    cited = set()
+    for name, data in out.items():
+        if name != "sources":
+            _source_ids(data, cited)
+    out["sources"] = {k: v for k, v in out["sources"].items() if k == "_doc" or v["public_label"] or k in cited}
     return out
 
 
@@ -435,7 +609,7 @@ def _traced(content, root, name, page_names, section, drops):
 
 
 # ---------- one module ----------
-def _module(spec, root, content, public_dir, routes, page_names, site_css, redirects, site_links):
+def _module(spec, root, content, public_dir, routes, page_names, site_css, redirects, site_links, confirmed):
     mid, name, section = spec["id"], spec["page"], spec.get("section")
     pid = name[:-5]
     where = f"public/{name}" + (f"#{section}" if section else "")
@@ -548,6 +722,35 @@ def _module(spec, root, content, public_dir, routes, page_names, site_css, redir
     blockers += [b for b in content.leadership_blockers() if any(n in b for n in names)]
     if 'class="nwpt-dangling"' in body:
         blockers.append(f"{name}: links to a page that is not built")
+
+    # pages outside this module that its links need on the live site; declared ones block publication until checked
+    in_package = {s["page"][:-5]: s["id"] for s in MODULE_SPECS}
+    deps = []
+    for d in spec.get("depends", []):
+        href = routes["pages"][d["page"]] + "#" + d["anchor"]
+        if "#" + d["anchor"] not in links["pages"].get(d["page"], set()):
+            raise ExportError(f"{mid}: dependency '{d['id']}' names {href}, which the module does not link to")
+        rec = confirmed.get(d["id"])
+        ok = bool(rec) and rec["href"] == href
+        deps.append({"id": d["id"], "kind": "page outside the package", "page": d["page"], "links": [href],
+                     "needs": d["needs"], "blocks_publication": not ok, "confirmed": rec["record"] if ok else None})
+        if not ok:
+            stale = f"; the recorded check was for {rec['href']}" if rec else ""
+            blockers.append(f"dependency {d['id']}: {href} must reach {d['needs']}. Not confirmed on the live site{stale} "
+                            "(record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)")
+        if routes["pages"][d["page"]] == staging_route(d["page"] + ".html"):   # still the staging page's route
+            blockers += [b for b in content.review_items() if d["review_match"] in b
+                         and f"{d['page']}.html" in [w.strip() for w in b.split(": ", 1)[0].split(",")]]
+    declared = {(d["page"], "#" + d["anchor"]) for d in spec.get("depends", [])}
+    for p in sorted(links["pages"]):
+        hrefs = [routes["pages"][p] + fr for fr in sorted(links["pages"][p]) if (p, fr) not in declared]
+        if hrefs and p != pid:
+            other = in_package.get(p)
+            deps.append({"id": other or p, "kind": "module" if other else "page outside the package", "page": p,
+                         "links": hrefs,
+                         "needs": f"module {other} imported first or at the same time, so these links and anchors resolve"
+                         if other else f"a live page at {routes['pages'][p]} (set its path in src/integration-routes.json)",
+                         "blocks_publication": False})
     optional = []
     for aid, a in sorted(content.assets.items()):
         if any(u.split()[0] in [name] + [f"{name}#{i}" for i in ids] for u in a.get("used_on", []) if u.strip()):
@@ -555,16 +758,21 @@ def _module(spec, root, content, public_dir, routes, page_names, site_css, redir
                 optional.append({"asset": aid, "file": a["file"], "status": "not supplied or not authorised: the slot renders nothing",
                                  "fallback": a.get("fallback")})
 
-    # redirects the live site needs so that published addresses reach this module
+    # redirects the live site needs so that published addresses reach this module. The staging route is required
+    # (published material uses it); a short alias is optional and is skipped where the live site already has
+    # something at that path. An alias that is now the page's own live path is not a redirect at all: left out.
+    # export_modules() checks all of them together for shadowing, chains and loops.
     redir = []
     if routes["pages"][pid] != staging_route(name):
-        redir.append({"from": staging_route(name), "to": routes["pages"][pid], "status": 301,
-                      "why": "published material (PDFs, earlier staging links) uses the staging route"})
+        redir.append({"from": staging_route(name), "to": routes["pages"][pid], "status": 301, "kind": "staging route",
+                      "required": True, "why": "published material (PDFs, earlier staging links) uses the staging route"})
     for src, dst, code in redirects:
         path, hashmark, frag_id = dst.partition("#")
-        if by_route.get(path) == pid and (frag_id in ids if (frag_id or section) else True):
+        if by_route.get(path) == pid and (frag_id in ids if (frag_id or section) else True) and src != routes["pages"][pid]:
             redir.append({"from": src, "to": routes["pages"][pid] + (hashmark + frag_id if hashmark else ""), "status": int(code),
-                          "why": "short alias in src/redirects.txt"})
+                          "kind": "alias", "required": False,
+                          "why": "short alias in src/redirects.txt; add it only if nothing on the live site already "
+                                 "answers at this path (a page, file or redirect), otherwise skip it"})
     downloads = []
     for f in sorted(links["downloads"]):
         p = public_dir / "downloads" / f
@@ -605,6 +813,7 @@ def _module(spec, root, content, public_dir, routes, page_names, site_css, redir
         "anchors": {"ids": ids, "linked_from_site": sorted(i for i in ids if i in site_links.get(pid, set()))},
         "links": {"pages": [{"page": p, "href": routes["pages"][p] + fr} for p in sorted(links["pages"]) for fr in sorted(links["pages"][p])],
                   "external": sorted(links["external"])},
+        "dependencies": deps,
         "redirects": redir,
         "javascript": ["evidence filters" if p is JS_FILTERS else "open a <details> named by the URL fragment" for p in js_parts],
         "csp": csp,
@@ -635,6 +844,7 @@ def export_modules(root, content, public_dir, out_dir):
     root, public_dir, out_dir = Path(root), Path(public_dir), Path(out_dir)
     page_names = sorted(p.name for p in (root / "src" / "pages").glob("*.html"))
     routes = load_routes(root, page_names)
+    confirmed = load_confirmed(root)
     site_css = (root / "src" / "assets" / "css" / "site.css").read_text(encoding="utf-8")
     redirects = [tuple(ln.split()) for ln in (root / "src" / "redirects.txt").read_text(encoding="utf-8").splitlines()
                  if ln.strip() and not ln.lstrip().startswith("#") and len(ln.split()) == 3]
@@ -650,11 +860,14 @@ def export_modules(root, content, public_dir, out_dir):
         if frag_id and by_route.get(path):
             site_links.setdefault(by_route[path], set()).add(frag_id)
 
+    built = [_module(spec, root, content, public_dir, routes, page_names, site_css, redirects, site_links, confirmed)
+             for spec in MODULE_SPECS]
+    check_redirects(routes["pages"].values(), [(m["id"], r) for m, _, _ in built for r in m["redirects"]])
+
     out_dir.mkdir(parents=True)
     summary = []
     needed = {"downloads": set(), "assets": set()}
-    for spec in MODULES:
-        manifest, files, links = _module(spec, root, content, public_dir, routes, page_names, site_css, redirects, site_links)
+    for spec, (manifest, files, links) in zip(MODULE_SPECS, built):
         d = out_dir / "modules" / spec["id"]
         d.mkdir(parents=True)
         for fname, text in files.items():
@@ -696,19 +909,24 @@ brand assets and security configuration. Step-by-step instructions for each modu
 |---|---|---|---|---|---|---|
 {rows}
 Each `modules/<id>/` folder holds `fragment.html` (the markup), `module.css` (styles scoped under `.nwpt-module`,
-classes prefixed `nwpt-`), `module.js` where needed, `manifest.json` (facts, references, links, anchors, CSP needs,
-blockers) and `preview.html` (the module on its own under a strict CSP; open it over HTTP, for review only).
+classes prefixed `nwpt-`), `module.js` where needed, `manifest.json` (facts, references, links, dependencies,
+redirects, anchors, CSP needs, blockers) and `preview.html` (the module on its own under a strict CSP; open it over
+HTTP, for review only).
+
+Redirects in `manifest.json` → `redirects`: add every one with `"required": true`. An alias (`"required": false`)
+is added only if nothing on the live site already answers at its path; otherwise skip it.
 
 Shared files:
 - `routes.json`: page id to live path. Downloads are linked under `{routes['downloads']}` and assets under `{routes['assets']}`.
   Change paths in `src/integration-routes.json` and rebuild; never edit the fragments by hand.
 - `downloads/`: {', '.join('`' + f + '`' for f in sorted(needed['downloads'])) or 'none'}. Replace the live copies whenever they change (PDFs are regenerated and checked by the build when their facts change).
 - `assets/`: {', '.join('`' + f + '`' for f in sorted(needed['assets'])) or 'none needed at present (an image appears here once it is supplied and authorised)'}.
-- `content/`: the public-safe parts of the shared content model (public items only; internal notes removed). `people.json` is not included: no module shows profiles, and leadership titles await management confirmation.
+- `content/`: the public-safe parts of the shared content model (public items only; internal notes, unpublished document versions and uncited source ids removed; fact placeholders replaced by their values). `people.json` is not included: no module shows profiles, and leadership titles await management confirmation.
 
 ## Publication blockers by module
-These must be cleared before the module is published on the live site. They are content and approval items, listed
-in `manifest.json` → `publication_blockers`; the build report (`build/build-report.json`) lists the whole site's.
+These must be cleared before the module is published on the live site. They are content and approval items, and
+live-site dependencies that must be checked first (`manifest.json` → `dependencies` with `"blocks_publication": true`),
+listed in `manifest.json` → `publication_blockers`; the build report (`build/build-report.json`) lists the whole site's content blockers.
 
 {blockers}
 ## Optional assets not yet supplied (never block publication)
