@@ -384,6 +384,9 @@ def validate_output(out, env, page_names, restricted_names):
             errs.append(f"restricted/{name}: protections missing")
     if not (res / "functions" / "_middleware.js").exists() or "noindex" not in (res / "_headers").read_text():
         errs.append("restricted: access middleware or noindex header missing")
+    for tree in (pub, res):
+        for f in tree.rglob(".*"):
+            errs.append(f"{f.relative_to(out)}: hidden file in a deployable folder")
     if errs:
         raise BuildFailed("Output validation failed:\n  " + "\n  ".join(errs))
 

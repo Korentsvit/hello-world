@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-23T15:12:08.101Z",
+ "generated": "2026-09-23T15:18:41.757Z",
  "server": "wrangler pages dev (Cloudflare workerd runtime)",
  "public": {
   "/clinical-need": [
@@ -1364,6 +1364,16 @@
    "name": "restricted, Access configured, invalid token: refused (403 or 503) and no page content",
    "pass": true,
    "detail": "503"
+  },
+  {
+   "name": "public/ contains no hidden files or tool state after testing",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "restricted/ contains no hidden files or tool state after testing",
+   "pass": true,
+   "detail": ""
   }
  ]
 }

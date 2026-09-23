@@ -2,3 +2,4 @@ build/
 .build-tmp-*/
 .build.lock
 __pycache__/
+.wrangler/

@@ -134,6 +134,12 @@ if (fs.existsSync(path.join(res, "functions"))) {
   }
 }
 
+// Serving must never write into the deployable folders (wrangler keeps its state in a temporary copy).
+for (const dir of [pub, res]) {
+  const hidden = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.startsWith(".")) : [];
+  check(`${path.basename(dir)}/ contains no hidden files or tool state after testing`, hidden.length === 0, hidden.join(", "));
+}
+
 const failed = results.filter((r) => !r.pass);
 report.checks = results;
 fs.mkdirSync(path.resolve(here, "../docs/qa"), { recursive: true });
