@@ -201,6 +201,50 @@ for (const [vpName, vp] of Object.entries(VIEWPORTS)) {
   await ctx.close();
 }
 
+// ---- Increment B: evidence library, study hub, Phase 1, explainer ----
+if (PAGES.includes("evidence")) {
+  const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
+  const page = await ctx.newPage();
+  await page.goto(base + "evidence.html");
+  const total = await page.locator(".study-card").count();
+  check("evidence: filters visible with JS", await page.locator(".filters").isVisible());
+  await page.locator('.chip[data-filter="cbd"]').click();
+  const vis = await page.$$eval(".lib-section", (ss) => ss.filter((s) => !s.hidden).map((s) => s.dataset.section));
+  check("evidence: filter shows only chosen topic", vis.join() === "cbd", vis.join());
+  check("evidence: pressed state and live status update", (await page.getAttribute('.chip[data-filter="cbd"]', "aria-pressed")) === "true" && /Showing \d+ sources in CBD research/.test(await page.textContent(".filter-status")));
+  await page.locator('.chip[data-filter="all"]').click();
+  check("evidence: 'All' restores every section", (await page.$$eval(".lib-section", (ss) => ss.every((s) => !s.hidden))));
+  const cards = await page.$$eval(".study-card", (cs) => cs.map((c) => ({ id: c.id, dts: [...c.querySelectorAll("dt")].map((d) => d.textContent), src: !!c.querySelector(".source-line") })));
+  check(`evidence: all ${total} cards have population, product, design, finding, limitations and source`, cards.every((c) => ["Population", "Product", "Design", "Finding", "Limitations"].every((k) => c.dts.includes(k)) && c.src));
+  check("evidence: negative finding flagged (Boggs 2018)", (await page.textContent("#ref-boggs-2018")).includes("Negative finding"));
+  check("evidence: programme record labelled 'Programme information', not an evidence grade", (await page.textContent("#ref-nct07186283")).includes("Programme information") && !(await page.textContent("#ref-nct07186283")).includes("Established"));
+  await ctx.close();
+  const nojs = await browser.newContext({ javaScriptEnabled: false });
+  const p2 = await nojs.newPage();
+  await p2.goto(base + "evidence.html");
+  check("evidence (no JS): filter bar hidden and all sections shown", !(await p2.locator(".filters").isVisible()) && (await p2.locator(".lib-section:visible").count()) === (await p2.locator(".lib-section").count()));
+  await nojs.close();
+  for (const [f, head] of [["nwpharmatech-references.ris", "TY  - "], ["nwpharmatech-references.bib", "@"]]) {
+    const res = await fetch(base + "downloads/" + f);
+    const t = await res.text();
+    const n = (t.match(f.endsWith(".ris") ? /^TY  - /gm : /^@/gm) || []).length;
+    check(`download: ${f} valid with ${n} records (= ${total} cards)`, res.status === 200 && t.startsWith(head) && n === total);
+  }
+}
+if (PAGES.includes("phase-1")) {
+  const html = fs.readFileSync(path.join(root, "phase-1.html"), "utf8");
+  check("phase 1: both registry entries linked", html.includes("https://clinicaltrials.gov/study/NCT07186283") && html.includes("https://www.isrctn.com/ISRCTN25163383"));
+  check("phase 1: no numerical results or bioequivalence/superiority wording", !/Cmax|AUC|91\.2|92\.4|bioequivalen[a-z]* (was|is) (shown|demonstrated)|superior tolerab/i.test(html.replace(/cannot establish[\s\S]*?<\/ul>/, "")));
+}
+if (PAGES.includes("science")) {
+  const html = fs.readFileSync(path.join(root, "science.html"), "utf8");
+  check("science: diagram has accessible title and description", /<svg[^>]*role="img"[^>]*aria-labelledby="dg-title dg-desc"/.test(html) && html.includes('<desc id="dg-desc">'));
+  check("science: no animation in public build", !/@keyframes|<animate|animation:/.test(html + fs.readFileSync(path.join(root, "assets/css/site.css"), "utf8")));
+}
+check("public build: no 'image pending' or placeholder panels", PAGES.every((p) => !/image pending|render pending|portrait pending|placeholder/i.test(fs.readFileSync(path.join(root, p + ".html"), "utf8"))));
+check("public build: evidence graphics preview not published", !fs.existsSync(path.join(root, "graphics-preview")) && !PAGES.some((p) => fs.readFileSync(path.join(root, p + ".html"), "utf8").includes("graphics-preview")));
+check("public build: unpublished fact values absent (Phase 2B regions, funding figures)", PAGES.every((p) => { const h = fs.readFileSync(path.join(root, p + ".html"), "utf8"); return !/US\$35|US\$5 million|\$35M|UK and Europe/.test(h); }));
+
 // ---- Downloads ----
 {
   const res = await fetch(base + "downloads/nwpharmatech-programme-brief.pdf");

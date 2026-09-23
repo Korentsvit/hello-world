@@ -152,6 +152,42 @@ def write_meta_files(out, env):
         shutil.copy2(SRC / "404.html", out / "404.html")
 
 
+def write_citations(content, out):
+    """RIS and BibTeX exports of the public evidence library, generated from content/references.json."""
+    ris, bib = [], []
+    for r in content.refs["items"]:
+        if not r["public"]:
+            continue
+        ty = {"literature": "JOUR", "guideline": "GEN", "regulatory": "GEN", "report": "RPRT", "programme": "GEN"}[r["kind"]]
+        lines = [f"TY  - {ty}", f"TI  - {r['title']}"]
+        for a in [x.strip() for x in r["authors"].replace(", et al.", "").split(", ") if x.strip()] if r["kind"] == "literature" else [r["authors"]]:
+            if a:
+                lines.append(f"AU  - {a.rstrip('.')}")
+        if r.get("journal"): lines.append(f"T2  - {r['journal']}")
+        if r.get("year"): lines.append(f"PY  - {r['year']}")
+        if r.get("volume"): lines.append(f"VL  - {r['volume']}")
+        if r.get("issue"): lines.append(f"IS  - {r['issue']}")
+        if r.get("pages"):
+            sp, _, ep = str(r["pages"]).partition("-")
+            lines.append(f"SP  - {sp}")
+            if ep: lines.append(f"EP  - {ep}")
+        if r.get("doi"): lines.append(f"DO  - {r['doi']}")
+        if r.get("pmid"): lines.append(f"AN  - PMID:{r['pmid']}")
+        if r.get("url"): lines.append(f"UR  - {r['url']}")
+        lines.append("ER  - ")
+        ris.append("\n".join(lines))
+        key = r["id"].replace("-", "")
+        fields = {"title": r["title"], "author": r["authors"].replace(", et al.", " and others").replace(", ", " and ") if r["kind"] == "literature" else "{" + r["authors"] + "}",
+                  "journal": r.get("journal"), "year": r.get("year"), "volume": r.get("volume"), "number": r.get("issue"),
+                  "pages": str(r.get("pages") or "").replace("-", "--"), "doi": r.get("doi"), "url": r.get("url"),
+                  "note": f"PMID: {r['pmid']}" if r.get("pmid") else None}
+        body = ",\n".join(f"  {k} = {{{v}}}" for k, v in fields.items() if v)
+        bib.append(f"@{'article' if r['kind'] == 'literature' else 'misc'}{{{key},\n{body}\n}}")
+    (out / "downloads").mkdir(exist_ok=True)
+    (out / "downloads" / "nwpharmatech-references.ris").write_text("\n\n".join(ris) + "\n")
+    (out / "downloads" / "nwpharmatech-references.bib").write_text("\n\n".join(bib) + "\n")
+
+
 def build_print_sources(content, env):
     """Expand PDF templates (src/print/*.html) with the same content, for tools/make-pdf.mjs."""
     out = ROOT / "build"
@@ -170,6 +206,7 @@ def main():
         content = Content(ROOT)
         unresolved, renderer = build_tree(content, SRC / "pages", ROOT / "public", env, with_signup=with_signup)
         write_meta_files(ROOT / "public", env)
+        write_citations(content, ROOT / "public")
         build_print_sources(content, env)
         prod_blockers = content.production_blockers(accept_index)
         r_unresolved, _ = build_tree(content, SRC / "restricted", ROOT / "restricted", "staging", restricted=True)

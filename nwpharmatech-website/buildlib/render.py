@@ -185,8 +185,8 @@ class Renderer:
             label = self.src_label(m["source"])
             src = escape(label) if label else "Company records"
             rows.append(f'<tr><th scope="row">{escape(m["title"])}</th>'
-                        f'<td><span class="st {STATUS_CLASS[m["status"]]}">{m["status"]}</span></td>'
-                        f'<td>{when}</td><td class="small">{src}</td></tr>')
+                        f'<td data-label="Status"><span class="st {STATUS_CLASS[m["status"]]}">{m["status"]}</span></td>'
+                        f'<td data-label="Date">{when}</td><td class="small" data-label="Source">{src}</td></tr>')
         return "".join(rows)
 
     def b_milestones(self, kind):
@@ -198,10 +198,10 @@ class Renderer:
 
     def b_registrations(self):
         rows = "".join(
-            f'<tr><th scope="row">{escape(r["study"])}</th><td>{escape(r["registry"])}</td>'
-            f'<td><a href="{r["url"]}" rel="external">{escape(r["id"])}</a></td></tr>'
+            f'<tr><th scope="row">{escape(r["study"])}</th><td data-label="Registry">{escape(r["registry"])}</td>'
+            f'<td data-label="Identifier"><a href="{r["url"]}" rel="external">{escape(r["id"])}</a></td></tr>'
             for r in self.c.study["registrations"] if r["public"])
-        return (f'<div class="table-wrap"><table><caption>Registry entries</caption><thead><tr><th scope="col">Study</th>'
+        return (f'<div class="table-wrap"><table class="table-stack"><caption>Registry entries</caption><thead><tr><th scope="col">Study</th>'
                 f'<th scope="col">Registry</th><th scope="col">Identifier</th></tr></thead><tbody>{rows}</tbody></table></div>')
 
     def b_oversight(self):
@@ -232,9 +232,134 @@ class Renderer:
         for d in self.c.documents:
             if not d["public"]:
                 continue
-            rows = "".join(f'<tr><th scope="row">{escape(h["version"])}</th><td><time datetime="{h["date"]}">{fmt_date(h["date"])}</time></td>'
-                           f'<td>{escape(h["status"])}</td><td>{escape(h["change"])}</td></tr>' for h in d["history"])
+            rows = "".join(f'<tr><th scope="row">{escape(h["version"])}</th><td data-label="Date"><time datetime="{h["date"]}">{fmt_date(h["date"])}</time></td>'
+                           f'<td data-label="Status">{escape(h["status"])}</td><td data-label="Change">{escape(h["change"])}</td></tr>' for h in d["history"])
             out.append(f'<div class="table-wrap"><table class="table-stack"><caption>{escape(d["title"])}</caption>'
                        f'<thead><tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Substantive change</th></tr></thead>'
                        f'<tbody>{rows}</tbody></table></div>')
         return "".join(out)
+
+    # ---------- assets ----------
+    def b_asset(self, aid):
+        import json
+        a = json.loads((self.root / "content" / "assets.json").read_text())["assets"][aid]
+        if a["authorised"] and a["caption_approved"] and (self.root / "src" / a["file"]).exists():
+            return (f'<figure class="asset-figure"><img src="{a["file"]}" alt="{escape(a["alt"])}" loading="lazy">'
+                    f'<figcaption>{escape(a["caption"])}</figcaption></figure>')
+        return ""
+
+    # ---------- Phase 1 ----------
+    def b_phase1_results(self):
+        p = self.c.study["phase1"]
+        r = p.get("results")
+        if not r:
+            return (f'<p><span class="st st-planned">Not yet published</span></p>'
+                    f'<p>{escape(self.c.fact("phase1.results_status", self.page))}</p>'
+                    '<p>When results are published, this section will show each measure, what was found, the limitations and the source report, and a plain-language summary will be posted on both registries.</p>')
+        rows = "".join(f'<tr><th scope="row">{escape(x["measure"])}</th><td>{escape(x["finding"])}</td></tr>' for x in r["table"])
+        return (f'<p class="as-of">Results as of <time datetime="{r["as_of"]}">{fmt_date(r["as_of"])}</time>. Source: {escape(r["source"])}</p>'
+                f'<p>{escape(r["summary"])}</p><div class="table-wrap"><table><caption>Phase 1 results</caption>'
+                f'<thead><tr><th scope="col">Measure</th><th scope="col">Finding</th></tr></thead><tbody>{rows}</tbody></table></div>'
+                f'<h3>Limitations</h3><p>{escape(r["limitations"])}</p>')
+
+    def b_phase1_list(self, key):
+        return '<ul class="checklist">' + "".join(f"<li>{escape(x)}</li>" for x in self.c.study["phase1"][key]) + "</ul>"
+
+    def b_phase1_measured(self):
+        m = self.c.study["phase1"]["measured"]
+        return (f'<dl class="facts"><div><dt>Absorption</dt><dd>{escape(m["absorption"])}</dd></div>'
+                f'<div><dt>Safety and tolerability</dt><dd>{escape(m["safety"])}</dd></div></dl>')
+
+    def b_protocol_history(self):
+        rows = "".join(f'<tr><th scope="row">{escape(h["version"])}</th><td data-label="Date">{escape(h["date_text"])}</td><td data-label="Change">{escape(h["change"])}</td></tr>'
+                       for h in self.c.study["phase1"]["protocol_history"])
+        return (f'<div class="table-wrap"><table class="table-stack"><caption>Phase 1 eligibility criteria versions</caption>'
+                f'<thead><tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Substantive change</th></tr></thead><tbody>{rows}</tbody></table></div>')
+
+    # ---------- evidence library ----------
+    def _ref_links(self, r):
+        links = []
+        if r.get("doi"):
+            links.append(f'<a href="https://doi.org/{escape(r["doi"])}" rel="external">DOI {escape(r["doi"])}</a>')
+        if r.get("pmid"):
+            links.append(f'<a href="https://pubmed.ncbi.nlm.nih.gov/{escape(r["pmid"])}/" rel="external">PubMed {escape(r["pmid"])}</a>')
+        if r.get("url") and not r.get("doi"):
+            links.append(f'<a href="{escape(r["url"])}" rel="external">Official source</a>')
+        return " · ".join(links)
+
+    def citation(self, r):
+        parts = [r["authors"], r["title"] + "."]
+        j = f'<em>{escape(str(r["journal"]))}</em>' if r["journal"] else ""
+        vol = ""
+        if r.get("year"):
+            vol = f'{r["year"]}'
+            if r.get("volume"):
+                vol += f';{r["volume"]}'
+                if r.get("issue"):
+                    vol += f'({r["issue"]})'
+                if r.get("pages"):
+                    vol += f':{r["pages"]}'
+            vol += "."
+        return f'{escape(r["authors"])}{". " if r["authors"] else ""}{escape(r["title"])}. {j}{". " if j else ""}{escape(vol)}'
+
+    def study_card(self, r):
+        cat = next(c["title"] for c in self.c.refs["categories"] if c["id"] == r["category"])
+        if r["kind"] == "programme":
+            tag = '<span class="tag tag-company">Programme information</span>'
+        elif r["label"] in LABEL_TEXT:
+            cls, txt = LABEL_TEXT[r["label"]]
+            tag = f'<span class="tag {cls}">{txt}</span>'
+        else:
+            tag = ""
+        res = r["result"]
+        flag = ""
+        if res in ("negative", "inconclusive", "mixed", "not-conducted"):
+            flag = f'<span class="result-flag result-{res}">{RESULT_LABEL[res]}</span>'
+        self.c.ref(r["id"], self.page)
+        return (f'<article class="study-card" id="ref-{r["id"]}" data-category="{r["category"]}">'
+                f'<div class="study-card-head"><p class="card-kicker">{escape(cat)}</p><div class="card-flags">{tag}{flag}</div></div>'
+                f'<h3>{escape(r["title"])}</h3>'
+                f'<dl class="card-dl"><div><dt>Population</dt><dd>{escape(r["population"])}</dd></div>'
+                f'<div><dt>Product</dt><dd>{escape(r["product"])}</dd></div>'
+                f'<div><dt>Design</dt><dd>{escape(r["design"])}</dd></div>'
+                f'<div><dt>Finding</dt><dd>{escape(r["finding"])}</dd></div>'
+                f'<div><dt>Limitations</dt><dd>{escape(r["limitations"])}</dd></div></dl>'
+                f'<p class="source-line"><span class="src-label">Source:</span> {self.citation(r)} {self._ref_links(r)}</p>'
+                f'</article>')
+
+    def b_evidence_filters(self):
+        btns = ['<button type="button" class="chip" aria-pressed="true" data-filter="all">All</button>']
+        for c in self.c.refs["categories"]:
+            n = sum(1 for r in self.c.refs["items"] if r["public"] and r["category"] == c["id"])
+            btns.append(f'<button type="button" class="chip" aria-pressed="false" data-filter="{c["id"]}">{escape(c["title"])} <span class="chip-n">{n}</span></button>')
+        return (f'<div class="filters" role="group" aria-label="Filter the evidence library by topic" hidden>{"".join(btns)}</div>'
+                '<p class="filter-status" role="status" aria-live="polite"></p>')
+
+    def b_evidence_library(self):
+        out = []
+        for c in self.c.refs["categories"]:
+            items = [r for r in self.c.refs["items"] if r["public"] and r["category"] == c["id"]]
+            if not items:
+                continue
+            out.append(f'<section class="lib-section" data-section="{c["id"]}" aria-labelledby="cat-{c["id"]}">'
+                       f'<h2 id="cat-{c["id"]}">{escape(c["title"])}</h2><div class="study-cards">'
+                       + "".join(self.study_card(r) for r in items) + "</div></section>")
+        return "".join(out)
+
+    def b_evidence_last_checked(self):
+        d = self.c.refs["last_checked"]
+        return f'<time datetime="{d}">{fmt_date(d)}</time>'
+
+    def b_corrections_public(self):
+        pub = [x for x in self.c.refs["corrections"] if x["public"]]
+        if not pub:
+            return "<p>No corrections have been made since publication.</p>"
+        rows = "".join(f'<tr><td><time datetime="{x["date"]}">{fmt_date(x["date"])}</time></td><td>{escape(x["change"])}</td></tr>' for x in pub)
+        return (f'<div class="table-wrap"><table><caption>Corrections</caption><thead><tr><th scope="col">Date</th>'
+                f'<th scope="col">Correction</th></tr></thead><tbody>{rows}</tbody></table></div>')
+
+    def b_review_log(self):
+        rows = "".join(f'<tr><td data-label="Date"><time datetime="{x["date"]}">{fmt_date(x["date"])}</time></td><td data-label="Review">{escape(x["type"])}</td><td data-label="Method">{escape(x["method"])}</td></tr>'
+                       for x in self.c.refs["review_log"])
+        return (f'<div class="table-wrap"><table class="table-stack"><caption>Evidence reviews</caption><thead><tr><th scope="col">Date</th>'
+                f'<th scope="col">Review</th><th scope="col">Method</th></tr></thead><tbody>{rows}</tbody></table></div>')

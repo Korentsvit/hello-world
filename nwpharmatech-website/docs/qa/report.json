@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:42235/",
-  "generated": "2026-09-23T06:26:20.264Z",
+  "base": "http://127.0.0.1:41125/",
+  "generated": "2026-09-23T06:36:54.133Z",
   "pages": {
     "clinical-need@desktop": {
       "status": 200,
@@ -29,11 +29,17 @@
       "errors": [],
       "axe": [],
       "overflow": false,
-      "title": "Evidence and references | NWPharmaTech",
+      "title": "Evidence library | NWPharmaTech",
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
-      "tables": []
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 3,
+          "overflow": false
+        }
+      ]
     },
     "faq@desktop": {
       "status": 200,
@@ -90,6 +96,23 @@
       "imgsNoAlt": 0,
       "tables": []
     },
+    "phase-1@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Phase 1 study | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 5,
+          "overflow": false
+        }
+      ]
+    },
     "programme@desktop": {
       "status": 200,
       "errors": [],
@@ -106,11 +129,53 @@
       "errors": [],
       "axe": [],
       "overflow": false,
-      "title": "The science | NWPharmaTech",
+      "title": "Science and formulation | NWPharmaTech",
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
       "tables": []
+    },
+    "study@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "The study: progress and evidence | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 11,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 7,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 6,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 5,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 7,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 5,
+          "overflow": false
+        }
+      ]
     },
     "updates@desktop": {
       "status": 200,
@@ -150,11 +215,17 @@
       "errors": [],
       "axe": [],
       "overflow": false,
-      "title": "Evidence and references | NWPharmaTech",
+      "title": "Evidence library | NWPharmaTech",
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
-      "tables": []
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 3,
+          "overflow": false
+        }
+      ]
     },
     "faq@mobile": {
       "status": 200,
@@ -211,6 +282,23 @@
       "imgsNoAlt": 0,
       "tables": []
     },
+    "phase-1@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Phase 1 study | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 5,
+          "overflow": false
+        }
+      ]
+    },
     "programme@mobile": {
       "status": 200,
       "errors": [],
@@ -227,11 +315,53 @@
       "errors": [],
       "axe": [],
       "overflow": false,
-      "title": "The science | NWPharmaTech",
+      "title": "Science and formulation | NWPharmaTech",
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
       "tables": []
+    },
+    "study@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "The study: progress and evidence | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 11,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 7,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 6,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 5,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 7,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 5,
+          "overflow": false
+        }
+      ]
     },
     "updates@mobile": {
       "status": 200,
@@ -318,6 +448,16 @@
     },
     {
       "name": "evidence@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@desktop: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@desktop: table 1 fits its container",
       "pass": true,
       "detail": ""
     },
@@ -447,6 +587,41 @@
       "detail": ""
     },
     {
+      "name": "phase-1@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "phase-1@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@desktop: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@desktop: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "programme@desktop: HTTP 200",
       "pass": true,
       "detail": ""
@@ -493,6 +668,91 @@
     },
     {
       "name": "science@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "study@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 2 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 2 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 3 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 3 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 4 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 4 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 5 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 5 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 6 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 6 fits its container",
       "pass": true,
       "detail": ""
     },
@@ -593,6 +853,16 @@
     },
     {
       "name": "evidence@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@mobile: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence@mobile: table 1 fits its container",
       "pass": true,
       "detail": ""
     },
@@ -722,6 +992,41 @@
       "detail": ""
     },
     {
+      "name": "phase-1@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "phase-1@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@mobile: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase-1@mobile: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "programme@mobile: HTTP 200",
       "pass": true,
       "detail": ""
@@ -772,6 +1077,91 @@
       "detail": ""
     },
     {
+      "name": "study@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "study@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 2 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 2 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 3 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 3 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 4 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 4 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 5 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 5 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 6 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 6 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "updates@mobile: HTTP 200",
       "pass": true,
       "detail": ""
@@ -802,7 +1192,7 @@
       "detail": ""
     },
     {
-      "name": "internal links and anchors resolve (423 checked)",
+      "name": "internal links and anchors resolve (580 checked)",
       "pass": true,
       "detail": ""
     },
@@ -849,7 +1239,7 @@
     {
       "name": "menu: visible touch targets at least 44px tall",
       "pass": true,
-      "detail": "52,52,53,46,46,46,53,46,46,53,46,46,46,46,46"
+      "detail": "52,52,53,46,46,46,53,46,46,46,46,53,46,46,46,46,46"
     },
     {
       "name": "menu: link navigates",
@@ -872,7 +1262,7 @@
       "detail": ""
     },
     {
-      "name": "keyboard: all 28 tab stops on home show a visible focus outline",
+      "name": "keyboard: all 33 tab stops on home show a visible focus outline",
       "pass": true,
       "detail": "[]"
     },
@@ -898,6 +1288,91 @@
     },
     {
       "name": "faq: notice-bar link opens the answer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence: filters visible with JS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence: filter shows only chosen topic",
+      "pass": true,
+      "detail": "cbd"
+    },
+    {
+      "name": "evidence: pressed state and live status update",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence: 'All' restores every section",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence: all 24 cards have population, product, design, finding, limitations and source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence: negative finding flagged (Boggs 2018)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence: programme record labelled 'Programme information', not an evidence grade",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence (no JS): filter bar hidden and all sections shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "download: nwpharmatech-references.ris valid with 24 records (= 24 cards)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "download: nwpharmatech-references.bib valid with 24 records (= 24 cards)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase 1: both registry entries linked",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "phase 1: no numerical results or bioequivalence/superiority wording",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science: diagram has accessible title and description",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science: no animation in public build",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "public build: no 'image pending' or placeholder panels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "public build: evidence graphics preview not published",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "public build: unpublished fact values absent (Phase 2B regions, funding figures)",
       "pass": true,
       "detail": ""
     },
@@ -995,8 +1470,8 @@
     "tel:988": 1
   },
   "summary": {
-    "total": 147,
-    "passed": 147,
+    "total": 216,
+    "passed": 216,
     "failed": 0
   }
 }

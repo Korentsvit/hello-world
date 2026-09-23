@@ -1,15 +1,59 @@
 {
   "_doc": "Public document register and substantive change history. Staging drafts are listed as unpublished; do not present them as public releases.",
   "documents": [
-    {"id": "brief", "title": "Programme brief", "file": "downloads/nwpharmatech-programme-brief.pdf", "public": true,
-     "history": [
-       {"version": "3", "date": "2026-09-23", "status": "Staging draft (not published)", "change": "Generated from the shared content source; adds study stage, completed work and next milestone."},
-       {"version": "2", "date": "2026-09-23", "status": "Staging draft (not published)", "change": "Adds completed Phase 1 study and registry identifiers."},
-       {"version": "1", "date": "2026-09-23", "status": "Staging draft (not published)", "change": "First draft from the website brief."}
-     ]},
-    {"id": "appointment-sheet", "title": "Appointment preparation sheet", "file": "downloads/appointment-preparation-sheet.pdf", "public": true,
-     "history": [{"version": "1", "date": "2026-09-23", "status": "Staging draft (not published)", "change": "First version."}]},
-    {"id": "publication-policy", "title": "Publication policy", "file": null, "public": true,
-     "history": [{"version": "0.1", "date": "2026-09-23", "status": "Draft for management adoption (not adopted)", "change": "First draft."}]}
+    {
+      "id": "brief",
+      "title": "Programme brief",
+      "file": "downloads/nwpharmatech-programme-brief.pdf",
+      "public": true,
+      "history": [
+        {
+          "version": "3",
+          "date": "2026-09-23",
+          "status": "Staging draft (not published)",
+          "change": "Generated from the shared content source; adds study stage, completed work and next milestone."
+        },
+        {
+          "version": "2",
+          "date": "2026-09-23",
+          "status": "Staging draft (not published)",
+          "change": "Adds completed Phase 1 study and registry identifiers."
+        },
+        {
+          "version": "1",
+          "date": "2026-09-23",
+          "status": "Staging draft (not published)",
+          "change": "First draft from the website brief."
+        }
+      ]
+    },
+    {
+      "id": "appointment-sheet",
+      "title": "Appointment preparation sheet",
+      "file": "downloads/appointment-preparation-sheet.pdf",
+      "public": false,
+      "history": [
+        {
+          "version": "1",
+          "date": "2026-09-23",
+          "status": "Staging draft (not published)",
+          "change": "First version."
+        }
+      ]
+    },
+    {
+      "id": "publication-policy",
+      "title": "Publication policy",
+      "file": null,
+      "public": true,
+      "history": [
+        {
+          "version": "0.1",
+          "date": "2026-09-23",
+          "status": "Draft for management adoption (not adopted)",
+          "change": "First draft."
+        }
+      ]
+    }
   ]
 }

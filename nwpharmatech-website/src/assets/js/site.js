@@ -41,3 +41,25 @@ document.addEventListener("DOMContentLoaded", function () {
     el.textContent = new Date().getFullYear();
   });
 });
+
+// Evidence library filters. Without JavaScript every section is shown, grouped by topic.
+document.addEventListener("DOMContentLoaded", function () {
+  var bar = document.querySelector(".filters");
+  if (!bar) return;
+  bar.hidden = false;
+  var status = document.querySelector(".filter-status");
+  var sections = document.querySelectorAll(".lib-section");
+  bar.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-filter]");
+    if (!btn) return;
+    var f = btn.getAttribute("data-filter");
+    bar.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+    var shown = 0;
+    sections.forEach(function (s) {
+      var on = f === "all" || s.getAttribute("data-section") === f;
+      s.hidden = !on;
+      if (on) shown += s.querySelectorAll(".study-card").length;
+    });
+    if (status) status.textContent = "Showing " + shown + (shown === 1 ? " source" : " sources") + (f === "all" ? "" : " in " + btn.firstChild.textContent.trim());
+  });
+});
