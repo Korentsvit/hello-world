@@ -78,7 +78,9 @@ p, ul, ol, dl { margin: 0 0 1em; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .1rem; }
 .site-nav a { display: block; padding: .5rem .65rem; border-radius: 6px; text-decoration: none; color: var(--ink-soft); font-weight: 550; font-size: .96rem; white-space: nowrap; }
 .site-nav a:hover { background: var(--surface-alt); color: var(--brand-dark); }
-.site-nav a[aria-current="page"] { color: var(--brand); box-shadow: inset 0 -3px 0 var(--brand); border-radius: 6px 6px 0 0; }
+/* The current page is marked with a border, not a box shadow or background: forced colours (Windows contrast
+   themes) keep borders and drop the others. The padding keeps the link the same size as its neighbours. */
+.site-nav a[aria-current="page"] { color: var(--brand); border-bottom: 3px solid var(--brand); padding-bottom: calc(.5rem - 3px); border-radius: 6px 6px 0 0; }
 
 .nav-toggle { display: none; align-items: center; gap: .5rem; min-height: 44px; padding: 0 .9rem; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--brand-dark); font: inherit; font-weight: 600; cursor: pointer; }
 .nav-toggle-bar, .nav-toggle-bar::before, .nav-toggle-bar::after { display: block; width: 18px; height: 2px; background: currentColor; position: relative; content: ""; }
@@ -87,6 +89,12 @@ p, ul, ol, dl { margin: 0 0 1em; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar { background: transparent; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar::before { top: 0; transform: rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar::after { top: 0; transform: rotate(-45deg); }
+/* Forced colours replace background colours with the page colour, which would erase the bars (and below 375 px
+   the "Menu" label is hidden): draw them in the button text colour the user has chosen. */
+@media (forced-colors: active) {
+  .nav-toggle-bar, .nav-toggle-bar::before, .nav-toggle-bar::after { forced-color-adjust: none; background: ButtonText; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar { background: transparent; }
+}
 
 /* The open menu scrolls inside the panel; site.js fits its height to the space below the header. */
 .mobile-nav { border-top: 1px solid var(--line); background: #fff; max-height: calc(100vh - 64px); overflow-y: auto; overscroll-behavior: contain; padding: .5rem 0 1rem; overflow-wrap: break-word; }
@@ -101,6 +109,11 @@ p, ul, ol, dl { margin: 0 0 1em; }
 .nav-group ul { list-style: none; margin: 0 0 .5rem; padding: 0; }
 .nav-group a { display: block; padding: .6rem .9rem; min-height: 44px; text-decoration: none; color: var(--ink-soft); border-radius: 6px; }
 .nav-group a[aria-current="page"] { color: var(--brand); font-weight: 650; background: var(--surface-alt); }
+/* Forced colours drop the colour and background that mark the current page (and, in the desktop navigation,
+   the section it belongs to): underline them instead. */
+@media (forced-colors: active) {
+  .mobile-quick a[aria-current="page"], .nav-group a[aria-current="page"], .site-nav a[aria-current="true"] { text-decoration: underline; text-decoration-thickness: 2px; }
+}
 
 @media (max-width: 1099px) {
   .site-nav { display: none; }
@@ -292,7 +305,7 @@ fieldset[disabled] { opacity: .6; }
 .subnav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .1rem .2rem; }
 .subnav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .6rem; text-decoration: none; color: var(--ink-soft); font-size: .94rem; border-radius: 6px; }
 .subnav a:hover { background: var(--surface-alt); }
-.subnav a[aria-current="page"] { color: var(--brand); font-weight: 650; box-shadow: inset 0 -3px 0 var(--brand); border-radius: 6px 6px 0 0; }
+.subnav a[aria-current="page"] { color: var(--brand); font-weight: 650; border-bottom: 3px solid var(--brand); padding-top: 3px; border-radius: 6px 6px 0 0; }
 .site-nav a[aria-current="true"] { color: var(--brand); }
 
 .steps { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 16px; counter-reset: s; }
@@ -305,7 +318,6 @@ fieldset[disabled] { opacity: .6; }
 .step p { font-size: .98rem; }
 
 .cite { font-size: .8rem; color: var(--muted); white-space: nowrap; text-decoration-thickness: 1px; }
-.cite::before { content: "Source: "; }
 .cite:hover { color: var(--brand-dark); }
 
 .latest { border-left: 4px solid var(--brand); padding: 4px 0 4px 18px; }
