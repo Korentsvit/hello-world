@@ -380,8 +380,44 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const woods = (ppl.match(/<article[^>]*id="scott-woods"[\s\S]*?<\/article>/) || [""])[0];
   check("people: Scott Woods is not presented as an adviser", woods && !/advis/i.test(visible(woods)));
   check("people: Trevor Jones listed", /Trevor Jones/.test(ppl));
-  const pv = visible(ppl);
-  check("people: not both an Executive Chairman and a Non-Executive Chairman", !(/Non-Executive Chairman/.test(pv) && /(^|[^-])Executive Chairman/.test(pv.replace(/Non-Executive Chairman/g, ""))));
+  // Chair and committee titles, in any wording, wherever a reader can meet them: public and restricted pages, the
+  // PDFs and their sources, and the integration fragments. Allowed only as a title management has confirmed
+  // (content/people.json), and never more than one chair title.
+  const people = JSON.parse(fs.readFileSync(path.resolve(here, "../content/people.json"), "utf8")).people;
+  const confirmed = people.filter((p) => p.public && p.role_status === "confirmed" && p.role).map((p) => p.role);
+  const CHAIR = /\b(?:vice[- ]?|co-)?chair(?:man|woman|person|s|ed|ing)?\b/gi;
+  const COMMITTEE = /\b(?:scientific |clinical |medical )?advisory (?:board|committee|council)\b|\bsteering committee\b/gi;
+  const SAB = /\bSAB\b/g;
+  const ELSEWHERE = [/former chair of the European Medicinal Cannabis Association/gi];   // Trevor Jones's biography: a past post outside the company
+  const quote = (s) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+  const titleHits = (text, allowed = confirmed) => {
+    let t = text;
+    for (const r of [...ELSEWHERE, ...allowed.map(quote)]) t = t.replace(r, " ");
+    return [...t.matchAll(CHAIR), ...t.matchAll(COMMITTEE), ...t.matchAll(SAB)].map((m) => m[0]);
+  };
+  const variants = ["Chairman", "Non-Executive Chairman", "Executive Chair", "Non-executive Chair", "Chair of the Board", "Chairs the board",
+    "Chairwoman", "Chairperson", "Co-chair", "Vice-Chair", "SAB Chair", "Scientific Advisory Board", "member of the advisory board", "SAB"];
+  check("chair/committee detector: flags every chair and committee wording, not the logged past post elsewhere",
+    variants.every((v) => titleHits(`Dr A. ${v}.`, []).length > 0) && titleHits("former chair of the European Medicinal Cannabis Association", []).length === 0,
+    variants.filter((v) => titleHits(`Dr A. ${v}.`, []).length === 0).join(", "));
+  const attrText = (h) => [...h.matchAll(/\b(?:alt|title|content|aria-label)="([^"]*)"/g)].map((m) => m[1]).join(" ");
+  const texts = [];
+  const htmlIn = (dir) => fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".html")).map((f) => path.join(dir, f)) : [];
+  const modDir = path.resolve(here, "../integration/modules");
+  for (const f of [...htmlIn(root), ...htmlIn(path.resolve(here, "../restricted")), ...htmlIn(path.resolve(here, "../build")),
+    ...(fs.existsSync(modDir) ? fs.readdirSync(modDir).flatMap((m) => htmlIn(path.join(modDir, m))) : [])]) {
+    const h = fs.readFileSync(f, "utf8");
+    texts.push([path.relative(path.resolve(here, ".."), f), visible(h) + " " + attrText(h)]);
+  }
+  for (const f of fs.readdirSync(path.join(root, "downloads")).filter((f) => f.endsWith(".pdf"))) {
+    const doc = await pdfjs.getDocument({ data: new Uint8Array(fs.readFileSync(path.join(root, "downloads", f))), isEvalSupported: false }).promise;
+    let t = "";
+    for (let i = 1; i <= doc.numPages; i++) t += " " + (await (await doc.getPage(i)).getTextContent()).items.map((x) => x.str).join(" ");
+    texts.push([`public/downloads/${f}`, t]);
+  }
+  const hits = texts.flatMap(([f, t]) => titleHits(t).map((h) => `${f}: ${h}`));
+  check(`no chair or committee title unless confirmed by management (${texts.length} pages, PDFs and fragments scanned)`, hits.length === 0 && texts.length > 0, hits.join("; "));
+  check("people: at most one chair title confirmed (not both an Executive and a Non-Executive Chairman)", confirmed.filter((r) => /\bchair/i.test(r)).length <= 1);
   check("no empty image slots: no initials avatars or figures without an image", PAGES.every((p) => !/class="avatar"/.test(read(p)) && !/<figure[^>]*>(?:(?!<img|<svg|<video)[\s\S])*?<\/figure>/.test(read(p))));
 }
 

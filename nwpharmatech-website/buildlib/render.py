@@ -174,7 +174,7 @@ class Renderer:
                 f'<p><a href="{m["transcript"]}">Read the transcript</a></p></details>')
 
     def person_card(self, p, level="h3"):
-        resp = "".join(f"<li>{escape(r)}</li>" for r in p["responsibilities"])
+        resp = "".join(f"<li>{escape(r['text'])}</li>" for r in p["responsibilities"])
         aff = "".join(f"<li>{escape(a)}</li>" for a in p["affiliations"])
         disc = ""
         if p["disclosures"]:

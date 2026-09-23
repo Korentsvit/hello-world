@@ -15,14 +15,14 @@ Suggested questions; the speaker answers in their own words:
 3. What happens to most people who meet the criteria over time?
 4. What support helps now, and what does the evidence say about preventing psychosis?
 5. What would a useful study in this group need to show?
-**Guardrails:** no statements about NWPT-SM32300's effects; describe his involvement as his profile does (CHR-P expertise brought to study design), without calling him an adviser or giving a title until management confirms one.
+**Guardrails:** no statements about NWPT-SM32300's effects; describe his involvement as his profile does (CHR-P expertise brought to the design of the planned Phase 2B study), without calling him an adviser or giving a title until management confirms one.
 
 ## Dr John M. Kane: what early intervention has demonstrated
 1. What have studies of early, coordinated care for first-episode psychosis shown?
 2. How does first-episode care differ from care for people at clinical high risk?
 3. What makes a clinical trial in psychiatry trustworthy?
 4. What would you want to see before any new medicine is used in this group?
-**Guardrails:** distinguish first-episode evidence (e.g. RAISE) from clinical high risk evidence; no efficacy claims for NWPT-SM32300.
+**Guardrails:** distinguish first-episode evidence (e.g. RAISE) from clinical high risk evidence; no efficacy claims for NWPT-SM32300; no title or committee role for him, and no statement that he leads the programme's trial design, until management confirms them.
 
 ## Dr Grace Blest-Hopley: what the formulation research aims to establish
 1. Why is cannabidiol hard to deliver as a medicine by mouth?
