@@ -36,7 +36,7 @@ Positive controls check that a good build installs and that a changed fact reach
 **Problem:** draft 3 redirected `/study` to `/study.html`, and Cloudflare Pages redirects `/study.html` back to `/study` (308). Seven routes looped.
 
 **Changes:**
-- Internal links, canonical URLs, Open Graph URLs and sitemap entries are now extensionless and root-relative (`/study`, `/`).
+- Internal links are now extensionless and root-relative (`/study`, `/`). Canonical URLs and sitemap entries are absolute and extensionless (`https://www.nwpharmatech.org/study`).
 - `_redirects` keeps only short aliases (for example `/team` to `/people`).
 - The build rejects any rule that shadows a page, uses a form Cloudflare already redirects (`.html`, trailing slash, `/index.html`), or points at another redirect.
 - `_headers` and `robots.txt` use `/financing`.
