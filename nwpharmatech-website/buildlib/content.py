@@ -168,19 +168,56 @@ class Content:
         return out
 
     def signup_provider_problem(self):
-        """The sign-up form may be built only after a live provider test has been recorded and passed."""
+        """The sign-up form may be built only after a live provider test has been recorded and passed.
+
+        The record is written by tools/test-signup-live.mjs, never by hand, and every case must hold the boolean
+        true. Its digest (src/optional/signup/record.mjs) is recomputed here, so a record changed after the harness
+        wrote it is refused. The digest is a checksum, not a signature: it cannot show who made the record."""
+        import hashlib
+        import re
         p = self.root / "content" / "signup-provider-test.json"
         if not p.exists():
             return "no live provider test recorded in content/signup-provider-test.json"
-        t = self._load(p)
+        try:
+            t = json.loads(p.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as e:
+            return f"content/signup-provider-test.json cannot be read ({e})"
+        if not isinstance(t, dict):
+            return "content/signup-provider-test.json is not a test record"
         if t.get("example"):
             return "content/signup-provider-test.json is the example file, not a recorded test"
-        required = {"new_address", "repeat_address", "invalid_address", "confirmation_email", "unsubscribe", "provider_outage"}
-        missing = sorted(required - {k for k, v in t.get("cases", {}).items() if v.get("pass")})
-        import hashlib
+        if t.get("harness") != "tools/test-signup-live.mjs":
+            return "content/signup-provider-test.json was not written by tools/test-signup-live.mjs (harness)"
+        fields = ("provider", "list", "date", "tested_by", "function_sha256", "digest")
+        blank = [k for k in fields if not isinstance(t.get(k), str) or not t[k].strip()]
+        if blank:
+            return f"live provider test record incomplete ({', '.join(blank)} missing)"
+        if t["provider"] not in ("buttondown", "webhook"):
+            return f"live provider test record names an unknown provider ({t['provider']})"
+        try:
+            ok_date = bool(re.fullmatch(r"\d{4}-\d{2}-\d{2}", t["date"])) and date.fromisoformat(t["date"])
+        except ValueError:
+            ok_date = False
+        if not ok_date:
+            return f"live provider test record has no valid date ({t['date']}; YYYY-MM-DD)"
         fn = self.root / "src" / "optional" / "signup" / "functions" / "api" / "subscribe.js"
-        if t.get("function_sha256") != hashlib.sha256(fn.read_bytes()).hexdigest():
+        if t["function_sha256"] != hashlib.sha256(fn.read_bytes()).hexdigest():
             return "the live provider test was run on a different version of subscribe.js; rerun tools/test-signup-live.mjs"
-        if missing or not t.get("provider") or not t.get("date") or not t.get("tested_by"):
-            return f"live provider test incomplete (cases not passed: {', '.join(missing) or 'none'}; provider, date and tested_by are required)"
+        required = {"new_address", "repeat_address", "invalid_address", "confirmation_email", "unsubscribe", "provider_outage"}
+        cases = t.get("cases")
+        if not isinstance(cases, dict):
+            return "live provider test record has no cases"
+        failed = sorted(k for k in required if not (isinstance(cases.get(k), dict) and cases[k].get("pass") is True
+                                                    and isinstance(cases[k].get("observed"), str)))
+        unknown = sorted(set(cases) - required)
+        if failed or unknown:
+            return f"live provider test not passed (cases not passed: {', '.join(failed) or 'none'}; unknown cases: {', '.join(unknown) or 'none'})"
+        payload = [t["provider"], t["list"], t["date"], t["tested_by"], t["function_sha256"],
+                   [[k, cases[k]["pass"], cases[k]["observed"]] for k in sorted(cases)]]
+        try:
+            digest = hashlib.sha256(json.dumps(payload, separators=(",", ":"), ensure_ascii=False).encode("utf-8")).hexdigest()
+        except UnicodeEncodeError:
+            digest = None
+        if t["digest"] != digest:
+            return "the live provider test record does not match its digest: it was changed after tools/test-signup-live.mjs wrote it; rerun the live test"
         return None
