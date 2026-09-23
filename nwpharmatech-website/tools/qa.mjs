@@ -369,7 +369,10 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   const home = visible(homeHtml);
   check("home: brief heading does not say 'one page' beside a two-page PDF", !/programme on one page/i.test(home));
   const man = JSON.parse(fs.readFileSync(path.resolve(here, "../src/downloads/pdf-manifest.json"), "utf8"));
-  const briefPages = man["nwpharmatech-programme-brief.pdf"].pages;
+  // Count the pages of the file actually served, not the manifest's own record.
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+  const served = new Uint8Array(await (await fetch(base + "/downloads/nwpharmatech-programme-brief.pdf")).arrayBuffer());
+  const briefPages = (await pdfjs.getDocument({ data: served, isEvalSupported: false }).promise).numPages;
   check(`home: brief download label matches the checked PDF (${briefPages} pages)`, new RegExp(`PDF, ${briefPages} pages?`).test(home));
   check("home: programme brief comes straight after the hero", homeHtml.indexOf('id="programme-brief"') > -1 && homeHtml.indexOf('id="programme-brief"') < homeHtml.indexOf("The programme in 90 seconds"));
   check("PDFs: every published PDF passed its page-count, tagging and fact checks", Object.values(man).every((e) => e.pass), JSON.stringify(Object.fromEntries(Object.entries(man).map(([k, v]) => [k, v.pass]))));
@@ -415,11 +418,12 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
 await browser.close();
 server.stop();
 
-// ---- Restricted middleware (fail-closed behaviour) ----
+// ---- Restricted Access guard (fail-closed behaviour; full token cases in test-access.mjs) ----
 {
-  const mw = await import(path.resolve(here, "../restricted/functions/_middleware.js"));
-  const next = async () => new Response("ok", { status: 200 });
-  const run = (env, init = {}) => mw.onRequest({ request: new Request("https://staging.example/", init), env, next });
+  const { pathToFileURL } = await import("node:url");
+  const guard = (await import(pathToFileURL(path.resolve(here, "../restricted/_worker.js")).href)).default;
+  const ASSETS = { fetch: async () => new Response("ok", { status: 200 }) };
+  const run = (env, init = {}) => guard.fetch(new Request("https://staging.example/", init), { ASSETS, ...env });
   check("restricted: unconfigured environment returns 503", (await run({})).status === 503);
   check("restricted: missing Access token returns 403", (await run({ ACCESS_TEAM_DOMAIN: "t.cloudflareaccess.com", ACCESS_AUD: "aud" })).status === 403);
   const forged = "eyJhbGciOiJSUzI1NiIsImtpZCI6IngifQ.eyJhdWQiOiJhdWQifQ.c2ln";

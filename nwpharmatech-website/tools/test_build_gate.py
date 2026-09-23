@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Proves that a refused or failed build never touches the deployable output.
+"""Proves that a refused, failed or interrupted build never touches the deployable output.
 
 Works on a temporary copy of the project; the repository is not modified. For each failure case the
-test records every file under public/, restricted/, build/ and integration/ (path, size, SHA-256 and
-modification time) before the build and compares after it, and checks that no temporary build
-directory is left behind. A successful staging build is run first and last as a positive control.
+test records every file under public/, restricted/, build/, integration/ and src/downloads (path, size,
+SHA-256 and modification time) before the build and compares after it, and checks that no temporary
+build directory is left behind. Successful builds are run as positive controls.
 
     python3 tools/test_build_gate.py
 """
@@ -13,17 +13,20 @@ import hashlib
 import json
 import os
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
+import time
 
 ROOT = Path(__file__).resolve().parent.parent
-OUTPUTS = ("public", "restricted", "build", "integration")
+TREES = ("public", "restricted", "build", "integration", "src/downloads")
+NO_CHROMIUM = dict(os.environ, CHROMIUM="/nonexistent/chromium")   # PDF regeneration cannot run
 
 
 def snapshot(site):
     snap = {}
-    for out in OUTPUTS:
+    for out in TREES:
         base = site / out
         for p in sorted(base.rglob("*")) if base.exists() else []:
             if p.is_file():
@@ -36,31 +39,47 @@ def build(site, *args, env=None):
     return subprocess.run([sys.executable, "build.py", *args], cwd=site, capture_output=True, text=True, env=env)
 
 
+def build_with_failing_rename(site, at, exc):
+    """Runs build.main() with os.rename raising `exc` on its `at`-th call (a failure or Ctrl-C mid-install)."""
+    code = (f"import os, sys; sys.path.insert(0, '.'); orig = os.rename; n = [0]\n"
+            f"def rename(a, b):\n    n[0] += 1\n    if n[0] == {at}: raise {exc}('injected at rename {at}')\n    return orig(a, b)\n"
+            f"os.rename = rename\nimport build\nsys.exit(build.main([]))\n")
+    return subprocess.run([sys.executable, "-c", code], cwd=site, capture_output=True, text=True)
+
+
 results = []
 
 
 def case(name, ok, detail=""):
-    results.append(ok)
+    results.append(bool(ok))
     print(f"{'PASS' if ok else 'FAIL'}  {name}" + (f"\n      {detail}" if detail and not ok else ""))
 
 
-def expect_unchanged(site, name, proc, before, must_say):
+def expect_unchanged(site, name, proc, before, must_say, code=None):
     after = snapshot(site)
     leftovers = [p.name for p in site.glob(".build-tmp-*")]
     said = must_say in (proc.stdout + proc.stderr)
     changed = sorted(set(before) ^ set(after)) + sorted(k for k in before.keys() & after.keys() if before[k] != after[k])
-    case(f"{name}: build exits non-zero", proc.returncode != 0, f"exit {proc.returncode}")
+    case(f"{name}: build exits non-zero" + (f" ({code})" if code else ""), proc.returncode != 0 and (code is None or proc.returncode == code), f"exit {proc.returncode}")
     case(f"{name}: reports '{must_say}'", said, (proc.stdout + proc.stderr)[-800:])
     case(f"{name}: previous output unchanged ({len(before)} files compared)", not changed, f"changed: {changed[:10]}")
     case(f"{name}: no temporary build directory left", not leftovers, str(leftovers))
 
 
+def set_fact(site, fid, value):
+    facts = site / "content" / "facts.json"
+    d = json.loads(facts.read_text())
+    d["facts"][fid]["value"] = value
+    facts.write_text(json.dumps(d))
+
+
 with tempfile.TemporaryDirectory() as tmp:
     site = Path(tmp) / "site"
-    shutil.copytree(ROOT, site, ignore=shutil.ignore_patterns("node_modules", ".build-tmp-*", "docs", ".git"))
+    shutil.copytree(ROOT, site, ignore=shutil.ignore_patterns("node_modules", ".build-tmp-*", "docs", ".git", ".build.lock"))
     nm = ROOT / "tools" / "node_modules"
     if nm.exists():
         os.symlink(nm.resolve(), site / "tools" / "node_modules")
+    original_facts = (site / "content" / "facts.json").read_text()
 
     p = build(site)
     case("positive control: staging build succeeds and installs", p.returncode == 0 and (site / "public" / "index.html").exists(), p.stderr[-800:])
@@ -70,7 +89,7 @@ with tempfile.TemporaryDirectory() as tmp:
     p = build(site, "--env", "production")
     expect_unchanged(site, "production build with publication blockers", p, before, "Production build refused")
     case("refused production build left the staging protections in place",
-         (site / "public" / "index.html").read_text() == staging_index and "noindex" in (site / "public" / "robots.txt").read_text() + staging_index)
+         (site / "public" / "index.html").read_text() == staging_index and "Disallow: /" in (site / "public" / "robots.txt").read_text())
 
     before = snapshot(site)
     p = build(site, "--env", "production", "--allow-stale-pdf")
@@ -86,10 +105,12 @@ with tempfile.TemporaryDirectory() as tmp:
 
     redirects = site / "src" / "redirects.txt"
     original_redirects = redirects.read_text()
-    redirects.write_text(original_redirects + "/study /study.html 301\n")
-    before = snapshot(site)
-    p = build(site)
-    expect_unchanged(site, "redirect that loops with Cloudflare's .html handling", p, before, "shadows a page")
+    for rule, says in (("/study /study.html 301", "shadows a page"), ("/:slug /study 301", "splats and placeholders"),
+                       ("/privacy-policy /legal#no-such-anchor 301", "no id 'no-such-anchor'")):
+        redirects.write_text(original_redirects + rule + "\n")
+        before = snapshot(site)
+        p = build(site)
+        expect_unchanged(site, f"redirect rule '{rule}'", p, before, says)
     redirects.write_text(original_redirects)
 
     header = site / "src" / "partials" / "header.html"
@@ -100,26 +121,72 @@ with tempfile.TemporaryDirectory() as tmp:
     expect_unchanged(site, "output validation failure (canonical URL missing)", p, before, "Output validation failed")
     header.write_text(original_header)
 
-    facts = site / "content" / "facts.json"
-    original_facts = facts.read_text()
-    d = json.loads(original_facts)
-    d["facts"]["product.strength"]["value"] = "301 mg"
-    facts.write_text(json.dumps(d))
+    exporter = site / "buildlib" / "export.py"
+    original_exporter = exporter.read_text()
+    exporter.write_text("from buildlib.render import NoSuchHelper\n" + original_exporter)
     before = snapshot(site)
-    no_node = dict(os.environ, PATH="/usr/bin:/bin")
-    p = build(site, env=no_node)
+    p = build(site)
+    expect_unchanged(site, "module exporter cannot be imported", p, before, "ImportError")
+    exporter.write_text(original_exporter)
+
+    set_fact(site, "product.strength", "301 mg")
+    before = snapshot(site)
+    p = build(site, env=NO_CHROMIUM)
     expect_unchanged(site, "facts in a PDF changed and the PDF cannot be regenerated", p, before, "PDFs are out of date")
 
-    before_pdfs = {f.name: f.read_bytes() for f in (site / "src" / "downloads").glob("*")}
+    before = snapshot(site)
+    p = build(site, "--env", "production")
+    expect_unchanged(site, "production refused after the PDFs were regenerated", p, before, "Production build refused")
+
+    for at, exc, code in ((3, "OSError", 1), (5, "KeyboardInterrupt", 130)):
+        before = snapshot(site)
+        p = build_with_failing_rename(site, at, exc)
+        expect_unchanged(site, f"{exc} during installation (rename {at})", p, before, "previous output left unchanged", code)
+
+    before = snapshot(site)
+    proc = subprocess.Popen([sys.executable, "build.py"], cwd=site, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    deadline = time.time() + 30
+    while time.time() < deadline and not list(site.glob(".build-tmp-*/pdf")):
+        time.sleep(0.01)
+    proc.send_signal(signal.SIGTERM)
+    out, err = proc.communicate(timeout=120)
+    expect_unchanged(site, "SIGTERM during PDF regeneration", subprocess.CompletedProcess(proc.args, proc.returncode, out, err),
+                     before, "interrupted", 130)
+
+    manifest_file = site / "src" / "downloads" / "pdf-manifest.json"
     p = build(site)
-    manifest = json.loads((site / "src" / "downloads" / "pdf-manifest.json").read_text())
+    manifest = json.loads(manifest_file.read_text())
     brief = manifest["nwpharmatech-programme-brief.pdf"]
     case("changed fact: PDFs regenerated and checked during the build",
-         p.returncode == 0 and brief["pass"] and "301 mg" in json.loads((site / "build" / "programme-brief.checks.json").read_text())["facts"]
-         and before_pdfs["nwpharmatech-programme-brief.pdf"] != (site / "src" / "downloads" / "nwpharmatech-programme-brief.pdf").read_bytes(),
+         p.returncode == 0 and brief["pass"] is True and brief["missing_text"] == []
+         and "301 mg" in json.loads((site / "build" / "programme-brief.checks.json").read_text())["facts"],
          p.stdout[-600:] + p.stderr[-600:])
     case("changed fact: new value on the site after a successful build", "301 mg" in (site / "public" / "index.html").read_text())
-    facts.write_text(original_facts)
+    published = site / "public" / "downloads" / "nwpharmatech-programme-brief.pdf"
+    case("published PDF is byte-identical to its checked manifest entry",
+         hashlib.sha256(published.read_bytes()).hexdigest() == brief["sha256"] and published.stat().st_size == brief["bytes"])
+
+    downloads = site / "src" / "downloads"
+    shutil.copy2(downloads / "appointment-preparation-sheet.pdf", downloads / "nwpharmatech-programme-brief.pdf")
+    before = snapshot(site)
+    p = build(site, env=NO_CHROMIUM)
+    expect_unchanged(site, "PDF file swapped for another without regeneration", p, before, "do not match their checked manifest")
+    p = build(site)
+    published = site / "public" / "downloads" / "nwpharmatech-programme-brief.pdf"
+    manifest = json.loads(manifest_file.read_text())
+    case("swapped PDF: rebuilt from its source, and the published file matches its checked two-page entry",
+         p.returncode == 0 and manifest["nwpharmatech-programme-brief.pdf"]["pages"] == 2
+         and hashlib.sha256(published.read_bytes()).hexdigest() == manifest["nwpharmatech-programme-brief.pdf"]["sha256"]
+         and published.read_bytes() != (downloads / "appointment-preparation-sheet.pdf").read_bytes(), p.stderr[-600:])
+
+    shutil.copy2(downloads / "appointment-preparation-sheet.pdf", downloads / "old-draft-brief.pdf")
+    p = build(site)
+    case("a PDF without a checked source is not published",
+         p.returncode == 0 and not (site / "public" / "downloads" / "old-draft-brief.pdf").exists()
+         and "has no checked source" in p.stdout, p.stdout[-400:])
+    (downloads / "old-draft-brief.pdf").unlink()
+
+    (site / "content" / "facts.json").write_text(original_facts)
 
 print(f"build gate tests: {sum(results)} passed, {len(results) - sum(results)} failed")
 sys.exit(0 if all(results) else 1)

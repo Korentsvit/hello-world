@@ -9,7 +9,8 @@
     "pdf": "node make-pdf.mjs",
     "signup": "node test-signup.mjs",
     "menu": "node test-menu.mjs",
-    "integration": "node test-integration.mjs"
+    "integration": "node test-integration.mjs",
+    "access": "node test-access.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.10.0",

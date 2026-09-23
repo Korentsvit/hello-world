@@ -5,6 +5,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
+import os from "node:os";
 import { serve, walk } from "./lib/cf-serve.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -44,16 +46,25 @@ try {
     check(`existing URL ${from} -> ${to} in one permanent redirect`, ok, JSON.stringify(w.chain));
     report.public[from] = w.chain;
   }
-  // Fragment deep links published in draft 3 keep working through the redirect (browsers carry the fragment).
-  for (const [from, to] of [["/faq.html", "/faq"], ["/study.html", "/study"], ["/evidence.html", "/evidence"]]) {
+  // Fragment deep links published in draft 3: the redirect keeps the page (browsers carry the fragment across
+  // it), and the fragment still names an element on that page.
+  for (const [from, to, frag] of [["/faq.html", "/faq", "urgent-help"], ["/faq.html", "/faq", "not-medical-advice"],
+    ["/evidence.html", "/evidence", "ref-salazar-2021"], ["/study.html", "/study", "milestones"]]) {
     const w = await walk(b, from);
-    check(`existing deep link ${from}#... keeps its page`, pathOf(w.chain[0].location || "") === to);
+    check(`existing deep link ${from}#${frag} -> ${to}#${frag}`, pathOf(w.chain[0].location || "") === to && w.body.includes(`id="${frag}"`), JSON.stringify(w.chain));
+  }
+  // Known live address (nwpharmatech.com); the full live URL list has not been supplied.
+  for (const from of ["/contactus", "/contactus/"]) {
+    const w = await walk(b, from);
+    check(`live address ${from} -> /contact in one redirect`, w.chain.length === 2 && pathOf(w.chain[0].location) === "/contact" && w.final?.status === 200, JSON.stringify(w.chain));
   }
   // 3. Every alias in _redirects: one hop, permanent, to a page that answers 200 without a further redirect.
   for (const [from, to, code] of redirects) {
     const w = await walk(b, from);
-    const ok = w.chain.length === 2 && w.chain[0].status === Number(code) && pathOf(w.chain[0].location) === to && w.final?.status === 200;
-    check(`alias ${from} -> ${to} (${code}), no chain`, ok, JSON.stringify(w.chain));
+    const frag = to.split("#")[1];
+    const ok = w.chain.length === 2 && w.chain[0].status === Number(code) && pathOf(w.chain[0].location) === to && w.final?.status === 200
+      && (!frag || w.body.includes(`id="${frag}"`));
+    check(`alias ${from} -> ${to} (${code}), no chain${frag ? ", fragment exists" : ""}`, ok, JSON.stringify(w.chain));
     report.public[from] = w.chain;
   }
   // 4. The draft-3 redirect rules that looped (/study -> /study.html -> /study ...) are gone.
@@ -98,40 +109,68 @@ try {
     await r.arrayBuffer();
   }
 } finally {
-  srv.proc.kill();
+  srv.stop();
 }
 
-// Restricted project: must fail closed when Access is not configured, and refuse writes.
-if (fs.existsSync(path.join(res, "functions"))) {
-  const rs = await serve(res);
+// Production headers and robots: built into a copy of public/ with build.py's own write_meta_files, then served.
+{
+  const prod = fs.mkdtempSync(path.join(os.tmpdir(), "routes-prod-"));
+  fs.cpSync(pub, prod, { recursive: true });
+  const py = `import sys; sys.path.insert(0, ${JSON.stringify(path.resolve(here, ".."))}); import build, pathlib, json
+out = pathlib.Path(${JSON.stringify(prod)})
+names = sorted(p.name for p in (build.SRC / "pages").glob("*.html"))
+pdfs = sorted(json.loads((build.SRC / "downloads" / "pdf-manifest.json").read_text()))
+build.write_meta_files(out, "production", names, build.SRC / "downloads", pdfs)`;
+  const w = spawnSync("python3", ["-c", py], { encoding: "utf8" });
+  check("production meta files written for the test", w.status === 0, w.stderr);
+  const ps = await serve(prod);
   try {
-    for (const p of ["/", "/financing-structure", "/investor-journey", "/funding-figures", "/financing-structure.html"]) {
-      const r = await fetch(rs.base + p, { redirect: "manual" });
-      const t = await r.text();
-      check(`restricted ${p}: fails closed without Access configuration (503)`, r.status === 503 && !/<html/i.test(t), `${r.status}`);
-      report.restricted[p] = r.status;
-    }
-    const post = await fetch(rs.base + "/investor-journey", { method: "POST", body: "x" });
-    check("restricted POST refused", post.status >= 400, String(post.status));
-    const src = await fetch(rs.base + "/functions/_middleware.js");
-    check("restricted: function source not served", src.status === 503, String(src.status));
-    await src.text();
+    const robots = await (await fetch(ps.base + "/robots.txt")).text();
+    check("production robots.txt does not block /financing (crawlers must be able to see its noindex)", !/Disallow: \/financing/.test(robots) && /Sitemap:/.test(robots), robots);
+    const fin = await fetch(ps.base + "/financing");
+    check("production /financing: X-Robots-Tag noindex", /noindex/.test(fin.headers.get("x-robots-tag") || ""), fin.headers.get("x-robots-tag"));
+    const study = await fetch(ps.base + "/study");
+    check("production /study: no X-Robots-Tag noindex", !/noindex/.test(study.headers.get("x-robots-tag") || ""), study.headers.get("x-robots-tag"));
+    await fin.arrayBuffer(); await study.arrayBuffer();
   } finally {
-    rs.proc.kill();
+    ps.stop();
+    fs.rmSync(prod, { recursive: true, force: true });
+  }
+}
+
+// Restricted project: the _worker.js guard must fail closed however the project is deployed: from inside the
+// folder (as documented) and from its parent folder (the mistake that skips a functions/ directory).
+if (fs.existsSync(path.join(res, "_worker.js"))) {
+  for (const fromParent of [false, true]) {
+    const how = fromParent ? "deployed from the parent folder" : "deployed from inside the folder";
+    const rs = await serve(res, [], { fromParent });
+    try {
+      for (const p of ["/", "/financing-structure", "/investor-journey", "/funding-figures", "/financing-structure.html", "/_worker.js", "/no-such-page"]) {
+        const r = await fetch(rs.base + p, { redirect: "manual" });
+        const t = await r.text();
+        check(`restricted (${how}) ${p}: fails closed without Access configuration (503, no page, no source)`, r.status === 503 && !/<html|ACCESS_AUD/i.test(t), `${r.status}`);
+        report.restricted[`${fromParent ? "parent" : "inside"} ${p}`] = r.status;
+      }
+    } finally {
+      rs.stop();
+    }
   }
   // Configured for Access, but the request carries no token / an invalid token: refused, never served.
-  const rc = await serve(res, ["ACCESS_TEAM_DOMAIN=example.cloudflareaccess.com", "ACCESS_AUD=test-aud"]);
+  // (Token verification itself, including valid tokens and the 405 for writes, is unit-tested in test-access.mjs.)
+  const rc = await serve(res, ["ACCESS_TEAM_DOMAIN=example.cloudflareaccess.com", "ACCESS_AUD=test-aud"], { fromParent: true });
   try {
     const none = await fetch(rc.base + "/", { redirect: "manual" });
     const noneBody = await none.text();
     check("restricted, Access configured, no token: 403 and no page content", none.status === 403 && !/<html/i.test(noneBody), String(none.status));
     const bad = await fetch(rc.base + "/", { headers: { "cf-access-jwt-assertion": "e30.e30.sig" } });
     const badBody = await bad.text();
-    check("restricted, Access configured, invalid token: refused (403 or 503) and no page content", [403, 503].includes(bad.status) && !/<html/i.test(badBody), String(bad.status));
+    check("restricted, Access configured, invalid token: refused and no page content", [403, 503].includes(bad.status) && !/<html/i.test(badBody), String(bad.status));
     report.restricted.configured = { noToken: none.status, invalidToken: bad.status };
   } finally {
-    rc.proc.kill();
+    rc.stop();
   }
+} else {
+  check("restricted project has its _worker.js guard", false);
 }
 
 // Serving must never write into the deployable folders (wrangler keeps its state in a temporary copy).

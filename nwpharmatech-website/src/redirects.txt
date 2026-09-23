@@ -3,7 +3,8 @@
 # Page URLs are extensionless: Cloudflare Pages serves /study from study.html and itself answers
 # /study.html and /study/ with a 308 to /study, and /index.html with a 308 to /. Never add a rule for a
 # page's own route or those forms: a rule such as "/study /study.html" loops with Cloudflare's 308.
-# Every target must be a page route (optionally with a #fragment); a target must not itself be redirected.
+# Every target must be a page route (optionally with a #fragment that exists on that page); a target must not
+# itself be redirected; splats (*) and placeholders (:name) are not used, because the build cannot check them.
 #
 # Short aliases
 /brief                 /#programme-brief          301
@@ -22,6 +23,10 @@
 /privacy               /legal#privacy             301
 /accessibility         /legal#accessibility       301
 /help                  /faq#urgent-help           301
+# Each alias also answers with a trailing slash (/team/); the build adds that form itself.
+#
+# Known live addresses (from nwpharmatech.com; the full live URL list is still awaited)
+/contactus             /contact                   301
 #
 # Live-site (nwpharmatech.org / .com) paths: add one line per old URL once the live URL list is supplied
 # (docs/missing-inputs.md). Point each at its final route so no visitor passes through two redirects.

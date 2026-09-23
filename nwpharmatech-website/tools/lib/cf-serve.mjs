@@ -13,15 +13,17 @@ import { fileURLToPath } from "node:url";
 const tools = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const freePort = () => new Promise((r) => { const s = net.createServer(); s.listen(0, "127.0.0.1", () => { const p = s.address().port; s.close(() => r(p)); }); });
 
-export async function serve(dir, bindings = []) {
+// fromParent: run wrangler from the folder above the project (the mistaken deploy that skips a functions/ dir).
+export async function serve(dir, bindings = [], { fromParent = false } = {}) {
   const port = await freePort();
-  const copy = fs.mkdtempSync(path.join(os.tmpdir(), "cf-serve-"));
+  const parent = fs.mkdtempSync(path.join(os.tmpdir(), "cf-serve-"));
+  const copy = fromParent ? path.join(parent, "site") : parent;
   fs.cpSync(path.resolve(dir), copy, { recursive: true, filter: (s) => !/[/\\]\.wrangler$/.test(s) });
-  const cleanup = () => fs.rmSync(copy, { recursive: true, force: true });
+  const cleanup = () => fs.rmSync(parent, { recursive: true, force: true });
   const bin = path.join(tools, "node_modules/.bin/wrangler");
   const extra = bindings.flatMap((b) => ["--binding", b]);
-  const proc = spawn(bin, ["pages", "dev", ".", "--port", String(port), "--ip", "127.0.0.1", "--compatibility-date", "2025-01-01", "--log-level", "error", ...extra],
-    { cwd: copy, env: { ...process.env, WRANGLER_SEND_METRICS: "false", CI: "1", NO_COLOR: "1" }, stdio: ["ignore", "pipe", "pipe"] });
+  const proc = spawn(bin, ["pages", "dev", fromParent ? "site" : ".", "--port", String(port), "--ip", "127.0.0.1", "--compatibility-date", "2025-01-01", "--log-level", "error", ...extra],
+    { cwd: parent, env: { ...process.env, WRANGLER_SEND_METRICS: "false", CI: "1", NO_COLOR: "1" }, stdio: ["ignore", "pipe", "pipe"] });
   let log = "";
   proc.stdout.on("data", (d) => (log += d));
   proc.stderr.on("data", (d) => (log += d));

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-23T15:18:41.757Z",
+ "generated": "2026-09-23T16:26:07.466Z",
  "server": "wrangler pages dev (Cloudflare workerd runtime)",
  "public": {
   "/clinical-need": [
@@ -646,14 +646,239 @@
     "status": 200,
     "location": null
    }
+  ],
+  "/contactus": [
+   {
+    "url": "/contactus",
+    "status": 301,
+    "location": "/contact"
+   },
+   {
+    "url": "/contact",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/brief/": [
+   {
+    "url": "/brief/",
+    "status": 301,
+    "location": "/#programme-brief"
+   },
+   {
+    "url": "/#programme-brief",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/programme-brief/": [
+   {
+    "url": "/programme-brief/",
+    "status": 301,
+    "location": "/#programme-brief"
+   },
+   {
+    "url": "/#programme-brief",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/phase-2b/": [
+   {
+    "url": "/phase-2b/",
+    "status": 301,
+    "location": "/study"
+   },
+   {
+    "url": "/study",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/phase2b/": [
+   {
+    "url": "/phase2b/",
+    "status": 301,
+    "location": "/study"
+   },
+   {
+    "url": "/study",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/phase1/": [
+   {
+    "url": "/phase1/",
+    "status": 301,
+    "location": "/phase-1"
+   },
+   {
+    "url": "/phase-1",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/formulation/": [
+   {
+    "url": "/formulation/",
+    "status": 301,
+    "location": "/science#formulation"
+   },
+   {
+    "url": "/science#formulation",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/references/": [
+   {
+    "url": "/references/",
+    "status": 301,
+    "location": "/evidence"
+   },
+   {
+    "url": "/evidence",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/team/": [
+   {
+    "url": "/team/",
+    "status": 301,
+    "location": "/people"
+   },
+   {
+    "url": "/people",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/news/": [
+   {
+    "url": "/news/",
+    "status": 301,
+    "location": "/newsroom"
+   },
+   {
+    "url": "/newsroom",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/press/": [
+   {
+    "url": "/press/",
+    "status": 301,
+    "location": "/newsroom"
+   },
+   {
+    "url": "/newsroom",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/funding/": [
+   {
+    "url": "/funding/",
+    "status": 301,
+    "location": "/financing"
+   },
+   {
+    "url": "/financing",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/invest/": [
+   {
+    "url": "/invest/",
+    "status": 301,
+    "location": "/financing"
+   },
+   {
+    "url": "/financing",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/investors/": [
+   {
+    "url": "/investors/",
+    "status": 301,
+    "location": "/financing"
+   },
+   {
+    "url": "/financing",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/privacy/": [
+   {
+    "url": "/privacy/",
+    "status": 301,
+    "location": "/legal#privacy"
+   },
+   {
+    "url": "/legal#privacy",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/accessibility/": [
+   {
+    "url": "/accessibility/",
+    "status": 301,
+    "location": "/legal#accessibility"
+   },
+   {
+    "url": "/legal#accessibility",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/help/": [
+   {
+    "url": "/help/",
+    "status": 301,
+    "location": "/faq#urgent-help"
+   },
+   {
+    "url": "/faq#urgent-help",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/contactus/": [
+   {
+    "url": "/contactus/",
+    "status": 301,
+    "location": "/contact"
+   },
+   {
+    "url": "/contact",
+    "status": 200,
+    "location": null
+   }
   ]
  },
  "restricted": {
-  "/": 503,
-  "/financing-structure": 503,
-  "/investor-journey": 503,
-  "/funding-figures": 503,
-  "/financing-structure.html": 503,
+  "inside /": 503,
+  "inside /financing-structure": 503,
+  "inside /investor-journey": 503,
+  "inside /funding-figures": 503,
+  "inside /financing-structure.html": 503,
+  "inside /_worker.js": 503,
+  "inside /no-such-page": 503,
+  "parent /": 503,
+  "parent /financing-structure": 503,
+  "parent /investor-journey": 503,
+  "parent /funding-figures": 503,
+  "parent /financing-structure.html": 503,
+  "parent /_worker.js": 503,
+  "parent /no-such-page": 503,
   "configured": {
    "noToken": 403,
    "invalidToken": 503
@@ -956,27 +1181,42 @@
    "detail": "[{\"url\":\"/updates/\",\"status\":308,\"location\":\"/updates\"},{\"url\":\"/updates\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "existing deep link /faq.html#... keeps its page",
+   "name": "existing deep link /faq.html#urgent-help -> /faq#urgent-help",
    "pass": true,
-   "detail": ""
+   "detail": "[{\"url\":\"/faq.html\",\"status\":308,\"location\":\"/faq\"},{\"url\":\"/faq\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "existing deep link /study.html#... keeps its page",
+   "name": "existing deep link /faq.html#not-medical-advice -> /faq#not-medical-advice",
    "pass": true,
-   "detail": ""
+   "detail": "[{\"url\":\"/faq.html\",\"status\":308,\"location\":\"/faq\"},{\"url\":\"/faq\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "existing deep link /evidence.html#... keeps its page",
+   "name": "existing deep link /evidence.html#ref-salazar-2021 -> /evidence#ref-salazar-2021",
    "pass": true,
-   "detail": ""
+   "detail": "[{\"url\":\"/evidence.html\",\"status\":308,\"location\":\"/evidence\"},{\"url\":\"/evidence\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /brief -> /#programme-brief (301), no chain",
+   "name": "existing deep link /study.html#milestones -> /study#milestones",
+   "pass": true,
+   "detail": "[{\"url\":\"/study.html\",\"status\":308,\"location\":\"/study\"},{\"url\":\"/study\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "live address /contactus -> /contact in one redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/contactus\",\"status\":301,\"location\":\"/contact\"},{\"url\":\"/contact\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "live address /contactus/ -> /contact in one redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/contactus/\",\"status\":301,\"location\":\"/contact\"},{\"url\":\"/contact\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /brief -> /#programme-brief (301), no chain, fragment exists",
    "pass": true,
    "detail": "[{\"url\":\"/brief\",\"status\":301,\"location\":\"/#programme-brief\"},{\"url\":\"/#programme-brief\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /programme-brief -> /#programme-brief (301), no chain",
+   "name": "alias /programme-brief -> /#programme-brief (301), no chain, fragment exists",
    "pass": true,
    "detail": "[{\"url\":\"/programme-brief\",\"status\":301,\"location\":\"/#programme-brief\"},{\"url\":\"/#programme-brief\",\"status\":200,\"location\":null}]"
   },
@@ -996,7 +1236,7 @@
    "detail": "[{\"url\":\"/phase1\",\"status\":301,\"location\":\"/phase-1\"},{\"url\":\"/phase-1\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /formulation -> /science#formulation (301), no chain",
+   "name": "alias /formulation -> /science#formulation (301), no chain, fragment exists",
    "pass": true,
    "detail": "[{\"url\":\"/formulation\",\"status\":301,\"location\":\"/science#formulation\"},{\"url\":\"/science#formulation\",\"status\":200,\"location\":null}]"
   },
@@ -1036,19 +1276,109 @@
    "detail": "[{\"url\":\"/investors\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /privacy -> /legal#privacy (301), no chain",
+   "name": "alias /privacy -> /legal#privacy (301), no chain, fragment exists",
    "pass": true,
    "detail": "[{\"url\":\"/privacy\",\"status\":301,\"location\":\"/legal#privacy\"},{\"url\":\"/legal#privacy\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /accessibility -> /legal#accessibility (301), no chain",
+   "name": "alias /accessibility -> /legal#accessibility (301), no chain, fragment exists",
    "pass": true,
    "detail": "[{\"url\":\"/accessibility\",\"status\":301,\"location\":\"/legal#accessibility\"},{\"url\":\"/legal#accessibility\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /help -> /faq#urgent-help (301), no chain",
+   "name": "alias /help -> /faq#urgent-help (301), no chain, fragment exists",
    "pass": true,
    "detail": "[{\"url\":\"/help\",\"status\":301,\"location\":\"/faq#urgent-help\"},{\"url\":\"/faq#urgent-help\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /contactus -> /contact (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/contactus\",\"status\":301,\"location\":\"/contact\"},{\"url\":\"/contact\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /brief/ -> /#programme-brief (301), no chain, fragment exists",
+   "pass": true,
+   "detail": "[{\"url\":\"/brief/\",\"status\":301,\"location\":\"/#programme-brief\"},{\"url\":\"/#programme-brief\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /programme-brief/ -> /#programme-brief (301), no chain, fragment exists",
+   "pass": true,
+   "detail": "[{\"url\":\"/programme-brief/\",\"status\":301,\"location\":\"/#programme-brief\"},{\"url\":\"/#programme-brief\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /phase-2b/ -> /study (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/phase-2b/\",\"status\":301,\"location\":\"/study\"},{\"url\":\"/study\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /phase2b/ -> /study (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/phase2b/\",\"status\":301,\"location\":\"/study\"},{\"url\":\"/study\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /phase1/ -> /phase-1 (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/phase1/\",\"status\":301,\"location\":\"/phase-1\"},{\"url\":\"/phase-1\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /formulation/ -> /science#formulation (301), no chain, fragment exists",
+   "pass": true,
+   "detail": "[{\"url\":\"/formulation/\",\"status\":301,\"location\":\"/science#formulation\"},{\"url\":\"/science#formulation\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /references/ -> /evidence (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/references/\",\"status\":301,\"location\":\"/evidence\"},{\"url\":\"/evidence\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /team/ -> /people (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/team/\",\"status\":301,\"location\":\"/people\"},{\"url\":\"/people\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /news/ -> /newsroom (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/news/\",\"status\":301,\"location\":\"/newsroom\"},{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /press/ -> /newsroom (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/press/\",\"status\":301,\"location\":\"/newsroom\"},{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /funding/ -> /financing (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/funding/\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /invest/ -> /financing (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/invest/\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /investors/ -> /financing (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/investors/\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /privacy/ -> /legal#privacy (301), no chain, fragment exists",
+   "pass": true,
+   "detail": "[{\"url\":\"/privacy/\",\"status\":301,\"location\":\"/legal#privacy\"},{\"url\":\"/legal#privacy\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /accessibility/ -> /legal#accessibility (301), no chain, fragment exists",
+   "pass": true,
+   "detail": "[{\"url\":\"/accessibility/\",\"status\":301,\"location\":\"/legal#accessibility\"},{\"url\":\"/legal#accessibility\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /help/ -> /faq#urgent-help (301), no chain, fragment exists",
+   "pass": true,
+   "detail": "[{\"url\":\"/help/\",\"status\":301,\"location\":\"/faq#urgent-help\"},{\"url\":\"/faq#urgent-help\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /contactus/ -> /contact (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/contactus/\",\"status\":301,\"location\":\"/contact\"},{\"url\":\"/contact\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "former loop /study: now 200 directly",
@@ -1321,37 +1651,92 @@
    "detail": "200 application/x-research-info-systems"
   },
   {
-   "name": "restricted /: fails closed without Access configuration (503)",
+   "name": "production meta files written for the test",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "production robots.txt does not block /financing (crawlers must be able to see its noindex)",
+   "pass": true,
+   "detail": "User-agent: *\nAllow: /\nSitemap: https://www.nwpharmatech.org/sitemap.xml\n"
+  },
+  {
+   "name": "production /financing: X-Robots-Tag noindex",
+   "pass": true,
+   "detail": "noindex, nofollow"
+  },
+  {
+   "name": "production /study: no X-Robots-Tag noindex",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "name": "restricted (deployed from inside the folder) /: fails closed without Access configuration (503, no page, no source)",
    "pass": true,
    "detail": "503"
   },
   {
-   "name": "restricted /financing-structure: fails closed without Access configuration (503)",
+   "name": "restricted (deployed from inside the folder) /financing-structure: fails closed without Access configuration (503, no page, no source)",
    "pass": true,
    "detail": "503"
   },
   {
-   "name": "restricted /investor-journey: fails closed without Access configuration (503)",
+   "name": "restricted (deployed from inside the folder) /investor-journey: fails closed without Access configuration (503, no page, no source)",
    "pass": true,
    "detail": "503"
   },
   {
-   "name": "restricted /funding-figures: fails closed without Access configuration (503)",
+   "name": "restricted (deployed from inside the folder) /funding-figures: fails closed without Access configuration (503, no page, no source)",
    "pass": true,
    "detail": "503"
   },
   {
-   "name": "restricted /financing-structure.html: fails closed without Access configuration (503)",
+   "name": "restricted (deployed from inside the folder) /financing-structure.html: fails closed without Access configuration (503, no page, no source)",
    "pass": true,
    "detail": "503"
   },
   {
-   "name": "restricted POST refused",
+   "name": "restricted (deployed from inside the folder) /_worker.js: fails closed without Access configuration (503, no page, no source)",
    "pass": true,
    "detail": "503"
   },
   {
-   "name": "restricted: function source not served",
+   "name": "restricted (deployed from inside the folder) /no-such-page: fails closed without Access configuration (503, no page, no source)",
+   "pass": true,
+   "detail": "503"
+  },
+  {
+   "name": "restricted (deployed from the parent folder) /: fails closed without Access configuration (503, no page, no source)",
+   "pass": true,
+   "detail": "503"
+  },
+  {
+   "name": "restricted (deployed from the parent folder) /financing-structure: fails closed without Access configuration (503, no page, no source)",
+   "pass": true,
+   "detail": "503"
+  },
+  {
+   "name": "restricted (deployed from the parent folder) /investor-journey: fails closed without Access configuration (503, no page, no source)",
+   "pass": true,
+   "detail": "503"
+  },
+  {
+   "name": "restricted (deployed from the parent folder) /funding-figures: fails closed without Access configuration (503, no page, no source)",
+   "pass": true,
+   "detail": "503"
+  },
+  {
+   "name": "restricted (deployed from the parent folder) /financing-structure.html: fails closed without Access configuration (503, no page, no source)",
+   "pass": true,
+   "detail": "503"
+  },
+  {
+   "name": "restricted (deployed from the parent folder) /_worker.js: fails closed without Access configuration (503, no page, no source)",
+   "pass": true,
+   "detail": "503"
+  },
+  {
+   "name": "restricted (deployed from the parent folder) /no-such-page: fails closed without Access configuration (503, no page, no source)",
    "pass": true,
    "detail": "503"
   },
@@ -1361,7 +1746,7 @@
    "detail": "403"
   },
   {
-   "name": "restricted, Access configured, invalid token: refused (403 or 503) and no page content",
+   "name": "restricted, Access configured, invalid token: refused and no page content",
    "pass": true,
    "detail": "503"
   },

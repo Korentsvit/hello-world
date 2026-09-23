@@ -42,12 +42,14 @@ import json
 import os
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
 import traceback
 
 from buildlib.content import Content, ContentError
+from buildlib.export import MODULES, export_modules
 from buildlib.render import Renderer
 
 ROOT = Path(__file__).resolve().parent
@@ -123,7 +125,10 @@ def build_tree(content, src_pages, out_dir, env, restricted=False, with_signup=F
     out_dir.mkdir(parents=True)
     shutil.copytree(SRC / "assets", out_dir / "assets")
     names = sorted(p.name for p in src_pages.glob("*.html"))
-    r = Renderer(content, env, ROOT, available=None if restricted else set(names), pdfs=pdfs)
+    # the restricted project has its own navigation: its index and pages, never the public page groups
+    nav_pages = [(n, parse((src_pages / n).read_text(), n)[0]["title"])
+                 for n in sorted(names, key=lambda n: n != "index.html")] if restricted else None
+    r = Renderer(content, env, ROOT, available=set(names), pdfs=pdfs, nav_pages=nav_pages)
     review = []
     ui = content.ui
     rendered = {}
@@ -133,6 +138,7 @@ def build_tree(content, src_pages, out_dir, env, restricted=False, with_signup=F
         robots = meta.get("robots", "noindex, nofollow" if name in NOINDEX_PAGES else "index, follow")
         if env == "staging" or restricted:
             robots = "noindex, nofollow"
+        r.page_name = name
         desk, mob = r.nav(meta)
         if restricted:
             banner = ('<aside class="env-banner env-restricted" aria-label="Environment"><strong>Restricted staging.</strong> '
@@ -143,8 +149,11 @@ def build_tree(content, src_pages, out_dir, env, restricted=False, with_signup=F
         else:
             banner = ""
         page_html = header + body + footer
-        if restricted:   # not on the public domain: no canonical URL
+        if restricted:   # not on the public domain: no canonical URL, and no links into the public site
             page_html = re.sub(r'\s*<link rel="canonical" href="\{\{canonical\}\}">', "", page_html)
+            page_html = re.sub(r"<!--public-only-->.*?<!--/public-only-->", "", page_html, flags=re.S)
+        else:
+            page_html = re.sub(r"<!--/?public-only-->", "", page_html)
         page_html = (page_html.replace("{{title}}", html.escape(full_title))
                      .replace("{{description}}", html.escape(meta["description"]))
                      .replace("{{robots}}", robots)
@@ -185,6 +194,11 @@ def load_redirects(page_names):
             continue
         src, dst, code = parts
         rules.append((src, dst, code))
+    for src, dst, code in list(rules):
+        if "*" in src + dst or ":" in src + dst:
+            errs.append(f"redirect {src} -> {dst}: splats and placeholders are not used (the build cannot check them for loops)")
+        elif not src.endswith("/") and "." not in src.rsplit("/", 1)[-1] and src + "/" not in shadowed:
+            rules.append((src + "/", dst, code))   # Cloudflare treats /team and /team/ as different paths
     sources = {s for s, _, _ in rules}
     for src, dst, code in rules:
         if src in shadowed:
@@ -200,7 +214,7 @@ def load_redirects(page_names):
     return rules
 
 
-def write_meta_files(out, env, page_names, pdf_dir):
+def write_meta_files(out, env, page_names, pdf_dir, pdf_names):
     js_hash = base64.b64encode(hashlib.sha256(INLINE_JS.encode()).digest()).decode()
     headers = ["/*",
                "  X-Content-Type-Options: nosniff",
@@ -217,16 +231,17 @@ def write_meta_files(out, env, page_names, pdf_dir):
     rules = load_redirects(page_names)
     (out / "_redirects").write_text("# Generated from src/redirects.txt by build.py. Route map: docs/url-map.md\n"
                                     + "".join(f"{s} {d} {c}\n" for s, d, c in rules))
-    disallow = "".join(f"Disallow: {page_route(n)}\n" for n in sorted(NOINDEX_PAGES))
+    # Production: the noindex pages stay crawlable so that crawlers can see their noindex (a robots.txt
+    # Disallow would hide it, and the URL could still be indexed from links).
     robots = "User-agent: *\nDisallow: /\n" if env == "staging" else \
-        f"User-agent: *\n{disallow}Sitemap: {SITE_URL}/sitemap.xml\n"
+        f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n"
     (out / "robots.txt").write_text(robots)
     locs = "".join(f"<url><loc>{SITE_URL}{page_route(n)}</loc></url>" for n in page_names if n not in NOINDEX_PAGES)
     (out / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{locs}</urlset>\n')
     (out / "downloads").mkdir(exist_ok=True)
-    for f in pdf_dir.glob("*.pdf"):
-        shutil.copy2(f, out / "downloads" / f.name)
+    for name in pdf_names:   # only PDFs with a checked source and manifest entry are published
+        shutil.copy2(pdf_dir / name, out / "downloads" / name)
     if (SRC / "404.html").exists():
         shutil.copy2(SRC / "404.html", out / "404.html")
 
@@ -289,20 +304,38 @@ def build_print_sources(content, env, out):
     return checks
 
 
+def _sha256(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def ensure_pdfs(checks, build_dir, tmp, allow_stale):
-    """Returns (directory holding the PDFs to publish, manifest, stale list). Regenerates the PDFs when the
-    facts they contain have changed, and requires every recorded check to pass."""
-    current = SRC / "downloads"
+    """Returns (directory holding exactly the PDFs to publish, manifest, stale list).
+
+    A PDF is current only when its manifest entry matches the expanded source (source_sha256), the file itself
+    (sha256 and bytes) and records passed checks. Otherwise it is regenerated and checked. The PDFs are read once
+    into the build's own directory, so nothing changed in src/downloads during the build can reach this output.
+    Any other PDF in src/downloads has no checked source and is not published."""
+    names = [c["pdf"] for c in checks.values()]
+    current = tmp / "pdf-current"
+    current.mkdir()
+    for name in names:
+        if (SRC / "downloads" / name).exists():
+            shutil.copy2(SRC / "downloads" / name, current / name)
+    for f in sorted((SRC / "downloads").glob("*.pdf")):
+        if f.name not in names:
+            print(f"WARNING: src/downloads/{f.name} has no checked source and is not published")
     try:
-        manifest = json.loads((current / "pdf-manifest.json").read_text())
+        manifest = json.loads((SRC / "downloads" / "pdf-manifest.json").read_text())
     except (OSError, json.JSONDecodeError):
         manifest = {}
+    manifest = {k: v for k, v in manifest.items() if k in names}
 
     def stale_in(man, d):
         bad = []
         for c in checks.values():
-            e = man.get(c["pdf"])
-            if not e or e.get("source_sha256") != c["sha256"] or not e.get("pass") or not (d / c["pdf"]).exists():
+            e, f = man.get(c["pdf"]), d / c["pdf"]
+            if (not e or not f.exists() or e.get("source_sha256") != c["sha256"] or e.get("pass") is not True
+                    or e.get("sha256") != _sha256(f) or e.get("bytes") != f.stat().st_size):
                 bad.append(c["pdf"])
         return bad
 
@@ -311,8 +344,6 @@ def ensure_pdfs(checks, build_dir, tmp, allow_stale):
         return current, manifest, []
     out = tmp / "pdf"
     out.mkdir()
-    for f in current.glob("*.pdf"):
-        shutil.copy2(f, out / f.name)
     cmd = ["node", str(ROOT / "tools" / "make-pdf.mjs"), "--src", str(build_dir), "--out", str(out)]
     try:
         proc = subprocess.run(cmd, cwd=ROOT / "tools", capture_output=True, text=True, timeout=300)
@@ -330,19 +361,40 @@ def ensure_pdfs(checks, build_dir, tmp, allow_stale):
     if allow_stale:
         print(f"WARNING: PDFs out of date and not regenerated ({', '.join(stale)}):\n{detail}")
         return current, manifest, stale
-    raise BuildFailed("The PDFs are out of date with the facts they contain and could not be regenerated and "
-                      f"checked ({', '.join(stale)}).\n{detail}\nInstall the tools (cd tools && npm install) or, for a "
-                      "staging preview only, pass --allow-stale-pdf.")
+    raise BuildFailed("The PDFs are out of date with their sources, or do not match their checked manifest, and could "
+                      f"not be regenerated and checked ({', '.join(stale)}).\n{detail}\nInstall the tools (cd tools && "
+                      "npm install) or, for a staging preview only, pass --allow-stale-pdf.")
+
+
+def document_version_blockers(checks):
+    """A regenerated PDF must be recorded as a version: the newest history entry of the document in
+    content/documents.json carries the SHA-256 of the source it was made from."""
+    out = []
+    for d in json.loads((ROOT / "content" / "documents.json").read_text())["documents"]:
+        c = next((c for c in checks.values() if c["pdf"] == d.get("pdf")), None)
+        if c and d["history"][0].get("source_sha256") != c["sha256"]:
+            out.append(f"{c['pdf']}: content differs from version {d['history'][0]['version']} in documents.json; "
+                       f"add a version entry with source_sha256 {c['sha256']}")
+    return out
 
 
 # ---------- validation of the built output ----------
-def validate_output(out, env, page_names, restricted_names):
+def _ids(html_text):
+    return set(re.findall(r'\bid="([^"]+)"', html_text))
+
+
+def validate_output(out, env, page_names, restricted_names, pdf_manifest):
     """Checks the built tree before it is installed. Any failure aborts the build."""
     errs = []
     pub = out / "public"
-    routes = {page_route(n) for n in page_names}
-    redirect_sources = {line.split()[0] for line in (pub / "_redirects").read_text().splitlines()
-                        if line.strip() and not line.startswith("#")}
+    routes = {page_route(n): n for n in page_names}
+    rules = [line.split() for line in (pub / "_redirects").read_text().splitlines() if line.strip() and not line.startswith("#")]
+    redirect_sources = {r[0] for r in rules}
+    ids = {page_route(n): _ids((pub / n).read_text()) for n in page_names}
+    for src, dst, _ in rules:   # a redirect to a fragment must reach an element with that id
+        path, _, frag = dst.partition("#")
+        if frag and frag not in ids.get(path, set()):
+            errs.append(f"redirect {src} -> {dst}: no id '{frag}' on {path}")
     for name in page_names:
         h = (pub / name).read_text()
         where = f"public/{name}"
@@ -351,16 +403,18 @@ def validate_output(out, env, page_names, restricted_names):
             errs.append(f"{where}: canonical {canon}")
         if "[TBC" in h:
             errs.append(f"{where}: review marker rendered")
-        for attr, url in re.findall(r'\b(href|src|poster)="(/[^"#]*)', h):
+        for attr, url, frag in re.findall(r'\b(href|src|poster)="(/[^"#]*)(#[^"]*)?"', h):
             if url.endswith(".html"):
                 errs.append(f"{where}: link to {url} (Cloudflare redirects .html; link the route)")
             elif url.startswith(("/assets/", "/downloads/")):
                 if not (pub / url.lstrip("/")).exists():
                     errs.append(f"{where}: missing file {url}")
-            elif url not in routes and url not in redirect_sources:
-                errs.append(f"{where}: link to unknown route {url}")
             elif url in redirect_sources:
                 errs.append(f"{where}: link to {url}, which redirects; link the target instead")
+            elif url not in routes:
+                errs.append(f"{where}: link to unknown route {url}")
+            elif frag and frag[1:] not in ids[url]:
+                errs.append(f"{where}: link to {url}{frag}, but that page has no such id")
         robots = re.search(r'<meta name="robots" content="([^"]+)">', h).group(1)
         if env == "staging":
             if "noindex" not in robots or 'class="env-banner"' not in h:
@@ -377,31 +431,64 @@ def validate_output(out, env, page_names, restricted_names):
     for loc in re.findall(r"<loc>([^<]+)</loc>", (pub / "sitemap.xml").read_text()):
         if loc[len(SITE_URL):] not in routes or loc.endswith(".html"):
             errs.append(f"sitemap: {loc}")
+    # every published PDF is the file its checked manifest entry describes
+    published = sorted(f.name for f in (pub / "downloads").glob("*.pdf"))
+    if published != sorted(pdf_manifest):
+        errs.append(f"public/downloads: PDFs {published} do not match the checked manifest {sorted(pdf_manifest)}")
+    for name in published:
+        e, f = pdf_manifest.get(name, {}), pub / "downloads" / name
+        if e.get("sha256") != _sha256(f) or e.get("bytes") != f.stat().st_size:
+            errs.append(f"public/downloads/{name}: file differs from its checked manifest entry")
     res = out / "restricted"
+    restricted_routes = {page_route(n) for n in restricted_names}
     for name in restricted_names:
         h = (res / name).read_text()
         if 'content="noindex' not in h or "env-restricted" not in h:
             errs.append(f"restricted/{name}: protections missing")
-    if not (res / "functions" / "_middleware.js").exists() or "noindex" not in (res / "_headers").read_text():
-        errs.append("restricted: access middleware or noindex header missing")
+        for url in re.findall(r'\b(?:href|src)="(/[^"#]*)', h):
+            if not (url in restricted_routes or (url.startswith("/assets/") and (res / url.lstrip("/")).exists())):
+                errs.append(f"restricted/{name}: link to {url}, which the restricted project does not serve")
+    if not (res / "_worker.js").exists() or "noindex" not in (res / "_headers").read_text():
+        errs.append("restricted: access worker or noindex header missing")
+    if (res / "functions").exists():
+        errs.append("restricted: functions/ must not be shipped (the _worker.js guard replaces it)")
     for tree in (pub, res):
         for f in tree.rglob(".*"):
             errs.append(f"{f.relative_to(out)}: hidden file in a deployable folder")
+    integ = out / "integration" / "modules"
+    for m in MODULES:
+        for f in ("fragment.html", "module.css", "manifest.json", "preview.html"):
+            if not (integ / m["id"] / f).exists():
+                errs.append(f"integration: module {m['id']} is missing {f}")
     if errs:
         raise BuildFailed("Output validation failed:\n  " + "\n  ".join(errs))
 
 
 # ---------- install ----------
-def install(built, names):
-    """Replace ROOT/<name> with built/<name> for each output. Old trees are moved aside first and restored if
-    any step fails, so the previous output is never left half-replaced. Concurrent builds install one at a time."""
-    import fcntl
+def build_lock():
+    """Exclusive lock for the whole build (POSIX), so concurrent builds cannot mix PDFs or outputs."""
     lock = open(ROOT / ".build.lock", "w")
+    try:
+        import fcntl
+    except ImportError:   # Windows: no advisory locking; run one build at a time
+        print("WARNING: no build lock on this platform; do not run builds concurrently")
+        return lock
     fcntl.flock(lock, fcntl.LOCK_EX)
+    return lock
+
+
+def install(built, names, source_files):
+    """Replace ROOT/<name> with built/<name> for each output, and copy regenerated PDFs (source_files: pairs of
+    built file -> source path) into src/downloads. Everything old is moved aside first and restored if any step
+    fails or is interrupted, so the previous output is never left half-replaced."""
     aside = built.parent / "previous"
     aside.mkdir()
-    moved, placed = [], []
+    moved, placed, sources_saved, sources_written = [], [], [], []
     try:
+        for i, (_, dst) in enumerate(source_files):
+            if dst.exists():
+                shutil.copy2(dst, aside / f"source-{i}")
+                sources_saved.append(i)
         for n in names:
             if (ROOT / n).exists():
                 os.rename(ROOT / n, aside / n)
@@ -409,14 +496,21 @@ def install(built, names):
         for n in names:
             os.rename(built / n, ROOT / n)
             placed.append(n)
-    except OSError:
-        for n in placed:
+        for i, (src, dst) in enumerate(source_files):
+            sources_written.append(i)
+            shutil.copy2(src, dst)
+    except BaseException:
+        for n in reversed(placed):
             os.rename(ROOT / n, built / n)
-        for n in moved:
+        for n in reversed(moved):
             os.rename(aside / n, ROOT / n)
+        for i in sources_written:
+            _, dst = source_files[i]
+            if i in sources_saved:
+                shutil.copy2(aside / f"source-{i}", dst)
+            else:
+                dst.unlink(missing_ok=True)
         raise
-    finally:
-        lock.close()
 
 
 def git_commit():
@@ -442,6 +536,10 @@ def main(argv=None):
     if a.allow_stale_pdf and env == "production":
         raise SystemExit("--allow-stale-pdf is for staging previews only.")
 
+    def terminated(signum, frame):   # run the same clean-up and rollback as Ctrl-C
+        raise KeyboardInterrupt(f"signal {signum}")
+    signal.signal(signal.SIGTERM, terminated)
+    lock = build_lock()
     tmp = Path(tempfile.mkdtemp(prefix=".build-tmp-", dir=ROOT))
     built = tmp / "out"
     try:
@@ -451,7 +549,7 @@ def main(argv=None):
             pdf_dir, pdf_manifest, stale_pdfs = ensure_pdfs(checks, built / "build", tmp, a.allow_stale_pdf)
             page_names = sorted(p.name for p in (SRC / "pages").glob("*.html"))
             review, _ = build_tree(content, SRC / "pages", built / "public", env, with_signup=a.with_signup, pdfs=pdf_manifest)
-            write_meta_files(built / "public", env, page_names, pdf_dir)
+            write_meta_files(built / "public", env, page_names, pdf_dir, sorted(pdf_manifest))
             write_citations(content, built / "public")
             if a.with_signup:
                 problem = content.signup_provider_problem()
@@ -462,24 +560,27 @@ def main(argv=None):
             restricted_review, _ = build_tree(content, SRC / "restricted", built / "restricted", "staging", restricted=True, pdfs=pdf_manifest)
             # The restricted project is never published, but its review notes are still owed before legal review.
             restricted_review = [f"restricted/{p}: {t}" for p, t in restricted_review if not t.startswith("link to unbuilt page")]
+            js_hash = base64.b64encode(hashlib.sha256(INLINE_JS.encode()).digest()).decode()
             (built / "restricted" / "_headers").write_text(
                 "/*\n  X-Robots-Tag: noindex, nofollow, noarchive\n  Cache-Control: private, no-store\n"
-                "  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n")
-            shutil.copytree(SRC / "restricted-functions", built / "restricted" / "functions")
-            try:
-                from buildlib.export import export_modules
-            except ImportError:
-                export_modules = None
-            if export_modules:
-                export_modules(ROOT, content, built / "public", built / "integration")
-            else:
-                (built / "integration").mkdir()
+                "  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n"
+                "  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()\n"
+                f"  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' "
+                f"'sha256-{js_hash}'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'\n")
+            (built / "restricted" / "404.html").write_text(
+                '<!DOCTYPE html>\n<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, '
+                'initial-scale=1">\n<title>Not found | Restricted staging</title><meta name="robots" content="noindex, nofollow">\n'
+                '<link rel="stylesheet" href="/assets/css/site.css"></head>\n<body><main id="main" class="section"><div class="container prose">\n'
+                '<h1>Not found</h1><p>There is no page at this address in the restricted area.</p>\n'
+                '<p><a class="btn btn-primary" href="/">Restricted index</a></p>\n</div></main></body></html>\n')
+            shutil.copy2(SRC / "restricted-worker" / "_worker.js", built / "restricted" / "_worker.js")
+            export_modules(ROOT, content, built / "public", built / "integration")
 
             blockers = ([f"{p}: {t}" for p, t in review] + content.review_items()
                         + content.production_blockers(a.accept_index) + content.leadership_blockers()
-                        + [f"PDF out of date: {p}" for p in stale_pdfs])
+                        + [f"PDF out of date: {p}" for p in stale_pdfs] + document_version_blockers(checks))
             optional = content.optional_assets_missing()
-            validate_output(built, env, page_names, restricted_names)
+            validate_output(built, env, page_names, restricted_names, pdf_manifest)
         except ContentError as e:
             raise BuildFailed(f"Content error:\n{e}")
 
@@ -502,10 +603,11 @@ def main(argv=None):
             print("  " + o)
         if env == "production" and blockers:
             raise BuildFailed("Production build refused: publication blockers remain. The previous output is unchanged.")
-        install(built, OUTPUTS)
-        if pdf_dir != SRC / "downloads":   # regenerated and checked: keep them as the new sources
-            for f in list(pdf_dir.glob("*.pdf")) + [pdf_dir / "pdf-manifest.json"]:
-                shutil.copy2(f, SRC / "downloads" / f.name)
+        # regenerated and checked PDFs become the new sources, in the same transaction as the outputs
+        regenerated = [] if pdf_dir.name == "pdf-current" else \
+            [(pdf_dir / n, SRC / "downloads" / n) for n in sorted(pdf_manifest)] + \
+            [(pdf_dir / "pdf-manifest.json", SRC / "downloads" / "pdf-manifest.json")]
+        install(built, OUTPUTS, regenerated)
         print("Installed: " + ", ".join(OUTPUTS))
     except BuildFailed as e:
         print(str(e), file=sys.stderr)
@@ -515,8 +617,12 @@ def main(argv=None):
         traceback.print_exc()
         print("Build failed unexpectedly and was not installed; previous output left unchanged.", file=sys.stderr)
         return 1
+    except KeyboardInterrupt:
+        print("Build interrupted and not installed; previous output left unchanged.", file=sys.stderr)
+        return 130
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+        lock.close()
     return 0
 
 

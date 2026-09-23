@@ -2,25 +2,31 @@
  "appointment-preparation-sheet.pdf": {
   "source": "appointment-sheet.html",
   "source_sha256": "408e45cf755d6d4a36d8a7a730809a681da7bd96cd1e0bc50db85692c084d49c",
-  "generated": "2026-09-23T15:11:56.962Z",
+  "generated": "2026-09-23T16:22:31.604Z",
+  "sha256": "bf5a9c789af4daec95716b9983338e58bab24ef2de9a3e6976d6a8c9ac5cdba9",
   "pages": 1,
   "expected_pages": 1,
   "bytes": 37085,
   "tagged": true,
   "facts_checked": 1,
   "missing_facts": [],
+  "text_lines_checked": 16,
+  "missing_text": [],
   "pass": true
  },
  "nwpharmatech-programme-brief.pdf": {
   "source": "programme-brief.html",
   "source_sha256": "814b8791d30b6abb031f3d6be8026810a396da35028f4622020f28a912e17578",
-  "generated": "2026-09-23T15:11:57.216Z",
+  "generated": "2026-09-23T16:22:31.913Z",
+  "sha256": "06c788a580da85fd0b362dea889fbdef979b39caa58928e9cd1e828852617541",
   "pages": 2,
   "expected_pages": 2,
   "bytes": 67874,
   "tagged": true,
   "facts_checked": 22,
   "missing_facts": [],
+  "text_lines_checked": 22,
+  "missing_text": [],
   "pass": true
  }
 }

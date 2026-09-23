@@ -25,10 +25,12 @@ def fmt_date(iso):
 
 
 class Renderer:
-    def __init__(self, content, env, root, available=None, pdfs=None):
+    def __init__(self, content, env, root, available=None, pdfs=None, nav_pages=None):
         self.c = content
         self.env = env
         self.root = root
+        self.nav_pages = nav_pages   # restricted project: [(page, title)] replaces the public navigation
+        self.page_name = None        # the page whose navigation is being rendered (set by build.py)
         self.pdfs = pdfs or {}   # pdf-manifest.json of the PDFs being published
         # pages present in this build; navigation omits pages that are not built yet
         self.available = available
@@ -67,6 +69,8 @@ class Renderer:
     # ---------- navigation ----------
     def nav(self, meta):
         ui = self.c.ui
+        if self.nav_pages is not None:
+            return self._restricted_nav()
         active, section = meta.get("nav", ""), meta.get("section", "")
         desk = []
         for key, href, label in ui["primary_nav"]:
@@ -92,6 +96,13 @@ class Renderer:
             mob.append(f'<details class="nav-group" name="mobile-nav-group"{" open" if is_open else ""}>'
                        f'<summary>{escape(g["title"])}</summary><ul>{links}</ul></details>')
         return "\n          ".join(desk), "\n        ".join(mob)
+
+    def _restricted_nav(self):
+        """The restricted project links only to its own pages (it serves nothing from the public site)."""
+        cur_attr = ' aria-current="page"'
+        links = "".join(f'<li><a href="{n}"{cur_attr if n == self.page_name else ""}>{escape(t)}</a></li>'
+                        for n, t in self.nav_pages)
+        return links, f'<ul class="mobile-quick">{links}</ul>'
 
     def b_subnav(self, gid=None):
         gid = gid or self.meta.get("section")

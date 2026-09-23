@@ -8,8 +8,8 @@ This is a staging build of the NWPT-SM32300 research-programme website for peopl
 python3 build.py                                  # staging build: validated in a temp dir, then installed
 python3 tools/test_build_gate.py                  # a failed or refused build leaves the previous output unchanged
 python3 tools/test_consistency.py                 # one fact change reaches every page, the brief and its PDF
-cd tools && node test-routes.mjs && node test-menu.mjs && node qa.mjs \
-         && node test-signup.mjs --browser && node test-integration.mjs
+(cd tools && node test-routes.mjs && node test-access.mjs && node test-menu.mjs && node qa.mjs \
+         && node test-signup.mjs --browser && node test-integration.mjs)
 python3 build.py --env production                 # refused while publication blockers remain (by design)
 tools/package.sh <label> <out-dir>                # zip of the committed tree + COMMIT.txt
 ```
