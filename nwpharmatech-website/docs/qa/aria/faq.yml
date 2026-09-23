@@ -1,0 +1,172 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "About":
+  - text: About
+  - list:
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+- main:
+  - text: Questions & answers
+  - heading "Questions and answers" [level=1]
+  - paragraph: For young people, families, clinicians and anyone interested in the programme.
+  - region "Urgent help":
+    - heading "Urgent help" [level=2]
+    - paragraph: NWPharmaTech cannot respond to emergencies or give individual medical advice. If someone is in immediate danger, call the emergency number for your country.
+    - heading "United Kingdom" [level=3]
+    - list:
+      - listitem:
+        - text: "Emergency:"
+        - link "999":
+          - /url: tel:999
+      - listitem:
+        - text: "England and Wales, urgent mental health help:"
+        - link "111":
+          - /url: tel:111
+        - text: ", option 2"
+      - listitem:
+        - text: "Scotland: NHS 24 on"
+        - link "111":
+          - /url: tel:111
+        - text: (mental health option)
+      - listitem:
+        - text: "Northern Ireland: Lifeline"
+        - link "0808 808 8000":
+          - /url: tel:08088088000
+      - listitem:
+        - text: "Samaritans (free, 24 hours):"
+        - link "116 123":
+          - /url: tel:116123
+      - listitem:
+        - text: "Shout (text service): text SHOUT to"
+        - link "85258":
+          - /url: sms:85258
+    - heading "Ireland" [level=3]
+    - list:
+      - listitem:
+        - text: "Emergency:"
+        - link "112":
+          - /url: tel:112
+        - text: or
+        - link "999":
+          - /url: tel:999
+      - listitem:
+        - text: "Samaritans (free, 24 hours):"
+        - link "116 123":
+          - /url: tel:116123
+      - listitem:
+        - text: "Pieta (suicide and self-harm crisis support, free, 24 hours):"
+        - link "1800 247 247":
+          - /url: tel:1800247247
+    - heading "United States" [level=3]
+    - list:
+      - listitem:
+        - text: "Emergency:"
+        - link "911":
+          - /url: tel:911
+      - listitem:
+        - text: "988 Suicide & Crisis Lifeline: call or text"
+        - link "988":
+          - /url: tel:988
+    - paragraph: "Last checked 23 September 2026. Elsewhere, contact your local emergency services. [TBC: re-check each number on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch]"
+  - heading "About the treatment" [level=2]
+  - group: Does NWPT-SM32300 work? +
+  - group: Can I get NWPT-SM32300? +
+  - group: Should I take shop-bought CBD to lower my risk of psychosis? +
+  - group: Isn't cannabis linked to psychosis? +
+  - group: What is in the capsule? +
+  - heading "About taking part" [level=2]
+  - group: Is the Phase 2B study recruiting? +
+  - group: Who might be able to take part? +
+  - group: Would taking part affect my usual care? +
+  - heading "About the programme" [level=2]
+  - group: How is the programme funded? +
+  - group: Will you publish results if they are negative? +
+  - group: Is this website medical advice? +
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

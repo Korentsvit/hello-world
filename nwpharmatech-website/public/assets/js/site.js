@@ -63,3 +63,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (status) status.textContent = "Showing " + shown + (shown === 1 ? " source" : " sources") + (f === "all" ? "" : " in " + btn.firstChild.textContent.trim());
   });
 });
+
+// Optional email sign-up (present only in builds made with --with-signup). Works without JS as a normal POST.
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.querySelector("form.signup");
+  if (!form || !window.fetch) return;
+  var msg = document.getElementById("su-msg");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = form.querySelector("#su-email");
+    if (!email.value || !email.checkValidity()) {
+      msg.textContent = "Please enter a valid email address.";
+      email.setAttribute("aria-invalid", "true");
+      email.focus();
+      return;
+    }
+    email.removeAttribute("aria-invalid");
+    msg.textContent = "Sending…";
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { msg.textContent = d.message; })
+      .catch(function () { msg.textContent = "We could not sign you up just now. Nothing was saved. Please try again later."; });
+  });
+});

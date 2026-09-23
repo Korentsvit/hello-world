@@ -1,0 +1,348 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The programme":
+  - text: The programme
+  - list:
+    - listitem:
+      - link "Programme overview":
+        - /url: programme.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "Programme updates":
+        - /url: updates.html
+- main:
+  - paragraph: The programme
+  - 'heading "The study: progress and evidence" [level=1]'
+  - paragraph: Where the NWPT-SM32300 study programme stands, what has been completed, and the sources behind each statement.
+  - region "Summary":
+    - heading "Summary" [level=2]
+    - paragraph:
+      - text: As of
+      - time: 23 September 2026
+    - term: What the study is intended to investigate
+    - definition: Whether NWPT-SM32300, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.
+    - term: Current stage
+    - definition: Phase 2B study planned. Protocol being finalised. Not recruiting.
+    - term: Completed so far
+    - definition: "Phase 1 study in 14 healthy volunteers: completed 10 December 2025; database locked 11 March 2026; analysis outputs delivered 30 March 2026."
+    - term: Next milestone
+    - definition: Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set.
+  - region "Public synopsis":
+    - heading "Public synopsis" [level=2]
+    - text: Programme information
+    - paragraph: The planned Phase 2B study will evaluate dose response, symptoms, safety and tolerability of NWPT-SM32300 in people at clinical high risk of psychosis. It follows a completed Phase 1 study in healthy volunteers, which looked at how the body absorbs and handles the medicine and at short-term tolerability.
+    - paragraph: The Phase 2B study is not recruiting. It will start only after regulatory and research ethics approval, and will be registered publicly before anyone is enrolled.
+    - heading "Proposed design" [level=3]
+    - 'heading "Programme brief: Phase 2B aims" [level=3]'
+    - paragraph: "Source and version: Website brief, September 2026"
+    - list:
+      - listitem: "Population: people at clinical high risk of psychosis."
+      - listitem: "Aims: dose response, symptoms, safety and tolerability."
+    - paragraph: Further design details will be published here when the protocol is final and approved.
+    - complementary:
+      - heading "Programme brief" [level=3]
+      - paragraph: A two-page summary of the programme, generated from the same facts as this page.
+      - paragraph:
+        - link "Download the brief (PDF)":
+          - /url: downloads/nwpharmatech-programme-brief.pdf
+      - paragraph:
+        - text: Version history is shown under
+        - link "Document history":
+          - /url: "#documents"
+        - text: .
+  - region "Milestones":
+    - heading "Milestones" [level=2]
+    - paragraph: Statuses are Planned, In progress or Completed. Dates are exact where a record gives one; otherwise we say what the record states. No completion percentages or recruitment numbers are shown, because none exist yet.
+    - table "Clinical milestones":
+      - caption: Clinical milestones
+      - rowgroup:
+        - row "Milestone Status Date Source":
+          - columnheader "Milestone"
+          - columnheader "Status"
+          - columnheader "Date"
+          - columnheader "Source"
+      - rowgroup:
+        - 'row "Phase 1: first participants consented Status: Completed Date: 27 August 2025 Source: Phase 1 study records (NW PharmaTech)"':
+          - 'rowheader "Phase 1: first participants consented"'
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 27 August 2025"':
+            - text: "Date:"
+            - time: 27 August 2025
+          - 'cell "Source: Phase 1 study records (NW PharmaTech)"'
+        - 'row "Phase 1: last study activity Status: Completed Date: 10 December 2025 Source: Phase 1 study records (NW PharmaTech)"':
+          - 'rowheader "Phase 1: last study activity"'
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 10 December 2025"':
+            - text: "Date:"
+            - time: 10 December 2025
+          - 'cell "Source: Phase 1 study records (NW PharmaTech)"'
+        - 'row "Phase 1: database locked Status: Completed Date: 11 March 2026 Source: Company records"':
+          - 'rowheader "Phase 1: database locked"'
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 11 March 2026"':
+            - text: "Date:"
+            - time: 11 March 2026
+          - 'cell "Source: Company records"'
+        - 'row "Phase 1: results summary on registries and this site Status: Planned Date: Date not set Source: Company records"':
+          - 'rowheader "Phase 1: results summary on registries and this site"'
+          - 'cell "Status: Planned"'
+          - 'cell "Date: Date not set"'
+          - 'cell "Source: Company records"'
+        - 'row "Phase 2B: protocol finalised Status: In progress Date: As reported 23 February 2026 Source: Company records"':
+          - 'rowheader "Phase 2B: protocol finalised"'
+          - 'cell "Status: In progress"'
+          - 'cell "Date: As reported 23 February 2026"'
+          - 'cell "Source: Company records"'
+        - 'row "Phase 2B: regulatory and research ethics submissions Status: Planned Date: Date not set Source: Company records"':
+          - 'rowheader "Phase 2B: regulatory and research ethics submissions"'
+          - 'cell "Status: Planned"'
+          - 'cell "Date: Date not set"'
+          - 'cell "Source: Company records"'
+        - 'row "Phase 2B: public registration before first enrolment Status: Planned Date: Date not set Source: Company records"':
+          - 'rowheader "Phase 2B: public registration before first enrolment"'
+          - 'cell "Status: Planned"'
+          - 'cell "Date: Date not set"'
+          - 'cell "Source: Company records"'
+    - table "Operational milestones":
+      - caption: Operational milestones
+      - rowgroup:
+        - row "Milestone Status Date Source":
+          - columnheader "Milestone"
+          - columnheader "Status"
+          - columnheader "Date"
+          - columnheader "Source"
+      - rowgroup:
+        - 'row "Final formulation and GMP clinical supply for Phase 1 Status: Completed Date: Before Phase 1 dosing (2025) Source: Company records"':
+          - rowheader "Final formulation and GMP clinical supply for Phase 1"
+          - 'cell "Status: Completed"'
+          - 'cell "Date: Before Phase 1 dosing (2025)"'
+          - 'cell "Source: Company records"'
+        - 'row "Phase 1 analysis outputs delivered Status: Completed Date: 30 March 2026 Source: Company records"':
+          - rowheader "Phase 1 analysis outputs delivered"
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 30 March 2026"':
+            - text: "Date:"
+            - time: 30 March 2026
+          - 'cell "Source: Company records"'
+        - 'row "Clinical supply for Phase 2B Status: Planned Date: Date not set Source: Company records"':
+          - rowheader "Clinical supply for Phase 2B"
+          - 'cell "Status: Planned"'
+          - 'cell "Date: Date not set"'
+          - 'cell "Source: Company records"'
+    - table "Funding milestones":
+      - caption: Funding milestones
+      - rowgroup:
+        - row "Milestone Status Date Source":
+          - columnheader "Milestone"
+          - columnheader "Status"
+          - columnheader "Date"
+          - columnheader "Source"
+      - rowgroup:
+        - 'row "Financing for the Phase 2B study Status: In progress Date: As at August 2026 Source: Company records"':
+          - rowheader "Financing for the Phase 2B study"
+          - 'cell "Status: In progress"'
+          - 'cell "Date: As at August 2026"'
+          - 'cell "Source: Company records"'
+        - 'row "Programme financing route for eligible investors Status: In progress Date: In development; not available Source: Company records"':
+          - rowheader "Programme financing route for eligible investors"
+          - 'cell "Status: In progress"'
+          - 'cell "Date: In development; not available"'
+          - 'cell "Source: Company records"'
+  - region "Registrations":
+    - heading "Registrations" [level=2]
+    - paragraph: "The completed Phase 1 study is registered on two public registries. Both entries describe the same study: a single-dose, three-period crossover study of NW300EMCBD (the development code for NWPT-SM32300) in healthy adults aged 18 to 55, sponsored by NWPharmaTech Ltd."
+    - table "Registry entries":
+      - caption: Registry entries
+      - rowgroup:
+        - row "Study Registry Identifier":
+          - columnheader "Study"
+          - columnheader "Registry"
+          - columnheader "Identifier"
+      - rowgroup:
+        - 'row "Phase 1 Registry: ClinicalTrials.gov Identifier: NCT07186283"':
+          - rowheader "Phase 1"
+          - 'cell "Registry: ClinicalTrials.gov"'
+          - 'cell "Identifier: NCT07186283"':
+            - text: "Identifier:"
+            - link "NCT07186283":
+              - /url: https://clinicaltrials.gov/study/NCT07186283
+        - 'row "Phase 1 Registry: ISRCTN Identifier: ISRCTN25163383"':
+          - rowheader "Phase 1"
+          - 'cell "Registry: ISRCTN"'
+          - 'cell "Identifier: ISRCTN25163383"':
+            - text: "Identifier:"
+            - link "ISRCTN25163383":
+              - /url: https://www.isrctn.com/ISRCTN25163383
+    - paragraph: The Phase 2B study will be registered before the first participant is enrolled, and its registry entries will be listed here.
+    - heading "Sponsor and oversight" [level=2]
+    - paragraph: In clinical trial law, the sponsor is the organisation that takes responsibility for starting, managing and financing a study. NWPharmaTech Ltd was the sponsor of the Phase 1 study. The sponsor of the Phase 2B study will be named in its registry entry.
+    - heading "Phase 1 study (completed)" [level=3]
+    - list:
+      - listitem: "Sponsor: NWPharmaTech Ltd."
+      - listitem: Pre-specified stopping rules, including stopping if one participant had a serious reaction possibly related to the study medicine, or two had severe reactions.
+      - listitem: No data monitoring committee was used.
+      - listitem: Statistical outputs were produced by an external biostatistics provider under documented quality testing.
+    - heading "Phase 2B study (planned)" [level=3]
+    - paragraph: Oversight arrangements for the Phase 2B study have not yet been established. They will be described here when they are.
+  - region "Document history":
+    - heading "Document history" [level=2]
+    - paragraph: Substantive changes to public documents. Staging drafts are listed as unpublished.
+    - table "Programme brief":
+      - caption: Programme brief
+      - rowgroup:
+        - row "Version Date Status Substantive change":
+          - columnheader "Version"
+          - columnheader "Date"
+          - columnheader "Status"
+          - columnheader "Substantive change"
+      - rowgroup:
+        - 'row "3 Date: 23 September 2026 Status: Staging draft (not published) Change: Generated from the shared content source; adds study stage, completed work and next milestone."':
+          - rowheader "3"
+          - 'cell "Date: 23 September 2026"':
+            - text: "Date:"
+            - time: 23 September 2026
+          - 'cell "Status: Staging draft (not published)"'
+          - 'cell "Change: Generated from the shared content source; adds study stage, completed work and next milestone."'
+        - 'row "2 Date: 23 September 2026 Status: Staging draft (not published) Change: Adds completed Phase 1 study and registry identifiers."':
+          - rowheader "2"
+          - 'cell "Date: 23 September 2026"':
+            - text: "Date:"
+            - time: 23 September 2026
+          - 'cell "Status: Staging draft (not published)"'
+          - 'cell "Change: Adds completed Phase 1 study and registry identifiers."'
+        - 'row "1 Date: 23 September 2026 Status: Staging draft (not published) Change: First draft from the website brief."':
+          - rowheader "1"
+          - 'cell "Date: 23 September 2026"':
+            - text: "Date:"
+            - time: 23 September 2026
+          - 'cell "Status: Staging draft (not published)"'
+          - 'cell "Change: First draft from the website brief."'
+    - table "Appointment preparation sheet":
+      - caption: Appointment preparation sheet
+      - rowgroup:
+        - row "Version Date Status Substantive change":
+          - columnheader "Version"
+          - columnheader "Date"
+          - columnheader "Status"
+          - columnheader "Substantive change"
+      - rowgroup:
+        - 'row "1 Date: 23 September 2026 Status: Staging draft (not published) Change: First version."':
+          - rowheader "1"
+          - 'cell "Date: 23 September 2026"':
+            - text: "Date:"
+            - time: 23 September 2026
+          - 'cell "Status: Staging draft (not published)"'
+          - 'cell "Change: First version."'
+    - table "Publication policy":
+      - caption: Publication policy
+      - rowgroup:
+        - row "Version Date Status Substantive change":
+          - columnheader "Version"
+          - columnheader "Date"
+          - columnheader "Status"
+          - columnheader "Substantive change"
+      - rowgroup:
+        - 'row "0.1 Date: 23 September 2026 Status: Draft for management adoption (not adopted) Change: First draft."':
+          - rowheader "0.1"
+          - 'cell "Date: 23 September 2026"':
+            - text: "Date:"
+            - time: 23 September 2026
+          - 'cell "Status: Draft for management adoption (not adopted)"'
+          - 'cell "Change: First draft."'
+  - region "Publication policy":
+    - heading "Publication policy" [level=2]
+    - text: Draft for management adoption
+    - paragraph: This is a proposed policy. It has not been adopted, and no timetable in it is yet a commitment.
+    - list:
+      - listitem:
+        - strong: Disclosure regardless of outcome.
+        - text: Results of every study of NWPT-SM32300 would be made public whether they are positive, negative or inconclusive, including studies stopped early.
+      - listitem:
+        - strong: Registry results.
+        - text: Summary results would be posted on each registry where the study is registered, within the period the registry or applicable law requires.
+      - listitem:
+        - strong: Plain-language summary.
+        - text: A plain-language summary would be published on this site and offered to participants, reviewed for accuracy and readability before release.
+      - listitem:
+        - strong: Journal submission.
+        - text: Full results of each Phase 2 or later study would be submitted to a peer-reviewed journal, with authorship decided by recognised authorship criteria and no funder or investor right to delay or alter the manuscript.
+      - listitem:
+        - strong: Timing.
+        - text: The proposed timings for each step are to be set by management when the policy is adopted.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

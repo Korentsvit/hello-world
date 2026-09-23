@@ -202,11 +202,16 @@ def main():
     env = "production" if "--env" in args and args[args.index("--env") + 1] == "production" else "staging"
     accept_index = "--accept-index" in args
     with_signup = "--with-signup" in args
+    locale = args[args.index("--locale") + 1] if "--locale" in args else "en"
+    if locale != "en" and env == "production":
+        raise SystemExit("Only English is approved for production. Translations need human translation and clinical review (docs/translation.md).")
     try:
-        content = Content(ROOT)
+        content = Content(ROOT, locale)
         unresolved, renderer = build_tree(content, SRC / "pages", ROOT / "public", env, with_signup=with_signup)
         write_meta_files(ROOT / "public", env)
         write_citations(content, ROOT / "public")
+        if with_signup:
+            shutil.copytree(SRC / "optional" / "signup" / "functions", ROOT / "public" / "functions", dirs_exist_ok=True)
         build_print_sources(content, env)
         prod_blockers = content.production_blockers(accept_index)
         r_unresolved, _ = build_tree(content, SRC / "restricted", ROOT / "restricted", "staging", restricted=True)

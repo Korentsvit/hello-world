@@ -1,26 +1,36 @@
-# Deployment (staging first; the live site is not replaced)
+# Deployment requirements
+
+**Do not modify or replace the live website.** Everything here targets staging.
+
+## Requirements
+- **Build:** Python 3.9+ (standard library only).
+- **PDFs and QA:** Node 18+ with `playwright-core` and `axe-core` (`cd tools && npm install`), and a Chromium binary. Set `CHROMIUM=/path` if it isn't in the default location.
+- **Hosting:** Cloudflare Pages, with two separate projects. Any static host works for `public/` unless you enable sign-up, which uses a Pages Function.
 
 ## Public staging
-1. `python3 build.py`. The staging build is the default: `noindex` on every page, `X-Robots-Tag` header, `robots.txt` disallows all, and a staging banner.
-2. Deploy `public/` to a separate Cloudflare Pages project, for example `staging.nwpharmatech.org` or a `*.pages.dev` URL.
-3. **Do not point www.nwpharmatech.org at it.**
-4. Recommended: put the staging hostname behind Cloudflare Access as well.
+1. `python3 build.py && (cd tools && node make-pdf.mjs) && python3 build.py`
+2. `cd tools && node qa.mjs && node test-signup.mjs`. All checks should pass.
+3. Deploy `public/` to a staging project, for example `staging.nwpharmatech.org` or `*.pages.dev`.
+   - The staging build is `noindex` everywhere, disallows everything in `robots.txt`, and shows a staging banner.
+   - Putting staging behind Cloudflare Access as well is recommended.
 
-## Restricted financing material
-1. `restricted/` is a separate Cloudflare Pages project, for example `restricted-staging.nwpharmatech.org`. It is never merged into `public/`.
-2. Create a Cloudflare Access (Zero Trust) application for that hostname, allowing only named reviewer emails.
-3. In the Pages project, set `ACCESS_TEAM_DOMAIN` (for example `yourteam.cloudflareaccess.com`) and `ACCESS_AUD` (the application's AUD tag).
-4. `functions/_middleware.js` then checks the Access token on every request and fails closed:
-   - 503 if the variables are not set;
-   - 403 if there is no token or the token is invalid;
-   - 405 for any non-GET request, so the inactive forms stay inactive.
-5. `noindex` alone is not relied on.
+## Restricted project
+1. Deploy `restricted/` as a separate project on its own hostname, run from inside the folder so `functions/` is picked up.
+2. Create a Cloudflare Access application for that hostname, allowing named reviewers only.
+3. Set `ACCESS_TEAM_DOMAIN` and `ACCESS_AUD`. Without them the middleware returns 503; it returns 403 without a valid token, and 405 for any submission.
+4. `noindex` is not relied on for protection.
 
-## Production (later)
-1. Resolve every item in `unresolved.md`.
-2. Run `python3 build.py --env production`. It refuses to build while `[TBC]` markers remain.
-3. Re-run `cd tools && npm install && node qa.mjs`.
-4. Obtain scientific, legal and regulatory sign-off.
-5. Only then switch the live DNS.
+## Optional email sign-up
+See `docs/email-signup.md`. It stays out of both staging and production until the provider is configured and tested end to end.
 
-Keep `financing.html` `noindex` and out of the sitemap until counsel approves it; the build already does both.
+## Production (later, after sign-off)
+1. Clear every item in `docs/missing-inputs.md` that is marked as a blocker.
+2. Record primary-source checks with `tools/evidence_review.py`.
+3. Run `python3 build.py --env production`. It refuses to build while any of these remain:
+   - `[TBC]` markers;
+   - links to missing pages;
+   - search-summary-only facts or references.
+   `--accept-index` exists only for a documented, signed-off exception.
+4. Re-run QA.
+5. Get scientific, editorial, legal (including financial promotion) and MHRA advertising sign-off.
+6. Only then point the live DNS at the production build.

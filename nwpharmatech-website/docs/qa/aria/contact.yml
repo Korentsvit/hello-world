@@ -1,0 +1,120 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "About":
+  - text: About
+  - list:
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+- main:
+  - text: Contact
+  - heading "Contact us" [level=1]
+  - paragraph: For questions from the public, clinicians, researchers and the media about the research programme.
+  - paragraph:
+    - strong: We cannot give individual medical advice
+    - text: or supply NWPT-SM32300 outside an approved study. Please do not send personal medical information. If you need urgent help, see
+    - link "urgent help by country":
+      - /url: faq.html#urgent-help
+    - text: .
+  - heading "Email" [level=2]
+  - paragraph: Please write or telephone. A public enquiries email address will be added once a monitored mailbox is confirmed.
+  - heading "Telephone" [level=2]
+  - paragraph:
+    - link "+44 20 3693 3791":
+      - /url: tel:+442036933791
+    - text: Head office, UK business hours
+  - heading "Post" [level=2]
+  - text: NWPharmaTech Ltd 5 Wisely Court, 37 Beaufort Gardens, London SW3 1PW United Kingdom
+  - paragraph: Head office
+  - paragraph:
+    - text: How we handle personal information you send us is explained in our
+    - link "privacy notice":
+      - /url: legal.html#privacy
+    - text: .
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

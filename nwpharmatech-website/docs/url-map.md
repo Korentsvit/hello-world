@@ -1,29 +1,32 @@
-# Old-to-new URL map
+# Routes and redirects
 
-## Draft v1 (commit b7ffb4b) to this build
+## Public routes (staging draft 3)
 
-All eleven page URLs are unchanged, so no redirects are needed for them.
+| Route | Page | Section (menu group) | Change since draft 2 (f8e07d8) |
+|---|---|---|---|
+| / | Home | none | Adds "Programme in 90 seconds", the brief near the top and the latest real update |
+| /clinical-need.html | Clinical need | The research | Discreet source links |
+| /science.html | Science and formulation | The research | **Rebuilt:** three questions and a diagram. The study cards moved to the evidence library |
+| /evidence.html | Evidence library | The research | **Rebuilt:** filters, study cards, citations. Anchors are `#ref-<id>` and `#cat-<category>` (the old `#need`, `#cbd` and `#psychosis` anchors are replaced) |
+| /families.html | For young people and families | The research | **New** |
+| /programme.html | Programme overview | The programme | The design table moved to the study hub; `#phase-1` moved to /phase-1.html |
+| /study.html | The study: progress and evidence | The programme | **New.** Anchors: `#milestones`, `#documents`, `#publication-policy` |
+| /phase-1.html | Phase 1 study | The programme | **New.** Anchor: `#results` |
+| /updates.html | Programme updates | The programme | Generated from updates.json |
+| /people.html | People | About | Profile cards from people.json |
+| /financing.html | Funding and financing | About | Adds funding transparency (noindex, not in the sitemap) |
+| /newsroom.html | Newsroom | About | **New.** Anchors: `#corrections`, `#standards`, and `#signup` (optional builds only) |
+| /faq.html | Questions and answers | About | Anchor: `#urgent-help` |
+| /contact.html, /legal.html | Contact; Legal | About | — |
+| /downloads/nwpharmatech-programme-brief.pdf | Brief (v3, generated) | none | Regenerated |
+| /downloads/appointment-preparation-sheet.pdf | Appointment sheet | none | **New** |
+| /downloads/nwpharmatech-references.ris and .bib | Citations | none | **New** |
 
-| Old URL (draft v1) | New URL | Change |
-|---|---|---|
-| /index.html | / (and /index.html) | Programme brief added at /#programme-brief |
-| /clinical-need.html | /clinical-need.html | — |
-| /science.html | /science.html | Study summaries restructured |
-| /evidence.html | /evidence.html | Anchors #need, #cbd, #psychosis, #programme-data; refs renumbered |
-| /programme.html | /programme.html | New anchor #phase-1 |
-| /people.html | /people.html | — |
-| /updates.html | /updates.html | — |
-| /financing.html | /financing.html | Shortened; detail moved to restricted staging |
-| /faq.html | /faq.html | New anchor #urgent-help |
-| /contact.html | /contact.html | — |
-| /legal.html | /legal.html | — |
-| (none) | /downloads/nwpharmatech-programme-brief.pdf | New download |
-| (none) | restricted/financing-structure.html, restricted/interest-registration.html | Not public; separate Access-protected project |
+**Anchor changes needing care:** `programme.html#phase-1` is now `phase-1.html`. Fragment redirects are not possible server-side, so update any links you control.
 
-Convenience redirects (in `public/_redirects`): /brief, /programme-brief, /study, /phase-2b, /team, /news, /references, /privacy, /accessibility, /invest, /investors.
+**Restricted project** (a separate hostname behind Access): `/`, `/financing-structure.html`, `/investor-journey.html`, `/funding-figures.html`. `interest-registration.html` from draft 2 is replaced by `investor-journey.html`.
 
-## Live site to new site: NOT COMPLETED
+**Convenience redirects:** see `src/redirects.txt`.
 
-I couldn't retrieve the URLs of the current live sites (nwpharmatech.org, nwpharmatech.com) or the Micelle site. The network policy blocks those hosts, and the `Korentsvit/nwpt-platform` repository is not accessible from this session.
-
-To finish this map: export the live sitemap, or list the old paths, and add one line per path to `src/redirects.txt` in the form `/old-path  /new-page.html  301`. If an old URL has no equivalent, send it to the closest page.
+## Old live site to new: not completed
+The live sites couldn't be reached from the build environment. Supply the list of live URLs (missing input 22), and each will be mapped to its nearest route above.

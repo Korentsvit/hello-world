@@ -1,0 +1,687 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The research":
+  - text: The research
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+- main:
+  - paragraph: The research
+  - heading "Evidence library" [level=1]
+  - paragraph: "The studies and guidelines behind this website, each summarised the same way: who was studied, which product, how, what was found, and the limitations."
+  - region "In plain language":
+    - heading "In plain language" [level=2]
+    - paragraph:
+      - text: "Clinical high risk of psychosis is well described: most people who meet the criteria do not develop psychosis, and about one in four do within three years."
+      - 'link "Source: Source: Salazar de Pablo et al. 2021"':
+        - /url: evidence.html#ref-salazar-2021
+      - text: Psychological therapy is the recommended first step, but no treatment has been proven to prevent psychosis.
+      - 'link "Source: Source: Davies et al. 2018"':
+        - /url: evidence.html#ref-davies-2018
+    - paragraph: "Research on cannabidiol (CBD) in psychosis is early: small, short studies of other CBD products, with mixed results. None of them used NWPT-SM32300. Evidence about NWPT-SM32300 itself so far comes only from a Phase 1 study in healthy volunteers, whose results are not yet published."
+    - paragraph:
+      - text: Evidence labels (Established, Emerging evidence) describe the strength of evidence.
+      - strong: Programme information
+      - text: marks records about our own studies; it is not an assessment of evidence strength. Negative, mixed and inconclusive findings are flagged on each card.
+    - complementary:
+      - heading "Download citations" [level=3]
+      - list:
+        - listitem:
+          - link "RIS (EndNote, Zotero, Mendeley)":
+            - /url: downloads/nwpharmatech-references.ris
+        - listitem:
+          - link "BibTeX":
+            - /url: downloads/nwpharmatech-references.bib
+      - paragraph:
+        - text: "Last checked:"
+        - time: 23 September 2026
+        - text: . Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages. The original pages are being opened and checked before launch.
+  - region "Library":
+    - heading "Library" [level=2]
+    - group "Filter the evidence library by topic":
+      - button "All" [pressed]
+      - button "Clinical need 2"
+      - button "Current care 2"
+      - button "Prediction and outcomes 3"
+      - button "Interventions 4"
+      - button "CBD research 12"
+      - button "Programme-specific 1"
+    - status
+    - region "Clinical need":
+      - heading "Clinical need" [level=2]
+      - article:
+        - paragraph: Clinical need
+        - text: Established
+        - 'heading "The psychosis high-risk state: a comprehensive state-of-the-art review" [level=3]'
+        - term: Population
+        - definition: People meeting clinical high-risk criteria (review of the field)
+        - term: Product
+        - definition: Not applicable
+        - term: Design
+        - definition: Narrative state-of-the-art review
+        - term: Finding
+        - definition: Describes how the high-risk state is defined and assessed, including attenuated psychotic symptoms and brief limited intermittent psychotic symptoms.
+        - term: Limitations
+        - definition: A narrative review, not a systematic estimate of outcomes.
+        - paragraph:
+          - text: "Source: Fusar-Poli P, Borgwardt S, et al.. The psychosis high-risk state: a comprehensive state-of-the-art review."
+          - emphasis: JAMA Psychiatry
+          - text: . 2013;70(1):107-120.
+          - link "DOI 10.1001/jamapsychiatry.2013.269":
+            - /url: https://doi.org/10.1001/jamapsychiatry.2013.269
+          - text: ·
+          - link "PubMed 23165428":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/23165428/
+      - article:
+        - paragraph: Clinical need
+        - text: Established
+        - 'heading "Prevalence of individuals at clinical high-risk of psychosis in the general population and clinical samples: systematic review and meta-analysis" [level=3]'
+        - term: Population
+        - definition: 37,135 people assessed in 35 studies
+        - term: Product
+        - definition: Not applicable
+        - term: Design
+        - definition: Systematic review and meta-analysis
+        - term: Finding
+        - definition: Clinical high-risk states were uncommon in the general population (1.7%) and much more common among young people already seeking help from services (19.2%).
+        - term: Limitations
+        - definition: Estimates depend on how and where people were sampled; confidence intervals are wide.
+        - paragraph:
+          - text: "Source: Salazar de Pablo G, et al.. Prevalence of individuals at clinical high-risk of psychosis in the general population and clinical samples: systematic review and meta-analysis."
+          - emphasis: Brain Sci
+          - text: . 2021;11(11):1544.
+          - link "DOI 10.3390/brainsci11111544":
+            - /url: https://doi.org/10.3390/brainsci11111544
+          - text: ·
+          - link "PubMed 34827543":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/34827543/
+    - region "Current care":
+      - heading "Current care" [level=2]
+      - article:
+        - paragraph: Current care
+        - text: Established
+        - 'heading "Psychosis and schizophrenia in adults: prevention and management (CG178)" [level=3]'
+        - term: Population
+        - definition: Adults considered at increased risk of psychosis
+        - term: Product
+        - definition: Not applicable
+        - term: Design
+        - definition: National clinical guideline
+        - term: Finding
+        - definition: Offer individual CBT, with or without family intervention. Do not offer antipsychotic medication to people at increased risk or to reduce the risk of or prevent psychosis.
+        - term: Limitations
+        - definition: Applies in England; guidance differs elsewhere.
+        - paragraph:
+          - text: "Source: National Institute for Health and Care Excellence. Psychosis and schizophrenia in adults: prevention and management (CG178)."
+          - emphasis: NICE clinical guideline
+          - text: . 2014.
+          - link "Official source":
+            - /url: https://www.nice.org.uk/guidance/cg178
+      - article:
+        - paragraph: Current care
+        - text: Established
+        - 'heading "Psychosis and schizophrenia in children and young people: recognition and management (CG155)" [level=3]'
+        - term: Population
+        - definition: Children and young people considered at increased risk
+        - term: Product
+        - definition: Not applicable
+        - term: Design
+        - definition: National clinical guideline (updated 2016)
+        - term: Finding
+        - definition: Consider individual CBT with or without family intervention. Do not offer antipsychotic medication for this purpose.
+        - term: Limitations
+        - definition: Applies in England; guidance differs elsewhere.
+        - paragraph:
+          - text: "Source: National Institute for Health and Care Excellence. Psychosis and schizophrenia in children and young people: recognition and management (CG155)."
+          - emphasis: NICE clinical guideline
+          - text: . 2013.
+          - link "Official source":
+            - /url: https://www.nice.org.uk/guidance/cg155
+    - region "Prediction and outcomes":
+      - heading "Prediction and outcomes" [level=2]
+      - article:
+        - paragraph: Prediction and outcomes
+        - text: Established
+        - 'heading "At clinical high risk for psychosis: outcome for nonconverters" [level=3]'
+        - term: Population
+        - definition: People at clinical high risk who did not develop psychosis (NAPLS cohort)
+        - term: Product
+        - definition: Not applicable
+        - term: Design
+        - definition: Longitudinal follow-up of a multisite cohort
+        - term: Finding
+        - definition: "People who did not develop psychosis were a mixed group: some recovered, others kept milder symptoms and difficulties."
+        - term: Limitations
+        - definition: One North American cohort; exact remission percentages not quoted here.
+        - paragraph:
+          - text: "Source: Addington J, Cornblatt BA, Cadenhead KS, et al.. At clinical high risk for psychosis: outcome for nonconverters."
+          - emphasis: Am J Psychiatry
+          - text: . 2011;168(8):800-805.
+          - link "DOI 10.1176/appi.ajp.2011.10081191":
+            - /url: https://doi.org/10.1176/appi.ajp.2011.10081191
+          - text: ·
+          - link "PubMed 21498462":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/21498462/
+      - article:
+        - paragraph: Prediction and outcomes
+        - text: Established
+        - 'heading "Predicting psychosis: meta-analysis of transition outcomes in individuals at high clinical risk" [level=3]'
+        - term: Population
+        - definition: People at clinical high risk in published cohorts
+        - term: Product
+        - definition: Not applicable
+        - term: Design
+        - definition: Meta-analysis
+        - term: Finding
+        - definition: "Pooled risk of developing psychosis rose over time: 18% at 6 months, 22% at 1 year, 29% at 2 years and 36% at 3 years."
+        - term: Limitations
+        - definition: Earlier literature; transition rates in later studies were lower (see Salazar de Pablo et al. 2021).
+        - paragraph:
+          - text: "Source: Fusar-Poli P, Bonoldi I, Yung AR, et al.. Predicting psychosis: meta-analysis of transition outcomes in individuals at high clinical risk."
+          - emphasis: Arch Gen Psychiatry
+          - text: . 2012;69(3):220-229.
+      - article:
+        - paragraph: Prediction and outcomes
+        - text: Established
+        - 'heading "Probability of transition to psychosis in individuals at clinical high risk: an updated meta-analysis" [level=3]'
+        - term: Population
+        - definition: 9,222 people at clinical high risk in 130 studies
+        - term: Product
+        - definition: Not applicable
+        - term: Design
+        - definition: Meta-analysis
+        - term: Finding
+        - definition: About one in four (25%) developed psychosis within 3 years, and 27% within 4 years, with wide variation between studies.
+        - term: Limitations
+        - definition: Pooled estimates across different services and criteria; individual risk varies.
+        - paragraph:
+          - text: "Source: Salazar de Pablo G, Radua J, Pereira J, et al.. Probability of transition to psychosis in individuals at clinical high risk: an updated meta-analysis."
+          - emphasis: JAMA Psychiatry
+          - text: . 2021;78(9):970-978.
+          - link "DOI 10.1001/jamapsychiatry.2021.0830":
+            - /url: https://doi.org/10.1001/jamapsychiatry.2021.0830
+          - text: ·
+          - link "PubMed 34259821":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/34259821/
+    - region "Interventions":
+      - heading "Interventions" [level=2]
+      - article:
+        - paragraph: Interventions
+        - text: Not conducted
+        - 'heading "CANTOP-RCT: cannabidiol for people at clinical high risk of psychosis (study report)" [level=3]'
+        - term: Population
+        - definition: "Planned: about 300 people at clinical high risk across UK sites"
+        - term: Product
+        - definition: CBD 600 mg/day vs placebo for 6 months (planned)
+        - term: Design
+        - definition: Planned Phase IIb randomised trial
+        - term: Finding
+        - definition: The trial was funded but did not start because the study medicine could not be supplied. It produced no efficacy results.
+        - term: Limitations
+        - definition: Not an efficacy finding. Included because it explains why a larger trial is still missing.
+        - paragraph:
+          - text: "Source: NIHR Efficacy and Mechanism Evaluation programme. CANTOP-RCT: cannabidiol for people at clinical high risk of psychosis (study report)."
+          - emphasis: NIHR Journals Library
+          - text: .
+          - link "PubMed 40096425":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/40096425/
+      - article:
+        - paragraph: Interventions
+        - text: Established Inconclusive
+        - 'heading "Early interventions to prevent psychosis: systematic review and meta-analysis" [level=3]'
+        - term: Population
+        - definition: 1,246 people at clinical high risk in 11 randomised trials
+        - term: Product
+        - definition: Psychological, omega-3 and antipsychotic interventions
+        - term: Design
+        - definition: Systematic review and meta-analysis
+        - term: Finding
+        - definition: CBT was associated with fewer transitions to psychosis at 12 months (risk ratio 0.54), on moderate-quality evidence. Evidence for other interventions was low quality. The review did not conclude that any specific intervention is proven.
+        - term: Limitations
+        - definition: Small trials; evidence quality mostly low to moderate.
+        - paragraph:
+          - text: "Source: Stafford MR, et al.. Early interventions to prevent psychosis: systematic review and meta-analysis."
+          - emphasis: BMJ
+          - text: . 2013;346:f185.
+          - link "DOI 10.1136/bmj.f185":
+            - /url: https://doi.org/10.1136/bmj.f185
+          - text: ·
+          - link "PubMed 23335473":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/23335473/
+      - article:
+        - paragraph: Interventions
+        - text: Established Inconclusive
+        - 'heading "Lack of evidence to favor specific preventive interventions in psychosis: a network meta-analysis" [level=3]'
+        - term: Population
+        - definition: Randomised trials in people at clinical high risk
+        - term: Product
+        - definition: Psychological, pharmacological and nutritional interventions
+        - term: Design
+        - definition: Network meta-analysis
+        - term: Finding
+        - definition: No evidence that any one preventive intervention works better than the others.
+        - term: Limitations
+        - definition: Few, small trials per intervention.
+        - paragraph:
+          - text: "Source: Davies C, et al.. Lack of evidence to favor specific preventive interventions in psychosis: a network meta-analysis."
+          - emphasis: World Psychiatry
+          - text: . 2018;17(2):196-209.
+          - link "DOI 10.1002/wps.20526":
+            - /url: https://doi.org/10.1002/wps.20526
+          - text: ·
+          - link "PubMed 29856551":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/29856551/
+      - article:
+        - paragraph: Interventions
+        - text: Established
+        - 'heading "Comprehensive versus usual community care for first-episode psychosis: 2-year outcomes from the NIMH RAISE Early Treatment Program" [level=3]'
+        - term: Population
+        - definition: 404 people with first-episode psychosis at 34 US clinics
+        - term: Product
+        - definition: Coordinated specialty care (NAVIGATE), not a medicine
+        - term: Design
+        - definition: Cluster-randomised trial; 2 years
+        - term: Finding
+        - definition: People receiving coordinated specialty care stayed in treatment longer and had better quality of life, symptoms and involvement in work or school; benefits were larger when untreated psychosis had been shorter.
+        - term: Limitations
+        - definition: People with first-episode psychosis, not clinical high risk; US community clinics.
+        - paragraph:
+          - text: "Source: Kane JM, et al.. Comprehensive versus usual community care for first-episode psychosis: 2-year outcomes from the NIMH RAISE Early Treatment Program."
+          - emphasis: Am J Psychiatry
+          - text: . 2016;173(4):362-372.
+          - link "DOI 10.1176/appi.ajp.2015.15050632":
+            - /url: https://doi.org/10.1176/appi.ajp.2015.15050632
+          - text: ·
+          - link "PubMed 26481174":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/26481174/
+    - region "CBD research":
+      - heading "CBD research" [level=2]
+      - article:
+        - paragraph: CBD research
+        - text: Established
+        - 'heading "Epidyolex 100 mg/ml oral solution: Summary of Product Characteristics" [level=3]'
+        - term: Population
+        - definition: Patients with Lennox-Gastaut syndrome, Dravet syndrome or tuberous sclerosis complex
+        - term: Product
+        - definition: Epidyolex (a different cannabidiol medicine)
+        - term: Design
+        - definition: Regulatory product information
+        - term: Finding
+        - definition: Licensed CBD medicine for certain severe epilepsies. Side effects include sleepiness and raised liver enzymes (especially with valproate); interacts with clobazam.
+        - term: Limitations
+        - definition: Epilepsy populations at higher doses per kg; not evidence about psychosis.
+        - paragraph:
+          - text: "Source: Epidyolex 100 mg/ml oral solution: Summary of Product Characteristics."
+          - emphasis: Electronic Medicines Compendium
+          - text: .
+          - link "Official source":
+            - /url: https://www.medicines.org.uk/emc/product/10781
+      - article:
+        - paragraph: CBD research
+        - text: Established
+        - heading "Trial of cannabidiol for drug-resistant seizures in the Dravet syndrome" [level=3]
+        - term: Population
+        - definition: 120 children and young adults with Dravet syndrome
+        - term: Product
+        - definition: Purified oral CBD solution (not NWPT-SM32300)
+        - term: Design
+        - definition: Randomised, double-blind, placebo-controlled trial
+        - term: Finding
+        - definition: CBD 20 mg/kg/day reduced convulsive seizures versus placebo. Common side effects included diarrhoea, vomiting, fatigue, fever, sleepiness and abnormal liver tests.
+        - term: Limitations
+        - definition: Epilepsy, not psychosis; cited here for safety information.
+        - paragraph:
+          - text: "Source: Devinsky O, et al.. Trial of cannabidiol for drug-resistant seizures in the Dravet syndrome."
+          - emphasis: N Engl J Med
+          - text: . 2017;376(21).
+          - link "DOI 10.1056/NEJMoa1611618":
+            - /url: https://doi.org/10.1056/NEJMoa1611618
+          - text: ·
+          - link "PubMed 28538134":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/28538134/
+      - article:
+        - paragraph: CBD research
+        - text: Established
+        - 'heading "The contribution of cannabis use to variation in the incidence of psychotic disorder across Europe (EU-GEI): a multicentre case-control study" [level=3]'
+        - term: Population
+        - definition: 901 people with first-episode psychosis and 1,237 controls, 11 sites
+        - term: Product
+        - definition: Street cannabis (THC), not CBD
+        - term: Design
+        - definition: Case-control study
+        - term: Finding
+        - definition: Daily cannabis use, and especially daily use of high-potency (high-THC) cannabis, was associated with higher odds of psychotic disorder.
+        - term: Limitations
+        - definition: Association, not proof of cause; about THC-rich cannabis, not CBD.
+        - paragraph:
+          - text: "Source: Di Forti M, et al.. The contribution of cannabis use to variation in the incidence of psychotic disorder across Europe (EU-GEI): a multicentre case-control study."
+          - emphasis: Lancet Psychiatry
+          - text: . 2019;6(5):427-.
+          - link "DOI 10.1016/S2215-0366(19)30048-3":
+            - /url: https://doi.org/10.1016/S2215-0366(19)30048-3
+          - text: ·
+          - link "PubMed 30902669":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/30902669/
+      - article:
+        - paragraph: CBD research
+        - text: Emerging evidence
+        - heading "Opposite effects of Δ-9-tetrahydrocannabinol and cannabidiol on human brain function and psychopathology" [level=3]
+        - term: Population
+        - definition: 15 healthy men (plus 6 in a pretreatment experiment)
+        - term: Product
+        - definition: Oral THC and CBD (not NWPT-SM32300)
+        - term: Design
+        - definition: Experimental brain-imaging study
+        - term: Finding
+        - definition: THC and CBD had opposite effects on activity in several brain regions; CBD pretreatment prevented THC-induced psychotic symptoms in a small group.
+        - term: Limitations
+        - definition: Very small, healthy volunteers, single doses; mechanism, not clinical benefit.
+        - paragraph:
+          - text: "Source: Bhattacharyya S, Morrison PD, Fusar-Poli P, et al.. Opposite effects of Δ-9-tetrahydrocannabinol and cannabidiol on human brain function and psychopathology."
+          - emphasis: Neuropsychopharmacology
+          - text: . 2010;35:764-774.
+          - link "DOI 10.1038/npp.2009.184":
+            - /url: https://doi.org/10.1038/npp.2009.184
+      - article:
+        - paragraph: CBD research
+        - text: Emerging evidence
+        - 'heading "Cannabidiol (CBD) as an adjunctive therapy in schizophrenia: a multicenter randomized controlled trial" [level=3]'
+        - term: Population
+        - definition: 88 adults with schizophrenia already taking antipsychotics
+        - term: Product
+        - definition: Oral CBD solution, 1,000 mg/day (not NWPT-SM32300)
+        - term: Design
+        - definition: Randomised, double-blind, placebo-controlled; 6 weeks
+        - term: Finding
+        - definition: Positive psychotic symptoms fell more with CBD than placebo (small difference), and clinicians more often rated patients as improved. Generally well tolerated.
+        - term: Limitations
+        - definition: Small, short, add-on treatment in established schizophrenia; not people at clinical high risk.
+        - paragraph:
+          - text: "Source: McGuire P, Robson P, Cubala WJ, et al.. Cannabidiol (CBD) as an adjunctive therapy in schizophrenia: a multicenter randomized controlled trial."
+          - emphasis: Am J Psychiatry
+          - text: . 2018;175(3):225-231.
+          - link "DOI 10.1176/appi.ajp.2017.17030325":
+            - /url: https://doi.org/10.1176/appi.ajp.2017.17030325
+          - text: ·
+          - link "PubMed 29241357":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/29241357/
+      - article:
+        - paragraph: CBD research
+        - text: Emerging evidence
+        - heading "Cannabidiol enhances anandamide signaling and alleviates psychotic symptoms of schizophrenia" [level=3]
+        - term: Population
+        - definition: 42 inpatients with acute schizophrenia
+        - term: Product
+        - definition: Oral CBD up to 800 mg/day (not NWPT-SM32300)
+        - term: Design
+        - definition: Randomised, double-blind, active comparator (amisulpride); 4 weeks
+        - term: Finding
+        - definition: Symptoms improved similarly with CBD and amisulpride; CBD had fewer movement side effects, less weight gain and a smaller prolactin rise.
+        - term: Limitations
+        - definition: Small and short; no placebo group, so the size of any CBD effect alone is uncertain.
+        - paragraph:
+          - text: "Source: Leweke FM, et al.. Cannabidiol enhances anandamide signaling and alleviates psychotic symptoms of schizophrenia."
+          - emphasis: Transl Psychiatry
+          - text: . 2012;2:e94.
+          - link "DOI 10.1038/tp.2012.15":
+            - /url: https://doi.org/10.1038/tp.2012.15
+          - text: ·
+          - link "PubMed 22832859":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/22832859/
+      - article:
+        - paragraph: CBD research
+        - text: Emerging evidence Negative finding
+        - 'heading "The effects of cannabidiol (CBD) on cognition and symptoms in outpatients with chronic schizophrenia: a randomized placebo controlled trial" [level=3]'
+        - term: Population
+        - definition: 36 outpatients with chronic schizophrenia
+        - term: Product
+        - definition: Oral CBD 600 mg/day (not NWPT-SM32300)
+        - term: Design
+        - definition: Randomised, double-blind, placebo-controlled; 6 weeks
+        - term: Finding
+        - definition: No improvement in cognition or symptoms compared with placebo.
+        - term: Limitations
+        - definition: Small; lower dose than some other studies; stable chronic patients.
+        - paragraph:
+          - text: "Source: Boggs DL, Surti T, et al.. The effects of cannabidiol (CBD) on cognition and symptoms in outpatients with chronic schizophrenia: a randomized placebo controlled trial."
+          - emphasis: Psychopharmacology (Berl)
+          - text: . 2018;235(7):1923-1932.
+          - link "DOI 10.1007/s00213-018-4885-9":
+            - /url: https://doi.org/10.1007/s00213-018-4885-9
+          - text: ·
+          - link "PubMed 29619533":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/29619533/
+      - article:
+        - paragraph: CBD research
+        - text: Emerging evidence
+        - 'heading "Effect of cannabidiol on medial temporal, midbrain, and striatal dysfunction in people at clinical high risk of psychosis: a randomized clinical trial" [level=3]'
+        - term: Population
+        - definition: 33 people at clinical high risk (16 CBD, 17 placebo) and 19 healthy volunteers
+        - term: Product
+        - definition: Single oral CBD 600 mg dose (not NWPT-SM32300)
+        - term: Design
+        - definition: Randomised, double-blind, placebo-controlled brain-imaging study
+        - term: Finding
+        - definition: During a memory task, brain activity with CBD was intermediate between the placebo group and healthy volunteers in several regions.
+        - term: Limitations
+        - definition: Single dose; brain-activity measures, not symptoms or outcomes.
+        - paragraph:
+          - text: "Source: Bhattacharyya S, et al.. Effect of cannabidiol on medial temporal, midbrain, and striatal dysfunction in people at clinical high risk of psychosis: a randomized clinical trial."
+          - emphasis: JAMA Psychiatry
+          - text: . 2018;75(11):1107-1117.
+          - link "DOI 10.1001/jamapsychiatry.2018.2309":
+            - /url: https://doi.org/10.1001/jamapsychiatry.2018.2309
+      - article:
+        - paragraph: CBD research
+        - text: Emerging evidence Mixed findings
+        - heading "Effects of short-term cannabidiol treatment on response to social stress in subjects at clinical high risk of developing psychosis" [level=3]
+        - term: Population
+        - definition: 32 people at clinical high risk and 26 healthy volunteers
+        - term: Product
+        - definition: Oral CBD 600 mg/day for 7 days (not NWPT-SM32300)
+        - term: Design
+        - definition: Randomised, double-blind, placebo-controlled experimental study
+        - term: Finding
+        - definition: Anxiety and stress responses to a public-speaking test were intermediate between placebo and healthy volunteers. The cortisol response did not differ significantly from placebo.
+        - term: Limitations
+        - definition: One week; laboratory stress test, not clinical outcomes.
+        - paragraph:
+          - text: "Source: Appiah-Kusi E, et al.. Effects of short-term cannabidiol treatment on response to social stress in subjects at clinical high risk of developing psychosis."
+          - emphasis: Psychopharmacology (Berl)
+          - text: . 2020.
+          - link "PubMed 31915861":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/31915861/
+      - article:
+        - paragraph: CBD research
+        - text: Emerging evidence
+        - heading "Effects of cannabidiol on symptoms in people at clinical high risk for psychosis" [level=3]
+        - term: Population
+        - definition: 33 people at clinical high risk (16 CBD, 17 placebo)
+        - term: Product
+        - definition: Oral CBD 600 mg/day for 21 days (not NWPT-SM32300)
+        - term: Design
+        - definition: Randomised, placebo-controlled; published as a short research letter
+        - term: Finding
+        - definition: After adjusting for starting scores, symptom and distress scores were lower with CBD than placebo; CBD was well tolerated.
+        - term: Limitations
+        - definition: Very small, three weeks, short-letter format; not yet confirmed in a larger trial.
+        - paragraph:
+          - text: "Source: Bhattacharyya S, Appiah-Kusi E, Wilson R, et al.. Effects of cannabidiol on symptoms in people at clinical high risk for psychosis."
+          - emphasis: World Psychiatry
+          - text: . 2024;23(3):451-452.
+          - link "DOI 10.1002/wps.21253":
+            - /url: https://doi.org/10.1002/wps.21253
+          - text: ·
+          - link "PubMed 39279373":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/39279373/
+      - article:
+        - paragraph: CBD research
+        - text: Established
+        - heading "Critical aspects affecting cannabidiol oral bioavailability and metabolic elimination, and related clinical implications" [level=3]
+        - term: Population
+        - definition: Review of human pharmacokinetic studies
+        - term: Product
+        - definition: Cannabidiol in general (not NWPT-SM32300)
+        - term: Design
+        - definition: Review
+        - term: Finding
+        - definition: Taken by mouth while fasting, only about 6% of a CBD dose is estimated to reach the bloodstream; a high-fat meal increases this about fourfold. Much of each dose is broken down by the liver before reaching the circulation.
+        - term: Limitations
+        - definition: Review of other CBD preparations; figures vary between studies.
+        - paragraph:
+          - text: "Source: Perucca E, Bialer M.. Critical aspects affecting cannabidiol oral bioavailability and metabolic elimination, and related clinical implications."
+          - emphasis: CNS Drugs
+          - text: . 2020;34:795-800.
+          - link "DOI 10.1007/s40263-020-00741-5":
+            - /url: https://doi.org/10.1007/s40263-020-00741-5
+      - article:
+        - paragraph: CBD research
+        - text: Established
+        - heading "A Phase I, randomized, double-blind, placebo-controlled, single ascending dose, multiple dose, and multiple dose food effect trial of the safety and tolerability of highly purified cannabidiol in healthy subjects" [level=3]
+        - term: Population
+        - definition: Healthy adult volunteers
+        - term: Product
+        - definition: Purified CBD oral solution (not NWPT-SM32300)
+        - term: Design
+        - definition: Phase 1 randomised, placebo-controlled trial
+        - term: Finding
+        - definition: Described the safety and tolerability of single and repeated doses of purified CBD in healthy adults, and found that a high-fat meal increased CBD exposure.
+        - term: Limitations
+        - definition: Healthy volunteers; a different CBD product. A published correction exists.
+        - paragraph:
+          - text: "Source: Taylor L, et al.. A Phase I, randomized, double-blind, placebo-controlled, single ascending dose, multiple dose, and multiple dose food effect trial of the safety and tolerability of highly purified cannabidiol in healthy subjects."
+          - emphasis: CNS Drugs
+          - text: . 2018;32:1053-1067.
+          - link "DOI 10.1007/s40263-018-0578-5":
+            - /url: https://doi.org/10.1007/s40263-018-0578-5
+          - text: ·
+          - link "PubMed 30374683":
+            - /url: https://pubmed.ncbi.nlm.nih.gov/30374683/
+    - region "Programme-specific":
+      - heading "Programme-specific" [level=2]
+      - article:
+        - paragraph: Programme-specific
+        - text: Programme information
+        - heading "A Phase 1 study to assess the safety and pharmacokinetics of novel cannabidiol (CBD) soft-gel capsule formulation (NW300EMCBD) in healthy subjects" [level=3]
+        - term: Population
+        - definition: 14 healthy adult volunteers aged 18 to 55
+        - term: Product
+        - definition: NWPT-SM32300 600 mg and 900 mg; Epidyolex comparator
+        - term: Design
+        - definition: Randomised, open-label, three-period crossover; single doses
+        - term: Finding
+        - definition: Completed December 2025. Results not yet published.
+        - term: Limitations
+        - definition: "Healthy volunteers, single doses: measures absorption and short-term tolerability, not effectiveness in clinical high risk of psychosis."
+        - paragraph:
+          - text: "Source: NWPharmaTech Ltd (sponsor). A Phase 1 study to assess the safety and pharmacokinetics of novel cannabidiol (CBD) soft-gel capsule formulation (NW300EMCBD) in healthy subjects."
+          - emphasis: ClinicalTrials.gov NCT07186283; ISRCTN25163383
+          - text: . 2025.
+          - link "DOI 10.1186/ISRCTN25163383":
+            - /url: https://doi.org/10.1186/ISRCTN25163383
+  - region "Corrections":
+    - heading "Corrections" [level=2]
+    - paragraph: No corrections have been made since publication.
+    - paragraph:
+      - text: Substantive corrections to a published summary are recorded here with the date.
+      - link "Site-wide corrections log":
+        - /url: newsroom.html#corrections
+      - text: .
+    - heading "Review history" [level=2]
+    - table "Evidence reviews":
+      - caption: Evidence reviews
+      - rowgroup:
+        - row "Date Review Method":
+          - columnheader "Date"
+          - columnheader "Review"
+          - columnheader "Method"
+      - rowgroup:
+        - 'row "Date: 23 September 2026 Review: initial verification Method: Search-engine summaries of publisher, PubMed, registry and official pages (primary pages blocked from the build environment)"':
+          - 'cell "Date: 23 September 2026"':
+            - text: "Date:"
+            - time: 23 September 2026
+          - 'cell "Review: initial verification"'
+          - 'cell "Method: Search-engine summaries of publisher, PubMed, registry and official pages (primary pages blocked from the build environment)"'
+    - paragraph: A monthly review process has been prepared. A review is listed here only after it has taken place.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

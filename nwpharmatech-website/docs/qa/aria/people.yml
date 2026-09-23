@@ -1,0 +1,191 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "About":
+  - text: About
+  - list:
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+- main:
+  - paragraph: People and governance
+  - heading "The people behind the programme" [level=1]
+  - paragraph: Clinical and scientific expertise in clinical high risk of psychosis, clinical trials and cannabinoid science, with a company board responsible for running the programme.
+  - region "Clinical and scientific leadership":
+    - heading "Clinical and scientific leadership" [level=2]
+    - article:
+      - paragraph: Clinical high risk of psychosis
+      - heading "Dr Scott W. Woods" [level=3]
+      - paragraph: Adviser on clinical high risk of psychosis
+      - paragraph: Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: "Advises the programme on clinical high risk of psychosis: how the condition is identified and how studies in this group should be designed."
+      - heading "Affiliations" [level=4]
+      - list:
+        - listitem: Professor of Psychiatry, Yale School of Medicine
+        - listitem: Director, PRIME Clinic, which specialises in people at clinical high risk of psychosis
+    - article:
+      - paragraph: Clinical trial design
+      - heading "Dr John M. Kane" [level=3]
+      - paragraph: Chair, Scientific Advisory Board
+      - paragraph: Psychiatrist and schizophrenia researcher with long experience of leading clinical trials.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Chairs the programme's Scientific Advisory Board.
+        - listitem: Advises on clinical trial design.
+      - heading "Affiliations" [level=4]
+      - list:
+        - listitem: Professor of Psychiatry and Molecular Medicine, Donald and Barbara Zucker School of Medicine at Hofstra/Northwell
+        - listitem: Co-director, Institute for Behavioral Science, Feinstein Institutes for Medical Research
+    - article:
+      - paragraph: Cannabinoid neuropharmacology
+      - heading "Dr Grace Blest-Hopley" [level=3]
+      - paragraph: Chief Scientific Officer
+      - paragraph: Neuroscientist specialising in cannabinoid neuropharmacology. PhD from King's College London on the actions and effects of cannabinoids.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Responsible for the programme's scientific strategy as Chief Scientific Officer.
+    - paragraph: Advisers are independent experts. Their involvement does not mean their institutions endorse the programme.
+  - region "Company leadership and board":
+    - heading "Company leadership and board" [level=2]
+    - article:
+      - paragraph: Strategy and programme leadership
+      - heading "Filipp Korentsvit" [level=3]
+      - paragraph: Chief Executive Officer and Founding Partner
+      - paragraph: Previously an Executive Director at Goldman Sachs. BSc in Economics and Statistics, University College London.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Leads company strategy and the development programme.
+    - article:
+      - paragraph: Programme execution
+      - heading "Daud Gutseriev" [level=3]
+      - paragraph: Chief Operating Officer
+      - paragraph: Previously an Associate Director at VTB Capital in infrastructure and project financing. Executive MBA, University of Oxford Saïd Business School.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Leads programme execution.
+    - article:
+      - paragraph: Biotech partnerships
+      - heading "William Jarosz" [level=3]
+      - paragraph: Executive Chairman
+      - paragraph: Business leader with a background in finance and the pharmaceutical industry. JD, Harvard Law School; MA in Law and Diplomacy, Tufts University.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Chairs the board; focuses on biotech partnerships.
+    - article:
+      - paragraph: Life-sciences leadership
+      - heading "Professor Richard Barker OBE" [level=3]
+      - paragraph: Non-Executive Chairman
+      - paragraph: Director General of the Association of the British Pharmaceutical Industry (ABPI) from 2004 to 2011, former Chief Executive of Chiron, and former non-executive director of Celgene.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Non-executive board role.
+    - article:
+      - paragraph: Pharmaceutical industry
+      - heading "Dr Gillian Cannon" [level=3]
+      - paragraph: Non-Executive Director
+      - paragraph: Pharmaceutical executive with senior roles at Merck, Otsuka and UCB.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Non-executive board role.
+  - region "How clinical decisions stay independent":
+    - heading "How clinical decisions stay independent" [level=2]
+    - list:
+      - listitem: Decisions on study design, eligibility, safety and conduct are made by the clinical and scientific leadership and approved by regulators and research ethics committees.
+      - listitem: The statistical analysis plan is finalised before study data are unblinded.
+      - listitem: Investors and token holders have no right to influence clinical decisions, see participant data, or delay or shape publications.
+    - paragraph:
+      - text: How results will be published is set out in the
+      - link "draft publication policy":
+        - /url: study.html#publication-policy
+      - text: .
+    - complementary:
+      - heading "Lived experience" [level=3]
+      - paragraph: We want people with lived experience of mental health difficulties, and their families, to shape how the programme communicates and how studies are run. No lived-experience adviser has been appointed yet.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

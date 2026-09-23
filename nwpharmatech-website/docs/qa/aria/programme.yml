@@ -1,0 +1,145 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The programme":
+  - text: The programme
+  - list:
+    - listitem:
+      - link "Programme overview":
+        - /url: programme.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "Programme updates":
+        - /url: updates.html
+- main:
+  - paragraph: The programme
+  - heading "Programme overview" [level=1]
+  - paragraph: NWPT-SM32300 is an investigational oral cannabidiol medicine. A Phase 1 study in healthy volunteers is complete. A Phase 2B study in people at clinical high risk of psychosis is planned.
+  - heading "About NWPT-SM32300" [level=2]
+  - text: Programme information
+  - term: Form
+  - definition: 300 mg oral softgel capsule
+  - term: Active ingredient
+  - definition: highly purified cannabidiol
+  - term: Formulation
+  - definition: self-emulsifying (micellar) lipid formulation, developed with the University of Toronto
+  - term: Manufacture
+  - definition: Good Manufacturing Practice (GMP) standard, by Thermo Fisher Scientific
+  - term: THC
+  - definition: THC is not detected at the sensitivity of the validated test method
+  - term: Capsule shell
+  - definition: Contains gelatine of bovine origin
+  - term: Status
+  - definition: Investigational; not approved by any medicines regulator; available only within authorised clinical research
+  - paragraph:
+    - link "Why a micellar softgel, and why study a range of doses":
+      - /url: science.html
+  - complementary:
+    - heading "What \"Phase 2B\" means" [level=3]
+    - paragraph: Medicines are tested in stages. Phase 1 studies look mainly at safety and how the body handles a medicine, usually in healthy volunteers. Phase 2 studies look at whether it may work in people with the condition, and at what dose.
+    - paragraph: A Phase 2B study typically compares more than one dose with a control, to understand the dose–response relationship and decide whether a larger Phase 3 study is justified.
+  - region "Where the programme stands":
+    - heading "Where the programme stands" [level=2]
+    - link "Completed Phase 1 study 14 healthy adult volunteers aged 18 to 55; single doses of 600 mg and 900 mg compared with Epidyolex. Completed 10 December 2025. Results not yet published. Phase 1 study":
+      - /url: phase-1.html
+      - paragraph: Completed
+      - heading "Phase 1 study" [level=3]
+      - paragraph: 14 healthy adult volunteers aged 18 to 55; single doses of 600 mg and 900 mg compared with Epidyolex. Completed 10 December 2025. Results not yet published.
+      - text: Phase 1 study
+    - 'link "Planned Phase 2B study In people at clinical high risk of psychosis, to evaluate dose response, symptoms, safety and tolerability. Protocol being finalised. Not recruiting. The study: progress and evidence"':
+      - /url: study.html
+      - paragraph: Planned
+      - heading "Phase 2B study" [level=3]
+      - paragraph: In people at clinical high risk of psychosis, to evaluate dose response, symptoms, safety and tolerability. Protocol being finalised. Not recruiting.
+      - text: "The study: progress and evidence"
+    - link "Record Programme updates Dated events, each supported by a programme record. Programme updates":
+      - /url: updates.html
+      - paragraph: Record
+      - heading "Programme updates" [level=3]
+      - paragraph: Dated events, each supported by a programme record.
+      - text: Programme updates
+  - heading "Protecting participants" [level=2]
+  - paragraph: Any Phase 2B study will start only after approval by a research ethics committee and the relevant medicines regulators. Participants will give informed consent, keep their usual care, and be free to leave at any time. Because cannabidiol can affect liver tests and interact with other medicines, safety monitoring will include blood tests and medicine checks.
+  - complementary:
+    - heading "Can I take part?" [level=3]
+    - paragraph:
+      - text: "Not yet: the Phase 2B study is"
+      - strong: not recruiting
+      - text: ", and we cannot supply NWPT-SM32300 outside an approved study."
+    - paragraph: When recruitment opens, eligibility and study sites will be published here and on the public trial registry.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:41125/",
-  "generated": "2026-09-23T06:36:54.133Z",
+  "base": "http://127.0.0.1:41551/",
+  "generated": "2026-09-23T06:48:15.872Z",
   "pages": {
     "clinical-need@desktop": {
       "status": 200,
@@ -41,6 +41,17 @@
         }
       ]
     },
+    "families@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "For young people and families | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
     "faq@desktop": {
       "status": 200,
       "errors": [],
@@ -57,11 +68,17 @@
       "errors": [],
       "axe": [],
       "overflow": false,
-      "title": "Programme financing | NWPharmaTech",
+      "title": "Funding and financing | NWPharmaTech",
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
-      "tables": []
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 6,
+          "overflow": false
+        }
+      ]
     },
     "index@desktop": {
       "status": 200,
@@ -84,6 +101,23 @@
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
       "tables": []
+    },
+    "newsroom@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Newsroom | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 6,
+          "overflow": false
+        }
+      ]
     },
     "people@desktop": {
       "status": 200,
@@ -174,6 +208,11 @@
           "caption": true,
           "rowHeaders": 5,
           "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 5,
+          "overflow": false
         }
       ]
     },
@@ -227,6 +266,17 @@
         }
       ]
     },
+    "families@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "For young people and families | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
+    },
     "faq@mobile": {
       "status": 200,
       "errors": [],
@@ -243,11 +293,17 @@
       "errors": [],
       "axe": [],
       "overflow": false,
-      "title": "Programme financing | NWPharmaTech",
+      "title": "Funding and financing | NWPharmaTech",
       "h1": 1,
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
-      "tables": []
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 6,
+          "overflow": false
+        }
+      ]
     },
     "index@mobile": {
       "status": 200,
@@ -270,6 +326,23 @@
       "robots": "noindex, nofollow",
       "imgsNoAlt": 0,
       "tables": []
+    },
+    "newsroom@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "Newsroom | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": [
+        {
+          "caption": true,
+          "rowHeaders": 6,
+          "overflow": false
+        }
+      ]
     },
     "people@mobile": {
       "status": 200,
@@ -354,6 +427,11 @@
         {
           "caption": true,
           "rowHeaders": 7,
+          "overflow": false
+        },
+        {
+          "caption": true,
+          "rowHeaders": 5,
           "overflow": false
         },
         {
@@ -462,6 +540,31 @@
       "detail": ""
     },
     {
+      "name": "families@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "families@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "families@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "families@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "families@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "faq@desktop: HTTP 200",
       "pass": true,
       "detail": ""
@@ -512,6 +615,16 @@
       "detail": ""
     },
     {
+      "name": "financing@desktop: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@desktop: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "index@desktop: HTTP 200",
       "pass": true,
       "detail": ""
@@ -558,6 +671,41 @@
     },
     {
       "name": "legal@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@desktop: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "newsroom@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@desktop: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@desktop: table 1 fits its container",
       "pass": true,
       "detail": ""
     },
@@ -757,6 +905,16 @@
       "detail": ""
     },
     {
+      "name": "study@desktop: table 7 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@desktop: table 7 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "updates@desktop: HTTP 200",
       "pass": true,
       "detail": ""
@@ -867,6 +1025,31 @@
       "detail": ""
     },
     {
+      "name": "families@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "families@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "families@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "families@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "families@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "faq@mobile: HTTP 200",
       "pass": true,
       "detail": ""
@@ -917,6 +1100,16 @@
       "detail": ""
     },
     {
+      "name": "financing@mobile: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "financing@mobile: table 1 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "index@mobile: HTTP 200",
       "pass": true,
       "detail": ""
@@ -963,6 +1156,41 @@
     },
     {
       "name": "legal@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@mobile: HTTP 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "newsroom@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@mobile: table 1 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "newsroom@mobile: table 1 fits its container",
       "pass": true,
       "detail": ""
     },
@@ -1162,6 +1390,16 @@
       "detail": ""
     },
     {
+      "name": "study@mobile: table 7 has caption and scoped headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "study@mobile: table 7 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "updates@mobile: HTTP 200",
       "pass": true,
       "detail": ""
@@ -1192,7 +1430,7 @@
       "detail": ""
     },
     {
-      "name": "internal links and anchors resolve (580 checked)",
+      "name": "internal links and anchors resolve (744 checked)",
       "pass": true,
       "detail": ""
     },
@@ -1239,7 +1477,7 @@
     {
       "name": "menu: visible touch targets at least 44px tall",
       "pass": true,
-      "detail": "52,52,53,46,46,46,53,46,46,46,46,53,46,46,46,46,46"
+      "detail": "52,52,53,46,46,46,46,53,46,46,46,46,53,46,46,46,46,46,46"
     },
     {
       "name": "menu: link navigates",
@@ -1262,7 +1500,7 @@
       "detail": ""
     },
     {
-      "name": "keyboard: all 33 tab stops on home show a visible focus outline",
+      "name": "keyboard: all 36 tab stops on home show a visible focus outline",
       "pass": true,
       "detail": "[]"
     },
@@ -1379,7 +1617,7 @@
     {
       "name": "download: programme brief PDF served (200, application/pdf, valid header, >10 KB)",
       "pass": true,
-      "detail": "200 application/pdf 68565 bytes"
+      "detail": "200 application/pdf 68585 bytes"
     },
     {
       "name": "download: homepage 'Download the brief' triggers a file download",
@@ -1442,6 +1680,106 @@
       "detail": ""
     },
     {
+      "name": "WCAG 1.4.12 text spacing: no overflow on any page (390 px)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion: no transitions or smooth scroll when requested",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessibility tree: every page exposes main, navigation (or the collapsed Menu button), contentinfo and a level-1 heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "forced colours: skip link focusable and visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "200% zoom (640 CSS px): no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible PDF appointment-preparation-sheet.pdf: tagged, language set, has title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible PDF nwpharmatech-programme-brief.pdf: tagged, language set, has title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "families: no forms, inputs, quiz, scoring or investment prompts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted financing-structure.html: axe WCAG 2.2 AA no violations (forms included)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted financing-structure.html: every form control inactive",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "restricted financing-structure.html: states access is not eligibility confirmation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted funding-figures.html: axe WCAG 2.2 AA no violations (forms included)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted funding-figures.html: every form control inactive",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "restricted funding-figures.html: states access is not eligibility confirmation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted index.html: axe WCAG 2.2 AA no violations (forms included)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted index.html: every form control inactive",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "restricted index.html: states access is not eligibility confirmation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted investor-journey.html: axe WCAG 2.2 AA no violations (forms included)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "restricted investor-journey.html: every form control inactive",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "restricted investor-journey.html: states access is not eligibility confirmation",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "restricted: unconfigured environment returns 503",
       "pass": true,
       "detail": ""
@@ -1470,8 +1808,8 @@
     "tel:988": 1
   },
   "summary": {
-    "total": 216,
-    "passed": 216,
+    "total": 268,
+    "passed": 268,
     "failed": 0
   }
 }

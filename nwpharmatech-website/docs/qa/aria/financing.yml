@@ -1,0 +1,172 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "About":
+  - text: About
+  - list:
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+- main:
+  - paragraph: About
+  - heading "Funding and financing" [level=1]
+  - paragraph: How the programme is paid for, who decides how money is spent, and how we report progress. Nothing on this page is an offer, and no investment is being accepted.
+  - region "What funding supports":
+    - heading "What funding supports" [level=2]
+    - list:
+      - listitem: Running clinical studies, including the planned Phase 2B study
+      - listitem: Manufacturing clinical supplies of NWPT-SM32300 to GMP standard
+      - listitem: Regulatory, safety and quality work
+      - listitem: Programme operations, data management and analysis
+    - heading "What is and is not funded" [level=2]
+    - table "Funding milestones":
+      - caption: Funding milestones
+      - rowgroup:
+        - row "Milestone Status Date Source":
+          - columnheader "Milestone"
+          - columnheader "Status"
+          - columnheader "Date"
+          - columnheader "Source"
+      - rowgroup:
+        - 'row "Financing for the Phase 2B study Status: In progress Date: As at August 2026 Source: Company records"':
+          - rowheader "Financing for the Phase 2B study"
+          - 'cell "Status: In progress"'
+          - 'cell "Date: As at August 2026"'
+          - 'cell "Source: Company records"'
+        - 'row "Programme financing route for eligible investors Status: In progress Date: In development; not available Source: Company records"':
+          - rowheader "Programme financing route for eligible investors"
+          - 'cell "Status: In progress"'
+          - 'cell "Date: In development; not available"'
+          - 'cell "Source: Company records"'
+    - paragraph: "Figures are published only once they are approved and can be shown as one of: planning target, committed funding, cash received, or money spent. Expressions of interest are never counted as funding."
+  - region "Who controls spending and clinical decisions":
+    - heading "Who controls spending and clinical decisions" [level=2]
+    - paragraph:
+      - strong: Spending
+      - text: is controlled by the board of NWPharmaTech Ltd, the programme's company.
+    - paragraph:
+      - strong: Clinical decisions
+      - text: (study design, eligibility, dosing, safety, analysis and publication) are made by the clinical and scientific leadership and approved by regulators and research ethics committees. Funders and investors have no say in them and no access to participant data.
+    - heading "How progress is reported" [level=2]
+    - paragraph:
+      - text: Dated events appear on the
+      - link "updates page":
+        - /url: updates.html
+      - text: ", and study milestones with their sources on the"
+      - link "study page":
+        - /url: study.html#milestones
+      - text: . Programme reports, answering what changed, what supports it, what remains unresolved and what happens next, are planned; see the
+      - link "newsroom":
+        - /url: newsroom.html
+      - text: .
+    - paragraph: Reports are written for the public and are not investment communications.
+  - region "The financing route in development":
+    - heading "The financing route in development" [level=2]
+    - text: Programme information
+    - paragraph:
+      - strong: "Preferred: platform-integrated programme financing."
+      - text: Eligible investors would take part in a dedicated programme vehicle through a regulated investor platform, which would carry out eligibility, identity and anti-money-laundering checks. Where feasible, investors' interests would be issued as permissioned tokens at closing.
+    - paragraph:
+      - strong: "Fallback: register-first."
+      - text: Interests would be recorded on a conventional register of holders, with any digital representation added only if and when lawful and approved.
+    - paragraph: Eligibility would be set by the law of each country, is likely to be limited to professional, qualified or accredited investors, and would exclude some countries.
+    - paragraph: "[TBC: board and legal approval of the funding and financing wording on this page before publication]"
+    - complementary:
+      - heading "Current status" [level=3]
+      - paragraph: Not available
+      - paragraph: No tokens have been issued, no investment is being accepted, and no investment, payment or token function on this website is active.
+      - paragraph:
+        - strong: "Risk, in brief:"
+        - text: NWPT-SM32300 may not work; most investigational medicines are never approved; any money invested could be lost; interests may be impossible to sell.
+      - paragraph:
+        - strong: Beware of scams.
+        - text: Any token, coin or "presale" claiming a link to us is not ours. We never make unsolicited investment approaches; please
+        - link "report":
+          - /url: contact.html
+        - text: any you receive.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

@@ -1,5 +1,7 @@
 # Sources used and how conflicts were resolved
 
+The machine-readable register is `content/sources.json`: every fact, milestone and update points to an entry there. This document explains the sources and the conflicts between them.
+
 ## Sources read
 
 | Source | Date | Used for |
@@ -32,3 +34,16 @@
 | McGuire 2018 | Teaser "p = 0.019" | Not used. The verified value is p = 0.02; the site gives no p-values |
 | Appiah-Kusi 2020 | Draft v1 said CBD reduced physiological stress responses | Corrected: the cortisol difference was not significant |
 | Devinsky 2017 | Draft v1 listed "reduced appetite" | Replaced with the confirmed adverse events |
+
+## Added in draft 3
+
+| Topic | Issue | Resolution |
+|---|---|---|
+| Phase 2B doses | The instruction refers to a proposed 300/600/900 mg range from a CHR-P design source; that source was not found in Drive, Gmail or the repository | Not published; no rationale invented (missing input 1) |
+| Phase 1 dosing date | The draft 2 milestone said "before August 2025"; the registry start date is 22 September 2025 | Changed to "before Phase 1 dosing (2025)" |
+| Taylor et al. 2018 | My verification request gave a wrong title ("GW42003") | The library uses the verified title |
+| Kane et al. 2016 (RAISE) | My request said NEJM | *Am J Psychiatry* 2016;173(4):362–372 |
+| Salazar de Pablo 2021 | The paper reports pooled and Kaplan–Meier estimates, which differ | The graphic uses pooled estimates only and is labelled so; it is unpublished pending a primary check |
+| Services | Whether first-episode services accept people at clinical high risk varies by nation | Stated per region only as far as verified; unconfirmed nhs.uk URLs omitted |
+| Phase 1 funding | The Feb 2026 letter reports outstanding supplier payments | No public "Phase 1 funded" milestone |
+| Funding figures | US$50M (Feb 2026) vs US$35M (Aug 2026) planning targets; about US$5M company-reported expenditure | Classified in the restricted area only; not public |

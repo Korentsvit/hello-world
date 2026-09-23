@@ -1,0 +1,201 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The research":
+  - text: The research
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+- main:
+  - paragraph: The research
+  - heading "Science and formulation" [level=1]
+  - paragraph: Three questions behind the programme, and how firm the answer to each one is.
+  - list:
+    - listitem:
+      - link "Why investigate CBD in this setting?":
+        - /url: "#why-cbd"
+    - listitem:
+      - link "Why investigate a micellar softgel?":
+        - /url: "#formulation"
+    - listitem:
+      - link "Why study a dose range?":
+        - /url: "#dose"
+  - region "Why investigate CBD in this setting?":
+    - paragraph: Question 1
+    - heading "Why investigate CBD in this setting?" [level=2]
+    - text: Established
+    - paragraph: Biological rationale
+    - paragraph:
+      - text: Cannabidiol (CBD) and THC both come from the cannabis plant but act differently. CBD does not produce a "high". Daily use of high-THC cannabis is associated with higher odds of psychotic disorder.
+      - 'link "Source: Source: Di Forti et al. 2019"':
+        - /url: evidence.html#ref-diforti-2019
+    - paragraph:
+      - text: No medicine is licensed for people at clinical high risk of psychosis, and NICE advises against antipsychotics for prevention.
+      - 'link "Source: Source: NICE CG178"':
+        - /url: evidence.html#ref-nice-cg178
+    - text: Emerging evidence
+    - paragraph: Findings from other CBD preparations
+    - paragraph:
+      - text: In small experiments, CBD and THC had opposite effects on some measures of brain activity.
+      - 'link "Source: Source: Bhattacharyya et al. 2010"':
+        - /url: evidence.html#ref-bhattacharyya-2010
+      - text: In people at clinical high risk, a single CBD dose partly shifted brain activity towards that of healthy volunteers during a memory task,
+      - 'link "Source: Source: Bhattacharyya et al. 2018"':
+        - /url: evidence.html#ref-bhattacharyya-2018
+      - text: and a small three-week study reported lower symptom scores than placebo.
+      - 'link "Source: Source: Bhattacharyya et al. 2024"':
+        - /url: evidence.html#ref-bhattacharyya-2024
+    - paragraph:
+      - text: "In schizophrenia, results are mixed: two small trials were favourable"
+      - 'link "Source: Source: McGuire et al. 2018"':
+        - /url: evidence.html#ref-mcguire-2018
+      - 'link "Source: Source: Leweke et al. 2012"':
+        - /url: evidence.html#ref-leweke-2012
+      - text: and one found no benefit.
+      - 'link "Source: Source: Boggs et al. 2018"':
+        - /url: evidence.html#ref-boggs-2018
+    - text: Programme information
+    - paragraph: About NWPT-SM32300
+    - paragraph: No study of NWPT-SM32300 has yet been done in people at clinical high risk. None of the findings above used NWPT-SM32300.
+    - text: Open question
+    - paragraph: Unanswered
+    - paragraph:
+      - text: Whether CBD reduces symptoms, improves functioning or lowers the risk of psychosis in this group. A larger UK trial that could have answered this did not go ahead.
+      - 'link "Source: Source: CANTOP-RCT report"':
+        - /url: evidence.html#ref-cantop
+    - paragraph:
+      - link "Full study cards in the evidence library":
+        - /url: evidence.html
+  - region "Why investigate a micellar softgel?":
+    - paragraph: Question 2
+    - heading "Why investigate a micellar softgel?" [level=2]
+    - text: Established
+    - paragraph: The delivery problem
+    - paragraph:
+      - text: CBD dissolves poorly in water. Taken by mouth on an empty stomach, only about 6% of a dose is estimated to reach the bloodstream, and much is broken down by the liver first. A high-fat meal increases absorption several-fold, which makes exposure depend on what someone has eaten.
+      - 'link "Source: Source: Perucca and Bialer 2020"':
+        - /url: evidence.html#ref-perucca-2020
+      - 'link "Source: Source: Taylor et al. 2018"':
+        - /url: evidence.html#ref-taylor-2018
+    - text: Programme information
+    - paragraph: The design of NWPT-SM32300
+    - paragraph: "NWPT-SM32300 is a 300 mg oral softgel capsule. Its contents are a self-emulsifying (micellar) lipid formulation: when the capsule opens in the gut, the contents are designed to disperse into very small droplets, a way of carrying poorly water-soluble medicines. A fixed 300 mg capsule also avoids measuring doses from an oil."
+    - text: Open question
+    - paragraph: Not yet shown
+    - paragraph:
+      - text: Whether this formulation gives more consistent absorption than other CBD products, and how food affects it, has not been published. The
+      - link "Phase 1 study":
+        - /url: phase-1.html
+      - text: measured absorption; its results are not yet published. No study has measured how much reaches the brain.
+    - figure "What the formulation is designed to do, and where the evidence currently stops. Schematic, not to scale; it does not show a proven mechanism or any clinical benefit.":
+      - 'img "From capsule to measurement Five steps. 1: a 300 mg softgel containing cannabidiol in a lipid fill. 2: in the gut the capsule opens and the fill disperses into very small droplets. 3: cannabidiol is absorbed through the gut wall, and much is broken down by the liver. 4: cannabidiol and its breakdown products in the blood, which is what the Phase 1 study measured. 5, shown dashed: the brain, which was not measured; delivery to the brain has not been shown."': "1 Softgel 300 mg CBD in a lipid fill 2 In the gut Fill disperses into tiny droplets 3 Absorption Through the gut wall; much is broken down by the liver 4 In the blood CBD and breakdown products Measured in Phase 1 5 The brain: not measured Delivery to the brain has not been shown"
+      - text: What the formulation is designed to do, and where the evidence currently stops. Schematic, not to scale; it does not show a proven mechanism or any clinical benefit.
+  - region "Why study a dose range?":
+    - paragraph: Question 3
+    - heading "Why study a dose range?" [level=2]
+    - text: Established
+    - paragraph: General principle
+    - paragraph:
+      - text: Benefits and side effects of a medicine can both depend on dose. With CBD, rises in liver enzymes are dose-related.
+      - 'link "Source: Source: Epidyolex SmPC"':
+        - /url: evidence.html#ref-epidyolex-smpc
+      - text: A Phase 2B study compares doses so that any later study can use the dose with the best balance of benefit and tolerability, or stop if none is adequate.
+    - text: Emerging evidence
+    - paragraph: Doses used with other CBD preparations
+    - paragraph:
+      - text: Studies in people at clinical high risk used 600 mg a day.
+      - 'link "Source: Source: Bhattacharyya et al. 2024"':
+        - /url: evidence.html#ref-bhattacharyya-2024
+      - text: Trials in schizophrenia used between 600 and 1,000 mg a day, with mixed results.
+      - 'link "Source: Source: Boggs et al. 2018"':
+        - /url: evidence.html#ref-boggs-2018
+      - 'link "Source: Source: McGuire et al. 2018"':
+        - /url: evidence.html#ref-mcguire-2018
+      - text: Doses cannot be transferred directly between products that are absorbed differently.
+    - text: Programme information
+    - paragraph: NWPT-SM32300
+    - paragraph: Each capsule contains 300 mg, so doses are multiples of 300 mg. The Phase 1 study gave single doses of 600 mg and 900 mg to healthy volunteers. The doses for the Phase 2B study will be published with its design.
+    - text: Open question
+    - paragraph: Unanswered
+    - paragraph: Which dose, if any, helps people at clinical high risk, and which is best tolerated with daily use.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

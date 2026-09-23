@@ -1,0 +1,193 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The research":
+  - text: The research
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+- main:
+  - paragraph: For young people and families
+  - heading "If you have been told you may be at risk of psychosis" [level=1]
+  - paragraph: A plain guide to what "clinical high risk" means, what an assessment involves, and how to get support. It is general information, not advice about you. It does not ask for any information about you.
+  - paragraph:
+    - text: Need help now?
+    - link "Urgent help by country":
+      - /url: faq.html#urgent-help
+  - region "What it means":
+    - heading "What it means" [level=2]
+    - list:
+      - listitem: You have had experiences, such as unusual thoughts, sounds, or feeling that people are against you, that are milder or briefer than psychosis.
+      - listitem: A specialist has found that these meet agreed criteria that go with a higher chance of developing psychosis than most people have.
+      - listitem: You deserve support now, for the experiences themselves and for anything that comes with them, such as anxiety, low mood or problems sleeping.
+    - heading "What it does not mean" [level=2]
+    - list:
+      - listitem:
+        - text: It is
+        - strong: not
+        - text: a diagnosis of psychosis or schizophrenia.
+      - listitem:
+        - text: It does
+        - strong: not
+        - text: mean psychosis will happen. Most people in this group do not develop psychosis; in pooled studies about one in four did within three years.
+        - 'link "Source: Source: Salazar de Pablo et al. 2021"':
+          - /url: evidence.html#ref-salazar-2021
+      - listitem:
+        - text: It does
+        - strong: not
+        - text: mean you need medicine. In England, psychological therapy is the recommended first step.
+        - 'link "Source: Source: NICE CG155"':
+          - /url: evidence.html#ref-nice-cg155
+  - region "What a specialist assessment may involve":
+    - heading "What a specialist assessment may involve" [level=2]
+    - list:
+      - listitem:
+        - strong: A conversation, not a test.
+        - text: There is no blood test or scan for this. A clinician asks about your experiences, how often they happen, how long they have lasted and how much they affect you, often using a structured interview.
+      - listitem:
+        - strong: Everyday life.
+        - text: Questions about school, college, work, friends, sleep, and use of alcohol or drugs.
+      - listitem:
+        - strong: Family history.
+        - text: Whether close relatives have had mental health difficulties.
+      - listitem:
+        - strong: Family involvement.
+        - text: With your agreement, someone close to you may be asked what they have noticed.
+      - listitem:
+        - strong: What happens next.
+        - text: You may be offered support and regular check-ins, therapy, help with other difficulties, or a referral elsewhere. Sometimes the answer is that you do not meet the criteria, and that can change over time.
+    - paragraph:
+      - text: Assessment approaches are described in the research literature.
+      - 'link "Source: Source: Fusar-Poli et al. 2013"':
+        - /url: evidence.html#ref-fusarpoli-2013
+    - complementary:
+      - heading "Prepare for an appointment" [level=3]
+      - paragraph: "A one-page sheet to fill in by hand before an appointment: what you have noticed, what helps, your questions, and who is coming with you. Nothing is sent to us."
+      - paragraph:
+        - link "Download the sheet (PDF, 1 page)":
+          - /url: downloads/appointment-preparation-sheet.pdf
+  - region "Questions you might ask a clinician":
+    - heading "Questions you might ask a clinician" [level=2]
+    - list:
+      - listitem: What did the assessment find, and what does that mean for me?
+      - listitem: What support or therapy can you offer, and how soon?
+      - listitem: How often will we meet, and who do I contact between appointments?
+      - listitem: What should I, or my family, look out for, and what should we do if things get worse?
+      - listitem: Could anything else explain these experiences, such as stress, sleep, substances or another health condition?
+      - listitem: Can someone help me talk to my school, college or employer?
+      - listitem: Will my information be shared, and with whom?
+      - listitem: Are there research studies I could consider, and how would taking part affect my care?
+  - region "School, work and family life":
+    - heading "School, work and family life" [level=2]
+    - paragraph: "You can ask for adjustments, such as extra time, a quiet space or a change to working hours, and you choose how much to share. In the UK:"
+    - list:
+      - listitem: If mental health difficulties have a substantial, long-term effect on daily life, the Equality Act 2010 may require schools, colleges, universities and employers to make reasonable adjustments.
+      - listitem:
+        - text: Access to Work can help people in paid work, including through a Mental Health Support Service.
+        - link "gov.uk":
+          - /url: https://www.gov.uk/access-to-work
+      - listitem:
+        - text: Schools in England can provide special educational needs (SEN) support, including for social, emotional and mental health needs.
+        - link "gov.uk":
+          - /url: https://www.gov.uk/children-with-special-educational-needs
+    - heading "For parents, carers and partners" [level=2]
+    - list:
+      - listitem: Listen without arguing about the experiences; ask how they feel and what would help.
+      - listitem: Keep routines, sleep and time together where you can.
+      - listitem: Ask the care team how you can be involved, with the young person's agreement.
+      - listitem: Look after your own wellbeing too; your GP can tell you about support for carers.
+  - region "Where to get help":
+    - heading "Where to get help" [level=2]
+    - paragraph: Services differ between countries and local areas. Not every early intervention service assesses people who may be at risk, so ask what your local service offers.
+    - group: England
+    - group: Wales
+    - group: Scotland
+    - group: Northern Ireland
+    - group: Ireland
+    - group: United States
+    - paragraph:
+      - text: Routes checked
+      - time: 23 September 2026
+      - text: ". Services change: always confirm with your GP or local service."
+    - paragraph: Research studies, including ours, are separate from your care. This page does not recruit for any study.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

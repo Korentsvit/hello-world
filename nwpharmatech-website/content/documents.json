@@ -31,7 +31,7 @@
       "id": "appointment-sheet",
       "title": "Appointment preparation sheet",
       "file": "downloads/appointment-preparation-sheet.pdf",
-      "public": false,
+      "public": true,
       "history": [
         {
           "version": "1",

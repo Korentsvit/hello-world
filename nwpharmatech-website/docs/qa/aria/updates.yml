@@ -1,0 +1,126 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The programme":
+  - text: The programme
+  - list:
+    - listitem:
+      - link "Programme overview":
+        - /url: programme.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "Programme updates":
+        - /url: updates.html
+- main:
+  - paragraph: Programme updates
+  - heading "Programme updates" [level=1]
+  - paragraph:
+    - text: Dated events that have happened. Planned steps are listed separately on the
+    - link "study page":
+      - /url: study.html#milestones
+    - text: . When something changes, we add a dated entry rather than rewriting earlier ones.
+  - heading "Timeline" [level=2]
+  - list:
+    - listitem:
+      - time: 30 March 2026
+      - text: · Operational
+      - heading "Phase 1 analysis outputs delivered" [level=3]
+      - paragraph: The statistical and pharmacokinetic analysis outputs for the Phase 1 study were delivered. A results summary will be published after review.
+    - listitem:
+      - time: 11 March 2026
+      - text: · Clinical
+      - heading "Phase 1 database locked" [level=3]
+      - paragraph: The Phase 1 study database was locked so that the final analysis could begin.
+    - listitem:
+      - time: 10 December 2025
+      - text: · Clinical
+      - heading "Phase 1 study completed" [level=3]
+      - paragraph: The last study activity took place in the Phase 1 study of NWPT-SM32300 in 14 healthy volunteers.
+    - listitem:
+      - time: 27 August 2025
+      - text: · Clinical
+      - heading "Phase 1 study started" [level=3]
+      - paragraph: The first healthy volunteers gave consent to take part in the UK Phase 1 study (NCT07186283), which compared single doses of NWPT-SM32300 with the licensed cannabidiol medicine Epidyolex.
+  - complementary:
+    - heading "About these updates" [level=3]
+    - paragraph: Each entry records a completed event and is supported by a programme record.
+    - paragraph: Updates are written for the public, patients and clinicians. They are not investment communications.
+    - paragraph:
+      - link "Editorial standards":
+        - /url: newsroom.html#standards
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

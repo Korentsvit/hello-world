@@ -394,3 +394,17 @@ ol.design-steps li { margin-bottom: .4rem; }
   .table-stack td[data-label]::before { content: attr(data-label) ": "; font-weight: 600; color: var(--muted); }
 }
 .filters[hidden], [hidden] { display: none !important; }
+
+/* ---------- Increment C ---------- */
+.region-list { display: grid; gap: 8px; margin-bottom: .8rem; }
+.region { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 0 16px; }
+.region summary { cursor: pointer; font-weight: 650; color: var(--brand-dark); min-height: 44px; display: flex; align-items: center; }
+.region[open] summary { border-bottom: 1px solid var(--line); margin-bottom: .6rem; }
+.region ul.links { margin-top: .5rem; }
+.press-photos { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+.report { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1rem; }
+.journey { list-style: none; padding: 0; display: grid; gap: 14px; }
+.journey-step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.owner { display: inline-block; margin-left: .4rem; font-size: .75rem; font-weight: 700; color: var(--co-ink); background: var(--co-bg); padding: .2em .6em; border-radius: 999px; vertical-align: middle; }
+.signup-msg { min-height: 1.4em; font-weight: 600; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

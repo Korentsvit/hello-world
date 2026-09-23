@@ -363,3 +363,65 @@ class Renderer:
                        for x in self.c.refs["review_log"])
         return (f'<div class="table-wrap"><table class="table-stack"><caption>Evidence reviews</caption><thead><tr><th scope="col">Date</th>'
                 f'<th scope="col">Review</th><th scope="col">Method</th></tr></thead><tbody>{rows}</tbody></table></div>')
+
+    # ---------- families: services ----------
+    def _json(self, name):
+        import json
+        return json.loads((self.root / "content" / name).read_text())
+
+    def b_services(self):
+        s = self._json("services.json")
+        out = ['<div class="region-list">']
+        for r in s["regions"]:
+            routes = "".join(f"<li>{escape(x)}</li>" for x in r["routes"])
+            links = "".join(f'<li><a href="{u}" rel="external">{escape(t)}</a></li>' for t, u in r["links"])
+            out.append(f'<details class="region"><summary>{escape(r["name"])}</summary><div><ul>{routes}</ul>'
+                       + (f'<ul class="plain links">{links}</ul>' if links else "") + "</div></details>")
+        out.append("</div>")
+        out.append(f'<p class="small">Routes checked <time datetime="{s["checked"]}">{fmt_date(s["checked"])}</time>. Services change: always confirm with your GP or local service.</p>')
+        return "".join(out)
+
+    def b_education_work(self):
+        s = self._json("services.json")
+        items = []
+        for text, url in s["education_work_uk"]:
+            items.append(f"<li>{escape(text)}" + (f' <a href="{url}" rel="external">gov.uk</a>' if url else "") + "</li>")
+        return "<ul>" + "".join(items) + "</ul>"
+
+    # ---------- newsroom ----------
+    def b_boilerplate(self):
+        f = lambda k: escape(self.c.fact(k, self.page))
+        return (f'<p>{f("company.name")} is a UK company developing {f("product.name")}, an investigational oral cannabidiol medicine, '
+                f'for people at clinical high risk of psychosis. A Phase 1 study in healthy volunteers ({f("phase1.nct")}) was completed in '
+                f'{f("phase1.end")}; a Phase 2B study is planned. {f("product.name")} is not approved for any use and its effectiveness is unproven.</p>')
+
+    def b_fact_sheet(self):
+        rows = [("Company", f'{self.c.fact("company.name", self.page)}, company number {self.c.fact("company.number", self.page)}, {self.c.fact("company.jurisdiction", self.page)}'),
+                ("Investigational medicine", f'{self.c.fact("product.name", self.page)}: {self.c.fact("product.strength", self.page)} {self.c.fact("product.form", self.page)} of {self.c.fact("product.api", self.page)}'),
+                ("Regulatory status", self.c.fact("product.status", self.page)),
+                ("Completed study", f'Phase 1, {self.c.fact("phase1.population", self.page)}; {self.c.fact("phase1.nct", self.page)}, {self.c.fact("phase1.isrctn", self.page)}; completed {self.c.fact("phase1.end", self.page)}'),
+                ("Planned study", f'Phase 2B in {self.c.fact("phase2b.population", self.page)}: {self.c.fact("phase2b.status", self.page)}'),
+                ("Media contact", f'{self.c.fact("company.phone_display", self.page)} (head office)')]
+        body = "".join(f'<tr><th scope="row">{escape(a)}</th><td>{escape(b)}</td></tr>' for a, b in rows)
+        return f'<div class="table-wrap"><table class="table-stack"><caption>Fact sheet (as of {escape(self.c.fact("site.as_of", self.page))})</caption><tbody>{body}</tbody></table></div>'
+
+    def b_press_photos(self):
+        people = [p for p in self.c.people["people"] if p["portrait"]["authorised"] and (self.root / "src" / p["portrait"]["file"]).exists()]
+        if not people:
+            return ""
+        figs = "".join(f'<figure><img src="{p["portrait"]["file"]}" alt="{escape(p["name"])}" loading="lazy"><figcaption>{escape(p["name"])}, {escape(p["role"])}. <a href="{p["portrait"]["file"]}" download>Download</a></figcaption></figure>' for p in people)
+        return f'<h3>Photographs</h3><div class="press-photos">{figs}</div>'
+
+    def b_reports(self):
+        reps = self._json("reports.json")["reports"]
+        if not reps:
+            return ""
+        out = ['<h2 id="reports">Programme reports</h2>']
+        for r in sorted(reps, key=lambda x: x["published"], reverse=True):
+            qa = "".join(f"<h4>{escape(q)}</h4><p>{escape(r[k])}</p>" for q, k in (("What changed?", "changed"), ("What supports it?", "support"), ("What remains unresolved?", "unresolved"), ("What happens next?", "next")))
+            out.append(f'<article class="report"><h3>{escape(r["title"])}</h3><p class="small">Period: {escape(r["period"])} · Published <time datetime="{r["published"]}">{fmt_date(r["published"])}</time></p>{qa}</article>')
+        return "".join(out)
+
+    def b_summary(self, field):
+        """A single field of the study summary (keeps the brief and pages in step)."""
+        return escape(self.c.study["summary"][field])

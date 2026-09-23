@@ -301,6 +301,82 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   check("public build contains no <form> elements", PAGES.every((p) => !fs.readFileSync(path.join(root, p + ".html"), "utf8").includes("<form")));
 }
 
+// ---- Accessibility extras (WCAG 2.2 AA-oriented; automated evidence only) ----
+{
+  const bad = { spacing: [], motion: [], landmarks: [] };
+  const ariaDir = path.join(outDir, "aria");
+  fs.mkdirSync(ariaDir, { recursive: true });
+  const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile, reducedMotion: "reduce" });
+  const page = await ctx.newPage();
+  for (const name of PAGES) {
+    await page.goto(base + name + ".html");
+    // WCAG 1.4.12 text spacing: content must not overflow or be clipped
+    await page.addStyleTag({ content: "*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}p{margin-bottom:2em!important}" });
+    if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) bad.spacing.push(name);
+    // Reduced motion: no transitions or smooth scrolling
+    const m = await page.evaluate(() => ({ sb: getComputedStyle(document.documentElement).scrollBehavior, tr: [...document.querySelectorAll("a,button,.card-link")].some((e) => parseFloat(getComputedStyle(e).transitionDuration) > 0) }));
+    if (m.sb === "smooth" || m.tr) bad.motion.push(name);
+    // Accessibility tree: landmarks and headings, saved for review
+    const snap = await page.locator("body").ariaSnapshot();
+    fs.writeFileSync(path.join(ariaDir, name + ".yml"), snap);
+    if (!/- main/.test(snap) || !(/- navigation/.test(snap) || /button "Menu"/.test(snap)) || !/- contentinfo/.test(snap) || !/heading ".+" \[level=1\]/.test(snap)) bad.landmarks.push(name);
+  }
+  check("WCAG 1.4.12 text spacing: no overflow on any page (390 px)", bad.spacing.length === 0, bad.spacing.join(","));
+  check("reduced motion: no transitions or smooth scroll when requested", bad.motion.length === 0, bad.motion.join(","));
+  check("accessibility tree: every page exposes main, navigation (or the collapsed Menu button), contentinfo and a level-1 heading", bad.landmarks.length === 0, bad.landmarks.join(","));
+  await ctx.close();
+  const fc = await browser.newContext({ viewport: VIEWPORTS.desktop, forcedColors: "active" });
+  const fp = await fc.newPage();
+  await fp.goto(base + "index.html");
+  await fp.screenshot({ path: path.join(shots, "index-forced-colors.png") });
+  await fp.keyboard.press("Tab");
+  check("forced colours: skip link focusable and visible", await fp.evaluate(() => document.activeElement.classList.contains("skip-link") && document.activeElement.getBoundingClientRect().top >= 0));
+  await fc.close();
+  // 200% zoom on a 1280 px screen = 640 CSS px; 400% = 320 CSS px (covered by width checks above)
+  const z = await browser.newContext({ viewport: { width: 640, height: 450 } });
+  const zp = await z.newPage();
+  const zbad = [];
+  for (const name of PAGES) { await zp.goto(base + name + ".html"); if (await zp.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) zbad.push(name); }
+  check("200% zoom (640 CSS px): no horizontal scroll", zbad.length === 0, zbad.join(","));
+  await z.close();
+  for (const f of fs.readdirSync(path.join(root, "downloads")).filter((f) => f.endsWith(".pdf"))) {
+    const b = fs.readFileSync(path.join(root, "downloads", f));
+    check(`accessible PDF ${f}: tagged, language set, has title`, b.includes("/StructTreeRoot") && b.includes("/Lang") && b.includes("/Title"));
+  }
+  if (PAGES.includes("families")) {
+    const h = fs.readFileSync(path.join(root, "families.html"), "utf8");
+    check("families: no forms, inputs, quiz, scoring or investment prompts", !/<form|<input|<select|quiz|risk score|\binvest(ors?|ment|ing)?\b/i.test(h.replace(/<header[\s\S]*?<\/header>|<footer[\s\S]*<\/footer>/g, "")));
+  }
+}
+
+// ---- Restricted staging build ----
+{
+  const rroot = path.resolve(here, "../restricted");
+  const rsrv = http.createServer((req, res) => {
+    let p = decodeURIComponent(new URL(req.url, "http://x").pathname); if (p.endsWith("/")) p += "index.html";
+    const f = path.join(rroot, p);
+    if (!f.startsWith(rroot) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }
+    res.writeHead(200, { "content-type": TYPES[path.extname(f)] || "application/octet-stream" }); fs.createReadStream(f).pipe(res);
+  });
+  await new Promise((r) => rsrv.listen(0, r));
+  const rbase = `http://127.0.0.1:${rsrv.address().port}/`;
+  const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
+  const page = await ctx.newPage();
+  for (const f of fs.readdirSync(rroot).filter((f) => f.endsWith(".html"))) {
+    await page.goto(rbase + f);
+    await page.addScriptTag({ content: axeSource });
+    const v = await page.evaluate(async () => (await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } })).violations.map((x) => x.id));
+    check(`restricted ${f}: axe WCAG 2.2 AA no violations (forms included)`, v.length === 0, v.join(","));
+    const live = await page.evaluate(() => [...document.querySelectorAll("input,select,textarea,button")].filter((e) => !e.disabled && !e.closest("fieldset[disabled]") && !e.closest("header") && !e.closest("nav")).length);
+    check(`restricted ${f}: every form control inactive`, live === 0, String(live));
+    const txt = await page.textContent("body");
+    check(`restricted ${f}: states access is not eligibility confirmation`, /does not confirm that anyone is eligible/.test(txt));
+    await page.screenshot({ path: path.join(shots, `restricted-${f.replace(".html", "")}-mobile.png`), fullPage: true });
+  }
+  await ctx.close();
+  rsrv.close();
+}
+
 await browser.close();
 server.close();
 

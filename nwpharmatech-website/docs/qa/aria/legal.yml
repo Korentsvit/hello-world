@@ -1,0 +1,127 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is under scientific, legal and regulatory review.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: faq.html#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: index.html
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "About":
+  - text: About
+  - list:
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+- main:
+  - text: Legal
+  - heading "Legal, privacy and accessibility" [level=1]
+  - paragraph: "This website is published by NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Important information" [level=2]
+  - list:
+    - listitem:
+      - strong: Investigational medicine.
+      - text: NWPT-SM32300 is an investigational medicine. It is not approved by any medicines regulator for any use, and its safety and effectiveness have not been established. Nothing on this website is intended to promote it or any other medicine.
+    - listitem:
+      - strong: Not medical advice.
+      - text: This website gives general information and is not a substitute for advice from a qualified health professional.
+    - listitem:
+      - strong: Not an offer.
+      - text: Nothing on this website is an offer to sell, or a solicitation of an offer to buy, any security, token, digital asset or other financial product, or an invitation or inducement to engage in investment activity, in any jurisdiction. No investment is being accepted.
+    - listitem:
+      - strong: Forward-looking statements.
+      - text: Statements about plans, study design and timelines reflect current intentions, depend on regulatory and ethics approval and other factors, and may change.
+    - listitem:
+      - strong: Accuracy.
+      - text: We aim to keep content accurate and current and to label the strength of evidence. Please consult the cited sources.
+  - heading "Privacy notice" [level=2]
+  - paragraph: "NWPharmaTech Ltd is the data controller for personal information you send us, for example by email or post. We use it only to respond to you, keep it no longer than necessary, and do not sell it. You have rights under UK and EU data protection law, including to access or delete your information and to complain to the Information Commissioner's Office (ico.org.uk). [TBC: legal review of the full privacy notice, retention period and data protection contact]"
+  - heading "Cookies" [level=2]
+  - paragraph: This website does not set cookies, use analytics, or load third-party fonts or scripts. If this changes, this section will be updated and your consent will be requested first where the law requires.
+  - heading "Accessibility" [level=2]
+  - paragraph: We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. The site supports keyboard navigation, visible focus, screen readers, text resizing to 200% and use without JavaScript. Automated checks (axe-core) report no violations on any page; a full manual audit, including with assistive technology users, has not yet been carried out.
+  - paragraph:
+    - text: If you find anything difficult to use, please
+    - link "contact us":
+      - /url: contact.html
+    - text: .
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: clinical-need.html
+    - listitem:
+      - link "Science and formulation":
+        - /url: science.html
+    - listitem:
+      - link "Evidence library":
+        - /url: evidence.html
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: study.html
+    - listitem:
+      - link "Phase 1 study":
+        - /url: phase-1.html
+    - listitem:
+      - link "For young people and families":
+        - /url: families.html
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF)":
+        - /url: downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: people.html
+    - listitem:
+      - link "Newsroom":
+        - /url: newsroom.html
+    - listitem:
+      - link "Funding and financing":
+        - /url: financing.html
+    - listitem:
+      - link "Questions and answers":
+        - /url: faq.html
+    - listitem:
+      - link "Contact":
+        - /url: contact.html
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: legal.html
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: faq.html#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: legal.html
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

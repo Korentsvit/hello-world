@@ -2,9 +2,9 @@
   "_doc": "Study hub content. Status values: Planned | In progress | Completed. 'date' is ISO (exact) or null; 'date_text' is shown when there is no exact date. Every milestone needs a source id. 'public': false keeps an item out of public pages. No percentages, recruitment counts, approvals or committee appointments may be added unless sourced.",
   "summary": {
     "as_of": "2026-09-23",
-    "investigates": "Whether NWPT-SM32300, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.",
-    "stage": "Phase 2B study planned; protocol being finalised. Not recruiting.",
-    "completed": "Phase 1 study in 14 healthy volunteers (completed December 2025; database locked March 2026; analysis outputs delivered March 2026).",
+    "investigates": "Whether {{fact:product.name}}, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in {{fact:phase2b.population}}.",
+    "stage": "Phase 2B study planned. {{fact:phase2b.protocol_status}}. Not recruiting.",
+    "completed": "Phase 1 study in {{fact:phase1.n}} healthy volunteers: completed {{fact:phase1.end}}; database locked {{fact:phase1.db_lock}}; analysis outputs delivered {{fact:phase1.outputs_delivered}}.",
     "next": "Finalise the Phase 2B protocol, then submit it for regulatory and research ethics review. No date has been set.",
     "sources": [
       "brief-2026-09",
