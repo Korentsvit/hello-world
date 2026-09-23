@@ -391,7 +391,10 @@ def validate_output(out, env, page_names, restricted_names):
 # ---------- install ----------
 def install(built, names):
     """Replace ROOT/<name> with built/<name> for each output. Old trees are moved aside first and restored if
-    any step fails, so the previous output is never left half-replaced."""
+    any step fails, so the previous output is never left half-replaced. Concurrent builds install one at a time."""
+    import fcntl
+    lock = open(ROOT / ".build.lock", "w")
+    fcntl.flock(lock, fcntl.LOCK_EX)
     aside = built.parent / "previous"
     aside.mkdir()
     moved, placed = [], []
@@ -409,6 +412,8 @@ def install(built, names):
         for n in moved:
             os.rename(aside / n, ROOT / n)
         raise
+    finally:
+        lock.close()
 
 
 def git_commit():

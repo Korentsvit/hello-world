@@ -1,7 +1,39 @@
 {
-  "_doc": "Image asset slots. An asset renders only if the file exists under src/ AND authorised is true AND caption_approved is true. Otherwise the page uses its fallback (a finished diagram or nothing); no 'image pending' box is ever shown publicly.",
+  "_doc": "Image asset slots. An asset renders only if the file exists under src/ AND authorised is true (and, where a caption is used, caption_approved is true). Otherwise its slot renders nothing, or the stated fallback; no 'image pending' box is ever shown. Missing assets are reported by the build as optional and never block publication.",
   "assets": {
-    "softgel-render": {"file": "assets/img/renders/nwpt-sm32300-softgel.jpg", "alt": "Computer-generated render of an NWPT-SM32300 softgel capsule", "caption": "NWPT-SM32300 300 mg oral softgel. Computer-generated render supplied by NWPharmaTech; not to scale. Investigational medicine.", "authorised": false, "caption_approved": false, "used_on": ["science.html#formulation"], "fallback": "diagram"},
-    "micelle-render": {"file": "assets/img/renders/micellar-dispersion.jpg", "alt": "Illustration of a lipid formulation dispersing into small droplets in water", "caption": "Illustration of self-emulsification: the capsule contents disperse into very small droplets in water. Schematic; not to scale, and not an image of the body.", "authorised": false, "caption_approved": false, "used_on": ["science.html#formulation"], "fallback": "diagram"}
+    "logo": {
+      "file": "assets/img/brand/nwpharmatech-logo.svg",
+      "alt": "NWPharmaTech",
+      "authorised": false,
+      "used_on": [
+        "header (all pages)",
+        "footer (all pages)",
+        "favicon"
+      ],
+      "fallback": "interim mark (assets/img/mark.svg) with the text wordmark",
+      "note": "Official logo from the brand guidelines (Studio P+P, 2021). Supply as SVG; replace the file and set authorised to true."
+    },
+    "softgel-render": {
+      "file": "assets/img/renders/nwpt-sm32300-softgel.jpg",
+      "alt": "Computer-generated render of an NWPT-SM32300 softgel capsule",
+      "caption": "NWPT-SM32300 300 mg oral softgel. Computer-generated render supplied by NWPharmaTech; not to scale. Investigational medicine.",
+      "authorised": false,
+      "caption_approved": false,
+      "used_on": [
+        "science.html#formulation"
+      ],
+      "fallback": "diagram"
+    },
+    "micelle-render": {
+      "file": "assets/img/renders/micellar-dispersion.jpg",
+      "alt": "Illustration of a lipid formulation dispersing into small droplets in water",
+      "caption": "Illustration of self-emulsification: the capsule contents disperse into very small droplets in water. Schematic; not to scale, and not an image of the body.",
+      "authorised": false,
+      "caption_approved": false,
+      "used_on": [
+        "science.html#formulation"
+      ],
+      "fallback": "diagram"
+    }
   }
 }

@@ -240,6 +240,22 @@ class Renderer:
                        f'<tbody>{rows}</tbody></table></div>')
         return "".join(out)
 
+    # ---------- brand ----------
+    def b_brand(self, where):
+        """The official logo once supplied and authorised (content/assets.json 'logo'); until then the
+        interim mark with the text wordmark. One switch changes the header, footer and favicon."""
+        a = self.c.assets["logo"]
+        official = a["authorised"] and (self.root / "src" / a["file"]).exists()
+        if where == "icon":
+            return a["file"] if official else "assets/img/mark.svg"
+        if official:
+            return f'<img class="brand-logo" src="{a["file"]}" alt="" height="36">' if where == "header" else \
+                   f'<img class="brand-logo" src="{a["file"]}" alt="{escape(a["alt"])}" height="32">'
+        if where == "header":
+            return ('<img src="assets/img/mark.svg" alt="" width="36" height="36">'
+                    '<span class="brand-name">nw <span>pharmatech</span></span>')
+        return "nw <span>pharmatech</span>"
+
     # ---------- assets ----------
     def b_asset(self, aid):
         import json

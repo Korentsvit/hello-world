@@ -11,7 +11,7 @@
   <meta property="og:description" content="{{description}}">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#005EB8">
-  <link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="{{block:brand:icon}}" type="image/svg+xml">
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="assets/css/site.css">
   <script src="assets/js/site.js" defer></script>
@@ -27,10 +27,7 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="NWPharmaTech home">
-        <img src="assets/img/mark.svg" alt="" width="36" height="36">
-        <span class="brand-name">nw <span>pharmatech</span></span>
-      </a>
+      <a class="brand" href="index.html" aria-label="NWPharmaTech home">{{block:brand:header}}</a>
       <nav class="site-nav" aria-label="Main">
         <ul>
           {{nav}}

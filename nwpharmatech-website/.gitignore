@@ -1,2 +1,4 @@
 build/
 .build-tmp-*/
+.build.lock
+__pycache__/
