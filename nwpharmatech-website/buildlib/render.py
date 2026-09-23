@@ -56,9 +56,10 @@ class Renderer:
         return TOKEN.sub(repl, TOKEN.sub(repl, html))
 
     def cite(self, rid):
+        # The "Source:" prefix is link text, seen and announced once (not added again by CSS), and translatable.
         r = self.c.ref(rid, self.page)
         return (f'<a class="cite" href="evidence.html#ref-{rid}">'
-                f'<span class="visually-hidden">Source: </span>{escape(r["short"])}</a>')
+                f'{escape(self.c.ui["source"])}: {escape(r["short"])}</a>')
 
     def src_label(self, sid):
         s = self.c.sources.get(sid) or {}

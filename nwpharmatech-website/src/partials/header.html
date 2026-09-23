@@ -19,7 +19,7 @@
 <body>
   <a class="skip-link" href="#main">{{ui:skip}}</a>
   {{env_banner}}
-  <aside class="notice-bar" aria-label="Important notice">
+  <aside class="notice-bar" aria-label="{{ui:notice_region}}">
     <div class="container">
       {{ui:notice}}
     </div>
@@ -27,8 +27,8 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="NWPharmaTech home">{{block:brand:header}}</a>
-      <nav class="site-nav" aria-label="Main">
+      <a class="brand" href="index.html" aria-label="{{ui:brand_home}}">{{block:brand:header}}</a>
+      <nav class="site-nav" aria-label="{{ui:nav_main}}">
         <ul>
           {{nav}}
         </ul>
@@ -38,7 +38,7 @@
         <span class="nav-toggle-label">{{ui:menu}}</span>
       </button>
     </div>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Main (mobile)" hidden>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="{{ui:nav_mobile}}" hidden>
       <div class="container">
         {{mobile_nav}}
       </div>
