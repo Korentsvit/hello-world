@@ -1,0 +1,30 @@
+%% Editable source of the "How the parts relate" diagram on /financing (docs/dao/relationship-review.md).
+%% Internal: not published. The page renders the same structure as HTML (src/pages/financing.html, #structure);
+%% change both together. Corrected from source/15-dao-governance-architecture.mmd (NWPT-DAO-visual-tranche-01):
+%%  - milestone review no longer feeds the sponsor's clinical decisions: money pays for research work only;
+%%  - sponsor, investigators, ethics committee and regulator are separate, with no shared node or hierarchy;
+%%  - the private financing lane is marked proposed throughout; "bank / custody, dual control" is left out
+%%    until the arrangement is agreed; the regulated investor platform (agreed route) is shown.
+flowchart TB
+  subgraph PUBLIC["Public information (exists now)"]
+    C["Community, researchers and press"] -->|"read, ask questions, send corrections"| W["Science, evidence and updates on this website"]
+    NW["No investment, payment, token or wallet function here"]
+  end
+
+  subgraph PRIVATE["Private financing (PROPOSED; only if it goes ahead)"]
+    E["Eligible investors"] -->|"checked by a regulated investor platform; private legal documents"| V["Dedicated programme vehicle"]
+    V -->|"records each interest in"| R["Legal register: the definitive record"]
+    R -. "may be mirrored, where feasible, by" .-> M["Permissioned digital record (under evaluation)"]
+    RC["If the records differ, the register controls"]
+    V -->|"releases money in stages against operational milestones"| RW["Research work (paid for, not decided)"]
+  end
+
+  subgraph CLINICAL["Clinical and regulatory responsibilities (set by clinical trial law)"]
+    S["Sponsor: design, dose, endpoints, safety reporting, manufacturing quality"]
+    I["Investigators: conduct at each site; participants' care"]
+    H["Research ethics committee: independent review"]
+    G["Medicines regulator: authorisation, inspection, can stop the study"]
+    SEP["Separate legal duties, not one chain of command"]
+  end
+
+  W -. "questions and corrections (no decision rights)" .-> S

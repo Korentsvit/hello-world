@@ -10,6 +10,7 @@ Placeholders in src/pages/*.html:
 from datetime import date
 from html import escape
 import base64
+import json
 import mimetypes
 import re
 
@@ -320,6 +321,30 @@ class Renderer:
         return f' · {escape(h["status"])}'
 
     # ---------- brand ----------
+    def b_dao_image(self, arg):
+        """A picture from the DAO visual tranche (content/dao-images.json, tools/import-dao-visuals.mjs).
+        arg: '<id>.<layout>[.eager]', layout 'wide' (full container), 'half' (a two-column side) or 'mark' (a small
+        decorative section marker). Narrow screens get the 4:3 crop around the focal point; wider ones the supplied
+        derivatives. Intrinsic width and height are set; images load lazily unless marked eager. Explanatory images
+        carry a visible caption; decorative ones have empty alt text and no caption."""
+        iid, layout, *flags = arg.split(".")
+        im = json.loads((self.root / "content" / "dao-images.json").read_text())["images"][iid]
+        url = lambda f: "/assets/img/" + f["file"]
+        srcset = lambda fs: ", ".join(f"{url(f)} {f['width']}w" for f in fs)
+        big = im["files"][-1]
+        if layout == "mark":
+            small = im["files"][0]
+            return (f'<img class="dao-mark" src="{url(small)}" srcset="{srcset(im["files"][:2])}" sizes="48px" '
+                    f'width="{small["width"]}" height="{small["height"]}" alt="" loading="lazy" decoding="async">')
+        sizes = "(min-width: 1120px) 1088px, calc(100vw - 32px)" if layout == "wide" else "(min-width: 900px) 540px, calc(100vw - 32px)"
+        load = 'fetchpriority="high"' if "eager" in flags else 'loading="lazy" decoding="async"'
+        mobile = (f'<source media="(max-width: 600px)" type="image/webp" srcset="{srcset(im["mobile"])}" sizes="calc(100vw - 32px)" '
+                  f'width="{im["mobile"][-1]["width"]}" height="{im["mobile"][-1]["height"]}">') if im["mobile"] else ""
+        pic = (f'<picture>{mobile}<img src="{url(big)}" srcset="{srcset(im["files"])}" sizes="{sizes}" width="{big["width"]}" '
+               f'height="{big["height"]}" alt="{escape(im["alt"])}" {load}></picture>')
+        cap = f'<figcaption>{escape(im["caption"])}</figcaption>' if im.get("caption") else ""
+        return f'<figure class="dao-figure dao-{layout}">{pic}{cap}</figure>'
+
     def b_brand(self, where):
         """The official logo once supplied and authorised (content/assets.json 'logo'); until then the
         interim mark with the text wordmark. One switch changes the header, footer and favicon."""

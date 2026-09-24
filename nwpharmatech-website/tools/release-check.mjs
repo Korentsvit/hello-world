@@ -115,11 +115,16 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
     page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto(base + p, { waitUntil: "load" });
-    await page.evaluate(async () => {   // bring lazy images into view so they load
-      for (let y = 0; y < document.body.scrollHeight; y += innerHeight) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 30)); }
+    await page.evaluate(async () => {   // bring each lazy image into view and give it up to 5 s to load
+      for (const i of document.images) {
+        i.scrollIntoView({ block: "center" });
+        const t0 = performance.now();
+        while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50));
+      }
       window.scrollTo(0, 0);
     });
     await page.waitForLoadState("networkidle").catch(() => {});
+    await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 10000 }).catch(() => {});
     const st = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth - innerWidth,
       imgs: [...document.images].map((i) => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, alt: i.hasAttribute("alt"), dims: i.hasAttribute("width") && i.hasAttribute("height") })),

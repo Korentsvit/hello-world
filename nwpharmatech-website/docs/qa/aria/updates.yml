@@ -65,6 +65,20 @@
     - paragraph:
       - link "Corrections log":
         - /url: /newsroom#corrections
+  - region "Following the research":
+    - heading "Following the research" [level=2]
+    - paragraph:
+      - text: Anyone can follow the programme here, read the
+      - link "evidence behind it":
+        - /url: /evidence
+      - text: and send questions or corrections through the
+      - link "contact page":
+        - /url: /contact
+      - text: . Questions and corrections help us explain the research clearly.
+    - paragraph: Following the programme, or taking part in discussion about it, creates no right to invest and no say in clinical decisions.
+    - figure "Conceptual illustration of public research dialogue. Following the programme creates no investment or clinical rights.":
+      - img "Evidence fragments and discussion nodes forming an open research knowledge commons."
+      - text: Conceptual illustration of public research dialogue. Following the programme creates no investment or clinical rights.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.

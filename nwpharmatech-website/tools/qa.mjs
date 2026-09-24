@@ -457,7 +457,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   check(`no chair or committee title unless confirmed by management (${texts.length} pages, PDFs and fragments scanned)`, hits.length === 0 && texts.length > 0, hits.join("; "));
   check("people: at most one person holds a chair title (confirmed), so the site never shows two chairs",
     confirmedBy.filter((p) => /\bchair/i.test(p.role)).length <= 1);
-  check("no empty image slots: no initials avatars or figures without an image", PAGES.every((p) => !/class="avatar"/.test(read(p)) && !/<figure[^>]*>(?:(?!<img|<svg|<video)[\s\S])*?<\/figure>/.test(read(p))));
+  check("no empty image slots: no initials avatars or figures without an image", PAGES.every((p) => !/class="avatar"/.test(read(p)) && !/<figure(?![^>]*class="gov-map")[^>]*>(?:(?!<img|<svg|<video)[\s\S])*?<\/figure>/.test(read(p))));
 }
 
 // ---- Restricted staging build ----

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24T19:58:11.098Z",
+ "generated": "2026-09-24T21:48:55.005Z",
  "server": "wrangler pages dev (Cloudflare workerd runtime)",
  "public": {
   "/clinical-need": [
@@ -1439,6 +1439,36 @@
    "name": "internal link /assets/css/site.css: 200 without redirect",
    "pass": true,
    "detail": "[{\"url\":\"/assets/css/site.css\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/dao/09-dao-bounded-governance-hero-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/dao/09-dao-bounded-governance-hero-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/dao/10-register-digital-twin-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/dao/10-register-digital-twin-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/dao/11-clinical-governance-firewall-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/dao/11-clinical-governance-firewall-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/dao/12-milestone-release-architecture-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/dao/12-milestone-release-architecture-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/dao/13-community-research-commons-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/dao/13-community-research-commons-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/dao/14-bounded-governance-sigil-128.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/dao/14-bounded-governance-sigil-128.webp\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "internal link /assets/img/mark.svg: 200 without redirect",

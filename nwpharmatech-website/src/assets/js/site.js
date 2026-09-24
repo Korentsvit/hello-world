@@ -205,3 +205,36 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
+// "Who does what" (financing.html): one group at a time. Without JavaScript every group is shown as a list.
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("[data-layers]").forEach(function (root) {
+    var picker = root.querySelector(".layer-picker");
+    if (!picker) return;
+    var btns = Array.prototype.slice.call(picker.querySelectorAll("button[data-layer]"));
+    var panels = btns.map(function (b) { return document.getElementById(b.getAttribute("data-layer")); });
+    if (panels.some(function (p) { return !p; })) return;
+    var select = function (i) {
+      btns.forEach(function (b, j) {
+        b.setAttribute("aria-pressed", String(i === j));
+        panels[j].hidden = i !== j;
+      });
+    };
+    var start = 0;
+    panels.forEach(function (p, i) { if (location.hash === "#" + p.id) start = i; });
+    picker.hidden = false;
+    root.classList.add("is-interactive");
+    select(start);
+    btns.forEach(function (b, i) { b.addEventListener("click", function () { select(i); }); });
+    // Arrow keys, Home and End move between the buttons; Enter or Space selects (native button behaviour).
+    picker.addEventListener("keydown", function (e) {
+      var i = btns.indexOf(document.activeElement), n = null;
+      if (i < 0) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") n = (i + 1) % btns.length;
+      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") n = (i - 1 + btns.length) % btns.length;
+      else if (e.key === "Home") n = 0;
+      else if (e.key === "End") n = btns.length - 1;
+      if (n !== null) { e.preventDefault(); btns[n].focus(); }
+    });
+  });
+});
