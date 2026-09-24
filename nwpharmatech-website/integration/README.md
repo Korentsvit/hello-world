@@ -43,7 +43,7 @@ listed in `manifest.json` → `publication_blockers`; the build report (`build/b
   - study.html, updates.html: reconcile the Phase 1 start date: company records give first consent on 27 August 2025, ClinicalTrials.gov gives a study start of 22 September 2025
   - index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
   - fact company.name (index) on study.html
-  - clinical design: compare the module's 7 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)
+  - clinical design: compare the module's 6 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)
 - **phase-1**
   - fact phase1.isrctn (registry-index) on phase-1.html
   - fact phase1.isrctn_url (registry-index) on phase-1.html

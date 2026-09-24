@@ -81,7 +81,7 @@
     - list:
       - listitem:
         - strong: The sponsor
-        - text: is responsible for the study's design, dose and endpoints, safety reporting, the quality of the study medicine and the regulatory submissions. NWPharmaTech Ltd was the sponsor of the Phase 1 study; the Phase 2B sponsor has not yet been named.
+        - text: is responsible for the study's design, dose and endpoints, safety reporting, the quality of the study medicine and the regulatory submissions. NWPharmaTech is developing the proposed CHR-P programme. Formal study responsibilities will be documented before the study begins.
       - listitem:
         - strong: Investigators
         - text: run the study at each site, obtain participants' informed consent and are responsible for their care.
@@ -96,9 +96,9 @@
       - link "Who does what":
         - /url: /financing#who-does-what
       - text: .
-    - figure "Conceptual illustration. Clinical decisions stay with the sponsor, investigators, ethics committees and regulators, not with funders or the community.":
+    - figure "Conceptual illustration of independent clinical oversight.":
       - img "A protected scientific core separated from surrounding participation networks."
-      - text: Conceptual illustration. Clinical decisions stay with the sponsor, investigators, ethics committees and regulators, not with funders or the community.
+      - text: Conceptual illustration of independent clinical oversight.
   - heading "Protecting participants" [level=2]
   - paragraph:
     - text: The Phase 2B study can start only after approval by a research ethics committee and the relevant medicines regulators. Anyone taking part would give informed consent and could leave at any time. Cannabidiol can raise liver enzymes and interact with other medicines,

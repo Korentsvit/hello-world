@@ -23,11 +23,11 @@ const bad = fs.readFileSync(path.join(pkg, "SHA256SUMS.txt"), "utf8").trim().spl
 if (bad.length) { console.error("checksum mismatch:\n" + bad.join("\n")); process.exit(1); }
 
 const USE = {   // id -> how the site uses it (captions are the site's own wording where the package's would overstate)
-  "09-dao-bounded-governance-hero": { role: "explanatory", caption: "Conceptual illustration of the proposed structure: a protected research core, a proposed legal register and a possible digital record, and a wider public community. Proposed and illustrative; not an offer." },
-  "10-register-digital-twin": { role: "explanatory", caption: "Conceptual illustration. Any digital record would mirror the legal register; the register controls." },
-  "11-clinical-governance-firewall": { role: "explanatory", caption: "Conceptual illustration. Clinical decisions stay with the sponsor, investigators, ethics committees and regulators, not with funders or the community." },
-  "12-milestone-release-architecture": { role: "explanatory", caption: "Conceptual illustration of proposed milestone controls: money released in stages for research work. A milestone releases spending; it does not decide anything clinical and does not mean a payout." },
-  "13-community-research-commons": { role: "explanatory", caption: "Conceptual illustration of public research dialogue. Following the programme creates no investment or clinical rights." },
+  "09-dao-bounded-governance-hero": { role: "explanatory", caption: "Conceptual illustration of the proposed structure." },
+  "10-register-digital-twin": { role: "explanatory", caption: "Conceptual illustration: a legal register and a lighter digital record derived from it." },
+  "11-clinical-governance-firewall": { role: "explanatory", caption: "Conceptual illustration of independent clinical oversight." },
+  "12-milestone-release-architecture": { role: "explanatory", caption: "Conceptual illustration of money released in stages for research work." },
+  "13-community-research-commons": { role: "explanatory", caption: "Conceptual illustration of open research dialogue." },
   "14-bounded-governance-sigil": { role: "decorative" },
 };
 const manifest = JSON.parse(fs.readFileSync(path.join(pkg, "dao-assets-manifest.json"), "utf8"));

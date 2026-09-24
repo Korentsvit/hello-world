@@ -16,6 +16,7 @@ let pass = 0, fail = 0;
 const perf = {};
 const check = (name, ok, detail = "") => { ok ? pass++ : fail++; console.log(`${ok ? "PASS" : "FAIL"}  ${name}${ok ? "" : "  --  " + String(detail).slice(0, 400)}`); };
 const settle = async (page) => {
+  await page.evaluate(() => document.querySelectorAll("details").forEach((d) => { d.open = true; }));
   await page.evaluate(async () => {
     for (const i of document.images) {
       i.scrollIntoView({ block: "center" });
@@ -105,6 +106,17 @@ try {
       });
       await page.goto(srv.base + p, { waitUntil: "load" });
       const lcp = await page.evaluate(() => new Promise((r) => setTimeout(() => r(window.__lcp), 300)));
+      const closedHeight = await page.evaluate(() => Math.round(document.querySelector("main").getBoundingClientRect().height));
+      if (p === "/financing") {
+        const limit = w === 390 ? 5500 : 3600;   // before the shortening: about 9,500 (390 px) and 4,900 (1280 px)
+        check(`/financing @${w}px: content length ${closedHeight}px (main, without site header and footer), under ${limit}px with the expandable sections closed`, closedHeight < limit, String(closedHeight));
+        const det = await page.$$eval("details.more", (ds) => ds.map((d) => ({ id: d.id, open: d.open, summary: d.querySelector("summary").textContent.trim() })));
+        check("/financing: register mechanics and full structure are expandable sections, closed by default",
+          det.map((d) => d.id).join() === "register,full-structure" && det.every((d) => !d.open), JSON.stringify(det));
+        const quals = await page.$eval("#enquiries .aside", (a) => ({ visible: !!a.offsetParent && !a.closest("details"), text: a.textContent }));
+        check("/financing: essential qualifications visible (not offer, no investment accepted, eligibility, risk)", quals.visible
+          && /no investment is being accepted/i.test(quals.text) && /eligibility/i.test(quals.text) && /could be lost/.test(quals.text));
+      }
       await settle(page);
       const st = await page.evaluate(() => ({
         overflow: document.documentElement.scrollWidth - innerWidth,
@@ -132,13 +144,13 @@ try {
           const lanesEl = document.querySelector(".gov-lanes");
           return { lanes, min: Math.min(...sizes), minBody: Math.min(...texts.filter((e) => !e.matches(".lane-status")).map((e) => parseFloat(getComputedStyle(e).fontSize))),
             clipped, over: lanesEl.scrollWidth - lanesEl.clientWidth, img: !!document.querySelector('.gov-map img'),
-            words: document.querySelectorAll(".gov-words li").length };
+            words: /^In words:/.test(document.querySelector(".gov-map figcaption")?.textContent.trim() || "") ? 1 : 0 };
         });
         if (w === 1280) check("diagram @1280px: three lanes side by side", d.lanes.length === 3 && new Set(d.lanes).size === 1, JSON.stringify(d.lanes));
         else check("diagram @390px: lanes arranged vertically", d.lanes.length === 3 && d.lanes[0] < d.lanes[1] && d.lanes[1] < d.lanes[2], JSON.stringify(d.lanes));
         check(`diagram @${w}px: all labels are real text (no raster), at least 14 px (status pills at least 13 px), nothing clipped or overflowing`,
           !d.img && d.minBody >= 14 && d.min >= 13 && d.clipped === 0 && d.over <= 0, JSON.stringify(d));
-        if (w === 1280) check("diagram: a written summary follows it", d.words === 4, String(d.words));
+        if (w === 1280) check("diagram: a written summary goes with it", d.words === 1, String(d.words));
       }
       if (shots) await page.screenshot({ path: path.join(shots, `${p.slice(1)}-${label}.png`), fullPage: true });
       await page.close();
@@ -154,8 +166,11 @@ try {
     check("Funding: no investment, wallet, payment or subscribe control", !/<(form|input|select)\b/i.test(html)
       && !controls.some((t) => /(wallet|invest|buy|subscribe|mint|pay|allocation)/i.test(t)), controls.filter((t) => /(wallet|invest|buy|subscribe|mint|pay|allocation)/i.test(t)).join(" | "));
     check("Funding: no patient or family imagery", ![...html.matchAll(/<img[^>]+src="([^"]+)"/g)].some((m) => !/\/assets\/img\/(dao\/|mark\.svg)/.test(m[1])));
+    const once = (re) => (text.match(re) || []).length;
+    check("Funding: the no-vote and milestone boundaries are each stated at most twice (no repetition in every block)",
+      once(/not vote on clinical decisions/g) <= 1 && once(/no funding milestone can authorise|approves nothing clinical/g) <= 2, `${once(/not vote on clinical decisions/g)} ${once(/no funding milestone can authorise|approves nothing clinical/g)}`);
     check("Funding: 'Who does what' says community membership creates no investment entitlement and participants do not vote on clinical decisions",
-      /creates no investment entitlement/.test(text) && /would not vote on clinical decisions/.test(text));
+      /gives no right to invest/.test(text) && /would not vote on clinical decisions/.test(text));
     check("Funding: preferred platform-integrated route and register-first fallback kept", /platform-integrated programme financing/.test(text) && /register-first/i.test(text));
     check("Funding: no statement that capital was raised, custody operates, milestones were achieved or returns are available",
       !/(has|have) (been )?raised|custody is|milestones? (has|have) been (met|achieved)|returns? (are|is) available|expected returns?/i.test(text));

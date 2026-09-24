@@ -32,7 +32,7 @@ Captions are the site's own wording. The package's captions were kept in meaning
 
 ## Open factual relationships (need the production source or management)
 
-- **A. Phase 2B sponsor.** The supplied diagram names NWPharmaTech as "pharmaceutical sponsor". Company records name NWPharmaTech Ltd as sponsor of the completed Phase 1 study only. The site says the Phase 2B sponsor has not yet been named.
+- **A. Sponsor.** The site now says "NWPharmaTech is developing the proposed CHR-P programme. Formal study responsibilities will be documented before the study begins." (management instruction, 24 Sep 2026). Earlier instructions identified NWPharmaTech as sponsor of the proposed company programme. Still to reconcile, internally: whether the planned Phase 2B is that company-sponsored programme or a separate investigator-led or grant study (`docs/preview-handoff.md`).
 - **B. Who reviews milestones, and what the milestones are.** The site says only that the vehicle "would release money in stages against defined operational milestones". The reviewer, the milestones and how this relates to today's control (spending is controlled by the company board) are not in the agreed content.
 - **C. Custody and dual control.** Not in the agreed content, so left out. If agreed, add it as proposed.
 - **D. Live pages the brief cites:** `/how-it-works`, `/proposed-token`, `/updates/how-desci-could-help`, `/about`, `/faq`.

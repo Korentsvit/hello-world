@@ -37,36 +37,28 @@
 - main:
   - paragraph: About
   - heading "Funding and financing" [level=1]
-  - paragraph: How the programme is paid for, who decides how money is spent, and how we report progress. Nothing on this page is an offer, and no investment is being accepted through this website or through the financing route described here.
+  - paragraph: How the research programme is paid for today, and the financing route we are developing. Nothing on this page is an offer.
+  - figure "Conceptual illustration of the proposed structure.":
+    - img "Conceptual governance system with a protected research core and distinct participation rings."
+    - text: Conceptual illustration of the proposed structure.
   - region "How the programme could be funded":
     - heading "How the programme could be funded" [level=2]
-    - text: Proposed
-    - 'figure "Conceptual illustration of the proposed structure: a protected research core, a proposed legal register and a possible digital record, and a wider public community. Proposed and illustrative; not an offer."':
-      - img "Conceptual governance system with a protected research core and distinct participation rings."
-      - text: "Conceptual illustration of the proposed structure: a protected research core, a proposed legal register and a possible digital record, and a wider public community. Proposed and illustrative; not an offer."
+    - heading "What you can do today Exists now" [level=3]
+    - paragraph:
+      - text: Read the science, evidence and updates, and
+      - link "send us questions or corrections":
+        - /url: /contact
+      - text: . There is no investment, payment or token function on this website.
+    - paragraph: Today the programme's spending is controlled by the board of NWPharmaTech Ltd.
+    - heading "The financing route being developed Proposed" [level=3]
     - paragraph:
       - strong: "Preferred: platform-integrated programme financing."
-      - text: Eligible investors would take part in a dedicated programme vehicle through a regulated investor platform, which would carry out eligibility, identity and anti-money-laundering checks. Where feasible, investors' interests would be issued as permissioned tokens at closing.
+      - text: Eligible investors would take part in a dedicated programme vehicle through a regulated investor platform, which would carry out eligibility, identity and anti-money-laundering checks. Where feasible, their interests would be issued as permissioned tokens at closing.
     - paragraph:
       - strong: "Fallback: register-first."
       - text: Interests would be recorded on a conventional register of holders, with any digital representation added only if and when lawful and approved.
-    - paragraph: Eligibility would be set by the law of each country, is likely to be limited to professional, qualified or accredited investors, and would exclude some countries.
-    - complementary:
-      - heading "Current status" [level=3]
-      - paragraph: Not available
-      - paragraph: No tokens have been issued, no investment is being accepted through this website or through this route, and no investment, payment or token function on this website is active.
-      - paragraph:
-        - strong: "Risk, in brief:"
-        - text: NWPT-SM32300 may not work and may never be approved; any money invested could be lost; interests may be impossible to sell.
-      - paragraph:
-        - strong: Beware of scams.
-        - text: Any token, coin or "presale" claiming a link to us is not ours. If you are unsure whether a message comes from us, please
-        - link "contact us":
-          - /url: /contact
-        - text: .
   - region "Who does what":
     - heading "Who does what" [level=2]
-    - paragraph: Five groups would be involved. Two exist now. Three are proposed, and would exist only if a financing process goes ahead.
     - group "Choose a group to read about":
       - button "Exists now Public research community" [pressed]
       - button "Proposed Eligible participants in a potential private financing process"
@@ -75,103 +67,43 @@
       - button "Exists now Clinical and regulatory responsibilities"
     - region "Public research community Exists now":
       - heading "Public research community Exists now" [level=3]
-      - paragraph: Anyone can read the programme's science, evidence and updates, and send questions or corrections. Following or discussing the programme gives no right to invest, no claim to any token and no say in clinical decisions.
-    - heading "What financing does not change" [level=3]
-    - list:
-      - listitem: Following the programme creates no investment entitlement.
-      - listitem: Financing participants would not vote on clinical decisions.
-      - listitem: A funding milestone can release money for research work; it cannot approve or change anything clinical, and it is not a payment to investors.
+      - paragraph: Anyone can follow the programme and send questions or corrections. Following or discussing it gives no right to invest, no claim to any token and no say in clinical decisions.
   - region "How the parts relate":
     - heading "How the parts relate" [level=2]
-    - text: Proposed structure
-    - figure "Proposed structure, simplified. The public and clinical lanes describe what exists now; the private financing lane is a proposal. Money can pay for research work, but nothing in the financing lane can authorise a clinical decision.":
-      - region "Public information":
-        - heading "Public information" [level=3]
-        - paragraph: Exists now
-        - list:
-          - listitem: Community, researchers and press
-          - listitem: read, ask questions, send corrections
-          - listitem: Science, evidence and updates on this website
-        - paragraph: No investment, payment, token or wallet function here.
-      - region "Private financing":
-        - heading "Private financing" [level=3]
-        - paragraph: Proposed; only if it goes ahead
-        - list:
-          - listitem: Eligible investors
-          - listitem: checked by a regulated investor platform; private legal documents
-          - listitem: Dedicated programme vehicle
-          - listitem: records each interest in
-          - listitem: "Legal register: the definitive record"
-          - listitem: may be mirrored, where feasible, by
-          - listitem: Permissioned digital record (under evaluation)
-        - paragraph: If the two records ever differ, the register controls.
-        - paragraph: The vehicle would release money in stages, against operational milestones, to pay for research work.
-      - region "Clinical and regulatory responsibilities":
-        - heading "Clinical and regulatory responsibilities" [level=3]
-        - paragraph: Set by clinical trial law
-        - list:
-          - listitem:
-            - strong: "Sponsor:"
-            - text: study design, dose, endpoints, safety reporting, manufacturing quality
-          - listitem:
-            - strong: "Investigators:"
-            - text: running the study at each site; participants' care
-          - listitem:
-            - strong: "Research ethics committee:"
-            - text: independent review to protect participants
-          - listitem:
-            - strong: "Medicines regulator:"
-            - text: authorises the study; can inspect, suspend or stop it
-        - paragraph: Separate legal duties, not one chain of command. None takes instructions from funders or the community.
-      - text: Proposed structure, simplified. The public and clinical lanes describe what exists now; the private financing lane is a proposal. Money can pay for research work, but nothing in the financing lane can authorise a clinical decision.
-    - heading "The same, in words" [level=3]
-    - list:
-      - listitem: The public can read the programme's science and updates here and send questions. Nothing on this website takes investment or payment.
-      - listitem: If financing goes ahead, eligible investors would be checked by a regulated platform and sign private documents with a dedicated programme vehicle. The vehicle's legal register would be the definitive record of who holds what; a permissioned digital record might mirror it, and the register would control if they differed.
-      - listitem: The vehicle would release money in stages, against operational milestones, to pay for research work.
-      - listitem: Clinical decisions stay with the sponsor, investigators, ethics committees and regulator, each under its own legal duties. No funding milestone, investor or community member can authorise or change them.
-  - region "The register and any digital record":
-    - heading "The register and any digital record" [level=2]
-    - text: Proposed
-    - paragraph: "Under the proposal, the legal register of the programme vehicle would be the definitive record of each investor's interest, whether or not a digital record exists. A permissioned digital record, if used, would be derived from the register: it would be issued only to verified, eligible holders and could not create or change rights by itself."
-    - paragraph: If the register and the digital record ever differed, the register would control. There is no public sale, trading or wallet connection, and none is planned on this website.
-    - figure "Conceptual illustration. Any digital record would mirror the legal register; the register controls.":
-      - img "A solid source-of-truth structure aligned with a lighter digital mirror."
-      - text: Conceptual illustration. Any digital record would mirror the legal register; the register controls.
-  - region "Use of funds":
-    - heading "Use of funds" [level=2]
-    - paragraph: "Funding would support:"
-    - list:
-      - listitem: Running clinical studies, including the planned Phase 2B study
-      - listitem: Manufacturing clinical supplies of NWPT-SM32300 to GMP standard
-      - listitem: Regulatory, safety and quality work
-      - listitem: Programme operations, data management and analysis
-    - heading "Proposed controls over research spending Proposed" [level=3]
-    - paragraph: Money raised through programme financing would be kept for the programme and released to it in stages, as defined operational milestones are met. A milestone releases money for research work. It does not approve any clinical step, which needs its own independent approvals, and it is not a payment to investors.
-    - 'figure "Conceptual illustration of proposed milestone controls: money released in stages for research work. A milestone releases spending; it does not decide anything clinical and does not mean a payout."':
+    - paragraph: Public information and clinical responsibilities exist now; the private financing route is a proposal. Money raised could pay for research work, but the financing side has no part in clinical decisions.
+    - group: The register and any digital record
+    - group: The full structure, simplified
+  - region "Use of funds Proposed controls":
+    - heading "Use of funds Proposed controls" [level=2]
+    - paragraph: Funding would support clinical studies, including the planned Phase 2B study; GMP manufacture of NWPT-SM32300 for those studies; regulatory, safety and quality work; and programme operations, data management and analysis.
+    - paragraph: Money raised through programme financing would be kept for the programme and released to it in stages, as defined milestones are met. A milestone releases money for research work; it approves nothing clinical and is not a payment to investors.
+    - paragraph: No funding figures have been published. Figures are published only once approved, labelled as a planning target, committed funding, cash received or money spent; expressions of interest are never counted.
+    - figure "Conceptual illustration of money released in stages for research work.":
       - img "Programme resources moving through sequential authorization gates toward research operations."
-      - text: "Conceptual illustration of proposed milestone controls: money released in stages for research work. A milestone releases spending; it does not decide anything clinical and does not mean a payout."
-    - heading "What is and is not funded" [level=3]
-    - paragraph: No funding milestones have been published.
-    - paragraph: "Figures are published only once they are approved and can be shown as one of: planning target, committed funding, cash received, or money spent. Expressions of interest are never counted as funding."
-  - region "Who controls spending and clinical decisions today":
-    - heading "Who controls spending and clinical decisions today" [level=2]
+      - text: Conceptual illustration of money released in stages for research work.
+  - region "Enquiries":
+    - heading "Enquiries" [level=2]
     - paragraph:
-      - strong: Spending
-      - text: is controlled by the board of NWPharmaTech Ltd, the programme's company.
-    - paragraph:
-      - strong: Clinical decisions
-      - text: ", including study design, eligibility, dosing and safety, are kept independent of funding and financing. Each study needs approval from a medicines regulator and a research ethics committee before it can start."
-    - heading "How progress is reported" [level=2]
-    - paragraph:
-      - text: Dated events appear on the
-      - link "updates page":
+      - text: "Questions about the programme or the financing route: please"
+      - link "contact us":
+        - /url: /contact
+      - text: . Progress is reported as dated
+      - link "updates":
         - /url: /updates
-      - text: ", and study milestones with their sources on the"
+      - text: and on the
       - link "study page":
         - /url: /study#milestones
-      - text: . No programme reports have been published.
-    - paragraph: Updates on this website are not investment communications.
+      - text: ; updates are not investment communications.
+    - paragraph:
+      - strong: Beware of scams.
+      - text: Any token, coin or "presale" claiming a link to us is not ours.
+    - complementary "Important":
+      - heading "Important" [level=3]
+      - paragraph: Not available
+      - list:
+        - listitem: No tokens have been issued, and no investment is being accepted through this website or the financing route described here.
+        - listitem: Eligibility would be set by the law of each country, is likely to be limited to professional, qualified or accredited investors, and would exclude some countries.
+        - listitem: NWPT-SM32300 may not work and may never be approved; any money invested could be lost; interests may be impossible to sell.
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.

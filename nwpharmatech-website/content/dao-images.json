@@ -4,7 +4,7 @@
   "09-dao-bounded-governance-hero": {
    "role": "explanatory",
    "alt": "Conceptual governance system with a protected research core and distinct participation rings.",
-   "caption": "Conceptual illustration of the proposed structure: a protected research core, a proposed legal register and a possible digital record, and a wider public community. Proposed and illustrative; not an offer.",
+   "caption": "Conceptual illustration of the proposed structure.",
    "focal": "72% 50%",
    "files": [
     {
@@ -40,7 +40,7 @@
   "10-register-digital-twin": {
    "role": "explanatory",
    "alt": "A solid source-of-truth structure aligned with a lighter digital mirror.",
-   "caption": "Conceptual illustration. Any digital record would mirror the legal register; the register controls.",
+   "caption": "Conceptual illustration: a legal register and a lighter digital record derived from it.",
    "focal": "68% 50%",
    "files": [
     {
@@ -76,7 +76,7 @@
   "11-clinical-governance-firewall": {
    "role": "explanatory",
    "alt": "A protected scientific core separated from surrounding participation networks.",
-   "caption": "Conceptual illustration. Clinical decisions stay with the sponsor, investigators, ethics committees and regulators, not with funders or the community.",
+   "caption": "Conceptual illustration of independent clinical oversight.",
    "focal": "73% 50%",
    "files": [
     {
@@ -112,7 +112,7 @@
   "12-milestone-release-architecture": {
    "role": "explanatory",
    "alt": "Programme resources moving through sequential authorization gates toward research operations.",
-   "caption": "Conceptual illustration of proposed milestone controls: money released in stages for research work. A milestone releases spending; it does not decide anything clinical and does not mean a payout.",
+   "caption": "Conceptual illustration of money released in stages for research work.",
    "focal": "55% 50%",
    "files": [
     {
@@ -148,7 +148,7 @@
   "13-community-research-commons": {
    "role": "explanatory",
    "alt": "Evidence fragments and discussion nodes forming an open research knowledge commons.",
-   "caption": "Conceptual illustration of public research dialogue. Following the programme creates no investment or clinical rights.",
+   "caption": "Conceptual illustration of open research dialogue.",
    "focal": "70% 50%",
    "files": [
     {

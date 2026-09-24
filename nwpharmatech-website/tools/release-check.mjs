@@ -115,14 +115,16 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
     page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto(base + p, { waitUntil: "load" });
-    await page.evaluate(async () => {   // bring each lazy image into view and give it up to 5 s to load
+    await page.evaluate(async () => {   // open expandable sections, bring each lazy image into view, give it up to 5 s
+      document.querySelectorAll("details").forEach((d) => { d.open = true; });
       for (const i of document.images) {
         i.scrollIntoView({ block: "center" });
         const t0 = performance.now();
         while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50));
       }
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "instant" });
     });
+    await page.waitForTimeout(300);
     await page.waitForLoadState("networkidle").catch(() => {});
     await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 10000 }).catch(() => {});
     const st = await page.evaluate(() => ({

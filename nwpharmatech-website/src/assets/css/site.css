@@ -473,3 +473,9 @@ ol.design-steps li { margin-bottom: .4rem; }
 .gov-out { margin: .8rem 0 0; padding: .5rem .75rem; border-left: 4px solid #e0a32b; background: #fffaf0; font-size: .95rem; }
 .gov-map figcaption { font-size: .9rem; color: var(--muted); margin-top: .75rem; max-width: var(--measure); }
 .gov-words ol { padding-left: 1.3em; }
+.more { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; margin: 1rem 0; }
+.more > summary { cursor: pointer; font-weight: 700; color: var(--brand-dark); padding: .85rem 1rem; min-height: 44px; }
+.more[open] > summary { border-bottom: 1px solid var(--line); }
+.more > :not(summary) { padding: 1rem; }
+.more .gov-map { margin: 0; }
+.page-hero .dao-figure { margin: 1.5rem 0 0; }

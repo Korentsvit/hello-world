@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:35805",
-  "generated": "2026-09-24T21:56:00.456Z",
+  "base": "http://127.0.0.1:35891",
+  "generated": "2026-09-24T22:41:29.928Z",
   "pages": {
     "clinical-need@desktop": {
       "status": 200,
@@ -1278,7 +1278,7 @@
       "detail": ""
     },
     {
-      "name": "internal links and anchors resolve directly, with no redirect (751 checked)",
+      "name": "internal links and anchors resolve directly, with no redirect (752 checked)",
       "pass": true,
       "detail": ""
     },
