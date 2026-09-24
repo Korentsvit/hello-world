@@ -43,7 +43,11 @@
     - article:
       - paragraph: Clinical high risk of psychosis (CHR-P)
       - heading "Dr Scott W. Woods" [level=3]
+      - paragraph: CHR-P lead
       - paragraph: Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.
+      - heading "Responsibilities" [level=4]
+      - list:
+        - listitem: Leads the CHR-P programme.
       - heading "Affiliations" [level=4]
       - list:
         - listitem: Professor of Psychiatry, Yale School of Medicine

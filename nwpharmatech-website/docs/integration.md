@@ -1,14 +1,25 @@
-# Integration instructions for the live-site bots
+# Integration instructions for the live-site team
 
-**Nothing in this package replaces the live website automatically.** There is no deployment step, no DNS change and no
-whole-site copy. The existing website bots import each module below individually into the live site, after review,
-and only once that module's publication blockers are cleared.
+**Scope.** The Grok team leads the live NWPharmaTech website and owns asset sourcing, presentation, integration and
+deployment. This package is an addition to that site: six content modules for the Grok team to import one at a time.
+It contains no homepage, navigation, Team page, header, footer or site design, and nothing in it replaces the live
+website automatically: there is no deployment step, no DNS change and no whole-site copy. Import a module only once
+its publication blockers are cleared.
+
+Start with `MAPPING.md` (one entry per module: what it adds, where it belongs, what live content it overlaps, which
+source checks remain) and `CLINICAL-DESIGN-CHECK.md` (how the modules' Phase 2B statements relate to the proposed
+CHR-P design published on the live site, which this package could not read). The Programme Room is a separately
+supplied component; it is not in this package and no module depends on it.
 
 `python3 build.py` writes the package to `integration/`:
 
 ```
 integration/
   README.md                  generated summary: modules, live paths, current blockers, missing optional assets
+  MAPPING.md                 per module: adds, belongs, overlaps, source checks remaining (generated)
+  CLINICAL-DESIGN-CHECK.md   the modules' Phase 2B statements against the records; what to compare with the live design
+  theme/nwpt-theme.css       every theme token with its default, commented out, to copy into the live stylesheet
+  theme/preview-host.css     a plain stand-in for the live page, used only by the previews
   routes.json                page id -> path on the live site (every internal link in every fragment comes from here)
   modules/<id>/
     fragment.html            the markup, wrapped in <div class="nwpt-module" data-nwpt-module="<id>" lang="en-GB">
@@ -22,8 +33,7 @@ integration/
   content/                   public-safe export of the shared content model
 ```
 
-The six modules are `study-hub`, `phase-1`, `formulation`, `evidence-library`, `family-guide` and `newsroom`. The
-Programme Room is **not** one of them (see "Not in this package").
+The six modules are `study-hub` (Study progress), `phase-1`, `formulation`, `evidence-library`, `family-guide` and `newsroom`.
 
 ## Do not change
 
@@ -132,10 +142,38 @@ These steps are the same for every module. The module sections below add what is
   address: if the path changes, the blocker returns until the new address is checked. The bots do not record this
   check themselves.
 
+### Matching the live site (theme tokens)
+
+The modules do not bring the staging site's design with them. Every font, colour and size they use is an optional
+custom property named `--nwpt-theme-*`; `theme/nwpt-theme.css` lists them all with their defaults.
+
+- **Unset, the module follows the live page.** Font family (body and headings), font size, line height, text colour
+  and heading colour are inherited from the element the module is placed in; the background is transparent; the
+  content spans the live column with no gutter or maximum width of its own.
+- **Colours that cannot be inherited** (links, evidence labels, lines, table headers, focus ring) default to the
+  NWPharmaTech brand blues. Set them to the live palette, keeping 4.5:1 contrast for text and labels.
+- **Spacing** is one multiplier, `--nwpt-theme-space` (default `1`): every margin, padding and gap in the modules is
+  multiplied by it. `--nwpt-theme-gutter` adds side padding; `--nwpt-theme-h1-size` to `h3-size` set heading sizes.
+- **Where to set them:** on `:root`, or on the live element that contains the modules. Custom properties inherit, so
+  one block in the live stylesheet themes all six modules, and it can point at the live site's own variables:
+
+  ```css
+  :root {
+    --nwpt-theme-font-heading: var(--live-heading-font);
+    --nwpt-theme-heading: var(--live-heading-colour);
+    --nwpt-theme-link: var(--live-link-colour);
+    --nwpt-theme-accent: var(--live-accent);
+    --nwpt-theme-space: 0.9;
+  }
+  ```
+- `tools/test-integration.mjs` checks, for every module, that unthemed it inherits the page's font, size and text
+  colour, that an example theme changes fonts, colours and spacing, and that axe still passes with that theme.
+  Screenshots: `module-study-hub-themed.png`, `module-evidence-library-themed.png`.
+
 ### Styles and collisions
 
 - **The module cannot restyle the live site.** Every rule in `module.css` starts with `.nwpt-module`, so it applies
-  only inside the wrapper. The design tokens are custom properties named `--nwpt-*`, set on the wrapper. There are no
+  only inside the wrapper. The theme tokens are read, never set, by the module (see above). There are no
   `@font-face` rules, no `url()` references and no rules for `html`, `body` or `:root` outside the wrapper.
 - **The `nwpt-` prefix protects against same-name classes only.** Live rules such as `.card`, `.btn`, `.tag`,
   `.chip` or `.container` never match module elements, and live custom properties such as `--brand` are not used.
@@ -156,8 +194,8 @@ These steps are the same for every module. The module sections below add what is
   (2.6:1, where WCAG asks for 3:1), so the underline marks links in text. A live `a { text-decoration: none }` does
   not remove it. A live `!important` reset would remove it and cause a WCAG 2.2 AA failure, so do not let one
   reach the module. Buttons and filter chips keep their designed look.
-- **Sizes use `rem`**, relative to the live site's root font size. If the live site changes `html { font-size }`
-  (for example to 62.5%), tell us and the module styles will be adjusted rather than overridden.
+- **Body text inherits the live font size; headings and spacing use `rem`**, relative to the live root font size. If
+  the live site sets `html { font-size: 62.5% }`, set `--nwpt-theme-space` and the heading-size tokens to suit.
 - `tools/test-integration.mjs` tests both directions against a deliberately hostile host page, including
   content-area rules and a link reset. A negative control shows that an `!important` reset does get through (see
   "Tests").
@@ -183,7 +221,7 @@ These steps are the same for every module. The module sections below add what is
   - milestones (Planned / In progress / Completed, with sources);
   - registry entries, sponsor and oversight.
 
-  It is a static page. **It is not the Programme Room** and must not be described as delivering it.
+  It is a static page.
   - A "Document history" section appears only once a version of a document is published (`content/documents.json`
     → `published: true`). None has been, so the module has no such section; a rebuild adds it when one is.
   - The draft publication policy is not part of the module or of the site. It is a proposal awaiting management
@@ -422,10 +460,9 @@ Keep the ids, `verification` and `as_of` fields if you import it. Make changes i
 
 ## Not in this package
 
-- **The Programme Room.** The interactive component was not supplied (`docs/programme-room.md`). The study hub is
-  not the Programme Room.
 - **The email sign-up** (see `newsroom`).
-- **People and leadership profiles.** Titles await management confirmation. The live People page stays as it is.
+- **People and leadership profiles.** The live Team page is the Grok team's. `docs/leadership-reconciliation.md`
+  records the management instructions (Scott Woods leads CHR-P) and the records behind each title, for its use.
 - **The restricted financing material** (`restricted/`). It is never imported into the public site.
 
 ## Tests

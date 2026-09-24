@@ -17,7 +17,8 @@ RECORD_TYPES = {"company-study-record", "company-record", "company-correspondenc
 # People: the title rules in docs/leadership-reconciliation.md, applied to the records logged in people.json.
 TEASER_SOURCES = {"teaser-2026-08"}       # management (brief-2026-09-c): never sole authority for a current appointment
 CONFIRMATION_TYPES = {"company-instruction", "confirmation"}
-CONFIRMED_AFTER = "2026-09-23"            # a confirmation must postdate the round-4 instruction (brief-2026-09-c)
+# A management instruction or written confirmation confirms a title whatever its date: an instruction given before a
+# build stays in force until management changes it (round-5 instruction, brief-2026-09-d).
 CURRENT_FROM = "2025-01-01"               # a current title or remit needs a record from 2025 onwards
 CHAIR_OR_COMMITTEE = re.compile(r"\bchair|\badvisory (?:board|committee|council)\b|\bsteering committee\b|\bSAB\b", re.I)
 # A descriptor is a field of expertise or a neutral description: it may not carry a role or remit, so a title or
@@ -42,6 +43,15 @@ def title_agrees(role, title):
     """A record's title agrees with a shown title when it has every word of it: 'Senior Adviser' agrees with
     'Partner & Senior Regulatory and Clinical Advisor', 'Chief Executive Officer' with 'Founder & CEO'."""
     return bool(title) and set(title_words(role)) <= set(title_words(title))
+
+
+def confirms(wording, role):
+    """True when a management record's wording names the title: the title's words in order ('Senior Adviser'), or
+    every word of it in any order, a verb form counting ('Scott Woods leads CHR-P' names 'CHR-P lead')."""
+    if mentions(wording, role):
+        return True
+    words = set(title_words(wording))
+    return all(w in words or w + "s" in words for w in title_words(role))
 
 
 def mentions(text, phrase):
@@ -167,10 +177,9 @@ class Content:
         if bool(role) != (status != "unconfirmed"):
             return ["'role' must be set exactly when role_status is confirmed or records-agree"]
         if status == "confirmed":
-            if not any(src["type"] in CONFIRMATION_TYPES and src["date"] > CONFIRMED_AFTER and mentions(r["wording"], role)
-                       for r, src in records):
-                return [f"'confirmed' needs a role record from a management confirmation (source type "
-                        f"{' or '.join(sorted(CONFIRMATION_TYPES))}, dated after {CONFIRMED_AFTER}) whose wording contains '{role}'"]
+            if not any(src["type"] in CONFIRMATION_TYPES and confirms(r["wording"], role) for r, src in records):
+                return [f"'confirmed' needs a role record from a management instruction or confirmation (source type "
+                        f"{' or '.join(sorted(CONFIRMATION_TYPES))}, any date) whose wording names '{role}'"]
             return []
         if status == "unconfirmed":
             return []

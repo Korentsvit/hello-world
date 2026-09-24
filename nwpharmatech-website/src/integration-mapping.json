@@ -1,0 +1,47 @@
+{
+  "_doc": "Hand-written part of integration/MAPPING.md: what each module adds, where it belongs on the live site, and which live content it may overlap. The live site could not be read from the build environment (network egress blocked), so overlaps name the kind of content to look for, not quoted live text. The remaining source checks are generated from each manifest.",
+  "modules": {
+    "study-hub": {
+      "name": "Study progress",
+      "adds": "Where the programme stands: a dated summary (aim, current stage, completed work, next milestone), a sourced milestone table (Phase 1 done; Phase 2B protocol in progress), both registry entries for Phase 1, sponsor and oversight facts, and the programme brief PDF.",
+      "belongs": "Its own page (default /study), or a 'Progress' section of the live programme or pipeline page.",
+      "overlaps": "Any live 'pipeline', 'programme' or 'clinical development' section, and above all the live site's published proposed CHR-P design. Keep that design section: this module states only population, aims and status. If the live page already has a progress timeline, use the milestone table in its place only after the dates are compared.",
+      "not_included": "Doses, comparator, duration, endpoints or size for Phase 2B."
+    },
+    "phase-1": {
+      "name": "Phase 1 study",
+      "adds": "The completed healthy-volunteer study: who took part, design, doses (single 600 mg and 900 mg; Epidyolex comparator), what was measured, timeline, registrations, and results status (not published).",
+      "belongs": "Its own page (default /phase-1), linked from the pipeline or study page.",
+      "overlaps": "Any live Phase 1 or 'completed study' summary or news item. The doses here are Phase 1 single doses in healthy adults; they are not the Phase 2B dose range.",
+      "not_included": "Phase 1 results (not published until reconciled)."
+    },
+    "formulation": {
+      "name": "Formulation explanation",
+      "adds": "Why an oral CBD formulation matters: low and variable absorption of oral CBD, the effect of food, and what the self-emulsifying softgel is designed to change, with an accessible diagram description.",
+      "belongs": "A section of the live science, technology or product page (default /science#formulation).",
+      "overlaps": "Any live 'technology', 'formulation' or 'our product' copy. It makes no claim of bioequivalence, superior tolerability or benefit; if live copy does, that is a separate review.",
+      "not_included": "The softgel render (optional asset, not supplied); comparative claims."
+    },
+    "evidence-library": {
+      "name": "Evidence library",
+      "adds": "24 summarised sources with an evidence label each (Established, Emerging evidence, Open question, Programme information), topic filters, population/product/design/finding/limitations for each, and RIS and BibTeX downloads.",
+      "belongs": "Its own page (default /evidence), linked from science and study pages.",
+      "overlaps": "Any live 'publications', 'references' or 'science' list. Schizophrenia and epilepsy studies appear here only as labelled evidence about CBD, never as a description of the planned CHR-P study.",
+      "not_included": "Unpublished NWPharmaTech results; pooled or Kaplan-Meier risk graphics (Programme Room)."
+    },
+    "family-guide": {
+      "name": "Guide for young people and families",
+      "adds": "Plain-language explanation of clinical high risk, what to do and where to go by UK nation, Ireland and the US, and the appointment preparation sheet (PDF).",
+      "belongs": "Its own page (default /families), reachable from patient-facing navigation.",
+      "overlaps": "Any live 'patients', 'families' or 'support' page and the live site's urgent-help or crisis information. It links to an urgent-help page, which must exist on the live site (dependency 'urgent-help').",
+      "not_included": "Symptom quiz, risk score, diagnosis, health-data collection or investment prompts (none by design)."
+    },
+    "newsroom": {
+      "name": "Newsroom",
+      "adds": "Key facts for journalists, a fact sheet, how progress is listed, a corrections log, and downloads (brief, references).",
+      "belongs": "Its own page (default /newsroom), or the press section of the live site.",
+      "overlaps": "Any live news, press or media page and its boilerplate. The live site's own news posts stay; this module adds the fact sheet and corrections log.",
+      "not_included": "The optional email sign-up (not enabled: no live provider test)."
+    }
+  }
+}

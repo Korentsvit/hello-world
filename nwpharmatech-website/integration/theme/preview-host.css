@@ -1,0 +1,6 @@
+/* A plain stand-in for the live page, used only by the module previews. It is NOT part of any module: the live
+   site's own styles take its place. It shows the modules with nothing but inherited typography, as they will
+   first appear before any --nwpt-theme-* value is set. */
+html { font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: #1f2328; background: #fff; }
+body { margin: 0 auto; max-width: 72rem; padding: 16px; }
+.preview-note { font-size: .875rem; color: #57606a; border-bottom: 1px solid #d0d7de; padding-bottom: 8px; }

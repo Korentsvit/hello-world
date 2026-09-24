@@ -501,7 +501,7 @@ try {
       await page.waitForTimeout(100);
       const st = await page.evaluate(() => {
         const w = document.querySelector("[data-nwpt-module]");
-        return { csp: window.__csp, styled: getComputedStyle(w).getPropertyValue("--nwpt-ink").trim() !== "", ready: w.hasAttribute("data-nwpt-ready"),
+        return { csp: window.__csp, styled: getComputedStyle(w.querySelector("*")).boxSizing === "border-box", ready: w.hasAttribute("data-nwpt-ready"),
           overflow: document.documentElement.scrollWidth > innerWidth + 1 };
       });
       if (width === 1280) {
@@ -538,6 +538,46 @@ try {
         check("negative control: axe in the host page detects unmarked links when a host !important rule removes underlines (the documented limit)",
           vi.some((x) => x.startsWith("link-in-text-block")), vi.join("; "));
       }
+      await ctx.close();
+    }
+
+    // 2b. Theme tokens: unset, the module takes the live page's typography and text colour; set on :root, they
+    //     change fonts, colours and spacing, and the module still passes axe.
+    {
+      const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, bypassCSP: true });
+      const page = await ctx.newPage();
+      await page.goto(`${base}/modules/${id}/preview.html`, { waitUntil: "load" });
+      const measure = () => page.evaluate(() => {
+        const w = document.querySelector("[data-nwpt-module]"), cs = (e) => getComputedStyle(e);
+        const h = w.querySelector("h1, h2, h3");
+        if (!w.querySelector("[data-t-link]")) {   // a plain text link: the one in the default link colour
+          const plain = [...w.querySelectorAll("a[href]")].find((x) => cs(x).color === "rgb(0, 94, 184)");
+          if (plain) plain.setAttribute("data-t-link", "");
+        }
+        const a = w.querySelector("[data-t-link]");
+        const padded = [...w.querySelectorAll("*")].find((e) => parseFloat(cs(e).paddingTop) >= 8 || parseFloat(cs(e).marginBottom) >= 8);
+        if (padded) padded.setAttribute("data-t-padded", "");
+        const pe = w.querySelector("[data-t-padded]");
+        return { font: cs(w).fontFamily, bodyFont: cs(document.body).fontFamily, size: cs(w).fontSize, bodySize: cs(document.body).fontSize,
+          color: cs(w).color, bodyColor: cs(document.body).color, bg: cs(w).backgroundColor,
+          hFont: h && cs(h).fontFamily, hColor: h && cs(h).color, link: a && cs(a).color,
+          space: pe && (parseFloat(cs(pe).paddingTop) || 0) + (parseFloat(cs(pe).marginBottom) || 0) };
+      });
+      const d = await measure();
+      check(`${id}: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own`,
+        d.font === d.bodyFont && d.size === d.bodySize && d.color === d.bodyColor && d.bg === "rgba(0, 0, 0, 0)" && (!d.hFont || d.hFont === d.bodyFont) && (!d.hColor || d.hColor === d.bodyColor),
+        JSON.stringify(d));
+      await page.addStyleTag({ content: ":root { --nwpt-theme-font-body: Georgia, serif; --nwpt-theme-font-heading: 'Trebuchet MS', sans-serif; "
+        + "--nwpt-theme-heading: rgb(0, 90, 50); --nwpt-theme-link: rgb(120, 20, 90); --nwpt-theme-text: rgb(30, 30, 30); --nwpt-theme-space: 0.5; }" });
+      const t = await measure();
+      check(`${id}: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing`,
+        /Georgia/.test(t.font) && t.color === "rgb(30, 30, 30)" && (!t.hFont || /Trebuchet/.test(t.hFont)) && (!t.hColor || t.hColor === "rgb(0, 90, 50)")
+        && (!t.link || t.link === "rgb(120, 20, 90)") && d.space > 0 && Math.abs(t.space - d.space / 2) <= 1, JSON.stringify({ d, t }));
+      await page.addScriptTag({ content: axeSource });
+      const v = await page.evaluate(async () => (await window.axe.run({ include: [["[data-nwpt-module]"]] },
+        { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] } })).violations.map((x) => `${x.id} x${x.nodes.length}`));
+      check(`${id}: axe finds no violations with the example theme`, v.length === 0, v.join("; "));
+      if (id === "study-hub" || id === "evidence-library") await page.screenshot({ path: path.join(shots, `module-${id}-themed.png`), fullPage: true });
       await ctx.close();
     }
 

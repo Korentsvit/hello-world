@@ -1,6 +1,6 @@
 {
  "id": "study-hub",
- "title": "Study hub: progress and evidence",
+ "title": "Study progress",
  "source": {
   "page": "study.html",
   "template": "src/pages/study.html",
@@ -16,16 +16,16 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 7847,
-   "sha256": "da74d34a9413a619fcb608296b4e9c1f9ba8a9d761c9316d5be9b9a54f5affc3"
+   "bytes": 7520,
+   "sha256": "96ef4425e366b91edf8a4823c0771bb86a5fce9fac7115925db5a2c30c7b9b9e"
   },
   "module.css": {
-   "bytes": 10238,
-   "sha256": "9cd76470597d218db437e4c1f38361589a19f0a7ec48b0b0b0c0450895a83b31"
+   "bytes": 11891,
+   "sha256": "baf29aaadc01f1148d82b0b54731b9605343804c1e02b1aca121ccde82870a30"
   },
   "preview.html": {
-   "bytes": 8524,
-   "sha256": "0d5329c3002816da9f6ab7d07781be60f7d0c4b6ad072097e3a027aa42757d9c"
+   "bytes": 8330,
+   "sha256": "1a55ce3d9ba2954697c1030c2f48f9ac08647db14c11b69d64840cd4b84b7a94"
   }
  },
  "left_out": [],
@@ -195,11 +195,25 @@
   "frame-src": [],
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
  },
+ "clinical_design": {
+  "phase2b_statements": [
+   "Phase 2B study: Planned.",
+   "Finalisation of the Phase 2B protocol, reported as in progress in February 2026.",
+   "The planned Phase 2B study will evaluate dose response, symptoms, safety and tolerability of NWPT-SM32300 in people at clinical high risk of psychosis.",
+   "The Phase 2B study is not recruiting.",
+   "Phase 2B: protocol finalised",
+   "Phase 2B study (planned)",
+   "Oversight arrangements for the Phase 2B study have not yet been published."
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
  "publication_blockers": [
   "financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)",
   "study.html, updates.html: reconcile the Phase 1 start date: company records give first consent on 27 August 2025, ClinicalTrials.gov gives a study start of 22 September 2025",
   "index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
-  "fact company.name (index) on study.html"
+  "fact company.name (index) on study.html",
+  "clinical design: compare the module's 7 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
  ],
  "optional_assets": []
 }

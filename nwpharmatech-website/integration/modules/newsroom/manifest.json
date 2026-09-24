@@ -20,12 +20,12 @@
    "sha256": "fd86dbc24945e12d3c8eba848daf99c6910662f4a8778ea779a04d4ab1b20a14"
   },
   "module.css": {
-   "bytes": 6418,
-   "sha256": "5ba336391c717f26999f10236a53aff4de1a97c6e65573c7d2da6a7ea615d85f"
+   "bytes": 7531,
+   "sha256": "6c8aa4f445d3be0540e53aa4ae8c493d0d28b11d12f42460ad74b75b5eb885b1"
   },
   "preview.html": {
-   "bytes": 4043,
-   "sha256": "16e1c7d081e0b2c2ea8341511fae3fdf38903448de83b344f932b48e57b23e6a"
+   "bytes": 4194,
+   "sha256": "3447f7ca00d160efdd58090f86a51cde15d1d57d407f7dc290d8c2e2554adb6e"
   }
  },
  "left_out": [],
@@ -281,6 +281,14 @@
   "frame-src": [],
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
  },
+ "clinical_design": {
+  "phase2b_statements": [
+   "A Phase 1 study in healthy volunteers (NCT07186283) was completed on 10 December 2025; a Phase 2B study is planned.",
+   "Phase 2B in people at clinical high risk of psychosis: Planned."
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
  "publication_blockers": [
   "financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)",
   "index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
@@ -288,7 +296,8 @@
   "fact company.name (index) on newsroom.html",
   "fact company.number (index) on newsroom.html",
   "fact phase1.isrctn (registry-index) on newsroom.html",
-  "fact phase1.nct (registry-index) on newsroom.html"
+  "fact phase1.nct (registry-index) on newsroom.html",
+  "clinical design: compare the module's 2 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
  ],
  "optional_assets": []
 }

@@ -20,12 +20,12 @@
    "sha256": "13ba81563d27aaabdc63e09874c2dad3578a96b3ade113acbdba0b0e0ee3d432"
   },
   "module.css": {
-   "bytes": 7273,
-   "sha256": "50fe53a944c8a9c2813e465e43d29e8b3b2543886d72451168cbb65da893bc86"
+   "bytes": 8633,
+   "sha256": "d7c66fe6e89eabe70901ac931e2b48fcf9c2b530a323f6de3ac385a30770fb1e"
   },
   "preview.html": {
-   "bytes": 10381,
-   "sha256": "aa36e739b16a6ff009fe466374effb0cbcf080baeb8d873019f56c104c1cc831"
+   "bytes": 10532,
+   "sha256": "f00b071af2df966f1b476bc2282697b0e9bbfb5d407ae1324985d41c3e048adb"
   }
  },
  "left_out": [],
@@ -140,6 +140,11 @@
   "font-src": [],
   "frame-src": [],
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "clinical_design": {
+  "phase2b_statements": [],
+  "replaces_live_design": false,
+  "scope": null
  },
  "publication_blockers": [
   "faq.html, appointment preparation sheet PDF: re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date",

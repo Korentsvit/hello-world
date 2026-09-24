@@ -60,14 +60,22 @@ def both(*fs):
 
 # ---- the current file ----
 accepted("current people.json passes; every profile blocks production on title, consent and (index-level) biography",
-         blockers=lambda b: sum("not confirmed by management" in x for x in b) == 9 and sum("no consent to publish" in x for x in b) == 9
+         blockers=lambda b: sum("not confirmed by management" in x for x in b) == 8
+         and not any("title for Dr Scott W. Woods" in x for x in b) and sum("no consent to publish" in x for x in b) == 9
          and sum("checked only at index level" in x for x in b) == 5)
 
 # ---- 'confirmed' needs a management confirmation that names the title ----
 kane_sab = setp("john-kane", role="Chair, Scientific Advisory Board", role_status="confirmed")
 refused("one-word edit: Kane's SAB chair marked 'confirmed' without a confirmation record", "'confirmed' needs a role record", kane_sab)
-refused("confirmation dated 23 Sep 2026 (not after the round-4 instruction)", "'confirmed' needs a role record",
-        both(kane_sab, confirm_record("john-kane", "Chair, Scientific Advisory Board")), {"confirm-test": dict(CONFIRM, date="2026-09-23")})
+accepted("no date cutoff: a management instruction given before the build confirms the title it names",
+         both(setp("trevor-jones", role_status="confirmed"),
+              lambda ps: ps["trevor-jones"]["role_records"].append({"source": "confirm-test", "date": "2025-06-01", "wording": "Professor Trevor Jones CBE: Senior Adviser"})),
+         {"confirm-test": dict(CONFIRM, type="company-instruction", date="2025-06-01")},
+         blockers=lambda b: not any("title for Professor Trevor Jones" in x for x in b))
+accepted("Scott Woods: 'CHR-P lead' confirmed by the management instruction 'Scott Woods leads CHR-P.'",
+         blockers=lambda b: not any("title for Dr Scott W. Woods" in x for x in b))
+refused("Woods's title needs the instruction: without it 'CHR-P lead' is refused", "'confirmed' needs a role record",
+        lambda ps: ps["scott-woods"].update(role_records=[r for r in ps["scott-woods"]["role_records"] if r["source"] != "brief-2026-09-d"]))
 refused("confirmation from an investor document (not a management confirmation)", "'confirmed' needs a role record",
         both(kane_sab, confirm_record("john-kane", "Chair, Scientific Advisory Board")), {"confirm-test": dict(CONFIRM, type="company-investor-document")})
 refused("confirmation whose wording does not contain the title", "'confirmed' needs a role record",

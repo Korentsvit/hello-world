@@ -20,12 +20,12 @@
    "sha256": "02dadd32a5725bf294245a37341432c8c2e9ca74d32074ab924e07705f2b4672"
   },
   "module.css": {
-   "bytes": 5832,
-   "sha256": "a6a63a21bcf4e6ab8cb4d3f762c274e30f8e0a9fc71a3807f69ff305964f5534"
+   "bytes": 6822,
+   "sha256": "791aba58d538a6d4bbbf48b135297b54c0a48ed2696204750b3aa350eae0d4ac"
   },
   "preview.html": {
-   "bytes": 7272,
-   "sha256": "d7e703b687d62435933204de8d876e4ca14a756713260a4ef24d8d90c19fb598"
+   "bytes": 7423,
+   "sha256": "3538ddc46f2396cf8f41d4e2bdbed93b7dd3c9d1880be299ac2f5e71325dd292"
   }
  },
  "left_out": [
@@ -162,6 +162,11 @@
   "font-src": [],
   "frame-src": [],
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "clinical_design": {
+  "phase2b_statements": [],
+  "replaces_live_design": false,
+  "scope": null
  },
  "publication_blockers": [
   "reference perucca-2020 (index) on science.html",

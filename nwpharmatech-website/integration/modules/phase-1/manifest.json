@@ -20,12 +20,12 @@
    "sha256": "ceecd51b59d9ca9cab7be4deacbfce67f3e431f248cb6d8b2dfe207f25cd8f7f"
   },
   "module.css": {
-   "bytes": 10046,
-   "sha256": "14067c0b27f49e82ed7329774ba3494369ea2f2b58d872cc8002aa1081faeac3"
+   "bytes": 12011,
+   "sha256": "a042f6cc79969d7031b4d886748bff82f1c713f71e0132c38f56c09067a4aa98"
   },
   "preview.html": {
-   "bytes": 7813,
-   "sha256": "a5a002f9f64412ffe20f18e8b448fb8c73863704b3422768256bb91090bb6c8b"
+   "bytes": 7964,
+   "sha256": "2e9beefe984c6a0b339550c670e6535712a1aa46d6ec7a9571420f6f4f373a8d"
   }
  },
  "left_out": [],
@@ -308,6 +308,13 @@
   "frame-src": [],
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
  },
+ "clinical_design": {
+  "phase2b_statements": [
+   "Evidence about whether NWPT-SM32300 helps people at clinical high risk of psychosis can only come from studies in that population, such as the planned Phase 2B study ."
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
  "publication_blockers": [
   "fact phase1.isrctn (registry-index) on phase-1.html",
   "fact phase1.isrctn_url (registry-index) on phase-1.html",
@@ -315,7 +322,8 @@
   "fact phase1.nct (registry-index) on phase-1.html",
   "fact phase1.nct_url (registry-index) on phase-1.html",
   "fact phase1.status (registry-index) on phase-1.html",
-  "reference perucca-2020 (index) on phase-1.html"
+  "reference perucca-2020 (index) on phase-1.html",
+  "clinical design: compare the module's 1 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
  ],
  "optional_assets": []
 }

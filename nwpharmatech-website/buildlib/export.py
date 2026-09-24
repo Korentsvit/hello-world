@@ -47,7 +47,7 @@ REDIRECT_CODES = (301, 302, 307, 308)
 # (id, page, anchor, what the live target must give; review items of that page whose text contains
 # review_match still apply while the link keeps the staging route, that is while it points at the staging page)
 MODULE_SPECS = (
-    {"id": "study-hub", "title": "Study hub: progress and evidence", "page": "study.html"},
+    {"id": "study-hub", "title": "Study progress", "page": "study.html"},
     {"id": "phase-1", "title": "Phase 1 study", "page": "phase-1.html"},
     {"id": "formulation", "title": "Formulation explanation", "page": "science.html", "section": "formulation",
      "drop": [("class", "q-num", "The 'Question 2' label numbers the question within the staging science page.")]},
@@ -251,7 +251,84 @@ def _rename_vars(decls):
     return re.sub(r"(?<![\w-])--([A-Za-z][\w-]*)", r"--" + PREFIX + r"\1", decls)
 
 
-def module_css(site_css, classes, ids, tags, module_id):
+# ---------- theme tokens ----------
+# Every colour, font and size the modules use is an optional --nwpt-theme-* custom property the live site sets
+# (docs/integration.md, "Matching the live site"). Custom properties inherit, so the live site can set them on
+# :root or on any ancestor of the module. Defaults defer to the live page where CSS allows it: fonts, font size,
+# line height, text and heading colour are inherited, the background is transparent, content spans the host's
+# column with no outer gutter. Colours that cannot be inherited (links, evidence labels, lines, focus) default
+# to the NWPharmaTech brand values in site.css.
+# site.css variable -> (token, default; None = the site.css value)
+THEME_TOKENS = {
+    "ink": ("text", "currentColor"), "ink-soft": ("text-soft", "currentColor"), "muted": ("muted", None),
+    "bg": ("bg", "transparent"), "surface": ("surface", None), "surface-alt": ("surface-alt", None),
+    "line": ("line", None), "brand": ("accent", None), "brand-dark": ("accent-strong", None),
+    "link": ("link", None), "focus": ("focus", None), "radius": ("radius", None),
+    "max": ("max-width", "none"), "measure": ("measure", None), "font": ("font-body", "inherit"),
+    "est-bg": ("label-established-bg", None), "est-ink": ("label-established-text", None),
+    "emg-bg": ("label-emerging-bg", None), "emg-ink": ("label-emerging-text", None),
+    "open-bg": ("label-open-bg", None), "open-ink": ("label-open-text", None),
+    "co-bg": ("label-programme-bg", None), "co-ink": ("label-programme-text", None),
+}
+# tokens that are not a site.css variable: token -> (default, what it sets)
+EXTRA_TOKENS = {
+    "font-heading": ("inherit", "font family of h1-h3"), "font-size": ("inherit", "base font size of the module"),
+    "line-height": ("inherit", "base line height"), "heading": ("currentColor", "colour of h1-h3"),
+    "h1-size": (None, "h1 size"), "h2-size": (None, "h2 size"), "h3-size": (None, "h3 size"),
+    "space": ("1", "multiplier for every margin, padding and gap (0.75 tighter, 1.25 looser)"),
+    "gutter": ("0px", "left and right padding of the module's content column"),
+    "hero-bg": ("transparent", "background of a page module's opening section"),
+}
+THEME = "--" + PREFIX + "theme-"
+SPACING_PROPS = re.compile(r"^(margin|padding)(-(top|right|bottom|left|block|inline)(-(start|end))?)?$|^(row-|column-)?gap$")
+
+
+def _theme_body(prelude, body, root_vars, seen):
+    """One rule's declarations with every site.css variable replaced by its theme token (default inline, so no
+    chain of custom properties is needed and CSS-wide keywords such as inherit work), the font shorthand split so
+    each part can defer to the live page, spacing multiplied by the space token, and the few hard-coded page
+    colours (white cards, the hero gradient) made tokens as well. `seen` collects token -> default."""
+    def token(name, default):
+        seen.setdefault(name, default)
+        return f"var({THEME}{name}, {default})"
+
+    def var(m):
+        name = m.group(1)
+        if name not in THEME_TOKENS:
+            raise ExportError(f"site.css: --{name} has no theme token (add it to THEME_TOKENS in buildlib/export.py)")
+        tok, default = THEME_TOKENS[name]
+        return token(tok, root_vars["--" + name] if default is None else default)
+    heading = [s.strip() for s in _split_selectors(prelude)]
+    out = []
+    for decl in [d.strip() for d in body.split(";") if d.strip()]:
+        prop, _, value = decl.partition(":")
+        prop, value = prop.strip(), value.strip()
+        m = re.fullmatch(r"([\d.]+r?em)/([\d.]+) var\(--font\)", value) if prop == "font" else None
+        if m:
+            out += [f"font-family: {token('font-body', 'inherit')}", f"font-size: {token('font-size', 'inherit')}",
+                    f"line-height: {token('line-height', 'inherit')}"]
+            continue
+        if set(heading) <= {"h1", "h2", "h3"} and prop == "color":
+            out += [f"color: {token('heading', 'currentColor')}", f"font-family: {token('font-heading', 'inherit')}"]
+            continue
+        if heading in (["h1"], ["h2"], ["h3"]) and prop == "font-size":
+            value = token(f"{heading[0]}-size", value)
+        elif prelude == ".page-hero" and prop == "background":
+            value = token("hero-bg", "transparent")
+        elif prelude == ".container" and prop == "padding":
+            value = f"0 {token('gutter', '0px')}"
+        elif prop in ("background", "background-color") and value.lower() in ("#fff", "#ffffff", "white"):
+            value = token("surface", root_vars.get("--surface", "#fff"))
+        value = re.sub(r"var\(--([A-Za-z][\w-]*)\)", var, value)
+        if SPACING_PROPS.match(prop):
+            value = re.sub(r"(?<![\w.(-])(-?(?:\d+\.?\d*|\.\d+)(?:rem|em|px))(?![\w])",
+                           lambda n: n.group(1) if float(re.match(r"-?[\d.]+", n.group(1)).group()) == 0
+                           else f"calc({n.group(1)} * {token('space', '1')})", value)
+        out.append(f"{prop}: {value}")
+    return "; ".join(out) + ";"
+
+
+def module_css(site_css, classes, ids, tags, module_id, tokens_seen=None):
     """The rules of site.css that can apply to the fragment, scoped under SCOPE (.nwpt-module): classes renamed
     with the nwpt- prefix, :root custom properties (renamed --nwpt-*) moved onto the wrapper, html/body rules
     applied to the wrapper itself and element rules re-scoped under it. @font-face is never exported.
@@ -294,10 +371,11 @@ def module_css(site_css, classes, ids, tags, module_id):
                     body = body.rstrip().rstrip(";") + "; text-decoration: underline;"
                     underlined.append(prelude)
                 if sels:
-                    out.append((", ".join(dict.fromkeys(sels)), _rename_vars(body)))
+                    out.append((", ".join(dict.fromkeys(sels)), _theme_body(prelude, body, root_vars, seen)))
         return out
 
     underlined = []
+    seen = {} if tokens_seen is None else tokens_seen
     rules = walk(_css_blocks(re.sub(r"/\*.*?\*/", "", site_css, flags=re.S)))
     if "a" in tags and not underlined:
         raise ExportError("site.css: no base 'a { ... }' rule to carry the explicit link underline")
@@ -312,22 +390,18 @@ def module_css(site_css, classes, ids, tags, module_id):
         return lines
 
     body = "\n".join(emit(rules))
-    used, todo = set(), set(re.findall(r"var\(\s*--" + PREFIX + r"([\w-]+)", body))
-    while todo:   # custom properties the kept rules use, and those they refer to
-        v = todo.pop()
-        used.add(v)
-        todo |= set(re.findall(r"var\(\s*--([\w-]+)", root_vars.get("--" + v, ""))) - used
-    missing = sorted(v for v in used if "--" + v not in root_vars)
-    if missing:
-        raise ExportError(f"site.css: custom properties used but not defined in :root: {missing}")
-    props = "; ".join(f"--{PREFIX}{n[2:]}: {_rename_vars(v)}" for n, v in root_vars.items() if n[2:] in used)
+    stray = sorted(set(re.findall(r"var\(\s*--(?!" + PREFIX + r"theme-)([\w-]+)", body)))
+    if stray:
+        raise ExportError(f"site.css: variables left without a theme token: {stray}")
     head = (f'/* NWPharmaTech integration module "{module_id}": styles generated by build.py from\n'
             f"   src/assets/css/site.css. Only the rules this module uses; every selector starts with .{WRAPPER}\n"
             f"   and every class carries the {PREFIX} prefix, so nothing here can style the rest of the page.\n"
             f"   {SCOPE[len(WRAPPER) + 1:]} always matches the wrapper and adds the weight of two ids, so\n"
             "   the live page's own content-area rules (#content h2, .entry-content a) do not override what the module\n"
-            "   sets; !important and inline styles still do. Do not edit: change site.css or the content and rebuild. */\n")
-    return head + (f"{SCOPE} {{ {props}; }}\n" if props else "") + body + "\n"
+            "   sets; !important and inline styles still do. Do not edit: change site.css or the content and rebuild.\n"
+            f"   Typography, colours and spacing come from optional {THEME}* custom properties: set them on :root\n"
+            "   (or any ancestor of the module) to match the live site; see integration/theme/nwpt-theme.css. */\n")
+    return head + body + "\n"
 
 
 # ---------- JavaScript ----------
@@ -728,6 +802,15 @@ def _module(spec, root, content, public_dir, routes, page_names, site_css, redir
     text = re.sub(r"<[^>]+>", " ", body)
     names = [p["name"] for p in content.people["people"] if p.get("public", True) and p["name"] in text]
     blockers += [b for b in content.leadership_blockers() if any(n in b for n in names)]
+    # The live site publishes a proposed CHR-P design this package could not read (CLINICAL-DESIGN-CHECK.md).
+    # Every Phase 2B statement the module makes is listed, and blocks publication until compared with it.
+    lines = unescape(re.sub(r"<[^>]+>", " ", re.sub(r"<(?:p|li|td|th|dt|dd|h[1-6]|caption|tr)\b[^>]*>", "\n", body))).split("\n")
+    phase2b = list(dict.fromkeys(re.sub(r"\s+", " ", x).strip() for ln in lines
+                                 for x in re.findall(r"[^.]*Phase 2B[^.]*\.?", ln)))
+    if phase2b:
+        blockers.append(f"clinical design: compare the module's {len(phase2b)} Phase 2B statement(s) (manifest -> clinical_design) with the "
+                        "proposed CHR-P design published on the live site, and keep the live design section; this module does not "
+                        "replace it (CLINICAL-DESIGN-CHECK.md)")
     if 'class="nwpt-dangling"' in body:
         blockers.append(f"{name}: links to a page that is not built")
 
@@ -832,6 +915,11 @@ def _module(spec, root, content, public_dir, routes, page_names, site_css, redir
         "redirects": redir,
         "javascript": ["evidence filters" if p is JS_FILTERS else "open a <details> named by the URL fragment" for p in js_parts],
         "csp": csp,
+        "clinical_design": {"phase2b_statements": phase2b,
+                            "replaces_live_design": False,
+                            "scope": ("States only population, aims and status. Doses, comparator, duration, endpoints and size are "
+                                     "not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia "
+                                     "studies. Keep the live site's published design section.") if phase2b else None},
         "publication_blockers": list(dict.fromkeys(blockers)),
         "optional_assets": optional,
     }
@@ -847,11 +935,48 @@ def _preview(spec, fragment, has_js, lang):
             f'  <meta http-equiv="Content-Security-Policy" content="{csp}">\n'
             '  <meta name="robots" content="noindex, nofollow">\n'
             f'  <title>Module preview: {escape(spec["title"])}</title>\n'
-            '  <link rel="icon" href="data:,">\n  <link rel="stylesheet" href="module.css">\n'
+            '  <link rel="icon" href="data:,">\n  <link rel="stylesheet" href="../../theme/preview-host.css">\n'
+            '  <link rel="stylesheet" href="module.css">\n'
             + ('  <script src="module.js" defer></script>\n' if has_js else "") +
             "</head>\n<body>\n"
-            f'<p>Integration preview of module "{spec["id"]}", for review only. Not a page of the website; links point to live-site paths.</p>\n'
+            f'<p class="preview-note">Integration preview of module "{spec["id"]}", for review only, inside a plain stand-in for the '
+            'live page (theme/preview-host.css). Not a page of the website; links point to live-site paths.</p>\n'
             "<main>\n" + fragment + "</main>\n</body>\n</html>\n")
+
+
+PREVIEW_HOST_CSS = """/* A plain stand-in for the live page, used only by the module previews. It is NOT part of any module: the live
+   site's own styles take its place. It shows the modules with nothing but inherited typography, as they will
+   first appear before any --nwpt-theme-* value is set. */
+html { font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: #1f2328; background: #fff; }
+body { margin: 0 auto; max-width: 72rem; padding: 16px; }
+.preview-note { font-size: .875rem; color: #57606a; border-bottom: 1px solid #d0d7de; padding-bottom: 8px; }
+"""
+
+
+def _theme_template(tokens):
+    """integration/theme/nwpt-theme.css: every token the modules read, with its default, all commented out."""
+    desc = {tok: f"site.css --{var}" for var, (tok, _) in THEME_TOKENS.items()}
+    desc.update({k: v[1] for k, v in EXTRA_TOKENS.items()})
+    notes = {"text": "body text colour", "text-soft": "lead paragraphs", "muted": "small print and captions",
+             "bg": "module background", "surface": "cards and tables", "surface-alt": "alternate bands and table headers",
+             "line": "borders and rules", "accent": "accent bars and markers", "accent-strong": "hover and strong accents",
+             "link": "links (always underlined)", "focus": "focus ring", "radius": "corner radius",
+             "max-width": "widest content column", "measure": "longest text line", "font-body": "body font family",
+             "label-established-bg": "evidence label 'Established'", "label-emerging-bg": "evidence label 'Emerging evidence'",
+             "label-open-bg": "evidence label 'Open question'", "label-programme-bg": "label 'Programme information'"}
+    lines = ["/* NWPharmaTech modules: theme tokens. Generated by build.py; copy into the live site's stylesheet and set",
+             "   the values you need. Every token is optional; unset tokens use the default shown. Set them on :root, or on",
+             "   the element that contains a module. Keep text and label colours at 4.5:1 contrast or better against their",
+             "   backgrounds (the defaults do). Examples:",
+             "     --nwpt-theme-font-body: var(--live-body-font);",
+             "     --nwpt-theme-link: #0b5cad;",
+             "     --nwpt-theme-space: 0.85;",
+             "*/", ":root {"]
+    for name in sorted(tokens):
+        what = notes.get(name) or desc.get(name, "")
+        lines.append(f"  /* {THEME}{name}: {tokens[name]}; */" + (f"  /* {what} */" if what else ""))
+    lines.append("}")
+    return "\n".join(lines) + "\n"
 
 
 # ---------- entry point ----------
@@ -902,6 +1027,57 @@ def export_modules(root, content, public_dir, out_dir):
     for fname, data in public_content(root).items():
         (out_dir / "content" / f"{fname}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     (out_dir / "README.md").write_text(_readme(summary, routes, needed), encoding="utf-8")
+    mapping = json.loads((root / "src" / "integration-mapping.json").read_text(encoding="utf-8"))
+    if set(mapping["modules"]) != set(MODULES):
+        raise ExportError(f"src/integration-mapping.json must describe exactly the modules {MODULES}")
+    (out_dir / "MAPPING.md").write_text(_mapping(summary, mapping), encoding="utf-8")
+    shutil.copyfile(root / "src" / "integration-clinical-design-check.md", out_dir / "CLINICAL-DESIGN-CHECK.md")
+    tokens = {}
+    for m in (out_dir / "modules").glob("*/module.css"):
+        for name, default in re.findall(r"var\(" + THEME + r"([\w-]+), ((?:[^()]|\([^()]*\))+?)\)", m.read_text(encoding="utf-8")):
+            if tokens.setdefault(name, default) != default:
+                raise ExportError(f"theme token {name} has two defaults: {tokens[name]} and {default}")
+    (out_dir / "theme").mkdir()
+    (out_dir / "theme" / "nwpt-theme.css").write_text(_theme_template(tokens), encoding="utf-8")
+    (out_dir / "theme" / "preview-host.css").write_text(PREVIEW_HOST_CSS, encoding="utf-8")
+
+
+def _mapping(summary, mapping):
+    """integration/MAPPING.md: one short entry per module. What it adds, where it belongs and what it overlaps
+    come from src/integration-mapping.json; files, dependencies and the source checks still open come from the
+    manifests, so they cannot drift from the package."""
+    out = ["# Module mapping", "",
+           "One entry per module: what it adds to the live site, where it belongs, which live content it overlaps, and "
+           "the source checks that remain. The live site could not be read from the build environment (its address is "
+           "blocked by the environment's network policy), so overlaps name the kind of live content to compare, not quoted text. "
+           "Generated by `python3 build.py`; the checks are the manifests' `publication_blockers`.", "",
+           "The Programme Room is a separate component that is not part of this package; no module depends on it.", ""]
+    for m in summary:
+        h = mapping["modules"][m["id"]]
+        refs = [b for b in m["publication_blockers"] if b.startswith("reference ")]
+        facts = [b for b in m["publication_blockers"] if b.startswith("fact ")]
+        design = [b for b in m["publication_blockers"] if b.startswith("clinical design")]
+        deps = [b for b in m["publication_blockers"] if b.startswith("dependency ")]
+        other = [b for b in m["publication_blockers"] if b not in refs + facts + design + deps]
+        checks = []
+        if refs or facts:
+            checks.append(f"primary-source check of {len(refs)} reference(s) and {len(facts)} fact(s) verified so far only through "
+                          "search summaries or registry indexes (`" + "`, `".join(b.split()[1] for b in refs + facts) + "`)")
+        checks += ["compare its Phase 2B statements with the live published CHR-P design (`clinical_design` in the manifest; "
+                   "`CLINICAL-DESIGN-CHECK.md`)" for _ in design]
+        checks += [re.sub(r"^dependency ([\w-]+): ", r"live dependency `\1`: ", b) for b in deps]
+        checks += [b.split(": ", 1)[1] if ": " in b else b for b in other]
+        js = "`module.js` (" + ", ".join(m["javascript"]) + ")" if m["javascript"] else "none"
+        dl = ", ".join(f"`{d['file']}`" for d in m["downloads"]) or "none"
+        dp = "; ".join(f"`{d['id']}` ({'blocks publication until checked' if d['blocks_publication'] else 'link target'})"
+                       for d in m["dependencies"]) or "none"
+        out += [f"## {h['name']} (`{m['id']}`)", "",
+                f"- **Adds:** {h['adds']}", f"- **Belongs:** {h['belongs']} Default path `{m['placement']['live_route']}`.",
+                f"- **Overlaps:** {h['overlaps']}", f"- **Not included:** {h['not_included']}",
+                f"- **Files:** `fragment.html`, `module.css`; script: {js}; downloads: {dl}.",
+                f"- **Depends on:** {dp}.",
+                "- **Source checks remaining:**"] + [f"  - {c}" for c in checks or ["none"]] + [""]
+    return "\n".join(out)
 
 
 def _readme(summary, routes, needed):
@@ -916,9 +1092,14 @@ def _readme(summary, routes, needed):
     optional = "".join(f"- `{m['id']}`: {o['asset']} ({o['file']})\n" for m in summary for o in m["optional_assets"]) or "- none\n"
     return f"""# NWPharmaTech integration package
 
-Generated by `python3 build.py` (`buildlib/export.py`). **Nothing here replaces the live website automatically.**
-The live-site bots import each module individually into the existing site, keeping the live header, footer,
-brand assets and security configuration. Step-by-step instructions for each module: `docs/integration.md`.
+Six additive content modules for the live NWPharmaTech website, which the Grok team leads. Generated by
+`python3 build.py` (`buildlib/export.py`). **Nothing here replaces the live website automatically**, and there is no
+homepage, navigation, Team page or site design in it. The Grok team imports each module individually, keeping the
+live header, footer, brand assets and security configuration.
+
+Read first: `MAPPING.md` (what each module adds, where it belongs, what it overlaps, source checks remaining),
+`CLINICAL-DESIGN-CHECK.md` (Phase 2B statements against the live proposed CHR-P design) and `theme/nwpt-theme.css`
+(fonts, colours and spacing to match the live site). Step-by-step instructions: `docs/integration.md`.
 
 | Module | Title | Live path | JavaScript | Downloads | Publication blockers | Optional assets missing |
 |---|---|---|---|---|---|---|
@@ -936,7 +1117,7 @@ Shared files:
   Change paths in `src/integration-routes.json` and rebuild; never edit the fragments by hand.
 - `downloads/`: {', '.join('`' + f + '`' for f in sorted(needed['downloads'])) or 'none'}. Replace the live copies whenever they change (PDFs are regenerated and checked by the build when their facts change).
 - `assets/`: {', '.join('`' + f + '`' for f in sorted(needed['assets'])) or 'none needed at present (an image appears here once it is supplied and authorised)'}.
-- `content/`: the public-safe parts of the shared content model (public items only; internal notes, unpublished document versions and uncited source ids removed; fact placeholders replaced by their values). `people.json` is not included: no module shows profiles, and leadership titles await management confirmation.
+- `content/`: the public-safe parts of the shared content model (public items only; internal notes, unpublished document versions and uncited source ids removed; fact placeholders replaced by their values). `people.json` is not included: no module shows profiles (the live Team page is the Grok team's).
 
 ## Publication blockers by module
 These must be cleared before the module is published on the live site. They are content and approval items, and

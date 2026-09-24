@@ -16,20 +16,20 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 39405,
-   "sha256": "4133d6ee4eeb2088c3a7a6cb1686b893cf5ea9a126359911f0a62ce27544bb25"
+   "bytes": 39464,
+   "sha256": "43fb260e616e697d9613ace14ae3c834c7e3ecb5f7b672a25c6272351d4eb800"
   },
   "module.css": {
-   "bytes": 13144,
-   "sha256": "750c8e97dc67a46f94ae316bd3fd8ae041601dd76cd7096f58c9afcdf67cbda3"
+   "bytes": 15654,
+   "sha256": "31b3e2468c30454704927418239c42ad86d8bad888389a1ca16aa3e2674dd139"
   },
   "module.js": {
    "bytes": 3003,
    "sha256": "d9133636c5d0917973a4a7df3ca81f433f8a0594ade081bc6a62e127b9b46499"
   },
   "preview.html": {
-   "bytes": 40115,
-   "sha256": "68c8ca9aace6e17ad554d54e889038610b30f6e46fa00a66d4b3fa61890b91b4"
+   "bytes": 40325,
+   "sha256": "c930e4723c8a234210d93eabaca9b4548f5e71e680fd9df2b4fd40f68df10188"
   }
  },
  "left_out": [],
@@ -373,6 +373,13 @@
   "frame-src": [],
   "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
  },
+ "clinical_design": {
+  "phase2b_statements": [
+   "Not an efficacy finding, and not the NWPharmaTech Phase 2B study."
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
  "publication_blockers": [
   "fact evidence.transition_3y (index) on evidence.html",
   "reference addington-2011 (index) on evidence.html",
@@ -398,7 +405,8 @@
   "reference salazar-2021 (index) on evidence.html",
   "reference salazar-prev-2021 (index) on evidence.html",
   "reference stafford-2013 (index) on evidence.html",
-  "reference taylor-2018 (index) on evidence.html"
+  "reference taylor-2018 (index) on evidence.html",
+  "clinical design: compare the module's 1 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
  ],
  "optional_assets": []
 }

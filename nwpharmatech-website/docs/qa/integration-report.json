@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-23T19:00:12.045Z",
+ "generated": "2026-09-24T20:00:13.728Z",
  "modules": [
   "evidence-library",
   "family-guide",
@@ -15,7 +15,7 @@
    "detail": "evidence-library, family-guide, formulation, newsroom, phase-1, study-hub"
   },
   {
-   "name": "evidence-library: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (104 selectors)",
+   "name": "evidence-library: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (103 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -120,7 +120,7 @@
    "detail": ""
   },
   {
-   "name": "family-guide: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (58 selectors)",
+   "name": "family-guide: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (57 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -220,7 +220,7 @@
    "detail": ""
   },
   {
-   "name": "formulation: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (42 selectors)",
+   "name": "formulation: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (41 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -320,7 +320,7 @@
    "detail": ""
   },
   {
-   "name": "newsroom: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (53 selectors)",
+   "name": "newsroom: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (52 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -420,7 +420,7 @@
    "detail": ""
   },
   {
-   "name": "phase-1: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (81 selectors)",
+   "name": "phase-1: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (80 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -520,7 +520,7 @@
    "detail": ""
   },
   {
-   "name": "study-hub: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (81 selectors)",
+   "name": "study-hub: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (77 selectors)",
    "pass": true,
    "detail": ""
   },
@@ -807,22 +807,22 @@
   {
    "name": "routes: a .html live path is refused (Cloudflare Pages would redirect it)",
    "pass": true,
-   "detail": "^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 447, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r}); \"\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html'); Cloudflare Pages answers /x.html with a 308 to /x\n"
+   "detail": "^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 521, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r}); \"\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html'); Cloudflare Pages answers /x.html with a 308 to /x\n"
   },
   {
    "name": "routes: a trailing-slash live path is refused (Cloudflare Pages redirects /x/ itself, so the redirect loops)",
    "pass": true,
-   "detail": "^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 450, in load_routes\n    raise ExportError(f\"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects \"\nbuildlib.export.ExportError: integration export: route for 'study' must not end with / (got '/study/'); Cloudflare Pages redirects between /x and /x/ itself, so a redirect rule to /x/ can loop\n"
+   "detail": "^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 524, in load_routes\n    raise ExportError(f\"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects \"\nbuildlib.export.ExportError: integration export: route for 'study' must not end with / (got '/study/'); Cloudflare Pages redirects between /x and /x/ itself, so a redirect rule to /x/ can loop\n"
   },
   {
    "name": "routes: a live path with _redirects pattern syntax is refused",
    "pass": true,
-   "detail": "/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 453, in load_routes\n    raise ExportError(f\"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single \"\nbuildlib.export.ExportError: integration export: route for 'study' must be a plain path: letters, digits and . _ ~ % - between single slashes (got '/:slug'); _redirects reads :name and * as patterns\n"
+   "detail": "/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 527, in load_routes\n    raise ExportError(f\"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single \"\nbuildlib.export.ExportError: integration export: route for 'study' must be a plain path: letters, digits and . _ ~ % - between single slashes (got '/:slug'); _redirects reads :name and * as patterns\n"
   },
   {
    "name": "routes: two pages on one live path are refused",
    "pass": true,
-   "detail": ".py\", line 861, in export_modules\n    routes = load_routes(root, page_names)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 456, in load_routes\n    raise ExportError(f\"routes for '{live[path]}' and '{pid}' are both {path}\")\nbuildlib.export.ExportError: integration export: routes for 'evidence' and 'study' are both /evidence\n"
+   "detail": ".py\", line 986, in export_modules\n    routes = load_routes(root, page_names)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 530, in load_routes\n    raise ExportError(f\"routes for '{live[path]}' and '{pid}' are both {path}\")\nbuildlib.export.ExportError: integration export: routes for 'evidence' and 'study' are both /evidence\n"
   },
   {
    "name": "routes: a live path that another module's alias would take over is refused (/news: newsroom alias)",
@@ -852,7 +852,7 @@
   {
    "name": "routes: a check recorded for an unknown dependency is refused",
    "pass": true,
-   "detail": " ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 472, in load_confirmed\n    raise ExportError(f\"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})\")\nbuildlib.export.ExportError: integration export: integration-routes.json: confirmed_dependencies: unknown dependency 'no-such' (known: ['urgent-help'])\n"
+   "detail": " ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 546, in load_confirmed\n    raise ExportError(f\"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})\")\nbuildlib.export.ExportError: integration export: integration-routes.json: confirmed_dependencies: unknown dependency 'no-such' (known: ['urgent-help'])\n"
   },
   {
    "name": "content/: a published document version is exported (without 'status'); unpublished ones are not",
@@ -910,6 +910,21 @@
    "detail": "link-in-text-block(serious) x37: #ref-fusarpoli-2013 > .nwpt-source-line > a[rel=\"external\"]:nth-child(3)"
   },
   {
+   "name": "evidence-library: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "evidence-library: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "evidence-library: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
    "name": "evidence-library: host elements keep exactly their host styles when module.css is added (70 elements)",
    "pass": true,
    "detail": ""
@@ -965,6 +980,21 @@
    "detail": ""
   },
   {
+   "name": "family-guide: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "family-guide: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "family-guide: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
    "name": "family-guide: host elements keep exactly their host styles when module.css is added (70 elements)",
    "pass": true,
    "detail": ""
@@ -1011,6 +1041,21 @@
   },
   {
    "name": "formulation: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":56}"
+  },
+  {
+   "name": "formulation: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":56},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":28}}"
+  },
+  {
+   "name": "formulation: axe finds no violations with the example theme",
    "pass": true,
    "detail": ""
   },
@@ -1065,6 +1110,21 @@
    "detail": ""
   },
   {
+   "name": "newsroom: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "newsroom: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "newsroom: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
    "name": "newsroom: host elements keep exactly their host styles when module.css is added (70 elements)",
    "pass": true,
    "detail": ""
@@ -1111,6 +1171,21 @@
   },
   {
    "name": "phase-1: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "phase-1: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "phase-1: axe finds no violations with the example theme",
    "pass": true,
    "detail": ""
   },
@@ -1165,12 +1240,27 @@
    "detail": ""
   },
   {
+   "name": "study-hub: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "study-hub: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "study-hub: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
    "name": "study-hub: host elements keep exactly their host styles when module.css is added (70 elements)",
    "pass": true,
    "detail": ""
   },
   {
-   "name": "study-hub: the host's generic class rules and custom properties do not change any module element (146 elements)",
+   "name": "study-hub: the host's generic class rules and custom properties do not change any module element (139 elements)",
    "pass": true,
    "detail": ""
   },
