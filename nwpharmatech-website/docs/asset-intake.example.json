@@ -1,0 +1,10 @@
+{
+  "_doc": "Example intake for tools/prepare-images.mjs. source_dir is relative to this file. Purposes: hero, illustration, diagram, render, portrait, logo. A caption says what the image is (illustrative, diagram, render), never what the medicine does. Portraits need person, authorised, authorised_by and authorised_on. Decorative images set decorative: true and have no alt text.",
+  "source_dir": "portfolio",
+  "images": [
+    { "id": "science-formulation", "file": "NWPT-visual-portfolio-01/formulation.png", "purpose": "illustration",
+      "alt": "Softgel capsules beside a diagram of lipid droplets", "caption": "Illustration of a lipid-based softgel formulation (not to scale)." },
+    { "id": "portrait-scott-woods", "file": "portraits/scott-woods.jpg", "purpose": "portrait", "person": "scott-woods",
+      "alt": "Dr Scott W. Woods", "authorised": true, "authorised_by": "name of the person who authorised it", "authorised_on": "YYYY-MM-DD" }
+  ]
+}
