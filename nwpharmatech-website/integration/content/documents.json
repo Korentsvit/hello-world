@@ -6,7 +6,16 @@
    "title": "Programme summary",
    "file": "downloads/nwpharmatech-programme-brief.pdf",
    "public": true,
-   "history": []
+   "history": [
+    {
+     "version": "8",
+     "date": "2026-09-26",
+     "published": true,
+     "change": "Retitled 'Programme summary': the primary programme brief is the HTML brief and its PDF; this two-page summary points to it. Content otherwise as version 7.",
+     "source_sha256": "32da0e710693ea4fd196f26215bca4147e7d28d450ddc310c174b648742779df",
+     "publication": "Approved for publication by management (Filipp Korentsvit), 26 September 2026. Management publication approval; no scientific reviewer sign-off is implied."
+    }
+   ]
   },
   {
    "id": "appointment-sheet",

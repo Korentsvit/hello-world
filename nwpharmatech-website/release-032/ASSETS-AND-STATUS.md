@@ -10,6 +10,7 @@ Updated 26 September 2026 (after NWPT-035).
 | Live | **NWPT-035**, Grok's portrait release: commit `4b0158f` on `cursor/nwpt-035-portraits-5675` (PR #1), production deployment `c3e85514-2052-4b89-b5e8-9032efd20a4d`, as reported by Grok. It is NWPT-034 plus the seven portraits |
 | Merged here | PR #1 fast-forwarded into `claude/nwpharmatech-website-bs459b`. Photographs, name mapping, markup and styles are kept exactly as deployed |
 | Review candidate | **NWPT-036** at `3eb6b7bc3cbb889e79866148e870a21cc1086a10` = NWPT-035 plus the editorial patch. Web PR is hosting it on the existing preview. Production stays on NWPT-035 |
+| Publication | **NWPT-038**: management publication approval (Filipp Korentsvit, 26 Sep 2026) of the NWPT-037 visual placements, the programme brief (v2026-09-26) and the programme summary (version 8). "Draft for review" removed from the HTML brief, both PDFs and the homepage panel; homepage heading now "The CHR-P programme at a glance". This is management approval only; no scientific reviewer sign-off is implied |
 | Close-out on top | **NWPT-036b** = NWPT-036 plus the brief, summary and draft-label close-out (see `WEB-PR-HANDOFF-NWPT-036b.md`) |
 
 **Correction to the NWPT-034 status report.** I wrote that the navigation fix was "also live on production now". That was wrong. The navigation *bug* was live on production (NWPT-032). The *fix* was on preview only until the NWPT-035 production deployment.
