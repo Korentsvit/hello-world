@@ -15,7 +15,7 @@ Full detail on each item: `ENQUIRY-ACTIVATION-CHECKLIST.md` and `PRIVACY-NOTICE-
 
 | # | Decision | Needed for |
 |---|---|---|
-| D1 | **Recipient:** the accountable person or team, and the inbox address. `team@nwpharmatech.com` is not assumed | `ENQUIRY_TO`, privacy Part B |
+| D1 | **Recipient: DECIDED 26 Sep 2026.** `ENQUIRY_TO = Filipp.korentsvit@nwpharmatech.com`. Filipp receives and handles collaboration enquiries for now. This is the **receiving inbox only**, not the sending address (D3). It does not authorise activation | `ENQUIRY_TO`, privacy Part B (public wording for the recipient still to be chosen: a named person or a role) |
 | D2 | **Email service:** confirm Resend (the implemented provider), with the account owner, data-processing terms and data region. Another provider needs a small code change | `RESEND_API_KEY`, privacy Part B |
 | D3 | **Sending address and domain:** an address on a domain verified with the service, with SPF and DKIM in DNS | `ENQUIRY_FROM` |
 | D4 | **Retention:** how long enquiries are kept in the inbox and at the provider, and how they are deleted | privacy Part B |
@@ -23,14 +23,16 @@ Full detail on each item: `ENQUIRY-ACTIVATION-CHECKLIST.md` and `PRIVACY-NOTICE-
 | D6 | **Response expectation:** whether to state a response time (optional) | page or privacy text |
 | D7 | **Who runs the preview tests,** and who approves production activation | section 3 |
 
-## 2. Configuration for Web Boss (after D1–D3)
+## 2. Configuration for Web Boss (after D2–D3; D1 is decided)
+
+**Open request to Web Boss (26 Sep 2026).** Confirm whether a company-owned Resend account and a verified sending domain or address already exist. Report what can be reused and what access or setup is still needed. Keep credentials out of chat and records: enter keys only in the Pages environment settings.
 
 1. **Turnstile.** Create a widget in Cloudflare and allow the preview and production hostnames. Keep its site key and secret.
 2. **Preview environment only.** Set these in Pages → Settings → Environment variables:
 
    | Name | Kind |
    |---|---|
-   | `ENQUIRY_TO` | plain |
+   | `ENQUIRY_TO` | plain: `Filipp.korentsvit@nwpharmatech.com` (D1) |
    | `ENQUIRY_FROM` | plain |
    | `RESEND_API_KEY` | secret |
    | `TURNSTILE_SITE_KEY` | plain |

@@ -22,7 +22,7 @@ Status: **online enquiries disabled** on production (`6affaba`). Nothing below i
 
 ## B. Decisions for Filipp
 
-1. **Accountable recipient.** Which person or team receives and answers enquiries, and at what address (`ENQUIRY_TO`). The Contact page's `team@nwpharmatech.com` is not assumed.
+1. **Accountable recipient: decided 26 Sep 2026.** `ENQUIRY_TO = Filipp.korentsvit@nwpharmatech.com` (Filipp handles enquiries for now; receiving inbox, not the sender).
 2. **Email service.** Confirm Resend (the code targets it) and its account, data-processing terms and region. Choosing another provider means a small code change.
 3. **Sending address.** Pick an address on a domain verified with the provider (`ENQUIRY_FROM`), with SPF and DKIM in DNS. Decide whether it is a subdomain.
 4. **Retention.** How long enquiries are kept in the mailbox and at the provider, and how they are deleted.

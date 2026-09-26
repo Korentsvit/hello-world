@@ -99,7 +99,7 @@ The proposed text replaces “Today, contact is by email only” for research en
 | Email service provider | The code targets Resend. The contract, data-processing terms and account are not confirmed. Choosing another provider needs a small code change | NWPharmaTech |
 | Data location and international transfers | These depend on the provider and account region | NWPharmaTech, with the provider |
 | Provider retention of messages and logs | Set by the provider and account settings | NWPharmaTech, with the provider |
-| Recipient (`ENQUIRY_TO`) and accountable team | Who receives and answers enquiries; not assumed from the Contact page | NWPharmaTech |
+| Recipient (`ENQUIRY_TO`) and accountable team | **Decided 26 Sep 2026:** `Filipp.korentsvit@nwpharmatech.com`; Filipp handles enquiries for now. Still open: whether Part B names the person or a role | Filipp (wording) |
 | Retention and deletion of enquiries in NWPharmaTech's mailbox | Not documented | NWPharmaTech |
 | Lawful basis and controller wording | The current notice does not state these; they need legal confirmation | NWPharmaTech (legal) |
 | Turnstile keys and hostnames | These are needed to activate the form. The notice wording reuses the existing Turnstile description | NWPharmaTech / Web PR |
