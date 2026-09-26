@@ -1,4 +1,4 @@
-/*! NWPharmaTech — NWPT-026 nav: click+keyboard primary, hover supplement, one-open accordion */
+/*! NWPharmaTech — NWPT-026 nav (NWPT-034 fix): click+keyboard primary, hover supplement, one-open accordion */
 (function () {
   var btn = document.getElementById("nav-toggle");
   var nav = document.getElementById("site-nav");
@@ -116,11 +116,12 @@
       if (group.classList.contains("is-pinned")) return;
       setExpanded(group, false);
     });
+    /* NWPT-034: focus alone no longer opens a group. Opening on focus made the following click, tap or
+       Enter toggle the group shut again, so the menus only worked by hover. Click, tap and Enter/Space
+       now open and close; moving focus to another group closes this one. */
     group.addEventListener("focusin", function () {
       if (mq.matches) return;
       closeAllGroups(group);
-      setExpanded(group, true);
-      group.classList.add("is-pinned");
     });
     group.addEventListener("focusout", function (e) {
       if (mq.matches) return;

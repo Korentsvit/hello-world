@@ -3666,3 +3666,29 @@ th { color: var(--ink-600); }
   .hero-motion__toggle { right: 0.5rem; bottom: -1.25rem; }
 }
 @media (min-width: 860px) and (max-width: 1100px) { .hero-motion { width: 38vw; right: 1vw; } }
+
+/* NWPT-034 Updates page: news / milestones / explainers */
+.updates-section__head { max-width: 44rem; margin-bottom: 1.25rem; }
+.updates-section__head h2 { margin-bottom: 0.4rem; }
+.updates-section__head p { margin: 0; color: var(--ink-700); }
+@media (min-width: 640px) { .updates-card-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .updates-card-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.updates-card-grid--two .update-card h3 { font-size: 1.2rem; }
+.update-card__date { color: var(--ink-600); }
+.update-card__cat { color: var(--ink-600); }
+.updates-milestones { display: grid; gap: 1.5rem 3rem; align-items: center; }
+@media (min-width: 900px) { .updates-milestones { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); } }
+.updates-milestones__figure { margin: 0; }
+.milestone-list { list-style: none; margin: 1.25rem 0 1rem; padding: 0; border-left: 2px solid var(--turquoise-500); }
+.milestone-list li { position: relative; display: grid; gap: 0.15rem; padding: 0.55rem 0 0.75rem 1.25rem; }
+.milestone-list li::before { content: ""; position: absolute; left: -0.42rem; top: 0.85rem; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #fff; border: 2px solid var(--turquoise-500); }
+.milestone-list time { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--hope-600); }
+.milestone-list span { color: var(--navy-900); }
+.updates-section .press-resources { margin-top: 2rem; }
+/* NWPT-034: conceptual figures beside the text they support, not as stand-alone sections */
+.side-figure-split { display: grid; gap: 1.25rem 3rem; align-items: center; }
+@media (min-width: 900px) { .side-figure-split { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); } }
+.side-figure-split .manus-figure { margin: 0; }
+/* NWPT-034: authorised portraits, when supplied (tools/add-portraits.mjs), share one size and crop */
+.team-card .team-card__photo { width: 5rem; height: 5rem; }
+.home-person-card__photo { width: 4rem; height: 4rem; border-radius: 999px; object-fit: cover; display: block; border: 2px solid rgba(15, 23, 42, 0.08); }
