@@ -1,7 +1,10 @@
 // Programme Room (/programme-room) behaviour checks, Cloudflare Pages runtime:
 //   node test-programme-room.mjs <site-dir>
-// Tabs and keyboard (arrows, Home, End), Previous/Next, deep links, "What supports this?" by keyboard, every stage's
-// image and axe per stage, the page without JavaScript, reduced motion, and no Phase 2B dose/size/sponsor claims.
+// Opening screen (explorer controls on the first screen), shortcuts with focus and history, tabs and keyboard (arrows,
+// Home, End), Previous/Next, deep links to stages and to their "What supports this?" disclosures, open-question
+// links, "Copy link to this topic", panel structure, work-status and source-type labels, source dates, dated
+// milestones kept apart, every stage's image and axe per stage, the page without JavaScript, reduced motion, and
+// no Phase 2B dose/size/sponsor claims or inferred approval status.
 import { chromium } from "playwright-core"; import { serve } from "./lib/cf-serve.mjs"; import fs from "node:fs";
 const dir = process.argv[2] || "../release-032/site";
 const axe = fs.readFileSync(new URL("./node_modules/axe-core/axe.min.js", import.meta.url), "utf8");
@@ -18,12 +21,18 @@ const visible = (pg) => pg.evaluate(() => [...document.querySelectorAll("[data-s
 const imagesLoad = (pg, sel) => pg.evaluate(async (sel) => { const out = []; for (const i of document.querySelectorAll(sel)) { if (!i.getClientRects().length) continue; i.scrollIntoView({ block: "center" });
   const t0 = performance.now(); while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50)); if (!(i.complete && i.naturalWidth > 0)) out.push(i.currentSrc); } return out; }, sel);
 
-for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { width: 1280, height: 900 }]]) {
+const DATE_LABELS = ["Source date", "Record date", "Record dates", "Website page reviewed"];
+for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { width: 1363, height: 936 }]]) {
   // With JavaScript
   const ctx = await b.newContext({ viewport: vp, reducedMotion: "reduce" }); await offsite(ctx);
   const pg = await ctx.newPage(); const errs = []; pg.on("pageerror", (e) => errs.push(e.message)); pg.on("console", (m) => m.type() === "error" && errs.push(m.text()));
   await pg.goto(srv.base + "/programme-room", { waitUntil: "load" });
   const tabs = pg.locator('[role="tab"]');
+  // opening screen: the explorer's stage controls start on the first screen
+  const firstTab = await pg.evaluate(() => { const r = document.querySelector('[role="tab"]').getBoundingClientRect(); return { top: r.top, bottom: r.bottom }; });
+  check(`@${label} first stage control on the first screen`, label === "390" ? firstTab.top < vp.height : firstTab.bottom <= vp.height, JSON.stringify(firstTab));
+  check(`@${label} explorer heading is "Explore the programme"`, (await pg.textContent("#room-explore-heading")) === "Explore the programme" && !(await pg.evaluate(() => document.body.innerText.includes("Study timeline"))));
+  check(`@${label} no large introductory figure`, (await pg.locator(".room-hero img, .room-hero figure").count()) === 0);
   check(`@${label} six tabs in a tablist`, (await tabs.count()) === 6 && (await pg.locator('[role="tablist"]').count()) === 1);
   check(`@${label} first stage selected, one panel shown`, JSON.stringify(await visible(pg)) === JSON.stringify([IDS[0]]) && (await tabs.nth(0).getAttribute("aria-selected")) === "true");
   await tabs.nth(0).focus(); await pg.keyboard.press("ArrowRight");
@@ -42,15 +51,63 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { widt
   const sum = pg.locator(`#${IDS[0]} .room-support summary`); await sum.focus(); await pg.keyboard.press("Enter");
   const meta = await pg.evaluate((id) => { const d = document.querySelector(`#${id} .room-support`); return { open: d.open, items: [...d.querySelectorAll(".room-source")].map((s) => [...s.querySelectorAll("dt")].map((t) => t.textContent).join("|")) }; }, IDS[0]);
   check(`@${label} "What supports this?" opens by keyboard`, meta.open);
-  check(`@${label} every source shows scope, status, date and limitations`, meta.items.length > 0 && meta.items.every((x) => x === "Relates to|Evidence status|Date|Limitations"), JSON.stringify(meta.items));
+  check(`@${label} every source shows scope, source type, date and limitations`, meta.items.length > 0 && meta.items.every((x) => { const d = x.split("|"); return d[0] === "Relates to" && d[1] === "Source type" && d.at(-1) === "Limitations" && d.some((k) => DATE_LABELS.includes(k)); }), JSON.stringify(meta.items));
   // each stage shows its progress (completed, in progress, planned...) in the strip
   const progress = await pg.$$eval('[role="tab"] .room-steps__progress', (xs) => xs.map((x) => x.textContent));
-  check(`@${label} strip shows each stage's progress`, JSON.stringify(progress) === JSON.stringify(DATA.stages.map((s) => s.progress)), JSON.stringify(progress));
+  check(`@${label} strip shows each stage's progress`, JSON.stringify(progress) === JSON.stringify(DATA.stages.map((s) => s.strip)), JSON.stringify(progress));
   // sources about other CBD products say so; none of them is labelled as NWPT-SM32300
   const scope = await pg.$$eval(".room-source", (xs) => xs.map((x) => [x.querySelector("a").getAttribute("href"), x.querySelector(".room-source__about dd").textContent]));
   const OTHER = ["#ref-perucca-2020", "#ref-taylor-2018", "#ref-cantop", "#ref-bhattacharyya-2024"];
   check(`@${label} other-CBD sources labelled "not NWPT-SM32300"`, scope.filter(([h]) => OTHER.some((o) => h.endsWith(o))).every(([, t]) => /Other CBD products — not NWPT-SM32300/.test(t))
     && scope.filter(([h]) => OTHER.some((o) => h.endsWith(o))).length === 4, JSON.stringify(scope));
+  // labels: work status and source type are separate sets; no approval status inferred
+  const key = await pg.evaluate(() => ({ work: [...document.querySelectorAll(".room-key .room-status")].map((x) => x.textContent), types: [...document.querySelectorAll(".room-key .room-type")].map((x) => x.textContent) }));
+  check(`@${label} work-status key: 5 statuses`, JSON.stringify(key.work) === JSON.stringify(["Background", "Completed", "In progress (reported)", "Proposed", "Open question"]), JSON.stringify(key.work));
+  check(`@${label} source-type key: published research, guidance, registry, company records`, JSON.stringify(key.types) === JSON.stringify(["Published research", "Published guidance", "Registry information", "Company records"]), JSON.stringify(key.types));
+  const whole = await pg.evaluate(() => document.querySelector("main").textContent);
+  check(`@${label} no approval status inferred from missing documentation`, !/not started, not approved|approvals? (are |is )?not confirmed|not confirmed in public|before any approvals/i.test(whole));
+  // panels: question, what is known, what further research would establish
+  const h4s = await pg.$$eval("[data-stage]", (xs) => xs.map((x) => [...x.querySelectorAll(".room-panel__text h4")].map((h) => h.textContent).join("|")));
+  check(`@${label} every panel: question, known, further research`, h4s.length === 6 && h4s.every((x) => x === "The question|What is known|What further research would establish"), JSON.stringify(h4s));
+  // source dates: a date or an explicit "not available"; website review dates labelled apart
+  const dates = await pg.$$eval(".room-source__date", (xs) => xs.map((x) => [x.querySelector("dt").textContent, x.querySelector("dd").textContent]));
+  check(`@${label} every source date is a date or explicitly unavailable`, dates.length >= 15 && dates.every(([, v]) => /\b20\d\d\b/.test(v) || /^Not available$|^Not shown on the page$/.test(v)), JSON.stringify(dates.filter(([, v]) => !/\b20\d\d\b/.test(v))));
+  check(`@${label} no non-date values in date fields`, !dates.some(([, v]) => /Study report|Current page|Current version|Last reviewed with/i.test(v)));
+  // library-backed sources offer both the library explanation and the original source
+  const both = await pg.$$eval(".room-source", (xs) => xs.filter((x) => x.querySelector('a[href^="evidence.html#"]')).map((x) => [x.querySelector('a[href^="evidence.html#"]').getAttribute("href"), !!x.querySelector('a[href^="https://"]')]));
+  check(`@${label} library sources link to the library entry and the original source`, both.length >= 10 && both.every(([, ext]) => ext), JSON.stringify(both.filter(([, e]) => !e)));
+  // dated milestones sit outside the explorer
+  check(`@${label} dated milestones table outside the explorer (6 rows)`, (await pg.locator("#now .room-milestones tbody tr").count()) === 6 && (await pg.locator("[data-room-timeline] .room-milestones, [data-room-timeline] .room-dates").count()) === 0);
+  // shortcuts: navigate, move focus, keep history
+  const sc = await pg.$$eval(".room-shortcut", (xs) => xs.map((x) => x.textContent));
+  check(`@${label} three opening shortcuts`, JSON.stringify(sc) === JSON.stringify(["Where are we now?", "What has been studied?", "What would Phase 2B investigate?"]), JSON.stringify(sc));
+  const followShortcut = async (i) => { await pg.evaluate(() => window.scrollTo(0, 0)); await pg.locator(".room-shortcut").nth(i).click(); await pg.waitForTimeout(250);
+    return pg.evaluate(() => { const a = document.activeElement, r = a.getBoundingClientRect(); return { hash: location.hash, active: a.id, inView: r.top < innerHeight && r.bottom > 0, shown: [...document.querySelectorAll("[data-stage]")].filter((s) => !s.hidden).map((s) => s.id) }; }); };
+  let r = await followShortcut(0); check(`@${label} "Where are we now?" goes to #now with focus`, r.hash === "#now" && r.active === "now" && r.inView, JSON.stringify(r));
+  r = await followShortcut(1); check(`@${label} "What has been studied?" opens Phase 1 with focus`, r.hash === "#stage-phase-1" && r.active === "stage-phase-1" && r.inView && r.shown[0] === "stage-phase-1", JSON.stringify(r));
+  r = await followShortcut(2); check(`@${label} "What would Phase 2B investigate?" opens Phase 2B with focus`, r.hash === "#stage-phase-2b" && r.active === "stage-phase-2b" && r.inView && r.shown[0] === "stage-phase-2b", JSON.stringify(r));
+  await pg.goBack(); await pg.waitForTimeout(250);
+  check(`@${label} Back returns to the previous topic`, (await pg.evaluate(() => location.hash)) === "#stage-phase-1" && (await visible(pg))[0] === "stage-phase-1");
+  r = await followShortcut(1); check(`@${label} following the current topic's link again still focuses it`, r.active === "stage-phase-1" && r.inView, JSON.stringify(r));
+  // open questions link to the relevant panel and opens its disclosure
+  const oq = await pg.$$eval(".room-open__link", (xs) => xs.map((x) => x.getAttribute("href")));
+  check(`@${label} six open questions, each a link to a stage's sources`, oq.length === 6 && oq.every((h) => /^#stage-[a-z0-9-]+-sources$/.test(h)), JSON.stringify(oq));
+  for (let i = 0; i < oq.length; i++) {
+    await pg.locator(".room-open__link").nth(i).scrollIntoViewIfNeeded(); await pg.locator(".room-open__link").nth(i).click(); await pg.waitForTimeout(250);
+    const o = await pg.evaluate((h) => { const d = document.getElementById(h.slice(1)); const s = d.querySelector("summary"); const r = s.getBoundingClientRect();
+      return { open: d.open, focus: document.activeElement === s, inView: r.top >= 0 && r.bottom <= innerHeight, stage: d.closest("[data-stage]").hidden === false }; }, oq[i]);
+    check(`@${label} open question ${i + 1} opens ${oq[i]} with focus`, o.open && o.focus && o.inView && o.stage, JSON.stringify(o));
+    await pg.evaluate((h) => { document.getElementById(h.slice(1)).open = false; }, oq[i]);
+  }
+  // copy link to this topic
+  await ctx.grantPermissions(["clipboard-read", "clipboard-write"], { origin: srv.base });
+  await tabs.nth(2).click();
+  const copyBtn = pg.locator("#stage-phase-1 .room-copy");
+  check(`@${label} "Copy link to this topic" button`, (await copyBtn.textContent()) === "Copy link to this topic" && (await copyBtn.evaluate((b) => b.tagName)) === "BUTTON");
+  await copyBtn.focus(); await pg.keyboard.press("Enter"); await pg.waitForTimeout(200);
+  const clip = await pg.evaluate(() => navigator.clipboard.readText());
+  check(`@${label} copied link is the stage URL`, clip === srv.base + "/programme-room#stage-phase-1", clip);
+  check(`@${label} copy is confirmed in a status message`, (await pg.textContent("#stage-phase-1 .room-copy__status")) === "Link copied");
   // after Previous/Next, the stage strip is fully below the sticky header
   await tabs.nth(0).click();
   await pg.locator(`#${IDS[0]} .room-stage-nav__btn--next`).scrollIntoViewIfNeeded(); await pg.locator(`#${IDS[0]} .room-stage-nav__btn--next`).click(); await pg.waitForTimeout(200);
@@ -75,6 +132,8 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { widt
   check(`@${label} reduced motion: no panel animation`, (await pg.evaluate(() => getComputedStyle(document.querySelector("[data-stage]:not([hidden]) .room-panel")).animationName)) === "none");
   await pg.goto(srv.base + "/programme-room#stage-phase-2b", { waitUntil: "load" });
   check(`@${label} deep link opens the named stage`, (await visible(pg))[0] === "stage-phase-2b" && (await tabs.nth(4).getAttribute("aria-selected")) === "true");
+  await pg.goto(srv.base + "/programme-room#stage-formulation-sources", { waitUntil: "load" }); await pg.waitForTimeout(200);
+  check(`@${label} deep link to a disclosure opens the stage and the disclosure`, (await visible(pg))[0] === "stage-formulation" && (await pg.evaluate(() => document.getElementById("stage-formulation-sources").open)));
   await pg.evaluate(() => { location.hash = "#stage-protocol"; }); await pg.waitForTimeout(100);
   check(`@${label} hash change switches stage`, (await visible(pg))[0] === "stage-protocol");
   check(`@${label} no console errors`, !errsBeforeAxe.length, errsBeforeAxe.join(" | "));
@@ -92,6 +151,9 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { widt
   check(`@${label} no JS: all six stages readable`, JSON.stringify(await visible(pn)) === JSON.stringify(IDS));
   check(`@${label} no JS: stage links are in-page anchors`, JSON.stringify(await pn.$$eval("[data-stage-link]", (as) => as.map((a) => a.getAttribute("href").slice(1)))) === JSON.stringify(IDS));
   check(`@${label} no JS: no tab roles`, (await pn.locator('[role="tab"]').count()) === 0);
+  check(`@${label} no JS: plain "Link to this topic" anchors`, JSON.stringify(await pn.$$eval("a[data-copy-link]", (as) => as.map((a) => a.getAttribute("href").slice(1)))) === JSON.stringify(IDS));
+  check(`@${label} no JS: every in-page link has a target`, await pn.evaluate(() => [...document.querySelectorAll('main a[href^="#"]')].every((a) => document.getElementById(a.getAttribute("href").slice(1)))));
+  check(`@${label} no JS: shortcuts, milestones and open questions present`, (await pn.locator(".room-shortcut").count()) === 3 && (await pn.locator(".room-milestones tbody tr").count()) === 6 && (await pn.locator(".room-open__link").count()) === 6);
   await pn.goto(srv.base + "/programme-room#stage-phase-1", { waitUntil: "load" });
   check(`@${label} no JS: stage fragment targets the stage`, (await pn.evaluate(() => document.querySelector(":target")?.id)) === "stage-phase-1");
   const brokenN = await imagesLoad(pn, "main img"); check(`@${label} no JS: all images load`, !brokenN.length, brokenN.join(", "));

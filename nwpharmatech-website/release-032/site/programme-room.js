@@ -1,7 +1,13 @@
-/*! NWPharmaTech Programme Room — timeline enhancement.
- * Without JavaScript every stage is shown in order, with in-page links. With it, the stage links become an
- * ARIA tab list: one stage is shown at a time; Left/Right (or Up/Down), Home and End move between stages;
- * each stage gains Previous/Next buttons; the URL fragment (#stage-...) selects and deep-links a stage.
+/*! NWPharmaTech Programme Room — explorer enhancement.
+ * Without JavaScript every stage is shown in order, with in-page links, and each stage has a plain
+ * "Link to this topic" anchor. With it:
+ *  - the stage links become an ARIA tab list showing one stage at a time; Left/Right (or Up/Down), Home and End
+ *    move between stages; each stage gains Previous/Next buttons;
+ *  - #stage-… selects a stage and #stage-…-sources also opens its "What supports this?" disclosure, on load, on
+ *    hash change and when a link to the current hash is followed again; focus moves to the stage, the disclosure
+ *    summary, or a focusable section (#now, #milestones, #open-questions);
+ *  - "Link to this topic" becomes a "Copy link to this topic" button with a spoken confirmation.
+ * Scrolling is instant when the visitor prefers reduced motion.
  */
 (function () {
   var root = document.querySelector("[data-room-timeline]");
@@ -9,12 +15,14 @@
   var links = Array.prototype.slice.call(root.querySelectorAll("[data-stage-link]"));
   var stages = Array.prototype.slice.call(root.querySelectorAll("[data-stage]"));
   if (!links.length || links.length !== stages.length) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var behavior = reduce ? "auto" : "smooth";
 
   root.classList.add("is-enhanced");
+  root.querySelector(".room-stages").setAttribute("role", "none"); // its items become tab panels
   var list = root.querySelector(".room-steps ol");
   list.setAttribute("role", "tablist");
-  list.setAttribute("aria-label", "Timeline stages");
-  root.querySelector(".room-stages").setAttribute("role", "none"); // its items become tab panels
+  list.setAttribute("aria-label", "Programme stages");
   var tabs = links.map(function (a, i) {
     var b = document.createElement("button");
     b.type = "button";
@@ -35,36 +43,61 @@
   stages.forEach(function (st, i) {
     var nav = document.createElement("div");
     nav.className = "room-stage-nav";
-    if (i > 0) nav.appendChild(stepButton("Previous stage: " + tabs[i - 1].querySelector(".room-steps__label").textContent, i - 1, "prev"));
-    if (i < stages.length - 1) nav.appendChild(stepButton("Next stage: " + tabs[i + 1].querySelector(".room-steps__label").textContent, i + 1, "next"));
+    if (i > 0) nav.appendChild(stepButton("Previous stage: " + label(i - 1), i - 1, "prev"));
+    if (i < stages.length - 1) nav.appendChild(stepButton("Next stage: " + label(i + 1), i + 1, "next"));
     st.querySelector(".room-panel").appendChild(nav);
   });
-  function stepButton(label, target, kind) {
+  function label(i) { return tabs[i].querySelector(".room-steps__label").textContent; }
+  function stepButton(text, target, kind) {
     var b = document.createElement("button");
     b.type = "button";
     b.className = "room-stage-nav__btn room-stage-nav__btn--" + kind;
-    b.textContent = label;
-    b.addEventListener("click", function () { select(target, true); stages[target].focus({ preventScroll: true }); scrollToTimeline(); });
+    b.textContent = text;
+    b.addEventListener("click", function () { select(target, true); stages[target].focus({ preventScroll: true }); scrollToTimeline(false); });
     return b;
   }
 
+  // "Link to this topic" -> "Copy link to this topic"
+  Array.prototype.forEach.call(root.querySelectorAll("a[data-copy-link]"), function (a) {
+    var id = a.getAttribute("href").slice(1);
+    var wrap = document.createElement("span");
+    wrap.className = "room-copy-wrap";
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "room-copy";
+    b.textContent = "Copy link to this topic";
+    var status = document.createElement("span");
+    status.className = "room-copy__status";
+    status.setAttribute("role", "status");
+    wrap.appendChild(b); wrap.appendChild(status);
+    a.parentNode.replaceChild(wrap, a);
+    b.addEventListener("click", function () {
+      var url = location.origin + location.pathname + "#" + id;
+      var done = function () { status.textContent = "Link copied"; };
+      var fail = function () { status.textContent = "Copy this link: " + url; };
+      try { navigator.clipboard.writeText(url).then(done, fail); } catch (e) { fail(); }
+      setTimeout(function () { if (status.textContent === "Link copied") status.textContent = ""; }, 4000);
+    });
+  });
+
   var current = -1;
   function select(i, updateHash) {
-    if (i === current) return;
-    current = i;
-    tabs.forEach(function (t, k) {
-      var on = k === i;
-      t.setAttribute("aria-selected", on ? "true" : "false");
-      t.tabIndex = on ? 0 : -1;
-      t.classList.toggle("is-current", on);
-      stages[k].hidden = !on;
-    });
+    if (i !== current) {
+      current = i;
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        t.classList.toggle("is-current", on);
+        stages[k].hidden = !on;
+      });
+    }
     if (updateHash && window.history && history.replaceState) history.replaceState(null, "", "#" + stages[i].id);
   }
-  function scrollToTimeline() {
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var top = root.getBoundingClientRect().top;
-    if (top < 0) root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  // bring the stage strip into view (below the sticky header); force: also when it is below the viewport
+  function scrollToTimeline(force) {
+    var r = root.getBoundingClientRect();
+    if (r.top < 0 || (force && r.top > window.innerHeight * 0.4)) root.scrollIntoView({ behavior: behavior, block: "start" });
   }
 
   tabs.forEach(function (t, i) {
@@ -82,13 +115,35 @@
     });
   });
 
-  function fromHash() {
-    var id = (location.hash || "").slice(1);
-    for (var i = 0; i < stages.length; i++) if (stages[i].id === id) return i;
-    return -1;
+  // #stage-x, #stage-x-sources, or another focusable target on the page
+  function go(hash, focus) {
+    var id = (hash || "").replace(/^#/, "");
+    if (!id) return false;
+    var sources = /-sources$/.test(id), stageId = id.replace(/-sources$/, "");
+    for (var i = 0; i < stages.length; i++) {
+      if (stages[i].id !== stageId) continue;
+      select(i, false);
+      if (sources) {
+        var d = document.getElementById(id);
+        d.open = true;
+        d.scrollIntoView({ behavior: behavior, block: "start" });
+        if (focus) d.querySelector("summary").focus({ preventScroll: true });
+      } else {
+        scrollToTimeline(true);
+        if (focus) stages[i].focus({ preventScroll: true });
+      }
+      return true;
+    }
+    var el = document.getElementById(id);
+    if (el && focus && el.getAttribute("tabindex") === "-1") el.focus({ preventScroll: true });
+    return false;
   }
-  var start = fromHash();
-  select(start >= 0 ? start : 0, false);
-  if (start >= 0) root.scrollIntoView({ block: "start" });
-  window.addEventListener("hashchange", function () { var i = fromHash(); if (i >= 0) { select(i, false); scrollToTimeline(); } });
+
+  if (!go(location.hash, true)) select(0, false);
+  window.addEventListener("hashchange", function () { go(location.hash, true); });
+  // following a link to the hash that is already current fires no hashchange
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute("href") === location.hash) { e.preventDefault(); go(location.hash, true); }
+  });
 })();
