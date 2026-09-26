@@ -11,6 +11,46 @@
 - **Settled:** the sender is `NWPharmaTech website <website@nwpharmatech.org>` (send-only; inbound through Resend is not used).
 - **Privacy Part B:** applied on the preview candidate (branch `claude/nwpt-enquiry-preview`). The remaining open items are the P1, P2 and P3 decisions, now listed publicly under "Not yet confirmed".
 
+**27 Sep 2026: preview delivery (reported by Filipp and Web Boss).**
+- Preview candidate `646693df8b4586eb418e432e24a0e9d46879250f` is on `nwpt-837794c-preview`, with `ENQUIRY_FROM` and `ENQUIRY_TO` set on the preview only.
+- Synthetic enquiry **`WWU-E453F947`**: **system acceptance and confirmed inbox delivery are both reported.**
+
+| Section 4 test | Status |
+|---|---|
+| 1–2 Configuration and page | Implied by the accepted submission; the `GET /api/enquiry` output is not yet reported |
+| 3 Real inbox delivery (`WWU-E453F947`) | **Confirmed**: accepted and delivered |
+| 3 Reply-to reaches the tester; provider shows "delivered" | Not yet reported |
+| 4 Retry after a lost response gives exactly one email; a changed enquiry gives a new one | Not yet reported |
+| 5 Repeated clicks give one email | Not yet reported |
+| 6 Failure cases never show "submitted" | Not yet reported |
+| 7 No visitor text in URLs; provider retention matches the notice | Not yet reported (retention: see the privacy decisions) |
+
+**Production stays disabled.** Activation still needs:
+- the remaining section 4 results;
+- the privacy decisions (`records/enquiry/PRIVACY-DECISION-SHEET.md`);
+- the provider and logging facts below;
+- Filipp's approval.
+
+The privacy follow-up `bfbf132` (precise storage wording, sending-region caveat) is a separate candidate. Its public "Not yet confirmed" notice must not go to production.
+
+## Requests to Web Boss: provider and logging facts (27 Sep 2026)
+
+Confirm each item on the **official page or the account itself**, and report the page, the date read and the setting value. No credentials. Claude could not open these pages from its environment; the values in brackets are search-summary leads only.
+
+| # | Fact | Where to confirm | Lead to check |
+|---|---|---|---|
+| W1 | Resend plan on the company account, and its email/log retention | Resend billing; resend.com/security/gdpr | (30 days on Free, Pro and Scale) |
+| W2 | Resend storage location for message content, logs and account data | resend.com/security/gdpr; resend.com/docs/dashboard/domains/regions | (United States; Ireland is the sending region only) |
+| W3 | Resend transfer mechanism and DPA version; whether the company has accepted or signed it | resend.com/legal/dpa; account settings | (SCCs and EU-U.S. DPF, including the UK extension; DPA updated 31 Dec 2025) |
+| W4 | Resend subprocessors (current list) | resend.com/legal/subprocessors | (Stripe, Supabase, Svix, Tinybird; all USA) |
+| W5 | Resend idempotency-key retention | resend.com/docs/dashboard/emails/idempotency-keys | (24 hours) |
+| W6 | Turnstile: data processed, retention, and Cloudflare's role (controller or processor) | cloudflare.com/turnstile-privacy-policy | (signals listed; retention not found) |
+| W7 | Cloudflare transfer mechanism and any data-localisation setting on the account | cloudflare.com/cloudflare-customer-dpa; account settings | — |
+| W8 | Whether Workers Logs or Logpush is enabled on either Pages project, and its retention | Pages project settings | (only ephemeral real-time logs if neither is enabled) |
+| W9 | The mail service hosting `nwpharmatech.com` mailboxes, and its location | DNS MX records; the mail admin | — |
+| W10 | The remaining section 4 results above (reply-to, delivered status, retry, duplicate clicks, failure cases, URL privacy) | Preview | — |
+
+
 **Already built and live, dormant:**
 - `/api/enquiry` fails closed until all five settings exist.
 - The page switches its wording automatically, from "Contact about collaboration" to "Send a non-confidential enquiry", once the API reports it is configured.
@@ -31,6 +71,8 @@ Full detail on each item: `ENQUIRY-ACTIVATION-CHECKLIST.md` and `PRIVACY-NOTICE-
 None of this authorises activation.
 
 ## 2. Remaining decisions (service and privacy): Filipp
+
+> Superseded for action by `records/enquiry/PRIVACY-DECISION-SHEET.md` (27 Sep 2026): S1–S2 are settled by Web Boss setup; the company choices that remain are there.
 
 | # | Decision | Needed for |
 |---|---|---|
