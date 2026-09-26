@@ -2,6 +2,10 @@
 
 **Status:** draft. `site/privacy.html` has not been changed. The preview can be reviewed without this update and without the enquiry form being active.
 
+**Before production publication (management, 26 September 2026):**
+- **Part A** describes the workspace behaviour that is already active: tab storage, share links and the locally generated brief. It must be settled and applied to the privacy notice before the page is published to production.
+- **Part B**, the enquiry form, stays dependent on the actual provider, recipient and retention arrangements. It is applied only when the form is switched on.
+
 **Basis:** the implementation at the integrated candidate, which is:
 - `work-with-us.js`;
 - `functions/api/enquiry.js`;

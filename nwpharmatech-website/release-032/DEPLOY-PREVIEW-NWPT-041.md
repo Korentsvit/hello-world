@@ -23,16 +23,20 @@ Cloudflare Pages compiles `functions/` only from the directory the deploy runs i
 
 ## Commands
 
-**Direct upload with wrangler** (the method used so far):
+**Direct upload with wrangler** (the method used so far). Always deploy from an exact, clean checkout of the candidate commit:
 
 ```sh
-git fetch origin claude/nwpt-work-with-us
-git checkout <FULL SHA from the handoff>
+git clone https://github.com/korentsvit/hello-world.git nwpt-deploy    # or a fresh worktree; not a working copy with local edits
+cd nwpt-deploy
+git checkout --detach 367099eabaa0dfa3d8480eb5b6a84692b68a7e96
+git rev-parse HEAD                     # must print 367099eabaa0dfa3d8480eb5b6a84692b68a7e96
+git status --porcelain --untracked-files=all   # must print nothing
 cd nwpharmatech-website/release-032/site
-npx wrangler@4 pages deploy . --project-name <existing preview project> --branch <preview branch name> --commit-hash <FULL SHA> --commit-dirty=true
+npx wrangler@4 pages deploy . --project-name <existing preview project> --branch <preview branch name> --commit-hash 367099eabaa0dfa3d8480eb5b6a84692b68a7e96
 ```
 
-The deploy output must include **"Compiled Worker successfully"** and **"Uploading Functions bundle"**. If it doesn't, the command ran from the wrong directory.
+- If `git status --porcelain` prints anything, **stop**. Find out what changed and why before deploying: an edited file, an untracked file, or a `.wrangler/` or `node_modules/` folder inside the site directory. Deploy only once the checkout is clean. `--commit-dirty` is not part of this procedure, and wrangler should not report a dirty working directory.
+- The deploy output must include **"Compiled Worker successfully"** and **"Uploading Functions bundle"**. If it doesn't, the command ran from the wrong directory.
 
 **Git integration** (if the preview project builds from the repository):
 - Root directory: `nwpharmatech-website/release-032/site`
