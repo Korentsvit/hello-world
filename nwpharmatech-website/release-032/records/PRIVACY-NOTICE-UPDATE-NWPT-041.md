@@ -20,6 +20,13 @@ It has two parts:
 
 ## Part A: exact wording for publication review (the browser-only workspace that is active now)
 
+> **Applied to `site/privacy.html`** in the publication-candidate follow-up to `9022854`, with management's refinements:
+> - "These pages are static." is removed, because the site now includes an API.
+> - The tab-close sentence is replaced with: "Your optional answers, agenda and questions are stored in your browser for this tab’s session. Browser session-restoration features may preserve them. You can clear your answers and remove agenda items using the page controls. These planning contents are not sent to NWPharmaTech."
+> - "one request" became "one extra request", because the page also loads its normal files.
+>
+> The notice is dated **26 September 2026**, and `sitemap.xml` `lastmod` is 2026-09-26. If production publication happens on a later day, change both dates to that day. Part B is **not** applied. The text below is the earlier draft, kept for the record.
+
 This is ready to apply to `site/privacy.html` once approved. It describes only what the page does today. It names no email provider, recipient or retention arrangement, because the enquiry form is not active. Change 3 moves the notice's existing "Last updated" date, which currently reads 21 September 2026.
 
 **1. Replace** the paragraph under “What this site collects” that begins “These pages are static.” with:

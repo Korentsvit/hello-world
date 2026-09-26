@@ -180,3 +180,15 @@ Checks:
 - `test-programme-room.mjs`: 175/175.
 - `test-deploy-layout.mjs`: 4/4.
 - `check-pages.mjs`: 154/154 on `/work-with-us`, `/contact`, `/programme-room` and `/`.
+
+## Publication-candidate follow-up (after `9022854`)
+
+- **`privacy.html`:** Part A is applied with management's refinements.
+  - The "What this site collects" paragraph now opens "We do not run an account system or payment system." The static-site sentence is removed.
+  - A new "Research collaboration planning tools" section covers tab-session storage, which browser session restoration may preserve; the availability request; shared links; and briefs created in the browser.
+  - "Last updated" is 26 September 2026. Part B is not applied, and online enquiries stay disabled.
+- **`sitemap.xml`:** the privacy page's `lastmod` is 2026-09-26.
+- **Checks:**
+  - `test-work-with-us.mjs`: 172/172, adding the exact privacy text and no Part B text.
+  - `check-pages.mjs`: 102/102 on `/privacy` and `/work-with-us`.
+  - `test-deploy-layout.mjs`: 4/4.
