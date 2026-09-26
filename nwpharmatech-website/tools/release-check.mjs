@@ -139,7 +139,7 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
     await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 10000 }).catch(() => {});
     const st = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth - innerWidth,
-      imgs: [...document.images].filter((i) => i.getClientRects().length > 0).map((i) => ({   // images not rendered at this width (display: none) are not expected to load src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, alt: i.hasAttribute("alt"), dims: i.hasAttribute("width") && i.hasAttribute("height") })),
+      imgs: [...document.images].filter((i) => i.getClientRects().length > 0).map((i) => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, alt: i.hasAttribute("alt"), dims: i.hasAttribute("width") && i.hasAttribute("height") })),   // only images rendered at this width (not display: none) must load
       h1: document.querySelectorAll("h1").length, nav: !!document.querySelector("nav"), csp: window.__csp,
       modules: [...document.querySelectorAll("[data-nwpt-module]")].map((m) => ({ id: m.dataset.nwptModule,
         styled: getComputedStyle(m.querySelector("*") || m).boxSizing === "border-box", ready: m.hasAttribute("data-nwpt-ready") })),
