@@ -110,7 +110,7 @@ const browser = await chromium.launch({ executablePath: process.env.CHROMIUM || 
 const found = new Map();
 const pages = [...pageIds.keys()].sort();
 for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", { width: 1280, height: 900 }]]) {
-  const ctx = await browser.newContext({ viewport: vp });
+  const ctx = await browser.newContext({ viewport: vp, reducedMotion: "reduce" });   // instant scrolling, so full-page captures are not taken mid-scroll
   if (stubExternal) await ctx.route((u) => !u.href.startsWith(base), (r) => r.fulfill({ status: 200, body: "", contentType: /css/.test(r.request().url()) ? "text/css" : "application/octet-stream" }));
   for (const p of pages) {
     const page = await ctx.newPage();
@@ -132,6 +132,7 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
         while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50));
       }
       window.scrollTo({ top: 0, behavior: "instant" });
+      await Promise.all([...document.images].map((i) => i.decode().catch(() => {})));   // decoded, so full-page captures include them
     });
     await page.waitForTimeout(300);
     await page.waitForLoadState("networkidle").catch(() => {});
@@ -159,6 +160,10 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
       .violations.map((x) => `${x.id} x${x.nodes.length}: ${x.nodes[0]?.target}`));
     check("accessibility", `${p} @${vp.width}px: axe WCAG 2.2 AA`, !v.length, v.join("; "));
     const name = (p === "/" ? "home" : p.replace(/^\/|\/$/g, "").replace(/\//g, "_")) + `-${label}.png`;
+    // enlarge the viewport to the whole page first: tall full-page captures otherwise skip painting some images
+    const fullH = await page.evaluate(() => document.documentElement.scrollHeight);
+    await page.setViewportSize({ width: vp.width, height: Math.min(fullH, 16000) });
+    await page.waitForTimeout(600);
     await page.screenshot({ path: path.join(shots, name), fullPage: true });
     await page.close();
   }
