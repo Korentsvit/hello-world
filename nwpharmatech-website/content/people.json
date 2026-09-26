@@ -1,5 +1,5 @@
 {
-  "_doc": "Profiles. Public fields render on people.html and the press kit; people with public: false are not rendered. 'role' is the title, shown only when role_status is 'confirmed' or 'records-agree'; it is null when 'unconfirmed'. buildlib/content.py checks both against 'role_records' (rules in docs/leadership-reconciliation.md): 'confirmed' needs a record from a management confirmation dated after 2026-09-23 whose wording contains the title; 'records-agree' needs two records whose 'title' agrees, at least one dated 2025 or later other than the August 2026 teaser, and no record giving a different title (unless marked 'compatible': held alongside it). A record's 'title' is the title as that record gives it and must appear in its 'wording'. No chair or committee title unless confirmed. 'descriptor' is a field of expertise, remit or neutral description, never a job title, and is always shown: it needs two 'descriptor_records', at least one not the teaser. Each responsibility needs a record dated 2025 or later other than the teaser. 'bio_verification' is a level from facts.json covering the bio and affiliations; below document/primary it blocks production, as for facts. 'consent_to_publish' is the person's written consent to the profile; false blocks production. Every title that is not 'confirmed' blocks production. Records, 'review' and 'sources' are internal. A portrait renders only if 'portrait.file' exists under src/assets AND 'portrait.authorised' is true; otherwise nothing is rendered in its place. 'disclosures' renders only when non-empty and sourced. Interview modules render only when complete (see interviews.json).",
+  "_doc": "Profiles. Public fields render on team.html and the press kit; people with public: false are not rendered. 'role' is the title, shown only when role_status is 'confirmed' or 'records-agree'; it is null when 'unconfirmed'. buildlib/content.py checks both against 'role_records' (rules in docs/leadership-reconciliation.md): 'confirmed' needs a record from a management confirmation dated after 2026-09-23 whose wording contains the title; 'records-agree' needs two records whose 'title' agrees, at least one dated 2025 or later other than the August 2026 teaser, and no record giving a different title (unless marked 'compatible': held alongside it). A record's 'title' is the title as that record gives it and must appear in its 'wording'. No chair or committee title unless confirmed. 'descriptor' is a field of expertise, remit or neutral description, never a job title, and is always shown: it needs two 'descriptor_records', at least one not the teaser. Each responsibility needs a record dated 2025 or later other than the teaser. 'bio_verification' is a level from facts.json covering the bio and affiliations; below document/primary it blocks production, as for facts. 'consent_to_publish' is the person's written consent to the profile; false blocks production. Every title that is not 'confirmed' blocks production. Records, 'review' and 'sources' are internal. A portrait renders only if 'portrait.file' exists under src/assets AND 'portrait.authorised' is true; otherwise nothing is rendered in its place. 'disclosures' renders only when non-empty and sourced. Interview modules render only when complete (see interviews.json).",
   "groups": [
     {
       "id": "clinical",
@@ -21,7 +21,7 @@
       "featured": true,
       "public": true,
       "name": "Dr Scott W. Woods",
-      "role": "CHR-P lead",
+      "role": "CHR-P programme lead",
       "role_status": "confirmed",
       "role_records": [
         {
@@ -48,6 +48,11 @@
           "source": "brief-2026-09-d",
           "date": "2026-09-24",
           "wording": "Management instruction (round 5): 'Scott Woods leads CHR-P.'"
+        },
+        {
+          "source": "brief-2026-09-f",
+          "date": "2026-09-26",
+          "wording": "Board correction pack NWPT-031 B2: 'Woods = CHR-P programme lead · individual capacity · Yale non-endorse'"
         }
       ],
       "descriptor": "Clinical high risk of psychosis (CHR-P)",
@@ -74,8 +79,8 @@
               "wording": "'Scott Woods leads CHR-P.'"
             },
             {
-              "source": "brief-2026-09-b",
-              "wording": "'Make Scott Woods's CHR-P role prominent.'"
+              "source": "brief-2026-09-f",
+              "wording": "'Woods = CHR-P programme lead'"
             }
           ]
         }
@@ -101,7 +106,9 @@
         "verification-2026-09-23b",
         "brief-2026-09-c"
       ],
-      "review": "No programme title in any record. Management (round 4) rejects the adviser framing. The responsibility line is W25's 'Advisor Input ... on trial design', limited to the planned Phase 2B; ask management how his role is described. Responsibility line withheld: the only record of his function (W25, 'Additional Advisor Input ... on trial design') sits beside Kane's W25 relapse-prevention design lead, which is not read as the planned CHR-P Phase 2B; the two are treated alike. Management to give his role wording."
+      "review": "No programme title in any record. Management (round 4) rejects the adviser framing. The responsibility line is W25's 'Advisor Input ... on trial design', limited to the planned Phase 2B; ask management how his role is described. Responsibility line withheld: the only record of his function (W25, 'Additional Advisor Input ... on trial design') sits beside Kane's W25 relapse-prevention design lead, which is not read as the planned CHR-P Phase 2B; the two are treated alike. Management to give his role wording.",
+      "capacity": "Individual capacity",
+      "statement": "Dr Woods contributes in an individual capacity. His Yale affiliation is given for identification only; Yale University does not endorse or sponsor the programme. Programme leadership is separate from the study sponsor role: NWPharmaTech is developing the proposed CHR-P programme, and formal study responsibilities will be documented before the study begins."
     },
     {
       "id": "john-kane",
@@ -109,8 +116,8 @@
       "featured": false,
       "public": true,
       "name": "Dr John M. Kane",
-      "role": null,
-      "role_status": "unconfirmed",
+      "role": "Lead, Schizophrenia Programme",
+      "role_status": "confirmed",
       "role_records": [
         {
           "source": "deck-2023-08",
@@ -139,6 +146,11 @@
           "date": "2026-08-07",
           "title": "SAB Chair",
           "wording": "'SAB Chair; schizophrenia trial design'; 'clinical trial design led by Dr John Kane'"
+        },
+        {
+          "source": "brief-2026-09-f",
+          "date": "2026-09-26",
+          "wording": "Board correction pack NWPT-031 B2: 'Kane = Lead — Schizophrenia Programme (≠ CHR-P lead)'"
         }
       ],
       "descriptor": "Clinical trial design",
@@ -173,7 +185,8 @@
         "verification-2026-09-23",
         "verification-2026-09-23b"
       ],
-      "review": "Titles conflict across records; 'SAB Chair' is teaser-only (committee appointment: withheld). No responsibility line: W25's design lead is for a relapse-prevention design, and only the teaser links him to the current programme's trial design. Ask management whether he leads the CHR-P Phase 2B design."
+      "review": "Titles conflict across records; 'SAB Chair' is teaser-only (committee appointment: withheld). No responsibility line: W25's design lead is for a relapse-prevention design, and only the teaser links him to the current programme's trial design. Ask management whether he leads the CHR-P Phase 2B design.",
+      "statement": "The schizophrenia programme is separate from the CHR-P programme."
     },
     {
       "id": "grace-blest-hopley",
@@ -181,8 +194,8 @@
       "featured": false,
       "public": true,
       "name": "Dr Grace Blest-Hopley",
-      "role": "Chief Scientific Officer",
-      "role_status": "records-agree",
+      "role": "Partner & Chief Scientific Officer",
+      "role_status": "confirmed",
       "role_records": [
         {
           "source": "deck-2023-08",
@@ -206,6 +219,11 @@
           "date": "2026-08-07",
           "title": "CSO",
           "wording": "'CSO; cannabinoid neuropharmacology'"
+        },
+        {
+          "source": "brief-2026-09-f",
+          "date": "2026-09-26",
+          "wording": "Board correction pack NWPT-031 B2: 'Grace: Partner & CSO · company scientific ≠ CHR-P programme lead'"
         }
       ],
       "descriptor": "Cannabinoid neuropharmacology",
@@ -240,7 +258,8 @@
         "teaser-2026-08",
         "verification-2026-09-23b"
       ],
-      "review": "Specific responsibility for formulation research not documented; do not state it until confirmed. 'Responsible for the programme's scientific strategy' removed: inferred from the CSO title, which records give without a remit. Management to describe her responsibilities."
+      "review": "Specific responsibility for formulation research not documented; do not state it until confirmed. 'Responsible for the programme's scientific strategy' removed: inferred from the CSO title, which records give without a remit. Management to describe her responsibilities.",
+      "statement": "Leads the company's scientific work. She is not the CHR-P programme lead."
     },
     {
       "id": "filipp-korentsvit",

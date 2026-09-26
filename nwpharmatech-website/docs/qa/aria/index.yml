@@ -21,6 +21,9 @@
     - /url: "#programme-brief"
   - link "For young people and families":
     - /url: /families
+  - figure "Conceptual visualization for scientific communication.":
+    - img "Conceptual scientific visualization of neural circuitry within a human brain."
+    - text: Conceptual visualization for scientific communication.
   - region "The programme at a glance":
     - paragraph: Programme brief
     - heading "The programme at a glance" [level=2]
@@ -31,7 +34,11 @@
       - text: ", an investigational oral cannabidiol formulation, and a planned"
       - strong: Phase 2B study
       - text: evaluating dose response, symptoms, safety and tolerability.
-    - paragraph: Alongside the clinical programme, we are developing a financing route through which eligible investors could take part through a dedicated programme vehicle, potentially using permissioned tokens. Clinical decisions remain independent of financing, and the effectiveness of NWPT-SM32300 is unproven.
+    - paragraph:
+      - text: "A financing route for the programme is under evaluation: platform-integrated financing is the preferred path, with a conventional register-first placement as the fallback ("
+      - link "funding and use of funds":
+        - /url: /funding-use
+      - text: ). Clinical decisions remain independent of financing, and the effectiveness of NWPT-SM32300 is unproven.
     - link "Download the brief (PDF, 2 pages, 67 KB)":
       - /url: /downloads/nwpharmatech-programme-brief.pdf
     - link "Study progress and evidence":
@@ -44,7 +51,7 @@
         - paragraph: 1 · The clinical need
         - heading "Young people at risk, with no licensed medicine" [level=3]
         - paragraph:
-          - text: Some young people who seek help meet criteria for clinical high risk of psychosis. In pooled studies, about one in four developed psychosis within three years.
+          - text: Some young people who seek help meet criteria for clinical high risk of psychosis. Kaplan–Meier estimates from an updated meta-analysis suggest that about one in four may develop psychosis within about three years; most do not.
           - 'link "Source: Salazar de Pablo et al. 2021"':
             - /url: /evidence#ref-salazar-2021
         - paragraph:
@@ -98,13 +105,13 @@
       - paragraph: Clinical decisions, such as study design, eligibility and safety, are kept independent of funding and financing. Each study needs approval from a medicines regulator and a research ethics committee before it can start.
       - paragraph:
         - link "People and governance":
-          - /url: /people
+          - /url: /team
   - region "Funding and financing":
     - heading "Funding and financing" [level=2]
-    - paragraph: We are developing platform-integrated programme financing through a dedicated programme vehicle, potentially with permissioned tokens issued at closing where feasible. No investment is being accepted through this website or through the financing route described here. Clinical decisions are kept independent of financing.
+    - paragraph: "We are evaluating a platform-supported route for eligible investors to help finance the CHR-P research programme, including a permissioned digital record of participation at closing where that proves feasible. If a platform path cannot meet legal, operational or investor-access requirements, a conventional private placement with a legal investor register remains the fallback. These are development objectives, not live offering terms. Neither path is available on this website: production investment, payment and token issuance remain inactive. Community updates and discussion are separate from any regulated investment process."
     - paragraph:
       - link "How funding works and how progress is reported":
-        - /url: /financing
+        - /url: /funding-use
 - contentinfo:
   - paragraph: nw pharmatech
   - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
@@ -136,13 +143,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq

@@ -18,10 +18,10 @@
   - list:
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
@@ -145,13 +145,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq

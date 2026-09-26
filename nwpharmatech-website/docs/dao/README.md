@@ -1,6 +1,6 @@
 # DAO visual tranche: placement and relationship review
 
-Package: `NWPT-DAO-visual-tranche-01.zip` (Manus, 24 September 2026). The checksums were verified on import (`tools/import-dao-visuals.mjs`). The package is creative direction only: the wording on the site follows the agreed financing content already in `financing.html`, not the brief.
+Package: `NWPT-DAO-visual-tranche-01.zip` (Manus, 24 September 2026). The checksums were verified on import (`tools/import-visuals.mjs`). The package is creative direction only: the wording on the site follows the agreed financing content already in `financing.html`, not the brief.
 
 ## Asset-to-page list
 

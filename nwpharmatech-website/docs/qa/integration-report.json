@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24T22:38:45.681Z",
+ "generated": "2026-09-26T12:45:51.587Z",
  "modules": [
   "evidence-library",
   "family-guide",
@@ -807,22 +807,22 @@
   {
    "name": "routes: a .html live path is refused (Cloudflare Pages would redirect it)",
    "pass": true,
-   "detail": "^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 521, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r}); \"\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html'); Cloudflare Pages answers /x.html with a 308 to /x\n"
+   "detail": "^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 522, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r}); \"\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html'); Cloudflare Pages answers /x.html with a 308 to /x\n"
   },
   {
    "name": "routes: a trailing-slash live path is refused (Cloudflare Pages redirects /x/ itself, so the redirect loops)",
    "pass": true,
-   "detail": "^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 524, in load_routes\n    raise ExportError(f\"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects \"\nbuildlib.export.ExportError: integration export: route for 'study' must not end with / (got '/study/'); Cloudflare Pages redirects between /x and /x/ itself, so a redirect rule to /x/ can loop\n"
+   "detail": "^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 525, in load_routes\n    raise ExportError(f\"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects \"\nbuildlib.export.ExportError: integration export: route for 'study' must not end with / (got '/study/'); Cloudflare Pages redirects between /x and /x/ itself, so a redirect rule to /x/ can loop\n"
   },
   {
    "name": "routes: a live path with _redirects pattern syntax is refused",
    "pass": true,
-   "detail": "/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 527, in load_routes\n    raise ExportError(f\"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single \"\nbuildlib.export.ExportError: integration export: route for 'study' must be a plain path: letters, digits and . _ ~ % - between single slashes (got '/:slug'); _redirects reads :name and * as patterns\n"
+   "detail": "/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 528, in load_routes\n    raise ExportError(f\"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single \"\nbuildlib.export.ExportError: integration export: route for 'study' must be a plain path: letters, digits and . _ ~ % - between single slashes (got '/:slug'); _redirects reads :name and * as patterns\n"
   },
   {
    "name": "routes: two pages on one live path are refused",
    "pass": true,
-   "detail": ".py\", line 986, in export_modules\n    routes = load_routes(root, page_names)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 530, in load_routes\n    raise ExportError(f\"routes for '{live[path]}' and '{pid}' are both {path}\")\nbuildlib.export.ExportError: integration export: routes for 'evidence' and 'study' are both /evidence\n"
+   "detail": ".py\", line 987, in export_modules\n    routes = load_routes(root, page_names)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 531, in load_routes\n    raise ExportError(f\"routes for '{live[path]}' and '{pid}' are both {path}\")\nbuildlib.export.ExportError: integration export: routes for 'evidence' and 'study' are both /evidence\n"
   },
   {
    "name": "routes: a live path that another module's alias would take over is refused (/news: newsroom alias)",
@@ -852,12 +852,12 @@
   {
    "name": "routes: a check recorded for an unknown dependency is refused",
    "pass": true,
-   "detail": " ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 546, in load_confirmed\n    raise ExportError(f\"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})\")\nbuildlib.export.ExportError: integration export: integration-routes.json: confirmed_dependencies: unknown dependency 'no-such' (known: ['urgent-help'])\n"
+   "detail": " ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 547, in load_confirmed\n    raise ExportError(f\"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})\")\nbuildlib.export.ExportError: integration export: integration-routes.json: confirmed_dependencies: unknown dependency 'no-such' (known: ['urgent-help'])\n"
   },
   {
    "name": "content/: a published document version is exported (without 'status'); unpublished ones are not",
    "pass": true,
-   "detail": "[{\"version\":\"3\",\"date\":\"2026-09-23\",\"published\":true,\"change\":\"Generated from the shared content source; adds study stage, completed work and next milestone.\"}]"
+   "detail": "[{\"version\":\"4\",\"date\":\"2026-09-23\",\"published\":true,\"change\":\"Current stage, completed work and next milestone taken from the study summary, as on the study page; results status taken from the Phase 1 record; financing paragraph as on the home page, with the investment statement limited to this website and the financing route; draft status and version date shown in the header.\",\"source_sha256\":\"d917781b836036f8595f41eede333905ee34a9823ec3f1cd471b81cd7f232cb5\"}]"
   },
   {
    "name": "routes (default paths): under Cloudflare's runtime every live page answers 200 and each of the 14 manifest redirects takes one hop",

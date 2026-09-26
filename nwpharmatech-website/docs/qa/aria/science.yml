@@ -42,6 +42,9 @@
     - listitem:
       - link "Why study a dose range?":
         - /url: "#dose"
+  - figure "Conceptual visualization. Not a final commercial product.":
+    - img "Conceptual cutaway of a translucent investigational softgel and its internal formulation."
+    - text: Conceptual visualization. Not a final commercial product.
   - region "Why investigate CBD in this setting?":
     - paragraph: Question 1
     - heading "Why investigate CBD in this setting?" [level=2]
@@ -109,6 +112,9 @@
       - link "Phase 1 study":
         - /url: /phase-1
       - text: measured absorption; its results are not yet published. No study has measured how much reaches the brain.
+    - figure "Development visualization. Product appearance may change.":
+      - img "Translucent turquoise investigational softgel on a light clinical surface."
+      - text: Development visualization. Product appearance may change.
     - figure "What the formulation is designed to do, and where the evidence currently stops. Schematic, not to scale; it does not show a proven mechanism or any clinical benefit.":
       - 'img "From capsule to measurement Five steps. 1: a 300 mg softgel containing cannabidiol in a lipid fill. 2: in the gut the capsule opens and the fill disperses into very small droplets. 3: cannabidiol is absorbed through the gut wall, and much is broken down by the liver. 4: cannabidiol and its breakdown products in the blood, which is what the Phase 1 study measured. 5, shown dashed: the brain, which was not measured; delivery to the brain has not been shown."': "1 Softgel 300 mg CBD in a lipid fill 2 In the gut Fill disperses into tiny droplets 3 Absorption Through the gut wall; much is broken down by the liver 4 In the blood CBD and breakdown products Measured in Phase 1 5 The brain: not measured Delivery to the brain has not been shown"
       - text: What the formulation is designed to do, and where the evidence currently stops. Schematic, not to scale; it does not show a proven mechanism or any clinical benefit.
@@ -171,13 +177,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq

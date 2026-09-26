@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:35891",
-  "generated": "2026-09-24T22:41:29.928Z",
+  "base": "http://127.0.0.1:39473",
+  "generated": "2026-09-26T12:43:31.692Z",
   "pages": {
     "clinical-need@desktop": {
       "status": 200,
@@ -63,7 +63,7 @@
       "imgsNoAlt": 0,
       "tables": []
     },
-    "financing@desktop": {
+    "funding-use@desktop": {
       "status": 200,
       "errors": [],
       "axe": [],
@@ -112,17 +112,6 @@
           "overflow": false
         }
       ]
-    },
-    "people@desktop": {
-      "status": 200,
-      "errors": [],
-      "axe": [],
-      "overflow": false,
-      "title": "People and governance | NWPharmaTech",
-      "h1": 1,
-      "robots": "noindex, nofollow",
-      "imgsNoAlt": 0,
-      "tables": []
     },
     "phase-1@desktop": {
       "status": 200,
@@ -189,6 +178,17 @@
           "overflow": false
         }
       ]
+    },
+    "team@desktop": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "People and governance | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
     },
     "updates@desktop": {
       "status": 200,
@@ -262,7 +262,7 @@
       "imgsNoAlt": 0,
       "tables": []
     },
-    "financing@mobile": {
+    "funding-use@mobile": {
       "status": 200,
       "errors": [],
       "axe": [],
@@ -311,17 +311,6 @@
           "overflow": false
         }
       ]
-    },
-    "people@mobile": {
-      "status": 200,
-      "errors": [],
-      "axe": [],
-      "overflow": false,
-      "title": "People and governance | NWPharmaTech",
-      "h1": 1,
-      "robots": "noindex, nofollow",
-      "imgsNoAlt": 0,
-      "tables": []
     },
     "phase-1@mobile": {
       "status": 200,
@@ -388,6 +377,17 @@
           "overflow": false
         }
       ]
+    },
+    "team@mobile": {
+      "status": 200,
+      "errors": [],
+      "axe": [],
+      "overflow": false,
+      "title": "People and governance | NWPharmaTech",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "imgsNoAlt": 0,
+      "tables": []
     },
     "updates@mobile": {
       "status": 200,
@@ -538,27 +538,27 @@
       "detail": ""
     },
     {
-      "name": "financing@desktop: HTTP 200 at /financing without redirect",
+      "name": "funding-use@desktop: HTTP 200 at /funding-use without redirect",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "financing@desktop: no console/request errors",
+      "name": "funding-use@desktop: no console/request errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "financing@desktop: no horizontal scroll",
+      "name": "funding-use@desktop: no horizontal scroll",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "financing@desktop: exactly one h1",
+      "name": "funding-use@desktop: exactly one h1",
       "pass": true,
       "detail": "h1=1"
     },
     {
-      "name": "financing@desktop: axe (WCAG 2.2 AA + best practice) no violations",
+      "name": "funding-use@desktop: axe (WCAG 2.2 AA + best practice) no violations",
       "pass": true,
       "detail": ""
     },
@@ -644,31 +644,6 @@
     },
     {
       "name": "newsroom@desktop: table 1 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@desktop: HTTP 200 at /people without redirect",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@desktop: no console/request errors",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@desktop: no horizontal scroll",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@desktop: exactly one h1",
-      "pass": true,
-      "detail": "h1=1"
-    },
-    {
-      "name": "people@desktop: axe (WCAG 2.2 AA + best practice) no violations",
       "pass": true,
       "detail": ""
     },
@@ -809,6 +784,31 @@
     },
     {
       "name": "study@desktop: table 3 fits its container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "team@desktop: HTTP 200 at /team without redirect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "team@desktop: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "team@desktop: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "team@desktop: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "team@desktop: axe (WCAG 2.2 AA + best practice) no violations",
       "pass": true,
       "detail": ""
     },
@@ -973,27 +973,27 @@
       "detail": ""
     },
     {
-      "name": "financing@mobile: HTTP 200 at /financing without redirect",
+      "name": "funding-use@mobile: HTTP 200 at /funding-use without redirect",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "financing@mobile: no console/request errors",
+      "name": "funding-use@mobile: no console/request errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "financing@mobile: no horizontal scroll",
+      "name": "funding-use@mobile: no horizontal scroll",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "financing@mobile: exactly one h1",
+      "name": "funding-use@mobile: exactly one h1",
       "pass": true,
       "detail": "h1=1"
     },
     {
-      "name": "financing@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "name": "funding-use@mobile: axe (WCAG 2.2 AA + best practice) no violations",
       "pass": true,
       "detail": ""
     },
@@ -1079,31 +1079,6 @@
     },
     {
       "name": "newsroom@mobile: table 1 fits its container",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@mobile: HTTP 200 at /people without redirect",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@mobile: no console/request errors",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@mobile: no horizontal scroll",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "people@mobile: exactly one h1",
-      "pass": true,
-      "detail": "h1=1"
-    },
-    {
-      "name": "people@mobile: axe (WCAG 2.2 AA + best practice) no violations",
       "pass": true,
       "detail": ""
     },
@@ -1248,6 +1223,31 @@
       "detail": ""
     },
     {
+      "name": "team@mobile: HTTP 200 at /team without redirect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "team@mobile: no console/request errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "team@mobile: no horizontal scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "team@mobile: exactly one h1",
+      "pass": true,
+      "detail": "h1=1"
+    },
+    {
+      "name": "team@mobile: axe (WCAG 2.2 AA + best practice) no violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "updates@mobile: HTTP 200 at /updates without redirect",
       "pass": true,
       "detail": ""
@@ -1278,7 +1278,7 @@
       "detail": ""
     },
     {
-      "name": "internal links and anchors resolve directly, with no redirect (752 checked)",
+      "name": "internal links and anchors resolve directly, with no redirect (753 checked)",
       "pass": true,
       "detail": ""
     },
@@ -1358,7 +1358,7 @@
       "detail": ""
     },
     {
-      "name": "keyboard: all 37 tab stops on home show a visible focus outline",
+      "name": "keyboard: all 38 tab stops on home show a visible focus outline",
       "pass": true,
       "detail": "[]"
     },
@@ -1490,7 +1490,7 @@
     {
       "name": "download: programme brief PDF served (200, application/pdf, valid header, >10 KB)",
       "pass": true,
-      "detail": "200 application/pdf 68125 bytes"
+      "detail": "200 application/pdf 68412 bytes"
     },
     {
       "name": "download: homepage 'Download the brief' triggers a file download",

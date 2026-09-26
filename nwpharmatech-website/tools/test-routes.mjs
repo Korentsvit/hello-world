@@ -68,7 +68,7 @@ try {
     report.public[from] = w.chain;
   }
   // 4. The draft-3 redirect rules that looped (/study -> /study.html -> /study ...) are gone.
-  for (const p of ["/study", "/phase-1", "/science", "/evidence", "/families", "/people", "/updates"]) {
+  for (const p of ["/study", "/phase-1", "/science", "/evidence", "/families", "/team", "/updates"]) {
     const w = await walk(b, p);
     check(`former loop ${p}: now 200 directly`, !w.loop && w.chain.length === 1 && w.final?.status === 200, JSON.stringify(w.chain));
   }
@@ -93,14 +93,14 @@ try {
     const w = await walk(b, loc.replace(SITE, "") || "/");
     check(`sitemap ${loc}: 200 without redirect`, w.chain.length === 1 && w.final?.status === 200, JSON.stringify(w.chain));
   }
-  check("sitemap excludes the noindex financing page", !locs.some((l) => l.endsWith("/financing")));
+  check("sitemap excludes the noindex financing page", !locs.some((l) => l.endsWith("/funding-use")));
   // 8. Headers and downloads.
   const home = await fetch(b + "/");
   const staging = /Disallow: \/\n/.test(fs.readFileSync(path.join(pub, "robots.txt"), "utf8"));
   check("CSP header present", /script-src 'self'/.test(home.headers.get("content-security-policy") || ""));
   if (staging) check("staging: X-Robots-Tag noindex on pages", /noindex/.test(home.headers.get("x-robots-tag") || ""));
-  const fin = await fetch(b + "/financing");
-  check("/financing: X-Robots-Tag noindex", /noindex/.test(fin.headers.get("x-robots-tag") || ""));
+  const fin = await fetch(b + "/funding-use");
+  check("/funding-use: X-Robots-Tag noindex", /noindex/.test(fin.headers.get("x-robots-tag") || ""));
   for (const d of fs.readdirSync(path.join(pub, "downloads"))) {
     const r = await fetch(`${b}/downloads/${d}`);
     const type = r.headers.get("content-type") || "";
@@ -126,9 +126,9 @@ build.write_meta_files(out, "production", names, build.SRC / "downloads", pdfs)`
   const ps = await serve(prod);
   try {
     const robots = await (await fetch(ps.base + "/robots.txt")).text();
-    check("production robots.txt does not block /financing (crawlers must be able to see its noindex)", !/Disallow: \/financing/.test(robots) && /Sitemap:/.test(robots), robots);
-    const fin = await fetch(ps.base + "/financing");
-    check("production /financing: X-Robots-Tag noindex", /noindex/.test(fin.headers.get("x-robots-tag") || ""), fin.headers.get("x-robots-tag"));
+    check("production robots.txt does not block /funding-use (crawlers must be able to see its noindex)", !/Disallow: \/funding-use/.test(robots) && /Sitemap:/.test(robots), robots);
+    const fin = await fetch(ps.base + "/funding-use");
+    check("production /funding-use: X-Robots-Tag noindex", /noindex/.test(fin.headers.get("x-robots-tag") || ""), fin.headers.get("x-robots-tag"));
     const study = await fetch(ps.base + "/study");
     check("production /study: no X-Robots-Tag noindex", !/noindex/.test(study.headers.get("x-robots-tag") || ""), study.headers.get("x-robots-tag"));
     await fin.arrayBuffer(); await study.arrayBuffer();

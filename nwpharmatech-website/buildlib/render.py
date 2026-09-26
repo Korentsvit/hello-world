@@ -189,8 +189,10 @@ class Renderer:
         # the title only when management confirmed it or company records agree; the descriptor is never a title
         role = f'<p class="role">{escape(p["role"])}</p>' if p["role_status"] in ("confirmed", "records-agree") else ""
         return (f'<article class="person{feat}" id="{p["id"]}"><div class="person-head">{self._portrait(p)}'
-                f'<div><p class="person-focus">{escape(p["descriptor"])}</p><{level}>{escape(p["name"])}</{level}>{role}</div></div>'
+                f'<div><p class="person-focus">{escape(p["descriptor"])}</p><{level}>{escape(p["name"])}</{level}>{role}'
+                + (f'<p class="person-badge">{escape(p["capacity"])}</p>' if p.get("capacity") else "") + '</div></div>'
                 f'<p>{escape(p["bio"])}</p>'
+                + (f'<p class="person-note">{escape(p["statement"])}</p>' if p.get("statement") else "")
                 + (f'<h4>Responsibilities</h4><ul class="plain">{resp}</ul>' if resp else "")
                 + (f'<h4>Affiliations</h4><ul class="plain">{aff}</ul>' if aff else "")
                 + disc + self._interview(p) + "</article>")
@@ -322,13 +324,16 @@ class Renderer:
 
     # ---------- brand ----------
     def b_dao_image(self, arg):
-        """A picture from the DAO visual tranche (content/dao-images.json, tools/import-dao-visuals.mjs).
+        """A picture from a supplied visual package (content/dao-images.json or portfolio-images.json, tools/import-visuals.mjs).
         arg: '<id>.<layout>[.eager]', layout 'wide' (full container), 'half' (a two-column side) or 'mark' (a small
         decorative section marker). Narrow screens get the 4:3 crop around the focal point; wider ones the supplied
         derivatives. Intrinsic width and height are set; images load lazily unless marked eager. Explanatory images
         carry a visible caption; decorative ones have empty alt text and no caption."""
         iid, layout, *flags = arg.split(".")
-        im = json.loads((self.root / "content" / "dao-images.json").read_text())["images"][iid]
+        im = {}
+        for f in ("dao-images.json", "portfolio-images.json"):   # the DAO tranche and the first scientific portfolio
+            im.update(json.loads((self.root / "content" / f).read_text())["images"])
+        im = im[iid]
         url = lambda f: "/assets/img/" + f["file"]
         srcset = lambda fs: ", ".join(f"{url(f)} {f['width']}w" for f in fs)
         big = im["files"][-1]
@@ -343,7 +348,8 @@ class Renderer:
         pic = (f'<picture>{mobile}<img src="{url(big)}" srcset="{srcset(im["files"])}" sizes="{sizes}" width="{big["width"]}" '
                f'height="{big["height"]}" alt="{escape(im["alt"])}" {load}></picture>')
         cap = f'<figcaption>{escape(im["caption"])}</figcaption>' if im.get("caption") else ""
-        return f'<figure class="dao-figure dao-{layout}">{pic}{cap}</figure>'
+        extra = " portfolio-figure" if im["source"].startswith("NWPT-visual-portfolio") else ""
+        return f'<figure class="dao-figure dao-{layout}{extra}">{pic}{cap}</figure>'
 
     def b_brand(self, where):
         """The official logo once supplied and authorised (content/assets.json 'logo'); until then the

@@ -16,8 +16,8 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 39464,
-   "sha256": "43fb260e616e697d9613ace14ae3c834c7e3ecb5f7b672a25c6272351d4eb800"
+   "bytes": 39676,
+   "sha256": "1f464e3f7bc9f8ed5c9f1348a849e29f5ed960e7d24eb0d30df5d661484744ce"
   },
   "module.css": {
    "bytes": 15654,
@@ -28,8 +28,8 @@
    "sha256": "d9133636c5d0917973a4a7df3ca81f433f8a0594ade081bc6a62e127b9b46499"
   },
   "preview.html": {
-   "bytes": 40325,
-   "sha256": "c930e4723c8a234210d93eabaca9b4548f5e71e680fd9df2b4fd40f68df10188"
+   "bytes": 40537,
+   "sha256": "570d3794736af45c14bfc59f22f70437aeeab65142573ec6c52d17126b5dd477"
   }
  },
  "left_out": [],

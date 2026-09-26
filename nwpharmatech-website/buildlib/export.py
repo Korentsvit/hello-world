@@ -48,9 +48,10 @@ REDIRECT_CODES = (301, 302, 307, 308)
 # review_match still apply while the link keeps the staging route, that is while it points at the staging page)
 MODULE_SPECS = (
     {"id": "study-hub", "title": "Study progress", "page": "study.html"},
-    {"id": "phase-1", "title": "Phase 1 study", "page": "phase-1.html"},
+    {"id": "phase-1", "title": "Phase 1 study", "page": "phase-1.html", "drop": [("class", "portfolio-figure", "Manus scientific portfolio image: the live site places these images itself.")]},
     {"id": "formulation", "title": "Formulation explanation", "page": "science.html", "section": "formulation",
-     "drop": [("class", "q-num", "The 'Question 2' label numbers the question within the staging science page.")]},
+     "drop": [("class", "q-num", "The 'Question 2' label numbers the question within the staging science page."),
+              ("class", "portfolio-figure", "Manus scientific portfolio image: the live site places these images itself.")]},
     {"id": "evidence-library", "title": "Evidence library", "page": "evidence.html"},
     {"id": "family-guide", "title": "Guide for young people and families", "page": "families.html",
      "depends": [{"id": "urgent-help", "page": "faq", "anchor": "urgent-help", "review_match": "crisis-line",

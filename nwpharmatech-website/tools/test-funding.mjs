@@ -36,7 +36,7 @@ try {
     const csp = [];
     await page.addInitScript(() => { window.__csp = []; document.addEventListener("securitypolicyviolation", (e) => window.__csp.push(e.violatedDirective)); });
     page.on("pageerror", (e) => csp.push(e.message));
-    await page.goto(srv.base + "/financing", { waitUntil: "load" });
+    await page.goto(srv.base + "/funding-use", { waitUntil: "load" });
     const state = () => page.evaluate(() => ({
       picker: !document.querySelector(".layer-picker").hidden,
       pressed: [...document.querySelectorAll(".layer-btn")].map((b) => b.getAttribute("aria-pressed")),
@@ -80,7 +80,7 @@ try {
   {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: "reduce" });
     const page = await ctx.newPage();
-    await page.goto(srv.base + "/financing", { waitUntil: "load" });
+    await page.goto(srv.base + "/funding-use", { waitUntil: "load" });
     const t = await page.$eval(".layer-btn", (b) => getComputedStyle(b).transitionDuration);
     check("reduced motion: no transitions on the explorer", /^0s(, 0s)*$/.test(t), t);
     await ctx.close();
@@ -89,7 +89,7 @@ try {
   {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
     const page = await ctx.newPage();
-    await page.goto(srv.base + "/financing", { waitUntil: "load" });
+    await page.goto(srv.base + "/funding-use", { waitUntil: "load" });
     const r = await page.evaluate(() => ({ picker: getComputedStyle(document.querySelector(".layer-picker")).display,
       panels: [...document.querySelectorAll(".layer-panel")].filter((p) => p.offsetParent).length }));
     check("no JavaScript: the buttons are hidden and all five groups are shown as a readable list", r.picker === "none" && r.panels === 5, JSON.stringify(r));
@@ -98,7 +98,7 @@ try {
   // ---- pages at phone and desktop widths ----
   for (const [w, h, label] of [[390, 844, "mobile"], [1280, 900, "desktop"]]) {
     const ctx = await browser.newContext({ viewport: { width: w, height: h } });
-    for (const p of ["/financing", "/programme", "/updates"]) {
+    for (const p of ["/funding-use", "/programme", "/updates"]) {
       const page = await ctx.newPage();
       await page.addInitScript(() => {
         window.__lcp = 0;
@@ -107,14 +107,14 @@ try {
       await page.goto(srv.base + p, { waitUntil: "load" });
       const lcp = await page.evaluate(() => new Promise((r) => setTimeout(() => r(window.__lcp), 300)));
       const closedHeight = await page.evaluate(() => Math.round(document.querySelector("main").getBoundingClientRect().height));
-      if (p === "/financing") {
+      if (p === "/funding-use") {
         const limit = w === 390 ? 5500 : 3600;   // before the shortening: about 9,500 (390 px) and 4,900 (1280 px)
-        check(`/financing @${w}px: content length ${closedHeight}px (main, without site header and footer), under ${limit}px with the expandable sections closed`, closedHeight < limit, String(closedHeight));
+        check(`/funding-use @${w}px: content length ${closedHeight}px (main, without site header and footer), under ${limit}px with the expandable sections closed`, closedHeight < limit, String(closedHeight));
         const det = await page.$$eval("details.more", (ds) => ds.map((d) => ({ id: d.id, open: d.open, summary: d.querySelector("summary").textContent.trim() })));
-        check("/financing: register mechanics and full structure are expandable sections, closed by default",
+        check("/funding-use: register mechanics and full structure are expandable sections, closed by default",
           det.map((d) => d.id).join() === "register,full-structure" && det.every((d) => !d.open), JSON.stringify(det));
         const quals = await page.$eval("#enquiries .aside", (a) => ({ visible: !!a.offsetParent && !a.closest("details"), text: a.textContent }));
-        check("/financing: essential qualifications visible (not offer, no investment accepted, eligibility, risk)", quals.visible
+        check("/funding-use: essential qualifications visible (not offer, no investment accepted, eligibility, risk)", quals.visible
           && /no investment is being accepted/i.test(quals.text) && /eligibility/i.test(quals.text) && /could be lost/.test(quals.text));
       }
       await settle(page);
@@ -135,7 +135,7 @@ try {
         st.imgs.every((i) => (i.mark ? i.alt === "" && !i.cap : i.alt && i.alt.length > 10 && i.cap)));
       perf[`${p} @${w}px`] = { image_kb: Math.round(st.bytes / 1024), lcp_ms: Math.round(lcp) };
       check(`${p} @${w}px: images under 400 KB (${Math.round(st.bytes / 1024)} KB) and LCP under 2.5 s locally (${Math.round(lcp)} ms)`, st.bytes < 400 * 1024 && lcp < 2500);
-      if (p === "/financing") {
+      if (p === "/funding-use") {
         const d = await page.evaluate(() => {
           const lanes = [...document.querySelectorAll(".gov-lane")].map((l) => Math.round(l.getBoundingClientRect().top));
           const texts = [...document.querySelectorAll(".gov-map *")].filter((e) => [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()));
@@ -159,7 +159,7 @@ try {
   }
   // ---- content guards ----
   {
-    const html = await (await fetch(srv.base + "/financing")).text();
+    const html = await (await fetch(srv.base + "/funding-use")).text();
     const text = html.replace(/<[^>]+>/g, " ");
     check("Funding: no link to a retired or separate DAO, token or community route", !/href="\/(how-it-works|proposed-token|dao|token|community|desci)\b/.test(html));
     const controls = [...html.matchAll(/<(a|button)\b[^>]*>([\s\S]*?)<\/\1>/g)].map((m) => m[2].replace(/<[^>]+>/g, " ").trim());

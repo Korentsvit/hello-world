@@ -406,7 +406,7 @@ check("public build: unpublished fact values absent (Phase 2B regions, funding f
   check(`home: brief download label matches the checked PDF (${briefPages} pages)`, new RegExp(`PDF, ${briefPages} pages?`).test(home));
   check("home: programme brief comes straight after the hero", homeHtml.indexOf('id="programme-brief"') > -1 && homeHtml.indexOf('id="programme-brief"') < homeHtml.indexOf("The programme in 90 seconds"));
   check("PDFs: every published PDF passed its page-count, tagging and fact checks", Object.values(man).every((e) => e.pass), JSON.stringify(Object.fromEntries(Object.entries(man).map(([k, v]) => [k, v.pass]))));
-  const ppl = read("people");
+  const ppl = read("team");
   const woods = (ppl.match(/<article[^>]*id="scott-woods"[\s\S]*?<\/article>/) || [""])[0];
   check("people: Scott Woods is not presented as an adviser", woods && !/advis/i.test(visible(woods)));
   check("people: Trevor Jones listed", /Trevor Jones/.test(ppl));

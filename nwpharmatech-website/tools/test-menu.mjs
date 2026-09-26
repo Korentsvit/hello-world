@@ -21,10 +21,10 @@ const pub = path.resolve(process.env.PUBLIC_DIR || path.join(here, "../public"))
 const shots = path.resolve(here, "../docs/qa/screenshots");
 fs.mkdirSync(shots, { recursive: true });
 
-const PAGES = ["/", "/study", "/evidence", "/faq", "/people"];
+const PAGES = ["/", "/study", "/evidence", "/faq", "/team"];
 const WIDTHS = [[320, 568], [360, 740], [375, 667], [390, 844], [414, 896], [768, 1024]];
 // Where the menu has failed before: leaving it backwards and using the skip link; short and zoomed screens.
-const ESCAPES = [["/study", 375, 667], ["/faq", 390, 600], ["/faq", 320, 568], ["/people", 768, 1024], ["/people", 1099, 700]];
+const ESCAPES = [["/study", 375, 667], ["/faq", 390, 600], ["/faq", 320, 568], ["/team", 768, 1024], ["/team", 1099, 700]];
 const SHORT = [[568, 320], [341, 162], [320, 180]];
 const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"];
 
@@ -509,8 +509,8 @@ async function short(page, errors, b, p, w, h) {
 // Forced colours (Windows contrast themes; Chromium's emulation), light and dark, at 320 px (the "Menu" label is
 // hidden) and 390 px: the toggle's icon is drawn, closed and open, and the current page stays marked in the menu.
 async function forced(page, errors, b, w, scheme) {
-  const where = `/people@${w} ${scheme}`;
-  await page.goto(b + "/people");
+  const where = `/team@${w} ${scheme}`;
+  await page.goto(b + "/team");
   check("forced colours emulation is active", await page.evaluate(() => matchMedia("(forced-colors: active)").matches), where);
   const icon = async () => {
     const r = await page.locator(".nav-toggle-bar").boundingBox();   // the middle bar; the others sit 6 px above and below
@@ -529,8 +529,8 @@ async function forced(page, errors, b, w, scheme) {
 // Forced colours, desktop navigation at 1280 px: the current page keeps a visible bar under it (borders survive
 // forced colours; the box shadow used before did not), and the current section is underlined.
 async function forcedDesktop(page, errors, b, scheme) {
-  const where = `/people@1280 ${scheme}`;
-  await page.goto(b + "/people");
+  const where = `/team@1280 ${scheme}`;
+  await page.goto(b + "/team");
   const bottom = async (sel) => {
     const r = await page.locator(sel).boundingBox();
     return sum((await inkRows(page, { x: r.x, y: r.y, width: r.width, height: r.height })).slice(-3));
@@ -545,8 +545,8 @@ async function forcedDesktop(page, errors, b, scheme) {
 // Touch (a phone): tap to open and close, tap a group, tap the page outside the menu, tap the current page, tap a
 // link to another page.
 async function touch(page, errors, b) {
-  const where = "/people@390 touch";
-  await page.goto(b + "/people");
+  const where = "/team@390 touch";
+  await page.goto(b + "/team");
   const tap = async (loc) => { await loc.tap(); await settle(page); };
   await tap(page.locator(".nav-toggle"));
   let s = await state(page);
@@ -579,8 +579,8 @@ async function touch(page, errors, b) {
 
 // The current page's own link from the keyboard (the pointer case is in narrow()).
 async function keyboardCurrent(page, errors, b) {
-  const where = "/people@390 keyboard";
-  await page.goto(b + "/people");
+  const where = "/team@390 keyboard";
+  await page.goto(b + "/team");
   await page.locator(".nav-toggle").focus();
   await page.keyboard.press("Enter");
   await settle(page);
@@ -590,7 +590,7 @@ async function keyboardCurrent(page, errors, b) {
   await scrollSettled(page);
   const s = await state(page);
   check("current page link (keyboard): menu closes, focus on the main content at the top, URL without fragment",
-    closed(s) && s.active === "#main" && s.path === "/people" && s.hash === "" && s.y === 0, where, JSON.stringify(s));
+    closed(s) && s.active === "#main" && s.path === "/team" && s.hash === "" && s.y === 0, where, JSON.stringify(s));
 }
 
 // Reduced motion: no smooth scrolling, so an in-page destination is reached at once (no wait for a scroll to end).
@@ -642,11 +642,11 @@ try {
     for (const p of ["/faq", "/study"]) await session(browser, `${p}@${w}x${h}`, { viewport: { width: w, height: h } }, (page, errors) => short(page, errors, b, p, w, h));
   }
   for (const colorScheme of ["light", "dark"]) {
-    for (const w of [320, 390]) await session(browser, `/people@${w} ${colorScheme}`, { viewport: { width: w, height: 740 }, forcedColors: "active", colorScheme }, (page, errors) => forced(page, errors, b, w, colorScheme));
-    await session(browser, `/people@1280 ${colorScheme}`, { viewport: { width: 1280, height: 800 }, forcedColors: "active", colorScheme }, (page, errors) => forcedDesktop(page, errors, b, colorScheme));
+    for (const w of [320, 390]) await session(browser, `/team@${w} ${colorScheme}`, { viewport: { width: w, height: 740 }, forcedColors: "active", colorScheme }, (page, errors) => forced(page, errors, b, w, colorScheme));
+    await session(browser, `/team@1280 ${colorScheme}`, { viewport: { width: 1280, height: 800 }, forcedColors: "active", colorScheme }, (page, errors) => forcedDesktop(page, errors, b, colorScheme));
   }
-  await session(browser, "/people@390 touch", { viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true }, (page, errors) => touch(page, errors, b));
-  await session(browser, "/people@390 keyboard", { viewport: { width: 390, height: 844 } }, (page, errors) => keyboardCurrent(page, errors, b));
+  await session(browser, "/team@390 touch", { viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true }, (page, errors) => touch(page, errors, b));
+  await session(browser, "/team@390 keyboard", { viewport: { width: 390, height: 844 } }, (page, errors) => keyboardCurrent(page, errors, b));
   await session(browser, "/@390 reduced motion", { viewport: { width: 390, height: 844 }, reducedMotion: "reduce" }, (page, errors) => reduced(page, errors, b));
   await session(browser, "/@390", { viewport: { width: 390, height: 844 } }, (page, errors) => labels(page, errors, b));
   await session(browser, "/study@390", { viewport: { width: 390, height: 844 } }, (page) => fallback(page, b));

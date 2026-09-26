@@ -219,11 +219,11 @@
         - term: Product
         - definition: Not applicable
         - term: Design
-        - definition: Meta-analysis
+        - definition: Meta-analysis (Kaplan–Meier cumulative estimates)
         - term: Finding
-        - definition: About one in four (25%) developed psychosis within 3 years, and 27% within 4 years, with wide variation between studies.
+        - definition: "Kaplan–Meier cumulative estimates: about one in four (25%) developed psychosis within 3 years, and 27% within 4 years, with wide variation between studies."
         - term: Limitations
-        - definition: Pooled estimates across different services and criteria; individual risk varies.
+        - definition: Meta-analytic Kaplan–Meier cumulative transition estimates; high heterogeneity between services and criteria; individual risk varies. Not the same method as older pooled transition averages (Fusar-Poli et al. 2012).
         - paragraph:
           - text: "Source: Salazar de Pablo G, Radua J, Pereira J, et al.. Probability of transition to psychosis in individuals at clinical high risk: an updated meta-analysis."
           - emphasis: JAMA Psychiatry
@@ -662,13 +662,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq

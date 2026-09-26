@@ -46,7 +46,7 @@ with tempfile.TemporaryDirectory() as tmp:
     checks = {
         "TESTVALUE-status-7731": ["index.html", "programme.html", "study.html"],
         "TESTVALUE-dose-7731": ["index.html", "programme.html", "phase-1.html", "science.html", "faq.html"],
-        "TESTVALUE-role-7731": ["people.html"],
+        "TESTVALUE-role-7731": ["team.html"],
     }
     for marker, expected in checks.items():
         found = sorted(n for n, h in pages.items() if marker in h)

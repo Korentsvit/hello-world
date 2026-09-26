@@ -57,6 +57,9 @@
     - paragraph: A Phase 2B study typically compares more than one dose with a control, to understand the dose–response relationship and decide whether a larger Phase 3 study is justified.
   - region "Where the programme stands":
     - heading "Where the programme stands" [level=2]
+    - figure "Conceptual programme visualization; not a forecast of outcome.":
+      - img "Four abstract development thresholds extending toward a horizon."
+      - text: Conceptual programme visualization; not a forecast of outcome.
     - link "Completed Phase 1 study 14 healthy adult volunteers aged 18 to 55; single doses of 600 mg and 900 mg compared with Epidyolex. Completed 10 December 2025. Results not yet published. Phase 1 study":
       - /url: /phase-1
       - paragraph: Completed
@@ -94,7 +97,7 @@
     - paragraph:
       - text: Funders, financing participants and the public community have no part in these decisions. How the proposed financing would sit alongside them is explained under
       - link "Who does what":
-        - /url: /financing#who-does-what
+        - /url: /funding-use#who-does-what
       - text: .
     - figure "Conceptual illustration of independent clinical oversight.":
       - img "A protected scientific core separated from surrounding participation networks."
@@ -142,13 +145,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq

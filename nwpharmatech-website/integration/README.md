@@ -39,7 +39,7 @@ live-site dependencies that must be checked first (`manifest.json` → `dependen
 listed in `manifest.json` → `publication_blockers`; the build report (`build/build-report.json`) lists the whole site's content blockers.
 
 - **study-hub**
-  - financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
+  - funding-use.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
   - study.html, updates.html: reconcile the Phase 1 start date: company records give first consent on 27 August 2025, ClinicalTrials.gov gives a study start of 22 September 2025
   - index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
   - fact company.name (index) on study.html
@@ -91,7 +91,7 @@ listed in `manifest.json` → `publication_blockers`; the build report (`build/b
   - reference salazar-2021 (index) on families.html
   - dependency urgent-help: /faq#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)
 - **newsroom**
-  - financing.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
+  - funding-use.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
   - index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
   - fact company.jurisdiction (index) on newsroom.html
   - fact company.name (index) on newsroom.html

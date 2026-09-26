@@ -478,4 +478,11 @@ ol.design-steps li { margin-bottom: .4rem; }
 .more[open] > summary { border-bottom: 1px solid var(--line); }
 .more > :not(summary) { padding: 1rem; }
 .more .gov-map { margin: 0; }
-.page-hero .dao-figure { margin: 1.5rem 0 0; }
+.page-hero .dao-figure, .hero .dao-figure { margin: 1.5rem 0 0; }
+.person-badge { display: inline-block; margin: .35rem 0 0; font-size: .82rem; font-weight: 700; color: var(--co-ink); background: var(--co-bg); border-radius: 999px; padding: .1em .7em; }
+.person-note { font-size: .95rem; color: var(--ink-soft); border-left: 3px solid var(--line); padding-left: .75rem; }
+/* hero figures: a 21:9 band on wider screens (the portfolio's 16:9 images are cropped vertically, centred);
+   phones get the 4:3 focal-point crop from the <picture> source */
+@media (min-width: 601px) {
+  .page-hero .dao-figure img, .hero .dao-figure img { aspect-ratio: 21 / 9; object-fit: cover; object-position: 50% 50%; }
+}

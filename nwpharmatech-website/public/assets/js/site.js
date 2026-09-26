@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// "Who does what" (financing.html): one group at a time. Without JavaScript every group is shown as a list.
+// "Who does what" (funding-use.html): one group at a time. Without JavaScript every group is shown as a list.
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-layers]").forEach(function (root) {
     var picker = root.querySelector(".layer-picker");

@@ -28,7 +28,7 @@
     ],
     [
       "people",
-      "people.html",
+      "team.html",
       "People"
     ],
     [
@@ -38,7 +38,7 @@
     ],
     [
       "funding",
-      "financing.html",
+      "funding-use.html",
       "Funding"
     ],
     [
@@ -106,12 +106,12 @@
       "items": [
         [
           "people",
-          "people.html",
+          "team.html",
           "People"
         ],
         [
           "funding",
-          "financing.html",
+          "funding-use.html",
           "Funding and financing"
         ],
         [

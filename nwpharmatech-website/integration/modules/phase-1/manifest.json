@@ -28,7 +28,9 @@
    "sha256": "2e9beefe984c6a0b339550c670e6535712a1aa46d6ec7a9571420f6f4f373a8d"
   }
  },
- "left_out": [],
+ "left_out": [
+  "Manus scientific portfolio image: the live site places these images itself."
+ ],
  "facts": [
   {
    "id": "phase1.design",

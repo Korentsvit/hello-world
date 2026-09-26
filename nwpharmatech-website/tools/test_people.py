@@ -60,8 +60,8 @@ def both(*fs):
 
 # ---- the current file ----
 accepted("current people.json passes; every profile blocks production on title, consent and (index-level) biography",
-         blockers=lambda b: sum("not confirmed by management" in x for x in b) == 8
-         and not any("title for Dr Scott W. Woods" in x for x in b) and sum("no consent to publish" in x for x in b) == 9
+         blockers=lambda b: sum("not confirmed by management" in x for x in b) == 6
+         and not any(f"title for {n}" in x for x in b for n in ("Dr Scott W. Woods", "Dr Grace Blest-Hopley", "Dr John M. Kane")) and sum("no consent to publish" in x for x in b) == 9
          and sum("checked only at index level" in x for x in b) == 5)
 
 # ---- 'confirmed' needs a management confirmation that names the title ----
@@ -72,10 +72,10 @@ accepted("no date cutoff: a management instruction given before the build confir
               lambda ps: ps["trevor-jones"]["role_records"].append({"source": "confirm-test", "date": "2025-06-01", "wording": "Professor Trevor Jones CBE: Senior Adviser"})),
          {"confirm-test": dict(CONFIRM, type="company-instruction", date="2025-06-01")},
          blockers=lambda b: not any("title for Professor Trevor Jones" in x for x in b))
-accepted("Scott Woods: 'CHR-P lead' confirmed by the management instruction 'Scott Woods leads CHR-P.'",
+accepted("Scott Woods: 'CHR-P programme lead' confirmed by the management instructions (NWPT-031 C2)",
          blockers=lambda b: not any("title for Dr Scott W. Woods" in x for x in b))
-refused("Woods's title needs the instruction: without it 'CHR-P lead' is refused", "'confirmed' needs a role record",
-        lambda ps: ps["scott-woods"].update(role_records=[r for r in ps["scott-woods"]["role_records"] if r["source"] != "brief-2026-09-d"]))
+refused("Woods's title needs the instruction: without it 'CHR-P programme lead' is refused", "'confirmed' needs a role record",
+        lambda ps: ps["scott-woods"].update(role_records=[r for r in ps["scott-woods"]["role_records"] if r["source"] not in ("brief-2026-09-d", "brief-2026-09-f")]))
 refused("confirmation from an investor document (not a management confirmation)", "'confirmed' needs a role record",
         both(kane_sab, confirm_record("john-kane", "Chair, Scientific Advisory Board")), {"confirm-test": dict(CONFIRM, type="company-investor-document")})
 refused("confirmation whose wording does not contain the title", "'confirmed' needs a role record",
@@ -116,7 +116,7 @@ refused("responsibility resting on the teaser alone (Kane leads the programme's 
 refused("responsibility supported only by a record from before 2025", "dated 2025 or later",
         setp("daud-gutseriev", responsibilities=[{"text": "Leads operations.", "records": [{"source": "deck-2023-08", "wording": "'Chief Operating Officer'"}]}]))
 refused("responsibility naming an unconfirmed committee role", "chair or committee role that management has not confirmed",
-        setp("john-kane", responsibilities=[{"text": "Chairs the Scientific Advisory Board.", "records": [{"source": "web3-2025-10", "wording": "x"}]}]))
+        setp("richard-barker", responsibilities=[{"text": "Chairs the Scientific Advisory Board.", "records": [{"source": "web3-2025-10", "wording": "x"}]}]))
 refused("responsibility as a bare string (no records)", "needs 'text' and 'records'", setp("john-kane", responsibilities=["Advises."]))
 
 # ---- consent and biography verification ----

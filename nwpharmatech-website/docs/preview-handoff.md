@@ -44,15 +44,9 @@ Until then the preview uses the wording above. It does not imply that submission
 
 ## Missing headshots
 
-**Roster reconciliation: nine profiles on staging, eight on the existing roster.** The additional person is **Professor Trevor Jones CBE** (Senior Adviser). He was not among the eight profiles in increment C (`a4e31c4`). He was added in the correction release because management's round-4 instruction (23 Sep 2026, source `brief-2026-09-c`) said the output "omits Trevor Jones" and asked for him not to be omitted.
+**Roster reconciliation (corrected 26 Sep 2026): nine profiles on staging, eight on the live roster.** The live eight are Korentsvit, Gutseriev, Blest-Hopley, Woods, Kane, Barker, Jones and Cannon (the NWPT-029 portrait list). The additional staging profile is **William Jarosz**, not Trevor Jones as this note said earlier. His profile has been on staging since increment A (`1a7ee0d`), from the 2023 pitch deck ("Partner & Executive Chairman of the Board of Directors") and the August 2026 teaser ("Executive Chairman"). He is not listed in the October 2025 deck, and the July 2026 board circulation email gives no title. Staging shows him with no title (unconfirmed). Trevor Jones is on both rosters.
 
-His records:
-- 2023 pitch deck: "Partner & Senior Regulatory and Clinical Advisor";
-- October 2025 draft deck: "Senior Advisors";
-- July 2026 board circulation email: a recipient, with no title stated;
-- August 2026 teaser: not listed.
-
-The other eight profiles are the eight in the existing roster. Nobody has been added or removed silently since. **Decision for management and Grok:** keep him (the round-4 instruction), or align with the live eight-person roster. Until someone decides, the staging profile stays as it is.
+**Decision for management:** keep William Jarosz on the Team page, or align with the live eight. Until someone decides, the staging profile stays and nobody is added or removed silently.
 
 No portrait has been supplied or authorised. Each profile shows no image until one is: there are no initials or empty frames.
 

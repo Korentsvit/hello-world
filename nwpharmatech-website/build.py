@@ -63,7 +63,7 @@ INLINE_JS = 'document.documentElement.classList.add("js");'
 PAGE_LINK_RE = re.compile(r'<a ([^>]*?)href="([a-z0-9\-]+\.html)(#[^"]*)?"([^>]*)>(.*?)</a>', re.S)
 # relative URLs in href/src/poster: rewritten to root-relative, extensionless routes
 REL_URL_RE = re.compile(r'\b(href|src|poster)="(?![a-zA-Z][a-zA-Z0-9+.\-]*:|/|#)([^"]*)"')
-NOINDEX_PAGES = {"financing.html"}   # public but not indexed (funding and financing)
+NOINDEX_PAGES = {"funding-use.html"}   # public but not indexed (funding and financing)
 PRINT_OUTPUTS = {"programme-brief.html": "nwpharmatech-programme-brief.pdf",
                  "appointment-sheet.html": "appointment-preparation-sheet.pdf"}
 

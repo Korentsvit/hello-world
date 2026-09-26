@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24T22:36:44.447Z",
+ "generated": "2026-09-26T12:35:15.115Z",
  "server": "wrangler pages dev (Cloudflare workerd runtime)",
  "public": {
   "/clinical-need": [
@@ -37,9 +37,9 @@
     "location": null
    }
   ],
-  "/financing": [
+  "/funding-use": [
    {
-    "url": "/financing",
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -61,13 +61,6 @@
   "/newsroom": [
    {
     "url": "/newsroom",
-    "status": 200,
-    "location": null
-   }
-  ],
-  "/people": [
-   {
-    "url": "/people",
     "status": 200,
     "location": null
    }
@@ -96,6 +89,13 @@
   "/study": [
    {
     "url": "/study",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/team": [
+   {
+    "url": "/team",
     "status": 200,
     "location": null
    }
@@ -167,14 +167,14 @@
     "location": null
    }
   ],
-  "/financing.html": [
+  "/funding-use.html": [
    {
-    "url": "/financing.html",
+    "url": "/funding-use.html",
     "status": 308,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
-    "url": "/financing",
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -211,18 +211,6 @@
    },
    {
     "url": "/newsroom",
-    "status": 200,
-    "location": null
-   }
-  ],
-  "/people.html": [
-   {
-    "url": "/people.html",
-    "status": 308,
-    "location": "/people"
-   },
-   {
-    "url": "/people",
     "status": 200,
     "location": null
    }
@@ -271,6 +259,18 @@
    },
    {
     "url": "/study",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/team.html": [
+   {
+    "url": "/team.html",
+    "status": 308,
+    "location": "/team"
+   },
+   {
+    "url": "/team",
     "status": 200,
     "location": null
    }
@@ -347,14 +347,14 @@
     "location": null
    }
   ],
-  "/financing/": [
+  "/funding-use/": [
    {
-    "url": "/financing/",
+    "url": "/funding-use/",
     "status": 308,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
-    "url": "/financing",
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -379,18 +379,6 @@
    },
    {
     "url": "/newsroom",
-    "status": 200,
-    "location": null
-   }
-  ],
-  "/people/": [
-   {
-    "url": "/people/",
-    "status": 308,
-    "location": "/people"
-   },
-   {
-    "url": "/people",
     "status": 200,
     "location": null
    }
@@ -439,6 +427,18 @@
    },
    {
     "url": "/study",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/team/": [
+   {
+    "url": "/team/",
+    "status": 308,
+    "location": "/team"
+   },
+   {
+    "url": "/team",
     "status": 200,
     "location": null
    }
@@ -539,14 +539,14 @@
     "location": null
    }
   ],
-  "/team": [
-   {
-    "url": "/team",
-    "status": 301,
-    "location": "/people"
-   },
+  "/people": [
    {
     "url": "/people",
+    "status": 301,
+    "location": "/team"
+   },
+   {
+    "url": "/team",
     "status": 200,
     "location": null
    }
@@ -579,10 +579,22 @@
    {
     "url": "/funding",
     "status": 301,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
+    "url": "/funding-use",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/financing": [
+   {
     "url": "/financing",
+    "status": 301,
+    "location": "/funding-use"
+   },
+   {
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -591,10 +603,10 @@
    {
     "url": "/invest",
     "status": 301,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
-    "url": "/financing",
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -603,10 +615,10 @@
    {
     "url": "/investors",
     "status": 301,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
-    "url": "/financing",
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -743,14 +755,14 @@
     "location": null
    }
   ],
-  "/team/": [
+  "/people/": [
    {
-    "url": "/team/",
+    "url": "/people/",
     "status": 301,
-    "location": "/people"
+    "location": "/team"
    },
    {
-    "url": "/people",
+    "url": "/team",
     "status": 200,
     "location": null
    }
@@ -783,10 +795,22 @@
    {
     "url": "/funding/",
     "status": 301,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
-    "url": "/financing",
+    "url": "/funding-use",
+    "status": 200,
+    "location": null
+   }
+  ],
+  "/financing/": [
+   {
+    "url": "/financing/",
+    "status": 301,
+    "location": "/funding-use"
+   },
+   {
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -795,10 +819,10 @@
    {
     "url": "/invest/",
     "status": 301,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
-    "url": "/financing",
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -807,10 +831,10 @@
    {
     "url": "/investors/",
     "status": 301,
-    "location": "/financing"
+    "location": "/funding-use"
    },
    {
-    "url": "/financing",
+    "url": "/funding-use",
     "status": 200,
     "location": null
    }
@@ -936,14 +960,14 @@
    "detail": "canonical=https://www.nwpharmatech.org/faq"
   },
   {
-   "name": "route /financing: 200 with no redirect",
+   "name": "route /funding-use: 200 with no redirect",
    "pass": true,
-   "detail": "[{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "route /financing: canonical is https://www.nwpharmatech.org/financing",
+   "name": "route /funding-use: canonical is https://www.nwpharmatech.org/funding-use",
    "pass": true,
-   "detail": "canonical=https://www.nwpharmatech.org/financing"
+   "detail": "canonical=https://www.nwpharmatech.org/funding-use"
   },
   {
    "name": "route /: 200 with no redirect",
@@ -974,16 +998,6 @@
    "name": "route /newsroom: canonical is https://www.nwpharmatech.org/newsroom",
    "pass": true,
    "detail": "canonical=https://www.nwpharmatech.org/newsroom"
-  },
-  {
-   "name": "route /people: 200 with no redirect",
-   "pass": true,
-   "detail": "[{\"url\":\"/people\",\"status\":200,\"location\":null}]"
-  },
-  {
-   "name": "route /people: canonical is https://www.nwpharmatech.org/people",
-   "pass": true,
-   "detail": "canonical=https://www.nwpharmatech.org/people"
   },
   {
    "name": "route /phase-1: 200 with no redirect",
@@ -1026,6 +1040,16 @@
    "detail": "canonical=https://www.nwpharmatech.org/study"
   },
   {
+   "name": "route /team: 200 with no redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/team\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "route /team: canonical is https://www.nwpharmatech.org/team",
+   "pass": true,
+   "detail": "canonical=https://www.nwpharmatech.org/team"
+  },
+  {
    "name": "route /updates: 200 with no redirect",
    "pass": true,
    "detail": "[{\"url\":\"/updates\",\"status\":200,\"location\":null}]"
@@ -1061,9 +1085,9 @@
    "detail": "[{\"url\":\"/faq.html\",\"status\":308,\"location\":\"/faq\"},{\"url\":\"/faq\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "existing URL /financing.html -> /financing in one permanent redirect",
+   "name": "existing URL /funding-use.html -> /funding-use in one permanent redirect",
    "pass": true,
-   "detail": "[{\"url\":\"/financing.html\",\"status\":308,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/funding-use.html\",\"status\":308,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "existing URL /index.html -> / in one permanent redirect",
@@ -1079,11 +1103,6 @@
    "name": "existing URL /newsroom.html -> /newsroom in one permanent redirect",
    "pass": true,
    "detail": "[{\"url\":\"/newsroom.html\",\"status\":308,\"location\":\"/newsroom\"},{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
-  },
-  {
-   "name": "existing URL /people.html -> /people in one permanent redirect",
-   "pass": true,
-   "detail": "[{\"url\":\"/people.html\",\"status\":308,\"location\":\"/people\"},{\"url\":\"/people\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "existing URL /phase-1.html -> /phase-1 in one permanent redirect",
@@ -1104,6 +1123,11 @@
    "name": "existing URL /study.html -> /study in one permanent redirect",
    "pass": true,
    "detail": "[{\"url\":\"/study.html\",\"status\":308,\"location\":\"/study\"},{\"url\":\"/study\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "existing URL /team.html -> /team in one permanent redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/team.html\",\"status\":308,\"location\":\"/team\"},{\"url\":\"/team\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "existing URL /updates.html -> /updates in one permanent redirect",
@@ -1136,9 +1160,9 @@
    "detail": "[{\"url\":\"/faq/\",\"status\":308,\"location\":\"/faq\"},{\"url\":\"/faq\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "existing URL /financing/ -> /financing in one permanent redirect",
+   "name": "existing URL /funding-use/ -> /funding-use in one permanent redirect",
    "pass": true,
-   "detail": "[{\"url\":\"/financing/\",\"status\":308,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/funding-use/\",\"status\":308,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "existing URL /legal/ -> /legal in one permanent redirect",
@@ -1149,11 +1173,6 @@
    "name": "existing URL /newsroom/ -> /newsroom in one permanent redirect",
    "pass": true,
    "detail": "[{\"url\":\"/newsroom/\",\"status\":308,\"location\":\"/newsroom\"},{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
-  },
-  {
-   "name": "existing URL /people/ -> /people in one permanent redirect",
-   "pass": true,
-   "detail": "[{\"url\":\"/people/\",\"status\":308,\"location\":\"/people\"},{\"url\":\"/people\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "existing URL /phase-1/ -> /phase-1 in one permanent redirect",
@@ -1174,6 +1193,11 @@
    "name": "existing URL /study/ -> /study in one permanent redirect",
    "pass": true,
    "detail": "[{\"url\":\"/study/\",\"status\":308,\"location\":\"/study\"},{\"url\":\"/study\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "existing URL /team/ -> /team in one permanent redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/team/\",\"status\":308,\"location\":\"/team\"},{\"url\":\"/team\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "existing URL /updates/ -> /updates in one permanent redirect",
@@ -1246,9 +1270,9 @@
    "detail": "[{\"url\":\"/references\",\"status\":301,\"location\":\"/evidence\"},{\"url\":\"/evidence\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /team -> /people (301), no chain",
+   "name": "alias /people -> /team (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/team\",\"status\":301,\"location\":\"/people\"},{\"url\":\"/people\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/people\",\"status\":301,\"location\":\"/team\"},{\"url\":\"/team\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "alias /news -> /newsroom (301), no chain",
@@ -1261,19 +1285,24 @@
    "detail": "[{\"url\":\"/press\",\"status\":301,\"location\":\"/newsroom\"},{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /funding -> /financing (301), no chain",
+   "name": "alias /funding -> /funding-use (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/funding\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/funding\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /invest -> /financing (301), no chain",
+   "name": "alias /financing -> /funding-use (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/invest\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/financing\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /investors -> /financing (301), no chain",
+   "name": "alias /invest -> /funding-use (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/investors\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/invest\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /investors -> /funding-use (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/investors\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "alias /privacy -> /legal#privacy (301), no chain, fragment exists",
@@ -1331,9 +1360,9 @@
    "detail": "[{\"url\":\"/references/\",\"status\":301,\"location\":\"/evidence\"},{\"url\":\"/evidence\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /team/ -> /people (301), no chain",
+   "name": "alias /people/ -> /team (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/team/\",\"status\":301,\"location\":\"/people\"},{\"url\":\"/people\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/people/\",\"status\":301,\"location\":\"/team\"},{\"url\":\"/team\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "alias /news/ -> /newsroom (301), no chain",
@@ -1346,19 +1375,24 @@
    "detail": "[{\"url\":\"/press/\",\"status\":301,\"location\":\"/newsroom\"},{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /funding/ -> /financing (301), no chain",
+   "name": "alias /funding/ -> /funding-use (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/funding/\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/funding/\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /invest/ -> /financing (301), no chain",
+   "name": "alias /financing/ -> /funding-use (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/invest/\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/financing/\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "alias /investors/ -> /financing (301), no chain",
+   "name": "alias /invest/ -> /funding-use (301), no chain",
    "pass": true,
-   "detail": "[{\"url\":\"/investors/\",\"status\":301,\"location\":\"/financing\"},{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/invest/\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "alias /investors/ -> /funding-use (301), no chain",
+   "pass": true,
+   "detail": "[{\"url\":\"/investors/\",\"status\":301,\"location\":\"/funding-use\"},{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "alias /privacy/ -> /legal#privacy (301), no chain, fragment exists",
@@ -1406,9 +1440,9 @@
    "detail": "[{\"url\":\"/families\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "former loop /people: now 200 directly",
+   "name": "former loop /team: now 200 directly",
    "pass": true,
-   "detail": "[{\"url\":\"/people\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/team\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "former loop /updates: now 200 directly",
@@ -1476,6 +1510,36 @@
    "detail": "[{\"url\":\"/assets/img/mark.svg\",\"status\":200,\"location\":null}]"
   },
   {
+   "name": "internal link /assets/img/portfolio/01-neural-hero-ultrawide-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/portfolio/01-neural-hero-ultrawide-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/portfolio/02-softgel-cutaway-dark-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/portfolio/02-softgel-cutaway-dark-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/portfolio/04-formulation-light-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/portfolio/04-formulation-light-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/portfolio/05-research-network-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/portfolio/05-research-network-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/portfolio/06-programme-horizon-1920.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/portfolio/06-programme-horizon-1920.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /assets/img/portfolio/08-softgel-isolated-transparent-1200.webp: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/assets/img/portfolio/08-softgel-isolated-transparent-1200.webp\",\"status\":200,\"location\":null}]"
+  },
+  {
    "name": "internal link /assets/js/site.js: 200 without redirect",
    "pass": true,
    "detail": "[{\"url\":\"/assets/js/site.js\",\"status\":200,\"location\":null}]"
@@ -1526,9 +1590,9 @@
    "detail": "[{\"url\":\"/faq\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "internal link /financing: 200 without redirect",
+   "name": "internal link /funding-use: 200 without redirect",
    "pass": true,
-   "detail": "[{\"url\":\"/financing\",\"status\":200,\"location\":null}]"
+   "detail": "[{\"url\":\"/funding-use\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "internal link /legal: 200 without redirect",
@@ -1539,11 +1603,6 @@
    "name": "internal link /newsroom: 200 without redirect",
    "pass": true,
    "detail": "[{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
-  },
-  {
-   "name": "internal link /people: 200 without redirect",
-   "pass": true,
-   "detail": "[{\"url\":\"/people\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "internal link /phase-1: 200 without redirect",
@@ -1564,6 +1623,11 @@
    "name": "internal link /study: 200 without redirect",
    "pass": true,
    "detail": "[{\"url\":\"/study\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "internal link /team: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/team\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "internal link /updates: 200 without redirect",
@@ -1611,11 +1675,6 @@
    "detail": "[{\"url\":\"/newsroom\",\"status\":200,\"location\":null}]"
   },
   {
-   "name": "sitemap https://www.nwpharmatech.org/people: 200 without redirect",
-   "pass": true,
-   "detail": "[{\"url\":\"/people\",\"status\":200,\"location\":null}]"
-  },
-  {
    "name": "sitemap https://www.nwpharmatech.org/phase-1: 200 without redirect",
    "pass": true,
    "detail": "[{\"url\":\"/phase-1\",\"status\":200,\"location\":null}]"
@@ -1634,6 +1693,11 @@
    "name": "sitemap https://www.nwpharmatech.org/study: 200 without redirect",
    "pass": true,
    "detail": "[{\"url\":\"/study\",\"status\":200,\"location\":null}]"
+  },
+  {
+   "name": "sitemap https://www.nwpharmatech.org/team: 200 without redirect",
+   "pass": true,
+   "detail": "[{\"url\":\"/team\",\"status\":200,\"location\":null}]"
   },
   {
    "name": "sitemap https://www.nwpharmatech.org/updates: 200 without redirect",
@@ -1656,7 +1720,7 @@
    "detail": ""
   },
   {
-   "name": "/financing: X-Robots-Tag noindex",
+   "name": "/funding-use: X-Robots-Tag noindex",
    "pass": true,
    "detail": ""
   },
@@ -1686,12 +1750,12 @@
    "detail": ""
   },
   {
-   "name": "production robots.txt does not block /financing (crawlers must be able to see its noindex)",
+   "name": "production robots.txt does not block /funding-use (crawlers must be able to see its noindex)",
    "pass": true,
    "detail": "User-agent: *\nAllow: /\nSitemap: https://www.nwpharmatech.org/sitemap.xml\n"
   },
   {
-   "name": "production /financing: X-Robots-Tag noindex",
+   "name": "production /funding-use: X-Robots-Tag noindex",
    "pass": true,
    "detail": "noindex, nofollow"
   },

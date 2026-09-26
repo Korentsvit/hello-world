@@ -51,7 +51,7 @@
       - listitem:
         - text: It does
         - strong: not
-        - text: mean psychosis will happen. Most people in this group do not develop psychosis; in pooled studies about one in four did within three years.
+        - text: mean psychosis will happen. Most people in this group do not develop psychosis; Kaplan–Meier estimates from an updated meta-analysis suggest that about one in four may within about three years.
         - 'link "Source: Salazar de Pablo et al. 2021"':
           - /url: /evidence#ref-salazar-2021
       - listitem:
@@ -163,13 +163,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq

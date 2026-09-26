@@ -1,0 +1,166 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is awaiting review and approval.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: /faq#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: /
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "About":
+  - text: About
+  - list:
+    - listitem:
+      - link "People":
+        - /url: /team
+    - listitem:
+      - link "Funding and financing":
+        - /url: /funding-use
+    - listitem:
+      - link "Newsroom":
+        - /url: /newsroom
+    - listitem:
+      - link "Questions and answers":
+        - /url: /faq
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: /legal
+- main:
+  - paragraph: About
+  - heading "Funding and financing" [level=1]
+  - paragraph: How the research programme is paid for today, and the financing route under evaluation. Nothing on this page is an offer.
+  - figure "Conceptual illustration of the proposed structure.":
+    - img "Conceptual governance system with a protected research core and distinct participation rings."
+    - text: Conceptual illustration of the proposed structure.
+  - region "How the programme could be funded":
+    - heading "How the programme could be funded" [level=2]
+    - heading "What you can do today Exists now" [level=3]
+    - paragraph:
+      - text: Read the science, evidence and updates, and
+      - link "send us questions or corrections":
+        - /url: /contact
+      - text: . There is no investment, payment or token function on this website.
+    - paragraph: Today the programme's spending is controlled by the board of NWPharmaTech Ltd.
+    - heading "The financing route under evaluation Proposed" [level=3]
+    - paragraph:
+      - strong: "Preferred path under evaluation: platform-integrated programme financing."
+      - text: Eligible investors would take part in a dedicated programme vehicle through a regulated investor platform, which would carry out eligibility, identity and anti-money-laundering checks. Where feasible, their interests would be issued as permissioned tokens at closing.
+    - paragraph:
+      - strong: "Fallback: register-first."
+      - text: A conventional private placement, with interests recorded on a legal investor register and any digital representation added only if and when lawful and approved.
+    - paragraph: These are development objectives, not live offering terms.
+  - region "Who does what":
+    - heading "Who does what" [level=2]
+    - group "Choose a group to read about":
+      - button "Exists now Public research community" [pressed]
+      - button "Proposed Eligible participants in a potential private financing process"
+      - button "Proposed Programme vehicle and legal register"
+      - button "Proposed Possible permissioned digital representation"
+      - button "Exists now Clinical and regulatory responsibilities"
+    - region "Public research community Exists now":
+      - heading "Public research community Exists now" [level=3]
+      - paragraph: Anyone can follow the programme and send questions or corrections. Following or discussing it gives no right to invest, no claim to any token and no say in clinical decisions.
+  - region "How the parts relate":
+    - heading "How the parts relate" [level=2]
+    - paragraph: Public information and clinical responsibilities exist now; the private financing route is a proposal. Money raised could pay for research work, but the financing side has no part in clinical decisions.
+    - group: The register and any digital record
+    - group: The full structure, simplified
+  - region "Use of funds Proposed controls":
+    - heading "Use of funds Proposed controls" [level=2]
+    - paragraph: Funding would support clinical studies, including the planned Phase 2B study; GMP manufacture of NWPT-SM32300 for those studies; regulatory, safety and quality work; and programme operations, data management and analysis.
+    - paragraph: Money raised through programme financing would be kept for the programme and released to it in stages, as defined milestones are met. A milestone releases money for research work; it approves nothing clinical and is not a payment to investors.
+    - paragraph: No funding figures have been published. Figures are published only once approved, labelled as a planning target, committed funding, cash received or money spent; expressions of interest are never counted.
+    - figure "Conceptual illustration of money released in stages for research work.":
+      - img "Programme resources moving through sequential authorization gates toward research operations."
+      - text: Conceptual illustration of money released in stages for research work.
+  - region "Enquiries":
+    - heading "Enquiries" [level=2]
+    - paragraph:
+      - text: "Questions about the programme or the financing route: please"
+      - link "contact us":
+        - /url: /contact
+      - text: . Progress is reported as dated
+      - link "updates":
+        - /url: /updates
+      - text: and on the
+      - link "study page":
+        - /url: /study#milestones
+      - text: ; updates are not investment communications.
+    - paragraph:
+      - strong: Beware of scams.
+      - text: Any token, coin or "presale" claiming a link to us is not ours.
+    - complementary "Important":
+      - heading "Important" [level=3]
+      - paragraph: Not available
+      - list:
+        - listitem: No tokens have been issued, and no investment is being accepted through this website or the financing route described here.
+        - listitem: Eligibility would be set by the law of each country, is likely to be limited to professional, qualified or accredited investors, and would exclude some countries.
+        - listitem: NWPT-SM32300 may not work and may never be approved; any money invested could be lost; interests may be impossible to sell.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: /clinical-need
+    - listitem:
+      - link "Science and formulation":
+        - /url: /science
+    - listitem:
+      - link "Evidence library":
+        - /url: /evidence
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: /study
+    - listitem:
+      - link "Phase 1 study":
+        - /url: /phase-1
+    - listitem:
+      - link "For young people and families":
+        - /url: /families
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: /team
+    - listitem:
+      - link "Newsroom":
+        - /url: /newsroom
+    - listitem:
+      - link "Funding and financing":
+        - /url: /funding-use
+    - listitem:
+      - link "Questions and answers":
+        - /url: /faq
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: /legal
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: /faq#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: /legal
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

@@ -47,6 +47,9 @@
     - heading "Who took part" [level=2]
     - paragraph: 14 healthy adult volunteers aged 18 to 55, at one clinical research unit in Leeds, United Kingdom. Participants were in good health and were not taking regular medicines. People with a history of mental disorder, cannabis use in the 28 days before screening, or abnormal liver tests were not eligible.
     - complementary:
+      - figure "Development visualization. Not a final commercial product.":
+        - img "Isolated translucent turquoise and amber investigational softgel."
+        - text: Development visualization. Not a final commercial product.
       - heading "At a glance" [level=3]
       - term: Participants
       - definition: 14 healthy adults
@@ -158,13 +161,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq

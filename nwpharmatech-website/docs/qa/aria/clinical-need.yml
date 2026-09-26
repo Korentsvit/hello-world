@@ -45,7 +45,7 @@
     - listitem:
       - strong: "Genetic risk with functional decline:"
       - text: a close relative with a psychotic disorder, plus a recent fall in day-to-day functioning.
-  - paragraph: "Most people who meet these criteria do not go on to develop psychosis. In pooled studies, about one in four has done so within three years, with wide variation between studies. Those who do not develop psychosis are a mixed group: some recover, while others continue to have milder symptoms and difficulties with day-to-day life."
+  - paragraph: "Most people who meet these criteria do not go on to develop psychosis. Kaplan–Meier cumulative estimates from an updated meta-analysis suggest that about one in four may do so within about three years, with wide variation between studies. Those who do not develop psychosis are a mixed group: some recover, while others continue to have milder symptoms and difficulties with day-to-day life."
   - paragraph:
     - 'link "Source: Fusar-Poli et al. 2013"':
       - /url: /evidence#ref-fusarpoli-2013
@@ -126,13 +126,13 @@
         - /url: /downloads/nwpharmatech-programme-brief.pdf
     - listitem:
       - link "People":
-        - /url: /people
+        - /url: /team
     - listitem:
       - link "Newsroom":
         - /url: /newsroom
     - listitem:
       - link "Funding and financing":
-        - /url: /financing
+        - /url: /funding-use
     - listitem:
       - link "Questions and answers":
         - /url: /faq
