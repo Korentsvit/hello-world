@@ -48,3 +48,7 @@ These six are kept in the tranche and can be revisited if the surrounding copy c
 
 - **`check-pages.mjs`: 143 of 143.** It covered Evidence, Families, Programme, Phase 1, Home and Team at 390 and 1280 px: images load, no console errors, no horizontal scroll, axe WCAG 2.2 AA, one h1, 56 internal links.
 - **Before/after screenshots** of the four pages, at 1280 and 390 px, against NWPT-036b.
+
+## Guidance for future selection (Filipp, 26 Sep 2026)
+
+A landscape is not in itself a claim about the company's location. Image 37 may be used where it serves a clear design purpose, provided it is not presented as the company's premises. It is not part of this review candidate.
