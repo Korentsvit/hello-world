@@ -1,0 +1,80 @@
+{
+  "_doc": "Content map for /work-with-us (tools/build-work-with-us.py). It holds no scientific claims of its own: every finding, limitation and open question is a reference into source/programme-room.json ('from'), and every source is a reference to a Programme Room source entry (Evidence library or study-record page). New text here is limited to the optional questions, topic introductions, one website statement about what the page does not offer, and suggested questions for discussion (visitor-side wording). Share links carry only 'v' (version), 't' (topic ids) and 'c' (card id + action code); never answers, contact details or free text.",
+  "version": "wwu-1",
+  "reviewed": "26 September 2026",
+  "actions": {
+    "d": {"label": "Discuss this finding", "kinds": ["finding"]},
+    "c": {"label": "Clarify this limitation", "kinds": ["limitation"]},
+    "a": {"label": "Ask about collaboration", "kinds": ["open", "discussion"]}
+  },
+  "kinds": {
+    "finding": "Finding",
+    "limitation": "Limitation",
+    "open": "Open question",
+    "discussion": "Question for discussion",
+    "scope": "Website statement"
+  },
+  "questions": [
+    {"id": "objective", "label": "What is your research objective?", "options": [
+      ["clinical", "Clinical outcomes in people at clinical high risk"],
+      ["pharmacology", "Pharmacology, formulation or absorption"],
+      ["mechanisms", "Mechanisms or biomarkers"],
+      ["methods", "Trial methods, design or evidence synthesis"],
+      ["unsure", "Not sure yet"]]},
+    {"id": "population", "label": "Which population interests you?", "options": [
+      ["chrp", "People at clinical high risk of psychosis"],
+      ["healthy", "Healthy volunteers"],
+      ["other", "Another population"],
+      ["unsure", "Not decided"]]},
+    {"id": "stage", "label": "Where are you in your planning?", "options": [
+      ["exploring", "Exploring ideas"],
+      ["proposal", "Developing a proposal"],
+      ["funding", "Preparing a funding or approvals application"],
+      ["planning", "Planning a study"]]}
+  ],
+  "notes": {
+    "population:other": "The programme's public information concerns people at clinical high risk of psychosis, and healthy volunteers in the Phase 1 study. There is no public programme information about other populations.",
+    "stage:funding": "Nothing on this page offers funding, sponsorship or study medicine. See the website statement under “Exploring a collaboration”."
+  },
+  "topics": [
+    {"id": "need", "title": "Clinical need and existing evidence", "intro": "What published research says about people at clinical high risk of psychosis."},
+    {"id": "formulation", "title": "Formulation and absorption", "intro": "What is known about giving cannabidiol by mouth, and about the NWPT-SM32300 softgel."},
+    {"id": "phase-1", "title": "The Phase 1 study", "intro": "The completed study in healthy volunteers, and what it can and cannot show."},
+    {"id": "phase-2b", "title": "The planned Phase 2B study", "intro": "Proposed research: its aims and current status."},
+    {"id": "open", "title": "Open questions", "intro": "What is not yet known."},
+    {"id": "collab", "title": "Exploring a collaboration", "intro": "What this page can and cannot do, and questions you may want to raise."}
+  ],
+  "cards": [
+    {"id": "need-risk", "topic": "need", "kind": "finding", "from": {"stage": "need", "known": 1}, "sources": ["evidence.html#ref-salazar-2021"], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
+    {"id": "need-risk-lim", "topic": "need", "kind": "limitation", "from": {"source": "evidence.html#ref-salazar-2021"}, "sources": ["evidence.html#ref-salazar-2021"], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
+    {"id": "need-care", "topic": "need", "kind": "finding", "from": {"stage": "need", "known": 2}, "sources": ["evidence.html#ref-nice-cg155", "evidence.html#ref-nice-cg178"], "tags": {"objective": ["clinical"], "population": ["chrp"]}},
+    {"id": "need-prev", "topic": "need", "kind": "finding", "from": {"stage": "need", "known": 3}, "sources": ["evidence.html#ref-davies-2018"], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
+
+    {"id": "form-abs", "topic": "formulation", "kind": "finding", "from": {"stage": "formulation", "known": 0}, "sources": ["evidence.html#ref-perucca-2020", "evidence.html#ref-taylor-2018"], "tags": {"objective": ["pharmacology"]}},
+    {"id": "form-design", "topic": "formulation", "kind": "finding", "from": {"stage": "formulation", "known": 1}, "sources": ["science.html#investigating"], "tags": {"objective": ["pharmacology", "mechanisms"]}},
+    {"id": "form-open", "topic": "formulation", "kind": "limitation", "from": {"stage": "formulation", "further": true}, "sources": ["evidence.html#ref-nct07186283", "science.html#investigating"], "tags": {"objective": ["pharmacology", "mechanisms"]}},
+
+    {"id": "p1-design", "topic": "phase-1", "kind": "finding", "from": {"stage": "phase-1", "known": 0}, "sources": ["evidence.html#ref-nct07186283"], "tags": {"objective": ["pharmacology", "methods"], "population": ["healthy"]}},
+    {"id": "p1-results", "topic": "phase-1", "kind": "limitation", "from": {"stage": "phase-1", "known": 3}, "sources": ["evidence.html#ref-nct07186283", "phase-1:study.html#milestones"], "tags": {}},
+    {"id": "p1-scope", "topic": "phase-1", "kind": "limitation", "from": {"source": "evidence.html#ref-nct07186283"}, "sources": ["evidence.html#ref-nct07186283"], "tags": {"objective": ["clinical", "pharmacology"], "population": ["healthy", "chrp"]}},
+
+    {"id": "p2-aims", "topic": "phase-2b", "kind": "finding", "from": {"stage": "phase-2b", "further": true}, "sources": ["phase-2b:study.html#sum-h"], "tags": {"objective": ["clinical"], "population": ["chrp"]}},
+    {"id": "p2-status", "topic": "phase-2b", "kind": "finding", "from": {"stage": "phase-2b", "known": 0}, "sources": ["phase-2b:study.html#sum-h", "protocol:study.html#milestones"], "tags": {}},
+    {"id": "p2-approval", "topic": "phase-2b", "kind": "finding", "from": {"stage": "phase-2b", "known": 1}, "sources": ["phase-2b:study.html#sum-h"], "tags": {"objective": ["clinical", "methods"], "stage": ["proposal", "funding", "planning"]}},
+    {"id": "p2-oversight", "topic": "phase-2b", "kind": "limitation", "from": {"stage": "phase-2b", "known": 2}, "sources": ["phase-2b:study.html#sum-h"], "tags": {"objective": ["methods"], "stage": ["proposal", "funding", "planning"]}},
+    {"id": "p2-cantop", "topic": "phase-2b", "kind": "finding", "from": {"stage": "phase-2b", "known": 3}, "sources": ["evidence.html#ref-cantop"], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
+    {"id": "p2-small", "topic": "phase-2b", "kind": "limitation", "from": {"stage": "phase-2b", "known": 4}, "sources": ["evidence.html#ref-bhattacharyya-2024"], "tags": {"objective": ["clinical"], "population": ["chrp"]}},
+
+    {"id": "oq-symptoms", "topic": "open", "kind": "open", "from": {"oq": 0}, "sources": ["phase-2b:study.html#sum-h", "evidence.html#ref-bhattacharyya-2024"], "tags": {"objective": ["clinical"], "population": ["chrp"]}},
+    {"id": "oq-dose", "topic": "open", "kind": "open", "from": {"oq": 1}, "sources": ["phase-2b:study.html#sum-h"], "tags": {"objective": ["clinical", "pharmacology"], "population": ["chrp"]}},
+    {"id": "oq-safety", "topic": "open", "kind": "open", "from": {"oq": 2}, "sources": ["evidence.html#ref-nct07186283"], "tags": {"objective": ["clinical", "pharmacology"]}},
+    {"id": "oq-brain", "topic": "open", "kind": "open", "from": {"oq": 4}, "sources": ["science.html#investigating"], "tags": {"objective": ["mechanisms", "pharmacology"]}},
+    {"id": "oq-prevent", "topic": "open", "kind": "open", "from": {"oq": 5}, "sources": ["evidence.html#ref-davies-2018"], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
+
+    {"id": "scope", "topic": "collab", "kind": "scope", "text": "This page brings together public information to help you prepare a conversation. It does not offer a study protocol, study medicine, sponsorship, funding or access to unpublished data. Selecting a card does not commit you or NWPharmaTech to anything.", "sources": [], "tags": {}},
+    {"id": "d-fit", "topic": "collab", "kind": "discussion", "text": "How does my research question relate to the aims of the planned Phase 2B study?", "sources": [], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
+    {"id": "d-methods", "topic": "collab", "kind": "discussion", "text": "Who could discuss methods or study-design questions with me?", "sources": [], "tags": {"objective": ["methods"]}},
+    {"id": "d-results", "topic": "collab", "kind": "discussion", "text": "When are the Phase 1 results expected to be published?", "sources": [], "tags": {"objective": ["pharmacology", "clinical"]}},
+    {"id": "d-next", "topic": "collab", "kind": "discussion", "text": "What should a collaboration enquiry include so that NWPharmaTech can consider it?", "sources": [], "tags": {}}
+  ]
+}
