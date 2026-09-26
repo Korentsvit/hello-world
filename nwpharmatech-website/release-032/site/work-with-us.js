@@ -193,7 +193,7 @@
     }
     target.appendChild(el("p", { className: "wwu-agenda__links" },
       el("a", { href: "#brief", onclick: closeDrawerQuiet, text: "Review brief" }), " · ",
-      el("a", { href: "#enquiry", onclick: closeDrawerQuiet, text: "Send enquiry" })));
+      el("a", { href: "#enquiry", onclick: closeDrawerQuiet, text: enquiryLabel })));
     target.appendChild(el("p", { className: "wwu-agenda__privacy", text: "Your agenda and questions are kept in this browser tab only." }));
   }
   function topicTitle(id) { for (var i = 0; i < D.topics.length; i++) if (D.topics[i].id === id) return D.topics[i].title; return id; }
@@ -251,8 +251,9 @@
       if (c.kind !== "discussion") {
         var nums = c.sources.map(refNo);
         li.appendChild(el("div", { className: "wwu-brief__company" },
-          el("p", { className: "wwu-brief__tag", text: "NWPharmaTech public information · " + D.kinds[c.kind] + (c.work ? " · Work status: " + D.work[c.work] : "") + " · " + topicTitle(c.topic) }),
-          el("blockquote", null, (c.question ? c.question + " " : "") + c.text + (nums.length ? " [" + nums.join(", ") + "]" : ""))));
+          el("p", { className: "wwu-brief__tag", text: "NWPharmaTech public information · " + D.kinds[c.kind] + (c.status === "unresolved" ? " · Status: unresolved" : "") + " · " + topicTitle(c.topic) }),
+          el("blockquote", null, (c.question ? c.question + " " : "") + c.text + (nums.length ? " [" + nums.join(", ") + "]" : "")),
+          c.stage ? el("p", { className: "wwu-brief__stage", text: "Related stage: Stage " + c.stage.n + " · " + c.stage.short + " — stage work status: " + D.work[c.stage.work] + (c.status === "unresolved" ? ". The question itself remains unresolved." : ".") }) : null));
       } else {
         li.appendChild(el("p", { className: "wwu-brief__tag", text: "Topic: " + topicTitle(c.topic) }));
       }
@@ -294,6 +295,7 @@
   });
 
   // ---------- enquiry
+  var enquiryLabel = "Contact about collaboration"; // becomes "Send enquiry" only once the API reports online enquiries configured
   var enq = document.getElementById("wwu-enquiry"), config = null, token = "", submitting = false, sent = false, ts = null;
   var nonce = (function () { try { var n = sessionStorage.getItem(KEY + "-nonce"); if (!n) { n = rand(); sessionStorage.setItem(KEY + "-nonce", n); } return n; } catch (e) { return rand(); } })();
   function rand() { var a = new Uint8Array(12); crypto.getRandomValues(a); return Array.prototype.map.call(a, function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
@@ -301,8 +303,8 @@
     enq.textContent = "";
     enq.appendChild(el("div", { className: "wwu-callout", role: "status" },
       el("p", { className: "wwu-callout__title", text: "Online enquiries are not available yet" }),
-      el("p", { text: reason + " Nothing has been sent. Your agenda and brief still work: you can print or save the brief, or copy a link to it." }),
-      el("p", null, "Research collaboration enquiries can be made through the route published on the ", el("a", { href: "contact.html#research", text: "Contact page" }), ".")));
+      el("p", { text: reason + " Nothing has been sent from this page. Your agenda and brief still work: you can print or save the brief, or copy a link to it." }),
+      el("p", null, "To contact NWPharmaTech about a research collaboration, use the research collaboration route on the ", el("a", { href: "contact.html#research", text: "Contact page" }), ".")));
   }
   var fields = [
     ["name", "Your name", "text", "name", true, 100],
@@ -328,7 +330,7 @@
     f.appendChild(el("div", { className: "wwu-field" },
       el("label", { for: "wwu-message", text: "Message (optional, non-confidential)" }),
       el("textarea", { id: "wwu-message", name: "message", rows: "5", maxlength: "3000", "aria-describedby": "wwu-message-help wwu-message-err" }),
-      el("p", { className: "wwu-field__help", id: "wwu-message-help", text: "Up to 3,000 characters. No confidential or unpublished information, patient information or health data." }),
+      el("p", { className: "wwu-field__help", id: "wwu-message-help", text: "Up to 3,000 characters. No confidential or unpublished information, patient information or health data. No files can be attached." }),
       el("p", { className: "wwu-field__err", id: "wwu-message-err" })));
     f.appendChild(el("div", { className: "wwu-field" },
       el("label", { className: "wwu-check" }, el("input", { type: "checkbox", id: "wwu-confirm", name: "confirm", required: true, "aria-describedby": "wwu-confirm-err" }),
@@ -451,7 +453,11 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (c) {
         if (!c || !c.configured) return unavailable("Online enquiries have not been set up on this site yet.");
-        config = c; renderForm();
+        config = c;
+        enquiryLabel = "Send enquiry";
+        document.querySelector("[data-enquiry-heading]").textContent = "Send a non-confidential enquiry";
+        document.querySelector("[data-enquiry-step]").textContent = "Enquiry";
+        renderAll(); renderForm();
       })
       .catch(function () { unavailable("The enquiry service could not be reached."); });
   }

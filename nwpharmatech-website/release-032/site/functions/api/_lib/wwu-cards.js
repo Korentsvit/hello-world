@@ -31,6 +31,8 @@ export const WWU = {
  "cards": {
   "need-risk": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 1 · Clinical need — stage work status: Background",
    "question": null,
    "text": "An updated meta-analysis estimated that about one in four people identified as CHR-P (pooled estimate, 25%) developed psychosis within three years.",
    "actions": [
@@ -45,6 +47,8 @@ export const WWU = {
   },
   "need-risk-lim": {
    "kind": "Limitation",
+   "unresolved": false,
+   "stage": "Related stage: Stage 1 · Clinical need — stage work status: Background",
    "question": null,
    "text": "The pooled estimate and the separate Kaplan–Meier series are different analyses and are not combined. Estimates span services and criteria; individual risk varies.",
    "actions": [
@@ -59,6 +63,8 @@ export const WWU = {
   },
   "need-care": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 1 · Clinical need — stage work status: Background",
    "question": null,
    "text": "In England, psychological therapy is the recommended first step. NICE advises against antipsychotics to prevent psychosis in this group.",
    "actions": [
@@ -77,6 +83,8 @@ export const WWU = {
   },
   "need-prev": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 1 · Clinical need — stage work status: Background",
    "question": null,
    "text": "No preventive intervention has been shown to work better than the others.",
    "actions": [
@@ -91,6 +99,8 @@ export const WWU = {
   },
   "form-abs": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 2 · Formulation — stage work status: Completed",
    "question": null,
    "text": "Cannabidiol dissolves poorly in water. Taken by mouth while fasting, only about 6% of a dose is estimated to reach the bloodstream, and food changes absorption markedly (research on other CBD products).",
    "actions": [
@@ -109,6 +119,8 @@ export const WWU = {
   },
   "form-design": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 2 · Formulation — stage work status: Completed",
    "question": null,
    "text": "NWPT-SM32300 is a 300 mg softgel whose contents are designed to disperse into very small droplets in the gut.",
    "actions": [
@@ -123,6 +135,8 @@ export const WWU = {
   },
   "form-open": {
    "kind": "Limitation",
+   "unresolved": false,
+   "stage": "Related stage: Stage 2 · Formulation — stage work status: Completed",
    "question": null,
    "text": "Whether this formulation gives more consistent absorption than other CBD products. Phase 1 measured absorption; its results have not been published. How much reaches the brain has not been measured.",
    "actions": [
@@ -141,6 +155,8 @@ export const WWU = {
   },
   "p1-design": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 3 · Phase 1 — stage work status: Completed",
    "question": null,
    "text": "14 healthy adult volunteers; randomised, open-label, three-period crossover.",
    "actions": [
@@ -155,6 +171,8 @@ export const WWU = {
   },
   "p1-results": {
    "kind": "Limitation",
+   "unresolved": false,
+   "stage": "Related stage: Stage 3 · Phase 1 — stage work status: Completed",
    "question": null,
    "text": "Study activity ended on 10 December 2025. Results have not yet been published.",
    "actions": [
@@ -173,6 +191,8 @@ export const WWU = {
   },
   "p1-scope": {
    "kind": "Limitation",
+   "unresolved": false,
+   "stage": "Related stage: Stage 3 · Phase 1 — stage work status: Completed",
    "question": null,
    "text": "Healthy volunteers and single doses: measures absorption and short-term tolerability, not effectiveness in clinical high risk of psychosis.",
    "actions": [
@@ -187,6 +207,8 @@ export const WWU = {
   },
   "p2-aims": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": null,
    "text": "If it goes ahead: whether NWPT-SM32300 shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.",
    "actions": [
@@ -201,6 +223,8 @@ export const WWU = {
   },
   "p2-status": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": null,
    "text": "Status: planned. Not recruiting. The protocol is being finalised.",
    "actions": [
@@ -219,6 +243,8 @@ export const WWU = {
   },
   "p2-approval": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": null,
    "text": "The Phase 2B study can start only after regulatory and research ethics approval.",
    "actions": [
@@ -233,6 +259,8 @@ export const WWU = {
   },
   "p2-oversight": {
    "kind": "Limitation",
+   "unresolved": false,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": null,
    "text": "Oversight arrangements for the Phase 2B study have not yet been published.",
    "actions": [
@@ -247,6 +275,8 @@ export const WWU = {
   },
   "p2-cantop": {
    "kind": "Finding",
+   "unresolved": false,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": null,
    "text": "A larger UK trial of cannabidiol in this group (CANTOP-RCT) was funded but never started, which is one reason this question remains open.",
    "actions": [
@@ -261,6 +291,8 @@ export const WWU = {
   },
   "p2-small": {
    "kind": "Limitation",
+   "unresolved": false,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": null,
    "text": "A small 21-day study of another CBD product in this group was published in 2024. Its findings are early, have not been confirmed in a larger trial, and do not apply directly to NWPT-SM32300.",
    "actions": [
@@ -275,6 +307,8 @@ export const WWU = {
   },
   "oq-symptoms": {
    "kind": "Open question",
+   "unresolved": true,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": "Does NWPT-SM32300 reduce symptoms in people at clinical high risk?",
    "text": "Not established. It would take the results of a pre-specified clinical study such as the planned Phase 2B.",
    "actions": [
@@ -293,6 +327,8 @@ export const WWU = {
   },
   "oq-dose": {
    "kind": "Open question",
+   "unresolved": true,
+   "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": "Is there a dose response, and which dose would be best?",
    "text": "Not established. Dose response is one of the planned study’s aims.",
    "actions": [
@@ -307,6 +343,8 @@ export const WWU = {
   },
   "oq-safety": {
    "kind": "Open question",
+   "unresolved": true,
+   "stage": "Related stage: Stage 3 · Phase 1 — stage work status: Completed",
    "question": "Is it safe and well tolerated in this population?",
    "text": "Not established. Phase 1 involved healthy volunteers and single doses only.",
    "actions": [
@@ -321,6 +359,8 @@ export const WWU = {
   },
   "oq-brain": {
    "kind": "Open question",
+   "unresolved": true,
+   "stage": "Related stage: Stage 2 · Formulation — stage work status: Completed",
    "question": "How much reaches the brain?",
    "text": "No study has measured it.",
    "actions": [
@@ -335,6 +375,8 @@ export const WWU = {
   },
   "oq-prevent": {
    "kind": "Open question",
+   "unresolved": true,
+   "stage": "Related stage: Stage 6 · Longer term — stage work status: Open question",
    "question": "Can transition to psychosis be delayed or prevented?",
    "text": "A longer-term question needing a separately powered trial with long follow-up.",
    "actions": [
@@ -349,6 +391,8 @@ export const WWU = {
   },
   "scope": {
    "kind": "Website statement",
+   "unresolved": false,
+   "stage": "",
    "question": null,
    "text": "This page brings together public information to help you prepare a conversation. It does not offer a study protocol, study medicine, sponsorship, funding or access to unpublished data. Selecting a card does not commit you or NWPharmaTech to anything.",
    "actions": [],
@@ -356,6 +400,8 @@ export const WWU = {
   },
   "d-fit": {
    "kind": "Question for discussion",
+   "unresolved": false,
+   "stage": "",
    "question": null,
    "text": "How does my research question relate to the aims of the planned Phase 2B study?",
    "actions": [
@@ -365,6 +411,8 @@ export const WWU = {
   },
   "d-methods": {
    "kind": "Question for discussion",
+   "unresolved": false,
+   "stage": "",
    "question": null,
    "text": "Who could discuss methods or study-design questions with me?",
    "actions": [
@@ -374,6 +422,8 @@ export const WWU = {
   },
   "d-results": {
    "kind": "Question for discussion",
+   "unresolved": false,
+   "stage": "",
    "question": null,
    "text": "When are the Phase 1 results expected to be published?",
    "actions": [
@@ -383,6 +433,8 @@ export const WWU = {
   },
   "d-next": {
    "kind": "Question for discussion",
+   "unresolved": false,
+   "stage": "",
    "question": null,
    "text": "What should a collaboration enquiry include so that NWPharmaTech can consider it?",
    "actions": [

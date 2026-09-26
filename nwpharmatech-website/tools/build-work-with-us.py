@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent / "release-032"
 SITE = ROOT / "site"
 WWU = json.loads((ROOT / "source" / "work-with-us.json").read_text())
 ROOM = json.loads((ROOT / "source" / "programme-room.json").read_text())
-V = "?v=nwpt041"
+V = "?v=nwpt043"
 CANON = "https://www.nwpharmatech.org/"
 STAGES = {s["id"]: s for s in ROOM["stages"]}
 
@@ -50,19 +50,19 @@ def find_source(ref):
 
 
 def resolve(card):
-    frm, work, q = card.get("from"), None, None
+    frm, st_id, q = card.get("from"), None, None
     if card.get("text"):
         text = card["text"]
     elif "oq" in frm:
         q, a, stage = ROOM["open_questions"][frm["oq"]]
-        text, work = a, STAGES[stage]["work"]
+        text, st_id = a, stage
     elif "source" in frm:
         s, st = find_source(frm["source"])
-        text, work = s["limit"], st["work"]
+        text, st_id = s["limit"], st["id"]
     elif frm.get("further"):
-        text, work = STAGES[frm["stage"]]["further"], STAGES[frm["stage"]]["work"]
+        text, st_id = STAGES[frm["stage"]]["further"], frm["stage"]
     else:
-        text, work = STAGES[frm["stage"]]["known"][frm["known"]], STAGES[frm["stage"]]["work"]
+        text, st_id = STAGES[frm["stage"]]["known"][frm["known"]], frm["stage"]
     sources = []
     for ref in card["sources"]:
         s, _ = find_source(ref)
@@ -76,15 +76,23 @@ def resolve(card):
         sources.append(src)
     actions = [k for k, a in WWU["actions"].items() if card["kind"] in a["kinds"]]
     return {"id": card["id"], "topic": card["topic"], "kind": card["kind"], "question": q, "text": plain(text),
-            "work": work, "sources": sources, "actions": actions, "tags": card["tags"]}
+            "status": "unresolved" if card["kind"] == "open" else None,
+            "stage": {"id": st_id, "n": STAGES[st_id]["n"], "short": plain(STAGES[st_id]["short"]), "work": STAGES[st_id]["work"]} if st_id else None,
+            "sources": sources, "actions": actions, "tags": card["tags"]}
 
 
 CARDS = [resolve(c) for c in WWU["cards"]]
 assert len({c["id"] for c in CARDS}) == len(CARDS), "duplicate card id"
 
 
-def work_chip(key):
-    return f'<span class="room-status room-status--{key}">{ROOM["work"][key]["label"]}</span>' if key else ""
+def work_label(key):
+    return ROOM["work"][key]["label"]
+
+
+def stage_context(c):
+    """The related stage and its work status, labelled as such, so it is never read as the card's own status."""
+    st = c["stage"]
+    return f'Related stage: Stage {st["n"]} · {st["short"]} — stage work status: {work_label(st["work"])}' if st else ""
 
 
 def type_chip(key):
@@ -117,10 +125,13 @@ def card_html(c):
     buttons = "".join(f'<button type="button" class="wwu-act" data-card="{c["id"]}" data-action="{a}" hidden>{WWU["actions"][a]["label"]}</button>'
                       for a in c["actions"])
     who = "Suggested wording for your question" if c["kind"] == "discussion" else "NWPharmaTech public information"
+    status = '<span class="room-status room-status--open">Unresolved</span>' if c["status"] == "unresolved" else ""
+    context = f'<p class="wwu-card__stage">{stage_context(c)}</p>' if c["stage"] else ""
     return f'''
             <li class="wwu-card wwu-card--{c["kind"]}" id="card-{c["id"]}" data-card-id="{c["id"]}">
-              <p class="wwu-card__kind"><span class="wwu-kind">{label}</span> {work_chip(c["work"])} <span class="wwu-card__who">{who}</span><span class="wwu-card__match" hidden>Matches your answers</span></p>
+              <p class="wwu-card__kind"><span class="wwu-kind">{label}</span> {status} <span class="wwu-card__who">{who}</span><span class="wwu-card__match" hidden>Matches your answers</span></p>
               {body}
+              {context}
               {srcs}
               <div class="wwu-card__actions">{buttons}</div>
             </li>'''
@@ -154,12 +165,12 @@ def main_html():
       <div class="wrap">
         <p class="eyebrow">Work with us</p>
         <h1>Explore a research collaboration</h1>
-        <p class="lede">For investigators and research teams. See what NWPharmaTech has published about the CHR-P programme, with sources and limitations, build an agenda of points to discuss, and prepare a brief. No registration is needed until you choose to send an enquiry.</p>
+        <p class="lede">For investigators and research teams. See what NWPharmaTech has published about the CHR-P programme, with sources and limitations, build an agenda of points to discuss, and prepare a brief. No account is needed to explore the information or prepare a brief.</p>
         <ol class="wwu-steps" aria-label="How this page works">
           <li><a href="#focus">Your focus <span>(optional)</span></a></li>
           <li><a href="#information">Public information</a></li>
           <li><a href="#brief">Agenda and brief</a></li>
-          <li><a href="#enquiry">Enquiry</a></li>
+          <li><a href="#enquiry" data-enquiry-step>Contact</a></li>
         </ol>
       </div>
     </header>
@@ -196,8 +207,8 @@ def main_html():
         </section>
 
         <section class="wwu-section" id="enquiry" tabindex="-1" aria-labelledby="enquiry-title">
-          <h2 id="enquiry-title"><span class="wwu-n">4</span> Send a non-confidential enquiry</h2>
-          <p class="wwu-help">Please do not include confidential or unpublished information, patient information or health data. No files can be attached. This is not a diagnosis service, crisis line, or trial enrolment portal.</p>
+          <h2 id="enquiry-title"><span class="wwu-n">4</span> <span data-enquiry-heading>Contact about collaboration</span></h2>
+          <p class="wwu-help">Please do not include confidential or unpublished information, patient information or health data. This is not a diagnosis service, crisis line, or trial enrolment portal.</p>
           <div id="wwu-enquiry" data-js-only hidden></div>
           <p data-nojs>Online enquiries need JavaScript. You can use the research collaboration route on the <a href="contact.html#research">Contact page</a>.</p>
         </section>
@@ -228,7 +239,7 @@ def main_html():
 def server_module():
     manifest = {"version": WWU["version"], "actions": {k: a["label"] for k, a in WWU["actions"].items()},
                 "questions": {q["id"]: dict(q["options"]) for q in WWU["questions"]},
-                "cards": {c["id"]: {"kind": WWU["kinds"][c["kind"]], "question": c["question"], "text": c["text"],
+                "cards": {c["id"]: {"kind": WWU["kinds"][c["kind"]], "unresolved": c["status"] == "unresolved", "stage": stage_context(c), "question": c["question"], "text": c["text"],
                                     "actions": c["actions"], "refs": [[s["title"], canon(s.get("library") or s["page"])] for s in c["sources"]]}
                           for c in CARDS}}
     return ("// Generated by tools/build-work-with-us.py from source/work-with-us.json and source/programme-room.json.\n"

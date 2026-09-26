@@ -64,11 +64,22 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     await pg.goto(srv.base + "/work-with-us", { waitUntil: "load" });
     check(`@${label} title and heading`, (await pg.title()).startsWith("Explore a research collaboration") && (await pg.textContent("h1")) === "Explore a research collaboration");
     check(`@${label} no "Run a study" wording`, !/run a study/i.test(await pg.textContent("main")));
+    check(`@${label} introduction: no account needed`, (await pg.textContent(".wwu-hero .lede")).includes("No account is needed to explore the information or prepare a brief.") && !/registration/i.test(await pg.textContent(".wwu-hero")));
+    // a card's own status is never the related stage's status
+    const st = await pg.$$eval(".wwu-card", (xs) => xs.map((x) => ({ id: x.dataset.cardId, chips: [...x.querySelectorAll(".wwu-card__kind .room-status")].map((c) => c.textContent), stage: x.querySelector(".wwu-card__stage")?.textContent || "" })));
+    const open = st.filter((c) => c.id.startsWith("oq-"));
+    check(`@${label} open questions show "Unresolved", never a stage status`, open.length === 5 && open.every((c) => JSON.stringify(c.chips) === '["Unresolved"]'), JSON.stringify(open));
+    check(`@${label} no card shows a stage work status as its own badge`, st.every((c) => c.chips.every((t) => t === "Unresolved")), JSON.stringify(st.filter((c) => c.chips.some((t) => t !== "Unresolved"))));
+    const brain = st.find((c) => c.id === "oq-brain");
+    check(`@${label} "How much reaches the brain?": unresolved, related stage labelled separately`, JSON.stringify(brain.chips) === '["Unresolved"]' && /^Related stage: Stage 2 · Formulation — stage work status: Completed$/.test(brain.stage), JSON.stringify(brain));
     // unconfigured enquiry
     await pg.waitForSelector("#wwu-enquiry .wwu-callout");
     const enqText = await pg.textContent("#wwu-enquiry");
     check(`@${label} unconfigured: says unavailable and nothing sent, links Contact`, /not available yet/.test(enqText) && /Nothing has been sent/.test(enqText) && (await pg.locator('#wwu-enquiry a[href="contact.html#research"]').count()) === 1);
     check(`@${label} unconfigured: no contact fields requested`, (await pg.locator("#wwu-enquiry input, #wwu-enquiry textarea").count()) === 0);
+    check(`@${label} unconfigured: heading and step say "Contact about collaboration"`, (await pg.textContent("[data-enquiry-heading]")) === "Contact about collaboration" && (await pg.textContent("[data-enquiry-step]")) === "Contact");
+    check(`@${label} unconfigured: no "Send enquiry" wording anywhere`, !/send (an |a non-confidential )?enquiry/i.test(await pg.textContent("main")));
+    check(`@${label} unconfigured: explains nothing was sent`, /Nothing has been sent from this page/.test(enqText));
     check(`@${label} unconfigured: no mailto substituted`, (await pg.locator('main a[href^="mailto:"]').count()) === 0);
     check(`@${label} useful content before any contact request`, (await pg.locator(".wwu-card").count()) === WWU.cards.length && (await pg.locator("#focus").evaluate((n) => !n.hidden)));
     // cards: sources and actions
@@ -93,10 +104,16 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     // agenda: add via keyboard and pointer, no duplicates
     await pg.locator(cardAction("need-risk")).focus(); await pg.keyboard.press("Enter");
     await pg.click(cardAction("p1-results")); await pg.click(cardAction("d-fit")); await pg.click(cardAction("oq-dose"));
+    await pg.click(cardAction("oq-brain"));
     await pg.click(cardAction("need-risk")); // already added: goes to the item instead of duplicating
     if (phone) { check(`@${label} going to an added item opens the drawer`, await pg.locator("#wwu-drawer").evaluate((d) => d.open)); await pg.keyboard.press("Escape"); }
     const host = phone ? "drawer" : "side";
-    check(`@${label} four items, no duplicate`, (await pg.textContent("[data-agenda-count]")) === "4");
+    check(`@${label} five items, no duplicate`, (await pg.textContent("[data-agenda-count]")) === "5");
+    check(`@${label} agenda links say "Contact about collaboration" while unconfigured`, (await pg.$$eval('.wwu-agenda__links a[href="#enquiry"]', (as) => as.map((a) => a.textContent))).every((t) => t === "Contact about collaboration"));
+    await pg.waitForTimeout(300);
+    const oqBrief = await pg.evaluate(() => { const li = [...document.querySelectorAll(".wwu-brief__items > li")].find((l) => l.textContent.includes("How much reaches the brain?")); return li ? { tag: li.querySelector(".wwu-brief__tag").textContent, stage: li.querySelector(".wwu-brief__stage")?.textContent || "" } : null; });
+    check(`@${label} brief: open question marked unresolved, related stage separate`, oqBrief && /Open question · Status: unresolved/.test(oqBrief.tag) && !/Completed/.test(oqBrief.tag) && /^Related stage: Stage 2 · Formulation — stage work status: Completed\. The question itself remains unresolved\.$/.test(oqBrief.stage), JSON.stringify(oqBrief));
+    await pg.locator(`[data-agenda-target="${phone ? "drawer" : "side"}"] [data-index="4"] [data-tool="remove"]`).evaluate((b) => b.click());
     check(`@${label} added button shows state`, /In your agenda: go to item 1/.test(await pg.textContent(cardAction("need-risk"))));
     check(`@${label} discussion item starts with the suggested wording`, (await pg.inputValue(`#${host}-q-2`)) === WWU.cards.find((c) => c.id === "d-fit").text);
     if (phone) {
@@ -218,9 +235,10 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     const pg = await ctx.newPage(); const errs = []; pg.on("pageerror", (e) => errs.push(e.message));
     await pg.goto(srv.base + "/work-with-us", { waitUntil: "load" });
     await pg.waitForSelector("#wwu-form");
+    check(`@${label} configured: heading switches to "Send a non-confidential enquiry"`, (await pg.textContent("[data-enquiry-heading]")) === "Send a non-confidential enquiry" && (await pg.$$eval('.wwu-agenda__links a[href="#enquiry"]', (as) => as.every((a) => a.textContent === "Send enquiry"))));
     check(`@${label} configured: form shown with test-mode notice and security check`, /Test mode/.test(await pg.textContent("#wwu-form")) && /security check: test stub/.test(await pg.textContent("#wwu-turnstile")));
     check(`@${label} review appears before details are requested`, await pg.evaluate(() => { const f = document.getElementById("wwu-form"); return f.querySelector("#wwu-review").compareDocumentPosition(f.querySelector("#wwu-name")) & Node.DOCUMENT_POSITION_FOLLOWING; }) > 0);
-    await pg.click(cardAction("p2-aims")); await pg.click(cardAction("need-risk-lim"));
+    await pg.click(cardAction("p2-aims")); await pg.click(cardAction("need-risk-lim")); await pg.click(cardAction("oq-brain"));
     // validation
     mock.posts = [];
     await pg.click("#wwu-submit");
@@ -259,6 +277,7 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     const text = mail.text;
     const aims = WWU.cards.find((c) => c.id === "p2-aims");
     check(`@${label} email quotes company text from the site, labelled`, /NWPharmaTech public information \(Finding\): "If it goes ahead: whether NWPT-SM32300 shows a dose response/.test(text) && /Source: Study progress/.test(text));
+    check(`@${label} email: open question marked unresolved, related stage on its own line`, /NWPharmaTech public information \(Open question; status: unresolved\): "How much reaches the brain\? No study has measured it\."\n   Related stage: Stage 2 · Formulation — stage work status: Completed/.test(text), text.slice(0, 1500));
     check(`@${label} email labels visitor text separately`, /Visitor question: Is the planned dose response analysis pre-specified\?/.test(text) && /MESSAGE \(written by the visitor\)\n.*7731/.test(text));
     check(`@${label} contact details never stored in the tab`, !(await pg.evaluate(() => JSON.stringify(sessionStorage))).includes(EMAIL));
     check(`@${label} no request URL carries contact details or visitor text`, !urls.some((u) => /7731|Confidential|investigator\.test|Researcher/.test(decodeURIComponent(u))));

@@ -165,3 +165,18 @@ No sponsor, dose or participant-number statements are added.
 - `check-pages.mjs`: 249/249 on 10 pages (Home, Work with us, Programme Room, Contact, Programme, Updates, a Phase 2B update, Evidence, Privacy, 404).
 - `test-nwpt034.mjs`: 35/35, covering menu keyboard and touch.
 - `test-image-checks.mjs`: 8/8.
+
+## Preview review follow-up (hosted deployment `9b763895`, candidate `367099e`)
+
+1. **Open questions show their own status.** Open-question cards show **Unresolved**. The related stage appears on a separate labelled line, for example: "Related stage: Stage 2 · Formulation — stage work status: Completed". No card now shows a stage's work status as its own badge. The printed brief and the enquiry email keep the same distinction: "Open question · Status: unresolved", then "Related stage … The question itself remains unresolved." The scientific statements are unchanged.
+2. **Enquiry wording while unconfigured.** The section heading, the step link and the agenda links read "Contact about collaboration" and "Contact". They change to "Send a non-confidential enquiry" and "Send enquiry" only when `/api/enquiry` reports that enquiries are configured. The unavailable message says "Nothing has been sent from this page" and points to the research collaboration route on the Contact page.
+3. **Introduction.** It now ends: "No account is needed to explore the information or prepare a brief."
+4. **Privacy notice.** Part A now has exact wording for publication review; see `records/PRIVACY-NOTICE-UPDATE-NWPT-041.md`. Part B is excluded until the form is configured.
+
+Stylesheet and script cache keys are `?v=nwpt043`. The corrected deployment instructions (exact clean checkout, no `--commit-dirty`) are included.
+
+Checks:
+- `test-work-with-us.mjs`: 165/165.
+- `test-programme-room.mjs`: 175/175.
+- `test-deploy-layout.mjs`: 4/4.
+- `check-pages.mjs`: 154/154 on `/work-with-us`, `/contact`, `/programme-room` and `/`.

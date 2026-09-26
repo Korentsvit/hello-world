@@ -55,7 +55,8 @@ function compose(input, reference) {
     const c = WWU.cards[it.card];
     L.push("", `${i + 1}. ${WWU.actions[it.action]} [card ${it.card}]`);
     if (c.kind !== "Question for discussion") {
-      L.push(`   NWPharmaTech public information (${c.kind}): "${c.question ? c.question + " " : ""}${c.text}"`);
+      L.push(`   NWPharmaTech public information (${c.kind}${c.unresolved ? "; status: unresolved" : ""}): "${c.question ? c.question + " " : ""}${c.text}"`);
+      if (c.stage) L.push(`   ${c.stage}`);
       c.refs.forEach(([t, u]) => L.push(`   Source: ${t} — ${u}`));
     }
     L.push(`   Visitor question: ${it.text ? it.text.replace(/\n/g, "\n   ") : "(none added)"}`);

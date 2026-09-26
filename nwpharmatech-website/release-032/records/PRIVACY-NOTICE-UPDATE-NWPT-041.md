@@ -18,29 +18,41 @@ It has two parts:
 
 ---
 
-## Part A: planning tools on “Explore a research collaboration” (accurate for the preview today)
+## Part A: exact wording for publication review (the browser-only workspace that is active now)
 
-The proposed new section reads:
+This is ready to apply to `site/privacy.html` once approved. It describes only what the page does today. It names no email provider, recipient or retention arrangement, because the enquiry form is not active. Change 3 moves the notice's existing "Last updated" date, which currently reads 21 September 2026.
+
+**1. Replace** the paragraph under “What this site collects” that begins “These pages are static.” with:
+
+> These pages are static. We do not run an account system or payment system. The “Explore a research collaboration” page keeps your planning notes in your browser only, as described below. Online enquiries are not active; contact is by email.
+
+(The next paragraph, about emailing team@nwpharmatech.com, stays as it is.)
+
+**2. Add a new section** after “Cookies and analytics”:
 
 > **Research collaboration planning tools**
 >
-> The “Explore a research collaboration” page lets you answer optional questions, build an agenda of topics and write your own questions. These stay in your browser, in storage that belongs to the open tab and is cleared when the tab or browser session ends. They are not sent to NWPharmaTech unless you choose to submit an enquiry. You can clear your answers and remove agenda items at any time.
+> The “Explore a research collaboration” page lets you answer optional questions, build an agenda of topics and write your own questions. These are kept in your browser's storage for the open tab. They are removed when you close the tab, and you can clear your answers or remove agenda items at any time. They are not sent to NWPharmaTech.
+>
+> To show whether online enquiries are available, the page makes one request to this website. That request contains none of your answers, agenda items or questions.
 >
 > Links you copy from the page contain only the page's content version and the identifiers of the public topics and cards you selected. They never include your answers, your questions or any contact details.
 >
-> Discussion briefs are created in your browser. Printing or saving one as a PDF does not send it to us.
+> Discussion briefs are created in your browser. Printing a brief or saving it as a PDF does not send it to us.
 
-It also needs a matching change to **“What this site collects”**. That section currently says “These pages are static. We do not run an account system, payment system, or open contact form that stores messages on this website.” Proposed replacement, while the form is inactive:
+**3. Update** “Last updated: 21 September 2026.” to the date the change is published.
 
-> These pages are static. We do not run an account system or payment system. The research collaboration page keeps your planning notes in your browser only (see below). Online enquiries are not yet active; contact is by email.
+**Implementation facts behind Part A** (at candidate `367099e` and its follow-up):
+- **Storage:** `sessionStorage` only, under the keys `nwpt-wwu` (answers, topics, agenda and the visitor's questions) and `nwpt-wwu-nonce` (a random value). No `localStorage` and no cookies.
+- **Share-link fields:** `v`, `t` and `c` only. The link is removed from the address bar after it is opened.
+- **Brief:** rendered in the page and printed with `window.print()`.
+- **Requests:**
+  - With enquiries unconfigured, the page's only request to the site's API is `GET /api/enquiry`, which carries no visitor data.
+  - The security-check script is not loaded while enquiries are unconfigured.
+  - The page makes no analytics calls.
+  - Tests assert that no request URL carries visitor text.
 
-**Implementation facts behind Part A:**
-- Browser storage is `sessionStorage` under the keys `nwpt-wwu` and `nwpt-wwu-nonce`. Nothing is written to `localStorage` or cookies.
-- Share-link fields are `v`, `t` and `c` only.
-- The brief is rendered locally and printed with `window.print()`.
-- The page makes no analytics calls. With the form unconfigured, its only request to the site's own API is `GET /api/enquiry`, which carries no visitor data.
-
-## Part B: the online enquiry form (for use when the form is switched on)
+## Part B: the online enquiry form (NOT part of this publication review; only when the form is configured)
 
 The proposed text replaces “Today, contact is by email only” for research enquiries:
 

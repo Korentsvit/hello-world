@@ -28,11 +28,11 @@ Cloudflare Pages compiles `functions/` only from the directory the deploy runs i
 ```sh
 git clone https://github.com/korentsvit/hello-world.git nwpt-deploy    # or a fresh worktree; not a working copy with local edits
 cd nwpt-deploy
-git checkout --detach 367099eabaa0dfa3d8480eb5b6a84692b68a7e96
-git rev-parse HEAD                     # must print 367099eabaa0dfa3d8480eb5b6a84692b68a7e96
+git checkout --detach <FULL CANDIDATE SHA from the handoff>
+git rev-parse HEAD                     # must print <FULL CANDIDATE SHA from the handoff>
 git status --porcelain --untracked-files=all   # must print nothing
 cd nwpharmatech-website/release-032/site
-npx wrangler@4 pages deploy . --project-name <existing preview project> --branch <preview branch name> --commit-hash 367099eabaa0dfa3d8480eb5b6a84692b68a7e96
+npx wrangler@4 pages deploy . --project-name <existing preview project> --branch <preview branch name> --commit-hash <FULL CANDIDATE SHA from the handoff>
 ```
 
 - If `git status --porcelain` prints anything, **stop**. Find out what changed and why before deploying: an edited file, an untracked file, or a `.wrangler/` or `node_modules/` folder inside the site directory. Deploy only once the checkout is clean. `--commit-dirty` is not part of this procedure, and wrangler should not report a dirty working directory.

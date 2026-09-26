@@ -4051,3 +4051,6 @@ html:has(main.wwu) { scroll-padding-top: 5.5rem; }
 
 /* Keep focused elements and in-page targets clear of the sticky header (keyboard focus, anchors, scrollIntoView) */
 html:has(main.room) { scroll-padding-top: 5.5rem; }
+/* NWPT-041 review: the related stage is context, not the card's own status */
+.wwu-card__stage { margin: 0.45rem 0 0; font-size: 0.82rem; color: var(--ink-600); }
+.wwu-brief__stage { margin: -0.2rem 0 0.5rem; font-size: 0.82rem; color: var(--ink-600); }
