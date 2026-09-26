@@ -4096,3 +4096,10 @@ html:has(main.room) { scroll-padding-top: 5.5rem; }
   .funding-hero__controls .hero-motion__toggle { background: rgba(5, 11, 20, 0.72); border-color: rgba(255, 255, 255, 0.38); }
   .funding-hero__controls .hero-motion__toggle:focus-visible { outline-color: var(--turquoise-400); }
 }
+
+/* ===== NWPT-046: homepage discoverability (hero quick links; explore band reuses .route-card) ===== */
+.hero-quick { display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem; margin-top: 1rem; }
+.hero-quick a { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0.3rem 0.8rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.45); background: rgba(5, 11, 20, 0.55); color: #fff; font: 600 0.85rem/1.25 var(--font-body); text-decoration: none; }
+.hero-quick a::after { content: "→"; margin-left: 0.45rem; }
+.hero-quick a:hover { background: rgba(5, 11, 20, 0.85); border-color: #fff; }
+.hero-quick a:focus-visible { outline: 3px solid var(--turquoise-400); outline-offset: 2px; }

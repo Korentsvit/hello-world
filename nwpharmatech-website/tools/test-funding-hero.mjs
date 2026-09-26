@@ -148,7 +148,7 @@ for (const [label, vp] of [["390", PHONE], ["1363", DESK]]) {
 {
   const { ctx, pg, reqs } = await open(DESK, { path: "/" });
   await pg.waitForFunction(() => document.querySelector("[data-hero-motion]")?.classList.contains("is-playing"), null, { timeout: 15000 }).catch(() => {});
-  check("homepage brain video still plays (unchanged)", await pg.evaluate(() => { const v = document.querySelector(".hero-motion__video"); return !!v && !v.paused && v.currentSrc.includes("brain-ecs-loop"); }) && !reqs.some((u) => u.includes("funding-hero")));
+  check("homepage brain video still plays (unchanged)", await pg.evaluate(() => { const v = document.querySelector(".hero-motion__video"); return !!v && !v.paused && v.currentSrc.includes("brain-ecs-loop"); }) && !vids(reqs).length); // NWPT-046: the homepage funding card may show the poster image; the funding film must not load
   await ctx.close();
   const s = await open(DESK, { path: "/science" });
   const sci = await s.pg.evaluate(() => { const src = document.querySelector('video.manus-video source[src*="cns-motion-1280.webm"]'); return src ? src.getAttribute("src") : null; });
