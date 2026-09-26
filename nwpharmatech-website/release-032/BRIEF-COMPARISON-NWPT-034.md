@@ -51,3 +51,14 @@ Both documents now carry the same approved statements wherever they overlap:
 2. **Phase 2B design figures** (about 328 participants, placebo or three doses, 12 weeks plus week 16). They are live on the site and in the HTML brief, but I hold no design source, so the PDF keeps to aims only.
 3. **The PDF's "Draft for review" label** while it is publicly linked.
 4. **Scope:** both documents are kept; the HTML brief is the full brief and the PDF the two-page status summary. Say if one should replace the other.
+
+
+## Close-out (NWPT-036b, 26 September 2026)
+
+- **One primary brief.** It is `/resources/programme-brief`, with a PDF printed from that page. Every "Read programme brief" link on the site leads there.
+- **The two-page document** is now titled **"Programme summary"** (version 8). It is published as `/downloads/nwpharmatech-programme-summary.pdf`, and the old file name redirects to it. It points to the full brief, and it agrees with the brief wherever they overlap.
+- **Draft labels.** Both documents show "Draft for review" while they await approval. At the approved publication step:
+  1. Remove the `.brief-draft-label` paragraph from the HTML brief, and "draft for review" from its version line and from the homepage panel.
+  2. Rerun `tools/print-html-brief.mjs` and `tools/render-pdf-cover.mjs`.
+  3. Set the summary's version `published: true` in `content/documents.json`, rebuild, and copy the PDF across.
+- **Sponsor wording and the Phase 2B design** are kept in their approved production wording. The missing source evidence is recorded once, in `records/SOURCE-REGISTER.md` (S1, S2).

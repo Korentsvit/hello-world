@@ -78,8 +78,6 @@ The Programme Room is a separate component that is not part of this package; no 
 - **Source checks remaining:**
   - primary-source check of 0 reference(s) and 5 fact(s) verified so far only through search summaries or registry indexes (`company.jurisdiction`, `company.name`, `company.number`, `phase1.isrctn`, `phase1.nct`)
   - compare its Phase 2B statements with the live published CHR-P design (`clinical_design` in the manifest; `CLINICAL-DESIGN-CHECK.md`)
-  - board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
-  - confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
   - no consent to publish recorded for Dr Scott W. Woods
   - biography of Dr Scott W. Woods checked only at index level
   - no consent to publish recorded for Dr John M. Kane

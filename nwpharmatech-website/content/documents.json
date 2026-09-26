@@ -3,10 +3,18 @@
   "documents": [
     {
       "id": "brief",
-      "title": "Programme brief",
+      "title": "Programme summary",
       "file": "downloads/nwpharmatech-programme-brief.pdf",
       "public": true,
       "history": [
+        {
+          "version": "8",
+          "date": "2026-09-26",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Retitled 'Programme summary': the primary programme brief is the HTML brief and its PDF; this two-page summary points to it. Content otherwise as version 7.",
+          "source_sha256": "32da0e710693ea4fd196f26215bca4147e7d28d450ddc310c174b648742779df"
+        },
         {
           "version": "7",
           "date": "2026-09-26",

@@ -3692,3 +3692,6 @@ th { color: var(--ink-600); }
 /* NWPT-034: authorised portraits, when supplied (tools/add-portraits.mjs), share one size and crop */
 .team-card .team-card__photo { width: 5rem; height: 5rem; }
 .home-person-card__photo { width: 3rem; height: 3rem; border-radius: 999px; object-fit: cover; display: block; border: 2px solid rgba(15, 23, 42, 0.08); }
+
+/* NWPT-036: publication status on the programme brief (removed at the approved publication step) */
+.brief-draft-label { display: inline-block; margin: 0.25rem 0 0; padding: 0.35rem 0.75rem; border-radius: 8px; border: 1px solid #b7791f; background: #fff8e6; color: #5c3d00; font-size: 0.9rem; }

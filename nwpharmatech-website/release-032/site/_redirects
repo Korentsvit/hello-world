@@ -49,3 +49,4 @@
 # NWPT-035: the HTML brief's PDF is regenerated from the page (tools/print-html-brief.mjs); older versions point to it
 /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-22.pdf /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf 301
 /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-20.pdf /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf 301
+/downloads/nwpharmatech-programme-brief.pdf /downloads/nwpharmatech-programme-summary.pdf 301

@@ -16,7 +16,7 @@ Read first: `MAPPING.md` (what each module adds, where it belongs, what it overl
 | `formulation` | Formulation explanation | `/science#formulation` | no | none | 2 | 1 |
 | `evidence-library` | Evidence library | `/evidence` | yes | `downloads/nwpharmatech-references.bib`, `downloads/nwpharmatech-references.ris` | 26 | 0 |
 | `family-guide` | Guide for young people and families | `/families` | no | `downloads/appointment-preparation-sheet.pdf` | 6 | 0 |
-| `newsroom` | Newsroom | `/newsroom` | no | `downloads/nwpharmatech-programme-brief.pdf`, `downloads/nwpharmatech-references.ris` | 23 | 0 |
+| `newsroom` | Newsroom | `/newsroom` | no | `downloads/nwpharmatech-programme-brief.pdf`, `downloads/nwpharmatech-references.ris` | 21 | 0 |
 
 Each `modules/<id>/` folder holds `fragment.html` (the markup), `module.css` (styles scoped under `.nwpt-module`,
 classes prefixed `nwpt-`), `module.js` where needed, `manifest.json` (facts, references, links, dependencies,
@@ -91,8 +91,6 @@ listed in `manifest.json` → `publication_blockers`; the build report (`build/b
   - reference salazar-2021 (index) on families.html
   - dependency urgent-help: /faq#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)
 - **newsroom**
-  - funding-use.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
-  - index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
   - fact company.jurisdiction (index) on newsroom.html
   - fact company.name (index) on newsroom.html
   - fact company.number (index) on newsroom.html

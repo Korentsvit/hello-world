@@ -16,16 +16,16 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 5186,
-   "sha256": "195ac75de193c0c94d03ded2d14d581eab3737ba21757a62cbca7ab4e743f0bb"
+   "bytes": 5188,
+   "sha256": "eb4d17ad26f4d33768bee3ec7deb700001062085628f9a9bbff19a4465c59f3a"
   },
   "module.css": {
    "bytes": 7810,
    "sha256": "3261162380ccf7b7be4730fce327ea2699fd72beb5af9773ae0cc2d9e0007c0f"
   },
   "preview.html": {
-   "bytes": 5989,
-   "sha256": "0d5c2528ba4d19a8aecb5cf7437e672375b2f5fb725d8a0ed44962d3a3443d74"
+   "bytes": 5991,
+   "sha256": "8143c1dc6ac8323f4c557b2e9f382028ff4744907f12fe13b9e15eba06d6853e"
   }
  },
  "left_out": [],
@@ -164,8 +164,8 @@
   {
    "file": "downloads/nwpharmatech-programme-brief.pdf",
    "href": "/downloads/nwpharmatech-programme-brief.pdf",
-   "bytes": 69909,
-   "sha256": "35d98e46f47421806c657755ae4778ad3506a8f976d2d5d1c5611e4c64773ff5"
+   "bytes": 70066,
+   "sha256": "3334af7f8d28a7f44e4f5e630a2f95db0c964dbd2dfb30e7b6ec38981a1b1dad"
   },
   {
    "file": "downloads/nwpharmatech-references.ris",
@@ -335,8 +335,6 @@
   "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
  },
  "publication_blockers": [
-  "funding-use.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)",
-  "index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
   "fact company.jurisdiction (index) on newsroom.html",
   "fact company.name (index) on newsroom.html",
   "fact company.number (index) on newsroom.html",

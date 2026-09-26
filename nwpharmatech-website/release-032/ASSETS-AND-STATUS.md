@@ -9,7 +9,8 @@ Updated 26 September 2026 (after NWPT-035).
 | Reviewed baseline | NWPT-034 at `f99ee77`; tag `nwpt-034-reviewed` (local only: this session can push its branch but not tags) |
 | Live | **NWPT-035**, Grok's portrait release: commit `4b0158f` on `cursor/nwpt-035-portraits-5675` (PR #1), production deployment `c3e85514-2052-4b89-b5e8-9032efd20a4d`, as reported by Grok. It is NWPT-034 plus the seven portraits |
 | Merged here | PR #1 fast-forwarded into `claude/nwpharmatech-website-bs459b`. Photographs, name mapping, markup and styles are kept exactly as deployed |
-| This branch, for preview | **NWPT-036** = NWPT-035 plus the editorial patch (see `WEB-PR-HANDOFF-NWPT-036.md`). Not on preview or production yet |
+| Review candidate | **NWPT-036** at `3eb6b7bc3cbb889e79866148e870a21cc1086a10` = NWPT-035 plus the editorial patch. Web PR is hosting it on the existing preview. Production stays on NWPT-035 |
+| Close-out on top | **NWPT-036b** = NWPT-036 plus the brief, summary and draft-label close-out (see `WEB-PR-HANDOFF-NWPT-036b.md`) |
 
 **Correction to the NWPT-034 status report.** I wrote that the navigation fix was "also live on production now". That was wrong. The navigation *bug* was live on production (NWPT-032). The *fix* was on preview only until the NWPT-035 production deployment.
 
@@ -31,7 +32,7 @@ Updated 26 September 2026 (after NWPT-035).
 - **Rebuilds keep them:**
   - The staging build has byte-identical copies in `src/assets/img/people/`, marked authorised in `content/people.json`.
   - `tools/add-portraits.mjs` now leaves any card that already has a photograph exactly as deployed, and never upscales.
-- **Still open:** the Grace Blest-Hopley photograph should be confirmed as her own.
+- **Authorisation:** all seven were supplied and authorised by Filipp from the labelled corporate deck. No source mismatch has been found. See `records/SOURCE-REGISTER.md` (V6).
 
 ## Other assets
 
