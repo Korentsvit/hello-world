@@ -132,7 +132,7 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
         while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50));
       }
       window.scrollTo({ top: 0, behavior: "instant" });
-      await Promise.all([...document.images].map((i) => i.decode().catch(() => {})));   // decoded, so full-page captures include them
+      await Promise.race([Promise.all([...document.images].map((i) => i.decode().catch(() => {}))), new Promise((r) => setTimeout(r, 5000))]);   // an image hidden at this width never decodes   // decoded, so full-page captures include them
     });
     await page.waitForTimeout(300);
     await page.waitForLoadState("networkidle").catch(() => {});
