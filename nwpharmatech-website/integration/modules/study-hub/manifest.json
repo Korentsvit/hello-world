@@ -17,7 +17,7 @@
  "files": {
   "fragment.html": {
    "bytes": 7576,
-   "sha256": "a26f0c00075338dc65acb88693f90961eab3e3492782414204d6686405eda328"
+   "sha256": "322f8746691552a3eebaf4024e6e5604221e92399aa60032918a34e8e957e41b"
   },
   "module.css": {
    "bytes": 11891,
@@ -25,7 +25,7 @@
   },
   "preview.html": {
    "bytes": 8386,
-   "sha256": "7a39f7c4e00fa49b384a0c76a6f742e4d7517f6817f24a95fb64e210c85104fc"
+   "sha256": "c61fe81ae8766708c6b5abf787feed9bd141811fd490e4aeb7338baa6d4469a5"
   }
  },
  "left_out": [],
@@ -124,8 +124,8 @@
   {
    "file": "downloads/nwpharmatech-programme-brief.pdf",
    "href": "/downloads/nwpharmatech-programme-brief.pdf",
-   "bytes": 68121,
-   "sha256": "a75f03de2bfd9daeb4935b6edbf542af485743a5dad35bc0ab91d16d39d040aa"
+   "bytes": 69909,
+   "sha256": "35d98e46f47421806c657755ae4778ad3506a8f976d2d5d1c5611e4c64773ff5"
   }
  ],
  "assets": [],

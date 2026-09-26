@@ -8,6 +8,14 @@
       "public": true,
       "history": [
         {
+          "version": "7",
+          "date": "2026-09-26",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Aligned with the HTML programme brief (v2026-09-26): programme lead added (Professor Scott Woods, CHR-P programme lead, individual capacity; Yale does not sponsor or endorse). Transition figure (pooled estimate), Phase 1 status and financing wording unchanged and now shared by both documents.",
+          "source_sha256": "ead16ec39b612b11c8109bc4a41220a7b991533d44e1ecd441732d288d1d917c"
+        },
+        {
           "version": "6",
           "date": "2026-09-26",
           "published": false,
