@@ -122,3 +122,65 @@ The proposed text replaces “Today, contact is by email only” for research en
 | Turnstile keys and hostnames | These are needed to activate the form. The notice wording reuses the existing Turnstile description | NWPharmaTech / Web PR |
 
 **Recommendation.** Approve Part A for the preview whenever convenient; it describes live behaviour. Approve Part B once the items above are settled, and apply it in the same release that switches the form on. Update "Last updated" at each change.
+
+---
+
+# Production privacy decisions (prepared 27 Sep 2026)
+
+This section is prepared on branch `claude/nwpt-privacy-production-prep`, from the candidate under test (`646693d`, which is left unchanged).
+
+**How far each fact has been verified.**
+- **Account settings: verified.** These come from Web Boss's and Filipp's reports of the live Resend and Cloudflare accounts.
+- **Official documentation: not read directly.** `resend.com`, `developers.cloudflare.com` and `cloudflare.com` are blocked from this environment. Those facts come from web-search summaries of official pages, which are named below. Each needs opening and confirming on the official page by Web Boss or Filipp before it is published. None of them has been published.
+
+## A. Application storage: checked against the implementation
+
+Result: "Nothing is stored on the website" was accurate only for our own code, so it has been replaced by a precise description on this branch.
+
+| Place | What is held | Basis |
+|---|---|---|
+| Our application (`functions/api/enquiry.js`) | **Nothing persisted.** No KV, D1 or R2 bindings; there is no wrangler config in `site/`. There are no `console` calls. The enquiry is built in memory, sent once to Resend, and the response returns only a reference | Code audit |
+| Visitor's browser | `sessionStorage` `nwpt-wwu` (answers, topics, agenda, the visitor's questions) and `nwpt-wwu-nonce` (a random value). Contact fields are never stored | Code audit |
+| Cloudflare hosting (operational) | Request metadata such as IP, user agent and time, as the notice already says. Pages Functions invocation logs, errors and exceptions are visible in real-time logs, which are ephemeral. They are **persisted only if Workers Logs or Logpush is enabled** for the project. Our code does not log the body | Code audit; Cloudflare docs (search summary: "Real-time logs", "Debugging and logging · Pages") |
+| Cloudflare Turnstile (provider) | The widget processes client signals: IP, TLS fingerprint, User-Agent, sitekey and origin. Our server's siteverify call sends the token, the visitor's IP (`remoteip`) and the idempotency key | Code audit; Turnstile privacy addendum (search summary) |
+| Resend (provider) | The sent email (content and metadata) and delivery logs. The idempotency key is kept for 24 hours | Resend docs (search summary: "Idempotency Keys") |
+| NWPharmaTech mailbox (`Filipp.korentsvit@nwpharmatech.com`) | The delivered email and any reply thread | Settled recipient |
+
+**Web Boss to confirm:** whether Workers Logs or Logpush is enabled on either Pages project. If it is, the notice should mention retained request logs.
+
+## B. NWPharmaTech mailbox retention and deletion: needs Filipp's decision
+
+1. **Retention period for received enquiries,** and what starts the clock: date received, or last correspondence.
+2. **Deletion method and responsibility:** manual deletion by Filipp, or a mailbox retention rule. Also whether the email provider's own backups or legal holds extend it.
+3. **Whether enquiries are copied anywhere else,** such as CRM, shared drives or forwarding. If so, those need listing.
+4. **Mailbox provider and location:** which email service hosts `nwpharmatech.com` mail, and where. This is a fact to verify, not assume.
+
+## C. Provider retention, locations and transfers: needs factual verification
+
+| Item | Lead from the official source (search summary; not yet verified) | What verification needs |
+|---|---|---|
+| Resend: retention of email and log data | "While your account is active, email and log data is retained for 30 days on Free, Pro, and Scale plans; Enterprise plans include flexible data retention." After termination, data is deleted within 90 days, and backups persist for 7 days (resend.com/security/gdpr) | Confirm on the page, and confirm the **account's plan** in Resend billing |
+| Resend: idempotency keys | Kept for 24 hours (resend.com/docs/dashboard/emails/idempotency-keys) | Confirm on the page |
+| Resend: storage location | Customer data, including message content, delivery logs and account records, is **stored in the United States**. Choosing `eu-west-1` means emails are **dispatched** from Ireland, but account data still resides in the US (resend.com/security/gdpr; resend.com/docs/dashboard/domains/regions) | Confirm on both pages |
+| Resend: transfers | Transfers to the US are covered by the EU Standard Contractual Clauses in the DPA, and by EU-U.S. Data Privacy Framework participation, including the UK Extension. The DPA was updated 12/31/2025 (resend.com/legal/dpa; resend.com/security/gdpr) | Confirm; decide whether to accept or sign the DPA for the company account |
+| Resend: subprocessors | These include Stripe, Supabase, Svix and Tinybird, all in the USA (resend.com/legal/subprocessors) | Confirm the current list |
+| Turnstile: data and retention | The signals are listed in the Turnstile privacy addendum (cloudflare.com/turnstile-privacy-policy). No retention period was found in the summary | Read the addendum for retention and role (controller or processor) |
+| Cloudflare: locations and transfers (hosting, logs, Turnstile) | Cloudflare DPA (cloudflare.com/cloudflare-customer-dpa) | Confirm the transfer mechanism and any data-localisation settings on the account |
+
+**The Ireland region:** it is the sending region only. Section C indicates that storage is in the US. The site text on this branch now says the region "does not mean that all processing takes place in Ireland or the EU". No EU-residency statement may be published.
+
+## D. Lawful basis: needs confirmation (legal)
+
+1. **Lawful basis for processing enquiries.** Legitimate interests (responding to professional research-collaboration enquiries) is the usual candidate. Steps at the request of the data subject before entering into a contract is an alternative for some enquiries. Consent is not required by the implementation. Legal to choose and word.
+2. **Controller identity and contact:** the notice does not yet name the controller, for example the NWPharmaTech legal entity and its address, or a privacy contact beyond `team@nwpharmatech.com`.
+3. **International-transfer wording,** once section C is verified.
+4. **Data-subject rights and complaint route** (UK/EU): whether the notice should add them. It currently has none.
+
+## Site text changed on this branch (not on the candidate under test)
+
+- **`privacy.html`:**
+  - "This website does not store your enquiry." is replaced with: "The website’s code does not save your enquiry. It is not written to a database or file on this website, and our code does not write its content to any log. It is passed directly to Resend…"
+  - Added: "Copies of the email are then held by Resend and in the NWPharmaTech mailbox (see “Not yet confirmed” below). Our hosting provider, Cloudflare, may keep technical request records, as described under “Cookies and analytics”."
+  - The region sentence now reads: "Our sending domain uses Resend’s Ireland (EU) sending region. That is where our emails are sent from; it does not mean that all processing takes place in Ireland or the EU."
+- **`work-with-us.js`:** the form notice "Nothing is stored on this website." now reads "The website’s code does not save it; Resend and our mailbox keep copies." The script key is `nwpt046`.
+- **Unchanged:** the "Not yet confirmed" list stays until sections B–D are settled.

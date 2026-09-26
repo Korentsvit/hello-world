@@ -53,9 +53,10 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     "your answers to the optional focus questions, if you leave “Include my focus answers” selected;",
     "The form shows what will be sent before you submit it, and it does not accept file uploads.",
     "Before an enquiry is accepted, it is checked by Cloudflare Turnstile, an anti-abuse service.",
-    "This website does not store your enquiry. It passes the enquiry to Resend, our transactional email service, which sends it as an email from website@nwpharmatech.org to the NWPharmaTech team.",
+    "The website’s code does not save your enquiry. It is not written to a database or file on this website, and our code does not write its content to any log. It is passed directly to Resend, our transactional email service, which sends it as an email from website@nwpharmatech.org to the NWPharmaTech team.",
+    "Copies of the email are then held by Resend and in the NWPharmaTech mailbox (see “Not yet confirmed” below). Our hosting provider, Cloudflare, may keep technical request records, as described under “Cookies and analytics”.",
     "Your email address is set as the reply-to address so that we can answer you.",
-    "Our sending domain is set to Resend’s Ireland (EU) sending region.",
+    "Our sending domain uses Resend’s Ireland (EU) sending region. That is where our emails are sent from; it does not mean that all processing takes place in Ireland or the EU.",
     "how long enquiries are kept in the NWPharmaTech mailbox, and how they are deleted;",
     "how long Resend keeps message content and delivery records;",
     "where else Resend and Cloudflare process this information, and any international transfers;",
@@ -64,7 +65,7 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     "Links you copy from the page contain only the page’s content version and the identifiers of the public topics and cards you selected. They never include your answers, your questions or any contact details.",
     "Discussion briefs are created in your browser. Printing a brief or saving it as a PDF does not send it to us.",
     "Last updated: 27 September 2026."]) check(`privacy notice contains: ${t.slice(0, 60)}…`, priv.includes(t));
-  check("privacy notice: no static-site claim, no deletion guarantee, no 'not active' claim, no placeholders", !/These pages are static|removed when you close the tab|Online enquiries are not active|contact is by email only|to be confirmed|\[[A-Z ]+/i.test(priv));
+  check("privacy notice: no static-site claim, no deletion guarantee, no 'not active' claim, no placeholders", !/These pages are static|removed when you close the tab|Online enquiries are not active|contact is by email only|to be confirmed|\[[A-Z ]+|does not store your enquiry|Nothing is stored|stays in (Ireland|the EU)/i.test(priv));
   check("privacy notice: no invented retention period, response time or recipient name", !/kept for \d|\d+ (days|weeks|months|years)|respond within|Korentsvit/i.test(priv));
   const contact = await (await fetch(srv.base + "/contact")).text();
   check("Contact page keeps its research link to Work with us", /<a class="card-link" href="work-with-us\.html">Explore a research collaboration<\/a>/.test(contact) && contact.includes('href="mailto:team@nwpharmatech.com?subject=Research%20collaboration"'));

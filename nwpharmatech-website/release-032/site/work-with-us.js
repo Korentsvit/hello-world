@@ -337,7 +337,7 @@
         " My enquiry contains no confidential or unpublished information, and no patient or health information. I have read the ", el("a", { href: "privacy.html", text: "privacy notice" }), "."),
       el("p", { className: "wwu-field__err", id: "wwu-confirm-err" })));
     f.appendChild(el("input", { type: "text", name: "website", tabindex: "-1", autocomplete: "off", className: "wwu-hp", "aria-hidden": "true" }));
-    f.appendChild(el("p", { className: "wwu-field__help wwu-processing", id: "wwu-processing" }, "Your enquiry is checked by Cloudflare Turnstile and sent by email through Resend to the NWPharmaTech team, with your email address as the reply-to. Nothing is stored on this website. See the ", el("a", { href: "privacy.html", text: "privacy notice" }), "."));
+    f.appendChild(el("p", { className: "wwu-field__help wwu-processing", id: "wwu-processing" }, "Your enquiry is checked by Cloudflare Turnstile and sent by email through Resend to the NWPharmaTech team, with your email address as the reply-to. The website’s code does not save it; Resend and our mailbox keep copies. See the ", el("a", { href: "privacy.html", text: "privacy notice" }), "."));
     f.appendChild(el("div", { id: "wwu-turnstile", className: "wwu-turnstile" }));
     f.appendChild(el("p", { className: "wwu-field__err", id: "wwu-turnstile-err" }));
     if (config && config.testMode) f.appendChild(el("p", { className: "wwu-callout", text: "Test mode: this preview uses test settings. Enquiries are not delivered to NWPharmaTech." }));
