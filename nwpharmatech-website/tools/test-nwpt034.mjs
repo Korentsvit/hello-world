@@ -97,7 +97,7 @@ for (const [label, opts] of [["reduced motion", { reducedMotion: "reduce" }]]) {
 }
 // 404 and PDFs
 for (const [path, status, type] of [["/no-such-page-nwpt", 404, "text/html"], ["/downloads/nwpharmatech-programme-brief.pdf", 200, "application/pdf"],
-  ["/resources/NWPharmaTech-CHRP-programme-brief-v2026-09-22.pdf", 200, "application/pdf"], ["/downloads/appointment-preparation-sheet.pdf", 200, "application/pdf"],
+  ["/resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf", 200, "application/pdf"], ["/resources/NWPharmaTech-CHRP-programme-brief-v2026-09-22.pdf", 301, ""], ["/downloads/appointment-preparation-sheet.pdf", 200, "application/pdf"],
   ["/updates/register", 301, ""]]) {
   const r = await fetch(srv.base + path, { redirect: "manual" });
   check(`${path} answers ${status}${type ? " " + type : ""}`, r.status === status && (r.headers.get("content-type") || "").startsWith(type), `${r.status} ${r.headers.get("content-type")}`);

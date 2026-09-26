@@ -28,3 +28,26 @@
 2. The sponsor wording: "remains pharmaceutical sponsor", or the agreed "is developing the proposed CHR-P programme; formal study responsibilities will be documented before the study begins".
 3. Whether the HTML brief should carry the pooled one-in-four figure and the Salazar reference, and the pack's financing sentence.
 4. Whether PDF version 6 should stop being "Draft for review" while it is publicly linked.
+
+
+## Update: aligned in NWPT-036 (26 September 2026)
+
+Both documents now carry the same approved statements wherever they overlap:
+
+| Statement | Source |
+|---|---|
+| The pooled one-in-four transition figure (Salazar de Pablo 2021, now in the HTML references) | the site-wide approved text |
+| No medicine licensed for this group; NICE's position on antipsychotics | the site-wide approved text |
+| Phase 1 status (14 volunteers, completed 10 December 2025, results not yet published) | the Study page records |
+| Programme lead Professor Scott Woods, individual capacity, Yale non-endorsement | pack C2, live on Team |
+| Financing: preferred path under evaluation, register-first fallback, development objectives, not live offering terms, no investment through the site | pack F1–F2 |
+
+**Documents now:**
+- **HTML brief:** version 2026-09-26. Its PDF (`/resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf`) is printed from the page itself (`tools/print-html-brief.mjs`), so the two cannot drift. The older PDFs redirect to it.
+- **Downloadable status PDF:** version 7.
+
+**Still genuinely unresolved** (not changed in either document):
+1. **Sponsor wording.** The HTML brief says "remains pharmaceutical sponsor". The PDF is silent. The agreed alternative is "is developing the proposed CHR-P programme; formal study responsibilities will be documented before the study begins".
+2. **Phase 2B design figures** (about 328 participants, placebo or three doses, 12 weeks plus week 16). They are live on the site and in the HTML brief, but I hold no design source, so the PDF keeps to aims only.
+3. **The PDF's "Draft for review" label** while it is publicly linked.
+4. **Scope:** both documents are kept; the HTML brief is the full brief and the PDF the two-page status summary. Say if one should replace the other.

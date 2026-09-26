@@ -23,3 +23,18 @@ These fixes touch `faq.html`, `evidence.html`, `newsroom.html` and `study.html` 
 1. Remove "in the Claude package" from the urgent-help text (`faq.html`). Re-check the numbers on the day of launch.
 2. Add a dated corrections entry to both the Evidence and Newsroom corrections logs, with the date production carries it: "Salazar de Pablo 2021: the one-in-four figure is the pooled estimate (25% at three years); the separate Kaplan–Meier series (27% at three years) was previously mislabelled." Extend the Evidence review history with the same date.
 3. Replace "Not the Programme Room" in the Study page's search description with a plain description.
+
+
+## Update: fixes applied in NWPT-036 (26 September 2026)
+
+- **Urgent help:** the internal wording is removed. Every number was checked against official information on 26 September 2026:
+  - NHS England and NHS Wales 111 option 2;
+  - NHS 24 on 111 (Scotland);
+  - Lifeline 0808 808 8000 (Northern Ireland);
+  - Samaritans 116 123;
+  - Shout 85258;
+  - Ireland 112/999 and Pieta 1800 247 247 (text HELP to 51444 added);
+  - US 911 and 988.
+- **Evidence and Newsroom:** the corrections logs now record the 26 September 2026 transition-figure correction, and the Evidence review history has a dated row.
+- **Study:** "Not the Programme Room" is removed from the metadata and body. The Programme Room remains awaiting its component and is tracked only in the records.
+- **Page source:** the build comments are removed.
