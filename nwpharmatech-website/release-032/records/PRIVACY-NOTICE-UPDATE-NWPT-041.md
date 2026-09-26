@@ -75,7 +75,7 @@ The proposed text replaces “Today, contact is by email only” for research en
 >
 > The enquiry is checked by Cloudflare Turnstile, an anti-abuse service. It may process technical request signals such as IP address and browser or device signals to verify the submission, and a submission may be refused when the check cannot be verified.
 >
-> The website does not store your enquiry. It passes the enquiry to **[EMAIL SERVICE PROVIDER — to be confirmed]**, which delivers it by email to **[RECIPIENT TEAM / ROLE — to be confirmed]** at NWPharmaTech. Your email address is set as the reply-to address so that we can answer you.
+> The website does not store your enquiry. It passes the enquiry to **[EMAIL SERVICE PROVIDER — to be confirmed]**, which delivers it by email to the NWPharmaTech team. Your email address is set as the reply-to address so that we can answer you.
 >
 > Enquiries are kept **[RETENTION PERIOD AND DELETION ARRANGEMENTS — to be confirmed]**. The email service keeps delivery records **[PROVIDER RETENTION — to be confirmed]**.
 >
@@ -99,7 +99,7 @@ The proposed text replaces “Today, contact is by email only” for research en
 | Email service provider | The code targets Resend. The contract, data-processing terms and account are not confirmed. Choosing another provider needs a small code change | NWPharmaTech |
 | Data location and international transfers | These depend on the provider and account region | NWPharmaTech, with the provider |
 | Provider retention of messages and logs | Set by the provider and account settings | NWPharmaTech, with the provider |
-| Recipient (`ENQUIRY_TO`) and accountable team | **Decided 26 Sep 2026:** `Filipp.korentsvit@nwpharmatech.com`; Filipp handles enquiries for now. Still open: whether Part B names the person or a role | Filipp (wording) |
+| Recipient (`ENQUIRY_TO`) and accountable team | **Decided 26 Sep 2026:** the internal inbox is recorded in the activation handoff, with Filipp as the accountable owner. The public wording is "the NWPharmaTech team" (a role, not a person) | Done |
 | Retention and deletion of enquiries in NWPharmaTech's mailbox | Not documented | NWPharmaTech |
 | Lawful basis and controller wording | The current notice does not state these; they need legal confirmation | NWPharmaTech (legal) |
 | Turnstile keys and hostnames | These are needed to activate the form. The notice wording reuses the existing Turnstile description | NWPharmaTech / Web PR |

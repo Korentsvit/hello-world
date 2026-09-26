@@ -1,6 +1,6 @@
 # Enquiry activation checklist ("Explore a research collaboration")
 
-> **Summary for action:** `ENQUIRY-ACTIVATION-HANDOFF.md` lists the decisions, the Web Boss configuration and the preview tests. This checklist keeps the detail.
+> **Summary for action:** `ENQUIRY-ACTIVATION-HANDOFF.md` records what is settled (the recipient, the public wording "the NWPharmaTech team", roles, no response-time promise) and what remains (email service account, sender, retention, lawful basis, data location). This checklist keeps the detail.
 
 Status: **online enquiries disabled** on production (`6affaba`). Nothing below is switched on. This checklist is for the decision to enable the form.
 
