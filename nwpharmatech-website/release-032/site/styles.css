@@ -4103,3 +4103,5 @@ html:has(main.room) { scroll-padding-top: 5.5rem; }
 .hero-quick a::after { content: "→"; margin-left: 0.45rem; }
 .hero-quick a:hover { background: rgba(5, 11, 20, 0.85); border-color: #fff; }
 .hero-quick a:focus-visible { outline: 3px solid var(--turquoise-400); outline-offset: 2px; }
+/* keyboard focus moving back up the homepage must not land under the sticky header (as on /programme-room and /work-with-us) */
+html:has(.home-explore) { scroll-padding-top: 5.5rem; }

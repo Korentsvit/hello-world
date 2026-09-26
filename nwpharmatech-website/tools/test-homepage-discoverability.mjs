@@ -35,6 +35,16 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { widt
   // keyboard: the quick links follow the hero buttons in tab order
   await pg.focus('.cine-hero .cta-row a[href="updates/why-early-intervention-matters.html"]'); await pg.keyboard.press("Tab");
   check(`@${label} Tab moves from the hero buttons to the first quick link`, (await pg.evaluate(() => document.activeElement.getAttribute("href"))) === "programme-room.html");
+  // keyboard focus, with smooth scrolling settled, must not leave a new link or card heading under the sticky header (forwards and back)
+  {
+    const settle = () => pg.evaluate(() => new Promise((res) => { let last = -1, same = 0; const t = () => { same = scrollY === last ? same + 1 : 0; last = scrollY; same >= 8 ? res() : requestAnimationFrame(t); }; t(); }));
+    const SEL = ".hero-quick a, .home-explore .route-card"; const bad = [];
+    const look = async (dir) => { await settle(); const r = await pg.evaluate((SEL) => { const a = document.activeElement; if (!a.matches(SEL)) return null; const hb = document.querySelector(".site-header").getBoundingClientRect().bottom; const hd = (a.querySelector("h3") || a).getBoundingClientRect(); const b = a.getBoundingClientRect(); return { el: a.getAttribute("href"), ok: b.top >= hb - 1 || hd.top >= hb }; }, SEL); if (r && !r.ok) bad.push(dir + ":" + r.el); return r; };
+    await pg.evaluate(() => { document.activeElement?.blur(); window.scrollTo(0, 0); }); let n = 0;
+    for (let i = 0; i < 80 && n < 6; i++) { await pg.keyboard.press("Tab"); if (await look("fwd")) n++; }
+    for (let i = 0; i < 80 && n < 12; i++) { await pg.keyboard.press("Shift+Tab"); if (await look("back")) n++; }
+    check(`@${label} focused links and card headings stay clear of the sticky header (Tab and Shift+Tab)`, n === 12 && !bad.length, `${n} ${bad.join(" ")}`);
+  }
   check(`@${label} the funding film is not loaded on the homepage (poster image only)`, !reqs.some((u) => /funding-hero-refined-(21x9|4x3)\.(webm|mp4)/.test(u)));
   check(`@${label} no page errors`, !errs.length, errs.join(" | "));
   await ctx.close();

@@ -11,6 +11,11 @@
    - The images are existing site assets (Manus 06 and 05, and the funding hero poster). The funding film is not loaded on the homepage.
 3. **Stylesheet:** the `?v=` key is bumped `nwpt044` → `nwpt046` on all 42 pages. `programme-room.html` and `work-with-us.html` were regenerated with key-only diffs.
 
+4. **Sticky-header focus fix:** `html:has(.home-explore) { scroll-padding-top: 5.5rem; }`, the same pattern as `/programme-room` and `/work-with-us`.
+   - **Problem, reproduced with scrolling settled:** Shift+Tab moving back up the page left the focused link under the sticky header. On 390×844 this affected the funding and research-collaboration quick links (y 0–58 under a 56px header) and the Work with us card edge. The new test also caught it at 1363×936 without the fix.
+   - **Production has the same fault** on `6affaba`'s existing hero buttons and route cards, so this fix covers those too.
+   - **Tab forwards** was already clear.
+
 There are no Invest, Pay, Wallet or Mint CTAs. The hero video, portraits and approved copy are unchanged.
 
 ## Fold
@@ -21,7 +26,7 @@ There are no Invest, Pay, Wallet or Mint CTAs. The hero video, portraits and app
 ## Checks (Cloudflare Pages runtime)
 | Suite | Result |
 |---|---|
-| `test-homepage-discoverability.mjs` (new) | 28 passed |
+| `test-homepage-discoverability.mjs` (new) | 30 passed (includes Tab/Shift+Tab focus clear of the header; that check fails without the fix) |
 | `check-pages.mjs` `/`, `/programme-room`, `/work-with-us`, `/funding-use` | 152 passed |
 | `test-nwpt034.mjs` | 35 passed |
 | `test-funding-hero.mjs` | 45 passed (see note) |
@@ -32,4 +37,19 @@ There are no Invest, Pay, Wallet or Mint CTAs. The hero video, portraits and app
 
 **Note:** the funding-hero guard "homepage brain video still plays" had rejected any `funding-hero` request on the homepage. It now rejects only the funding film files, because the new card deliberately shows the poster image. It passes on both `6affaba` and this branch.
 
-Screenshots: `records/screens-nwpt046/{before,after}-{desktop-1363x936,phone-390x844}-{hero,explore}.png`. In the explore captures the sticky header is hidden, for the capture only.
+## Screenshots (`records/screens-nwpt046/`)
+**Visitor experience: `real-{phone-390x844,desktop-1363x936}-N-*.png`.** Taken with the real sticky header, normal (non-reduced) motion, and each capture made only after the scroll position had stopped changing for 10 frames.
+
+| # | Scenario | Focused element vs header (phone / desktop) |
+|---|---|---|
+| 1 | First screen | — |
+| 2 | Mouse-wheel scrolled to the explore band | — |
+| 3 | Tab to the Programme Room quick link | top 776 / 862, header ends 56 / 65 |
+| 4 | Tab on to the funding card | top 406 / 440 |
+| 5 | Shift+Tab back to the Programme Room card | top 258 / 440 |
+| 6 | Shift+Tab back to the Funding overview quick link | top 88 / 610 |
+| 7 | Click the Work with us card, then browser Back | Scroll restored; the clicked card and its heading are fully visible |
+
+In capture 7 on the phone, the previous card's heading sits under the header at the top of the screen. That is simply where the browser restores the scroll position, and nothing has focus there.
+
+**Composition only:** `{before,after}-*-hero.png` and `*-explore-composition-header-hidden.png`. In the explore captures the header is hidden, so they do not show the visitor's view.
