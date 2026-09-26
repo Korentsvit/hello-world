@@ -94,3 +94,10 @@
 - **Open factual items carried over from NWPT-033:** sponsor wording, the two programme briefs, the Phase 2B design source, and ~US$10m authorisation.
 - **Programme Room:** a separate handoff.
 - **Access on the preview:** Cloudflare Access is not set by me. Web PR should state the preview's access status.
+
+
+## Update, 26 September 2026
+
+- **Status:** see `ASSETS-AND-STATUS.md`. NWPT-034 is on preview; production is approved and owned by Web PR, with completion not yet confirmed.
+- **Correction:** the navigation fix was on preview, not production, when this change list was written.
+- **Portraits:** 7 of 8 have been supplied to Grok; Gillian Cannon is outstanding.
