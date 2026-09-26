@@ -3865,3 +3865,5 @@ th { color: var(--ink-600); }
 .room-explore__card:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 .room-explore__title { font-weight: 700; color: var(--navy-900); }
 .room-explore__title::after { content: " →"; }
+/* Keep focused elements and in-page targets clear of the sticky header (keyboard focus, anchors, scrollIntoView) */
+html:has(main.room) { scroll-padding-top: 5.5rem; }
