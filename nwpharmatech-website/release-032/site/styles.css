@@ -3695,3 +3695,9 @@ th { color: var(--ink-600); }
 
 /* NWPT-036: publication status on the programme brief (removed at the approved publication step) */
 .brief-draft-label { display: inline-block; margin: 0.25rem 0 0; padding: 0.35rem 0.75rem; border-radius: 8px; border: 1px solid #b7791f; background: #fff8e6; color: #5c3d00; font-size: 0.9rem; }
+
+/* NWPT-037: tranche 05 figures */
+.manus-figure--hero { margin: 1.5rem 0 0; }
+@media (min-width: 601px) { .manus-figure--hero img { aspect-ratio: 21 / 9; object-fit: cover; } }
+.nwpt-aside-figure { margin: 0 0 1.25rem; }
+.nwpt-aside-figure figcaption { font-size: 0.8rem; }
