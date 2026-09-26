@@ -1,5 +1,7 @@
 # Enquiry activation checklist ("Explore a research collaboration")
 
+> **Summary for action:** `ENQUIRY-ACTIVATION-HANDOFF.md` lists the decisions, the Web Boss configuration and the preview tests. This checklist keeps the detail.
+
 Status: **online enquiries disabled** on production (`6affaba`). Nothing below is switched on. This checklist is for the decision to enable the form.
 
 ## A. Already built (in production, dormant)
