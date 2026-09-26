@@ -3525,3 +3525,13 @@ html.nav-menu-open {
 .manus-figure--video {
   margin: 1.75rem 0 2rem;
 }
+
+/* NWPT-033 contrast fixes (axe WCAG 2.2 AA, colour contrast and link-in-text-block) */
+.footer-meta { color: var(--ink-300); }
+.footer-meta a { color: var(--ink-300); text-decoration: underline; text-underline-offset: 2px; }
+.badge-dev { color: #0f4fb8; }
+.badge-proposed { color: #6b5230; }
+.register-soon .speech-lock { color: var(--ink-600); }
+th { color: var(--ink-600); }
+.badge-excluded { color: var(--ink-600); }
+.diagram-block .lifecycle-flow__side-note, .lifecycle-flow .lifecycle-flow__side-note, p.lifecycle-flow__side-note { color: var(--ink-300); }

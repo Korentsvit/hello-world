@@ -1,0 +1,169 @@
+{
+ "_doc": "NWPT-033 visuals supplied 26 Sep 2026; derived by Claude (WebP, 4:3 phone crops around the focal point). Conceptual illustrations only.",
+ "images": {
+  "micelle-field-dark": {
+   "source": "3c0386e2-image.jpg",
+   "source_sha256": "cd4020211a354ae7cf795d2a906628c5cd59000cefb527bfd62688bbf16d1361",
+   "source_size": [
+    2560,
+    1440
+   ],
+   "focal": "72% 47%",
+   "files": [
+    [
+     "micelle-field-dark-768.webp",
+     768,
+     432,
+     25350
+    ],
+    [
+     "micelle-field-dark-1200.webp",
+     1200,
+     675,
+     51266
+    ],
+    [
+     "micelle-field-dark-1920.webp",
+     1920,
+     1080,
+     102360
+    ],
+    [
+     "micelle-field-dark-m480.webp",
+     480,
+     360,
+     18030
+    ],
+    [
+     "micelle-field-dark-m800.webp",
+     800,
+     600,
+     40100
+    ]
+   ]
+  },
+  "membrane-receptors-light": {
+   "source": "cfde801d-image.webp",
+   "source_sha256": "d5f877e79205d0a6146bf031986f32a4c8bb216f12c5051fcb62fcfc047f160d",
+   "source_size": [
+    2560,
+    1440
+   ],
+   "focal": "52% 62%",
+   "files": [
+    [
+     "membrane-receptors-light-768.webp",
+     768,
+     432,
+     50340
+    ],
+    [
+     "membrane-receptors-light-1200.webp",
+     1200,
+     675,
+     106752
+    ],
+    [
+     "membrane-receptors-light-1920.webp",
+     1920,
+     1080,
+     219418
+    ],
+    [
+     "membrane-receptors-light-m480.webp",
+     480,
+     360,
+     32628
+    ],
+    [
+     "membrane-receptors-light-m800.webp",
+     800,
+     600,
+     81194
+    ]
+   ]
+  },
+  "glass-thresholds-light": {
+   "source": "7c24d672-image.jpg",
+   "source_sha256": "6ee1f7b0f6a55c052a0c54864c56c38cc0c6916a2b78faaf00733780b3f43c87",
+   "source_size": [
+    2688,
+    1152
+   ],
+   "focal": "68% 48%",
+   "files": [
+    [
+     "glass-thresholds-light-768.webp",
+     768,
+     329,
+     7552
+    ],
+    [
+     "glass-thresholds-light-1200.webp",
+     1200,
+     514,
+     15254
+    ],
+    [
+     "glass-thresholds-light-1920.webp",
+     1920,
+     823,
+     30236
+    ],
+    [
+     "glass-thresholds-light-m480.webp",
+     480,
+     360,
+     7506
+    ],
+    [
+     "glass-thresholds-light-m800.webp",
+     800,
+     600,
+     15936
+    ]
+   ]
+  },
+  "glass-ledger-light": {
+   "source": "5adc84bd-image.jpg",
+   "source_sha256": "fc7d2497658fd4dd26e44ab79d550acc84f84b4f3b645ddf295c0593831415fa",
+   "source_size": [
+    2688,
+    1152
+   ],
+   "focal": "70% 45%",
+   "files": [
+    [
+     "glass-ledger-light-768.webp",
+     768,
+     329,
+     15818
+    ],
+    [
+     "glass-ledger-light-1200.webp",
+     1200,
+     514,
+     31266
+    ],
+    [
+     "glass-ledger-light-1920.webp",
+     1920,
+     823,
+     60382
+    ],
+    [
+     "glass-ledger-light-m480.webp",
+     480,
+     360,
+     15312
+    ],
+    [
+     "glass-ledger-light-m800.webp",
+     800,
+     600,
+     32730
+    ]
+   ]
+  }
+ }
+}

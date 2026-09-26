@@ -1,5 +1,7 @@
 // Release checks for the integrated website, run against the built site directory Grok deploys.
-//   node release-check.mjs <site-dir> <out-dir> [--modules study-hub,phase-1,...] [--max-pages 200]
+//   node release-check.mjs <site-dir> <out-dir> [--modules study-hub,phase-1,...] [--max-pages 200] [--stub-external]
+// --stub-external: answer requests to other origins (web fonts, for example) with an empty 200 in the browser, for
+//   environments without internet access; external links are still listed, never fetched.
 // Serves <site-dir> with Cloudflare's Pages runtime (wrangler pages dev) and crawls it from "/". Checks:
 //   routing   every crawled page answers 200 directly; internal links reach a page in at most one redirect;
 //             no redirect chains; unknown paths answer 404
@@ -21,6 +23,7 @@ if (!siteDir || !outDir) { console.error("usage: node release-check.mjs <site-di
 const opt = (k, d) => (args.includes(k) ? args[args.indexOf(k) + 1] : d);
 const modules = (opt("--modules", "") || "").split(",").filter(Boolean);
 const maxPages = Number(opt("--max-pages", 200));
+const stubExternal = args.includes("--stub-external");
 const shots = path.join(outDir, "screenshots");
 fs.mkdirSync(shots, { recursive: true });
 const axeSource = fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "node_modules/axe-core/axe.min.js"), "utf8");
@@ -73,7 +76,7 @@ while (queue.length && seen.size < maxPages) {
     try { u = new URL(raw, base + r.final); } catch { check("links", `${r.final}: parsable link ${raw}`, false, raw); continue; }
     if (u.origin !== base) { external.add(u.href); continue; }
     internalRefs.push([r.final, u.pathname + u.hash, kind]);
-    const isPage = kind === "href" && !/\.[a-z0-9]{2,5}$/i.test(u.pathname);
+    const isPage = kind === "href" && (!/\.[a-z0-9]{2,5}$/i.test(u.pathname) || /\.html$/i.test(u.pathname));   // sites that link pages by file name
     if (isPage && !seen.has(u.pathname)) queue.push(u.pathname);
   }
 }
@@ -108,6 +111,7 @@ const found = new Map();
 const pages = [...pageIds.keys()].sort();
 for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", { width: 1280, height: 900 }]]) {
   const ctx = await browser.newContext({ viewport: vp });
+  if (stubExternal) await ctx.route((u) => !u.href.startsWith(base), (r) => r.fulfill({ status: 200, body: "", contentType: /css/.test(r.request().url()) ? "text/css" : "application/octet-stream" }));
   for (const p of pages) {
     const page = await ctx.newPage();
     const errors = [];
@@ -115,6 +119,11 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
     page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto(base + p, { waitUntil: "load" });
+    await page.waitForTimeout(400);
+    if (new URL(page.url()).pathname !== new URL(base + p).pathname) {   // a stub page that redirects in the browser
+      if (label === "desktop") check("routing", `${p}: client-side redirect to ${new URL(page.url()).pathname} (listed, not a content page)`, true);
+      await page.close(); continue;
+    }
     await page.evaluate(async () => {   // open expandable sections, bring each lazy image into view, give it up to 5 s
       document.querySelectorAll("details").forEach((d) => { d.open = true; });
       for (const i of document.images) {
