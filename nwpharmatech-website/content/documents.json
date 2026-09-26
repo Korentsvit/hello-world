@@ -8,6 +8,14 @@
       "public": true,
       "history": [
         {
+          "version": "6",
+          "date": "2026-09-26",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Transition figure: the one-in-four summary is the pooled estimate from Salazar de Pablo 2021 (25% at 3 years), not a Kaplan–Meier figure (the separate Kaplan–Meier series is 27% at 3 years). Financing row: preferred path under evaluation, with a permissioned token at close where feasible; register-first fallback; development objectives, not live offering terms.",
+          "source_sha256": "cef9665146c4f432abf6da3f84d4c4832cc1df44b1aafc4e890b146a9db3c02e"
+        },
+        {
           "version": "5",
           "date": "2026-09-26",
           "published": false,

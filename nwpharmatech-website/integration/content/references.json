@@ -119,9 +119,9 @@
    "pmid": "34259821",
    "population": "9,222 people at clinical high risk in 130 studies",
    "product": "Not applicable",
-   "design": "Meta-analysis (Kaplan–Meier cumulative estimates)",
-   "finding": "Kaplan–Meier cumulative estimates: about one in four (25%) developed psychosis within 3 years, and 27% within 4 years, with wide variation between studies.",
-   "limitations": "Meta-analytic Kaplan–Meier cumulative transition estimates; high heterogeneity between services and criteria; individual risk varies. Not the same method as older pooled transition averages (Fusar-Poli et al. 2012).",
+   "design": "Meta-analysis (a pooled estimate and, separately, Kaplan–Meier cumulative estimates)",
+   "finding": "Pooled estimate: about one in four (25%) developed psychosis within 3 years. Kaplan–Meier cumulative estimates, a separate analysis: 8% at 6 months, 14% at 1 year, 20% at 2 years, 27% at 3 years and 35% at 10 years. Wide variation between studies.",
+   "limitations": "High heterogeneity between services and criteria; individual risk varies. The pooled and Kaplan–Meier results are separate analyses and are not combined into one series. Neither is interchangeable with the older pooled averages of Fusar-Poli et al. 2012.",
    "verification": "index"
   },
   {

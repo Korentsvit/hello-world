@@ -16,16 +16,16 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 9754,
-   "sha256": "993b6c9c49ba87a94b97d238d47398652fdc3e85b327be8ec5b9bbf0b2d59860"
+   "bytes": 9738,
+   "sha256": "aff833af4b6a6e2129bdf6c454acc7ccf7dbd4d030c11f30fccddbaf3d06c4bf"
   },
   "module.css": {
    "bytes": 8633,
    "sha256": "d7c66fe6e89eabe70901ac931e2b48fcf9c2b530a323f6de3ac385a30770fb1e"
   },
   "preview.html": {
-   "bytes": 10588,
-   "sha256": "ace77c3c355c2d8523b9703bad2bb35edfc0bb85a575a1900b5d7b2c513e2cb7"
+   "bytes": 10572,
+   "sha256": "2d89559d36cc2bceefd7191c47f1afeef69cf46d9d6cc34d8dd63a217ec68682"
   }
  },
  "left_out": [],
@@ -64,7 +64,7 @@
    "file": "downloads/appointment-preparation-sheet.pdf",
    "href": "/downloads/appointment-preparation-sheet.pdf",
    "bytes": 43752,
-   "sha256": "1e7302a275bd24a601da38d10c8e331cf0c196a9031b35438441fa5500455af1"
+   "sha256": "a50323240db1ebb6ca23ed9993b007e312b2d9946eaac189dfac49aac379b5dc"
   }
  ],
  "assets": [],
