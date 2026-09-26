@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=nwpt033" />
+  <link rel="stylesheet" href="styles.css?v=nwpt034" />
 </head>
 <body class="page-home">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -122,7 +122,7 @@
 
   <main id="main">
     <!-- 1. Hero -->
-    <section class="cine-hero" aria-labelledby="hero-title">
+    <section class="cine-hero cine-hero--motion" aria-labelledby="hero-title">
       <div class="cine-hero__media" aria-hidden="true">
         <img
           class="cine-hero__img"
@@ -153,30 +153,83 @@
           <a class="btn btn-ghost" href="updates/why-early-intervention-matters.html">Why it matters</a>
         </div>
       </div>
+      <div class="hero-motion" data-hero-motion>
+        <img class="hero-motion__still" src="assets/visuals-034/neural-still-sq-540.webp?v=nwpt034" srcset="assets/visuals-034/neural-still-sq-540.webp?v=nwpt034 540w, assets/visuals-034/neural-still-sq-800.webp?v=nwpt034 800w" sizes="(max-width: 859px) calc(100vw - 2.5rem), 1px" width="540" height="540" alt="" loading="lazy" decoding="async" />
+        <video class="hero-motion__video" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1"
+          data-desktop-webm="assets/visuals-034/brain-ecs-loop-1280.webm?v=nwpt034" data-desktop-mp4="assets/visuals-034/brain-ecs-loop-1280.mp4?v=nwpt034"
+          data-phone-webm="assets/visuals-034/brain-ecs-loop-540sq.webm?v=nwpt034" data-phone-mp4="assets/visuals-034/brain-ecs-loop-540sq.mp4?v=nwpt034"></video>
+        <button type="button" class="hero-motion__toggle" aria-pressed="false" hidden>
+          <span class="hero-motion__icon" aria-hidden="true"></span><span class="hero-motion__label">Pause animation</span>
+        </button>
+      </div>
       <p class="cine-hero__caption wrap-xl">
         <span class="visually-hidden">Image caption: </span>
-        Conceptual neural motif for early CNS research — not evidence of targeting or clinical benefit.
+        Conceptual animation of neural tissue and cell-membrane receptors (a still image when motion is off) — illustration only; not evidence of a mechanism, of brain delivery or of clinical benefit.
       </p>
     </section>
 
-    <!-- 2. Clinical need -->
-    <section class="section section-light home-section home-compact" aria-labelledby="why-title">
-      <div class="wrap prose-measure home-story">
-        <p class="eyebrow">Clinical need</p>
-        <h2 id="why-title">Why early intervention matters</h2>
-        <p>
-          <strong>Clinical high risk for psychosis (CHR-P)</strong> identifies people with elevated transition risk relative to the general population. It is not a diagnosis of schizophrenia, and it does not mean any individual will inevitably develop psychosis.
-          An updated meta-analysis estimated that about one in four people identified as CHR-P (pooled estimate, 25%) developed psychosis within three years — while most do not
-          <span class="muted">(Salazar de Pablo et al., 2021, <em>JAMA Psychiatry</em>)</span>.
-          UK NICE guidance emphasises specialist assessment and psychological care — and does not recommend antipsychotics to prevent psychosis in the at-risk group.
-        </p>
-        <p class="section-links">
-          <a href="updates/why-early-intervention-matters.html">Read the clinical need explainer</a>
-        </p>
+    <!-- 2. Programme brief -->
+    <section class="section home-brief-band" aria-labelledby="brief-title">
+      <div class="wrap">
+        <div class="brief-panel">
+          <a class="brief-panel__cover" href="resources/programme-brief.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/visuals-034/programme-brief-cover-320.webp?v=nwpt034" srcset="assets/visuals-034/programme-brief-cover-320.webp?v=nwpt034 320w, assets/visuals-034/programme-brief-cover-640.webp?v=nwpt034 640w" sizes="(max-width: 700px) 9rem, 13rem" width="320" height="453" alt="" loading="lazy" decoding="async" />
+          </a>
+          <div class="brief-panel__body">
+            <p class="eyebrow">Programme brief</p>
+            <h2 id="brief-title">The CHR-P programme on two pages</h2>
+            <p>Mission, clinical need, the investigational candidate, evidence status, roadmap and governance — an informational overview for visitors, collaborators and press. Not an offering document. Not medical advice.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="resources/programme-brief.html">Read the brief</a>
+              <a class="btn btn-secondary" href="resources/NWPharmaTech-CHRP-programme-brief-v2026-09-22.pdf" download>Download PDF</a>
+            </div>
+            <p class="brief-panel__meta">Version 2026-09-22 · PDF, 2 pages, 5&nbsp;KB</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 3. Current programme -->
+    <!-- 3. Routes -->
+    <section class="section section-light home-section home-routes" aria-labelledby="routes-title">
+      <div class="wrap">
+        <div class="prose-measure home-story">
+          <p class="eyebrow">Start here</p>
+          <h2 id="routes-title">The programme in three steps</h2>
+        </div>
+        <div class="route-grid">
+          <a class="route-card" href="updates/why-early-intervention-matters.html">
+            <span class="route-card__media"><img src="assets/visuals-033/glass-thresholds-light-1200.webp?v=nwpt034" srcset="assets/visuals-033/glass-thresholds-light-768.webp?v=nwpt034 768w, assets/visuals-033/glass-thresholds-light-1200.webp?v=nwpt034 1200w" sizes="(max-width: 859px) 100vw, 360px" width="1200" height="514" alt="" style="object-position: 68% 48%;" loading="lazy" decoding="async" /></span>
+            <div class="route-card__body">
+              <span class="route-card__kicker">1 · Clinical need</span>
+              <h3 class="route-card__title">Why early intervention matters</h3>
+              <p class="route-card__text">CHR-P is not a diagnosis of schizophrenia. An updated meta-analysis estimated that about one in four people identified as CHR-P (pooled estimate, 25%) developed psychosis within three years; most do not (Salazar de Pablo et al., 2021). NICE does not recommend antipsychotics to prevent psychosis in this group.</p>
+              <span class="route-card__link">Read the clinical need explainer</span>
+            </div>
+          </a>
+          <a class="route-card" href="science.html">
+            <span class="route-card__media"><img src="assets/filipp-032/platform-hub-1200.webp?v=nwpt034" srcset="assets/filipp-032/platform-hub-768.webp?v=nwpt034 768w, assets/filipp-032/platform-hub-1200.webp?v=nwpt034 1200w" sizes="(max-width: 859px) 100vw, 360px" width="1200" height="514" alt="" style="object-position: 75% 50%;" loading="lazy" decoding="async" /></span>
+            <div class="route-card__body">
+              <span class="route-card__kicker">2 · Science</span>
+              <h3 class="route-card__title">The investigational formulation</h3>
+              <p class="route-card__text"><strong>NWPT-SM32300</strong> is NWPharmaTech’s investigational 300&nbsp;mg CBD micellar-emulsion softgel. The science pages separate what is known from what remains open. Effectiveness in this population has not been established.</p>
+              <span class="route-card__link">Explore the science</span>
+            </div>
+          </a>
+          <a class="route-card" href="programme.html#design-title">
+            <span class="route-card__media"><img src="assets/filipp-032/programme-pipeline-flow-1200.webp?v=nwpt034" srcset="assets/filipp-032/programme-pipeline-flow-768.webp?v=nwpt034 768w, assets/filipp-032/programme-pipeline-flow-1200.webp?v=nwpt034 1200w" sizes="(max-width: 859px) 100vw, 360px" width="1200" height="675" alt="" style="object-position: 50% 50%;" loading="lazy" decoding="async" /></span>
+            <div class="route-card__body">
+              <span class="route-card__kicker">3 · Proposed study</span>
+              <h3 class="route-card__title">The planned Phase&nbsp;2B study</h3>
+              <p class="route-card__text">Designed to evaluate dose response, symptoms, safety and tolerability, and to inform the next stage of development. Planned; not recruiting. Prevention is not the current primary aim.</p>
+              <span class="route-card__link">See the proposed design</span>
+            </div>
+          </a>
+        </div>
+        <p class="fineprint route-grid__note">Images are conceptual illustrations — not evidence of mechanism, delivery or clinical benefit.</p>
+      </div>
+    </section>
+
+    <!-- 4. Proposed design -->
     <section class="section section-alt home-section home-compact" aria-labelledby="research-title">
       <div class="wrap">
         <div class="editorial-split home-study-split">
@@ -248,7 +301,7 @@
       </div>
     </section>
 
-    <!-- 4. People — scientific leadership -->
+    <!-- 5. People — scientific leadership -->
     <section class="section section-light home-section home-compact" aria-labelledby="people-title">
       <div class="wrap">
         <div class="prose-measure home-story">
@@ -282,32 +335,35 @@
       </div>
     </section>
 
-    <!-- 5. Latest updates -->
+    <!-- 6. Updates -->
     <section class="section section-alt home-section home-compact" aria-labelledby="updates-title">
       <div class="wrap">
         <div class="prose-measure home-story">
-          <p class="eyebrow">Latest updates</p>
-          <h2 id="updates-title">Recent articles</h2>
+          <p class="eyebrow">Updates</p>
+          <h2 id="updates-title">From the updates</h2>
           <p>Educational notes on the science and proposed approach — not announcements of new clinical results or fundraising totals.</p>
         </div>
-        <div class="home-updates-grid">
-          <a class="home-update-card" href="updates/why-early-intervention-matters.html">
-            <span class="home-update-card__cat">Science explained</span>
-            <h3>Why early intervention matters</h3>
-            <p>CHR-P, current care, and why intervening earlier is a research priority.</p>
-            <span class="home-update-card__date">Published 22 Sep 2026 · Evergreen</span>
-          </a>
-          <a class="home-update-card" href="updates/planned-phase-2b-overview.html">
-            <span class="home-update-card__cat">Programme updates</span>
-            <h3>The planned Phase 2B study</h3>
+        <div class="home-updates-grid home-updates-grid--media">
+          <a class="home-update-card home-update-card--media" href="updates/planned-phase-2b-overview.html">
+            <span class="home-update-card__media"><img src="assets/visuals-034/softgel-group-1200.webp?v=nwpt034" srcset="assets/visuals-034/softgel-group-640.webp?v=nwpt034 640w, assets/visuals-034/softgel-group-1200.webp?v=nwpt034 1200w" sizes="(max-width: 859px) 100vw, 360px" width="1200" height="900" alt="" style="object-position: 50% 50%;" loading="lazy" decoding="async" /></span>
+            <span class="home-update-card__cat">Programme news</span>
+            <h3>The planned Phase 2B study — an overview</h3>
             <p>Plain-language overview of the proposed design — not a results announcement.</p>
-            <span class="home-update-card__date">Published 21 Sep 2026</span>
+            <span class="home-update-card__date">Published 21 September 2026</span>
           </a>
-          <a class="home-update-card" href="updates/what-this-programme-aims-to-establish.html">
-            <span class="home-update-card__cat">Science explained</span>
+          <a class="home-update-card home-update-card--media" href="updates/what-this-programme-aims-to-establish.html">
+            <span class="home-update-card__media"><img src="assets/visuals-033/micelle-field-dark-1200.webp?v=nwpt034" srcset="assets/visuals-033/micelle-field-dark-768.webp?v=nwpt034 768w, assets/visuals-033/micelle-field-dark-1200.webp?v=nwpt034 1200w" sizes="(max-width: 859px) 100vw, 360px" width="1200" height="675" alt="" style="object-position: 72% 47%;" loading="lazy" decoding="async" /></span>
+            <span class="home-update-card__cat">Explainer</span>
             <h3>What this programme aims to establish</h3>
             <p>What the CHR-P workstream is designed to learn — and what remains open today.</p>
-            <span class="home-update-card__date">Published 20 Sep 2026 · Evergreen</span>
+            <span class="home-update-card__date">Published 20 September 2026</span>
+          </a>
+          <a class="home-update-card home-update-card--media" href="updates/how-desci-could-help.html">
+            <span class="home-update-card__media"><img src="assets/visuals-033/glass-ledger-light-1200.webp?v=nwpt034" srcset="assets/visuals-033/glass-ledger-light-768.webp?v=nwpt034 768w, assets/visuals-033/glass-ledger-light-1200.webp?v=nwpt034 1200w" sizes="(max-width: 859px) 100vw, 360px" width="1200" height="514" alt="" style="object-position: 70% 45%;" loading="lazy" decoding="async" /></span>
+            <span class="home-update-card__cat">Programme news</span>
+            <h3>How DeSci could help finance early-intervention research</h3>
+            <p>Why conventional biotech finance often struggles with CHR-P timelines — and the platform path under evaluation.</p>
+            <span class="home-update-card__date">Published 20 September 2026</span>
           </a>
         </div>
         <p class="section-links" style="margin-top:1rem">
@@ -316,7 +372,7 @@
       </div>
     </section>
 
-    <!-- 6. Funding + contact -->
+    <!-- 7. Funding + contact -->
     <section class="section section-light home-section home-compact" aria-labelledby="desci-title">
       <div class="wrap prose-measure home-story">
         <p class="eyebrow">Funding overview</p>
@@ -364,5 +420,6 @@
     </div>
   </footer>
   <script src="nav.js?v=nwpt032" defer></script>
+  <script src="hero-motion.js?v=nwpt034" defer></script>
 </body>
 </html>

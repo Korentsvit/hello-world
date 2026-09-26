@@ -3535,3 +3535,134 @@ html.nav-menu-open {
 th { color: var(--ink-600); }
 .badge-excluded { color: var(--ink-600); }
 .diagram-block .lifecycle-flow__side-note, .lifecycle-flow .lifecycle-flow__side-note, p.lifecycle-flow__side-note { color: var(--ink-300); }
+
+/* ===== NWPT-034: homepage hero motion, programme brief panel, routes, image-led updates ===== */
+/* Hero motion — desktop: the video sits on the right, feathered into the veil, never under the text */
+.hero-motion { position: absolute; top: 0; right: 0; bottom: 0; width: 60%; z-index: 1; pointer-events: none; }
+.hero-motion__still { display: none; }
+.hero-motion__video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%;
+  opacity: 0; transition: opacity 1.2s var(--ease);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%, #000 88%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 38%, #000 88%, transparent 100%);
+}
+.hero-motion.is-playing .hero-motion__video { opacity: 0.82; }
+.hero-motion__toggle {
+  position: absolute; right: clamp(1rem, 3vw, 2rem); bottom: clamp(1rem, 3vw, 2rem); pointer-events: auto;
+  display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.5rem 0.95rem;
+  border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.38); background: rgba(5, 11, 20, 0.72);
+  color: #fff; font: 600 0.82rem/1 var(--font-body); cursor: pointer; z-index: 3;
+}
+.hero-motion__toggle:hover { background: rgba(5, 11, 20, 0.92); border-color: rgba(255, 255, 255, 0.6); }
+.hero-motion__toggle:focus-visible { outline: 3px solid var(--turquoise-400); outline-offset: 3px; }
+.hero-motion__toggle[hidden] { display: none; }
+.hero-motion__icon { width: 0.8rem; height: 0.8rem; position: relative; flex: none; }
+.hero-motion__icon::before, .hero-motion__icon::after { content: ""; position: absolute; top: 0; bottom: 0; width: 0.26rem; background: currentColor; border-radius: 1px; }
+.hero-motion__icon::before { left: 0.05rem; }
+.hero-motion__icon::after { right: 0.05rem; }
+.hero-motion__toggle.is-paused .hero-motion__icon::before { left: 0.1rem; width: 0; background: none; border-radius: 0;
+  border-left: 0.7rem solid currentColor; border-top: 0.4rem solid transparent; border-bottom: 0.4rem solid transparent; }
+.hero-motion__toggle.is-paused .hero-motion__icon::after { display: none; }
+/* the text column keeps a solid veil so headline and buttons stay readable over any frame */
+.cine-hero--motion .cine-hero__veil {
+  background:
+    linear-gradient(180deg, rgba(5, 11, 20, 0.2) 0%, rgba(5, 11, 20, 0.35) 55%, rgba(5, 11, 20, 0.8) 100%),
+    linear-gradient(90deg, rgba(5, 11, 20, 0.9) 0%, rgba(5, 11, 20, 0.72) 38%, rgba(5, 11, 20, 0.1) 62%, rgba(5, 11, 20, 0.25) 100%);
+}
+.cine-hero--motion .cine-hero__content { z-index: 2; }
+@media (max-width: 859px) {
+  /* phones: text first on plain navy, then a square media panel below the buttons */
+  .cine-hero--motion .cine-hero__media { display: none; }
+  .hero-motion { position: relative; width: auto; margin: 1.75rem 1.25rem 0; aspect-ratio: 1 / 1; max-height: 24rem;
+    border-radius: 16px; overflow: hidden; background: #061f3a; }
+  .hero-motion__still { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .hero-motion__video { -webkit-mask-image: none; mask-image: none; }
+  .hero-motion.is-playing .hero-motion__video { opacity: 1; }
+  .hero-motion__toggle { right: 0.75rem; bottom: 0.75rem; }
+  .page-home .cine-hero--motion { padding-top: clamp(5rem, 18vw, 6.5rem); }
+}
+@media (min-width: 860px) and (max-width: 1100px) { .hero-motion { width: 52%; } }
+@media (prefers-reduced-motion: reduce) { .hero-motion__video { transition: none; } }
+
+/* Programme brief panel */
+.home-brief-band { padding: clamp(2.25rem, 5vw, 3.5rem) 0; background: linear-gradient(180deg, #eef4f5 0%, #f8f8f7 100%); border-bottom: 1px solid var(--line); }
+.brief-panel { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: clamp(1.25rem, 4vw, 3rem); align-items: center;
+  background: #fff; border: 1px solid rgba(15, 40, 70, 0.1); border-left: 4px solid var(--turquoise-500);
+  border-radius: 16px; padding: clamp(1.25rem, 3vw, 2rem); box-shadow: var(--shadow-soft); }
+.brief-panel__cover { display: block; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 28px rgba(7, 17, 31, 0.16); border: 1px solid var(--line); transform: rotate(-1.5deg); }
+.brief-panel__cover img { display: block; width: 100%; height: auto; }
+.brief-panel__body h2 { margin: 0.2rem 0 0.6rem; font-size: clamp(1.45rem, 3vw, 2rem); }
+.brief-panel__body p { max-width: 40rem; }
+.brief-panel .cta-row { margin-top: 1rem; }
+.brief-panel__meta { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--ink-600); }
+@media (max-width: 700px) {
+  .brief-panel { grid-template-columns: 1fr; }
+  .brief-panel__cover { width: 9rem; }
+  .brief-panel .cta-row .btn { width: 100%; justify-content: center; }
+}
+
+/* Illustrated routes */
+.home-routes .home-story { margin-bottom: 1.5rem; }
+.route-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 860px) { .route-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.route-card { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #fff;
+  border: 1px solid rgba(15, 40, 70, 0.12); text-decoration: none; color: inherit; height: 100%;
+  transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease), transform 0.15s var(--ease); }
+.route-card:hover { border-color: rgba(46, 196, 182, 0.55); box-shadow: 0 14px 30px rgba(7, 17, 31, 0.08); }
+.route-card:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.route-card__media { display: block; aspect-ratio: 16 / 9; background: #0c1a2e; overflow: hidden; }
+.route-card__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.route-card__body { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.15rem 1.25rem 1.35rem; flex: 1; }
+.route-card__kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--hope-600); }
+.route-card__title { margin: 0; font-size: 1.2rem; line-height: 1.25; color: var(--navy-900); }
+.route-card__text { margin: 0; font-size: 0.92rem; line-height: 1.6; color: var(--ink-700); flex: 1; }
+.route-card__link { font-size: 0.9rem; font-weight: 650; color: var(--blue-600); text-decoration: underline; text-underline-offset: 3px; }
+.route-card__link::after { content: " →"; }
+.route-grid__note { margin-top: 1rem; }
+
+/* Image-led update cards */
+.home-update-card--media { padding: 0 0 1.1rem; overflow: hidden; }
+.home-update-card--media > :not(.home-update-card__media) { margin-left: 1.05rem; margin-right: 1.05rem; }
+.home-update-card__media { display: block; aspect-ratio: 16 / 10; background: #0c1a2e; overflow: hidden; margin-bottom: 0.6rem; }
+.home-update-card__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.home-update-card--media h3 { font-size: 1.05rem; }
+.home-update-card__date { color: var(--ink-600); }
+.home-update-card__cat { color: var(--ink-600); }
+@media (min-width: 860px) {
+  .hero-motion { width: 46%; }
+  .hero-motion__video {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 90%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 90%, transparent 100%);
+  }
+  .page-home .cine-hero--motion .lede--light { max-width: 31rem; }
+  .cine-hero--motion .cine-hero__veil {
+    background:
+      linear-gradient(180deg, rgba(5, 11, 20, 0.2) 0%, rgba(5, 11, 20, 0.3) 55%, rgba(5, 11, 20, 0.78) 100%),
+      linear-gradient(90deg, rgba(5, 11, 20, 0.92) 0%, rgba(5, 11, 20, 0.85) 45%, rgba(5, 11, 20, 0.25) 68%, rgba(5, 11, 20, 0.2) 100%);
+  }
+  .cine-hero--motion .cine-hero__caption { padding-right: 14rem; }
+}
+@media (min-width: 860px) and (max-width: 1100px) { .hero-motion { width: 42%; } }
+@media (min-width: 860px) {
+  /* a feathered 4:3 window, vertically centred: the 548px-high source is shown at or below its size, never blown up */
+  .hero-motion { top: 50%; bottom: auto; right: 2vw; width: 50%; max-width: 46rem; aspect-ratio: 4 / 3; transform: translateY(-46%); }
+  .hero-motion__video {
+    -webkit-mask-image: radial-gradient(ellipse 62% 64% at 54% 50%, #000 58%, transparent 100%);
+            mask-image: radial-gradient(ellipse 62% 64% at 54% 50%, #000 58%, transparent 100%);
+  }
+  .hero-motion.is-playing .hero-motion__video { opacity: 0.9; }
+  .hero-motion__toggle { right: 1.5rem; bottom: -0.5rem; }
+  .cine-hero--motion .cine-hero__img { transition: opacity 1.2s var(--ease); }
+  .cine-hero--motion:has(.hero-motion.is-playing) .cine-hero__img { opacity: 0.16; }
+}
+@media (min-width: 860px) and (max-width: 1100px) { .hero-motion { width: 48%; right: 0; } }
+@media (min-width: 860px) {
+  .hero-motion { width: min(40vw, 40rem); right: 3vw; }
+  .hero-motion__video {
+    -webkit-mask-image: radial-gradient(closest-side at 50% 50%, #000 62%, transparent 100%);
+            mask-image: radial-gradient(closest-side at 50% 50%, #000 62%, transparent 100%);
+  }
+  .page-home .cine-hero--motion .lede--light { max-width: 28rem; }
+  .hero-motion__toggle { right: 0.5rem; bottom: -1.25rem; }
+}
+@media (min-width: 860px) and (max-width: 1100px) { .hero-motion { width: 38vw; right: 1vw; } }

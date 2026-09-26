@@ -40,3 +40,8 @@
 /study/ /study 301
 /phase-1/ /phase-1 301
 /newsroom/ /newsroom 301
+
+# NWPT-034: no public email signup until a provider is live end to end
+/updates/register /updates/ 301
+/updates/register/ /updates/ 301
+/updates/register.html /updates/ 301
