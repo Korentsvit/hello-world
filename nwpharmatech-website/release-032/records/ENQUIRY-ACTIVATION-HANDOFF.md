@@ -40,7 +40,7 @@ Keep credentials out of chat and records: enter keys only in the Pages environme
 
    | Name | Kind |
    |---|---|
-   | `ENQUIRY_TO` | plain: `Filipp.korentsvit@nwpharmatech.com` (D1) |
+   | `ENQUIRY_TO` | plain: `Filipp.korentsvit@nwpharmatech.com` (settled) |
    | `ENQUIRY_FROM` | plain |
    | `RESEND_API_KEY` | secret |
    | `TURNSTILE_SITE_KEY` | plain |
