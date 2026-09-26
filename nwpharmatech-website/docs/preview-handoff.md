@@ -19,7 +19,7 @@ It is **not** built on the production source, which has not been supplied. `www.
 | Reconciling with production | The live-site repository (Claude GitHub App access or a complete source ZIP at the deployed commit), the branch, the deployed commit, and the build and deploy commands: framework, Node version, output directory, Pages project name, environment variables, `_headers`, `_redirects` | Grok |
 | Current financing content | The live pages the DAO brief cites (`/how-it-works`, `/proposed-token`, `/updates/how-desci-could-help`, `/about`, `/faq`), with their current status and which wording is agreed | Grok, management |
 | Old live addresses | The list of live URLs, for redirects | Grok |
-| Visuals | `NWPT-visual-portfolio-01.zip` (first Manus portfolio) | Manus / management |
+| Visuals | The first scientific portfolio, `NWPT-visual-portfolio-01.zip` (Manus). The DAO package, `NWPT-DAO-visual-tranche-01.zip`, is already integrated | Manus / management |
 | Portraits | Authorised headshots (list below) | Management |
 | CHR-P design | The current CHR-P Phase 2B design source | Management |
 
@@ -29,7 +29,7 @@ It is **not** built on the production source, which has not been supplied. `www.
 - **Routes.** The live site has routes the preview lacks, such as `/how-it-works`, `/proposed-token`, `/about` and `/updates/<post>`. The preview's routes (`/financing`, `/people`, `/study` …) may not match the live ones. `src/integration-routes.json` maps them once the live list is known.
 - **Financing wording.** The preview uses the agreed public statements only: the platform-integrated objective, the register-first fallback, and proposed milestone release. Detailed mechanics live on the production site are not reproduced, and none were invented: release approvers, custody, dual control and qualifying receipts.
 - **Sponsor.** The preview says: "NWPharmaTech is developing the proposed CHR-P programme. Formal study responsibilities will be documented before the study begins." See the sponsorship question below.
-- **Visuals.** The DAO tranche is integrated. The first Manus portfolio and the portraits are missing, and nothing stands in for them.
+- **Visuals.** The DAO package (`NWPT-DAO-visual-tranche-01.zip`) is integrated. The first scientific portfolio (`NWPT-visual-portfolio-01.zip`) and the portraits are missing, and nothing stands in for them.
 - **Staging markers.** Every preview page carries the staging banner and `noindex`; the production build removes them (`python3 build.py --env production`, which is refused while publication blockers remain).
 
 ## Sponsorship question (for reconciliation, not published)
@@ -43,6 +43,16 @@ To settle:
 Until then the preview uses the wording above. It does not imply that submissions, approvals or trial initiation have happened.
 
 ## Missing headshots
+
+**Roster reconciliation: nine profiles on staging, eight on the existing roster.** The additional person is **Professor Trevor Jones CBE** (Senior Adviser). He was not among the eight profiles in increment C (`a4e31c4`). He was added in the correction release because management's round-4 instruction (23 Sep 2026, source `brief-2026-09-c`) said the output "omits Trevor Jones" and asked for him not to be omitted.
+
+His records:
+- 2023 pitch deck: "Partner & Senior Regulatory and Clinical Advisor";
+- October 2025 draft deck: "Senior Advisors";
+- July 2026 board circulation email: a recipient, with no title stated;
+- August 2026 teaser: not listed.
+
+The other eight profiles are the eight in the existing roster. Nobody has been added or removed silently since. **Decision for management and Grok:** keep him (the round-4 instruction), or align with the live eight-person roster. Until someone decides, the staging profile stays as it is.
 
 No portrait has been supplied or authorised. Each profile shows no image until one is: there are no initials or empty frames.
 

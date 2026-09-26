@@ -43,6 +43,6 @@ Captions are the site's own wording. The package's captions were kept in meaning
 
 ## Not in this preview
 
-- The first Manus portfolio (`NWPT-visual-portfolio-01.zip`) has not been supplied.
+- The first scientific portfolio (`NWPT-visual-portfolio-01.zip`) has not been supplied; only this DAO package has.
 - Team portraits: none are in this package. That work continues separately.
 - Deferred, as instructed: the register-conflict simulator and the animated financing lifecycle.

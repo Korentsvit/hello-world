@@ -13,7 +13,7 @@ on the live site.
 |---|---|---|---|
 | Live-site source | Repository URL (or a complete source export), the branch, the commit currently deployed, and the build and deploy commands (framework, Node version, output directory, Cloudflare Pages project name) | GitHub repositories this session can reach (`Korentsvit/hello-world`, `project-1`, `wdi-fundamentals-memorygame`); Drive; Gmail | Not found. Grok works through Cursor, and the repository connected there is not shared with this session |
 | Live site, read access | To compare content and routes | `www.nwpharmatech.org` | Blocked by this environment's network egress proxy |
-| Visual portfolio | `NWPT-visual-portfolio-01.zip` (Manus) | Drive, Gmail | Not found |
+| First scientific portfolio | `NWPT-visual-portfolio-01.zip` (Manus); the DAO package was supplied separately and is integrated | Drive, Gmail | Not found |
 | Portraits | Every authorised portrait, with who authorised it and when | Drive, Gmail | None supplied |
 | Corporate biographies | The authorised published biographies to reuse | Live site (blocked) | Not reachable |
 | Current CHR-P source | The CHR-P Phase 2B design document (the 300/600/900 mg range and the rest of the design) | Drive, Gmail | Not found. `NWPT Strategy Day Supporting Material` (Jul 2025) is not a design source: it covers schizophrenia relapse prevention and HIV, with unsupported efficacy claims |
