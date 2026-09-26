@@ -1,6 +1,6 @@
 // Targeted checks for a set of changed pages (Cloudflare Pages runtime), at 390 and 1280 px:
 //   node check-pages.mjs <site-dir> <path> [path...]
-// Every rendered image loads (an image the site sets to display:none at that width is listed, not required),
+// Every rendered image loads (an image not rendered at that width, e.g. display:none or inside a hidden tab panel, is listed, not required),
 // no console errors, no horizontal scroll, axe WCAG 2.2 AA, one h1, and every internal link and anchor
 // on those pages resolves in at most one redirect.
 import { chromium } from "playwright-core"; import { serve } from "./lib/cf-serve.mjs"; import fs from "node:fs";
@@ -17,10 +17,11 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { widt
     const pg = await ctx.newPage(); const errs = []; pg.on("console", (m) => m.type() === "error" && errs.push(m.text())); pg.on("pageerror", (e) => errs.push(e.message));
     await pg.goto(srv.base + p, { waitUntil: "load" });
     const st = await pg.evaluate(async () => {
-      for (const i of document.images) { if (getComputedStyle(i).display === "none") continue; i.scrollIntoView({ block: "center" }); const t0 = performance.now();
+      const rendered = (i) => getComputedStyle(i).display !== "none" && i.getClientRects().length > 0;
+      for (const i of document.images) { if (!rendered(i)) continue; i.scrollIntoView({ block: "center" }); const t0 = performance.now();
         while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50)); }
       window.scrollTo(0, 0);
-      const shown = [...document.images].filter((i) => getComputedStyle(i).display !== "none");
+      const shown = [...document.images].filter(rendered);
       return { broken: shown.filter((i) => !(i.complete && i.naturalWidth > 0)).map((i) => i.currentSrc || i.src), hidden: document.images.length - shown.length,
         overflow: document.documentElement.scrollWidth - innerWidth, h1: document.querySelectorAll("h1").length,
         hrefs: [...document.querySelectorAll("a[href]")].map((a) => a.href).filter((h) => h.startsWith(location.origin)) };

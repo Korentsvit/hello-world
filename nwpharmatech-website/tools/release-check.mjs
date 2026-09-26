@@ -139,8 +139,8 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
     await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 10000 }).catch(() => {});
     const st = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth - innerWidth,
-      imgs: [...document.images].filter((i) => getComputedStyle(i).display !== "none").map((i) => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, alt: i.hasAttribute("alt"), dims: i.hasAttribute("width") && i.hasAttribute("height") })),
-      hidden: [...document.images].filter((i) => getComputedStyle(i).display === "none").map((i) => i.getAttribute("src")),   // hidden for this width by the site itself
+      imgs: [...document.images].filter((i) => getComputedStyle(i).display !== "none" && i.getClientRects().length).map((i) => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, alt: i.hasAttribute("alt"), dims: i.hasAttribute("width") && i.hasAttribute("height") })),
+      hidden: [...document.images].filter((i) => getComputedStyle(i).display === "none" || !i.getClientRects().length).map((i) => i.getAttribute("src")),   // hidden for this width by the site itself, or inside a closed tab panel
       h1: document.querySelectorAll("h1").length, nav: !!document.querySelector("nav"), csp: window.__csp,
       modules: [...document.querySelectorAll("[data-nwpt-module]")].map((m) => ({ id: m.dataset.nwptModule,
         styled: getComputedStyle(m.querySelector("*") || m).boxSizing === "border-box", ready: m.hasAttribute("data-nwpt-ready") })),

@@ -37,5 +37,5 @@ Updated 26 September 2026 (after NWPT-035).
 
 ## Other assets
 
-- **Programme Room:** awaiting its component (separate hand-off). Nothing on the site replaces or advertises it.
+- **Programme Room:** the original component never arrived. A new implementation (v1) is at `/programme-room` on the feature branch `claude/nwpt-programme-room` (NWPT-039), under review and not on production. See `PROGRAMME-ROOM-NWPT-039.md`.
 - **Hero video:** integrated from `nwpt-brain-ecs-hero-21x9.webm`. It stays on both Home and Science, per Filipp.
