@@ -11,45 +11,65 @@
 - **Settled:** the sender is `NWPharmaTech website <website@nwpharmatech.org>` (send-only; inbound through Resend is not used).
 - **Privacy Part B:** applied on the preview candidate (branch `claude/nwpt-enquiry-preview`). The remaining open items are the P1, P2 and P3 decisions, now listed publicly under "Not yet confirmed".
 
-**27 Sep 2026: preview delivery (reported by Filipp and Web Boss).**
-- Preview candidate `646693df8b4586eb418e432e24a0e9d46879250f` is on `nwpt-837794c-preview`, with `ENQUIRY_FROM` and `ENQUIRY_TO` set on the preview only.
-- Synthetic enquiry **`WWU-E453F947`**: **system acceptance and confirmed inbox delivery are both reported.**
+**27 Sep 2026: preview tests (Web Boss hosted testing; reports `CLAUDE-ENQUIRY-PRIVACY-PREVIEW-2026-09-27.md` and `CONSOLIDATED-RESULT.md`).**
+- **Candidate:** `646693df8b4586eb418e432e24a0e9d46879250f` on `nwpt-837794c-preview`.
+- **Test deployment:** `ea40c233-78c6-4a98-82a9-2c85243df80a`, since deleted.
+- **Synthetic tag:** `NWPT-SYNTH-20260927-7e97f8`.
+- **Reference:** **`WWU-E453F947`**. Resend reports `last_event=delivered`, and **Filipp confirmed inbox receipt**.
+- The results below are Web Boss's hosted tests. They are **not** re-run or inferred by Claude.
 
-| Section 4 test | Status |
-|---|---|
-| 1–2 Configuration and page | Implied by the accepted submission; the `GET /api/enquiry` output is not yet reported |
-| 3 Real inbox delivery (`WWU-E453F947`) | **Confirmed**: accepted and delivered |
-| 3 Reply-to reaches the tester; provider shows "delivered" | Not yet reported |
-| 4 Retry after a lost response gives exactly one email; a changed enquiry gives a new one | Not yet reported |
-| 5 Repeated clicks give one email | Not yet reported |
-| 6 Failure cases never show "submitted" | Not yet reported |
-| 7 No visitor text in URLs; provider retention matches the notice | Not yet reported (retention: see the privacy decisions) |
+| Section 4 test | Status | Evidence (Web Boss) |
+|---|---|---|
+| 1 Configuration (`GET /api/enquiry` with `configured:true` during the test) | Not reported | After the disable redeploy the endpoint returns `configured:false` (see below) |
+| 2 Page wording, security check and review step | Not reported | — |
+| 3 Real inbox delivery | **Passed** | HTTP 202 with `WWU-E453F947`; Resend `delivered`; Filipp confirmed the inbox |
+| 3 Reply-to | **Passed** | Resend `reply_to` is the synthetic visitor address (`@example.com`) |
+| 4 Lost-response retry: the unchanged enquiry is resent | **Passed** | Resubmitting the same key and token → 202, same reference, no new email |
+| 4 A changed enquiry arrives as a new email | Not reported | — |
+| 5 Repeated clicks / same idempotency key | **Passed** | Four POSTs with the same key and token → four 202s with the same reference; Resend holds **one** email |
+| 6 Failures: missing Turnstile token | **Passed** | 400 "Complete the security check." |
+| 6 Failures: honeypot filled | **Passed** | 400 "The enquiry could not be accepted." |
+| 6 Failures: wrong content version | **Passed** | 409 `code: version` |
+| 6 Failures: malformed JSON | **Passed** | 400 "The enquiry could not be read." |
+| 6 Failures: wrong recipient or revoked key reports "nothing confirmed as sent" | Not reported | — |
+| 6 Removing a variable returns the "not available" message on the page | Not reported | The API returns `configured:false` after `ENQUIRY_TO`/`ENQUIRY_FROM` were removed. The page message was not reported |
+| 7 No visitor text in any URL | Not reported | — |
+| 7 Provider retention matches the notice | Open | Resend documents 30 days on Free, Pro and Scale; the account's plan is unknown (W1) |
+| 8 Automated checks (Claude) | Not part of this report | — |
+
+**Preview submissions are disabled again** (Web Boss, 27 Sep 2026 ~01:33 CEST):
+- `ENQUIRY_TO` and `ENQUIRY_FROM` are removed from the preview project; the Resend and Turnstile credentials are kept.
+- The same SHA was redeployed as `8b0027bf-bb4d-405d-ab27-8267f3ce8fba`.
+- The stable preview host and `www.nwpharmatech.org` both return `configured:false`.
+
+**No further test emails or enquiry deployments** are requested.
+
+**Cloudflare Access on the preview host is not applied.** Filipp needs to create a Zero Trust Access application in the dashboard, because Web Boss's API access was refused (403). Until then the preview stays public and its form stays off.
 
 **Production stays disabled.** Activation still needs:
-- the remaining section 4 results;
+- the unreported checks above, including URL privacy;
 - the privacy decisions (`records/enquiry/PRIVACY-DECISION-SHEET.md`);
-- the provider and logging facts below;
+- the open provider facts below;
 - Filipp's approval.
 
 The privacy follow-up `bfbf132` (precise storage wording, sending-region caveat) is a separate candidate. Its public "Not yet confirmed" notice must not go to production.
 
-## Requests to Web Boss: provider and logging facts (27 Sep 2026)
+## Provider and logging facts (Web Boss review, 27 Sep 2026)
 
-Confirm each item on the **official page or the account itself**, and report the page, the date read and the setting value. No credentials. Claude could not open these pages from its environment; the values in brackets are search-summary leads only.
+Web Boss confirmed these through the company Resend API, the Cloudflare Pages APIs and the official pages cited in its report. Claude has not re-checked them; its own earlier search leads are superseded where a row is confirmed. The **Status** column keeps provider documentation separate from account settings.
 
-| # | Fact | Where to confirm | Lead to check |
+| # | Fact | Status | What Web Boss reported |
 |---|---|---|---|
-| W1 | Resend plan on the company account, and its email/log retention | Resend billing; resend.com/security/gdpr | (30 days on Free, Pro and Scale) |
-| W2 | Resend storage location for message content, logs and account data | resend.com/security/gdpr; resend.com/docs/dashboard/domains/regions | (United States; Ireland is the sending region only) |
-| W3 | Resend transfer mechanism and DPA version; whether the company has accepted or signed it | resend.com/legal/dpa; account settings | (SCCs and EU-U.S. DPF, including the UK extension; DPA updated 31 Dec 2025) |
-| W4 | Resend subprocessors (current list) | resend.com/legal/subprocessors | (Stripe, Supabase, Svix, Tinybird; all USA) |
-| W5 | Resend idempotency-key retention | resend.com/docs/dashboard/emails/idempotency-keys | (24 hours) |
-| W6 | Turnstile: data processed, retention, and Cloudflare's role (controller or processor) | cloudflare.com/turnstile-privacy-policy | (signals listed; retention not found) |
-| W7 | Cloudflare transfer mechanism and any data-localisation setting on the account | cloudflare.com/cloudflare-customer-dpa; account settings | — |
-| W8 | Whether Workers Logs or Logpush is enabled on either Pages project, and its retention | Pages project settings | (only ephemeral real-time logs if neither is enabled) |
-| W9 | The mail service hosting `nwpharmatech.com` mailboxes, and its location | DNS MX records; the mail admin | — |
-| W10 | The remaining section 4 results above (reply-to, delivered status, retry, duplicate clicks, failure cases, URL privacy) | Preview | — |
-
+| W1 | Resend retention | **Confirmed (provider docs)**; plan **unknown** | Message content and delivery logs are kept 30 days on Free, Pro and Scale; Enterprise is flexible. After termination, data is deleted within 90 days, backups 7 days (resend.com/security/gdpr). The plan name is not available via the API; Filipp can read it at Resend Dashboard → Billing |
+| W2 | Resend storage location | **Confirmed (provider docs)** | Customer data is stored in the **United States**. The domain region (`eu-west-1`, Ireland, confirmed on the account) controls the sending path only, not storage (resend.com/security/gdpr; resend.com/docs/dashboard/domains/regions) |
+| W3 | Resend transfers and DPA | **Confirmed (provider docs)** | Transfers rely on SCCs in the DPA plus the EU–U.S. Data Privacy Framework. The Article 28 DPA is pre-signed and executed on signup (signed PDF; also under Settings → Documents). The DPA version date was not reported |
+| W4 | Resend subprocessors | Not reported | — |
+| W5 | Resend idempotency-key retention | Not reported | — |
+| W6 | Turnstile | **Partly confirmed (provider docs)** | The Turnstile Privacy Addendum applies. Per Cloudflare's Turnstile docs, Turnstile does not access form field contents. A fixed Turnstile retention period was **not found**. Cloudflare's controller or processor role was not reported |
+| W7 | Cloudflare transfers and localisation | **Partly confirmed** | A Cloudflare Customer DPA is available (v6.4, 3 Apr 2026). The transfer mechanism and any account localisation setting were not reported |
+| W8 | Workers Logs / Logpush | **Partly confirmed (account setting)** | On the **preview** project's Pages workers (production and preview slots): `logpush: false`, no tail consumers. **Unknown:** account-wide Logpush jobs and Workers Observability (API 403), and the production Pages project |
+| W9 | Mailbox host for `nwpharmatech.com` | Not reported | — |
+| W10 | Section 4 results | Reported above | URL privacy and the other rows marked "Not reported" remain open |
 
 **Already built and live, dormant:**
 - `/api/enquiry` fails closed until all five settings exist.
@@ -72,7 +92,7 @@ None of this authorises activation.
 
 ## 2. Remaining decisions (service and privacy): Filipp
 
-> Superseded for action by `records/enquiry/PRIVACY-DECISION-SHEET.md` (27 Sep 2026): S1–S2 are settled by Web Boss setup; the company choices that remain are there.
+> Superseded for action by `records/enquiry/PRIVACY-DECISION-SHEET.md` (27 Sep 2026): S1–S2 are settled by Web Boss setup; the company choices that remain are there (updated with Web Boss's provider facts).
 
 | # | Decision | Needed for |
 |---|---|---|
