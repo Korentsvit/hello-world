@@ -137,6 +137,14 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { widt
   await pg.evaluate(() => { location.hash = "#stage-protocol"; }); await pg.waitForTimeout(100);
   check(`@${label} hash change switches stage`, (await visible(pg))[0] === "stage-protocol");
   check(`@${label} no console errors`, !errsBeforeAxe.length, errsBeforeAxe.join(" | "));
+  // the sticky header never covers keyboard focus, tabbing backwards and forwards through the page
+  await pg.goto(srv.base + "/programme-room#stage-phase-2b-sources", { waitUntil: "load" }); await pg.waitForTimeout(200);
+  const hidden = [];
+  for (const key of ["Shift+Tab", "Tab"]) for (let i = 0; i < 90; i++) { await pg.keyboard.press(key);
+    const m = await pg.evaluate(() => { const a = document.activeElement; if (!a || a === document.body || a.closest(".site-header") || a.classList.contains("skip-link")) return null;
+      const hb = document.querySelector(".site-header").getBoundingClientRect().bottom, t = a.getBoundingClientRect().top; return t < hb - 1 ? `${a.tagName}.${a.className} ${Math.round(t)}<${Math.round(hb)}` : null; });
+    if (m) hidden.push(m); }
+  check(`@${label} keyboard focus never under the sticky header`, !hidden.length, hidden.slice(0, 5).join("; "));
   await ctx.close();
 
   // Motion allowed: the panel eases in

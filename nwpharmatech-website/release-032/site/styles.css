@@ -4048,3 +4048,6 @@ html:has(main.wwu) { scroll-padding-top: 5.5rem; }
   .wwu-brief a { color: inherit; }
   .wwu-brief__items li { break-inside: avoid; }
 }
+
+/* Keep focused elements and in-page targets clear of the sticky header (keyboard focus, anchors, scrollIntoView) */
+html:has(main.room) { scroll-padding-top: 5.5rem; }

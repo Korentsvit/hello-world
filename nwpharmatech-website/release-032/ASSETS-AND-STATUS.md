@@ -38,5 +38,5 @@ Updated 26 September 2026 (after NWPT-035).
 ## Other assets
 
 - **Programme Room:** the original component never arrived. A new implementation (v1) is at `/programme-room` on the feature branch `claude/nwpt-programme-room` (NWPT-039), under review and not on production. See `PROGRAMME-ROOM-NWPT-039.md`.
-- **Partnership Studio / "Work with us":** first journey ("Explore a research collaboration", `/work-with-us`) built on `claude/nwpt-work-with-us` (NWPT-041), preview candidate only. Online enquiries stay off until configured; see `WORK-WITH-US-NWPT-041.md`.
+- **Partnership Studio / "Work with us":** first journey ("Explore a research collaboration", `/work-with-us`) built on `claude/nwpt-work-with-us` (NWPT-041), integrated with the Programme Room header fix and linked from the Programme menu, footer and Contact page; preview candidate only. Online enquiries stay off until configured; see `WORK-WITH-US-NWPT-041.md`.
 - **Hero video:** integrated from `nwpt-brain-ecs-hero-21x9.webm`. It stays on both Home and Science, per Filipp.

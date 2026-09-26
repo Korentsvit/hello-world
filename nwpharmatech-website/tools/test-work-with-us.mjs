@@ -30,6 +30,22 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
 // ---------------------------------------------------------------- 1 + 2: as deployed (no enquiry settings)
 {
   const srv = await serve(dir);
+  // navigation: every page with the Programme menu lists Work with us after Programme Room, and in the footer before Contact
+  const pathMod = await import("node:path"); const root = pathMod.resolve(dir); const pages = [];
+  (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = pathMod.join(d, e.name); if (e.isDirectory() && e.name !== "functions" && e.name !== "assets") walk(f); else if (e.name.endsWith(".html")) pages.push(f); } })(root);
+  const navBad = [], linkTargets = new Set();
+  for (const f of pages) {
+    const s = fs.readFileSync(f, "utf8"); if (!s.includes("programme-room.html\">Programme Room</a>")) continue;
+    const nav = s.match(/<li><a href="([^"]*)programme-room\.html">Programme Room<\/a><\/li>\s*<li><a href="([^"]*)work-with-us\.html">Work with us<\/a><\/li>/);
+    const foot = s.slice(s.indexOf("<footer")).match(/<a href="([^"]*)work-with-us\.html">Work with us<\/a>\s*<a href="[^"]*contact\.html">Contact<\/a>/);
+    if (!nav || !foot || nav[1] !== nav[2]) navBad.push(pathMod.relative(root, f));
+    else linkTargets.add(new URL(nav[2] + "work-with-us.html", "http://x/" + pathMod.relative(root, f)).pathname);
+  }
+  check(`navigation and footer list Work with us on every page with the menu (${pages.length} pages scanned)`, !navBad.length && linkTargets.size >= 1, navBad.join(", "));
+  for (const t of linkTargets) { const r = await fetch(srv.base + t, { redirect: "manual" }); const r2 = r.status >= 300 && r.status < 400 ? await fetch(srv.base + r.headers.get("location")) : r;
+    check(`nav link ${t} reaches the page in at most one redirect`, r2.status === 200); }
+  const contact = await (await fetch(srv.base + "/contact")).text();
+  check("Contact page keeps its research link to Work with us", /<a class="card-link" href="work-with-us\.html">Explore a research collaboration<\/a>/.test(contact) && contact.includes('href="mailto:team@nwpharmatech.com?subject=Research%20collaboration"'));
   const h = await fetch(srv.base + "/work-with-us");
   check("route /work-with-us answers 200", h.status === 200);
   check("page CSP allows only the Turnstile origin beyond the site", /script-src 'self' https:\/\/challenges\.cloudflare\.com/.test(h.headers.get("content-security-policy") || "") && (h.headers.get("content-security-policy") || "").split(",").length === 1);

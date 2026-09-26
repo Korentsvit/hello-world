@@ -53,3 +53,15 @@ No new images were added; one was removed from the introduction. No sponsor, par
 ## Screenshots
 
 `records/screens-nwpt040/`: before (`06f3a2f`) and after, at 1363×936 and 390×844. For each: the opening screen, and the Phase 2B panel with "What supports this?" expanded.
+
+## Follow-up: sticky header and keyboard focus (separate commit)
+
+The unmodified sticky header was measured after shortcuts, topic links (status tiles, "dated milestones", open questions) and source links into the Evidence library. Tab and Shift+Tab were also run through the whole page, at 390 and 1363 px, with and without reduced motion.
+
+- **Links and shortcuts:** no overlap. Target headings clear the header.
+- **Shift+Tab:** focused elements could end up 0–65 px under the header (42 cases). This is a real overlap.
+- **Fix:** `html:has(main.room) { scroll-padding-top: 5.5rem; }`, limited to the Programme Room. After the fix: 0 cases. A permanent test now covers this.
+- The stylesheet key on every page is now `?v=nwpt040b`.
+- `test-programme-room.mjs`: 175/175.
+
+Other pages were not changed. The same header may affect keyboard focus there; that is a separate site-wide decision.

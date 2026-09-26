@@ -140,3 +140,28 @@ No sponsor, dose or participant-number statements are added.
 - the enquiry as deployed (not configured);
 - review and submitted states under test settings with a mock service; these are not real deliveries;
 - a sample brief PDF.
+
+## Integrated preview candidate (supersedes the NWPT-041 handoff at `22d1c99`)
+
+1. **Programme Room header fix.** `0c39278` is cherry-picked onto this branch.
+   - The overlaps were the stylesheet cache-key line on 41 pages and two blocks appended to the end of `styles.css`. Both CSS blocks are kept; the cache key is now `?v=nwpt042` on every page.
+   - Both focus rules are present (`html:has(main.room)` and `html:has(main.wwu)`, plus the phone agenda-bar bottom padding) and tested.
+2. **Navigation.** "Work with us" is in the Programme menu, directly after Programme Room, and in the footer before Contact, on every page that has the menu (34). The link on the Contact research card is kept.
+3. **Enquiries stay unconfigured.** Browsing, the agenda, the brief, printing and sharing all work without them.
+   - Mock "submitted" captures are named `TEST-mock-*` and carry a red "TEST CAPTURE" banner. They live in `records/screens-nwpt041/`, outside the deployed site; see the README there.
+4. **Privacy notice.** The draft update is in `records/PRIVACY-NOTICE-UPDATE-NWPT-041.md`:
+   - Part A describes the planning tools and is accurate today.
+   - Part B covers the form, with the provider, retention, recipient, data location and lawful basis marked unresolved.
+
+   `privacy.html` is unchanged.
+5. **Deployment.** Instructions are in `DEPLOY-PREVIEW-NWPT-041.md`. `functions/` is inside `site/`; deploy from inside `site/`.
+   - A guard route, `functions/functions/[[path]].js`, answers 404 for `/functions/*` in every deploy mode.
+   - `tools/test-deploy-layout.mjs` proves that the API executes when served from inside `site/`, that it does not execute when served from the parent directory, and that no source, helper or tooling file is served.
+
+**Checks on the integration:**
+- `test-work-with-us.mjs`: 143/143. This adds navigation on every page, the nav link target and the Contact link.
+- `test-programme-room.mjs`: 175/175, including keyboard focus clear of the sticky header.
+- `test-deploy-layout.mjs`: 4/4.
+- `check-pages.mjs`: 249/249 on 10 pages (Home, Work with us, Programme Room, Contact, Programme, Updates, a Phase 2B update, Evidence, Privacy, 404).
+- `test-nwpt034.mjs`: 35/35, covering menu keyboard and touch.
+- `test-image-checks.mjs`: 8/8.
