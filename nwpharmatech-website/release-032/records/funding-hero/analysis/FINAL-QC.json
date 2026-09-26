@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "source_interval_seconds": [
+    0.0,
+    4.0
+  ],
+  "apparatus_sequence_included": false,
+  "new_imagery_introduced": false,
+  "three_loop_duration_seconds": 9.75,
+  "luminance": {
+    "desktop_full": {
+      "frames": 78,
+      "mean_min": 29.95,
+      "mean_max": 32.65,
+      "max_adjacent_frame_step": 0.638,
+      "average_adjacent_frame_step": 0.1241
+    },
+    "desktop_left42": {
+      "frames": 78,
+      "mean_min": 18.409,
+      "mean_max": 19.341,
+      "max_adjacent_frame_step": 0.569,
+      "average_adjacent_frame_step": 0.0502
+    },
+    "mobile_full": {
+      "frames": 78,
+      "mean_min": 32.619,
+      "mean_max": 35.521,
+      "max_adjacent_frame_step": 0.522,
+      "average_adjacent_frame_step": 0.1292
+    }
+  },
+  "seam_mean_absolute_rgb": {
+    "desktop_loop1_to2": {
+      "before_to_join": [
+        3.225,
+        4.041,
+        4.345
+      ],
+      "join_to_after": [
+        4.753,
+        5.711,
+        5.901
+      ]
+    },
+    "desktop_loop2_to3": {
+      "before_to_join": [
+        3.225,
+        4.041,
+        4.345
+      ],
+      "join_to_after": [
+        4.753,
+        5.711,
+        5.901
+      ]
+    },
+    "mobile_loop1_to2": {
+      "before_to_join": [
+        3.47,
+        4.411,
+        4.809
+      ],
+      "join_to_after": [
+        5.087,
+        6.142,
+        6.36
+      ]
+    },
+    "mobile_loop2_to3": {
+      "before_to_join": [
+        3.47,
+        4.411,
+        4.809
+      ],
+      "join_to_after": [
+        5.087,
+        6.142,
+        6.36
+      ]
+    }
+  },
+  "progressive_mp4": {
+    "nwpt-collective-funding-hero-refined-21x9.mp4": true,
+    "nwpt-collective-funding-hero-refined-4x3.mp4": true
+  },
+  "decode_check": "All website, review, and ProRes master files decoded end to end without FFmpeg errors.",
+  "continuous_review": {
+    "desktop": "Passed after camera alignment and gradual 0.8-second release blend.",
+    "mobile": "Passed; assembly complete, relationships preserved, loop smooth, no text or new imagery."
+  }
+}

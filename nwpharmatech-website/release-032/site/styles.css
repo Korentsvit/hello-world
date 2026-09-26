@@ -4054,3 +4054,45 @@ html:has(main.room) { scroll-padding-top: 5.5rem; }
 /* NWPT-041 review: the related stage is context, not the card's own status */
 .wwu-card__stage { margin: 0.45rem 0 0; font-size: 0.82rem; color: var(--ink-600); }
 .wwu-brief__stage { margin: -0.2rem 0 0.5rem; font-size: 0.82rem; color: var(--ink-600); }
+
+/* ===== NWPT-044: Funding page hero motion (/funding-use) =====
+   The film is never cropped: its box always has the film's own aspect ratio and the media uses object-fit: contain.
+   At 1200px and wider the heading sits in the film's protected dark left field (left ~42%); narrower screens stack the
+   heading above the film (21:9 from 768px, the separately framed 4:3 film below that). */
+.funding-hero.page-hero { padding-bottom: 1.25rem; }
+.funding-hero__media { position: relative; overflow: hidden; margin: 1.5rem auto 0; width: min(100% - 2.5rem, var(--measure-wide)); aspect-ratio: 1280 / 548; background: #020712; border-radius: 12px; }
+.funding-hero__media picture, .funding-hero__poster { display: block; width: 100%; height: 100%; }
+.funding-hero__poster, .funding-hero__video { object-fit: contain; object-position: center; }
+.funding-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s var(--ease); }
+[data-funding-hero].is-playing .funding-hero__video { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .funding-hero__video { transition: none; } }
+.funding-hero__caption { margin: 0.6rem 0 0; font-size: 0.8rem; color: var(--ink-600); }
+@media (max-width: 767px) {
+  .funding-hero__media { aspect-ratio: 4 / 3; }
+}
+@media (min-width: 1200px) {
+  .funding-hero.page-hero { padding-top: 0; }
+  .funding-hero__frame { position: relative; max-width: 1920px; margin: 0 auto; aspect-ratio: 1280 / 548; background: #020712; }
+  .funding-hero__media { position: absolute; inset: 0; margin: 0; width: auto; border-radius: 0; }
+  /* a quiet veil over the already-dark left field keeps the heading readable on every frame */
+  .funding-hero__media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, rgba(2, 7, 18, 0.72) 0%, rgba(2, 7, 18, 0.5) 28%, rgba(2, 7, 18, 0) 37%); }
+  .funding-hero__copy { position: absolute; z-index: 2; left: 0; top: 0; bottom: 0; width: min(36%, 36rem); margin: 0;
+    padding-left: clamp(1.5rem, 6vw, 6rem); display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; }
+  .funding-hero__copy h1 { color: #fff; }
+  .funding-hero__copy .lede { color: #dbe4ef; font-size: 1.02rem; }
+  .funding-hero__copy .lede strong { color: #fff; }
+  .funding-hero__copy .muted, .funding-hero__copy .muted strong { color: #c3ccd7; }
+  .funding-hero__copy .eyebrow { color: var(--turquoise-400); }
+  .funding-hero__copy .eyebrow::before { background: var(--turquoise-400); }
+}
+/* the Pause/Play control never covers the film: its own row below it, or the dark field under the heading */
+.funding-hero__controls { display: flex; justify-content: flex-end; width: min(100% - 2.5rem, var(--measure-wide)); margin: 0.6rem auto 0; }
+.funding-hero__controls .hero-motion__toggle { position: static; background: var(--navy-900); border-color: var(--navy-900); }
+.funding-hero__controls .hero-motion__toggle:hover { background: #000; }
+.funding-hero__controls .hero-motion__toggle:focus-visible { outline-color: var(--blue-600); }
+@media (min-width: 1200px) {
+  .funding-hero__controls { position: absolute; z-index: 3; left: 0; bottom: clamp(1rem, 3vw, 2rem); width: auto; margin: 0; padding-left: clamp(1.5rem, 6vw, 6rem); }
+  .funding-hero__controls .hero-motion__toggle { background: rgba(5, 11, 20, 0.72); border-color: rgba(255, 255, 255, 0.38); }
+  .funding-hero__controls .hero-motion__toggle:focus-visible { outline-color: var(--turquoise-400); }
+}

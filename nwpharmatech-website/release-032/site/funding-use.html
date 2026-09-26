@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=nwpt043" />
+  <link rel="stylesheet" href="styles.css?v=nwpt044" />
   
 </head>
 <body>
@@ -127,8 +127,9 @@
 
   <main id="main">
 
-    <header class="page-hero">
-      <div class="wrap">
+    <header class="page-hero funding-hero">
+      <div class="funding-hero__frame" data-funding-hero>
+        <div class="wrap funding-hero__copy">
         <p class="eyebrow">Programme · resources</p>
         <h1>How catalytic capital could be used</h1>
         <p class="lede">
@@ -136,13 +137,24 @@
           This page is <strong>informational</strong>. It is <strong>not</strong> an offer to invest, a prospectus, or open subscription.
         </p>
         <p class="muted"><strong>Last reviewed:</strong> 26 September 2026</p>
-        <figure class="manus-figure">
+        </div>
+        <div class="funding-hero__media">
           <picture>
-            <source media="(max-width: 600px)" type="image/webp" srcset="assets/dao/09-dao-bounded-governance-hero-m480.webp?v=nwpt033 480w, assets/dao/09-dao-bounded-governance-hero-m800.webp?v=nwpt033 800w" sizes="calc(100vw - 2rem)" width="800" height="600" />
-            <img class="manus-img" src="assets/dao/09-dao-bounded-governance-hero-1200.webp?v=nwpt033" srcset="assets/dao/09-dao-bounded-governance-hero-768.webp?v=nwpt033 768w, assets/dao/09-dao-bounded-governance-hero-1200.webp?v=nwpt033 1200w, assets/dao/09-dao-bounded-governance-hero-1920.webp?v=nwpt033 1920w" sizes="(max-width: 1100px) 100vw, 1100px" width="1200" height="514" alt="Conceptual governance system with a protected research core and distinct participation rings." style="object-position: 72% 50%;" fetchpriority="high" />
+            <source media="(max-width: 767px)" type="image/webp" srcset="assets/funding-hero/nwpt-collective-funding-hero-refined-4x3-poster.webp?v=nwpt044" width="768" height="576" />
+            <img class="funding-hero__poster" src="assets/funding-hero/nwpt-collective-funding-hero-refined-21x9-poster.webp?v=nwpt044" width="1280" height="548" alt="" fetchpriority="high" decoding="async" />
           </picture>
-          <figcaption>Conceptual illustration of the proposed structure.</figcaption>
-        </figure>
+          <video class="funding-hero__video" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1"
+            data-desktop-webm="assets/funding-hero/nwpt-collective-funding-hero-refined-21x9.webm?v=nwpt044" data-desktop-mp4="assets/funding-hero/nwpt-collective-funding-hero-refined-21x9.mp4?v=nwpt044"
+            data-phone-webm="assets/funding-hero/nwpt-collective-funding-hero-refined-4x3.webm?v=nwpt044" data-phone-mp4="assets/funding-hero/nwpt-collective-funding-hero-refined-4x3.mp4?v=nwpt044"></video>
+        </div>
+        <div class="funding-hero__controls">
+          <button type="button" class="hero-motion__toggle funding-hero__toggle" aria-pressed="false" hidden>
+            <span class="hero-motion__icon" aria-hidden="true"></span><span class="hero-motion__label">Pause animation</span>
+          </button>
+        </div>
+      </div>
+      <div class="wrap">
+        <p class="funding-hero__caption">Conceptual animation. It does not depict real participants, investors, payments or outcomes.</p>
         <nav class="secondary-nav" aria-label="Programme resources">
           <a href="programme.html">Programme</a>
           <a href="resources/public-synopsis.html">Public synopsis</a>
@@ -347,6 +359,7 @@
       <p class="footer-meta">www.nwpharmatech.org · <a href="privacy.html">Privacy notice</a> · Last reviewed 23 September 2026</p>
     </div>
   </footer>
+  <script src="funding-hero.js?v=nwpt044" defer></script>
   <script src="nav.js?v=nwpt034" defer></script>
 </body>
 </html>
