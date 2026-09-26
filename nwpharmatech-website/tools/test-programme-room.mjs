@@ -42,7 +42,20 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { widt
   const sum = pg.locator(`#${IDS[0]} .room-support summary`); await sum.focus(); await pg.keyboard.press("Enter");
   const meta = await pg.evaluate((id) => { const d = document.querySelector(`#${id} .room-support`); return { open: d.open, items: [...d.querySelectorAll(".room-source")].map((s) => [...s.querySelectorAll("dt")].map((t) => t.textContent).join("|")) }; }, IDS[0]);
   check(`@${label} "What supports this?" opens by keyboard`, meta.open);
-  check(`@${label} every source shows status, date and limitations`, meta.items.length > 0 && meta.items.every((x) => x === "Evidence status|Date|Limitations"), JSON.stringify(meta.items));
+  check(`@${label} every source shows scope, status, date and limitations`, meta.items.length > 0 && meta.items.every((x) => x === "Relates to|Evidence status|Date|Limitations"), JSON.stringify(meta.items));
+  // each stage shows its progress (completed, in progress, planned...) in the strip
+  const progress = await pg.$$eval('[role="tab"] .room-steps__progress', (xs) => xs.map((x) => x.textContent));
+  check(`@${label} strip shows each stage's progress`, JSON.stringify(progress) === JSON.stringify(DATA.stages.map((s) => s.progress)), JSON.stringify(progress));
+  // sources about other CBD products say so; none of them is labelled as NWPT-SM32300
+  const scope = await pg.$$eval(".room-source", (xs) => xs.map((x) => [x.querySelector("a").getAttribute("href"), x.querySelector(".room-source__about dd").textContent]));
+  const OTHER = ["#ref-perucca-2020", "#ref-taylor-2018", "#ref-cantop", "#ref-bhattacharyya-2024"];
+  check(`@${label} other-CBD sources labelled "not NWPT-SM32300"`, scope.filter(([h]) => OTHER.some((o) => h.endsWith(o))).every(([, t]) => /Other CBD products — not NWPT-SM32300/.test(t))
+    && scope.filter(([h]) => OTHER.some((o) => h.endsWith(o))).length === 4, JSON.stringify(scope));
+  // after Previous/Next, the stage strip is fully below the sticky header
+  await tabs.nth(0).click();
+  await pg.locator(`#${IDS[0]} .room-stage-nav__btn--next`).scrollIntoViewIfNeeded(); await pg.locator(`#${IDS[0]} .room-stage-nav__btn--next`).click(); await pg.waitForTimeout(200);
+  const gap = await pg.evaluate(() => document.querySelector(".room-steps").getBoundingClientRect().top - document.querySelector(".site-header").getBoundingClientRect().bottom);
+  check(`@${label} after Next, the stage strip is not under the sticky header`, gap >= 0, `${gap}px`);
   for (let i = 0; i < 6; i++) {
     await tabs.nth(i).click();
     // every image in the opened panel must be rendered (none skipped), be the expected one, and load

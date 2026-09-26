@@ -44,7 +44,8 @@ def stage_panel(st):
     fig = picture(st["image"], "(max-width: 900px) 100vw, 420px") if st.get("image") else ""
     srcs = "".join(
         f'<li class="room-source"><a href="{s["ref"]}">{html.escape(s["title"])}</a>'
-        f'<dl class="room-source__meta"><div><dt>Evidence status</dt><dd>{html.escape(s["status"])}</dd></div>'
+        f'<dl class="room-source__meta"><div class="room-source__about room-source__about--{s["about"]}"><dt>Relates to</dt><dd>{html.escape(DATA["about_labels"][s["about"]])}</dd></div>'
+        f'<div><dt>Evidence status</dt><dd>{html.escape(s["status"])}</dd></div>'
         f'<div><dt>Date</dt><dd>{html.escape(s["date"])}</dd></div>'
         f'<div><dt>Limitations</dt><dd>{html.escape(s["limit"])}</dd></div></dl></li>'
         for s in st["sources"])
@@ -54,7 +55,7 @@ def stage_panel(st):
               <div class="room-panel__head">
                 <span class="room-panel__n" aria-hidden="true">{st["n"]}</span>
                 <div>
-                  <p class="room-panel__kicker">Stage {st["n"]} · {st["short"]} {status_chip(st["status"])}</p>
+                  <p class="room-panel__kicker">Stage {st["n"]} · {st["short"]} · {st["progress"]} {status_chip(st["status"])}</p>
                   <h3 id="stage-{st["id"]}-title">{st["title"]}</h3>
                 </div>
               </div>
@@ -85,6 +86,7 @@ def main_html():
     stage_nav = "".join(
         f'<li><a class="room-steps__link room-steps__link--{s["status"]}" href="#stage-{s["id"]}" data-stage-link="stage-{s["id"]}">'
         f'<span class="room-steps__n" aria-hidden="true">{s["n"]}</span><span class="room-steps__label">{s["short"]}</span>'
+        f'<span class="room-steps__progress">{s["progress"]}</span>'
         f'<span class="visually-hidden"> — {DATA["statuses"][s["status"]]["label"]}</span></a></li>' for s in DATA["stages"])
     stages = "".join(stage_panel(s) for s in DATA["stages"])
     oq = "".join(f'<li><h3>{q}</h3><p>{a}</p></li>' for q, a in DATA["open_questions"])
@@ -116,7 +118,7 @@ def main_html():
     <section class="section section-alt room-timeline-section" id="timeline" aria-labelledby="room-timeline-title">
       <div class="wrap">
         <h2 id="room-timeline-title">Study timeline</h2>
-        <p class="room-intro">Six stages, from the clinical need to the longer-term questions. Choose a stage to see what it would investigate, where it stands and the sources behind it.</p>
+        <p class="room-intro">Six stages, from the clinical need to the longer-term question. Stages 2 and 3 are completed development steps; stages 4 and 5 are proposed, with no dates announced; stages 1 and 6 frame the research question rather than scheduled work. Choose a stage to see what it would investigate, where it stands and the sources behind it.</p>
         <div class="room-timeline" data-room-timeline>
           <nav class="room-steps" aria-label="Timeline stages"><ol>{stage_nav}</ol></nav>
           <ol class="room-stages">{stages}

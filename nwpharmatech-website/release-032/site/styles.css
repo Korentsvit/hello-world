@@ -3810,3 +3810,8 @@ th { color: var(--ink-600); }
   .room-steps li::before { display: none; }
   .room-steps__link { min-height: 4.25rem; }
 }
+/* NWPT-039 review: progress under each stage, source scope, header offset for the stage strip */
+.room-steps__progress { font-size: 0.74rem; font-weight: 500; line-height: 1.2; color: var(--ink-600); }
+.room-source__about dd { font-weight: 600; }
+.room-source__about--other-cbd dd { color: #6b4a14; }
+.room-timeline { scroll-margin-top: 5.5rem; }

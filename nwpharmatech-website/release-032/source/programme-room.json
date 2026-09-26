@@ -1,9 +1,9 @@
 {
-  "_doc": "Content for /programme-room (tools/build-programme-room.py). Every claim here is taken from the Evidence library cards, the Study progress records or approved site wording. Items flagged in records/SOURCE-REGISTER.md as lacking source evidence (Phase 2B sponsor role; Phase 2B participant numbers, doses and duration) are deliberately not repeated here. Status values: documented | proposed | open.",
+  "_doc": "Content for /programme-room (tools/build-programme-room.py). Every claim here is taken from the Evidence library cards, the Study progress records or approved site wording. Items flagged in records/SOURCE-REGISTER.md as lacking source evidence (Phase 2B sponsor role; Phase 2B participant numbers, doses and duration) are deliberately not repeated here. Status values: documented | proposed | open. 'progress' is shown under each stage (background, completed, in progress, planned, future question). Each source's 'about' says whether it concerns the CHR-P field, other CBD products, or NWPT-SM32300.",
   "reviewed": "26 September 2026",
   "statuses": {
     "documented": {"label": "Documented", "text": "Supported by a published source or a dated study record."},
-    "proposed": {"label": "Proposed", "text": "Planned work. Not started, not approved, and it may change."},
+    "proposed": {"label": "Proposed", "text": "Planned or in preparation. Not approved or confirmed, and it may change."},
     "open": {"label": "Open question", "text": "Not yet known. We say what would answer it."}
   },
   "overview": [
@@ -12,9 +12,14 @@
     {"status": "proposed", "title": "In progress", "text": "Finalisation of the Phase&nbsp;2B protocol, reported as in progress on 23 February 2026. No completion date has been announced.", "link": ["study.html#milestones", "Study milestones"]},
     {"status": "open", "title": "Not yet known", "text": "Whether NWPT-SM32300 helps people at clinical high risk of psychosis. Finding out is the purpose of the research.", "link": ["#open-questions", "Open questions"]}
   ],
+  "about_labels": {
+    "field": "The CHR-P field — no specific medicine",
+    "other-cbd": "Other CBD products — not NWPT-SM32300",
+    "nwpt": "NWPT-SM32300 programme"
+  },
   "stages": [
     {
-      "id": "need", "n": "1", "short": "Clinical need", "status": "documented",
+      "id": "need", "n": "1", "short": "Clinical need", "status": "documented", "progress": "Background",
       "title": "Why people at clinical high risk are a research priority",
       "asks": "What is known about people who meet criteria for clinical high risk of psychosis (CHR-P), and what care is recommended today.",
       "points": [
@@ -26,13 +31,13 @@
       "where": [["Evidence status", "Established field evidence"], ["Library verified", "23 September 2026; transition figures corrected 26 September 2026"]],
       "image": {"src": "assets/visuals-033/glass-thresholds-light", "sizes": [[768, 329], [1200, 514]], "focal": "68% 48%", "alt": "Translucent glass panels forming a sequence of thresholds in a light room.", "caption": "Conceptual illustration — not a clinical pathway."},
       "sources": [
-        {"title": "Salazar de Pablo et al., 2021, JAMA Psychiatry — probability of transition to psychosis (updated meta-analysis)", "ref": "evidence.html#ref-salazar-2021", "status": "Established", "date": "Published 2021", "limit": "The pooled estimate and the separate Kaplan–Meier series are different analyses and are not combined. Estimates span services and criteria; individual risk varies."},
-        {"title": "NICE CG155 (children and young people, updated 2016) and CG178 (adults, 2014)", "ref": "evidence.html#ref-nice-cg155", "status": "Established (guideline)", "date": "2014 and 2016", "limit": "Applies in England; guidance differs elsewhere."},
-        {"title": "Davies et al., 2018, World Psychiatry — network meta-analysis of preventive interventions", "ref": "evidence.html#ref-davies-2018", "status": "Established; inconclusive result", "date": "Published 2018", "limit": "Few, small trials per intervention."}
+        {"title": "Salazar de Pablo et al., 2021, JAMA Psychiatry — probability of transition to psychosis (updated meta-analysis)", "ref": "evidence.html#ref-salazar-2021", "about": "field", "status": "Established", "date": "Published 2021", "limit": "The pooled estimate and the separate Kaplan–Meier series are different analyses and are not combined. Estimates span services and criteria; individual risk varies."},
+        {"title": "NICE CG155 (children and young people, updated 2016) and CG178 (adults, 2014)", "ref": "evidence.html#ref-nice-cg155", "about": "field", "status": "Established (guideline)", "date": "2014 and 2016", "limit": "Applies in England; guidance differs elsewhere."},
+        {"title": "Davies et al., 2018, World Psychiatry — network meta-analysis of preventive interventions", "ref": "evidence.html#ref-davies-2018", "about": "field", "status": "Established; inconclusive result", "date": "Published 2018", "limit": "Few, small trials per intervention."}
       ]
     },
     {
-      "id": "formulation", "n": "2", "short": "Formulation", "status": "documented",
+      "id": "formulation", "n": "2", "short": "Formulation", "status": "documented", "progress": "Completed 2025",
       "title": "An oral softgel designed for a poorly water-soluble medicine",
       "asks": "Whether a fixed-strength micellar softgel is a suitable way to give cannabidiol by mouth.",
       "points": [
@@ -44,13 +49,13 @@
       "where": [["Evidence status", "Background: established (other CBD products). NWPT-SM32300 details: programme information from company records, not published"], ["Record date", "2025, before Phase 1 dosing"]],
       "image": {"src": "assets/visuals-037/30-formulation-bench-daylight", "sizes": [[768, 576], [1200, 900]], "focal": "60% 62%", "alt": "Gloved hands arranging translucent softgel prototypes and lipid formulation materials on a bright workbench.", "caption": "Conceptual editorial image of exploratory formulation work — not the programme’s manufacture or product."},
       "sources": [
-        {"title": "Perucca and Bialer, 2020 — review of oral cannabidiol bioavailability", "ref": "evidence.html#ref-perucca-2020", "status": "Established", "date": "Published 2020", "limit": "Review of other CBD preparations; figures vary between studies. Not NWPT-SM32300."},
-        {"title": "Taylor et al., 2018 — Phase 1 study of purified CBD, including a food-effect arm", "ref": "evidence.html#ref-taylor-2018", "status": "Established", "date": "Published 2018", "limit": "Healthy volunteers; a different CBD product."},
-        {"title": "Study progress — operational milestone: final formulation and GMP clinical supply", "ref": "study.html#milestones", "status": "Programme information", "date": "2025", "limit": "NWPharmaTech records; not published."}
+        {"title": "Perucca and Bialer, 2020 — review of oral cannabidiol bioavailability", "ref": "evidence.html#ref-perucca-2020", "about": "other-cbd", "status": "Established", "date": "Published 2020", "limit": "Review of other CBD preparations; figures vary between studies. Not NWPT-SM32300."},
+        {"title": "Taylor et al., 2018 — Phase 1 study of purified CBD, including a food-effect arm", "ref": "evidence.html#ref-taylor-2018", "about": "other-cbd", "status": "Established", "date": "Published 2018", "limit": "Healthy volunteers; a different CBD product."},
+        {"title": "Study progress — operational milestone: final formulation and GMP clinical supply", "ref": "study.html#milestones", "about": "nwpt", "status": "Programme information", "date": "2025", "limit": "NWPharmaTech records; not published."}
       ]
     },
     {
-      "id": "phase-1", "n": "3", "short": "Phase 1", "status": "documented",
+      "id": "phase-1", "n": "3", "short": "Phase 1", "status": "documented", "progress": "Completed Dec 2025",
       "title": "Phase 1 in healthy volunteers: absorption and short-term tolerability",
       "asks": "How the body absorbs and handles NWPT-SM32300 after single doses, and short-term tolerability, compared with a licensed cannabidiol oral solution. It was not a study of whether NWPT-SM32300 works.",
       "points": [
@@ -62,12 +67,12 @@
       "where": [["Evidence status", "Programme information (registered study; results unpublished)"], ["Registrations", "NCT07186283 · ISRCTN25163383"]],
       "image": {"src": "assets/filipp-032/softgel-isolated-dark", "sizes": [[768, 576], [1200, 900]], "focal": "50% 50%", "alt": "Conceptual cyan and amber investigational softgel on a dark background.", "caption": "Conceptual illustration of the investigational softgel — not a product photograph."},
       "sources": [
-        {"title": "Phase 1 registration: NCT07186283 and ISRCTN25163383", "ref": "evidence.html#ref-nct07186283", "status": "Programme information", "date": "Registered 2025; completed December 2025", "limit": "Healthy volunteers and single doses: measures absorption and short-term tolerability, not effectiveness in clinical high risk of psychosis."},
-        {"title": "Study progress — clinical milestones with sources", "ref": "study.html#milestones", "status": "Programme information", "date": "27 Aug 2025 to 30 Mar 2026", "limit": "Database lock and analysis dates come from NWPharmaTech records (not published)."}
+        {"title": "Phase 1 registration: NCT07186283 and ISRCTN25163383", "ref": "evidence.html#ref-nct07186283", "about": "nwpt", "status": "Programme information", "date": "Registered 2025; completed December 2025", "limit": "Healthy volunteers and single doses: measures absorption and short-term tolerability, not effectiveness in clinical high risk of psychosis."},
+        {"title": "Study progress — clinical milestones with sources", "ref": "study.html#milestones", "about": "nwpt", "status": "Programme information", "date": "27 Aug 2025 to 30 Mar 2026", "limit": "Database lock and analysis dates come from NWPharmaTech records (not published)."}
       ]
     },
     {
-      "id": "protocol", "n": "4", "short": "Protocol", "status": "proposed",
+      "id": "protocol", "n": "4", "short": "Protocol", "status": "proposed", "progress": "In progress",
       "title": "Finalising the Phase 2B protocol",
       "asks": "Settling the design of the planned study, including the primary outcome details, before any approvals are sought.",
       "points": [
@@ -78,30 +83,31 @@
       "where": [["Evidence status", "Proposed work (in progress)"], ["Record date", "As reported 23 February 2026 (NWPharmaTech records, not published)"]],
       "image": {"src": "assets/filipp-032/programme-pipeline-flow", "sizes": [[768, 432], [1200, 675]], "focal": "50% 50%", "alt": "Conceptual programme pipeline from cylinder through gates to a laboratory motif.", "caption": "Conceptual illustration of a development sequence — not evidence that any gate is completed."},
       "sources": [
-        {"title": "Study progress — Phase 2B: protocol finalised (status: in progress)", "ref": "study.html#milestones", "status": "Programme information", "date": "As reported 23 February 2026", "limit": "Company record; not published."},
-        {"title": "Public study synopsis", "ref": "resources/public-synopsis.html", "status": "Programme information", "date": "Current version", "limit": "An overview, not a locked protocol."}
+        {"title": "Study progress — Phase 2B: protocol finalised (status: in progress)", "ref": "study.html#milestones", "about": "nwpt", "status": "Programme information", "date": "As reported 23 February 2026", "limit": "Company record; not published."},
+        {"title": "Public study synopsis", "ref": "resources/public-synopsis.html", "about": "nwpt", "status": "Programme information", "date": "Current version", "limit": "An overview, not a locked protocol."}
       ]
     },
     {
-      "id": "phase-2b", "n": "5", "short": "Phase 2B", "status": "proposed",
+      "id": "phase-2b", "n": "5", "short": "Phase 2B", "status": "proposed", "progress": "Planned, no date",
       "title": "The planned Phase 2B study in people at clinical high risk",
       "asks": "Dose response, symptoms, safety and tolerability of NWPT-SM32300 in people at clinical high risk of psychosis, to inform the next stage of development.",
       "points": [
         "Status: planned. Not recruiting.",
         "Applicable approvals are not confirmed in public materials. Study initiation remains subject to funding, finalisation and approvals.",
         "Oversight arrangements for the Phase&nbsp;2B study have not yet been published.",
-        "A larger UK trial of cannabidiol in this group (CANTOP-RCT) was funded but never started, which is one reason this question remains open."
+        "A larger UK trial of cannabidiol in this group (CANTOP-RCT) was funded but never started, which is one reason this question remains open.",
+        "A small 21-day study of another CBD product in this group was published in 2024. Its findings are early, have not been confirmed in a larger trial, and do not apply directly to NWPT-SM32300."
       ],
       "where": [["Evidence status", "Proposed work"], ["Recruitment", "Not recruiting"]],
       "image": {"src": "assets/manus/05-research-network", "sizes": [[768, 432], [1200, 675]], "focal": "70% 50%", "alt": "Three abstract research networks around a shared centre.", "caption": "Conceptual research-network illustration — does not depict participating sites or institutional endorsement."},
       "sources": [
-        {"title": "Study progress — current stage and oversight", "ref": "study.html#sum-h", "status": "Programme information", "date": "Last reviewed with the study records", "limit": "Phase 2B oversight arrangements not yet published."},
-        {"title": "CANTOP-RCT study report (NIHR)", "ref": "evidence.html#ref-cantop", "status": "Not conducted", "date": "Study report", "limit": "Produced no efficacy results; included to explain why a larger trial is still missing."},
-        {"title": "Bhattacharyya et al., 2024 — 21-day symptom study of another CBD product in clinical high risk", "ref": "evidence.html#ref-bhattacharyya-2024", "status": "Emerging evidence", "date": "Published 2024", "limit": "Very small, three weeks; not NWPT-SM32300; not yet confirmed in a larger trial."}
+        {"title": "Study progress — current stage and oversight", "ref": "study.html#sum-h", "about": "nwpt", "status": "Programme information", "date": "Last reviewed with the study records", "limit": "Phase 2B oversight arrangements not yet published."},
+        {"title": "CANTOP-RCT study report (NIHR)", "ref": "evidence.html#ref-cantop", "about": "other-cbd", "status": "Not conducted", "date": "Study report", "limit": "Produced no efficacy results; included to explain why a larger trial is still missing."},
+        {"title": "Bhattacharyya et al., 2024 — 21-day symptom study of another CBD product in clinical high risk", "ref": "evidence.html#ref-bhattacharyya-2024", "about": "other-cbd", "status": "Emerging evidence", "date": "Published 2024", "limit": "Very small, three weeks; not NWPT-SM32300; not yet confirmed in a larger trial."}
       ]
     },
     {
-      "id": "later", "n": "6", "short": "Longer term", "status": "open",
+      "id": "later", "n": "6", "short": "Longer term", "status": "open", "progress": "Future question",
       "title": "Could psychosis be delayed or prevented?",
       "asks": "Whether transition to psychosis can be delayed or prevented. This is a longer-term question, not the current primary aim.",
       "points": [
@@ -110,8 +116,8 @@
       ],
       "where": [["Evidence status", "Open question"], ["What would answer it", "A separately powered, long-follow-up trial"]],
       "sources": [
-        {"title": "Davies et al., 2018 — no preventive intervention shown to be better than others", "ref": "evidence.html#ref-davies-2018", "status": "Established; inconclusive result", "date": "Published 2018", "limit": "Few, small trials per intervention."},
-        {"title": "Science — what is known and what remains open", "ref": "science.html#investigating", "status": "Programme information", "date": "Current page", "limit": "Summarises the questions; not a result."}
+        {"title": "Davies et al., 2018 — no preventive intervention shown to be better than others", "ref": "evidence.html#ref-davies-2018", "about": "field", "status": "Established; inconclusive result", "date": "Published 2018", "limit": "Few, small trials per intervention."},
+        {"title": "Science — what is known and what remains open", "ref": "science.html#investigating", "about": "nwpt", "status": "Programme information", "date": "Current page", "limit": "Summarises the questions; not a result."}
       ]
     }
   ],

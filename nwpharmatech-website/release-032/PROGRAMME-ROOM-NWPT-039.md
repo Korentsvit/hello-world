@@ -96,3 +96,22 @@ There are no redirects or header changes: Cloudflare Pages serves `programme-roo
   - it logs the stage 3 image as `SKIP` ("inside hidden #stage-phase-1");
   - the Programme Room test fails on both images;
   - the unmodified site passes as a control.
+
+## Review fixes (website commit after `e36e3ae`)
+
+The hosted preview (deployment `c95cca92`) could not be reached from this environment: the network policy blocks `*.pages.dev`. The review was done on commit `22081c7` served locally with Cloudflare's Pages runtime.
+
+1. **"Proposed" definition.** It said "Not started", but the protocol stage it labels is in progress. It now reads "Planned or in preparation. Not approved or confirmed, and it may change."
+2. **Progress under each stage.** Each stage now shows Background, Completed 2025, Completed Dec 2025, In progress, Planned, no date, or Future question, in the stage strip and the panel heading. The introduction says which stages are completed, which are proposed and undated, and which frame the research question.
+3. **Scope of each source.** Every source in "What supports this?" now starts with "Relates to": the CHR-P field, other CBD products (not NWPT-SM32300), or the NWPT-SM32300 programme. The Phase 2B panel now states the 2024 study it cites, a small 21-day study of another CBD product, with its limits. Before this, no nearby statement mentioned it.
+4. **Sticky header.** After Previous/Next or a deep link, the header covered the top of the stage strip, on phone and desktop. The strip now scrolls into view below the header.
+
+Stylesheet key changed to `?v=nwpt039b` on every page. No sponsor, participant-number or dose details were added.
+
+Checks:
+- `test-programme-room.mjs`: 111/111. It adds tests for the progress labels, the source-scope labels and the header offset; without the fix, the header test fails at both widths.
+- `check-pages.mjs`: 148/148 on 5 pages.
+- `test-image-checks.mjs`: 8/8.
+- `test-nwpt034.mjs`: 35/35.
+
+Screenshots are in `records/screens-nwpt039-review/`.
