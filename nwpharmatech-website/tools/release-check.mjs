@@ -139,11 +139,13 @@ for (const [label, vp] of [["mobile", { width: 390, height: 844 }], ["desktop", 
     await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 10000 }).catch(() => {});
     const st = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth - innerWidth,
-      imgs: [...document.images].filter((i) => i.getClientRects().length > 0).map((i) => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, alt: i.hasAttribute("alt"), dims: i.hasAttribute("width") && i.hasAttribute("height") })),   // only images rendered at this width (not display: none) must load
+      imgs: [...document.images].filter((i) => getComputedStyle(i).display !== "none").map((i) => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, alt: i.hasAttribute("alt"), dims: i.hasAttribute("width") && i.hasAttribute("height") })),
+      hidden: [...document.images].filter((i) => getComputedStyle(i).display === "none").map((i) => i.getAttribute("src")),   // hidden for this width by the site itself
       h1: document.querySelectorAll("h1").length, nav: !!document.querySelector("nav"), csp: window.__csp,
       modules: [...document.querySelectorAll("[data-nwpt-module]")].map((m) => ({ id: m.dataset.nwptModule,
         styled: getComputedStyle(m.querySelector("*") || m).boxSizing === "border-box", ready: m.hasAttribute("data-nwpt-ready") })),
     }));
+    if (st.hidden.length) check("images", `${p} @${vp.width}px: ${st.hidden.length} image(s) deliberately hidden at this width (display: none on the image), not required to load: ${st.hidden.join(", ")}`, true);
     check("layout", `${p} @${vp.width}px: no horizontal scroll`, st.overflow <= 1, `${st.overflow}px too wide`);
     const broken = st.imgs.filter((i) => !i.ok), noAlt = st.imgs.filter((i) => !i.alt), noDims = st.imgs.filter((i) => !i.dims);
     check("images", `${p} @${vp.width}px: every image loads (${st.imgs.length})`, !broken.length, broken.map((i) => i.src).join(", "));

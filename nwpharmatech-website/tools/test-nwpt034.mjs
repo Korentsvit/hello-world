@@ -82,6 +82,9 @@ for (const [label, opts] of [["reduced motion", { reducedMotion: "reduce" }]]) {
   const p = await ctx.newPage(); let n = 0; p.on("request", (r) => { if (/brain-ecs-loop/.test(r.url())) n++; });
   await p.goto(srv.base + "/", { waitUntil: "load" }); await p.waitForTimeout(2000);
   check("Save-Data: no video fetched; the still panel is shown", n === 0 && await p.locator(".hero-motion__still").isVisible(), `${n} requests`);
+  const still = await p.evaluate(async () => { const i = document.querySelector(".hero-motion__still"); i.scrollIntoView(); const t0 = performance.now();
+    while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50)); return { ok: i.complete && i.naturalWidth > 0, src: i.currentSrc }; });
+  check(`phone 390px: the phone-only neural still loads (${still.src.split("/").pop()})`, still.ok, still.src);
   await ctx.close();
 }
 { // video does not block first paint: nothing requested before the load event
