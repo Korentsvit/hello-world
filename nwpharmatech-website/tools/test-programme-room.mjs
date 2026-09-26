@@ -9,6 +9,9 @@ const srv = await serve(dir);
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
 let pass = 0, fail = 0; const check = (n, ok, d = "") => { ok ? pass++ : fail++; console.log(`${ok ? "ok  " : "FAIL"}  ${n}${ok ? "" : "  --  " + d}`); };
 const IDS = ["need", "formulation", "phase-1", "protocol", "phase-2b", "later"].map((s) => "stage-" + s);
+// expected image per stage, from the content source (a stage without an image in the source must show none)
+const DATA = JSON.parse(fs.readFileSync(new URL("../release-032/source/programme-room.json", import.meta.url), "utf8"));
+const EXPECT = Object.fromEntries(DATA.stages.map((s) => ["stage-" + s.id, s.image ? s.image.src.split("/").slice(-2).join("/") : null]));
 const offsite = (ctx) => ctx.route((u) => !u.href.startsWith(srv.base), (r) => r.fulfill({ status: 200, body: "", contentType: "text/css" }));
 const runAxe = async (pg) => { await pg.evaluate(() => window.scrollTo(0, 0)); await pg.waitForTimeout(200); await pg.evaluate(axe); return pg.evaluate(async () => (await axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] } })).violations.map((x) => `${x.id}: ${x.nodes[0]?.target}`)); };
 const visible = (pg) => pg.evaluate(() => [...document.querySelectorAll("[data-stage]")].filter((s) => !s.hidden && s.getClientRects().length).map((s) => s.id));
@@ -42,8 +45,18 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { widt
   check(`@${label} every source shows status, date and limitations`, meta.items.length > 0 && meta.items.every((x) => x === "Evidence status|Date|Limitations"), JSON.stringify(meta.items));
   for (let i = 0; i < 6; i++) {
     await tabs.nth(i).click();
-    const broken = await imagesLoad(pg, `#${IDS[i]} img`); check(`@${label} ${IDS[i]}: image loads when shown`, !broken.length, broken.join(", "));
-    const v = await runAxe(pg); check(`@${label} ${IDS[i]}: axe WCAG 2.2 AA`, !v.length, v.join("; "));
+    // every image in the opened panel must be rendered (none skipped), be the expected one, and load
+    const im = await pg.evaluate(async (id) => { const out = []; for (const i of document.querySelectorAll(`#${id} img`)) { const shown = i.getClientRects().length > 0;
+      if (shown) { i.scrollIntoView({ block: "center" }); const t0 = performance.now(); while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50)); }
+      out.push({ src: i.getAttribute("src"), shown, loaded: i.complete && i.naturalWidth > 0 }); } return out; }, IDS[i]);
+    const want = EXPECT[IDS[i]];
+    check(`@${label} ${IDS[i]}: opened (only this panel shown)`, JSON.stringify(await visible(pg)) === JSON.stringify([IDS[i]]));
+    if (want) {
+      check(`@${label} ${IDS[i]}: one image, ${want}, rendered and loaded`, im.length === 1 && im[0].src.includes(want) && im[0].shown && im[0].loaded, JSON.stringify(im));
+    } else {
+      check(`@${label} ${IDS[i]}: no image, as in the content source`, im.length === 0, JSON.stringify(im));
+    }
+    const v = await runAxe(pg); check(`@${label} ${IDS[i]}: axe automated checks (WCAG 2.2 A/AA rules)`, !v.length, v.join("; "));
     check(`@${label} ${IDS[i]}: no horizontal scroll`, (await pg.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 1);
   }
   check(`@${label} reduced motion: no panel animation`, (await pg.evaluate(() => getComputedStyle(document.querySelector("[data-stage]:not([hidden]) .room-panel")).animationName)) === "none");
@@ -73,7 +86,7 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1280", { widt
   const ctxA = await b.newContext({ viewport: vp }); await offsite(ctxA); await ctxA.route(/programme-room\.js/, (r) => r.abort());
   const pa = await ctxA.newPage(); await pa.goto(srv.base + "/programme-room", { waitUntil: "load" }); await imagesLoad(pa, "main img");
   check(`@${label} without the enhancement: all six stages shown`, (await visible(pa)).length === 6);
-  const vN = await runAxe(pa); await ctxA.close(); check(`@${label} no JS: axe WCAG 2.2 AA`, !vN.length, vN.join("; "));
+  const vN = await runAxe(pa); await ctxA.close(); check(`@${label} no JS: axe automated checks (WCAG 2.2 A/AA rules)`, !vN.length, vN.join("; "));
   check(`@${label} no JS: no horizontal scroll`, (await pn.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 1);
   if (label === "390") {
     const text = await pn.evaluate(() => document.querySelector("main").innerText);

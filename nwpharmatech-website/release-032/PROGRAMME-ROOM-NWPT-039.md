@@ -65,14 +65,14 @@ There are no redirects or header changes: Cloudflare Pages serves `programme-roo
   - Previous/Next;
   - deep links and hash changes;
   - disclosure by keyboard, with status, date and limitations shown on every source;
-  - each stage's image and axe WCAG 2.2 AA per stage, at 390 and 1280 px;
-  - no-JS layout and axe;
+  - each stage's image, and automated accessibility checks (axe-core rules for WCAG 2.2 A/AA) per stage, at 390 and 1280 px;
+  - no-JS layout and the same automated checks;
   - reduced motion and motion allowed;
   - content guards: no Phase 2B size, doses or sponsor, and no investment CTAs;
   - links into Evidence, Study, Phase 1 and Science.
 - `check-pages.mjs`: **220/220.** Programme Room, Programme, Study, Evidence, Phase 1, Science, Home, Team, Updates and the Programme brief, at 390 and 1280 px.
 - `test-nwpt034.mjs`: **35/35.** Navigation, hero video, PDFs, redirects, 404.
-- `release-check.mjs --stub-external`: **4,912/4,912.** 31 pages: routing, links, downloads, images, layout, axe, navigation.
+- `release-check.mjs --stub-external`: **4,912/4,912.** 31 pages: routing, links, downloads, images, layout, automated accessibility checks, navigation.
 
 ## Screenshots
 
@@ -84,3 +84,15 @@ There are no redirects or header changes: Cloudflare Pages serves `programme-roo
 - Phase 2B stage;
 - full page;
 - full page without JavaScript.
+
+**Accessibility scope.** These are automated checks (axe-core) against WCAG 2.2 A/AA success criteria. They are not a WCAG conformance audit or certification. Automated tools cover only part of WCAG. Keyboard operation, the page without JavaScript and reduced motion were tested separately, as listed above. No manual screen-reader or expert audit has been done.
+
+## Check-tool follow-up (separate commit, tools and records only; site files unchanged)
+
+- **Images not rendered.** `check-pages.mjs` and `release-check.mjs` skip an image only when it is not rendered: `display:none` on the image or an ancestor, a `[hidden]` ancestor such as a closed tab panel, or a closed `<details>`. Each skipped image is logged as `SKIP` with its reason. An image that is rendered must still load.
+- **Every stage opened.** `test-programme-room.mjs` opens all six stages in turn and requires exactly the image named in `source/programme-room.json` to be rendered and loaded. Stage 6 ("Longer term") has no image in the source, and the test requires it to show none. Result: 105/105.
+- **Deliberate breakage.** `test-image-checks.mjs` breaks two images in a temporary copy of the site: stage 1, which is visible on load, and stage 3, which starts in a closed panel. Results, 8/8:
+  - `check-pages` fails on the stage 1 image;
+  - it logs the stage 3 image as `SKIP` ("inside hidden #stage-phase-1");
+  - the Programme Room test fails on both images;
+  - the unmodified site passes as a control.
