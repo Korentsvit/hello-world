@@ -3,6 +3,12 @@
 /people /team.html 301
 /people/ /team.html 301
 /funding.html /funding-use.html 301
+# NWPT-033: Board lock — /funding-use is canonical; the staging preview used /financing
+/financing /funding-use 301
+/financing/ /funding-use 301
+# NWPT-033: staging preview route for the clinical-need explainer
+/clinical-need /updates/why-early-intervention-matters 301
+/clinical-need/ /updates/why-early-intervention-matters 301
 /token.html /proposed-token.html 301
 /token /proposed-token.html 301
 /scenario-explorer /calculator.html 301
