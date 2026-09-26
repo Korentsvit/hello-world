@@ -16,16 +16,16 @@
  },
  "files": {
   "fragment.html": {
-   "bytes": 3391,
-   "sha256": "fd86dbc24945e12d3c8eba848daf99c6910662f4a8778ea779a04d4ab1b20a14"
+   "bytes": 5186,
+   "sha256": "ce274f44e50f13c7f89c7cbe0c746b224fd5d1291245e4416a88f12264e88c2d"
   },
   "module.css": {
-   "bytes": 7531,
-   "sha256": "6c8aa4f445d3be0540e53aa4ae8c493d0d28b11d12f42460ad74b75b5eb885b1"
+   "bytes": 7810,
+   "sha256": "3261162380ccf7b7be4730fce327ea2699fd72beb5af9773ae0cc2d9e0007c0f"
   },
   "preview.html": {
-   "bytes": 4194,
-   "sha256": "3447f7ca00d160efdd58090f86a51cde15d1d57d407f7dc290d8c2e2554adb6e"
+   "bytes": 5989,
+   "sha256": "3ea88d55e11162b06ea53fc57143ad240f970f4806870a9de4cc4fbbddff1fa7"
   }
  },
  "left_out": [],
@@ -174,7 +174,50 @@
    "sha256": "4b13d0c203da16de333fac5387c5a31512fb79094df276d81d56c723c508090a"
   }
  ],
- "assets": [],
+ "assets": [
+  {
+   "file": "assets/img/people/daud-gutseriev.jpg",
+   "href": "/assets/img/people/daud-gutseriev.jpg",
+   "bytes": 2474,
+   "sha256": "a17297d090970cda53be05125976c46e0d5a8e36a9c1d2f97019149d50df2c73"
+  },
+  {
+   "file": "assets/img/people/filipp-korentsvit.jpg",
+   "href": "/assets/img/people/filipp-korentsvit.jpg",
+   "bytes": 2523,
+   "sha256": "c375e79f400e7f62f0996c418b8ea0694a78ff021325e4da7b47f68512551266"
+  },
+  {
+   "file": "assets/img/people/grace-blest-hopley.jpg",
+   "href": "/assets/img/people/grace-blest-hopley.jpg",
+   "bytes": 2817,
+   "sha256": "a9983633709238b37bc00a55e7f5c466630f065b8fe5e271e0ab678e41bfbc86"
+  },
+  {
+   "file": "assets/img/people/john-kane.jpg",
+   "href": "/assets/img/people/john-kane.jpg",
+   "bytes": 2377,
+   "sha256": "aa5006f78cf0c671ab841620101e61071982030561e29bb77bba1534a78831f0"
+  },
+  {
+   "file": "assets/img/people/richard-barker.jpg",
+   "href": "/assets/img/people/richard-barker.jpg",
+   "bytes": 2116,
+   "sha256": "95595cc43aec8ee4c68353e911f0f4d494c9a04e61c4461bc265f9bcc938f0aa"
+  },
+  {
+   "file": "assets/img/people/scott-woods.jpg",
+   "href": "/assets/img/people/scott-woods.jpg",
+   "bytes": 2201,
+   "sha256": "34d7450db3a43bbfcede157b722148155c5702d6b74d5053cfe0d3b9a987ff8a"
+  },
+  {
+   "file": "assets/img/people/trevor-jones.jpg",
+   "href": "/assets/img/people/trevor-jones.jpg",
+   "bytes": 2405,
+   "sha256": "dceaeb53a4cf4ded5a3ed4eefb5d64d96687e950f2ca1f0317112a129810d336"
+  }
+ ],
  "anchors": {
   "ids": [
    "kit-h",
@@ -275,7 +318,9 @@
   "style-src": [
    "'self'"
   ],
-  "img-src": [],
+  "img-src": [
+   "'self'"
+  ],
   "connect-src": [],
   "font-src": [],
   "frame-src": [],
@@ -297,6 +342,21 @@
   "fact company.number (index) on newsroom.html",
   "fact phase1.isrctn (registry-index) on newsroom.html",
   "fact phase1.nct (registry-index) on newsroom.html",
+  "people.json: no consent to publish recorded for Dr Scott W. Woods",
+  "people.json: biography of Dr Scott W. Woods checked only at index level",
+  "people.json: no consent to publish recorded for Dr John M. Kane",
+  "people.json: biography of Dr John M. Kane checked only at index level",
+  "people.json: no consent to publish recorded for Dr Grace Blest-Hopley",
+  "people.json: title for Filipp Korentsvit not confirmed by management (records-agree; shows 'Chief Executive Officer')",
+  "people.json: no consent to publish recorded for Filipp Korentsvit",
+  "people.json: title for Daud Gutseriev not confirmed by management (unconfirmed; no title shown)",
+  "people.json: no consent to publish recorded for Daud Gutseriev",
+  "people.json: title for Professor Richard Barker OBE not confirmed by management (unconfirmed; no title shown)",
+  "people.json: no consent to publish recorded for Professor Richard Barker OBE",
+  "people.json: biography of Professor Richard Barker OBE checked only at index level",
+  "people.json: title for Professor Trevor Jones CBE not confirmed by management (records-agree; shows 'Senior Adviser')",
+  "people.json: no consent to publish recorded for Professor Trevor Jones CBE",
+  "people.json: biography of Professor Trevor Jones CBE checked only at index level",
   "clinical design: compare the module's 2 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
  ],
  "optional_assets": []

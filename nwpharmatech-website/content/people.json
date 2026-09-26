@@ -94,7 +94,8 @@
       "disclosures": [],
       "portrait": {
         "file": "assets/img/people/scott-woods.jpg",
-        "authorised": false
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
       },
       "consent_to_publish": false,
       "interview": "woods",
@@ -174,7 +175,8 @@
       "disclosures": [],
       "portrait": {
         "file": "assets/img/people/john-kane.jpg",
-        "authorised": false
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
       },
       "consent_to_publish": false,
       "interview": "kane",
@@ -247,7 +249,8 @@
       "disclosures": [],
       "portrait": {
         "file": "assets/img/people/grace-blest-hopley.jpg",
-        "authorised": false
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
       },
       "consent_to_publish": false,
       "interview": "blest-hopley",
@@ -326,7 +329,8 @@
       "disclosures": [],
       "portrait": {
         "file": "assets/img/people/filipp-korentsvit.jpg",
-        "authorised": false
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
       },
       "consent_to_publish": false,
       "interview": null,
@@ -388,7 +392,8 @@
       "disclosures": [],
       "portrait": {
         "file": "assets/img/people/daud-gutseriev.jpg",
-        "authorised": false
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
       },
       "consent_to_publish": false,
       "interview": null,
@@ -403,7 +408,7 @@
       "id": "william-jarosz",
       "group": "board",
       "featured": false,
-      "public": true,
+      "public": false,
       "name": "William Jarosz",
       "role": null,
       "role_status": "unconfirmed",
@@ -458,7 +463,8 @@
         "teaser-2026-08",
         "brief-2026-09-c"
       ],
-      "review": "Chair position contested (Jarosz 'Executive Chairman' and Barker 'Non-Executive Chairman' in the same teaser). Title withheld until management confirms who chairs the board."
+      "review": "Chair position contested (Jarosz 'Executive Chairman' and Barker 'Non-Executive Chairman' in the same teaser). Title withheld until management confirms who chairs the board.",
+      "public_note": "Not on the live eight-person roster; draft retained privately pending confirmation of his role (Filipp, 26 Sep 2026)."
     },
     {
       "id": "richard-barker",
@@ -511,7 +517,8 @@
       "disclosures": [],
       "portrait": {
         "file": "assets/img/people/richard-barker.jpg",
-        "authorised": false
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
       },
       "consent_to_publish": false,
       "interview": null,
@@ -632,7 +639,8 @@
       "disclosures": [],
       "portrait": {
         "file": "assets/img/people/trevor-jones.jpg",
-        "authorised": false
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
       },
       "consent_to_publish": false,
       "interview": null,

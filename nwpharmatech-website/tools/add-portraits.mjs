@@ -4,6 +4,9 @@
 // - makes consistent square WebP crops (240 and 480 px; sharp's attention crop keeps the face);
 // - replaces that person's initials avatar on team.html and on the homepage leadership card.
 // People without a file keep their initials. Nothing is generated or substituted.
+// Safe to rerun: a person whose card already shows a photograph (for example the NWPT-035 portraits, wired as
+// <img class="team-card__photo" src="assets/team/<id>.jpg">) is left exactly as it is, and no crop is ever
+// larger than its source (no upscaling).
 import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -22,11 +25,15 @@ const PEOPLE = {   // file id -> name as printed on the cards, initials used by 
 const V = "?v=" + new Date().toISOString().slice(0, 10).replace(/-/g, "");
 let team = fs.readFileSync(path.join(site, "team.html"), "utf8");
 let home = fs.readFileSync(path.join(site, "index.html"), "utf8");
-const done = [], missing = [];
+const done = [], missing = [], kept = [], lowres = [];
 for (const [id, [name, initials]] of Object.entries(PEOPLE)) {
   const src = path.join(teamDir, `${id}.jpg`);
   if (!fs.existsSync(src)) { missing.push(`${id}.jpg (${name})`); continue; }
-  for (const s of [240, 480]) await sharp(src).resize(s, s, { fit: "cover", position: sharp.strategy.attention }).webp({ quality: 80 }).toFile(path.join(teamDir, `${id}-${s}.webp`));
+  if (new RegExp(`<img class="team-card__photo[^"]*" src="assets/team/${id}[.-]`).test(team)) { kept.push(id); continue; }   // already wired: keep as deployed
+  const meta = await sharp(src).metadata();
+  const sizes = [240, 480].filter((s) => s <= Math.min(meta.width, meta.height));
+  if (!sizes.length) { lowres.push(`${id} (${meta.width}x${meta.height})`); continue; }
+  for (const s of sizes) await sharp(src).resize(s, s, { fit: "cover", position: sharp.strategy.attention }).webp({ quality: 80 }).toFile(path.join(teamDir, `${id}-${s}.webp`));
   const img = (cls, size) => `<img class="${cls}" src="assets/team/${id}-240.webp${V}" srcset="assets/team/${id}-240.webp${V} 240w, assets/team/${id}-480.webp${V} 480w" sizes="${size}" width="240" height="240" alt="Portrait of ${name}" loading="lazy" decoding="async" />`;
   // team.html: the avatar inside <article id="<id>">
   team = team.replace(new RegExp(`(<article[^>]*id="${id}"[\\s\\S]*?)<div class="team-card__avatar[^"]*" aria-hidden="true">${initials}</div>`),
@@ -39,4 +46,6 @@ for (const [id, [name, initials]] of Object.entries(PEOPLE)) {
 fs.writeFileSync(path.join(site, "team.html"), team);
 fs.writeFileSync(path.join(site, "index.html"), home);
 console.log(`portraits published: ${done.length ? done.join(", ") : "none"}`);
-console.log(`still missing (${missing.length}/8): ${missing.join("; ")}`);
+if (kept.length) console.log(`already on the page, left unchanged: ${kept.join(", ")}`);
+if (lowres.length) console.log(`too small to crop without upscaling (wire by hand, as NWPT-035 did): ${lowres.join(", ")}`);
+console.log(`still missing (${missing.length}/8): ${missing.join("; ") || "none"}`);

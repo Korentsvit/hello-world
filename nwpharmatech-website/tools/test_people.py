@@ -60,8 +60,8 @@ def both(*fs):
 
 # ---- the current file ----
 accepted("current people.json passes; every profile blocks production on title, consent and (index-level) biography",
-         blockers=lambda b: sum("not confirmed by management" in x for x in b) == 6
-         and not any(f"title for {n}" in x for x in b for n in ("Dr Scott W. Woods", "Dr Grace Blest-Hopley", "Dr John M. Kane")) and sum("no consent to publish" in x for x in b) == 9
+         blockers=lambda b: sum("not confirmed by management" in x for x in b) == 5   # William Jarosz is non-public (26 Sep 2026)
+         and not any(f"title for {n}" in x for x in b for n in ("Dr Scott W. Woods", "Dr Grace Blest-Hopley", "Dr John M. Kane")) and sum("no consent to publish" in x for x in b) == 8
          and sum("checked only at index level" in x for x in b) == 5)
 
 # ---- 'confirmed' needs a management confirmation that names the title ----

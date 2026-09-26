@@ -80,3 +80,18 @@ The Programme Room is a separate component that is not part of this package; no 
   - compare its Phase 2B statements with the live published CHR-P design (`clinical_design` in the manifest; `CLINICAL-DESIGN-CHECK.md`)
   - board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)
   - confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set
+  - no consent to publish recorded for Dr Scott W. Woods
+  - biography of Dr Scott W. Woods checked only at index level
+  - no consent to publish recorded for Dr John M. Kane
+  - biography of Dr John M. Kane checked only at index level
+  - no consent to publish recorded for Dr Grace Blest-Hopley
+  - title for Filipp Korentsvit not confirmed by management (records-agree; shows 'Chief Executive Officer')
+  - no consent to publish recorded for Filipp Korentsvit
+  - title for Daud Gutseriev not confirmed by management (unconfirmed; no title shown)
+  - no consent to publish recorded for Daud Gutseriev
+  - title for Professor Richard Barker OBE not confirmed by management (unconfirmed; no title shown)
+  - no consent to publish recorded for Professor Richard Barker OBE
+  - biography of Professor Richard Barker OBE checked only at index level
+  - title for Professor Trevor Jones CBE not confirmed by management (records-agree; shows 'Senior Adviser')
+  - no consent to publish recorded for Professor Trevor Jones CBE
+  - biography of Professor Trevor Jones CBE checked only at index level

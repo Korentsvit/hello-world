@@ -16,7 +16,7 @@ Read first: `MAPPING.md` (what each module adds, where it belongs, what it overl
 | `formulation` | Formulation explanation | `/science#formulation` | no | none | 2 | 1 |
 | `evidence-library` | Evidence library | `/evidence` | yes | `downloads/nwpharmatech-references.bib`, `downloads/nwpharmatech-references.ris` | 26 | 0 |
 | `family-guide` | Guide for young people and families | `/families` | no | `downloads/appointment-preparation-sheet.pdf` | 6 | 0 |
-| `newsroom` | Newsroom | `/newsroom` | no | `downloads/nwpharmatech-programme-brief.pdf`, `downloads/nwpharmatech-references.ris` | 8 | 0 |
+| `newsroom` | Newsroom | `/newsroom` | no | `downloads/nwpharmatech-programme-brief.pdf`, `downloads/nwpharmatech-references.ris` | 23 | 0 |
 
 Each `modules/<id>/` folder holds `fragment.html` (the markup), `module.css` (styles scoped under `.nwpt-module`,
 classes prefixed `nwpt-`), `module.js` where needed, `manifest.json` (facts, references, links, dependencies,
@@ -30,7 +30,7 @@ Shared files:
 - `routes.json`: page id to live path. Downloads are linked under `/downloads/` and assets under `/assets/`.
   Change paths in `src/integration-routes.json` and rebuild; never edit the fragments by hand.
 - `downloads/`: `appointment-preparation-sheet.pdf`, `nwpharmatech-programme-brief.pdf`, `nwpharmatech-references.bib`, `nwpharmatech-references.ris`. Replace the live copies whenever they change (PDFs are regenerated and checked by the build when their facts change).
-- `assets/`: none needed at present (an image appears here once it is supplied and authorised).
+- `assets/`: `img/people/daud-gutseriev.jpg`, `img/people/filipp-korentsvit.jpg`, `img/people/grace-blest-hopley.jpg`, `img/people/john-kane.jpg`, `img/people/richard-barker.jpg`, `img/people/scott-woods.jpg`, `img/people/trevor-jones.jpg`.
 - `content/`: the public-safe parts of the shared content model (public items only; internal notes, unpublished document versions and uncited source ids removed; fact placeholders replaced by their values). `people.json` is not included: no module shows profiles (the live Team page is the Grok team's).
 
 ## Publication blockers by module
@@ -98,6 +98,21 @@ listed in `manifest.json` → `publication_blockers`; the build report (`build/b
   - fact company.number (index) on newsroom.html
   - fact phase1.isrctn (registry-index) on newsroom.html
   - fact phase1.nct (registry-index) on newsroom.html
+  - people.json: no consent to publish recorded for Dr Scott W. Woods
+  - people.json: biography of Dr Scott W. Woods checked only at index level
+  - people.json: no consent to publish recorded for Dr John M. Kane
+  - people.json: biography of Dr John M. Kane checked only at index level
+  - people.json: no consent to publish recorded for Dr Grace Blest-Hopley
+  - people.json: title for Filipp Korentsvit not confirmed by management (records-agree; shows 'Chief Executive Officer')
+  - people.json: no consent to publish recorded for Filipp Korentsvit
+  - people.json: title for Daud Gutseriev not confirmed by management (unconfirmed; no title shown)
+  - people.json: no consent to publish recorded for Daud Gutseriev
+  - people.json: title for Professor Richard Barker OBE not confirmed by management (unconfirmed; no title shown)
+  - people.json: no consent to publish recorded for Professor Richard Barker OBE
+  - people.json: biography of Professor Richard Barker OBE checked only at index level
+  - people.json: title for Professor Trevor Jones CBE not confirmed by management (records-agree; shows 'Senior Adviser')
+  - people.json: no consent to publish recorded for Professor Trevor Jones CBE
+  - people.json: biography of Professor Trevor Jones CBE checked only at index level
   - clinical design: compare the module's 2 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)
 
 ## Optional assets not yet supplied (never block publication)
