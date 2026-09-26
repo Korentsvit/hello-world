@@ -1,0 +1,36 @@
+/funding /funding-use.html 301
+/funding/ /funding-use.html 301
+/people /team.html 301
+/people/ /team.html 301
+/funding.html /funding-use.html 301
+/token.html /proposed-token.html 301
+/token /proposed-token.html 301
+/scenario-explorer /calculator.html 301
+/scenario-explorer.html /calculator.html 301
+/scenario-explorer/ /calculator.html 301
+/why-chrp-matters.html /updates/why-early-intervention-matters.html 301
+/why-chrp-matters /updates/why-early-intervention-matters.html 301
+/updates/why-chrp-matters.html /updates/why-early-intervention-matters.html 301
+/updates/why-chrp-matters /updates/why-early-intervention-matters.html 301
+/updates.html /updates/ 301
+/updates.html/ /updates/ 301
+
+# NWPT-030 Claude module aliases (skip if would shadow live pages)
+/phase-2b /study 301
+/phase-2b/ /study 301
+/phase2b /study 301
+/phase2b/ /study 301
+/phase1 /phase-1 301
+/phase1/ /phase-1 301
+/formulation /science#formulation 301
+/formulation/ /science#formulation 301
+/references /evidence 301
+/references/ /evidence 301
+/news /newsroom 301
+/news/ /newsroom 301
+/press /newsroom 301
+/press/ /newsroom 301
+/families/ /families 301
+/study/ /study 301
+/phase-1/ /phase-1 301
+/newsroom/ /newsroom 301

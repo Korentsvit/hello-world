@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 220" role="img" aria-label="Research roadmap: completed, next proposed, longer-term">
+  <rect width="960" height="220" fill="#f8f8f7"/>
+  <text x="24" y="36" font-family="Georgia, serif" font-size="22" fill="#07111f">Research roadmap (illustrative)</text>
+  <text x="24" y="58" font-family="system-ui,sans-serif" font-size="12" fill="#5a6570">Not a funding commitment · dates only when accountable</text>
+  <!-- boxes -->
+  <rect x="24" y="88" width="280" height="100" rx="12" fill="#07111f"/>
+  <text x="44" y="118" font-family="system-ui,sans-serif" font-size="13" fill="#6da4ff">COMPLETED / IN HAND</text>
+  <text x="44" y="144" font-family="system-ui,sans-serif" font-size="14" fill="#f8f8f7">Formulation concept (SM32300)</text>
+  <text x="44" y="166" font-family="system-ui,sans-serif" font-size="14" fill="#f8f8f7">Public science resource pages</text>
+  <rect x="340" y="88" width="280" height="100" rx="12" fill="#1767e8"/>
+  <text x="360" y="118" font-family="system-ui,sans-serif" font-size="13" fill="#cfe0ff">NEXT PROPOSED</text>
+  <text x="360" y="144" font-family="system-ui,sans-serif" font-size="14" fill="#fff">Locked protocol synopsis</text>
+  <text x="360" y="166" font-family="system-ui,sans-serif" font-size="14" fill="#fff">CHR-P symptom / functioning PoC</text>
+  <rect x="656" y="88" width="280" height="100" rx="12" fill="#e8eef8" stroke="#1767e8"/>
+  <text x="676" y="118" font-family="system-ui,sans-serif" font-size="13" fill="#1767e8">LONGER-TERM</text>
+  <text x="676" y="144" font-family="system-ui,sans-serif" font-size="14" fill="#07111f">Transition / prevention objectives</text>
+  <text x="676" y="166" font-family="system-ui,sans-serif" font-size="14" fill="#07111f">if separately powered &amp; financed</text>
+</svg>

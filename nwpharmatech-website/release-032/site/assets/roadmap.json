@@ -1,0 +1,81 @@
+{
+  "title": "Programme roadmap",
+  "disclaimer": "Website and communications milestones are not the same as clinical development progress. Statuses are qualitative only (completed, in_progress, planned, or not_confirmed). No completion percentages or funds raised.",
+  "intro": "This page separates communication and website milestones from clinical development milestones for the planned Phase 2B CHR-P study. Completing public pages does not mean the clinical study has advanced.",
+  "last_reviewed": "2026-09-22",
+  "schema_note": "Optional milestone field track: communications | clinical. Statuses: completed | in_progress | planned | not_confirmed.",
+  "milestones": [
+    {
+      "id": "public-science-resources",
+      "track": "communications",
+      "name": "Public science resources live",
+      "purpose": "Publish informational science, evidence, glossary and related pages for patients, families, clinicians and researchers.",
+      "status": "completed",
+      "evidence": "Live pages on this site (Science, Evidence, Glossary and related)"
+    },
+    {
+      "id": "programme-synopsis-published",
+      "track": "communications",
+      "name": "Programme synopsis / Phase 2B overview published",
+      "purpose": "Publish a public programme synopsis and Phase 2B overview describing the planned study at a high level.",
+      "status": "completed",
+      "evidence": "Public synopsis and Phase 2B overview pages on this site"
+    },
+    {
+      "id": "formulation-described",
+      "track": "communications",
+      "name": "Investigational formulation described",
+      "purpose": "Describe NWPT-SM32300 publicly as the investigational oral CBD micellar softgel candidate for the CHR-P programme.",
+      "status": "completed",
+      "evidence": "Public product description on Science, Programme and public synopsis; investigational — effectiveness not established"
+    },
+    {
+      "id": "study-preparation",
+      "track": "clinical",
+      "name": "Study preparation",
+      "purpose": "Finalise operational design for the proposed Phase 2B study (sites, synopsis lock, budget and operational package).",
+      "status": "in_progress",
+      "evidence": "Working public synopsis and planning materials; full operational finalisation ongoing"
+    },
+    {
+      "id": "applicable-approvals",
+      "track": "clinical",
+      "name": "Applicable approvals",
+      "purpose": "Obtain ethics, regulatory and other applicable approvals required before site activation.",
+      "status": "not_confirmed",
+      "evidence": "Not confirmed in public materials"
+    },
+    {
+      "id": "site-activation",
+      "track": "clinical",
+      "name": "Site activation",
+      "purpose": "Contract and activate participating clinical sites under the approved protocol.",
+      "status": "planned",
+      "evidence": "Depends on approvals and operational readiness"
+    },
+    {
+      "id": "recruitment",
+      "track": "clinical",
+      "name": "Recruitment",
+      "purpose": "Enrol eligible participants into the Phase 2B study.",
+      "status": "planned",
+      "evidence": "Follows site activation; this website is not an enrolment portal"
+    },
+    {
+      "id": "follow-up",
+      "track": "clinical",
+      "name": "Follow-up",
+      "purpose": "Complete treatment and follow-up assessments per protocol (including week-16 follow-up in the working design).",
+      "status": "planned",
+      "evidence": "Follows recruitment"
+    },
+    {
+      "id": "analysis",
+      "track": "clinical",
+      "name": "Analysis",
+      "purpose": "Analyse primary and secondary outcomes and report findings according to the statistical analysis plan.",
+      "status": "planned",
+      "evidence": "Follows follow-up and database lock"
+    }
+  ]
+}
