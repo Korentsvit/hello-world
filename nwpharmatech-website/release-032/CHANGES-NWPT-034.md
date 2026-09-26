@@ -6,7 +6,7 @@
 
 | | State |
 |---|---|
-| Built | NWPT-034, commit in `COMMIT.txt` of the packages |
+| Built | NWPT-034 on GitHub `Korentsvit/hello-world`, branch `claude/nwpharmatech-website-bs459b` (final commit in the package README) |
 | On preview | NWPT-033 (`837794c`) at https://nwpt-837794c-preview.pages.dev/, as reported by Web PR and Codex. I cannot reach the preview from this environment, so I have not verified it myself |
 | Live | NWPT-032 at www.nwpharmatech.org, unchanged |
 
@@ -53,16 +53,26 @@
 - **The fix:** focus no longer opens a menu. Click, tap and Enter/Space open and close it; Escape closes it and returns focus; hover is still a convenience.
 - **Programme brief:** reachable from the header, the phone menu, the hero and the homepage panel.
 
-## Checks
-- **Release check:** `release-check.mjs --stub-external`, Cloudflare Pages runtime, all pages at 390 and 1280 px: see `release-report.json`.
-- **Interaction tests:** `test-nwpt034.mjs`, 32 of 32:
-  - navigation by keyboard, by touch at 1180 px and on phones;
-  - the programme brief at both widths;
-  - the hero video playing, pausing, resuming by keyboard, and the choice being remembered;
-  - reduced motion and Save-Data fetching no video;
-  - the video requested only after the load event;
-  - a genuine 404, the PDFs, and the register redirect.
-- **Limits:** these are automated checks, not a WCAG audit. Only Chromium is available here. Safari's handling of the MP4 fallback and real-device playback are for Web PR to confirm on the preview.
+## Checks (final, on the packaged files)
+
+| Check | Result |
+|---|---|
+| `release-check.mjs --stub-external` (Cloudflare Pages runtime; 30 pages at 390 and 1280 px) | **4,520 / 4,520**: routing 1,857 · links 2,289 · downloads 10 · contact 15 · layout 58 · images 117 · pages 87 · accessibility (axe WCAG 2.2 AA) 58 · navigation 29 |
+| `test-nwpt034.mjs` | **33 / 33** |
+| NWPT-032 baseline, same checker | 4,133 / 4,195 |
+
+**What `test-nwpt034.mjs` covers:**
+- menus by keyboard and by touch at 1180 and 390 px;
+- the programme brief at both widths;
+- the hero video: plays, pauses, resumes by keyboard, and the choice is remembered;
+- reduced motion and Save-Data fetch no video;
+- the video is requested only after the load event;
+- the phone-only still loads at 390 px;
+- a genuine 404, the PDFs, and the register redirect.
+
+**Image rule:** every rendered image must load. The checker skips only an image the site itself sets to `display: none` at that width, and lists it in the report. There was one: the phone-only neural still at 1280 px, which is tested at 390 px instead.
+
+**Limits:** these are automated checks, not a WCAG audit. Only Chromium is available here, so Safari, the MP4 fallback and real devices are for Web PR to confirm on the preview.
 
 ## Outstanding
 - **Portraits (0 of 8).** Exact files, to save in `assets/team/`:
