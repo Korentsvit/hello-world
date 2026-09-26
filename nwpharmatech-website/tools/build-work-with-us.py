@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent / "release-032"
 SITE = ROOT / "site"
 WWU = json.loads((ROOT / "source" / "work-with-us.json").read_text())
 ROOM = json.loads((ROOT / "source" / "programme-room.json").read_text())
-V = "?v=nwpt043"
+V = "?v=nwpt045"
 CANON = "https://www.nwpharmatech.org/"
 STAGES = {s["id"]: s for s in ROOM["stages"]}
 

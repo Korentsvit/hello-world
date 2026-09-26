@@ -2,6 +2,23 @@
 
 **Status:** draft. `site/privacy.html` has not been changed. The preview can be reviewed without this update and without the enquiry form being active.
 
+> **27 Sep 2026: Part B applied to `site/privacy.html` on the preview candidate** (branch `claude/nwpt-enquiry-preview`, from live `6affaba` plus records). It follows the Web Boss handoff `records/enquiry/CLAUDE-ENQUIRY-PRIVACY-PREVIEW-2026-09-27.md`.
+>
+> - **What the notice now covers:** the new section "Research collaboration enquiries" describes the actual processing:
+>   - only what the visitor explicitly submits is sent;
+>   - Cloudflare Turnstile checks the submission;
+>   - Resend sends it from website@nwpharmatech.org to "the NWPharmaTech team", with reply-to set to the visitor;
+>   - nothing is stored on the website;
+>   - the Resend sending region is Ireland (EU).
+> - **Distinction kept:** the planning-tools section still says browser-only, now "not sent … unless you choose to submit an enquiry".
+> - **Same wording whether the form is on or off:** the notice describes processing "when the online enquiry form … is available" and says nothing is sent when the page shows it unavailable. So it is correct on the preview once the form is on, and on production while the form stays off; it never calls enquiries inactive.
+> - **Still unresolved,** listed publicly under "Not yet confirmed" and not invented:
+>   - mailbox retention and deletion;
+>   - Resend retention;
+>   - other processing locations and international transfers;
+>   - lawful basis.
+> - **Last updated:** 27 September 2026.
+
 **Before production publication (management, 26 September 2026):**
 - **Part A** describes the workspace behaviour that is already active: tab storage, share links and the locally generated brief. It must be settled and applied to the privacy notice before the page is published to production.
 - **Part B**, the enquiry form, stays dependent on the actual provider, recipient and retention arrangements. It is applied only when the form is switched on.

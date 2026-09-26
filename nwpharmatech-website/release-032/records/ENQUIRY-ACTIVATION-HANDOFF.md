@@ -2,6 +2,15 @@
 
 **Status:** online enquiries are **disabled** on production (`6affabafe67ea049e732f6e15f16df16823cbb93`). They stay disabled until the section 2 decisions are made, section 3 is configured on the preview and section 4 has passed. No redeployment is requested now.
 
+**27 Sep 2026 update:**
+- **Web Boss setup (Web Boss report):**
+  - Resend reports `nwpharmatech.org` as verified, with sending region Ireland (EU).
+  - A Turnstile widget covers `nwpt-837794c-preview.pages.dev` only.
+  - The preview project holds the Resend and Turnstile credentials. `ENQUIRY_FROM` and `ENQUIRY_TO` are deliberately unset, so the form is off.
+  - Production has no enquiry secrets.
+- **Settled:** the sender is `NWPharmaTech website <website@nwpharmatech.org>` (send-only; inbound through Resend is not used).
+- **Privacy Part B:** applied on the preview candidate (branch `claude/nwpt-enquiry-preview`). The remaining open items are the P1, P2 and P3 decisions, now listed publicly under "Not yet confirmed".
+
 **Already built and live, dormant:**
 - `/api/enquiry` fails closed until all five settings exist.
 - The page switches its wording automatically, from "Contact about collaboration" to "Send a non-confidential enquiry", once the API reports it is configured.

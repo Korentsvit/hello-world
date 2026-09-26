@@ -46,13 +46,26 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     check(`nav link ${t} reaches the page in at most one redirect`, r2.status === 200); }
   // privacy notice: Part A (browser-only workspace) applied; Part B (enquiry form) not applied
   const priv = (await (await fetch(srv.base + "/privacy")).text()).replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
-  for (const t of ["We do not run an account system or payment system. The “Explore a research collaboration” page keeps your planning notes in your browser only, as described below. Online enquiries are not active; contact is by email.",
-    "Your optional answers, agenda and questions are stored in your browser for this tab’s session. Browser session-restoration features may preserve them. You can clear your answers and remove agenda items using the page controls. These planning contents are not sent to NWPharmaTech.",
+  for (const t of ["We do not run an account system or payment system. The “Explore a research collaboration” page keeps your planning notes in your browser only, as described below. When the online enquiry form on that page is available, you can also choose to send us a non-confidential enquiry through it, as described below; otherwise, contact is by email.",
+    "Your optional answers, agenda and questions are stored in your browser for this tab’s session. Browser session-restoration features may preserve them. You can clear your answers and remove agenda items using the page controls. These planning contents are not sent to NWPharmaTech unless you choose to submit an enquiry, as described below.",
+    "If the page says online enquiries are not available, nothing is sent from it.",
+    "Only what you explicitly submit is sent.",
+    "your answers to the optional focus questions, if you leave “Include my focus answers” selected;",
+    "The form shows what will be sent before you submit it, and it does not accept file uploads.",
+    "Before an enquiry is accepted, it is checked by Cloudflare Turnstile, an anti-abuse service.",
+    "This website does not store your enquiry. It passes the enquiry to Resend, our transactional email service, which sends it as an email from website@nwpharmatech.org to the NWPharmaTech team.",
+    "Your email address is set as the reply-to address so that we can answer you.",
+    "Our sending domain is set to Resend’s Ireland (EU) sending region.",
+    "how long enquiries are kept in the NWPharmaTech mailbox, and how they are deleted;",
+    "how long Resend keeps message content and delivery records;",
+    "where else Resend and Cloudflare process this information, and any international transfers;",
+    "the lawful basis for processing enquiries.",
     "To show whether online enquiries are available, the page makes one extra request to this website. That request contains none of your answers, agenda items or questions.",
     "Links you copy from the page contain only the page’s content version and the identifiers of the public topics and cards you selected. They never include your answers, your questions or any contact details.",
     "Discussion briefs are created in your browser. Printing a brief or saving it as a PDF does not send it to us.",
-    "Last updated: 26 September 2026."]) check(`privacy notice contains: ${t.slice(0, 60)}…`, priv.includes(t));
-  check("privacy notice: no static-site claim, no deletion guarantee, no enquiry-form (Part B) text", !/These pages are static|removed when you close the tab|Research collaboration enquiries|Resend|to be confirmed|\[[A-Z ]+/i.test(priv));
+    "Last updated: 27 September 2026."]) check(`privacy notice contains: ${t.slice(0, 60)}…`, priv.includes(t));
+  check("privacy notice: no static-site claim, no deletion guarantee, no 'not active' claim, no placeholders", !/These pages are static|removed when you close the tab|Online enquiries are not active|contact is by email only|to be confirmed|\[[A-Z ]+/i.test(priv));
+  check("privacy notice: no invented retention period, response time or recipient name", !/kept for \d|\d+ (days|weeks|months|years)|respond within|Korentsvit/i.test(priv));
   const contact = await (await fetch(srv.base + "/contact")).text();
   check("Contact page keeps its research link to Work with us", /<a class="card-link" href="work-with-us\.html">Explore a research collaboration<\/a>/.test(contact) && contact.includes('href="mailto:team@nwpharmatech.com?subject=Research%20collaboration"'));
   const h = await fetch(srv.base + "/work-with-us");
@@ -245,6 +258,7 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     await pg.goto(srv.base + "/work-with-us", { waitUntil: "load" });
     await pg.waitForSelector("#wwu-form");
     check(`@${label} configured: heading switches to "Send a non-confidential enquiry"`, (await pg.textContent("[data-enquiry-heading]")) === "Send a non-confidential enquiry" && (await pg.$$eval('.wwu-agenda__links a[href="#enquiry"]', (as) => as.every((a) => a.textContent === "Send enquiry"))));
+    check(`@${label} configured: processing notice before submit names Turnstile, Resend and the team`, /checked by Cloudflare Turnstile and sent by email through Resend to the NWPharmaTech team/.test(await pg.textContent("#wwu-processing")) && (await pg.locator('#wwu-processing a[href="privacy.html"]').count()) === 1);
     check(`@${label} configured: form shown with test-mode notice and security check`, /Test mode/.test(await pg.textContent("#wwu-form")) && /security check: test stub/.test(await pg.textContent("#wwu-turnstile")));
     check(`@${label} review appears before details are requested`, await pg.evaluate(() => { const f = document.getElementById("wwu-form"); return f.querySelector("#wwu-review").compareDocumentPosition(f.querySelector("#wwu-name")) & Node.DOCUMENT_POSITION_FOLLOWING; }) > 0);
     await pg.click(cardAction("p2-aims")); await pg.click(cardAction("need-risk-lim")); await pg.click(cardAction("oq-brain"));
