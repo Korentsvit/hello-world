@@ -16,44 +16,50 @@ Source dates and website dates are separate fields. No date was added that the r
 
 The Evidence library wording is **unchanged**: "Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages" (last checked 23 September 2026). It will be strengthened only when the primary-source checks below are recorded.
 
-## 2. Primary-source verification request (Web Boss)
+## 2. Primary-source verification request (Web Boss), updated 27 Sep 2026
 
-For each item, open the **primary record** (publisher page, PubMed, NIHR Journals Library, NICE, EMA or the registry) and record:
-- the URL opened and the date it was read;
-- whether authors, title, journal, year, volume and pages match;
-- whether the quoted finding on the card matches the source;
-- for P8, the publication date.
+**Standard check for every card.** Open the primary record (publisher page, PubMed, NIHR Journals Library, NICE, medicines.org.uk or the registry) and record:
+- the **URL opened** and the **date read**. No card holds a primary-record URL except the NICE, SmPC and registry entries;
+- whether authors, title, journal, year, volume, pages, DOI and PMID match what is held;
+- whether the finding quoted on the card matches the source.
 
-Claude cannot reach PubMed, publisher sites or NICE from its environment, so these are not verified here.
+**Specific missing evidence.** These are the gaps beyond the standard check. They come from `content/references.json` fields that are empty or noted as "not confirmed".
 
-**Priority: P8 (CANTOP-RCT publication date)**, because it is the only date left open in the brief.
-
-| # | Card | Year held | Identifiers held | Result (Web Boss) |
+| # | Card | Held now (search-engine records, 23 Sep 2026) | Missing evidence to capture | Result (Web Boss) |
 |---|---|---|---|---|
-| P1 | Fusar-Poli et al. 2013 | 2013 | PMID 23165428; DOI 10.1001/jamapsychiatry.2013.269 | |
-| P2 | Salazar de Pablo et al. 2021 (prevalence) | 2021 | PMID 34827543; DOI 10.3390/brainsci11111544 | |
-| P3 | NICE CG178 | 2014 | — | |
-| P4 | NICE CG155 | 2013 | — | |
-| P5 | Addington et al. 2011 | 2011 | PMID 21498462; DOI 10.1176/appi.ajp.2011.10081191 | |
-| P6 | Fusar-Poli et al. 2012 | 2012 | — | |
-| P7 | Salazar de Pablo et al. 2021 | 2021 | PMID 34259821; DOI 10.1001/jamapsychiatry.2021.0830 | |
-| P8 | CANTOP-RCT report | not recorded | PMID 40096425 | |
-| P9 | Stafford et al. 2013 | 2013 | PMID 23335473; DOI 10.1136/bmj.f185 | |
-| P10 | Davies et al. 2018 | 2018 | PMID 29856551; DOI 10.1002/wps.20526 | |
-| P11 | Kane et al. 2016 | 2016 | PMID 26481174; DOI 10.1176/appi.ajp.2015.15050632 | |
-| P12 | Epidyolex SmPC | not recorded | — | |
-| P13 | Devinsky et al. 2017 | 2017 | PMID 28538134; DOI 10.1056/NEJMoa1611618 | |
-| P14 | Di Forti et al. 2019 | 2019 | PMID 30902669; DOI 10.1016/S2215-0366(19)30048-3 | |
-| P15 | Bhattacharyya et al. 2010 | 2010 | DOI 10.1038/npp.2009.184 | |
-| P16 | McGuire et al. 2018 | 2018 | PMID 29241357; DOI 10.1176/appi.ajp.2017.17030325 | |
-| P17 | Leweke et al. 2012 | 2012 | PMID 22832859; DOI 10.1038/tp.2012.15 | |
-| P18 | Boggs et al. 2018 | 2018 | PMID 29619533; DOI 10.1007/s00213-018-4885-9 | |
-| P19 | Bhattacharyya et al. 2018 | 2018 | DOI 10.1001/jamapsychiatry.2018.2309 | |
-| P20 | Appiah-Kusi et al. 2020 | 2020 | PMID 31915861 | |
-| P21 | Bhattacharyya et al. 2024 | 2024 | PMID 39279373; DOI 10.1002/wps.21253 | |
-| P22 | Perucca and Bialer 2020 | 2020 | DOI 10.1007/s40263-020-00741-5 | |
-| P23 | Taylor et al. 2018 | 2018 | PMID 30374683; DOI 10.1007/s40263-018-0578-5 | |
-| P24 | Phase 1 registry records | 2025 | DOI 10.1186/ISRCTN25163383 | |
+| P1 | Fusar-Poli et al. 2013 | 2013; PMID 23165428; DOI 10.1001/jamapsychiatry.2013.269 | Whether the **genetic-risk-with-deterioration** wording appears in the paper (not confirmed) | |
+| P2 | Salazar de Pablo et al. 2021 (prevalence) | 2021; PMID 34827543; DOI 10.3390/brainsci11111544 | Standard check only | |
+| P3 | NICE CG178 | 2014; https://www.nice.org.uk/guidance/cg178 | **Recommendation numbers** cited on the card and the guideline's **last-updated date** (neither confirmed), from nice.org.uk/guidance/cg178 | |
+| P4 | NICE CG155 | 2013; https://www.nice.org.uk/guidance/cg155 | Guideline **last-updated date** and the recommendation cited on the card, from nice.org.uk/guidance/cg155 | |
+| P5 | Addington et al. 2011 | 2011; PMID 21498462; DOI 10.1176/appi.ajp.2011.10081191 | Standard check only | |
+| P6 | Fusar-Poli et al. 2012 | 2012 | **DOI and PMID** (not held); confirm journal, volume and pages | |
+| P7 | Salazar de Pablo et al. 2021 | 2021; PMID 34259821; DOI 10.1001/jamapsychiatry.2021.0830 | Standard check only | |
+| P8 | CANTOP-RCT report | PMID 40096425 | **Publication date (month and year)**, report DOI, and NIHR Journals Library series, volume and issue (EME programme), from the NIHR Journals Library report page; confirm the PubMed 40096425 record matches. This is the only date shown as unknown in the brief | |
+| P9 | Stafford et al. 2013 | 2013; PMID 23335473; DOI 10.1136/bmj.f185 | Issue number (not held) | |
+| P10 | Davies et al. 2018 | 2018; PMID 29856551; DOI 10.1002/wps.20526 | Standard check only | |
+| P11 | Kane et al. 2016 | 2016; PMID 26481174; DOI 10.1176/appi.ajp.2015.15050632 | Standard check only | |
+| P12 | Epidyolex SmPC | https://www.medicines.org.uk/emc/product/10781 | **SmPC revision date / version** shown on medicines.org.uk (none held), and the section numbers for the quoted statements | |
+| P13 | Devinsky et al. 2017 | 2017; PMID 28538134; DOI 10.1056/NEJMoa1611618 | **Pages** (not held) | |
+| P14 | Di Forti et al. 2019 | 2019; PMID 30902669; DOI 10.1016/S2215-0366(19)30048-3 | Standard check only | |
+| P15 | Bhattacharyya et al. 2010 | 2010; DOI 10.1038/npp.2009.184 | **PMID** and issue (not held) | |
+| P16 | McGuire et al. 2018 | 2018; PMID 29241357; DOI 10.1176/appi.ajp.2017.17030325 | Standard check only | |
+| P17 | Leweke et al. 2012 | 2012; PMID 22832859; DOI 10.1038/tp.2012.15 | Issue number (not held) | |
+| P18 | Boggs et al. 2018 | 2018; PMID 29619533; DOI 10.1007/s00213-018-4885-9 | Standard check only | |
+| P19 | Bhattacharyya et al. 2018 | 2018; DOI 10.1001/jamapsychiatry.2018.2309 | **PMID** (not held) | |
+| P20 | Appiah-Kusi et al. 2020 | 2020; PMID 31915861 | **Volume, issue, pages and DOI** (not held); confirm PMID 31915861 | |
+| P21 | Bhattacharyya et al. 2024 | 2024; PMID 39279373; DOI 10.1002/wps.21253 | Standard check only | |
+| P22 | Perucca and Bialer 2020 | 2020; DOI 10.1007/s40263-020-00741-5 | **PMID** (32504461 not confirmed from PubMed) and issue | |
+| P23 | Taylor et al. 2018 | 2018; PMID 30374683; DOI 10.1007/s40263-018-0578-5 | The **food-effect fold changes** quoted on the card (not confirmed) and the issue number | |
+| P24 | Phase 1 registry records | 2025; DOI 10.1186/ISRCTN25163383; https://clinicaltrials.gov/study/NCT07186283 | Registration dates on ClinicalTrials.gov and ISRCTN (the brief says "Registered 2025; exact registration date not available") | |
+
+**Order of work:**
+1. P8 (CANTOP-RCT), because it is the only unknown date shown in the brief.
+2. The cards whose notes say "not confirmed": NICE CG178, Epidyolex SmPC, Appiah-Kusi 2020, Perucca 2020, Taylor 2018, Fusar-Poli 2012 and 2013.
+3. Everything else.
+
+**Dates:** only dates read from a primary record will be added. Until then the brief keeps "Publication date not yet recorded" for CANTOP-RCT, and the Evidence library keeps "search-engine records".
+
+**Status:** not a blocker for NWPT-047. This release adds no source claims, and every unknown is labelled as unknown.
 
 When results come back, Claude:
 1. updates `content/references.json` and the source dates;

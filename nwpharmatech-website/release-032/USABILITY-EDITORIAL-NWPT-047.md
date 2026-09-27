@@ -144,8 +144,23 @@ This is commit `fda155b`, separate from the interface changes; see `records/SOUR
 ## 7. Outstanding issues
 
 1. **Monitored inbox: resolved (Filipp, 27 Sep 2026).** Filipp confirms that email to `team@nwpharmatech.com` is automatically forwarded to `filipp.korentsvit@nwpharmatech.com`. The handoff's destination is therefore monitored by the accountable owner. No site change was needed.
-2. **Primary-source verification (Web Boss).** 24 Evidence library cards remain checked against search-engine records only, and the CANTOP-RCT publication date is still unknown. Request: `records/SOURCE-METADATA-NWPT-047.md`.
-3. **Phone first screen.** At 390×844 the "Funding overview" quick link sits just below the first screen; the primary and secondary actions and "Research collaboration" are visible. Funding is also the third card in "Start here", directly below.
-4. **Phone agenda bar.** On the Work with us phone layout, the fixed "Your agenda" bar covers the bottom ~60px of content while scrolling. This is unchanged from production, and focused elements stay clear.
-5. **Intermittent axe finding.** One run of `test-programme-room.mjs` reported a target-size finding on a Programme Room copy-link in the no-JavaScript view at 1363px. It did not recur in the next two runs, and the page was not changed by this release.
+2. **Primary-source verification: open, not a blocker.**
+   - This release adds no source claims, and every unknown is labelled as unknown.
+   - The precise missing evidence per card is in `records/SOURCE-METADATA-NWPT-047.md` §2. CANTOP-RCT comes first: its publication month and year, DOI, and EME volume and issue from the NIHR Journals Library.
+   - Only dates read from a primary record will be added.
+3. **Phone Funding link at the fold: no change.** At 390×844 the "Funding overview" quick link starts at y=824, so its top edge shows at the fold. Clear routes remain:
+   - Menu → Funding → "Use of funds" (`funding-use.html`);
+   - the Funding card in "Start here", directly below the hero.
+4. **Phone agenda bar: defect confirmed and fixed (follow-up commit).**
+   - **Reproduced** at 390×844 and 360×640: at the end of Work with us, the footer's last line ("… Last reviewed 23 September 2026") ended 20px under the fixed "Your agenda" bar and could never be scrolled clear. The Privacy notice link above it stayed visible; focused controls were already clear.
+   - **Fix:** while the bar is shown, the footer gets extra bottom padding. The line now ends 52px above the bar.
+   - **Test:** a phone check that nothing is left under the bar at the end of the page. It fails without the fix and passes with it.
+   - **Stylesheet key:** `nwpt048`.
+5. **Programme Room accessibility finding: not a user-facing defect; harness corrected (follow-up commit).**
+   - **Element:** the "Link to this topic" copy-link for Formulation (`a.room-copy[href="#stage-formulation"]`), 44px tall.
+   - **Reproduced:** axe flags it only when the snapshot is taken with the link partly under the sticky header ("partially obscured … 155.4px by 10.2px"). It is not flagged when the link is fully visible or fully covered.
+   - **Cause:** the test scrolled back to the top with smooth scrolling and waited a fixed 200ms, so axe sometimes ran mid-scroll.
+   - **User impact checked directly:** keyboard focus on all six copy-links (Tab and Shift+Tab, with and without the page script, 1363px and 390px, scrolling settled) is never under the header. A mouse user scrolling past sees the link pass under the header like any other content.
+   - **Change:** the test's axe helper now scrolls instantly and waits for the scroll position to settle. No site change.
+   - **Verification limit:** axe is a snapshot of one scroll position; it cannot judge sticky-header overlap across all positions. That behaviour is covered by the keyboard-focus tests.
 6. **Legacy suites.** `test-menu.mjs` and `test-routes.mjs` target the older `public/` site. Against release-032 they give identical results on production `6e997dd` and on this candidate (menu 1 passed / 2 failed; routes 186 passed / 59 failed), so they are not evidence about this release.
