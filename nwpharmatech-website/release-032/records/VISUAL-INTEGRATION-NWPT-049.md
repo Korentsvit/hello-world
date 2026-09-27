@@ -2,7 +2,7 @@
 
 - **Base:** production `09492775653cda7bca4681b71103ef714eecad36` (deployment `aa482084-5cf2-47e8-b292-e239cd6bda3a`). The Manus handoff's own baseline references were not used.
 - **Branch:** `claude/nwpt-visual-integration` (separate from the Science release branch).
-- **Status:** preview only. Web Boss owns hosting; production publication follows preview review.
+- **Status:** published to production on 27 Sep 2026 as `5e926c8c592fcd8492e1fa2ff58a05ade7206d54` (see **Production publication** at the end). This SHA is the baseline for future website work.
 - **Unchanged:** enquiries remain disabled; privacy configuration unchanged.
 
 ## Receipt and checksums (27 Sep 2026)
@@ -115,3 +115,22 @@ New images go only into slots that had no imagery (the Science subpages). No exi
 - **Unchanged:** no image, layout or other page changed.
 - **Checks:** `tools/test-visuals.mjs` now also checks this caption.
 
+## Production publication (Web Boss, 27 Sep 2026)
+
+| Item | Value |
+|---|---|
+| Production SHA | `5e926c8c592fcd8492e1fa2ff58a05ade7206d54` |
+| Deployment ID | `b8788c49-3ddf-4f73-afe0-926321c125da` |
+| Deployed | 27 September 2026, 17:28:58 CEST |
+| Production URL | https://www.nwpharmatech.org |
+| Immutable URL | https://b8788c49.nwpt-preview.pages.dev |
+| Rollback deployment ID | `aa482084-5cf2-47e8-b292-e239cd6bda3a` (previous production `09492775653cda7bca4681b71103ef714eecad36`) |
+| Hosted checks | Preview gate 38/38 PASS; production verification PASS, including the readable phone caption and the three selected illustrations (reported by Web Boss) |
+
+- **Unchanged:** enquiries remain disabled; DNS, privacy and enquiry settings unchanged.
+- **Not tested:** Safari/iPhone.
+- **Out of scope:** the Funding/DAO files are byte-identical to the previous production and were outside this release's change scope.
+- **Not implemented:** the proposed Evidence library and Community replacements. The homepage video is retained.
+- **Baseline:** future website work starts from `5e926c8c592fcd8492e1fa2ff58a05ade7206d54`. This records-only commit is not deployed.
+
+This closes the visual-integration release (NWPT-049).
