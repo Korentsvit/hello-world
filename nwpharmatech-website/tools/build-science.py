@@ -15,7 +15,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "release-032"
 SITE = ROOT / "site"
-V = "nwpt049"
+V = "nwpt050"
 CANON = "https://www.nwpharmatech.org/"
 UPDATED = "27 September 2026"
 
@@ -176,15 +176,41 @@ def programme_note(pre):
         </div>'''
 
 
-def hero(eyebrow, h1, lede, current, pre):
+def hero(eyebrow, h1, lede, current, pre, fig=""):
     return f'''<header class="page-hero sci-hero">
       <div class="wrap">
         <p class="eyebrow">{eyebrow}</p>
         <h1>{h1}</h1>
         <p class="lede">{lede}</p>
-        {sci_nav(current, pre)}
+        {sci_nav(current, pre)}{fig}
       </div>
     </header>'''
+
+
+# ---------------------------------------------------------------- NWPT-049 illustrations (Manus web-ready pack, 27 Sep 2026)
+# Conceptual images only: every caption states what the image does not show. Selection and exclusions are recorded in
+# records/VISUAL-INTEGRATION-NWPT-049.md. Only the page's LCP image is eager; the rest load lazily.
+VIS = {
+    "uncertainty": dict(file="17-uncertainty-map", focal="78% 50%", kind="scene",
+        alt="An abstract dark landscape of glowing turquoise fibre clusters separated by unlit gaps, with a few amber points.",
+        cap="Conceptual illustration of open research questions. It is not an anatomical model and does not depict a treatment effect."),
+    "synapse": dict(file="07-synaptic-cleft-observatory", focal="80% 50%", kind="scene",
+        alt="Two long translucent membrane shapes face each other across a narrow gap holding two small signalling-molecule forms, in a bright room.",
+        cap="Conceptual illustration of signalling between cells. It is not a molecular model and does not show where any compound binds or what it does."),
+    "molecules": dict(file="01-cbd-thc-molecular-architecture", focal="50% 50%", kind="diagram",
+        alt="Two panels, CBD and delta-9-THC, each showing a two-dimensional structure and a three-dimensional ball-and-stick shape; both are labelled with the formula C21H30O2.",
+        cap="CBD and delta-9-THC drawn from their PubChem records (CID 644019 and 16078): two-dimensional structures with computed three-dimensional shapes. The shapes are illustrations, not receptor-bound poses, and say nothing about effects."),
+}
+
+
+def figure(key, pre, lcp=False):
+    v = VIS[key]
+    base = f"{pre}assets/visuals-049/{v['file']}"
+    load = 'loading="eager" fetchpriority="high"' if lcp else 'loading="lazy"'
+    sizes = "(max-width: 600px) calc(100vw - 2rem), 1040px" if v["kind"] == "diagram" else "(max-width: 600px) 160vw, 1040px"
+    return (f'<figure class="sci-figure sci-figure--{v["kind"]}"><img src="{base}-1600w.webp" srcset="{base}-640w.webp 640w, {base}-1600w.webp 1600w" '
+            f'sizes="{sizes}" width="1600" height="686" alt="{v["alt"]}" style="object-position: {v["focal"]};" {load} decoding="async" />'
+            f'<figcaption>{v["cap"]}</figcaption></figure>')
 
 
 def study_table(rows, caption, pre):
@@ -216,7 +242,7 @@ def page_psychiatry():
     body = f'''
     {hero("Science · Psychiatry &amp; evidence", "Understanding the clinical question",
           "Psychiatry studies mental health conditions, their causes, their effects on people’s lives and how care can help. This section focuses on psychosis and clinical high risk, the setting for NWPharmaTech’s current public research programme.",
-          "science/psychiatry.html", pre)}
+          "science/psychiatry.html", pre, fig=figure("uncertainty", pre, lcp=True))}
 
     <section class="section section-light" aria-labelledby="risk-title">
       <div class="wrap prose-measure">
@@ -309,6 +335,7 @@ def page_cannabinoids():
     <section class="section section-alt" aria-labelledby="ecs-title">
       <div class="wrap prose-measure">
         <h2 id="ecs-title">A signalling system already present in the body</h2>
+        {figure("synapse", pre)}
         <p>The body produces signalling molecules called endocannabinoids, including anandamide and 2-AG. The endocannabinoid system includes these molecules, receptors such as CB1 and CB2, and enzymes involved in making and breaking down the signals. {cites("health-canada-hcp-2018", pre=pre)}</p>
         <p>In cell experiments, THC and 2-AG both activated CB1 signalling, and CBD reduced that signalling. {cites("laprairie-2015", pre=pre)} A laboratory mechanism is a reason to investigate, not evidence that adding a cannabinoid will improve health or correct a deficiency.</p>
       </div>
@@ -391,6 +418,7 @@ def page_cbd_thc():
           <h2 id="distinct-title">Two distinct compounds</h2>
           <p>THC and CBD are distinct compounds. In cell experiments THC activates the cannabinoid receptor CB1, and in experiments in people it impaired memory and produced temporary psychotic symptoms. CBD has different pharmacology and does not produce the THC-like high. They are not simple opposites. {c("laprairie-2015", "englund-2013", "englund-2023", "health-canada-about-cannabis")}</p>
         </div>
+        {figure("molecules", pre)}
         <div class="sci-compare" data-sci-tabs="Compare THC and CBD">
           {panels}
         </div>
