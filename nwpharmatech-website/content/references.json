@@ -161,7 +161,7 @@
       "published": "12 February 2014",
       "last_updated": "4 September 2026",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Matches quoted recommendations (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Partly confirmed. 'Offer individual CBT with or without family intervention' matches the quoted recommendation; 'do not offer antipsychotic medication to people considered to be at increased risk' matches the quoted text, but the card's further limb 'or to reduce the risk of or prevent psychosis' is beyond the passage quoted (truncated with an ellipsis). Recommendation numbers 1.2.3.1 and 1.2.3.2 are as cited by Filipp and are not stated in Web Boss's note (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "nice-cg155",
@@ -184,14 +184,14 @@
       "population": "Children and young people considered at increased risk",
       "product": "Not applicable",
       "design": "National clinical guideline (updated 2016)",
-      "finding": "Consider individual CBT with or without family intervention. Do not offer antipsychotic medication for this purpose.",
+      "finding": "For children and young people considered at increased risk of psychosis, consider individual CBT with or without family intervention (recommendation 1.2.5). Do not offer antipsychotic medication with the aim of decreasing the risk of psychosis (recommendation 1.2.6).",
       "limitations": "Applies in England; guidance differs elsewhere.",
       "verification": "index",
       "notes": "Published 23 January 2013; last updated 26 October 2016; last reviewed 19 September 2024 (NICE guidance page, per Web Boss, 27 Sep 2026).",
       "published": "23 January 2013",
       "last_updated": "26 October 2016",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Matches recommendations 1.2.5 and 1.2.6 in substance; 'for this purpose' paraphrases 1.2.6 (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Matches recommendations 1.2.5 (CBT) and 1.2.6 (antipsychotics 'with the aim of decreasing the risk of psychosis'), both quoted from the NICE recommendations page (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "epidyolex-smpc",
@@ -214,13 +214,13 @@
       "population": "Patients with Lennox-Gastaut syndrome, Dravet syndrome or tuberous sclerosis complex",
       "product": "Epidyolex (a different cannabidiol medicine)",
       "design": "Regulatory product information",
-      "finding": "Licensed CBD medicine for certain severe epilepsies. Side effects include sleepiness and raised liver enzymes (especially with valproate); interacts with clobazam.",
+      "finding": "The UK product information lists Epidyolex as an add-on treatment for seizures associated with Lennox–Gastaut or Dravet syndrome, together with clobazam, and for seizures associated with tuberous sclerosis complex, in patients aged 2 years and older. Its side effects include sleepiness and raised liver enzymes (especially with valproate); interacts with clobazam.",
       "limitations": "Epilepsy populations at higher doses per kg; not evidence about psychosis.",
       "verification": "index",
       "revised": "8 June 2026",
       "notes": "Date of revision of the text 8 June 2026; emc page last updated 18 June 2026 (per Web Boss, 27 Sep 2026).",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Adverse effects and interactions supported by SmPC text; indications paraphrased ('certain severe epilepsies'; SmPC 4.1 names LGS, Dravet syndrome and TSC) (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Indications match quoted SmPC section 4.1; adverse effects and interactions supported by SmPC text. About Epidyolex only; not an authorisation for NWPT-SM32300 (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "devinsky-2017",
@@ -494,7 +494,7 @@
       "result": "descriptive",
       "public": true,
       "short": "Phase 1 registry records",
-      "authors": "NWPharmaTech Ltd (sponsor)",
+      "authors": "NW PharmaTech Ltd (sponsor)",
       "title": "A Phase 1 study to assess the safety and pharmacokinetics of novel cannabidiol (CBD) soft-gel capsule formulation (NW300EMCBD) in healthy subjects",
       "journal": "ClinicalTrials.gov NCT07186283; ISRCTN25163383",
       "year": 2025,
@@ -511,7 +511,8 @@
       "limitations": "Healthy volunteers, single doses: measures absorption and short-term tolerability, not effectiveness in clinical high risk of psychosis.",
       "verification": "registry-index",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Completion 10 December 2025 and no posted results confirmed (ClinicalTrials.gov API) (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Completion 10 December 2025 and no posted results confirmed (ClinicalTrials.gov API) (Web Boss, 27 Sep 2026). Not scientific sign-off.",
+      "notes": "Registry-derived citation fields use the registry spelling 'NW PharmaTech Ltd' (ClinicalTrials.gov leadSponsor; ISRCTN 'NW PharmaTech'), per Filipp 27 Sep 2026. Transcription only; company branding and sponsor roles elsewhere unchanged."
     },
     {
       "id": "salazar-prev-2021",

@@ -21,8 +21,8 @@ In `content/references.json` each item now carries `metadata_check` and `finding
 |---|---|---|---|---|
 | P1 | Fusar-Poli et al. 2013 | Primary record checked | None needed | Not confirmed: the card's finding is a paraphrase, not a contiguous passage of the abstract |
 | P2 | Salazar de Pablo et al. 2021 (prevalence) | Primary record checked | Authors after the first: Woods SW, Drymonitou G, de Diego H, Fusar-Poli P | Matches quoted primary text (PMC) |
-| P3 | NICE CG178 | Primary record checked | Published 12 February 2014; last updated 4 September 2026 | Matches quoted recommendations |
-| P4 | NICE CG155 | Primary record checked | Published 23 January 2013; last updated 26 October 2016 (last reviewed 19 September 2024, recorded internally) | Matches recommendations 1.2.5 and 1.2.6 in substance; 'for this purpose' paraphrases 1.2.6 |
+| P3 | NICE CG178 | Primary record checked | Published 12 February 2014; last updated 4 September 2026 | Partly confirmed (see P3 above) |
+| P4 | NICE CG155 | Primary record checked | Published 23 January 2013; last updated 26 October 2016 (last reviewed 19 September 2024, recorded internally) | Matches quoted recommendations 1.2.5 and 1.2.6; card reworded to 1.2.6 wording (Filipp decision 2) |
 | P5 | Addington et al. 2011 | Primary record checked | None needed | Consistent with abstract conclusions (paraphrase) |
 | P6 | Fusar-Poli et al. 2012 | Primary record checked | PMID 22393215; DOI 10.1001/archgenpsychiatry.2011.1472 | Matches quoted abstract figures (18%, 22%, 29%, 36%) |
 | P7 | Salazar de Pablo et al. 2021 | Primary record checked | None needed | Matches quoted primary text |
@@ -30,7 +30,7 @@ In `content/references.json` each item now carries `metadata_check` and `finding
 | P9 | Stafford et al. 2013 | Primary record checked | None needed | Matches quoted abstract (RR 0.54; not conclusive) |
 | P10 | Davies et al. 2018 | Primary record checked | None needed | Matches quoted abstract |
 | P11 | Kane et al. 2016 | Primary record checked | None needed | Matches quoted abstract |
-| P12 | Epidyolex SmPC | Primary record checked | Date of revision of the text 8 June 2026 (emc page last updated 18 June 2026) | Adverse effects and interactions supported by SmPC text; indications paraphrased ('certain severe epilepsies'; SmPC 4.1 names LGS, Dravet syndrome and TSC) |
+| P12 | Epidyolex SmPC | Primary record checked | Date of revision of the text 8 June 2026 (emc page last updated 18 June 2026) | Indications match quoted SmPC 4.1 (card reworded, Filipp decision 3); adverse effects and interactions supported |
 | P13 | Devinsky et al. 2017 | Primary record checked | Pages 2011-2020 (P13) | Matches quoted abstract results |
 | P14 | Di Forti et al. 2019 | Primary record checked | Pages 427-436 (P14) | Consistent with abstract framing; odds ratios not quoted |
 | P15 | Bhattacharyya et al. 2010 | Primary record checked | PMID 19924114; issue 3 | Consistent with abstract (not quoted) |
@@ -42,7 +42,7 @@ In `content/references.json` each item now carries `metadata_check` and `finding
 | P21 | Bhattacharyya et al. 2024 | Primary record checked | None needed | Matches quoted article text (Europe PMC PDF) |
 | P22 | Perucca and Bialer 2020 | Primary record checked | PMID 32504461; issue 8 | Matches quoted text (about 6%; fourfold with high-fat meal) |
 | P23 | Taylor et al. 2018 | Primary record checked | Issue 11 | Partly: food effect supported; exact fold changes not confirmed |
-| P24 | Phase 1 registry records | Primary record checked | None needed | Completion 10 December 2025 and no posted results confirmed (ClinicalTrials.gov API) |
+| P24 | Phase 1 registry records | Primary record checked | None needed | Completion 10 December 2025 and no posted results confirmed (ClinicalTrials.gov API); sponsor transcribed as NW PharmaTech Ltd (decision 5) |
 
 **Where the corrections were applied:**
 - the Evidence library source lines;
@@ -52,21 +52,30 @@ In `content/references.json` each item now carries `metadata_check` and `finding
 
 The Evidence library's 18 "et al.." and one "Bialer M.." (doubled full stop) are also fixed.
 
-## Substantive wording: proposed for Filipp's review (NOT applied)
+## Filipp's decisions (27 Sep 2026), applied in the follow-up commit
 
-1. **Evidence library verification sentence.**
-   - **Now:** "Last checked: 23 September 2026. Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages."
-   - **Proposed:** "Last checked: 27 September 2026. Bibliographic details of every entry were checked against primary records (publisher and PubMed records, NICE, the medicines compendium and trial registries). Findings are summaries of those sources; they are not a clinical recommendation."
-   - **Why not applied:** it changes a public verification claim. The sentence should not claim that every finding was checked, because P1, P16, P18 and P23 are not fully confirmed.
-2. **P4 NICE CG155 finding.**
-   - **Now:** "Consider individual CBT with or without family intervention. Do not offer antipsychotic medication for this purpose."
-   - **Proposed, closer to NICE 1.2.6:** "Consider individual CBT with or without family intervention. Do not offer antipsychotic medication with the aim of decreasing the risk of psychosis."
-3. **P12 Epidyolex finding.**
-   - **Now:** "Licensed CBD medicine for certain severe epilepsies. …"
-   - **Proposed, per SmPC 4.1:** "Licensed CBD medicine for seizures associated with Lennox-Gastaut syndrome or Dravet syndrome (with clobazam) and tuberous sclerosis complex, from 2 years of age. …" The rest of the sentence is unchanged.
-4. **P1 Fusar-Poli 2013 finding** ("Describes how the high-risk state is defined and assessed, including attenuated psychotic symptoms and brief limited intermittent psychotic symptoms."). This is a paraphrase, not a contiguous passage of the abstract. Proposed: keep it as a paraphrase; it already reads as a description. The existing internal note stays: "genetic-risk-with-deterioration wording not confirmed".
-5. **P24 sponsor spelling in the citation exports.** The registries give "NW PharmaTech Ltd" (ClinicalTrials.gov) and "NW PharmaTech" (ISRCTN); the exports say "NWPharmaTech Ltd (sponsor)". Filipp to decide whether citations should use the registry spelling. The public card is unchanged.
-6. **P23 Taylor 2018 title.** Web Boss reports that the PubMed title includes "Pharmacokinetics" and "Tolerability" wording that differs slightly from ours. He did not supply the exact PubMed title, so no change was made; exact wording is needed from him.
+1. **Evidence library verification sentence: applied.**
+   - **Now reads:** "Bibliographic details were checked against primary publication, guideline, product-information or registry records on 27 September 2026. Checks of the findings summarised below remain incomplete for some entries. These checks do not constitute independent scientific validation."
+   - **Replaces:** "Last checked: 23 September 2026. Bibliographic details and quoted findings were checked against search-engine records…".
+   - **Records:** per-card scope and attribution stay in this record and in `references.json` (`metadata_check`, `finding_check`).
+2. **P4 NICE CG155: applied.** The finding now reads: "For children and young people considered at increased risk of psychosis, consider individual CBT with or without family intervention (recommendation 1.2.5). Do not offer antipsychotic medication with the aim of decreasing the risk of psychosis (recommendation 1.2.6)." Both recommendation texts are as quoted by Web Boss from the NICE page.
+3. **P12 Epidyolex: applied.** The finding now reads: "The UK product information lists Epidyolex as an add-on treatment for seizures associated with Lennox–Gastaut or Dravet syndrome, together with clobazam, and for seizures associated with tuberous sclerosis complex, in patients aged 2 years and older. Its side effects include sleepiness and raised liver enzymes (especially with valproate); interacts with clobazam."
+   - The card's existing Product ("Epidyolex (a different cannabidiol medicine)") and Limitations ("…not evidence about psychosis") are unchanged.
+   - Nothing implies this authorisation applies to NWPT-SM32300.
+4. **P1: no change.** The paraphrase is kept, with no quotation marks. Its finding check stays "not confirmed", and the genetic-risk check stays open.
+5. **P24: applied.** The registry-derived citation fields use "NW PharmaTech Ltd (sponsor)": the Evidence library source line, `references.json` authors, BibTeX and RIS. This is transcription only. Company branding and sponsor roles elsewhere are unchanged.
+6. **P23: no change.** The exact published title has been requested from Web Boss (below). The food-effect figures stay unverified.
+
+**P3 NICE CG178: checked against the passages Web Boss quoted.** The recommendation numbers are those Filipp cited (1.2.3.1 psychological interventions; 1.2.3.2 antipsychotics for prevention). Web Boss's note does not state numbers, and Claude cannot open NICE from here (proxy blocked).
+- **Card sentence 1:** "Offer individual CBT, with or without family intervention." This **matches** the quoted "offer individual cognitive behavioural therapy (CBT) with or without family intervention" (cited as 1.2.3.1).
+- **Card sentence 2:** "Do not offer antipsychotic medication to people at increased risk or to reduce the risk of or prevent psychosis." The part **"to people at increased risk" matches** the quoted "Do not offer antipsychotic medication: to people considered to be at increased risk of developing psychosis …" (cited as 1.2.3.2). The part **"or to reduce the risk of or prevent psychosis" is not supported** by the quoted text, which ends with an ellipsis.
+- **Status:** partly confirmed. No wording change. The full text of 1.2.3.2 is needed from Web Boss.
+
+## Requests to Web Boss (next pass)
+- **P23 Taylor et al. 2018:** the exact published title as on PubMed or the journal (the one held differs in its "pharmacokinetics"/"tolerability" wording), and the food-effect fold changes with their page or table.
+- **P3 CG178:** the full text of recommendation 1.2.3.2 (the part after "to people considered to be at increased risk of developing psychosis"), and confirmation of the numbers 1.2.3.1 and 1.2.3.2 on the NICE page.
+- **P16 McGuire 2018 and P18 Boggs 2018:** the symptom and cognition results from the full papers, with pages.
+- **P1 Fusar-Poli 2013:** whether the paper states genetic risk with deterioration as a criterion (passage and page).
 
 ## Still open (evidence needed)
 - **P16 McGuire 2018 and P18 Boggs 2018:** findings need the full text.
