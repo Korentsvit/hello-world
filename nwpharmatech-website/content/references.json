@@ -426,10 +426,11 @@
       "label": "none",
       "result": "not-conducted",
       "public": true,
-      "short": "CANTOP-RCT report",
-      "authors": "NIHR Efficacy and Mechanism Evaluation programme",
-      "title": "CANTOP-RCT: cannabidiol for people at clinical high risk of psychosis (study report)",
-      "journal": "Efficacy and Mechanism Evaluation (NIHR Journals Library)",
+      "short": "Bhattacharyya et al. (CANTOP-RCT report)",
+      "authors": "Bhattacharyya S, Davies C, Carter B, McGuire P, Brammer M, Fusar-Poli P, Broome M, Watson S, Perez J, Yung A",
+      "title": "Cannabidiol as a treatment for patients who are clinically at high risk of developing psychosis: learnings from the CANTOP-RCT",
+      "journal": "Efficacy and Mechanism Evaluation",
+      "publisher": "NIHR Journals Library",
       "year": 2026,
       "volume": "13",
       "issue": "7",
@@ -444,7 +445,7 @@
       "finding": "The trial was funded but did not start because the study medicine could not be supplied. It produced no efficacy results.",
       "limitations": "Not an efficacy finding, and not the NWPharmaTech Phase 2B study. Included because it explains why a larger trial is still missing.",
       "verification": "index",
-      "notes": "Bibliographic metadata only (published March 2025; recommended citation Efficacy Mech Eval 2026;13(7):197-214; DOI; PMID) confirmed from the official NIHR PDF, NCBI E-utilities and Crossref by Web Boss, 27 Sep 2026 (release-032/records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md). 'year' is the journal citation year, not the publication month. The quoted finding was not checked. The held title is descriptive; the published title is 'Cannabidiol as a treatment for patients who are clinically at high risk of developing psychosis: learnings from the CANTOP-RCT'."
+      "notes": "Bibliographic metadata only (published March 2025; recommended citation Efficacy Mech Eval 2026;13(7):197-214; DOI; PMID) confirmed from the official NIHR PDF, NCBI E-utilities and Crossref by Web Boss, 27 Sep 2026 (release-032/records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md). 'year' is the journal citation year, not the publication month. The quoted finding was not checked. Title and named authors (in the documented order) are taken from the same note."
     },
     {
       "id": "nct07186283",

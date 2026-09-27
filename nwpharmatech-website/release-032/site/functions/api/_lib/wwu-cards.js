@@ -284,7 +284,7 @@ export const WWU = {
    ],
    "refs": [
     [
-     "CANTOP-RCT study report, NIHR Journals Library",
+     "Bhattacharyya S, Davies C, et al. — Cannabidiol as a treatment for patients who are clinically at high risk of developing psychosis: learnings from the CANTOP-RCT, NIHR Journals Library",
      "https://www.nwpharmatech.org/evidence#ref-cantop"
     ]
    ]

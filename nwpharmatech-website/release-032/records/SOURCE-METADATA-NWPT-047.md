@@ -34,7 +34,7 @@ The Evidence library wording is **unchanged**: "Bibliographic details and quoted
 | P5 | Addington et al. 2011 | 2011; PMID 21498462; DOI 10.1176/appi.ajp.2011.10081191 | Standard check only | |
 | P6 | Fusar-Poli et al. 2012 | 2012 | **DOI and PMID** (not held); confirm journal, volume and pages | |
 | P7 | Salazar de Pablo et al. 2021 | 2021; PMID 34259821; DOI 10.1001/jamapsychiatry.2021.0830 | Standard check only | |
-| P8 | CANTOP-RCT report | PMID 40096425 | **Publication date (month and year)**, report DOI, and NIHR Journals Library series, volume and issue (EME programme), from the NIHR Journals Library report page; confirm the PubMed 40096425 record matches. This is the only date shown as unknown in the brief | **Metadata: confirmed; card check open.** Web Boss evidence note, 27 Sep 2026 (`records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md`), from the official NIHR PDF, NCBI E-utilities (PubMed XML) and Crossref. **Published:** March 2025. **Recommended citation on the current PDF:** Efficacy Mech Eval 2026;13(7):197–214. **DOI:** 10.3310/YNFH9826. **PMID:** 40096425. **Not done:** the quoted finding ("funded but did not start because the study medicine could not be supplied") was not checked. **Title mismatch:** the card's title is descriptive, not the published title (see §3). The PubMed and NIHR web pages themselves could not be opened (reCAPTCHA / 403) |
+| P8 | CANTOP-RCT report | PMID 40096425 | **Publication date (month and year)**, report DOI, and NIHR Journals Library series, volume and issue (EME programme), from the NIHR Journals Library report page; confirm the PubMed 40096425 record matches. This is the only date shown as unknown in the brief | **Metadata: confirmed; card check open.** Web Boss evidence note, 27 Sep 2026 (`records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md`), from the official NIHR PDF, NCBI E-utilities (PubMed XML) and Crossref. **Published:** March 2025. **Recommended citation on the current PDF:** Efficacy Mech Eval 2026;13(7):197–214. **DOI:** 10.3310/YNFH9826. **PMID:** 40096425. **Not done:** the quoted finding ("funded but did not start because the study medicine could not be supplied") was not checked. **Title and authors:** corrected to the published title and named authors (see §3). The PubMed and NIHR web pages themselves could not be opened (reCAPTCHA / 403) |
 | P9 | Stafford et al. 2013 | 2013; PMID 23335473; DOI 10.1136/bmj.f185 | Issue number (not held) | |
 | P10 | Davies et al. 2018 | 2018; PMID 29856551; DOI 10.1002/wps.20526 | Standard check only | |
 | P11 | Kane et al. 2016 | 2016; PMID 26481174; DOI 10.1176/appi.ajp.2015.15050632 | Standard check only | |
@@ -94,4 +94,12 @@ The publication month and the journal citation year are recorded as **separate f
 - the Evidence library "search-engine records" sentence, because only one card has had its metadata checked;
 - P1–P24 statuses, apart from the P8, P1 and P21 notes above.
 
-**Open for Filipp:** the card's title, "CANTOP-RCT: cannabidiol for people at clinical high risk of psychosis (study report)", is descriptive. The published title is "Cannabidiol as a treatment for patients who are clinically at high risk of developing psychosis: learnings from the CANTOP-RCT". The published authors are named individuals (Bhattacharyya S, Davies C, Carter B, et al.), not the programme. This update does not change the title or authors; that is an editorial decision.
+**Title and authors corrected (27 Sep 2026, at Filipp's instruction; follow-up commit):**
+- **Published title everywhere:** "Cannabidiol as a treatment for patients who are clinically at high risk of developing psychosis: learnings from the CANTOP-RCT". This covers the Evidence library card heading and citation, the Programme Room source, the generated brief, `content/references.json`, BibTeX and RIS.
+- **Named authors in the documented order:** Bhattacharyya S, Davies C, Carter B, McGuire P, Brammer M, Fusar-Poli P, Broome M, Watson S, Perez J, Yung A.
+  - Displayed as "Bhattacharyya S, Davies C, et al.";
+  - the full list is in `references.json`, BibTeX and RIS.
+- **Publisher:** NIHR Journals Library. The journal is Efficacy and Mechanism Evaluation.
+- **BibTeX and RIS:** now typed as a journal article.
+- **Dates:** "Published March 2025" stays separate from the citation year 2026.
+- **Finding:** the card's substantive finding remains **unverified** until checked against the report.
