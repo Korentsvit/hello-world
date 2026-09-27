@@ -1,6 +1,8 @@
 # Enquiry activation handoff: "Explore a research collaboration"
 
-**Status:** online enquiries are **disabled** on production (`6affabafe67ea049e732f6e15f16df16823cbb93`). They stay disabled until the section 2 decisions are made, section 3 is configured on the preview and section 4 has passed. No redeployment is requested now.
+**Status:** online enquiries are **disabled** on production (`6e997ddf02513bbb23a909f24f676e4e776b8272`, deployment `0b58051d-59cf-4caf-b6a4-0b9184b4803e`, 27 Sep 2026).
+
+**Privacy candidate base:** the final privacy candidate is built on the latest production baseline, with `bfbf132`'s privacy changes merged in (a trial merge onto `6e997dd` is clean and keeps the homepage shortcuts and focus fix). A branch based only on `bfbf132` must not be deployed. They stay disabled until the section 2 decisions are made, section 3 is configured on the preview and section 4 has passed. No redeployment is requested now.
 
 **27 Sep 2026 update:**
 - **Web Boss setup (Web Boss report):**
@@ -67,7 +69,7 @@ Web Boss confirmed these through the company Resend API, the Cloudflare Pages AP
 | W5 | Resend idempotency-key retention | Not reported | — |
 | W6 | Turnstile | **Partly confirmed (provider docs)** | The Turnstile Privacy Addendum applies. Per Cloudflare's Turnstile docs, Turnstile does not access form field contents. A fixed Turnstile retention period was **not found**. Cloudflare's controller or processor role was not reported |
 | W7 | Cloudflare transfers and localisation | **Partly confirmed** | A Cloudflare Customer DPA is available (v6.4, 3 Apr 2026). The transfer mechanism and any account localisation setting were not reported |
-| W8 | Workers Logs / Logpush | **Partly confirmed (account setting)** | On the **preview** project's Pages workers (production and preview slots): `logpush: false`, no tail consumers. **Unknown:** account-wide Logpush jobs and Workers Observability (API 403), and the production Pages project |
+| W8 | Workers Logs / Logpush | **Partly checked (account setting)** | On the **preview** project's Pages workers (production and preview slots): `logpush: false` and no tail consumers found. This shows Logpush is off and no tail consumer is attached; it does **not** show that all logging is disabled. **Unknown:** account-wide Logpush jobs and Workers Observability (API 403), and the production Pages project |
 | W9 | Mailbox host for `nwpharmatech.com` | Not reported | — |
 | W10 | Section 4 results | Reported above | URL privacy and the other rows marked "Not reported" remain open |
 

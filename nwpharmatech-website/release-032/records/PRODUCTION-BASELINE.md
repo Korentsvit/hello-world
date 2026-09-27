@@ -1,4 +1,27 @@
-# Production baseline (recorded 26 September 2026)
+# Production baseline (recorded 27 September 2026)
+
+Web Boss has published the homepage discoverability release (NWPT-046) to production (www.nwpharmatech.org).
+
+| Item | Value |
+|---|---|
+| Commit | `6e997ddf02513bbb23a909f24f676e4e776b8272` (branch `claude/nwpt-homepage-discoverability`) |
+| Cloudflare deployment | `0b58051d-59cf-4caf-b6a4-0b9184b4803e` |
+| Rollback deployment | Not supplied with this record. The previous production deployment was `af37bb7e-62aa-41f8-94da-3ee71694ec51` (`6affaba`) |
+| Deployed directory | `nwpharmatech-website/release-032/site` |
+| Hosting owner | Web Boss |
+
+**Contents:** everything in `6affaba` (below), plus:
+- the homepage hero quick links and the "Explore the programme in depth" band (Programme Room, Work with us, Funding overview);
+- the homepage sticky-header keyboard-focus fix;
+- stylesheet key `nwpt046`.
+
+Record: `HOMEPAGE-DISCOVERABILITY-NWPT-046.md`.
+
+**Not in this baseline:** online enquiries (disabled; `/api/enquiry` unconfigured) and privacy Part B. The final privacy candidate must be built on this commit, not on `bfbf132` alone.
+
+---
+
+# Previous baseline (recorded 26 September 2026)
 
 Web Boss has confirmed that NWPT-044 is live on production (www.nwpharmatech.org).
 

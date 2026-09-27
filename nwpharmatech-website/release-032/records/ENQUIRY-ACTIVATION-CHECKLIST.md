@@ -2,7 +2,7 @@
 
 > **Summary for action:** `ENQUIRY-ACTIVATION-HANDOFF.md` records what is settled (the recipient, the public wording "the NWPharmaTech team", roles, no response-time promise) and what remains (email service account, sender, retention, lawful basis, data location). This checklist keeps the detail.
 
-Status: **online enquiries disabled** on production (`6affaba`). Nothing below is switched on. This checklist is for the decision to enable the form.
+Status: **online enquiries disabled** on production (`6e997dd`, from 27 Sep 2026; previously `6affaba`). Nothing below is switched on. This checklist is for the decision to enable the form.
 
 ## A. Already built (in production, dormant)
 
