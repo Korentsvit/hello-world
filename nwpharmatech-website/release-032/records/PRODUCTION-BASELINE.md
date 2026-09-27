@@ -1,3 +1,30 @@
+# Production baseline (recorded 27 September 2026, third update)
+
+Web Boss confirms that `db61de4` is live on production (www.nwpharmatech.org). Hosted checks passed for the Evidence library card, its citation, and the BibTeX and RIS downloads against the published Taylor 2018 title.
+
+| Item | Value |
+|---|---|
+| Commit | `db61de444c3785cda56076a54066835e6a6f4a86` (branch `claude/nwpt-p23-title`) |
+| Cloudflare deployment | `45620d96-71a8-41de-a334-9b2d8397afe7` |
+| Rollback deployment | `c4c07824-1b18-4a18-a3c7-8d1dc72afa44` (the previous production, `91de637`) |
+| Deployed directory | `nwpharmatech-website/release-032/site` |
+| Hosting owner | Web Boss |
+
+**Contents:** everything in `91de637` (below), plus the **P23 title correction (published)**. Taylor et al. 2018 is now cited by its published title in the Evidence library card heading and citation, `references.json`, BibTeX and RIS.
+
+**Not published:** `d7f5dd5` (the superseded P3 CG178 trim). It stays unpublished; the live CG178 wording is supported by recommendations 1.2.3.1 and 1.2.3.2.
+
+**Evidence dispositions:** as recorded in `20d9914` (`records/SOURCE-VERIFICATION-P1-P24-2026-09-27.md` on `claude/nwpt-reference-corrections`).
+
+**Limits:**
+- P16 and P18 are supported at abstract level only.
+- Safari/iPhone remains untested.
+- These checks are not independent scientific sign-off.
+
+**Enquiries:** online enquiries remain **disabled**. Privacy Part B is not included.
+
+---
+
 # Production baseline (recorded 27 September 2026, second update)
 
 Web Boss confirms that `91de637` is live on production (www.nwpharmatech.org), with the hosted checks passed.
