@@ -1,6 +1,6 @@
 # Internal source register: open evidence and verification
 
-Internal; not published. Recorded once here; the other records point to this file. Updated 26 September 2026.
+Internal; not published. Recorded once here; the other records point to this file. Updated 27 September 2026.
 
 ## Claims kept in their current approved wording, with source evidence missing
 
@@ -19,3 +19,5 @@ Internal; not published. Recorded once here; the other records point to this fil
 | V4 | Date the transition-figure correction became public | **Confirmed: 26 September 2026.** The logs' date stands | Cloudflare `created_on` for the NWPT-035 production deployment `c3e85514-2052-4b89-b5e8-9032efd20a4d`: **2026-09-26T16:13:19.433042Z** (17:13:19 BST / 18:13:19 CEST), confirmed by Web PR (Grok) on 26 Sep 2026. The Git commit time is not used as evidence |
 | V5 | Urgent-help contacts (FAQ, linked from the family guide) | Verified 26 Sep 2026 | Official-domain search results: england.nhs.uk and gov.wales (111 option 2); nhs24.scot (111 mental health hub); nidirect.gov.uk and publichealth.hscni.net (Lifeline 0808 808 8000); samaritans.org (116 123); samaritans.org and NHS pages (Shout 85258); pieta.ie (1800 247 247, text HELP to 51444); hse.ie (112/999); samhsa.gov, fcc.gov and 988lifeline.org (988 call or text). Re-check immediately before each production publication |
 | V6 | Team portraits (7) | Authorised | Supplied and authorised by Filipp from the labelled corporate deck. No source mismatch found (the deck itself is not held here) |
+| V7 | CANTOP-RCT study report: publication date | **Not recorded** (27 Sep 2026) | No year held in any source record; the brief says "Publication date not yet recorded". Primary-source check requested from Web Boss: `records/SOURCE-METADATA-NWPT-047.md` (P8) |
+| V8 | Evidence library (24 cards): bibliographic details and quoted findings | Checked against **search-engine records** only (23 Sep 2026) | Primary-source verification requested from Web Boss, per card: `records/SOURCE-METADATA-NWPT-047.md` |

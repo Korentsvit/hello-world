@@ -114,7 +114,7 @@
       "image": {"src": "assets/filipp-032/programme-pipeline-flow", "sizes": [[768, 432], [1200, 675]], "focal": "50% 50%", "alt": "Conceptual programme pipeline from cylinder through gates to a laboratory motif.", "caption": "Conceptual illustration of a development sequence — not evidence that any gate is completed."},
       "sources": [
         {"title": "Study progress — Phase 2B protocol finalisation (in progress)", "page": "study.html#milestones", "about": "nwpt", "type": "company", "dates": [["Record date", "23 February 2026 (as reported)"], ["Website page reviewed", "23 September 2026"]], "limit": "Company record; not published."},
-        {"title": "Public study synopsis", "page": "resources/public-synopsis.html", "about": "nwpt", "type": "company", "dates": [["Source date", "Not available"], ["Website page reviewed", "21 September 2026"]], "limit": "An overview, not a locked protocol."}
+        {"title": "Public study synopsis", "page": "resources/public-synopsis.html", "about": "nwpt", "type": "company", "dates": [["Source date", "No separate issue date (company web page)"], ["Website page reviewed", "21 September 2026"]], "limit": "An overview, not a locked protocol."}
       ]
     },
     {
@@ -133,7 +133,7 @@
       "image": {"src": "assets/manus/05-research-network", "sizes": [[768, 432], [1200, 675]], "focal": "70% 50%", "alt": "Three abstract research networks around a shared centre.", "caption": "Conceptual research-network illustration — does not depict participating sites or institutional endorsement."},
       "sources": [
         {"title": "Study progress — current stage, aims and oversight", "page": "study.html#sum-h", "about": "nwpt", "type": "company", "dates": [["Source date", "NWPharmaTech, September 2026"], ["Website page reviewed", "23 September 2026"]], "limit": "Phase 2B oversight arrangements not yet published."},
-        {"title": "CANTOP-RCT study report, NIHR Journals Library", "library": "evidence.html#ref-cantop", "original": [["PubMed", "https://pubmed.ncbi.nlm.nih.gov/40096425/"]], "about": "other-cbd", "type": "published", "assessment": "Not conducted", "dates": [["Source date", "Not available"]], "limit": "Produced no efficacy results; included to explain why a larger trial is still missing."},
+        {"title": "CANTOP-RCT study report, NIHR Journals Library", "library": "evidence.html#ref-cantop", "original": [["PubMed", "https://pubmed.ncbi.nlm.nih.gov/40096425/"]], "about": "other-cbd", "type": "published", "assessment": "Not conducted", "dates": [["Source date", "Publication date not yet recorded; to be checked against the NIHR Journals Library record"]], "limit": "Produced no efficacy results; included to explain why a larger trial is still missing."},
         {"title": "Bhattacharyya et al. — 21-day symptom study of another CBD product in clinical high risk, World Psychiatry", "library": "evidence.html#ref-bhattacharyya-2024", "original": [["DOI", "https://doi.org/10.1002/wps.21253"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/39279373/"]], "about": "other-cbd", "type": "published", "assessment": "Emerging evidence", "dates": [["Source date", "Published 2024"]], "limit": "Very small, three weeks, short-letter format; not yet confirmed in a larger trial."}
       ]
     },
@@ -149,7 +149,7 @@
       "further": "An adequately powered trial with long follow-up, if prevention were pursued as a primary objective. Positive results on symptoms would not, by themselves, show prevention.",
       "sources": [
         {"title": "Davies et al. — no preventive intervention shown to be better than others, World Psychiatry", "library": "evidence.html#ref-davies-2018", "original": [["DOI", "https://doi.org/10.1002/wps.20526"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/29856551/"]], "about": "field", "type": "published", "assessment": "Established; inconclusive result", "dates": [["Source date", "Published 2018"]], "limit": "Few, small trials per intervention."},
-        {"title": "Science — what is known and what remains open", "page": "science.html#investigating", "about": "nwpt", "type": "company", "dates": [["Source date", "Not available"], ["Website page reviewed", "Not shown on the page"]], "limit": "Summarises the questions; not a result."}
+        {"title": "Science — what is known and what remains open", "page": "science.html#investigating", "about": "nwpt", "type": "company", "dates": [["Source date", "No separate issue date (company web page)"], ["Website page last updated", "22 September 2026 (site map record; no review date is shown on the page)"]], "limit": "Summarises the questions; not a result."}
       ]
     }
   ],

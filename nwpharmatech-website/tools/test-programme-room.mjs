@@ -21,7 +21,7 @@ const visible = (pg) => pg.evaluate(() => [...document.querySelectorAll("[data-s
 const imagesLoad = (pg, sel) => pg.evaluate(async (sel) => { const out = []; for (const i of document.querySelectorAll(sel)) { if (!i.getClientRects().length) continue; i.scrollIntoView({ block: "center" });
   const t0 = performance.now(); while (!(i.complete && i.naturalWidth > 0) && performance.now() - t0 < 5000) await new Promise((r) => setTimeout(r, 50)); if (!(i.complete && i.naturalWidth > 0)) out.push(i.currentSrc); } return out; }, sel);
 
-const DATE_LABELS = ["Source date", "Record date", "Record dates", "Website page reviewed"];
+const DATE_LABELS = ["Source date", "Record date", "Record dates", "Website page reviewed", "Website page last updated"];
 for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { width: 1363, height: 936 }]]) {
   // With JavaScript
   const ctx = await b.newContext({ viewport: vp, reducedMotion: "reduce" }); await offsite(ctx);
@@ -71,7 +71,7 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { widt
   check(`@${label} every panel: question, known, further research`, h4s.length === 6 && h4s.every((x) => x === "The question|What is known|What further research would establish"), JSON.stringify(h4s));
   // source dates: a date or an explicit "not available"; website review dates labelled apart
   const dates = await pg.$$eval(".room-source__date", (xs) => xs.map((x) => [x.querySelector("dt").textContent, x.querySelector("dd").textContent]));
-  check(`@${label} every source date is a date or explicitly unavailable`, dates.length >= 15 && dates.every(([, v]) => /\b20\d\d\b/.test(v) || /^Not available$|^Not shown on the page$/.test(v)), JSON.stringify(dates.filter(([, v]) => !/\b20\d\d\b/.test(v))));
+  check(`@${label} every source date is a date or explicitly unavailable`, dates.length >= 15 && dates.every(([, v]) => /\b20\d\d\b/.test(v) || /^No separate issue date \(company web page\)$|^Publication date not yet recorded; to be checked against /.test(v)), JSON.stringify(dates.filter(([, v]) => !/\b20\d\d\b/.test(v))));
   check(`@${label} no non-date values in date fields`, !dates.some(([, v]) => /Study report|Current page|Current version|Last reviewed with/i.test(v)));
   // library-backed sources offer both the library explanation and the original source
   const both = await pg.$$eval(".room-source", (xs) => xs.filter((x) => x.querySelector('a[href^="evidence.html#"]')).map((x) => [x.querySelector('a[href^="evidence.html#"]').getAttribute("href"), !!x.querySelector('a[href^="https://"]')]));
