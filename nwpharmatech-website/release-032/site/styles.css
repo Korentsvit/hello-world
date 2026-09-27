@@ -4298,3 +4298,26 @@ html:has(main.sci-page), html:has(.sci-routes-section) { scroll-padding-top: 5.5
   .brand-name { font-size: min(0.8125rem, 16px); white-space: normal; overflow-wrap: anywhere; }
   .brand-tag { font-size: min(0.625rem, 12px); }
 }
+
+/* ===== NWPT-050 (Science pages, phones and larger text) =====
+   At 150-200% text, single unbreakable strings (the "CannabinoidEvidence.org" button, citations and tags set to
+   nowrap) were wider than a narrow screen, so the phone laid the whole page out wider and the reader had to pan.
+   On the Science pages long strings may now break, and citations and tags may wrap. Layout at normal text sizes is
+   unchanged. */
+main.sci-page, html:has(.sci-routes-section) main { overflow-wrap: anywhere; }
+.sci-further__links .btn { white-space: normal; max-width: 100%; }
+html:has(.sci-routes-section) main .nwpt-module:not(#nwpt-a):not(#nwpt-b) :is(.nwpt-cite, .nwpt-tag) { white-space: normal; }
+main.sci-page .sci-level, html:has(.sci-routes-section) main .badge { white-space: normal; }
+/* Nested panels and page margins are set in rem, so they doubled with the text and left the THC/CBD columns about
+   150 px wide at 200% on a 360 px phone, splitting ordinary words. On phones they are capped at their normal pixel
+   size (unchanged at default text size); the external-resource button takes its own full row. */
+@media (max-width: 600px) {
+  main.sci-page .wrap, html:has(.sci-routes-section) main .wrap { width: min(100% - min(2.5rem, 40px), var(--measure-wide)); }
+  main.sci-page .sci-panel { padding-inline: min(1.15rem, 18px); }
+  main.sci-page .sci-col { padding-inline: min(1rem, 16px); }
+  main.sci-page .sci-col ul { padding-left: min(1.1rem, 18px); }
+  main.sci-page .sci-tab { padding-inline: min(1rem, 16px); }
+  .sci-further { padding-inline: min(1.3rem, 21px); }
+  .sci-route { padding-inline: min(1.4rem, 22px); }
+  .sci-further__links .btn { flex: 1 1 100%; }
+}
