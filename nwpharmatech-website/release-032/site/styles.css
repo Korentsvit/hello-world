@@ -4248,3 +4248,53 @@ html:has(main.sci-page), html:has(.sci-routes-section) { scroll-padding-top: 5.5
 .sci-figure figcaption { margin-top: 0.6rem; max-width: var(--measure-prose, 68ch); font-size: 0.875rem; line-height: 1.45; color: var(--ink-700); }
 .sci-hero .sci-figure { margin: 1.5rem 0 0; }
 @media (max-width: 600px) { .sci-figure--scene img { aspect-ratio: 3 / 2; } }
+
+/* ===== NWPT-050: phone menu as a bounded panel below the header =====
+   The open menu used to sit inside the sticky header as a column flex box capped at 70vh. It inherited
+   justify-content: flex-end, so when an expanded group made the list taller than the cap, the overflow went out of the
+   top of the box, beyond the scroll range: the in-panel Close, the first groups and the first Science links could not
+   be reached. It also grew the header, which moved the page underneath. The open menu is now fixed below the header,
+   bounded by the screen, starts at the top and scrolls on its own; the page behind is locked. */
+@media (max-width: 960px) {
+  html.nav-menu-open { overflow: hidden; overscroll-behavior: none; }
+  html.nav-menu-open .site-header { -webkit-backdrop-filter: none; backdrop-filter: none; background: #07111f; }
+  .site-header .site-nav.is-open {
+    position: fixed;
+    top: var(--nav-top, 4rem);
+    right: 0;
+    bottom: auto;
+    left: 0;
+    height: var(--nav-avail, calc(100dvh - var(--nav-top, 4rem)));
+    z-index: 90;
+    max-height: none;
+    margin: 0;
+    border-radius: 0;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 max(1.25rem, env(safe-area-inset-right)) calc(2rem + env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+    background: #07111f;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .site-header .site-nav.is-open > .nav-panel { flex: none; }
+}
+/* NWPT-050: the skip link was hidden at a fixed top: -100px. With larger text it wraps and grows taller than that, so
+   its lower edge covered the Menu button and blocked taps. Hide it by its own height instead. */
+.skip-link { top: 0; transform: translateY(calc(-100% - 2px)); }
+.skip-link:focus, .skip-link:focus-visible { top: 1rem; transform: none; }
+/* NWPT-050: the grouped Science dropdown kept its desktop min-width (15.5rem) on phones; with larger text that is wider
+   than a narrow screen and zoomed the page out. On phones it takes the menu's width. */
+@media (max-width: 960px) { .nav-dropdown--grouped { min-width: 0; } }
+
+/* NWPT-050: with larger text the brand name ("NWPharmaTech", nowrap) ran on top of the Menu button on phones: the
+   brand's space was reserved as 100% - 5.75rem, and that reserve doubled with the text. The brand now takes whatever
+   the Menu button leaves, and the logo text stays close to its normal size (it is a logo, not reading text), breaking
+   only as a last resort. */
+@media (max-width: 960px) {
+  .brand { flex: 1 1 0; max-width: none; }
+  .nav-toggle { flex: none; }
+  .brand-name { font-size: min(0.8125rem, 16px); white-space: normal; overflow-wrap: anywhere; }
+  .brand-tag { font-size: min(0.625rem, 12px); }
+}

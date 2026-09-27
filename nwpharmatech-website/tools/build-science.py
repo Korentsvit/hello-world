@@ -15,7 +15,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "release-032"
 SITE = ROOT / "site"
-V = "nwpt050"
+V = "nwpt051"
 CANON = "https://www.nwpharmatech.org/"
 UPDATED = "27 September 2026"
 
