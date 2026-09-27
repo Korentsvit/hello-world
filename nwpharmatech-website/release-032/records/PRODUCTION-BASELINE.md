@@ -6,7 +6,7 @@ Web Boss confirms that `91de637` is live on production (www.nwpharmatech.org), w
 |---|---|
 | Commit | `91de63769c83d480ddcffa6553b60ecda2f42ebc` (branch `claude/nwpt-reference-corrections`) |
 | Cloudflare deployment | `c4c07824-1b18-4a18-a3c7-8d1dc72afa44` |
-| Rollback deployment | Not supplied with this record |
+| Rollback deployment | `abd6ec97-051e-48d1-b743-b9372b4f9f90` (from Web Boss's production report; corrected 27 Sep 2026) |
 | Deployed directory | `nwpharmatech-website/release-032/site` |
 | Hosting owner | Web Boss |
 
