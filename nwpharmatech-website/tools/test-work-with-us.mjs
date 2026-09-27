@@ -84,12 +84,18 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     // unconfigured enquiry
     await pg.waitForSelector("#wwu-enquiry .wwu-callout");
     const enqText = await pg.textContent("#wwu-enquiry");
-    check(`@${label} unconfigured: says unavailable and nothing sent, links Contact`, /not available yet/.test(enqText) && /Nothing has been sent/.test(enqText) && (await pg.locator('#wwu-enquiry a[href="contact.html#research"]').count()) === 1);
+    check(`@${label} unconfigured: says unavailable and nothing sent`, /not available yet/.test(enqText) && /Nothing has been sent/.test(enqText));
     check(`@${label} unconfigured: no contact fields requested`, (await pg.locator("#wwu-enquiry input, #wwu-enquiry textarea").count()) === 0);
     check(`@${label} unconfigured: heading and step say "Contact about collaboration"`, (await pg.textContent("[data-enquiry-heading]")) === "Contact about collaboration" && (await pg.textContent("[data-enquiry-step]")) === "Contact");
     check(`@${label} unconfigured: no "Send enquiry" wording anywhere`, !/send (an |a non-confidential )?enquiry/i.test(await pg.textContent("main")));
     check(`@${label} unconfigured: explains nothing was sent`, /Nothing has been sent from this page/.test(enqText));
-    check(`@${label} unconfigured: no mailto substituted`, (await pg.locator('main a[href^="mailto:"]').count()) === 0);
+    // NWPT-047 email handoff: the approved research-collaboration link, subject only; print/save, attach manually; nothing sent or attached by the link
+    const MAILTO = "mailto:team@nwpharmatech.com?subject=Research%20collaboration";
+    check(`@${label} handoff: one direct email link, the approved subject-only address`, JSON.stringify(await pg.$$eval("#wwu-enquiry a[href^='mailto:']", (as) => as.map((a) => a.getAttribute("href")))) === JSON.stringify([MAILTO]));
+    const steps = await pg.$$eval("#wwu-enquiry .wwu-handoff li", (xs) => xs.map((x) => x.textContent.replace(/\s+/g, " ")));
+    check(`@${label} handoff: print/save, write, attach yourself`, steps.length === 3 && /Print your brief or save it as a PDF/.test(steps[0]) && /team@nwpharmatech\.com/.test(steps[1]) && /Attach the saved PDF to your email yourself/.test(steps[2]), JSON.stringify(steps));
+    check(`@${label} handoff: says the link sends and attaches nothing`, /does not send anything, and it does not add your brief, questions or answers/.test(steps[1]) && !/(will|we) (send|attach)|sends? your|attached automatically/i.test(enqText.replace(/does not send anything/, "")));
+    check(`@${label} handoff: explains a topic link excludes private questions`, /contains only the selected topics and cards\. Your own questions, focus answers and contact details are not in it/.test(enqText));
     check(`@${label} useful content before any contact request`, (await pg.locator(".wwu-card").count()) === WWU.cards.length && (await pg.locator("#focus").evaluate((n) => !n.hidden)));
     // cards: sources and actions
     const cards = await pg.$$eval(".wwu-card", (xs) => xs.map((x) => ({ id: x.dataset.cardId, kind: [...x.classList].find((c) => c.startsWith("wwu-card--")).slice(10), acts: [...x.querySelectorAll(".wwu-act")].map((b) => b.textContent), src: x.querySelectorAll(".wwu-card__sources li").length, lib: x.querySelectorAll('.wwu-card__sources a[href^="evidence.html#"], .wwu-card__sources a[href$=".html"], .wwu-card__sources a[href*=".html#"]').length, ext: x.querySelectorAll('.wwu-card__sources a[href^="https://"]').length, dates: x.querySelectorAll(".wwu-src__meta dt").length })));
@@ -167,6 +173,13 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     const frag = new URL(link).hash.slice(1), params = [...new URLSearchParams(frag).keys()];
     check(`@${label} share link holds only version, topics and card ids`, JSON.stringify(params) === JSON.stringify(["v", "t", "c"]) && /^v=wwu-1&t=[a-z0-9,-]+&c=[a-z0-9.,-]+$/.test(frag), link);
     check(`@${label} share link excludes answers and visitor text`, !/clinical|objective|7731|Confidential/i.test(frag), frag);
+    // with questions and focus answers entered, every email link on the page is still the approved subject-only address
+    const mails = await pg.$$eval("a[href^='mailto:']", (as) => as.map((a) => a.getAttribute("href")));
+    check(`@${label} handoff: no visitor questions, answers or contact details in any mailto`, mails.length >= 1 && mails.every((h) => !/7731|Confidential|clinical|body=|cc=|bcc=/i.test(h)) && mails.filter((h) => h.includes("Research%20collaboration")).every((h) => h === MAILTO), JSON.stringify(mails));
+    await pg.evaluate(() => { window.__printed = 0; window.print = () => { window.__printed++; }; });
+    await pg.click("#wwu-handoff-print");
+    check(`@${label} handoff: its print button prints the current brief`, (await pg.evaluate(() => window.__printed)) === 1 && (await pg.locator("#wwu-brief .wwu-brief").count()) + (await pg.locator("#wwu-brief article").count()) > 0);
+    check(`@${label} share status names what a link excludes`, /not your questions, focus answers or contact details/.test(await pg.textContent("#wwu-share-status")));
     check(`@${label} visitor text never in the address bar`, !/7731|Confidential/.test(await pg.evaluate(() => location.href)));
     // reload keeps the tab's agenda
     await pg.reload({ waitUntil: "load" });

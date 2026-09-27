@@ -289,7 +289,7 @@
   var shareStatus = document.getElementById("wwu-share-status");
   document.getElementById("wwu-share").addEventListener("click", function () {
     var url = shareUrl();
-    var done = function () { shareStatus.textContent = "Link copied. It includes the selected topics and cards only, not your answers or questions."; };
+    var done = function () { shareStatus.textContent = "Link copied. It includes the selected topics and cards only, not your questions, focus answers or contact details."; };
     var fail = function () { shareStatus.textContent = ""; shareStatus.appendChild(document.createTextNode("Copy this link: ")); shareStatus.appendChild(el("input", { type: "text", readonly: true, value: url, className: "wwu-share-url", "aria-label": "Link to these topics and cards", onfocus: function (e) { e.target.select(); } })); };
     try { navigator.clipboard.writeText(url).then(done, fail); } catch (e) { fail(); }
   });
@@ -299,12 +299,21 @@
   var enq = document.getElementById("wwu-enquiry"), config = null, token = "", submitting = false, sent = false, ts = null;
   var nonce = (function () { try { var n = sessionStorage.getItem(KEY + "-nonce"); if (!n) { n = rand(); sessionStorage.setItem(KEY + "-nonce", n); } return n; } catch (e) { return rand(); } })();
   function rand() { var a = new Uint8Array(12); crypto.getRandomValues(a); return Array.prototype.map.call(a, function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+  // NWPT-047: while online enquiries are off, hand over by email. The mailto carries the approved subject only:
+  // never the visitor's questions, focus answers or contact details, and nothing is attached or sent by clicking it.
+  var MAILTO = "mailto:team@nwpharmatech.com?subject=Research%20collaboration";
   function unavailable(reason) {
     enq.textContent = "";
     enq.appendChild(el("div", { className: "wwu-callout", role: "status" },
       el("p", { className: "wwu-callout__title", text: "Online enquiries are not available yet" }),
-      el("p", { text: reason + " Nothing has been sent from this page. Your agenda and brief still work: you can print or save the brief, or copy a link to it." }),
-      el("p", null, "To contact NWPharmaTech about a research collaboration, use the research collaboration route on the ", el("a", { href: "contact.html#research", text: "Contact page" }), ".")));
+      el("p", { text: reason + " Nothing has been sent from this page." })));
+    enq.appendChild(el("h3", { text: "Contact us by email instead" }));
+    enq.appendChild(el("ol", { className: "wwu-handoff" },
+      el("li", null, "Print your brief or save it as a PDF.", el("br"),
+        el("button", { type: "button", className: "wwu-btn wwu-btn--quiet", id: "wwu-handoff-print", onclick: function () { renderBrief(); window.print(); } }, "Print or save as PDF")),
+      el("li", null, "Write to ", el("a", { className: "wwu-handoff__mail", href: MAILTO, text: "team@nwpharmatech.com" }), " with the subject “Research collaboration”. The link opens your own email app with the subject filled in. It does not send anything, and it does not add your brief, questions or answers."),
+      el("li", { text: "Attach the saved PDF to your email yourself, add your name and institution, and send it from your email app." })));
+    enq.appendChild(el("p", { className: "wwu-help", text: "If you share a copied topic link instead, it contains only the selected topics and cards. Your own questions, focus answers and contact details are not in it, so add anything you want us to see to your email." }));
   }
   var fields = [
     ["name", "Your name", "text", "name", true, 100],

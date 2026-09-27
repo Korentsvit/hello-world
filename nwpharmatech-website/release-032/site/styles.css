@@ -4105,3 +4105,13 @@ html:has(main.room) { scroll-padding-top: 5.5rem; }
 .hero-quick a:focus-visible { outline: 3px solid var(--turquoise-400); outline-offset: 2px; }
 /* keyboard focus moving back up the homepage must not land under the sticky header (as on /programme-room and /work-with-us) */
 html:has(.home-explore) { scroll-padding-top: 5.5rem; }
+
+/* ===== NWPT-047: one "Start here" section (three online tools + the programme brief); two-card background grid; email handoff ===== */
+.home-start__brief { margin-top: clamp(1.5rem, 3vw, 2rem); }
+.brief-panel__title { margin: 0.2rem 0 0.6rem; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+@media (min-width: 860px) { .route-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.wwu-handoff { margin: 0.75rem 0 0; padding-left: 1.3rem; }
+.wwu-handoff li { margin: 0.5rem 0; }
+.wwu-handoff .btn { margin-top: 0.35rem; }
+.wwu-handoff__mail { font-weight: 650; overflow-wrap: anywhere; }
+#wwu-enquiry > h3 { margin: 1.25rem 0 0.25rem; font-size: 1.15rem; }
