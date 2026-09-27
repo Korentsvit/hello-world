@@ -9,7 +9,7 @@ const results = new Map();
 const check = (name, ok, where = "", detail = "") => { const r = results.get(name) || { runs: 0, fails: [] }; r.runs++; if (!ok) r.fails.push(`${where} ${detail}`.trim()); results.set(name, r); };
 const srv = await serve(dir);
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
-const PAGES = ["/science", "/science/psychiatry", "/science/cannabinoids", "/science/cbd-thc", "/science/cannabinoid-medicines"];
+const PAGES = ["/science", "/science/psychiatry", "/science/cannabinoids", "/science/cbd-thc", "/science/cannabinoid-medicines", "/science/formulation"];
 const FIG = { "/science/psychiatry": "open research questions", "/science/cannabinoids": "signalling between cells", "/science/cbd-thc": "Same molecular formula. Different three-dimensional architecture." };
 const touch = async (pg, loc) => { const bb = await loc.boundingBox(); await pg.touchscreen.tap(bb.x + Math.min(bb.width, 60) / 2, bb.y + bb.height / 2); };
 const COMBOS = [[360, "100%"], [360, "150%"], [360, "200%"], [375, "200%"], [390, "100%"], [390, "150%"], [390, "200%"], [412, "200%"], [320, "100%"], [320, "150%"], [667, "150%"]];

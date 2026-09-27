@@ -51,8 +51,8 @@
     {"id": "need-prev", "topic": "need", "kind": "finding", "from": {"stage": "need", "known": 3}, "sources": ["evidence.html#ref-davies-2018"], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
 
     {"id": "form-abs", "topic": "formulation", "kind": "finding", "from": {"stage": "formulation", "known": 0}, "sources": ["evidence.html#ref-perucca-2020", "evidence.html#ref-taylor-2018"], "tags": {"objective": ["pharmacology"]}},
-    {"id": "form-design", "topic": "formulation", "kind": "finding", "from": {"stage": "formulation", "known": 1}, "sources": ["science.html#investigating"], "tags": {"objective": ["pharmacology", "mechanisms"]}},
-    {"id": "form-open", "topic": "formulation", "kind": "limitation", "from": {"stage": "formulation", "further": true}, "sources": ["evidence.html#ref-nct07186283", "science.html#investigating"], "tags": {"objective": ["pharmacology", "mechanisms"]}},
+    {"id": "form-design", "topic": "formulation", "kind": "finding", "from": {"stage": "formulation", "known": 1}, "sources": ["science/formulation.html#investigating"], "tags": {"objective": ["pharmacology", "mechanisms"]}},
+    {"id": "form-open", "topic": "formulation", "kind": "limitation", "from": {"stage": "formulation", "further": true}, "sources": ["evidence.html#ref-nct07186283", "science/formulation.html#investigating"], "tags": {"objective": ["pharmacology", "mechanisms"]}},
 
     {"id": "p1-design", "topic": "phase-1", "kind": "finding", "from": {"stage": "phase-1", "known": 0}, "sources": ["evidence.html#ref-nct07186283"], "tags": {"objective": ["pharmacology", "methods"], "population": ["healthy"]}},
     {"id": "p1-results", "topic": "phase-1", "kind": "limitation", "from": {"stage": "phase-1", "known": 3}, "sources": ["evidence.html#ref-nct07186283", "phase-1:study.html#milestones"], "tags": {}},
@@ -68,7 +68,7 @@
     {"id": "oq-symptoms", "topic": "open", "kind": "open", "from": {"oq": 0}, "sources": ["phase-2b:study.html#sum-h", "evidence.html#ref-bhattacharyya-2024"], "tags": {"objective": ["clinical"], "population": ["chrp"]}},
     {"id": "oq-dose", "topic": "open", "kind": "open", "from": {"oq": 1}, "sources": ["phase-2b:study.html#sum-h"], "tags": {"objective": ["clinical", "pharmacology"], "population": ["chrp"]}},
     {"id": "oq-safety", "topic": "open", "kind": "open", "from": {"oq": 2}, "sources": ["evidence.html#ref-nct07186283"], "tags": {"objective": ["clinical", "pharmacology"]}},
-    {"id": "oq-brain", "topic": "open", "kind": "open", "from": {"oq": 4}, "sources": ["science.html#investigating"], "tags": {"objective": ["mechanisms", "pharmacology"]}},
+    {"id": "oq-brain", "topic": "open", "kind": "open", "from": {"oq": 4}, "sources": ["science/formulation.html#investigating"], "tags": {"objective": ["mechanisms", "pharmacology"]}},
     {"id": "oq-prevent", "topic": "open", "kind": "open", "from": {"oq": 5}, "sources": ["evidence.html#ref-davies-2018"], "tags": {"objective": ["clinical", "methods"], "population": ["chrp"]}},
 
     {"id": "scope", "topic": "collab", "kind": "scope", "text": "This page brings together public information to help you prepare a conversation. It does not offer a study protocol, study medicine, sponsorship, funding or access to unpublished data. Selecting a card does not commit you or NWPharmaTech to anything.", "sources": [], "tags": {}},

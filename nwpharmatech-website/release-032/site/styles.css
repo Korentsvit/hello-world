@@ -4321,3 +4321,38 @@ main.sci-page .sci-level, html:has(.sci-routes-section) main .badge { white-spac
   .sci-route { padding-inline: min(1.4rem, 22px); }
   .sci-further__links .btn { flex: 1 1 100%; }
 }
+
+/* ===== NWPT-051: enlarged text on narrow screens (shared footer, evidence module, homepage people and brief) =====
+   At 150-200% text some single-column grids sized themselves to their longest word, and some labels were set to
+   nowrap, so phones laid the page out wider than the screen and readers had to pan sideways. Phone-width rules only;
+   layout at default text size and on desktop is unchanged. */
+@media (max-width: 719px) {
+  .home-people-grid { grid-template-columns: minmax(0, 1fr); }
+  .home-person-card { min-width: 0; overflow-wrap: anywhere; }
+  .home-person-card .badge { white-space: normal; }
+}
+@media (max-width: 700px) {
+  .brief-panel { grid-template-columns: minmax(0, 1fr); overflow-wrap: anywhere; }
+  .brief-panel__cover { max-width: 100%; }
+}
+@media (max-width: 600px) {
+  .footer-meta, .footer-inner { overflow-wrap: anywhere; }
+  .hero-quick a { overflow-wrap: anywhere; }
+  html .nwpt-module:not(#nwpt-a):not(#nwpt-b) { overflow-wrap: anywhere; }
+  html .nwpt-module:not(#nwpt-a):not(#nwpt-b) :is(.nwpt-cite, .nwpt-tag) { white-space: normal; }
+}
+@media (max-width: 600px) {
+  body.page-home main { overflow-wrap: anywhere; }
+  .study-flow__step { min-width: 0; }
+  main.sci-page .badge { white-space: normal; }
+}
+/* NWPT-051: once pages fit the screen at 200% text, the open phone menu's own side padding (1.25rem, doubling with the
+   text) left too little room for words such as "cannabinoids". Padding stays at its normal 20px; long words may break
+   as a last resort. Unchanged at default text size. */
+@media (max-width: 960px) {
+  .site-header .site-nav.is-open {
+    padding-left: max(min(1.25rem, 20px), env(safe-area-inset-left));
+    padding-right: max(min(1.25rem, 20px), env(safe-area-inset-right));
+    overflow-wrap: anywhere;
+  }
+}

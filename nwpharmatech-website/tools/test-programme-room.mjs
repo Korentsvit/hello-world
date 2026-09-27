@@ -177,7 +177,8 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { widt
     check("content: sponsor named only for the registered Phase 1 study", (text.match(/sponsor/gi) || []).length === 1 && /Sponsor of the Phase\s1 study: NWPharmaTech Ltd/.test(text));
     check("content: no investment or payment calls to action", !/\b(invest now|buy|wallet|mint|pay now)\b/i.test(text));
     const links = await pn.$$eval("main a[href]", (as) => as.map((a) => a.getAttribute("href")));
-    for (const p of ["evidence.html", "study.html", "phase-1.html", "science.html"]) check(`links into ${p}`, links.some((h) => h.startsWith(p)));
+    for (const p of ["evidence.html", "study.html", "phase-1.html", "science/formulation.html"])   // NWPT-051: the formulation and research-question content moved from science.html
+    check(`links into ${p}`, links.some((h) => h.startsWith(p)));
   }
   await ctxN.close();
 }

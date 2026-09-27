@@ -15,7 +15,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "release-032"
 SITE = ROOT / "site"
-V = "nwpt051"
+V = "nwpt052"
 CANON = "https://www.nwpharmatech.org/"
 UPDATED = "27 September 2026"
 
@@ -142,7 +142,7 @@ def evidence_card(n):
 
 # ---------------------------------------------------------------- shared page parts
 SCI_NAV = [("science.html", "Overview"), ("science/psychiatry.html", "Psychiatry &amp; evidence"), ("science/cannabinoids.html", "Understanding cannabinoids"),
-           ("science/cbd-thc.html", "CBD and THC"), ("science/cannabinoid-medicines.html", "From cannabis to medicines"),
+           ("science/cbd-thc.html", "CBD and THC"), ("science/cannabinoid-medicines.html", "From cannabis to medicines"), ("science/formulation.html", "NWPT formulation"),
            ("evidence.html", "Evidence library"), ("glossary.html", "Glossary")]
 
 
@@ -172,7 +172,7 @@ def further_reading(pre):
 
 def programme_note(pre):
     return f'''<div class="callout caution sci-programme">
-          <p><strong>Our programme.</strong> NWPT-SM32300 is investigational. General cannabinoid research does not establish that it is effective. The <a href="{pre}programme-room.html">Programme Room</a> explains what has been studied, what is planned and what remains unknown; the <a href="{pre}science.html#investigating">NWPT formulation</a> section explains what the formulation is designed to do and what has been measured.</p>
+          <p><strong>Our programme.</strong> NWPT-SM32300 is investigational. General cannabinoid research does not establish that it is effective. The <a href="{pre}programme-room.html">Programme Room</a> explains what has been studied, what is planned and what remains unknown; the <a href="{pre}science/formulation.html">NWPT formulation</a> page explains what the formulation is designed to do and what has been measured.</p>
         </div>'''
 
 
@@ -357,7 +357,7 @@ def page_cannabinoids():
         <h2 id="route-title">Why formulation and route matter</h2>
         <p>Swallowing a compound and inhaling it are different exposures. Food, accompanying ingredients and other medicines can also change how a compound is handled. A concentration printed on a label does not by itself tell us how much reaches the bloodstream, the brain or a relevant biological target.</p>
         <p>For example, CBD dissolves poorly in water. Taken by mouth on an empty stomach, only about 6% of a dose is estimated to reach the bloodstream, and a high-fat meal increases absorption several-fold. {cites("perucca-2020", "taylor-2018", pre=pre)} CBD can also change how some other medicines are handled; the UK product information for one CBD medicine describes an interaction with clobazam. {cites("epidyolex-smpc", pre=pre)}</p>
-        <p>For NWPharmaTech’s formulation research, see the <a href="{pre}science.html#formulation">formulation explainer</a>. It distinguishes what the formulation is designed to do from what has been measured.</p>
+        <p>For NWPharmaTech’s formulation research, see the <a href="{pre}science/formulation.html#formulation">formulation explainer</a>. It distinguishes what the formulation is designed to do from what has been measured.</p>
         <p><a href="cannabinoid-medicines.html">From cannabis to medicines: why products are not interchangeable</a></p>
       </div>
     </section>
@@ -535,6 +535,40 @@ def page_medicines():
                 body=body)
 
 
+# ---------------------------------------------------------------- NWPT-051: /science/formulation
+# The deeper formulation and research-question material that used to follow the two routes on /science, moved verbatim
+# (source/science-formulation.html). Relative links and image paths gain "../" because the page is one level down.
+FORMULATION_SRC = ROOT / "source" / "science-formulation.html"
+MOVED_IDS = ["investigating", "formulation", "q2-h", "dg-title", "dg-desc", "ar", "conceptual-platform", "chrp-title"]
+
+
+def up(frag):
+    rel = lambda u: u if re.match(r"(?:[a-z]+:|/|#)", u) else "../" + u
+    frag = re.sub(r'\b(href|src|poster)="([^"]+)"', lambda m: f'{m.group(1)}="{rel(m.group(2))}"', frag)
+    return re.sub(r'\bsrcset="([^"]+)"', lambda m: 'srcset="' + ", ".join(" ".join([rel(x.split()[0])] + x.split()[1:]) for x in m.group(1).split(",")) + '"', frag)
+
+
+def page_formulation():
+    pre = "../"
+    frag = FORMULATION_SRC.read_text().split("\n", 1)[1]
+    # the capsule-to-measurement diagram gets an id, so old links to ids inside its SVG (#dg-title, #dg-desc, #ar), which
+    # browsers cannot scroll to, can be forwarded to the figure itself (science-forward.js)
+    assert frag.count('<figure class="nwpt-diagram">') == 1
+    frag = frag.replace('<figure class="nwpt-diagram">', '<figure class="nwpt-diagram" id="capsule-diagram">')
+    body = f'''
+    {hero("Science · Our programme", "The investigational formulation and the research question",
+          "What NWPT-SM32300 is designed to do, what has been measured, and which questions remain open.", "science/formulation.html", pre)}
+    {up(frag)}
+    <section class="section section-light" aria-label="Review status">
+      <div class="wrap prose-measure">
+        {REVIEW}
+      </div>
+    </section>'''
+    return dict(path="science/formulation.html", title="NWPT formulation", h1="The investigational formulation and the research question",
+                desc="NWPT-SM32300, NWPharmaTech’s investigational CBD micellar-emulsion softgel: what it is designed to do, what has been measured, and the open research question in clinical high risk.",
+                body=body, css=[f"../assets/nwpt/formulation/module.css?v=nwpt032"])
+
+
 # ---------------------------------------------------------------- page assembly (shell from a sub-directory page)
 SHELL_SRC = SITE / "updates" / "why-early-intervention-matters.html"
 
@@ -557,6 +591,8 @@ def build_page(p):
     a, b = s.index("<main"), s.index("</main>") + len("</main>")
     main = f'<main id="main" class="sci-page">\n    <!-- Generated by tools/build-science.py (NWPT-048). Edit the generator, not this file. -->{p["body"]}\n  </main>'
     s = s[:a] + main + s[b:]
+    if p.get("css"):
+        s = s.replace("</head>", "".join(f'  <link rel="stylesheet" href="{c}" />\n' for c in p["css"]) + "</head>", 1)
     if p.get("script"):
         s = s.replace('<script src="../nav.js', f'<script src="../science-tabs.js?v={V}" defer></script>\n  <script src="../nav.js', 1)
     out = SITE / p["path"]
@@ -604,7 +640,22 @@ def science_overview():
             <p class="sci-route__cta"><a class="btn btn-primary" href="science/cannabinoids.html">Explore cannabinoids</a></p>
           </article>
         </div>
-        {programme_note("").replace("science.html#investigating", "#investigating")}
+      </div>
+    </section>
+    <section class="section section-alt sci-intro-section" id="investigating" aria-labelledby="programme-intro-title">
+      <div class="wrap prose-measure">
+        <h2 id="programme-intro-title">Our programme</h2>
+        <p><strong>NWPT-SM32300</strong> is NWPharmaTech’s investigational 300&nbsp;mg CBD micellar-emulsion softgel. The planned Phase&nbsp;2B study is designed to evaluate dose response, symptoms, safety and tolerability, and inform the next stage of development.</p>
+        <p>Effectiveness in this population has <strong>not</strong> been established. General cannabinoid research does not establish that it is effective.</p>
+        <ul class="sci-shared sci-intro-links" role="list" aria-label="Our programme">
+          <li id="formulation"><a href="science/formulation.html"><strong>NWPT formulation</strong><span>What the formulation is designed to do, what has been measured, and the open research question</span></a></li>
+          <li><a href="programme-room.html"><strong>Programme Room</strong><span>What has been studied, what is planned and what remains unknown</span></a></li>
+        </ul>
+      </div>
+    </section>
+    <section class="section section-light" aria-labelledby="resources-title">
+      <div class="wrap">
+        <h2 id="resources-title" class="sci-visually-hidden">Shared resources</h2>
         <ul class="sci-shared" role="list" aria-label="Shared resources">
           <li><a href="evidence.html"><strong>Evidence library</strong><span>Sources behind statements on both routes</span></a></li>
           <li><a href="glossary.html"><strong>Glossary</strong><span>Terms used across the Science pages</span></a></li>
@@ -620,6 +671,17 @@ def science_overview():
 '''
     if "<!-- NWPT-048 routes start -->" in s:
         s = re.sub(r"<!-- NWPT-048 routes start -->.*?<!-- NWPT-048 routes end -->\n", block, s, flags=re.S)
+        # NWPT-051: everything after the routes block moved verbatim to /science/formulation
+        a = s.index("<!-- NWPT-048 routes end -->\n") + len("<!-- NWPT-048 routes end -->\n")
+        b = s.index("</main>")
+        if s[a:b].strip():
+            assert s[a:b].strip() == FORMULATION_SRC.read_text().split("\n", 1)[1].strip(), "moved content differs from source/science-formulation.html"
+            s = s[:a] + "  " + s[b:]
+        s = s.replace('  <link rel="stylesheet" href="assets/nwpt/formulation/module.css?v=nwpt032" />\n', "")
+        if "science-forward.js" not in s:
+            s = s.replace('<script src="nav.js', f'<script src="science-forward.js?v={V}" defer></script>\n  <script src="nav.js', 1)
+        s = s.replace('<a href="science/cannabinoids.html">Understanding cannabinoids</a>\n          <a href="evidence.html">Evidence</a>',
+                      '<a href="science/cannabinoids.html">Understanding cannabinoids</a>\n          <a href="science/formulation.html">NWPT formulation</a>\n          <a href="evidence.html">Evidence</a>', 1)
     else:
         k = s.index('    <section class="section section-light" aria-labelledby="chrp-title">')
         s = s[:k] + "    " + block + s[k:]
@@ -676,7 +738,7 @@ def glossary():
 
 
 def main():
-    pages = [page_psychiatry(), page_cannabinoids(), page_cbd_thc(), page_medicines()]
+    pages = [page_psychiatry(), page_cannabinoids(), page_cbd_thc(), page_medicines(), page_formulation()]
     for p in pages:
         print("wrote", build_page(p).relative_to(SITE))
     science_overview()

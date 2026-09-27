@@ -129,7 +129,7 @@ export const WWU = {
    "refs": [
     [
      "Science — what is known and what remains open",
-     "https://www.nwpharmatech.org/science#investigating"
+     "https://www.nwpharmatech.org/science/formulation#investigating"
     ]
    ]
   },
@@ -149,7 +149,7 @@ export const WWU = {
     ],
     [
      "Science — what is known and what remains open",
-     "https://www.nwpharmatech.org/science#investigating"
+     "https://www.nwpharmatech.org/science/formulation#investigating"
     ]
    ]
   },
@@ -369,7 +369,7 @@ export const WWU = {
    "refs": [
     [
      "Science — what is known and what remains open",
-     "https://www.nwpharmatech.org/science#investigating"
+     "https://www.nwpharmatech.org/science/formulation#investigating"
     ]
    ]
   },

@@ -149,7 +149,7 @@
       "further": "An adequately powered trial with long follow-up, if prevention were pursued as a primary objective. Positive results on symptoms would not, by themselves, show prevention.",
       "sources": [
         {"title": "Davies et al. — no preventive intervention shown to be better than others, World Psychiatry", "library": "evidence.html#ref-davies-2018", "original": [["DOI", "https://doi.org/10.1002/wps.20526"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/29856551/"]], "about": "field", "type": "published", "assessment": "Established; inconclusive result", "dates": [["Source date", "Published 2018"]], "limit": "Few, small trials per intervention."},
-        {"title": "Science — what is known and what remains open", "page": "science.html#investigating", "about": "nwpt", "type": "company", "dates": [["Source date", "No separate issue date (company web page)"], ["Website page last updated", "22 September 2026 (site map record; no review date is shown on the page)"]], "limit": "Summarises the questions; not a result."}
+        {"title": "Science — what is known and what remains open", "page": "science/formulation.html#investigating", "about": "nwpt", "type": "company", "dates": [["Source date", "No separate issue date (company web page)"], ["Website page last updated", "22 September 2026 (site map record; no review date is shown on the page)"]], "limit": "Summarises the questions; not a result."}
       ]
     }
   ],
@@ -165,6 +165,6 @@
     ["evidence.html", "Evidence library", "Every source cited here, with its population, design, findings and limitations."],
     ["study.html", "Study progress", "Milestones, registrations and oversight, each with its source."],
     ["phase-1.html", "Phase 1 study", "What was studied, what it can and cannot establish, and results status."],
-    ["science.html", "Science and formulation", "Why investigate CBD in this setting, and how the softgel is designed."]
+    ["science/formulation.html", "Science and formulation", "Why investigate CBD in this setting, and how the softgel is designed."]
   ]
 }

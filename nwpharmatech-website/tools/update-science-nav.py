@@ -13,7 +13,7 @@ NEW_ITEMS = [
     ("nav-dropdown__route", "science/cannabinoids.html", "Understanding cannabinoids"),
     ("nav-dropdown__sub", "science/cbd-thc.html", "CBD and THC"),
     ("nav-dropdown__sub", "science/cannabinoid-medicines.html", "From cannabis to medicines"),
-    ("nav-dropdown__sep", "science.html#investigating", "NWPT formulation"),
+    ("nav-dropdown__sep", "science/formulation.html", "NWPT formulation"),
     ("", "evidence.html", "Evidence library"),
     ("", "glossary.html", "Glossary"),
 ]

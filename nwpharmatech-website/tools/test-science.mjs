@@ -18,7 +18,7 @@ const offsite = (ctx) => ctx.route((u) => !u.href.startsWith(srv.base), (r) => r
 // ---------- routes and redirects
 for (const p of PAGES) { const r = await fetch(srv.base + p, { redirect: "manual" }); check(`${p} answers 200`, r.status === 200, r.status); }
 for (const [from, to] of [["/science.html", "/science"], ["/science/", "/science"], ["/science/cbd-thc.html", "/science/cbd-thc"]]) { const r = await fetch(srv.base + from, { redirect: "manual" }); check(`${from} redirects to ${to}`, [301, 308].includes(r.status) && r.headers.get("location") === to, `${r.status} ${r.headers.get("location")}`); }
-{ const r = await fetch(srv.base + "/formulation", { redirect: "manual" }); check("/formulation still redirects to /science#formulation", r.headers.get("location") === "/science#formulation"); }
+{ const r = await fetch(srv.base + "/formulation", { redirect: "manual" }); check("/formulation redirects to the formulation page (NWPT-051)", r.headers.get("location") === "/science/formulation"); }
 
 // ---------- static checks across every page
 const files = []; const walk = (d) => { for (const f of fs.readdirSync(d, { withFileTypes: true })) { const p = `${d}/${f.name}`; if (f.isDirectory()) { if (f.name !== "functions" && f.name !== "assets") walk(p); } else if (f.name.endsWith(".html")) files.push(p); } }; walk(dir);
@@ -27,7 +27,10 @@ const grouped = withNav.filter((f) => { const s = fs.readFileSync(f, "utf8"); co
 check(`every page with the site menu has the grouped Science menu (${withNav.length} pages)`, withNav.length >= 38 && grouped.length === withNav.length, withNav.filter((f) => !grouped.includes(f)).join(" "));
 check("Study synopsis now in the Programme menu on every page", withNav.every((f) => /programme\.html#design-title">Study design<\/a><\/li>\s*<li><a href="[./]*resources\/public-synopsis\.html">Study synopsis/.test(fs.readFileSync(f, "utf8"))));
 const sci = fs.readFileSync(`${dir}/science.html`, "utf8");
-for (const id of ["investigating", "formulation", "chrp-title", "q2-h", "dg-title", "ar", "conceptual-platform"]) check(`science.html keeps #${id}`, sci.includes(`id="${id}"`));
+// NWPT-051: the formulation and research-question sections moved to /science/formulation; old /science#... links forward
+{ const form = fs.readFileSync(`${dir}/science/formulation.html`, "utf8");
+  for (const id of ["investigating", "formulation", "chrp-title", "q2-h", "dg-title", "dg-desc", "ar", "conceptual-platform"]) check(`/science/formulation has #${id}`, form.includes(`id="${id}"`));
+  check("science.html keeps #investigating and #formulation (no-JavaScript landing on the programme introduction) and loads the anchor forwarder", sci.includes('id="investigating"') && sci.includes('id="formulation"') && /science-forward\.js/.test(sci)); }
 const ev = fs.readFileSync(`${dir}/evidence.html`, "utf8");
 if (baseEvidence) { const ids = [...baseEvidence.matchAll(/id="(ref-[a-z0-9-]+)"/g)].map((m) => m[1]); check(`all ${ids.length} existing evidence IDs preserved`, ids.every((i) => ev.includes(`id="${i}"`)), ids.filter((i) => !ev.includes(`id="${i}"`)).join(" ")); }
 const cardOf = (i) => (ev.match(new RegExp(`id="ref-${i}"[\\s\\S]*?</article>`)) || [""])[0];
@@ -75,8 +78,9 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { widt
   await pg.goto(srv.base + "/science", { waitUntil: "load" });
   const routes = await pg.$$eval(".sci-route", (xs) => xs.map((x) => ({ w: Math.round(x.getBoundingClientRect().width), q: x.querySelectorAll(".sci-route__questions a").length, h: x.querySelector("h3").textContent.trim() })));
   check(`@${label} overview: two routes, three starting questions each, equal width`, routes.length === 2 && routes.every((r) => r.q === 3) && routes[0].w === routes[1].w && routes[0].h === "Psychiatry & evidence" && routes[1].h === "Understanding cannabinoids", JSON.stringify(routes));
+  await pg.goto(srv.base + "/science/formulation", { waitUntil: "load" });   // NWPT-051: the images and video moved here
   const media = await pg.evaluate(async () => { for (const i of document.querySelectorAll("main img")) { i.loading = "eager"; i.scrollIntoView(); await i.decode().catch(() => {}); } const v = document.querySelector("main video"); return { imgs: [...document.querySelectorAll("main img")].map((i) => i.complete && i.naturalWidth > 0), video: !!v && v.getAttribute("poster") && v.querySelectorAll("source").length >= 0 }; });
-  check(`@${label} overview: existing images load and the Science video is still present`, media.imgs.length >= 5 && media.imgs.every(Boolean) && media.video, JSON.stringify(media));
+  check(`@${label} formulation page: the moved images load and the Science video is still present`, media.imgs.length >= 5 && media.imgs.every(Boolean) && media.video, JSON.stringify(media));
   // CBD/THC tabs
   await pg.goto(srv.base + "/science/cbd-thc", { waitUntil: "load" });
   const tabs = await pg.$$eval('[role="tab"]', (ts) => ts.map((t) => [t.textContent, t.getAttribute("aria-selected")]));
