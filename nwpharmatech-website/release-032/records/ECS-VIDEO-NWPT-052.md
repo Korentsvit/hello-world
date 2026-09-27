@@ -2,10 +2,10 @@
 
 - **Base:** production `cfee45bdbe80701f98230dced8ec9953988d9ffb` (deployment `c5086d53-0cd3-47a0-80bf-f87808e29de3`).
 - **Branch:** `claude/nwpt-ecs-video-052`.
-- **Status:** preview only; not deployed. Enquiries remain disabled; privacy configuration and DNS are unchanged.
+- **Status:** published to production on 27 Sep 2026 as `fbd865d74fa7272f3eb06dd69c0c3a1c8fefe61d` (see **Production publication** at the end). This SHA is the production baseline for future website work. Enquiries remain disabled; privacy configuration and DNS are unchanged.
 - **Label status:** **corrected** (Manus `NWPT-dynamic-ECS-hero-labeled-CORRECTED-v2.zip`). The preview-only note is removed. See “Correction rounds” below.
 - **Candidates:** `c4a66d0540df5786d2fd1a53754cd970b3c05080` (placement preview with the draft animation; kept frozen), and the corrected-media candidate committed on top of it.
-- **Publication:** on hold until the corrected preview is reviewed.
+- **Publication:** authorised after Web Boss's preview checks passed; published (see the end of this record).
 
 ## Files used
 
@@ -108,3 +108,31 @@ No other file from the pack was added. **Complementary still:** none added. The 
 - **200% text at 390 px:** fits the screen and is axe clean.
 
 **Evidence:** `records/screens-nwpt052-v2/` (corrected media: same set of screenshots and recording) and `records/screens-nwpt052/` (draft) holds desktop (1363×936) and phone (390×844) screenshots, a reduced-motion poster screenshot, and `recording-ecs-video-play-pause-resume.webm` (playback, then Pause, then Play).
+
+## Production publication (Web Boss, 27 Sep 2026)
+
+| Item | Value |
+|---|---|
+| Production SHA | `fbd865d74fa7272f3eb06dd69c0c3a1c8fefe61d` (corrected Manus v2 media; supersedes placement preview `c4a66d0`) |
+| Deployment ID | `ef7196a6-027d-475b-ae76-a707681b2865` |
+| Published | 27 September 2026, 23:16:34 CEST |
+| Production URL | https://www.nwpharmatech.org |
+| Rollback deployment ID | `c5086d53-0cd3-47a0-80bf-f87808e29de3` (previous production `cfee45bdbe80701f98230dced8ec9953988d9ffb`) |
+| Hosted verification | Web Boss on www: **PASS**. Checked: corrected v2 video and poster; Play/Pause; reduced-motion poster; caption and label explanations; `/api/enquiry` → `configured:false` |
+
+**Unchanged:** enquiries remain disabled; DNS and privacy are unchanged.
+
+**Carried forward:**
+- **Browser testing:**
+  - Safari/iPhone: untested (also reported by Web Boss).
+  - Claude's checks used Chromium with mobile emulation only. Enlarged text was emulated through the root font size; no browser zoom, operating-system text setting or physical-device testing was done.
+  - The MP4 fallback, which Safari uses, was checked frame by frame outside the browser, since this Chromium cannot play H.264. Its playback in Safari has not been seen.
+- **Enlarged text:** the About and Team pages widen at 150–200% text. Outstanding for a later pass; the Team portraits are to stay unchanged.
+- **Evidence access:** the label explanations add no new sources.
+  - The Health Canada 2018 citation (CB1/CB2, AEA and 2-AG) rests on Web Boss's captured passage of section 1.0, reviewed by Claude. Claude could not open the live page, because outbound access was blocked.
+  - Laprairie et al. 2015 (the THC and CBD cell findings) is checked at abstract level only; the full text was not fetched.
+  - These limits are unchanged from `SCIENCE-EXPANSION-NWPT-048.md`.
+
+**Baseline:** future website work starts from `fbd865d74fa7272f3eb06dd69c0c3a1c8fefe61d`. This records-only commit is not deployed.
+
+This closes NWPT-052.
