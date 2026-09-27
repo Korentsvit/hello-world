@@ -154,7 +154,7 @@ The pack names `17f2068` as its parent; it was reconciled against `e3d1a919191cb
 
 **Titles matched to captured headings:** “Information for Health Care Professionals: Cannabis (marihuana, marijuana) and the cannabinoids”; “About cannabis”; “Cannabidiol (CBD)”.
 
-**Dates:** professional reference recorded as Spring 2018. The capture does not include its date line, and it cites items from June and July 2018. The PDF in the pack is an older February 2013 version and was not used. About cannabis and Cannabidiol (CBD): date modified not captured; inspected 27 Sep 2026.
+**Dates:** professional reference: Spring 2018, the date displayed by the inspected HTML page (`03-hcp-cannabinoids.txt`, line 8: “Date of latest version: Spring 2018”). No edition date is inferred from the document's references. *Correction:* an earlier version of this record said the capture lacked a date line; that was wrong (Claude's search missed line 8). The PDF in the pack (`hc-hcp-monograph.pdf`, a Veterans-hosted copy) is a separate, older edition (“Date of latest version: February 2013”, with a May 2013 addendum). It is not the evidence used for any citation; the HTML capture is. About cannabis and Cannabidiol (CBD): date modified not captured; inspected 27 Sep 2026.
 
 **Not imported:** Health Canada's statements that CBD may block or lower some effects of THC, §1.0's list of conditions, and the “entourage effect” discussion. The CBD–THC interaction conclusions still rest only on Englund 2013, Englund 2023, Zamarripa 2023 and Chesney 2025 (enforced in `tools/test-science.mjs`).
 
