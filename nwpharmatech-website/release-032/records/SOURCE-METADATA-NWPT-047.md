@@ -119,3 +119,7 @@ The publication month and the journal citation year are recorded as **separate f
 | Inspected by / date | Web Boss, 27 Sep 2026 (report full-text extract of the official PDF, per his note) |
 
 The only Web Boss note on file (`records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md`) covers publication metadata and quotes no passage on why the study did not start. Claude could not open the PDF from its environment (proxy 403). **Status:** the passage and page above now support the card's finding. This supports that one statement only. It is not scientific sign-off, and it does not verify any other card. Recorded in a record-only commit; no site change.
+
+## 4. Result of the primary-source pass (27 Sep 2026)
+
+Web Boss's pass covered P1–P24. Per-card results, the corrections applied and the wording proposals are in `records/SOURCE-VERIFICATION-P1-P24-2026-09-27.md`, which supersedes the empty result column in §2.

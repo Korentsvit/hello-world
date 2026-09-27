@@ -38,6 +38,8 @@ VL  - 69
 IS  - 3
 SP  - 220
 EP  - 229
+DO  - 10.1001/archgenpsychiatry.2011.1472
+AN  - PMID:22393215
 ER  - 
 
 TY  - JOUR
@@ -60,6 +62,7 @@ TI  - Psychosis and schizophrenia in adults: prevention and management (CG178)
 AU  - National Institute for Health and Care Excellence
 T2  - NICE clinical guideline
 PY  - 2014
+N1  - Published 12 February 2014; last updated 4 September 2026
 UR  - https://www.nice.org.uk/guidance/cg178
 ER  - 
 
@@ -68,12 +71,14 @@ TI  - Psychosis and schizophrenia in children and young people: recognition and 
 AU  - National Institute for Health and Care Excellence
 T2  - NICE clinical guideline
 PY  - 2013
+N1  - Published 23 January 2013; last updated 26 October 2016
 UR  - https://www.nice.org.uk/guidance/cg155
 ER  - 
 
 TY  - GEN
 TI  - Epidyolex 100 mg/ml oral solution: Summary of Product Characteristics
 T2  - Electronic Medicines Compendium
+N1  - Date of revision of the text 8 June 2026
 UR  - https://www.medicines.org.uk/emc/product/10781
 ER  - 
 
@@ -84,6 +89,8 @@ T2  - N Engl J Med
 PY  - 2017
 VL  - 376
 IS  - 21
+SP  - 2011
+EP  - 2020
 DO  - 10.1056/NEJMoa1611618
 AN  - PMID:28538134
 ER  - 
@@ -96,6 +103,7 @@ PY  - 2019
 VL  - 6
 IS  - 5
 SP  - 427
+EP  - 436
 DO  - 10.1016/S2215-0366(19)30048-3
 AN  - PMID:30902669
 ER  - 
@@ -108,9 +116,11 @@ AU  - Fusar-Poli P
 T2  - Neuropsychopharmacology
 PY  - 2010
 VL  - 35
+IS  - 3
 SP  - 764
 EP  - 774
 DO  - 10.1038/npp.2009.184
+AN  - PMID:19924114
 ER  - 
 
 TY  - JOUR
@@ -134,6 +144,7 @@ AU  - Leweke FM
 T2  - Transl Psychiatry
 PY  - 2012
 VL  - 2
+IS  - 3
 SP  - e94
 DO  - 10.1038/tp.2012.15
 AN  - PMID:22832859
@@ -163,6 +174,7 @@ IS  - 11
 SP  - 1107
 EP  - 1117
 DO  - 10.1001/jamapsychiatry.2018.2309
+AN  - PMID:30167644
 ER  - 
 
 TY  - JOUR
@@ -170,6 +182,11 @@ TI  - Effects of short-term cannabidiol treatment on response to social stress i
 AU  - Appiah-Kusi E
 T2  - Psychopharmacology (Berl)
 PY  - 2020
+VL  - 237
+IS  - 4
+SP  - 1121
+EP  - 1130
+DO  - 10.1007/s00213-019-05442-6
 AN  - PMID:31915861
 ER  - 
 
@@ -224,6 +241,10 @@ ER  -
 TY  - JOUR
 TI  - Prevalence of individuals at clinical high-risk of psychosis in the general population and clinical samples: systematic review and meta-analysis
 AU  - Salazar de Pablo G
+AU  - Woods SW
+AU  - Drymonitou G
+AU  - de Diego H
+AU  - Fusar-Poli P
 T2  - Brain Sci
 PY  - 2021
 VL  - 11
@@ -277,9 +298,11 @@ AU  - Bialer M
 T2  - CNS Drugs
 PY  - 2020
 VL  - 34
+IS  - 8
 SP  - 795
 EP  - 800
 DO  - 10.1007/s40263-020-00741-5
+AN  - PMID:32504461
 ER  - 
 
 TY  - JOUR
@@ -288,6 +311,7 @@ AU  - Taylor L
 T2  - CNS Drugs
 PY  - 2018
 VL  - 32
+IS  - 11
 SP  - 1053
 EP  - 1067
 DO  - 10.1007/s40263-018-0578-5

@@ -51,7 +51,9 @@
       "finding": "Describes how the high-risk state is defined and assessed, including attenuated psychotic symptoms and brief limited intermittent psychotic symptoms.",
       "limitations": "A narrative review, not a systematic estimate of outcomes.",
       "verification": "index",
-      "notes": "Genetic-risk-with-deterioration wording not confirmed as a statement in this paper."
+      "notes": "Genetic-risk-with-deterioration wording not confirmed as a statement in this paper.",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Not confirmed: the card's finding is a paraphrase, not a contiguous passage of the abstract (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "addington-2011",
@@ -75,7 +77,9 @@
       "design": "Longitudinal follow-up of a multisite cohort",
       "finding": "People who did not develop psychosis were a mixed group: some recovered, others kept milder symptoms and difficulties.",
       "limitations": "One North American cohort; exact remission percentages not quoted here.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Consistent with abstract conclusions (paraphrase) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "fusarpoli-2012",
@@ -92,15 +96,16 @@
       "volume": "69",
       "issue": "3",
       "pages": "220-229",
-      "doi": "",
-      "pmid": "",
+      "doi": "10.1001/archgenpsychiatry.2011.1472",
+      "pmid": "22393215",
       "population": "People at clinical high risk in published cohorts",
       "product": "Not applicable",
       "design": "Meta-analysis",
       "finding": "Pooled risk of developing psychosis rose over time: 18% at 6 months, 22% at 1 year, 29% at 2 years and 36% at 3 years.",
       "limitations": "Earlier literature; transition rates in later studies were lower (see Salazar de Pablo et al. 2021).",
       "verification": "index",
-      "notes": "DOI and PMID not confirmed."
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted abstract figures (18%, 22%, 29%, 36%) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "salazar-2021",
@@ -124,7 +129,9 @@
       "design": "Meta-analysis (a pooled estimate and, separately, Kaplan–Meier cumulative estimates)",
       "finding": "Pooled estimate: about one in four (25%) developed psychosis within 3 years. Kaplan–Meier cumulative estimates, a separate analysis: 8% at 6 months, 14% at 1 year, 20% at 2 years, 27% at 3 years and 35% at 10 years. Wide variation between studies.",
       "limitations": "High heterogeneity between services and criteria; individual risk varies. The pooled and Kaplan–Meier results are separate analyses and are not combined into one series. Neither is interchangeable with the older pooled averages of Fusar-Poli et al. 2012.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted primary text (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "nice-cg178",
@@ -150,7 +157,11 @@
       "finding": "Offer individual CBT, with or without family intervention. Do not offer antipsychotic medication to people at increased risk or to reduce the risk of or prevent psychosis.",
       "limitations": "Applies in England; guidance differs elsewhere.",
       "verification": "index",
-      "notes": "Recommendation numbers and last-updated date not confirmed."
+      "notes": "Published 12 February 2014; last updated and last reviewed 4 September 2026 (NICE guidance page, per Web Boss, 27 Sep 2026). Recommendation numbers not recorded.",
+      "published": "12 February 2014",
+      "last_updated": "4 September 2026",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted recommendations (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "nice-cg155",
@@ -175,7 +186,12 @@
       "design": "National clinical guideline (updated 2016)",
       "finding": "Consider individual CBT with or without family intervention. Do not offer antipsychotic medication for this purpose.",
       "limitations": "Applies in England; guidance differs elsewhere.",
-      "verification": "index"
+      "verification": "index",
+      "notes": "Published 23 January 2013; last updated 26 October 2016; last reviewed 19 September 2024 (NICE guidance page, per Web Boss, 27 Sep 2026).",
+      "published": "23 January 2013",
+      "last_updated": "26 October 2016",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches recommendations 1.2.5 and 1.2.6 in substance; 'for this purpose' paraphrases 1.2.6 (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "epidyolex-smpc",
@@ -200,7 +216,11 @@
       "design": "Regulatory product information",
       "finding": "Licensed CBD medicine for certain severe epilepsies. Side effects include sleepiness and raised liver enzymes (especially with valproate); interacts with clobazam.",
       "limitations": "Epilepsy populations at higher doses per kg; not evidence about psychosis.",
-      "verification": "index"
+      "verification": "index",
+      "revised": "8 June 2026",
+      "notes": "Date of revision of the text 8 June 2026; emc page last updated 18 June 2026 (per Web Boss, 27 Sep 2026).",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Adverse effects and interactions supported by SmPC text; indications paraphrased ('certain severe epilepsies'; SmPC 4.1 names LGS, Dravet syndrome and TSC) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "devinsky-2017",
@@ -216,7 +236,7 @@
       "year": 2017,
       "volume": "376",
       "issue": "21",
-      "pages": "",
+      "pages": "2011-2020",
       "doi": "10.1056/NEJMoa1611618",
       "pmid": "28538134",
       "population": "120 children and young adults with Dravet syndrome",
@@ -224,7 +244,9 @@
       "design": "Randomised, double-blind, placebo-controlled trial",
       "finding": "CBD 20 mg/kg/day reduced convulsive seizures versus placebo. Common side effects included diarrhoea, vomiting, fatigue, fever, sleepiness and abnormal liver tests.",
       "limitations": "Epilepsy, not psychosis; cited here for safety information.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted abstract results (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "diforti-2019",
@@ -240,7 +262,7 @@
       "year": 2019,
       "volume": "6",
       "issue": "5",
-      "pages": "427-",
+      "pages": "427-436",
       "doi": "10.1016/S2215-0366(19)30048-3",
       "pmid": "30902669",
       "population": "901 people with first-episode psychosis and 1,237 controls, 11 sites",
@@ -248,7 +270,9 @@
       "design": "Case-control study",
       "finding": "Daily cannabis use, and especially daily use of high-potency (high-THC) cannabis, was associated with higher odds of psychotic disorder.",
       "limitations": "Association, not proof of cause; about THC-rich cannabis, not CBD.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Consistent with abstract framing; odds ratios not quoted (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "bhattacharyya-2010",
@@ -263,16 +287,18 @@
       "journal": "Neuropsychopharmacology",
       "year": 2010,
       "volume": "35",
-      "issue": "",
+      "issue": "3",
       "pages": "764-774",
       "doi": "10.1038/npp.2009.184",
-      "pmid": "",
+      "pmid": "19924114",
       "population": "15 healthy men (plus 6 in a pretreatment experiment)",
       "product": "Oral THC and CBD (not NWPT-SM32300)",
       "design": "Experimental brain-imaging study",
       "finding": "THC and CBD had opposite effects on activity in several brain regions; CBD pretreatment prevented THC-induced psychotic symptoms in a small group.",
       "limitations": "Very small, healthy volunteers, single doses; mechanism, not clinical benefit.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Consistent with abstract (not quoted) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "mcguire-2018",
@@ -296,7 +322,9 @@
       "design": "Randomised, double-blind, placebo-controlled; 6 weeks",
       "finding": "Positive psychotic symptoms fell more with CBD than placebo (small difference), and clinicians more often rated patients as improved. Generally well tolerated.",
       "limitations": "Small, short, add-on treatment in established schizophrenia; not people at clinical high risk.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Not confirmed: full text needed for the symptom results (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "leweke-2012",
@@ -311,7 +339,7 @@
       "journal": "Transl Psychiatry",
       "year": 2012,
       "volume": "2",
-      "issue": "",
+      "issue": "3",
       "pages": "e94",
       "doi": "10.1038/tp.2012.15",
       "pmid": "22832859",
@@ -320,7 +348,9 @@
       "design": "Randomised, double-blind, active comparator (amisulpride); 4 weeks",
       "finding": "Symptoms improved similarly with CBD and amisulpride; CBD had fewer movement side effects, less weight gain and a smaller prolactin rise.",
       "limitations": "Small and short; no placebo group, so the size of any CBD effect alone is uncertain.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Consistent with abstract theme (not quoted) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "boggs-2018",
@@ -344,7 +374,9 @@
       "design": "Randomised, double-blind, placebo-controlled; 6 weeks",
       "finding": "No improvement in cognition or symptoms compared with placebo.",
       "limitations": "Small; lower dose than some other studies; stable chronic patients.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Not confirmed: exact null result to be checked in full text (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "bhattacharyya-2018",
@@ -362,13 +394,15 @@
       "issue": "11",
       "pages": "1107-1117",
       "doi": "10.1001/jamapsychiatry.2018.2309",
-      "pmid": "",
+      "pmid": "30167644",
       "population": "33 people at clinical high risk (16 CBD, 17 placebo) and 19 healthy volunteers",
       "product": "Single oral CBD 600 mg dose (not NWPT-SM32300)",
       "design": "Randomised, double-blind, placebo-controlled brain-imaging study",
       "finding": "During a memory task, brain activity with CBD was intermediate between the placebo group and healthy volunteers in several regions.",
       "limitations": "Single dose; brain-activity measures, not symptoms or outcomes.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Consistent with abstract (not quoted) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "appiahkusi-2020",
@@ -382,10 +416,10 @@
       "title": "Effects of short-term cannabidiol treatment on response to social stress in subjects at clinical high risk of developing psychosis",
       "journal": "Psychopharmacology (Berl)",
       "year": 2020,
-      "volume": "",
-      "issue": "",
-      "pages": "",
-      "doi": "",
+      "volume": "237",
+      "issue": "4",
+      "pages": "1121-1130",
+      "doi": "10.1007/s00213-019-05442-6",
       "pmid": "31915861",
       "population": "32 people at clinical high risk and 26 healthy volunteers",
       "product": "Oral CBD 600 mg/day for 7 days (not NWPT-SM32300)",
@@ -393,7 +427,8 @@
       "finding": "Anxiety and stress responses to a public-speaking test were intermediate between placebo and healthy volunteers. The cortisol response did not differ significantly from placebo.",
       "limitations": "One week; laboratory stress test, not clinical outcomes.",
       "verification": "index",
-      "notes": "Volume, issue, pages and DOI not confirmed."
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted abstract results (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "bhattacharyya-2024",
@@ -417,7 +452,9 @@
       "design": "Randomised, placebo-controlled; published as a short research letter",
       "finding": "After adjusting for starting scores, symptom and distress scores were lower with CBD than placebo; CBD was well tolerated.",
       "limitations": "Very small, three weeks, short-letter format; not yet confirmed in a larger trial.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted article text (Europe PMC PDF) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "cantop",
@@ -445,7 +482,9 @@
       "finding": "The study did not start owing to challenges in securing supply of the study drug.",
       "limitations": "Not an efficacy finding, and not the NWPharmaTech Phase 2B study. Included because it explains why a larger trial is still missing.",
       "verification": "index",
-      "notes": "Bibliographic metadata only (published March 2025; recommended citation Efficacy Mech Eval 2026;13(7):197-214; DOI; PMID) confirmed from the official NIHR PDF, NCBI E-utilities and Crossref by Web Boss, 27 Sep 2026 (release-032/records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md). 'year' is the journal citation year, not the publication month. Finding reworded on 27 Sep 2026 to the sentence approved by Filipp; supported by the report's Abstract, Study limitations and future work, PDF page 2 (also Ethics statement, p. 12), per Web Boss's inspection (release-032/records/primary-source/P8-CANTOP-finding-support-WebBoss-2026-09-27.md). Not scientific sign-off. Title and named authors (in the documented order) are taken from the same note."
+      "notes": "Bibliographic metadata only (published March 2025; recommended citation Efficacy Mech Eval 2026;13(7):197-214; DOI; PMID) confirmed from the official NIHR PDF, NCBI E-utilities and Crossref by Web Boss, 27 Sep 2026 (release-032/records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md). 'year' is the journal citation year, not the publication month. Finding reworded on 27 Sep 2026 to the sentence approved by Filipp; supported by the report's Abstract, Study limitations and future work, PDF page 2 (also Ethics statement, p. 12), per Web Boss's inspection (release-032/records/primary-source/P8-CANTOP-finding-support-WebBoss-2026-09-27.md). Not scientific sign-off. Title and named authors (in the documented order) are taken from the same note.",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Supported by report Abstract, Study limitations and future work, PDF page 2 (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "nct07186283",
@@ -470,7 +509,9 @@
       "design": "Randomised, open-label, three-period crossover; single doses",
       "finding": "Completed December 2025. Results not yet published.",
       "limitations": "Healthy volunteers, single doses: measures absorption and short-term tolerability, not effectiveness in clinical high risk of psychosis.",
-      "verification": "registry-index"
+      "verification": "registry-index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Completion 10 December 2025 and no posted results confirmed (ClinicalTrials.gov API) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "salazar-prev-2021",
@@ -480,7 +521,7 @@
       "result": "descriptive",
       "public": true,
       "short": "Salazar de Pablo et al. 2021 (prevalence)",
-      "authors": "Salazar de Pablo G, et al.",
+      "authors": "Salazar de Pablo G, Woods SW, Drymonitou G, de Diego H, Fusar-Poli P",
       "title": "Prevalence of individuals at clinical high-risk of psychosis in the general population and clinical samples: systematic review and meta-analysis",
       "journal": "Brain Sci",
       "year": 2021,
@@ -495,7 +536,9 @@
       "finding": "Clinical high-risk states were uncommon in the general population (1.7%) and much more common among young people already seeking help from services (19.2%).",
       "limitations": "Estimates depend on how and where people were sampled; confidence intervals are wide.",
       "verification": "index",
-      "notes": "95% CIs: general 1.0-2.9 (13 studies, 26,835); clinical 12.9-27.7 (22 studies, 10,300). Author list after first author not confirmed."
+      "notes": "95% CIs: general 1.0-2.9 (13 studies, 26,835); clinical 12.9-27.7 (22 studies, 10,300).",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted primary text (PMC) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "stafford-2013",
@@ -519,7 +562,9 @@
       "design": "Systematic review and meta-analysis",
       "finding": "CBT was associated with fewer transitions to psychosis at 12 months (risk ratio 0.54), on moderate-quality evidence. Evidence for other interventions was low quality. The review did not conclude that any specific intervention is proven.",
       "limitations": "Small trials; evidence quality mostly low to moderate.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted abstract (RR 0.54; not conclusive) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "davies-2018",
@@ -543,7 +588,9 @@
       "design": "Network meta-analysis",
       "finding": "No evidence that any one preventive intervention works better than the others.",
       "limitations": "Few, small trials per intervention.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted abstract (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "kane-2016",
@@ -567,7 +614,9 @@
       "design": "Cluster-randomised trial; 2 years",
       "finding": "People receiving coordinated specialty care stayed in treatment longer and had better quality of life, symptoms and involvement in work or school; benefits were larger when untreated psychosis had been shorter.",
       "limitations": "People with first-episode psychosis, not clinical high risk; US community clinics.",
-      "verification": "index"
+      "verification": "index",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted abstract (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "perucca-2020",
@@ -582,17 +631,18 @@
       "journal": "CNS Drugs",
       "year": 2020,
       "volume": "34",
-      "issue": "",
+      "issue": "8",
       "pages": "795-800",
       "doi": "10.1007/s40263-020-00741-5",
-      "pmid": "",
+      "pmid": "32504461",
       "population": "Review of human pharmacokinetic studies",
       "product": "Cannabidiol in general (not NWPT-SM32300)",
       "design": "Review",
       "finding": "Taken by mouth while fasting, only about 6% of a CBD dose is estimated to reach the bloodstream; a high-fat meal increases this about fourfold. Much of each dose is broken down by the liver before reaching the circulation.",
       "limitations": "Review of other CBD preparations; figures vary between studies.",
       "verification": "index",
-      "notes": "PMID 32504461 not confirmed from PubMed."
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Matches quoted text (about 6%; fourfold with high-fat meal) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "taylor-2018",
@@ -607,7 +657,7 @@
       "journal": "CNS Drugs",
       "year": 2018,
       "volume": "32",
-      "issue": "",
+      "issue": "11",
       "pages": "1053-1067",
       "doi": "10.1007/s40263-018-0578-5",
       "pmid": "30374683",
@@ -617,7 +667,9 @@
       "finding": "Described the safety and tolerability of single and repeated doses of purified CBD in healthy adults, and found that a high-fat meal increased CBD exposure.",
       "limitations": "Healthy volunteers; a different CBD product. A published correction exists.",
       "verification": "index",
-      "notes": "Exact food-effect fold changes not confirmed."
+      "notes": "Exact food-effect fold changes not confirmed.",
+      "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
+      "finding_check": "Partly: food effect supported; exact fold changes not confirmed (Web Boss, 27 Sep 2026). Not scientific sign-off."
     }
   ],
   "corrections": [
