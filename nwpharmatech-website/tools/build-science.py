@@ -204,11 +204,12 @@ VIS = {
 
 
 # ---------------------------------------------------------------- NWPT-052 labelled ECS animation (Manus web-ready pack)
-# NWPT-dynamic-ECS-hero-labeled-web.webm / .mp4 / -poster.webp, unmodified, 1280x720. The draft's baked-in sub-labels
-# ("central region" under Δ9-THC, "peripheral region" under CBD) and the drawn positions suggest binding sites; a
-# corrected file has been requested from Manus. Until it replaces these files, the page shows a visible preview note.
-ECS_LABELS_CORRECTED = False
-ECS_BASE = "assets/ecs-video/NWPT-dynamic-ECS-hero-labeled"
+# Corrected render from Manus (NWPT-dynamic-ECS-hero-labeled-CORRECTED-v2.zip), unmodified, 1280x720, 6 s, silent: no
+# "central region"/"peripheral region" sub-labels, no molecule inside or docked at CB1/CB2, every pointer on its target.
+# Published as ...-v2-* so no browser keeps the earlier draft's artwork (poster included). ECS_LABELS_CORRECTED = False
+# restores the draft preview note.
+ECS_LABELS_CORRECTED = True
+ECS_BASE = "assets/ecs-video/NWPT-dynamic-ECS-hero-labeled-v2"
 
 
 def ecs_video(pre):

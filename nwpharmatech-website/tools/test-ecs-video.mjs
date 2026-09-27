@@ -1,7 +1,7 @@
 // NWPT-052: labelled endocannabinoid-system animation on /science/cannabinoids — focused media, layout and accessibility
 // checks, and a guard that nothing else in the deployable site changed except the stylesheet cache key.
 // Cloudflare Pages runtime, Chromium: node test-ecs-video.mjs [site-dir] [production-sha]
-import { chromium } from "playwright-core"; import { serve } from "./lib/cf-serve.mjs"; import fs from "node:fs"; import path from "node:path"; import { execFileSync } from "node:child_process";
+import { chromium } from "playwright-core"; import { serve } from "./lib/cf-serve.mjs"; import fs from "node:fs"; import path from "node:path"; import { execFileSync } from "node:child_process"; import crypto from "node:crypto";
 const dir = path.resolve(process.argv[2] || "../release-032/site"); const BASE = process.argv[3] || "cfee45bdbe80701f98230dced8ec9953988d9ffb";
 const axe = fs.readFileSync(new URL("./node_modules/axe-core/axe.min.js", import.meta.url), "utf8");
 let pass = 0, fail = 0; const check = (n, ok, d = "") => { ok ? pass++ : fail++; console.log(`${ok ? "ok  " : "FAIL"}  ${n}${ok ? "" : "  --  " + String(d).slice(0, 400)}`); };
@@ -20,8 +20,14 @@ for (const f of [...changed, ...untracked]) {
   if (old !== fs.readFileSync(path.join(dir, f), "utf8")) bad.push(f);
 }
 check("everything else identical to production (homepage hero, funding film, formulation clip, portraits, navigation; only the cache key)", !bad.length, bad.join(" "));
+// corrected Manus media (CORRECTED-v2 delivery, SHA256SUMS) under versioned names, so no cache keeps the draft artwork
+const V2 = { "NWPT-dynamic-ECS-hero-labeled-v2-poster.webp": "9a600d1e99898c4d2e0f0ce44716e53e25a0e63c7d3b5656f13e2ed80717b26f", "NWPT-dynamic-ECS-hero-labeled-v2-web.mp4": "2d62c8c6dba7d3f8d3cfc23400818204782f99cb1f5ce0cd90979823f6993950", "NWPT-dynamic-ECS-hero-labeled-v2-web.webm": "58f10185b8d5e71ac39aa76d63afd411f1eb1df75c85d1654fafeb6f41b27d98" };
+const sha = (f) => crypto.createHash("sha256").update(fs.readFileSync(path.join(dir, "assets/ecs-video", f))).digest("hex");
+check("media byte-identical to the corrected Manus v2 delivery", Object.entries(V2).every(([f, h]) => fs.existsSync(path.join(dir, "assets/ecs-video", f)) && sha(f) === h));
+const refs = (fs.readFileSync(path.join(dir, "science/cannabinoids.html"), "utf8").match(/assets\/ecs-video\/[^"]+/g) || []).sort();
+check("page references only the versioned v2 poster, WebM and MP4 (no draft filenames)", JSON.stringify([...new Set(refs)]) === JSON.stringify(["assets/ecs-video/NWPT-dynamic-ECS-hero-labeled-v2-poster.webp", "assets/ecs-video/NWPT-dynamic-ECS-hero-labeled-v2-web.mp4", "assets/ecs-video/NWPT-dynamic-ECS-hero-labeled-v2-web.webm"]), refs.join(" "));
 const assets = fs.readdirSync(path.join(dir, "assets/ecs-video")).sort();
-check("only the video, its MP4 fallback and its poster are added", JSON.stringify(assets) === JSON.stringify(["NWPT-dynamic-ECS-hero-labeled-poster.webp", "NWPT-dynamic-ECS-hero-labeled-web.mp4", "NWPT-dynamic-ECS-hero-labeled-web.webm"]), assets.join(" "));
+check("only the video, its MP4 fallback and its poster are added", JSON.stringify(assets) === JSON.stringify(Object.keys(V2).sort()), assets.join(" "));
 const prod = execFileSync("git", ["show", `${BASE}:${rel}/science/cannabinoids.html`], { cwd: repo, encoding: "utf8" });
 const now = fs.readFileSync(path.join(dir, "science/cannabinoids.html"), "utf8");
 const strip = (h) => h.replace(/<figure class="ecs-video"[\s\S]*?<\/figure>/, "").replace(/<script src="\.\.\/ecs-video\.js[^>]*><\/script>\s*/, "").replace(/\?v=nwpt05[23]/g, "").replace(/\s+/g, " ");
@@ -51,7 +57,7 @@ for (const [label, vp, mobile] of [["390x844", { width: 390, height: 844 }, true
   await pg.waitForFunction(() => { const v = document.querySelector(".ecs-video__video"); return v.currentTime > 0.5; }, null, { timeout: 8000 }).catch(() => {});
   const v1 = await pg.evaluate(() => { const v = document.querySelector(".ecs-video__video"); return { t: v.currentTime, muted: v.muted, loop: v.loop, src: v.currentSrc.split("/").pop(), audio: v.webkitAudioDecodedByteCount, playing: document.querySelector("[data-ecs-video]").classList.contains("is-playing"), btn: document.querySelector(".ecs-video__toggle").textContent.trim(), pressed: document.querySelector(".ecs-video__toggle").getAttribute("aria-pressed") }; });
   check(`@${label} plays silently and loops (WebM chosen; muted; no audio decoded)`, v1.t > 0.5 && v1.muted && v1.loop && /\.webm/.test(v1.src) && v1.audio === 0 && v1.playing, JSON.stringify(v1));
-  check(`@${label} only the WebM is downloaded (MP4 kept as fallback)`, reqs.some((u) => /labeled-web\.webm/.test(u)) && !reqs.some((u) => /labeled-web\.mp4/.test(u)), reqs.filter((u) => /labeled/.test(u)).join(" "));
+  check(`@${label} only the WebM is downloaded (MP4 kept as fallback)`, reqs.some((u) => /labeled-v2-web\.webm/.test(u)) && !reqs.some((u) => /labeled-v2-web\.mp4/.test(u)), reqs.filter((u) => /labeled/.test(u)).join(" "));
   check(`@${label} visible Pause control`, v1.btn === "Pause animation" && v1.pressed === "false", JSON.stringify(v1));
   const btn = pg.locator(".ecs-video__toggle"); await btn.focus(); await pg.keyboard.press("Enter"); await pg.waitForTimeout(300);
   const t1 = await pg.evaluate(() => document.querySelector(".ecs-video__video").currentTime); await pg.waitForTimeout(600);
@@ -64,7 +70,7 @@ for (const [label, vp, mobile] of [["390x844", { width: 390, height: 844 }, true
   const t = await pg.evaluate(() => { const f = document.querySelector("[data-ecs-video]"); return { cap: f.querySelector("figcaption").textContent, items: [...f.querySelectorAll(".ecs-labels li")].map((li) => ({ t: li.querySelector("strong").textContent, cite: li.querySelectorAll(".nwpt-cite").length })), note: f.querySelector(".sci-preview-note")?.textContent || "", aria: f.querySelector(".ecs-video__video").getAttribute("aria-hidden"), fs: parseFloat(getComputedStyle(f.querySelector(".ecs-labels li")).fontSize) }; });
   check(`@${label} caption: conceptual illustration, no demonstrated NWPT-SM32300 mechanism`, /Conceptual illustration/.test(t.cap) && /does not show a demonstrated mechanism of NWPT-SM32300/.test(t.cap), t.cap);
   check(`@${label} readable HTML explanation of every label, each with its source`, t.items.length === 4 && t.items.every((i) => i.cite >= 1) && t.fs >= 14, JSON.stringify(t.items));
-  check(`@${label} draft sub-labels flagged by a visible preview-only note`, /Preview only/.test(t.note) && /central region/.test(t.note), t.note);
+  check(`@${label} corrected animation: no preview-only note`, t.note === "", t.note);
   await pg.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); await pg.waitForTimeout(300);
   const cls = await pg.evaluate(() => window.__cls);
   check(`@${label} no layout shift (CLS ${cls.toFixed(4)}); no horizontal scroll`, cls < 0.01 && (await pg.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 1, String(cls));
