@@ -38,7 +38,7 @@ New images go only into slots that had no imagery (the Science subpages). No exi
 |---|---|---|---|---|
 | `general-17` Uncertainty Map | `/science/psychiatry`, page hero below the Science sub-navigation | LCP: `loading="eager"`, `fetchpriority="high"` | 3:2 crop on the focal side (`object-position: 78% 50%`) | “Conceptual illustration of open research questions. It is not an anatomical model and does not depict a treatment effect.” |
 | `daylight-07` Synaptic Cleft Observatory | `/science/cannabinoids`, “A signalling system already present in the body” (above the Health Canada endocannabinoid text) | lazy | 3:2 crop on the focal side (`80% 50%`) | “Conceptual illustration of signalling between cells. It is not a molecular model and does not show where any compound binds or what it does.” |
-| `molecular-01` CBD and Δ9-THC Molecular Architecture | `/science/cbd-thc`, “Two distinct compounds”, between the introduction and the comparison tabs | lazy | Full diagram, uncropped (`object-fit: contain`) | “CBD and delta-9-THC drawn from their PubChem records (CID 644019 and 16078): two-dimensional structures with computed three-dimensional shapes. The shapes are illustrations, not receptor-bound poses, and say nothing about effects.” |
+| `molecular-01` CBD and Δ9-THC Molecular Architecture | `/science/cbd-thc`, “Two distinct compounds”, between the introduction and the comparison tabs | lazy | Full diagram, uncropped (`object-fit: contain`) | “Same molecular formula. Different three-dimensional architecture. CBD and delta-9-THC drawn from their PubChem records (CID 644019 and 16078): two-dimensional structures with computed three-dimensional shapes. The shapes are illustrations, not receptor-bound poses, and say nothing about effects.” |
 
 - All three use `srcset` with the 640w and 1600w files, have intrinsic `width`/`height` of 1600 × 686 and `decoding="async"`.
 - Each has descriptive alt text adapted from the manifest. The labels in the molecular image (C21H30O2, 314.5 g/mol, PubChem CID 644019 and 16078) were read from the image and match the public PubChem identities for CBD and Δ9-THC.
@@ -107,3 +107,11 @@ New images go only into slots that had no imagery (the Science subpages). No exi
    - on a phone, the psychiatry and cannabinoids images crop to the right-hand subject, and the molecular diagram is uncropped;
    - no other page looks different.
 3. Production publication follows Filipp's review of the preview.
+
+## Follow-up after hosted review (Filipp, 27 Sep 2026)
+
+- **Decision:** all three illustrations and layouts kept. The Evidence library and Community replacements stay unimplemented, and the homepage video stays.
+- **One targeted change:** the image's own sentence “Same molecular formula. Different three-dimensional architecture.” now opens the readable HTML caption on `/science/cbd-thc`, because the text inside the image is small on phones. The compound names, PubChem IDs and illustration limit are unchanged. The sentence is set in `tools/build-science.py`, so regeneration keeps it.
+- **Unchanged:** no image, layout or other page changed.
+- **Checks:** `tools/test-visuals.mjs` now also checks this caption.
+

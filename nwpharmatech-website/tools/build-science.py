@@ -199,7 +199,7 @@ VIS = {
         cap="Conceptual illustration of signalling between cells. It is not a molecular model and does not show where any compound binds or what it does."),
     "molecules": dict(file="01-cbd-thc-molecular-architecture", focal="50% 50%", kind="diagram",
         alt="Two panels, CBD and delta-9-THC, each showing a two-dimensional structure and a three-dimensional ball-and-stick shape; both are labelled with the formula C21H30O2.",
-        cap="CBD and delta-9-THC drawn from their PubChem records (CID 644019 and 16078): two-dimensional structures with computed three-dimensional shapes. The shapes are illustrations, not receptor-bound poses, and say nothing about effects."),
+        cap="Same molecular formula. Different three-dimensional architecture. CBD and delta-9-THC drawn from their PubChem records (CID 644019 and 16078): two-dimensional structures with computed three-dimensional shapes. The shapes are illustrations, not receptor-bound poses, and say nothing about effects."),
 }
 
 
