@@ -2,7 +2,7 @@
 
 - **Base:** production `af4ab606a16813252fda4bd6c280afaa1f473974` (deployment `1329321b-8006-4761-8c06-e1ad92f5a0e7`).
 - **Branch:** `claude/nwpt-science-gateway-051`.
-- **Status:** preview only; not deployed. Enquiries remain disabled; privacy configuration and DNS are unchanged.
+- **Status:** published to production on 27 Sep 2026 as `cfee45bdbe80701f98230dced8ec9953988d9ffb` (see **Production publication** at the end). This SHA is the production baseline for future website work. Enquiries remain disabled; privacy configuration and DNS are unchanged.
 - **Decision (Filipp, this pass):** the deeper formulation material moves unchanged to a new generated page, `/science/formulation`. No standalone formulation page existed before; `/formulation` redirected to `/science#formulation`.
 
 ## 1. `/science` as a concise gateway
@@ -89,3 +89,25 @@ The NWPT-050 menu behaviour is unchanged: independent scrolling, the first and l
 
 ## Not changed (recorded)
 - The About (`www.nwpharmatech.org` text) and Team (cards, “Individual capacity” badge) pages also widen at 150–200% text. They are outside this pass; Team also holds the portraits.
+
+## Production publication (Web Boss, 27 Sep 2026)
+
+| Item | Value |
+|---|---|
+| Production SHA | `cfee45bdbe80701f98230dced8ec9953988d9ffb` (includes the eight-anchor no-JavaScript fallback; supersedes preview `dc73a5a`) |
+| Deployment ID | `c5086d53-0cd3-47a0-80bf-f87808e29de3` |
+| Published | 27 September 2026, 21:48:24 CEST |
+| Production URL | https://www.nwpharmatech.org |
+| Rollback deployment ID | `1329321b-8006-4761-8c06-e1ad92f5a0e7` (previous production `af4ab606a16813252fda4bd6c280afaa1f473974`) |
+| Hosted verification | Web Boss's production spot-checks: PASS; no failures reported |
+
+**Unchanged:** enquiries remain disabled; DNS and privacy are unchanged.
+
+**Carried forward:**
+- **Safari/iPhone:** untested.
+- **Enlarged text:** the About page (`www.nwpharmatech.org` text) and the Team page (cards, “Individual capacity” badge) widen at 150–200% text. Outstanding for a later pass; the Team portraits are to stay unchanged.
+- **Testing basis:** Claude's checks used Chromium with mobile emulation, and enlarged text was emulated through the root font size. No browser zoom or physical-device testing was done in this release.
+
+**Baseline:** future website work starts from `cfee45bdbe80701f98230dced8ec9953988d9ffb`. This records-only commit is not deployed.
+
+This closes NWPT-051.
