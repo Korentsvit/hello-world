@@ -15,7 +15,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "release-032"
 SITE = ROOT / "site"
-V = "nwpt052"
+V = "nwpt053"
 CANON = "https://www.nwpharmatech.org/"
 UPDATED = "27 September 2026"
 
@@ -203,6 +203,44 @@ VIS = {
 }
 
 
+# ---------------------------------------------------------------- NWPT-052 labelled ECS animation (Manus web-ready pack)
+# NWPT-dynamic-ECS-hero-labeled-web.webm / .mp4 / -poster.webp, unmodified, 1280x720. The draft's baked-in sub-labels
+# ("central region" under Δ9-THC, "peripheral region" under CBD) and the drawn positions suggest binding sites; a
+# corrected file has been requested from Manus. Until it replaces these files, the page shows a visible preview note.
+ECS_LABELS_CORRECTED = False
+ECS_BASE = "assets/ecs-video/NWPT-dynamic-ECS-hero-labeled"
+
+
+def ecs_video(pre):
+    c = lambda *ids: cites(*ids, pre=pre)
+    note = "" if ECS_LABELS_CORRECTED else ('<p class="sci-preview-note" role="note"><strong>Preview only.</strong> In this draft animation the '
+        '“central region” and “peripheral region” sub-labels under Δ9-THC and CBD, and the molecules’ positions, suggest binding sites. '
+        'A corrected version has been requested; this draft is not for publication.</p>')
+    return f'''
+        <figure class="ecs-video" data-ecs-video aria-labelledby="ecs-video-cap">
+          <div class="ecs-video__media">
+            <img class="ecs-video__poster" src="{pre}{ECS_BASE}-poster.webp" width="1280" height="720" alt="Conceptual labelled illustration: CB1 and CB2 receptors, the endocannabinoid messengers AEA and 2-AG, and THC and CBD molecules." loading="eager" fetchpriority="high" decoding="async" />
+            <video class="ecs-video__video" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1" width="1280" height="720"
+              data-webm="{pre}{ECS_BASE}-web.webm" data-mp4="{pre}{ECS_BASE}-web.mp4"></video>
+          </div>
+          <div class="ecs-video__controls">
+            <button type="button" class="hero-motion__toggle ecs-video__toggle" aria-pressed="false" hidden><span class="hero-motion__icon" aria-hidden="true"></span><span class="hero-motion__label">Pause animation</span></button>
+          </div>
+          <figcaption id="ecs-video-cap">Conceptual illustration of endocannabinoid-system components. It is not a molecular model and does not show a demonstrated mechanism of NWPT-SM32300.</figcaption>
+          {note}
+          <div class="ecs-labels">
+            <p class="ecs-labels__title">What the labels show</p>
+            <ul>
+              <li><strong>CB1 receptor, CB2 receptor:</strong> cannabinoid receptors, part of the endocannabinoid system. {c("health-canada-hcp-2018")}</li>
+              <li><strong>AEA + 2-AG:</strong> anandamide (AEA) and 2-AG, signalling molecules the body makes, called endocannabinoids. {c("health-canada-hcp-2018")}</li>
+              <li><strong>Δ9-THC:</strong> a cannabinoid. In cell experiments it activated CB1 signalling. {c("laprairie-2015")}</li>
+              <li><strong>CBD:</strong> a different cannabinoid. In cell experiments it reduced CB1 signalling; that is a laboratory finding, not a clinical effect. {c("laprairie-2015")}</li>
+            </ul>
+            <p class="ecs-labels__note">Where each molecule appears in the animation is illustrative, not a binding site.</p>
+          </div>
+        </figure>'''
+
+
 def figure(key, pre, lcp=False):
     v = VIS[key]
     base = f"{pre}assets/visuals-049/{v['file']}"
@@ -320,7 +358,7 @@ def page_cannabinoids():
     body = f'''
     {hero("Science · Understanding cannabinoids", "Cannabis, cannabinoids and medicines: understanding the difference",
           "The word cannabis can refer to a plant, a preparation made from it, or products with very different compositions. Cannabinoids are compounds discussed within this field. Two of the best known are cannabidiol, usually called CBD, and delta-9-tetrahydrocannabinol, usually called THC.",
-          "science/cannabinoids.html", pre)}
+          "science/cannabinoids.html", pre, fig=ecs_video(pre))}
 
     <section class="section section-light" aria-labelledby="distinctions-title">
       <div class="wrap">
@@ -371,7 +409,7 @@ def page_cannabinoids():
     </section>'''
     return dict(path="science/cannabinoids.html", title="Understanding cannabinoids", h1="Cannabis, cannabinoids and medicines",
                 desc="Plain-language foundations: the difference between cannabis, cannabinoids, formulations and medicines, the endocannabinoid system, and why route and product matter.",
-                body=body)
+                body=body, scripts=["ecs-video.js"])
 
 
 def compare_panel(pid, title, thc, cbd):
@@ -593,6 +631,8 @@ def build_page(p):
     s = s[:a] + main + s[b:]
     if p.get("css"):
         s = s.replace("</head>", "".join(f'  <link rel="stylesheet" href="{c}" />\n' for c in p["css"]) + "</head>", 1)
+    for js in p.get("scripts", []):
+        s = s.replace('<script src="../nav.js', f'<script src="../{js}?v={V}" defer></script>\n  <script src="../nav.js', 1)
     if p.get("script"):
         s = s.replace('<script src="../nav.js', f'<script src="../science-tabs.js?v={V}" defer></script>\n  <script src="../nav.js', 1)
     out = SITE / p["path"]

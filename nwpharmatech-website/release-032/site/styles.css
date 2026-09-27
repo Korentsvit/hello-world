@@ -4361,3 +4361,22 @@ main.sci-page .sci-level, html:has(.sci-routes-section) main .badge { white-spac
 .sci-intro-moved { margin: 0; padding-left: 1.1rem; }
 .sci-intro-moved li { margin: 0.2rem 0; }
 .sci-intro-moved a { display: inline-block; padding: 0.35rem 0; }
+
+/* ===== NWPT-052: labelled endocannabinoid-system animation (/science/cannabinoids) =====
+   The 16:9 composition is shown whole (labels uncropped) at every width; the poster reserves the space, the silent
+   video fades in on top when motion is allowed (ecs-video.js). */
+.ecs-video { margin: 1.5rem 0 0; }
+.ecs-video__media { position: relative; aspect-ratio: 1280 / 720; overflow: hidden; border-radius: 12px; background: #eef3f6; }
+.ecs-video__poster, .ecs-video__video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+.ecs-video__video { opacity: 0; transition: opacity 0.5s var(--ease); }
+.ecs-video.is-playing .ecs-video__video { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .ecs-video__video { display: none; } }
+.ecs-video__controls { display: flex; justify-content: flex-end; margin-top: 0.5rem; min-height: 2.75rem; }
+.ecs-video__toggle { position: static; }
+.ecs-video figcaption { margin-top: 0.5rem; max-width: var(--measure-prose, 68ch); font-size: 0.875rem; line-height: 1.45; color: var(--ink-700); }
+.ecs-labels { margin-top: 0.85rem; padding: 0.85rem 1rem; max-width: var(--measure-prose, 68ch); background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+.ecs-labels__title { margin: 0 0 0.35rem; font-weight: 650; color: var(--navy-900); }
+.ecs-labels ul { margin: 0; padding-left: 1.1rem; }
+.ecs-labels li { margin: 0.3rem 0; font-size: 0.925rem; }
+.ecs-labels__note { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--ink-700); }
+.sci-preview-note { margin: 0.75rem 0 0; max-width: var(--measure-prose, 68ch); padding: 0.6rem 0.85rem; border: 1px solid #b7791f; border-radius: 8px; background: #fff8e6; color: #5c3d00; font-size: 0.875rem; }
