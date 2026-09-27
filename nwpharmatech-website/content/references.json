@@ -154,14 +154,14 @@
       "population": "Adults considered at increased risk of psychosis",
       "product": "Not applicable",
       "design": "National clinical guideline",
-      "finding": "Offer individual CBT, with or without family intervention. Do not offer antipsychotic medication to people at increased risk or to reduce the risk of or prevent psychosis.",
+      "finding": "Offer individual CBT, with or without family intervention. Do not offer antipsychotic medication to people considered to be at increased risk of developing psychosis.",
       "limitations": "Applies in England; guidance differs elsewhere.",
       "verification": "index",
       "notes": "Published 12 February 2014; last updated and last reviewed 4 September 2026 (NICE guidance page, per Web Boss, 27 Sep 2026). Recommendation numbers not recorded.",
       "published": "12 February 2014",
       "last_updated": "4 September 2026",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Partly confirmed. 'Offer individual CBT with or without family intervention' matches the quoted recommendation; 'do not offer antipsychotic medication to people considered to be at increased risk' matches the quoted text, but the card's further limb 'or to reduce the risk of or prevent psychosis' is beyond the passage quoted (truncated with an ellipsis). Recommendation numbers 1.2.3.1 and 1.2.3.2 are as cited by Filipp and are not stated in Web Boss's note (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Matches the quoted recommendation text: 'offer individual cognitive behavioural therapy (CBT) with or without family intervention' and 'Do not offer antipsychotic medication: to people considered to be at increased risk of developing psychosis'. Card trimmed on 27 Sep 2026 to this supported text. Recommendation numbers not stated in Web Boss's note (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "nice-cg155",
