@@ -34,20 +34,26 @@ def card(i):
 # ---------------------------------------------------------------- new Evidence library entries (NWPT-048)
 # status: primary-source pass by Web Boss, 27 Sep 2026 (records/SCIENCE-EXPANSION-NWPT-048.md). IUPHAR/BPS and FDA were
 # unresolved and uncited, so they are withdrawn from the public library (history kept in content/references.json, public: false).
-# The two Health Canada entries rest on ChatGPT's direct inspection reported by Filipp (27 Sep 2026); passages requested from Web Boss.
+# The Health Canada entries rest on Web Boss's captured passages (27 Sep 2026), reviewed by Claude; see the record.
 NEW = [
     dict(id="health-canada-hcp-2018", kicker="Cannabinoid science", flag=("nwpt-tag-company", "Official information"),
-         title="Information for Health Care Professionals: Cannabis and cannabinoids (section 1.0, components of the endocannabinoid system)",
+         title="Information for Health Care Professionals: Cannabis (marihuana, marijuana) and the cannabinoids",
          pop="Not applicable", prod="Not applicable", design="Health Canada reference for health care professionals (Spring 2018)",
          finding="Describes the components of the endocannabinoid system: the cannabinoid receptors CB1 and CB2, endocannabinoids such as anandamide and 2-AG, and the enzymes that make and break them down.",
          limit="A 2018 reference, used here only for basic biology; not current clinical, dosing or regulatory guidance.",
-         src='Health Canada. Information for Health Care Professionals: Cannabis and cannabinoids. Section 1.0. <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/information-medical-practitioners/information-health-care-professionals-cannabis-cannabinoids.html" rel="external">Official source</a>'),
+         src='Health Canada. Information for Health Care Professionals: Cannabis (marihuana, marijuana) and the cannabinoids. Spring 2018. Section 1.0, The Endocannabinoid System: Components of the endocannabinoid system. <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/information-medical-practitioners/information-health-care-professionals-cannabis-cannabinoids.html" rel="external">Official source</a>'),
     dict(id="health-canada-about-cannabis", kicker="Cannabinoid science", flag=("nwpt-tag-company", "Official information"),
-         title="About cannabis: chemical substances in cannabis (THC and CBD)",
+         title="About cannabis",
          pop="Not applicable", prod="THC and CBD, two of the chemical substances in cannabis", design="Health Canada public information",
-         finding="Distinguishes THC and CBD: CBD does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free.",
+         finding="States that THC causes the high and intoxication, and that, unlike THC, CBD does not produce a high or intoxication.",
          limit="General information; not evidence about a particular product, dose or condition.",
-         src='Health Canada. About cannabis: chemical substances in cannabis. <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about.html" rel="external">Official source</a>'),
+         src='Health Canada. About cannabis. Sections: THC; CBD. <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about.html" rel="external">Official source</a>'),
+    dict(id="health-canada-cbd", kicker="Cannabinoid science", flag=("nwpt-tag-company", "Official information"),
+         title="Cannabidiol (CBD)",
+         pop="Not applicable", prod="Cannabidiol (CBD)", design="Health Canada public information",
+         finding="States that CBD is not intoxicating but does have an effect on the brain.",
+         limit="General information about CBD and its regulation in Canada; not evidence about a particular product, dose or condition.",
+         src='Health Canada. Cannabidiol (CBD). Section: Where CBD comes from. <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about/cannabidiol.html" rel="external">Official source</a>'),
     dict(id="laprairie-2015", kicker="Cannabinoid science", flag=("nwpt-result-flag nwpt-result-inconclusive", "Laboratory"),
          title="Cannabidiol is a negative allosteric modulator of the cannabinoid CB1 receptor",
          pop="Cells expressing CB1 receptors (laboratory)", prod="Cannabidiol applied to cells", design="Laboratory (cell) experiments",
@@ -106,7 +112,7 @@ NEW = [
 NEW_BY_ID = {n["id"]: n for n in NEW}
 PENDING = set()   # entries whose source check is still in progress (none at present)
 SHORT = {  # citation labels
-    "health-canada-hcp-2018": "Health Canada 2018", "health-canada-about-cannabis": "Health Canada: about cannabis", "laprairie-2015": "Laprairie et al. 2015",
+    "health-canada-hcp-2018": "Health Canada 2018", "health-canada-about-cannabis": "Health Canada: about cannabis", "health-canada-cbd": "Health Canada: CBD", "laprairie-2015": "Laprairie et al. 2015",
     "englund-2013": "Englund et al. 2013", "englund-2023": "Englund et al. 2023", "zamarripa-2023": "Zamarripa et al. 2023",
     "chesney-2025": "Chesney et al. 2025", "sativex-smpc": "Sativex SmPC", "nabilone-smpc": "Nabilone SmPC",
     "mhra-specials": "MHRA: unlicensed medicines", "nhs-cbpm": "NHS England: CBPMs",
@@ -312,7 +318,7 @@ def page_cannabinoids():
       <div class="wrap prose-measure">
         <h2 id="actions-title">Different compounds, different actions</h2>
         <p>In experiments in people, THC impaired memory and produced temporary psychotic symptoms such as paranoia. {cites("englund-2013", "englund-2023", pre=pre)}</p>
-        <p>CBD does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free. {cites("health-canada-about-cannabis", pre=pre)} For example, the UK product information for one CBD medicine lists sleepiness among its side effects. {cites("epidyolex-smpc", pre=pre)}</p>
+        <p>CBD does not produce the THC-like high. {cites("health-canada-about-cannabis", pre=pre)} Non-intoxicating does not mean inactive or risk-free. {cites("health-canada-cbd", pre=pre)} For example, the UK product information for one CBD medicine lists sleepiness among its side effects. {cites("epidyolex-smpc", pre=pre)}</p>
         <p>CBD is being investigated for several possible medical applications. Whether it helps depends on the product, the population and the outcome being studied. A possible mechanism is a reason to investigate a treatment, not proof of clinical benefit. {cites("mcguire-2018", "boggs-2018", pre=pre)}</p>
         <p>Other cannabinoid names, including CBG, CBN and THCV, may appear in research or product descriptions. Each requires its own evidence assessment; CBD or THC findings cannot be assigned to another molecule. This introductory page makes no treatment claims for these compounds.</p>
         <p><a href="cbd-thc.html">CBD and THC: different effects, complex interactions</a></p>
@@ -354,7 +360,7 @@ def page_cbd_thc():
                       [f"Activates the cannabinoid receptor CB1 in cell experiments. {c('laprairie-2015')}",
                        f"In experiments in people, impaired memory and produced temporary psychotic symptoms such as paranoia. {c('englund-2013', 'englund-2023')}"],
                       [f"Has different, more complex pharmacology. In cell experiments it can reduce CB1 signalling (negative allosteric modulation); that is a laboratory finding, not a clinical effect. {c('laprairie-2015')}",
-                       f"Does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free. {c('health-canada-about-cannabis')} Sleepiness is a listed side effect of one CBD medicine. {c('epidyolex-smpc')}"]),
+                       f"Does not produce the THC-like high. {c('health-canada-about-cannabis')} Non-intoxicating does not mean inactive or risk-free. {c('health-canada-cbd')} Sleepiness is a listed side effect of one CBD medicine. {c('epidyolex-smpc')}"]),
         compare_panel("cmp-clinical", "Clinical evidence",
                       [f"In experimental settings, THC can produce temporary psychotic symptoms. {c('englund-2013')}",
                        f"Observational research links daily use, and especially daily use of high-potency cannabis, with higher odds of psychotic disorder. This is an association, not a prediction for any individual. {c('diforti-2019')}",

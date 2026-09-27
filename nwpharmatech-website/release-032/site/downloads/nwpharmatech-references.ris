@@ -320,17 +320,27 @@ ER  -
 
 TY  - WEB
 ID  - nwpt048-health-canada-hcp-2018
-TI  - Information for Health Care Professionals: Cannabis and cannabinoids (section 1.0, components of the endocannabinoid system)
+TI  - Information for Health Care Professionals: Cannabis (marihuana, marijuana) and the cannabinoids
 AU  - Health Canada
 PY  - 2018
+N1  - Spring 2018. Section 1.0, The Endocannabinoid System
 UR  - https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/information-medical-practitioners/information-health-care-professionals-cannabis-cannabinoids.html
 ER  - 
 
 TY  - WEB
 ID  - nwpt048-health-canada-about-cannabis
-TI  - About cannabis: chemical substances in cannabis (THC and CBD)
+TI  - About cannabis
 AU  - Health Canada
 UR  - https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about.html
+Y2  - 2026/09/27
+ER  - 
+
+TY  - WEB
+ID  - nwpt048-health-canada-cbd
+TI  - Cannabidiol (CBD)
+AU  - Health Canada
+UR  - https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about/cannabidiol.html
+Y2  - 2026/09/27
 ER  - 
 
 TY  - JOUR

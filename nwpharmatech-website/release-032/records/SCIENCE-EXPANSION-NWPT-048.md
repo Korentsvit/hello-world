@@ -43,9 +43,9 @@
 | Claim | Source | Status |
 |---|---|---|
 | Cannabis, cannabinoids, CBD and THC defined; four distinctions diagram | Now Englund 2023 (preparations varying in CBD:THC content) and NHS England CBPMs (medicinal product categories); IUPHAR and FDA citations removed | **Checked** (Englund 2023 full paper; NHS category level). Definitions otherwise editorial |
-| Endocannabinoids (anandamide, 2-AG); CB1/CB2; enzymes that make and break down the signals (restored in the second follow-up); separately, in cell experiments THC and 2-AG activated CB1 signalling and CBD reduced it | Health Canada, Information for Health Care Professionals (Spring 2018), section 1.0 (basic biology only); Laprairie 2015 for the cell findings | **Health Canada: inspected by ChatGPT, as reported by Filipp; passage requested from Web Boss.** Laprairie: checked at abstract level |
+| Endocannabinoids (anandamide, 2-AG); CB1/CB2; enzymes that make and break down the signals (restored in the second follow-up); separately, in cell experiments THC and 2-AG activated CB1 signalling and CBD reduced it | Health Canada, Information for Health Care Professionals: Cannabis (marihuana, marijuana) and the cannabinoids (Spring 2018), section 1.0 (basic biology only); Laprairie 2015 for the cell findings | **Health Canada: checked** (Web Boss's captured passage, reviewed by Claude). Laprairie: checked at abstract level |
 | ~~THC can produce intoxication and alter memory and perception~~ → In experiments in people, THC impaired memory and produced temporary psychotic symptoms such as paranoia | Englund 2013, Englund 2023 | **Checked** (2013 abstract; 2023 full paper). “Intoxication” and “perception” removed: not in the passages |
-| CBD does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free. Sleepiness listed for one CBD medicine | Health Canada, About cannabis (THC and CBD subsections); Epidyolex SmPC | **Health Canada: inspected by ChatGPT, as reported by Filipp; passage requested from Web Boss.** Epidyolex: checked (existing P12). The interim NHS England “not psychoactive” sentence was removed |
+| CBD does not produce the THC-like high. / Non-intoxicating does not mean inactive or risk-free. / Sleepiness listed for one CBD medicine | Health Canada, About cannabis (THC and CBD sections) / Health Canada, Cannabidiol (CBD) (“it does have an effect on the brain”) with the Epidyolex example for “not risk-free” / Epidyolex SmPC | **Checked** (Web Boss's captured passages, reviewed by Claude; Epidyolex existing P12). The interim NHS England “not psychoactive” sentence was removed |
 | CBD investigated; benefit depends on product, population and outcome | McGuire 2018, Boggs 2018 | Checked at abstract level |
 | CBG, CBN, THCV: no treatment claims | — | Editorial |
 | Oral route: about 6% reaches the bloodstream; a high-fat meal increases absorption several-fold | Perucca 2020; Taylor 2018 | Checked (existing: quoted; Taylor read directly) |
@@ -136,11 +136,29 @@ Web Boss checked the immutable preview host `5e6b6a16.nwpt-837794c-preview.pages
 
 **Inspection attribution.** ChatGPT inspected both Health Canada pages directly, as reported by Filipp. Claude could not open them (egress blocked), and Web Boss has not inspected them. Both entries record this in `metadata_check` and `finding_check`. The page titles in our citations follow Filipp's message and have not been compared with the live page headings.
 
-**Request to Web Boss (these passages only):**
+**Request to Web Boss (these passages only; closed by the third follow-up):**
 - Health Canada, Information for Health Care Professionals: Cannabis and cannabinoids — https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/information-medical-practitioners/information-health-care-professionals-cannabis-cannabinoids.html — the exact page title, the date line, and section 1.0 “Components of the endocannabinoid system”: the sentences naming CB1 and CB2, anandamide and 2-AG, and the synthesising and degrading enzymes.
 - Health Canada, About cannabis — https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about.html — the exact page title, the “Date modified” line, and the THC and CBD subsections of “Chemical substances in cannabis”: the sentences on the high and on CBD's effects.
 
 **Focus test.** `tools/test-science.mjs` now requires the focused element's top edge to be below the sticky header and a usable part of it on screen: all of a control, or at least 44px of a focusable content panel. Long panels may scroll below the fold.
+
+## Third follow-up: Health Canada passages (Web Boss pack `NWPT-HEALTH-CANADA-PASSAGES-2026-09-27`)
+
+The pack names `17f2068` as its parent; it was reconciled against `e3d1a919191cb6da2268df032c3ad29928d642db` as instructed. Inspection: Web Boss loaded the three canada.ca pages on 27 Sep 2026 and supplied the text captures and exact passages; Claude reviewed the captures against our wording (canada.ca is still blocked from Claude's environment). The earlier attribution (ChatGPT's inspection as reported by Filipp) is kept as history in `references.json`.
+
+| Our wording | Captured passage | Result |
+|---|---|---|
+| “The body produces signalling molecules called endocannabinoids, including anandamide and 2-AG. The endocannabinoid system includes these molecules, receptors such as CB1 and CB2, and enzymes involved in making and breaking down the signals.” (and glossary `#g-ecs`) | HCP §1.0 “Components of the endocannabinoid system”: “The ECS consists mainly of: the cannabinoid 1 and 2 (CB1 and CB2) receptors; the cannabinoid receptor ligands … (“anandamide”) and 2-arachidonoylglycerol (2-AG); the endocannabinoid-synthesizing enzymes … and the endocannabinoid-degrading enzymes …”; “Anandamide and 2-AG are considered the primary endogenous activators of cannabinoid signaling” | **Matches.** No change |
+| “CBD does not produce the THC-like high.” | About cannabis, CBD: “Unlike THC, CBD does not produce a high or intoxication.” (THC: “… including causing the high and intoxication”) | **Matches.** No change |
+| “Non-intoxicating does not mean inactive or risk-free.” | Not in the About cannabis capture. Cannabidiol (CBD), “Where CBD comes from”: “CBD is not intoxicating … however, it does have an effect on the brain.” | **Citation corrected.** Now cites Health Canada, Cannabidiol (CBD), added as a 12th library entry from Web Boss's secondary passage. “Not risk-free” rests on the adjacent Epidyolex SmPC example (sleepiness). Wording unchanged |
+
+**Titles matched to captured headings:** “Information for Health Care Professionals: Cannabis (marihuana, marijuana) and the cannabinoids”; “About cannabis”; “Cannabidiol (CBD)”.
+
+**Dates:** professional reference recorded as Spring 2018. The capture does not include its date line, and it cites items from June and July 2018. The PDF in the pack is an older February 2013 version and was not used. About cannabis and Cannabidiol (CBD): date modified not captured; inspected 27 Sep 2026.
+
+**Not imported:** Health Canada's statements that CBD may block or lower some effects of THC, §1.0's list of conditions, and the “entourage effect” discussion. The CBD–THC interaction conclusions still rest only on Englund 2013, Englund 2023, Zamarripa 2023 and Chesney 2025 (enforced in `tools/test-science.mjs`).
+
+The request to Web Boss in the second follow-up is closed by this pack.
 
 ## Requests to Web Boss (primary-source pass, same format as P1–P24)
 For items 1–11: open the primary record, record the URL, the access date and the passage, with page or section, and note any mismatch. When an item is confirmed, Claude removes its "Source check in progress" tag and records the check level. No wording is changed without a supporting passage.
@@ -160,6 +178,7 @@ With the phone menu open, axe reports target-size on the header `.brand` link an
    - **Evidence library:** "Cannabinoid science and medicines" shows 11 sources, each marked "Source check in progress".
      - *After the primary-source follow-up:* 11 sources; only IUPHAR/BPS and FDA are marked "Source check in progress".
      - *After the second follow-up:* 11 sources (IUPHAR/BPS and FDA withdrawn; two Health Canada entries added); none marked "Source check in progress".
+     - *After the third follow-up:* 12 sources (Health Canada CBD page added); none marked "Source check in progress".
 4. **Primary-source pass for the 11 unresolved items** listed above, especially item 1 (the CannabinoidEvidence.org funding and draft-status wording) before any production publication.
 5. **Not tested here:** Safari/iPhone, as before.
 6. **Production publication** follows Filipp's review of the completed preview. This candidate does not authorise it.
