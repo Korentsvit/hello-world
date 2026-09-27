@@ -670,7 +670,7 @@
       "verification": "index",
       "notes": "Food effect: Cmax 4.85-fold (90% CI 4.01–5.87) and AUCt 4.2-fold (90% CI 3.63–4.85) with a high-fat breakfast (§3.5, pp. 1061–1063).",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Confirmed: Abstract Results p. 1053 'A high-fat meal increased CBD plasma exposure (Cmax and AUCt) by 4.85- and 4.2-fold'; §3.5 pp. 1061–1063; 'CBD was generally well tolerated'. Read directly by Claude in the Europe PMC PDF supplied by Web Boss, 27 Sep 2026. Title correction to the published title prepared separately. Not scientific sign-off."
+      "finding_check": "Confirmed: Abstract Results p. 1053 'A high-fat meal increased CBD plasma exposure (Cmax and AUCt) by 4.85- and 4.2-fold'; §3.5 pp. 1061–1063; 'CBD was generally well tolerated'. Read directly by Claude in the Europe PMC PDF supplied by Web Boss, 27 Sep 2026. Published title live in production db61de4 (27 Sep 2026). Not scientific sign-off."
     }
   ],
   "corrections": [

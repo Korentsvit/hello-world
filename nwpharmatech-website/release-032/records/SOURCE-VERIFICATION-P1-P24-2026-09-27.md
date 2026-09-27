@@ -118,10 +118,21 @@ The Evidence library's 18 "et al.." and one "Bialer M.." (doubled full stop) are
 | P16 | "Positive psychotic symptoms fell more with CBD than placebo (small difference), and clinicians more often rated patients as improved. Generally well tolerated." | PubMed abstract Results: PANSS positive −1.4 (95% CI −2.5, −0.2); CGI-I −0.5 (−0.8, −0.1); "CBD was well tolerated, and rates of adverse events were similar" | **Closed at abstract level.** The full paper is inaccessible, so there is no intra-article page |
 | P18 | "No improvement in cognition or symptoms compared with placebo." | Abstract: MCCB, "only placebo-treated subjects improved over time"; PANSS, "no significant drug × time interaction (p = 0.18)"; Conclusions, "not associated with an improvement in MCCB or PANSS scores" | **Closed at abstract level.** The full paper is inaccessible |
 | P23 finding | "…single and repeated doses … generally well tolerated … a high-fat meal increased CBD exposure." | Abstract p. 1053: "A high-fat meal increased CBD plasma exposure (Cmax and AUCt) by 4.85- and 4.2-fold"; §3.5 pp. 1061–1063; "CBD was generally well tolerated" (**read directly by Claude**) | **Closed: supported** |
-| P23 title | "A Phase I, randomized, double-blind, placebo-controlled, single ascending dose, multiple dose, and multiple dose food effect trial of the safety and tolerability of highly purified cannabidiol in healthy subjects" | Published (p. 1053): "A Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Ascending Dose, Multiple Dose, and Food Effect Trial of the Safety, Tolerability and Pharmacokinetics of Highly Purified Cannabidiol in Healthy Subjects" | **Correction needed.** A bibliographic website commit is prepared separately on production `91de637` |
+| P23 title | "A Phase I, randomized, double-blind, placebo-controlled, single ascending dose, multiple dose, and multiple dose food effect trial of the safety and tolerability of highly purified cannabidiol in healthy subjects" | Published (p. 1053): "A Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Ascending Dose, Multiple Dose, and Food Effect Trial of the Safety, Tolerability and Pharmacokinetics of Highly Purified Cannabidiol in Healthy Subjects" | **Corrected and published:** `db61de4`, deployment `45620d96-71a8-41de-a334-9b2d8397afe7`; Web Boss's hosted checks passed for the card, the citation and BibTeX/RIS |
 
 **Optional (not applied):** P1 could read "brief limited intermittent psychotic episodes" to match the paper's term. Not necessary for accuracy.
 
 **Outside this check (noted only):** the article "Why early intervention matters" describes the same three pathways, citing Yung et al. 2005 (CAARMS), which is not one of P1–P24.
 
 **Remaining gaps:** none for these five claims. P16 and P18 are supported only at abstract level; no full-paper page numbers are available. None of this is scientific sign-off.
+
+## Publication status (27 Sep 2026)
+
+- **P23 title correction: published** in production `db61de444c3785cda56076a54066835e6a6f4a86` (deployment `45620d96-71a8-41de-a334-9b2d8397afe7`, rollback `c4c07824-1b18-4a18-a3c7-8d1dc72afa44`).
+- **P3 CG178 trim `d7f5dd5`: superseded and unpublished.** The live CG178 wording is supported by recommendations 1.2.3.1 and 1.2.3.2.
+- **Evidence dispositions:** unchanged from `20d9914`.
+- **Limits:**
+  - P16 and P18 are supported at abstract level only.
+  - Safari/iPhone remains untested.
+  - These checks are not independent scientific sign-off.
+- **Online enquiries:** remain disabled.
