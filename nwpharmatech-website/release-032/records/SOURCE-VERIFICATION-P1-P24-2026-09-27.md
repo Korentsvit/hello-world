@@ -55,7 +55,7 @@ The Evidence library's 18 "et al.." and one "Bialer M.." (doubled full stop) are
 ## Filipp's decisions (27 Sep 2026), applied in the follow-up commit
 
 1. **Evidence library verification sentence: applied.**
-   - **Now reads:** "Bibliographic details were checked against primary publication, guideline, product-information or registry records on 27 September 2026. Checks of the findings summarised below remain incomplete for some entries. These checks do not constitute independent scientific validation."
+   - **Now reads (final clarification, Filipp, 27 Sep 2026):** "Bibliographic checks against primary publication, guideline, product-information and registry records were carried out on 27 September 2026. Some reference details and checks of the findings summarised below remain outstanding. These checks do not constitute independent scientific validation." "Some reference details … remain outstanding" covers the unresolved P23 title.
    - **Replaces:** "Last checked: 23 September 2026. Bibliographic details and quoted findings were checked against search-engine records…".
    - **Records:** per-card scope and attribution stay in this record and in `references.json` (`metadata_check`, `finding_check`).
 2. **P4 NICE CG155: applied.** The finding now reads: "For children and young people considered at increased risk of psychosis, consider individual CBT with or without family intervention (recommendation 1.2.5). Do not offer antipsychotic medication with the aim of decreasing the risk of psychosis (recommendation 1.2.6)." Both recommendation texts are as quoted by Web Boss from the NICE page.
