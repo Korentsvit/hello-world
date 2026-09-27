@@ -1,8 +1,8 @@
 # Enquiry activation handoff: "Explore a research collaboration"
 
-**Status:** online enquiries are **disabled** on production (`6e997ddf02513bbb23a909f24f676e4e776b8272`, deployment `0b58051d-59cf-4caf-b6a4-0b9184b4803e`, 27 Sep 2026).
+**Status:** online enquiries are **disabled** on production (`91de63769c83d480ddcffa6553b60ecda2f42ebc`, deployment `c4c07824-1b18-4a18-a3c7-8d1dc72afa44`, 27 Sep 2026; previously `6e997dd`).
 
-**Privacy candidate base:** the final privacy candidate is built on the latest production baseline, with `bfbf132`'s privacy changes merged in (a trial merge onto `6e997dd` is clean and keeps the homepage shortcuts and focus fix). A branch based only on `bfbf132` must not be deployed. They stay disabled until the section 2 decisions are made, section 3 is configured on the preview and section 4 has passed. No redeployment is requested now.
+**Privacy candidate base:** the final privacy candidate is built on the latest production baseline, with `bfbf132`'s privacy changes merged in (a trial merge onto `6e997dd` was clean; re-check against `91de637` when preparing it and keeps the homepage shortcuts and focus fix). A branch based only on `bfbf132` must not be deployed. They stay disabled until the section 2 decisions are made, section 3 is configured on the preview and section 4 has passed. No redeployment is requested now.
 
 **27 Sep 2026 update:**
 - **Web Boss setup (Web Boss report):**

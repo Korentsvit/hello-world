@@ -1,4 +1,25 @@
-# Production baseline (recorded 27 September 2026)
+# Production baseline (recorded 27 September 2026, second update)
+
+Web Boss confirms that `91de637` is live on production (www.nwpharmatech.org), with the hosted checks passed.
+
+| Item | Value |
+|---|---|
+| Commit | `91de63769c83d480ddcffa6553b60ecda2f42ebc` (branch `claude/nwpt-reference-corrections`) |
+| Cloudflare deployment | `c4c07824-1b18-4a18-a3c7-8d1dc72afa44` |
+| Rollback deployment | Not supplied with this record |
+| Deployed directory | `nwpharmatech-website/release-032/site` |
+| Hosting owner | Web Boss |
+
+**Contents:** everything in `6e997dd` (below), plus:
+- NWPT-047: the homepage hierarchy, the Work with us email handoff while enquiries are off, the editorial tightening, and the phone agenda-bar footer fix (`a8c28f3` to `546e5ea`);
+- CANTOP-RCT metadata, published title and authors, and the approved finding (`6013f84` to `730e32e`);
+- P1–P24 bibliographic corrections, the approved NICE CG155 and Epidyolex wording, the registry spelling for P24, and the final Evidence library verification statement (`5262dac` to `91de637`).
+
+**Not in this baseline:** online enquiries (**disabled**; `/api/enquiry` unconfigured) and privacy Part B. Both stay on their own branches.
+
+---
+
+# Previous baseline (recorded 27 September 2026, first update)
 
 Web Boss has published the homepage discoverability release (NWPT-046) to production (www.nwpharmatech.org).
 
