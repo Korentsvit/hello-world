@@ -5,6 +5,7 @@
 - **Branch:** `claude/nwpt-science-expansion`.
 - **Not included:** privacy and enquiry configuration are unchanged.
 - **Status:** preview only. This is not independent scientific validation.
+- **Follow-up (primary-source pass):** Web Boss's evidence pack `NWPT-SCIENCE-EVIDENCE-3d029959-2026-09-27` (inspection date 27 Sep 2026) reconciled on top of candidate `3d029959d5d08982fff35fd64de3c5840b2de01d`. See **Primary-source reconciliation** below; the tables keep the original status and add the outcome.
 
 ## How sources were handled
 
@@ -24,7 +25,7 @@
 | Claim | Source | Status |
 |---|---|---|
 | Two routes, starting questions, programme note ("NWPT-SM32300 is investigational…") | — | Editorial |
-| CannabinoidEvidence.org is funded by NW PharmaTech Ltd; it describes itself as a working draft, with independent scientific and regulatory verification pending | Brief S14 (the brief author's browser inspection) | **Unresolved – brief only.** No search result found the site. **Web Boss to confirm the current home and About wording before publication** |
+| CannabinoidEvidence.org is funded by NW PharmaTech Ltd; it describes itself as a working draft, with independent scientific and regulatory review in progress | cannabinoidevidence.org About page and review badge (Web Boss) | **Checked (full: live JS string literals).** Wording aligned from “verification pending” to the badge's “review in progress” |
 | Existing sections, anchors, images and video | Unchanged | — |
 
 ### /science/psychiatry
@@ -41,10 +42,10 @@
 ### /science/cannabinoids
 | Claim | Source | Status |
 |---|---|---|
-| Cannabis, cannabinoids, CBD and THC defined; four distinctions diagram | IUPHAR/BPS; FDA Q&A | **Unresolved – brief only** (definitions are general) |
-| Endocannabinoids (anandamide, 2-AG); CB1/CB2; enzymes; cell communication | IUPHAR/BPS (brief S1) | **Unresolved – brief only** |
-| THC can produce intoxication and alter memory and perception | Englund 2013, Englund 2023 | **Unresolved – lead consistent** |
-| CBD does not typically produce the THC-like high; "non-intoxicating" ≠ no effects | FDA Q&A (brief S13) | **Unresolved – brief only** |
+| Cannabis, cannabinoids, CBD and THC defined; four distinctions diagram | Now Englund 2023 (preparations varying in CBD:THC content) and NHS England CBPMs (medicinal product categories); IUPHAR and FDA citations removed | **Checked** (Englund 2023 full paper; NHS category level). Definitions otherwise editorial |
+| ~~Endocannabinoids (anandamide, 2-AG); CB1/CB2; enzymes; cell communication~~ → THC acts on cannabinoid receptors including CB1; in cell experiments (including a nerve-cell model expressing CB1) THC and 2-AG activated CB1 signalling and CBD reduced it | Laprairie 2015 (IUPHAR removed) | **Checked at abstract level.** Anandamide, CB2, enzymes and the endocannabinoid-system definition omitted (no accessible passage) |
+| ~~THC can produce intoxication and alter memory and perception~~ → In experiments in people, THC impaired memory and produced temporary psychotic symptoms such as paranoia | Englund 2013, Englund 2023 | **Checked** (2013 abstract; 2023 full paper). “Intoxication” and “perception” removed: not in the passages |
+| ~~CBD does not typically produce the THC-like high~~ → CBD does not typically produce a “high”; NHS England describes it as not psychoactive. Not having a high ≠ no effects (sleepiness listed for one CBD medicine) | NHS England CBPMs; Epidyolex SmPC (FDA removed) | **Checked** (NHS category level; Epidyolex existing P12) |
 | CBD investigated; benefit depends on product, population and outcome | McGuire 2018, Boggs 2018 | Checked at abstract level |
 | CBG, CBN, THCV: no treatment claims | — | Editorial |
 | Oral route: about 6% reaches the bloodstream; a high-fat meal increases absorption several-fold | Perucca 2020; Taylor 2018 | Checked (existing: quoted; Taylor read directly) |
@@ -53,15 +54,15 @@
 ### /science/cbd-thc
 | Claim | Source | Status |
 |---|---|---|
-| THC activates cannabinoid receptors including CB1 | IUPHAR/BPS | **Unresolved – brief only** |
-| CBD reduces CB1 signalling in cells (negative allosteric modulation), a laboratory finding | Laprairie 2015 | **Unresolved – lead consistent** (the search lead reports reduced efficacy and potency of 2-AG and THC signalling, and non-competitive NAM) |
-| Englund 2013: 48 healthy participants; oral CBD or placebo before intravenous THC; selected paranoia and memory outcomes reduced; mean PANSS-positive difference not significant | Englund 2013 | **Unresolved – lead consistent.** The route and timing detail ("oral CBD … before intravenous THC") comes from the search lead, not the brief |
-| Englund 2023: 46 healthy infrequent users; inhaled (vaporised) cannabis, fixed THC with increasing CBD; no protection | Englund 2023 | **Unresolved – lead consistent.** "Vaporised" comes from the search lead |
-| Zamarripa 2023: 18 healthy adults; oral extract, same THC with or without high-dose CBD; greater THC exposure and impairment; probe-drug cocktail | Zamarripa 2023 | **Unresolved – lead consistent.** "Oral extract" is from the search lead; the brief says "high oral CBD dose" |
-| Chesney 2025: 30 people with schizophrenia or schizoaffective disorder and CUD; oral CBD or placebo before inhaled cannabis; did not reduce acute memory or psychotic effects, appeared to worsen them | Chesney 2025 | **Unresolved – lead consistent** (the lead reports worse delayed recall and a larger PANSS-positive increase with CBD) |
+| THC activates the cannabinoid receptor CB1 (cell experiments) | Laprairie 2015 (IUPHAR removed) | **Checked at abstract level** |
+| CBD reduces CB1 signalling in cells (negative allosteric modulation), a laboratory finding | Laprairie 2015 | **Checked at abstract level** |
+| Englund 2013: 48 healthy participants; oral CBD or placebo before intravenous THC; selected paranoia and memory outcomes reduced; mean PANSS-positive difference not significant | Englund 2013 | **Checked at abstract level** (subscription full text not inspected). Design corrected: “double-blind” not in the abstract |
+| Englund 2023: 46 healthy infrequent users; inhaled (vaporised) cannabis, fixed THC with increasing CBD; no protection | Englund 2023 | **Checked (full paper)** |
+| Zamarripa 2023: 18 healthy adults; oral extract, same THC with or without high-dose CBD; greater THC exposure and impairment; probe-drug cocktail | Zamarripa 2023 | **Checked (full paper)**; the oral extract was given in brownies |
+| Chesney 2025: 30 people with schizophrenia or schizoaffective disorder and CUD; oral CBD or placebo before inhaled cannabis; did not reduce acute memory or psychotic effects, appeared to worsen them | Chesney 2025 | **Checked (full paper)** |
 | Daily and high-potency cannabis use associated with higher odds of psychotic disorder; group-level | Di Forti 2019 (existing card wording) | Existing status: consistent with abstract; odds ratios not quoted and not used |
-| THC can produce temporary psychotic symptoms in experimental settings | Englund 2013 | **Unresolved – lead consistent** |
-| THC-containing medicine example (THC and CBD spray for MS spasticity) | Sativex SmPC | **Unresolved – lead consistent** |
+| THC can produce temporary psychotic symptoms in experimental settings | Englund 2013 | **Checked at abstract level** |
+| THC-containing medicine example (THC and CBD spray for MS spasticity) | Sativex SmPC | **Checked (full SmPC)** |
 | Epidyolex licensed for specified epilepsies | Epidyolex SmPC | Checked (existing: P12 approved wording) |
 | Safety: sleepiness, raised liver enzymes (valproate), clobazam interaction | Epidyolex SmPC | Checked (existing) |
 | Safety: diarrhoea, vomiting, fatigue, fever, sleepiness, abnormal liver tests (purified CBD trial) | Devinsky 2017 | Checked (existing: matches quoted abstract) |
@@ -70,18 +71,19 @@
 ### /science/cannabinoid-medicines
 | Claim | Source | Status |
 |---|---|---|
-| Four product categories (licensed, unlicensed, investigational, consumer) | MHRA specials; NHS England CBPMs; FDA Q&A | **Unresolved – brief only** (category-level) |
+| Four product categories (licensed, unlicensed, investigational, consumer) | MHRA specials; NHS England CBPMs (FDA removed) | **Checked at category level** for licensed/unlicensed; investigational and consumer rows are editorial |
 | Epidyolex UK indications | Epidyolex SmPC | Checked (existing: P12 approved wording) |
-| Sativex UK indication (adults; moderate to severe MS spasticity; inadequate response to other anti-spasticity medicines; improvement during an initial trial) | Sativex SmPC 4.1 | **Unresolved – lead consistent** |
-| Nabilone UK indication (chemotherapy nausea and vomiting after inadequate response to conventional antiemetics); a distinct synthetic compound, not THC | Nabilone SmPC 4.1 and 5.1 | **Unresolved – lead consistent** for the indication; "not THC" rests on brief S11 (section 5.1) |
+| Sativex UK indication (adults; moderate to severe MS spasticity; inadequate response to other anti-spasticity medicines; improvement during an initial trial) | Sativex SmPC 4.1 | **Checked (full SmPC)** |
+| Nabilone UK indication; “a synthetic cannabinoid”; ~~a distinct compound, not another name for THC~~ → NHS England groups nabilone with synthetic cannabinoids structurally related to THC, rather than identical to it | Nabilone SmPC 4.1 and 5.1; NHS England CBPMs | **Checked** (full SmPC for indication and “synthetic cannabinoid”; the THC distinction rests on NHS England's grouping, from Web Boss's summary, and is not presented as SmPC wording) |
 | Six steps; four separate dimensions; no single "approved" label | — | Editorial |
 
 ### Evidence library bibliographic details for new entries
 - **Search-index titles:** the titles of Laprairie 2015, Englund 2013, Englund 2023, Zamarripa 2023 and Chesney 2025, and their first authors, come from search-index titles (publisher, KCL, JHU, Bath and Oxford portals).
 - **From the brief:** DOIs and PMIDs are as given in the brief.
 - **Not added:** volume, issue and pages are deliberately left out until inspected.
+- **Primary-source pass:** the Europe PMC records in Web Boss's pack match our titles for Englund 2013, Englund 2023 and Laprairie 2015. DOIs were confirmed for all five papers. The records give pages (19–27; 869–876; 4790–4805) but not volume or issue, so bibliographic volume, issue and pages remain omitted for consistency.
 
-## Exact unresolved statements (to verify before publication or keep as "Source check in progress")
+## Exact unresolved statements at candidate `3d02995` (outcomes in the reconciliation below)
 
 1. "CannabinoidEvidence.org … Its development and hosting are funded by NW PharmaTech Ltd. The resource currently describes itself as a working draft, with independent scientific and regulatory verification pending." Confirm on https://cannabinoidevidence.org/ and /about.
 2. Englund 2013: "48 healthy participants"; "Oral CBD or placebo before intravenous THC"; "reduced selected paranoia and memory outcomes"; "average positive-symptom (PANSS) score was not statistically significant".
@@ -95,11 +97,42 @@
 10. Nabilone SmPC 4.1 indication wording; 5.1 "a distinct synthetic compound, not another name for THC".
 11. MHRA "specials" and NHS England CBPM category explanations (medicines page table and Evidence cards).
 
+## Primary-source reconciliation (Web Boss evidence pack, 27 Sep 2026)
+
+Claude could not open any source directly (egress policy unchanged). Every outcome below rests on the passages in Web Boss's notes and extracts. No wording was changed without a supporting passage; where a passage was missing, the detail was removed or its citation replaced.
+
+| # | Source | Access level | Outcome | Change made |
+|---|---|---|---|---|
+| 1 | CannabinoidEvidence.org About page and review badge (live JS bundle `index-D1VAdfWo.js`) | Full (string literals) | **Closed.** (a) our pages display the disclosure and link to the home and About pages; (b) the site states “The development and hosting of CannabinoidEvidence.org is funded by NW PharmaTech Ltd …” and “Working draft — Independent scientific and regulatory review in progress.” | “verification pending” → “review in progress” (exact badge wording) on the overview, cannabinoids and medicines pages |
+| 2 | Englund 2013 (PubMed 23042808; Europe PMC abstract) | **Abstract only** (subscription full text) | **Checked at abstract level.** 22 + 26 = 48; oral CBD 600 mg 210 min before IV THC 1.5 mg; SSPS paranoia and HVLT-R memory favoured CBD (p<0.05); PANSS-positive difference not significant | Design “double-blind” removed (not in the abstract). Tag removed |
+| 3 | Englund 2023 (PMC10156730) | Full paper | **Checked** | None. Tag removed |
+| 4 | Zamarripa 2023 (PMC9926328) | Full paper | **Checked** | None. Tag removed |
+| 5 | Chesney 2025 (PMC12518716) | Full paper | **Checked.** PubMed ID 40702165 is from the brief, not confirmed in the pack | None. Tag removed |
+| 6 | Laprairie 2015 (PMID 26218440; PMC4621983) | **Abstract only** (PDF not fetched) | **Checked at abstract level** | Card: “the body’s own cannabinoid 2-AG” → “2-AG (2-arachidonylglycerol)” (not stated in the abstract). Tag removed |
+| 7 | IUPHAR/BPS Guide to Pharmacology, family 13 | **Inaccessible** (login wall) | **Unresolved.** Tag kept | All page citations removed. Receptor statements now rest on Laprairie 2015 (abstract, laboratory). The endocannabinoid-system description (anandamide, CB2, enzymes) was removed from the cannabinoids page, and the glossary term “Endocannabinoid system” (`#g-ecs`) was replaced by “CB1 receptor” (`#g-cb1`); no page linked to `#g-ecs` |
+| 8 | FDA cannabis and CBD Q&A | **Partial** (fetch incomplete); “THC-like high” not found | **Unresolved.** Tag kept | All page citations removed. Plant/compound/product distinction → Englund 2023 + NHS England CBPMs; the “high” statement → NHS England (“not psychoactive”), with “not no effects” → Epidyolex SmPC (sleepiness) |
+| 9 | Sativex SmPC 4.1 (emc 602) | Full SmPC | **Checked** | None. Tag removed |
+| 10 | Nabilone SmPC 4.1 / 5.1 (emc 12767) | Full SmPC | **Checked:** indication and “a synthetic cannabinoid”. The SmPC does not say “not THC” | Medicines page: “a distinct compound, not another name for THC” → “NHS England groups nabilone with synthetic cannabinoids that are structurally related to THC, rather than identical to it” (cites SmPC + NHS England). Card: “(a distinct compound; not THC and not NWPT-SM32300)” → “(a different product; not NWPT-SM32300)”. Tag removed |
+| 11 | MHRA specials landing page; NHS England CBPM long-read | Full (landing page + long-read) | **Checked at category level.** Guidance Note 14 PDF not quoted. NHS passages are Web Boss's summaries, not full quotations | None. Tags removed |
+
+**Consequential wording change (THC effects).** Once Englund 2013 and 2023 were checked, their passages support memory impairment and temporary psychotic symptoms (paranoia), not “intoxication” or altered “perception”. The THC sentences on the cannabinoids and CBD-and-THC pages, the comparison panel and the glossary term were narrowed to the supported wording.
+
+**Where the check levels are kept.** The public cards carry no pending tag once checked, as for P1–P24. Access levels and evidence limits (abstract-only, category-level, summarised passages) are kept in `content/references.json` (`metadata_check`, `finding_check`) and in this record. Evidence-strength labels for the new entries remain unassigned (`label: "pending"`); this pass did not grade evidence strength.
+
+**Remaining pending entries.** The IUPHAR/BPS and FDA entries stay in the Evidence library marked “Source check in progress”, with `verification: "brief"`, in `references.json`, BibTeX and RIS. No statement on any page cites them (enforced by `tools/test-science.mjs`).
+
+## Hosted interaction checks (Web Boss, preview `3d02995`, 27 Sep 2026)
+Web Boss checked the immutable preview host `5e6b6a16.nwpt-837794c-preview.pages.dev` in Chromium:
+- **Passed:** the sticky header, the Science dropdown (8 links), the phone Menu button (visible, keyboard focus ring), opening with Enter, both Close controls, the four distinctions stacking on phone, and the comparison tabs (they wrap to two rows on phone).
+- **Phone-menu obstruction:** the suspected obstruction (axe target-size on `.brand` and `#nav-toggle` with the menu open, identical on production) was **closed as not reproduced** in the tested Chromium viewport.
+- **Duplicate Close controls:** the panel has a second Close control. Noted; no cosmetic fix in this release.
+- **Not tested:** Safari/iPhone.
+
 ## Requests to Web Boss (primary-source pass, same format as P1–P24)
 For items 1–11: open the primary record, record the URL, the access date and the passage, with page or section, and note any mismatch. When an item is confirmed, Claude removes its "Source check in progress" tag and records the check level. No wording is changed without a supporting passage.
 
 ## Existing issue noticed (not introduced here)
-With the phone menu open, axe reports target-size on the header `.brand` link and `#nav-toggle`, because the open panel partly covers them. The finding is identical on production `db61de4`. It is not fixed in this candidate.
+With the phone menu open, axe reports target-size on the header `.brand` link and `#nav-toggle`, because the open panel partly covers them. The finding is identical on production `db61de4`. It is not fixed in this candidate. **Outcome:** closed as not reproduced in Web Boss's hosted Chromium check (see above); Safari/iPhone untested.
 
 ## Hosting handoff for Web Boss (preview only)
 
@@ -111,6 +144,7 @@ With the phone menu open, axe reports target-size on the header `.brand` link an
    - **Comparison:** on `/science/cbd-thc` the three tabs switch with the mouse and the arrow keys. With JavaScript off, all three panels show.
    - **Unchanged features:** existing links still work: `/science#investigating` from Programme Room and Work with us briefs, Programme Room share links, the homepage and Science videos, and the team portraits.
    - **Evidence library:** "Cannabinoid science and medicines" shows 11 sources, each marked "Source check in progress".
+     - *After the primary-source follow-up:* 11 sources; only IUPHAR/BPS and FDA are marked "Source check in progress".
 4. **Primary-source pass for the 11 unresolved items** listed above, especially item 1 (the CannabinoidEvidence.org funding and draft-status wording) before any production publication.
 5. **Not tested here:** Safari/iPhone, as before.
 6. **Production publication** follows Filipp's review of the completed preview. This candidate does not authorise it.

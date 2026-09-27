@@ -32,7 +32,8 @@ def card(i):
 
 
 # ---------------------------------------------------------------- new Evidence library entries (NWPT-048)
-# status: every new entry is "pending" (reported in the research brief; not yet checked against the original record here)
+# status: primary-source pass by Web Boss, 27 Sep 2026 (records/SCIENCE-EXPANSION-NWPT-048.md). Entries in PENDING keep
+# "Source check in progress": IUPHAR/BPS (login wall) and FDA (partial fetch). No page statement cites them.
 NEW = [
     dict(id="iuphar-cannabinoid-receptors", kicker="Cannabinoid science", flag=("nwpt-tag-company", "Reference database"),
          title="Cannabinoid receptors: IUPHAR/BPS Guide to Pharmacology",
@@ -43,12 +44,12 @@ NEW = [
     dict(id="laprairie-2015", kicker="Cannabinoid science", flag=("nwpt-result-flag nwpt-result-inconclusive", "Laboratory"),
          title="Cannabidiol is a negative allosteric modulator of the cannabinoid CB1 receptor",
          pop="Cells expressing CB1 receptors (laboratory)", prod="Cannabidiol applied to cells", design="Laboratory (cell) experiments",
-         finding="In cell experiments, CBD reduced CB1 signalling in response to THC and to the body’s own cannabinoid 2-AG, consistent with negative allosteric modulation of CB1.",
+         finding="In cell experiments, CBD reduced CB1 signalling in response to THC and to 2-AG (2-arachidonylglycerol), consistent with negative allosteric modulation of CB1.",
          limit="A laboratory mechanism, not evidence of clinical protection in people.",
          src='Laprairie RB, et al. Cannabidiol is a negative allosteric modulator of the cannabinoid CB1 receptor. <em>Br J Pharmacol</em>. 2015. <a href="https://doi.org/10.1111/bph.13250" rel="external">DOI 10.1111/bph.13250</a>'),
     dict(id="englund-2013", kicker="Cannabinoid science", flag=("nwpt-result-flag nwpt-result-mixed", "Mixed finding"),
          title="Cannabidiol inhibits THC-elicited paranoid symptoms and hippocampal-dependent memory impairment",
-         pop="48 healthy participants", prod="Oral CBD or placebo before intravenous THC (experimental challenge)", design="Randomised, double-blind, placebo-controlled experiment",
+         pop="48 healthy participants", prod="Oral CBD or placebo before intravenous THC (experimental challenge)", design="Randomised, placebo-controlled, between-subjects experiment",
          finding="CBD pretreatment reduced selected paranoia and memory outcomes after THC. The difference in the average positive-symptom (PANSS) score was not statistically significant.",
          limit="Healthy volunteers; route and timing differ from ordinary cannabis use.",
          src='Englund A, et al. Cannabidiol inhibits THC-elicited paranoid symptoms and hippocampal-dependent memory impairment. <em>J Psychopharmacol</em>. 2013. <a href="https://doi.org/10.1177/0269881112460109" rel="external">DOI 10.1177/0269881112460109</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23042808/" rel="external">PubMed 23042808</a>'),
@@ -78,9 +79,9 @@ NEW = [
          src='Sativex Oromucosal Spray: Summary of Product Characteristics. <em>Electronic Medicines Compendium</em>. <a href="https://www.medicines.org.uk/emc/product/602/smpc" rel="external">Official source</a>'),
     dict(id="nabilone-smpc", kicker="Medicines and regulation", flag=("nwpt-tag-company", "Product information"),
          title="Nabilone 1 mg capsules: Summary of Product Characteristics",
-         pop="Patients receiving cancer chemotherapy", prod="Nabilone, a synthetic cannabinoid (a distinct compound; not THC and not NWPT-SM32300)", design="Regulatory product information",
+         pop="Patients receiving cancer chemotherapy", prod="Nabilone, a synthetic cannabinoid (a different product; not NWPT-SM32300)", design="Regulatory product information",
          finding="The UK product information lists nabilone for nausea and vomiting caused by cancer chemotherapy in patients who have not responded adequately to conventional anti-sickness treatments.",
-         limit="A distinct synthetic compound and indication.",
+         limit="One product and one indication; not evidence about psychosis.",
          src='Nabilone 1 mg Capsules: Summary of Product Characteristics. <em>Electronic Medicines Compendium</em>. <a href="https://www.medicines.org.uk/emc/product/12767/smpc" rel="external">Official source</a>'),
     dict(id="mhra-specials", kicker="Medicines and regulation", flag=("nwpt-tag-company", "Official guidance"),
          title="The supply of unlicensed medicinal products (“specials”)",
@@ -102,7 +103,7 @@ NEW = [
          src='US Food and Drug Administration. FDA regulation of cannabis and cannabis-derived products, including cannabidiol (CBD). <a href="https://www.fda.gov/news-events/public-health-focus/fda-regulation-cannabis-and-cannabis-derived-products-including-cannabidiol-cbd" rel="external">Official source</a>'),
 ]
 NEW_BY_ID = {n["id"]: n for n in NEW}
-PENDING = set(NEW_BY_ID)          # all new entries: source check in progress
+PENDING = {"iuphar-cannabinoid-receptors", "fda-cannabis-cbd"}   # source check still in progress
 SHORT = {  # citation labels
     "iuphar-cannabinoid-receptors": "IUPHAR/BPS Guide to Pharmacology", "laprairie-2015": "Laprairie et al. 2015",
     "englund-2013": "Englund et al. 2013", "englund-2023": "Englund et al. 2023", "zamarripa-2023": "Zamarripa et al. 2023",
@@ -122,9 +123,10 @@ def cites(*ids, pre="../"):
 
 def evidence_card(n):
     fcls, ftxt = n["flag"]
-    flags = f'<span class="{fcls}">{ftxt}</span><span class="nwpt-tag nwpt-tag-pending">Source check in progress</span>'
+    tag = '<span class="nwpt-tag nwpt-tag-pending">Source check in progress</span>' if n["id"] in PENDING else ""
+    flags = f'<span class="{fcls}">{ftxt}</span>{tag}'
     if fcls.startswith("nwpt-tag"):
-        flags = f'<span class="nwpt-tag {fcls}">{ftxt}</span><span class="nwpt-tag nwpt-tag-pending">Source check in progress</span>'
+        flags = f'<span class="nwpt-tag {fcls}">{ftxt}</span>{tag}'
     dl = "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in (("Population", n["pop"]), ("Product", n["prod"]), ("Design", n["design"]), ("Finding", n["finding"]), ("Limitations", n["limit"])))
     return (f'<article class="nwpt-study-card" id="ref-{n["id"]}" data-category="cannabinoids"><div class="nwpt-study-card-head"><p class="nwpt-card-kicker">{n["kicker"]}</p>'
             f'<div class="nwpt-card-flags">{flags}</div></div><h3>{n["title"]}</h3><dl class="nwpt-card-dl">{dl}</dl>'
@@ -155,7 +157,7 @@ def further_reading(pre):
     return f'''<aside class="sci-further" aria-labelledby="further-{pre and 'x' or 'o'}">
           <p class="eyebrow">Further reading</p>
           <h2 id="further-{pre and 'x' or 'o'}">Explore the wider cannabinoid evidence</h2>
-          <p>CannabinoidEvidence.org provides an indication-based overview of cannabinoid research. Its development and hosting are funded by NW PharmaTech Ltd. The resource currently describes itself as a working draft, with independent scientific and regulatory verification pending. Read the original sources alongside its summaries; the citations on our own pages are listed in the <a href="{pre}evidence.html">Evidence library</a>.</p>
+          <p>CannabinoidEvidence.org provides an indication-based overview of cannabinoid research. Its development and hosting are funded by NW PharmaTech Ltd. The resource currently describes itself as a working draft, with independent scientific and regulatory review in progress. Read the original sources alongside its summaries; the citations on our own pages are listed in the <a href="{pre}evidence.html">Evidence library</a>.</p>
           <p class="sci-further__links"><a class="btn btn-secondary" href="https://cannabinoidevidence.org/" rel="external noopener">Explore CannabinoidEvidence.org — external resource</a> <a href="https://cannabinoidevidence.org/about" rel="external noopener">Funding and editorial disclosures</a></p>
         </aside>'''
 
@@ -290,7 +292,7 @@ def page_cannabinoids():
       <div class="wrap">
         <div class="prose-measure">
           <h2 id="distinctions-title">Start with four distinctions</h2>
-          <p>The organising question is: <strong>which compound, in which product, studied in which people, for which outcome?</strong> {cites("iuphar-cannabinoid-receptors", "fda-cannabis-cbd", pre=pre)}</p>
+          <p>The organising question is: <strong>which compound, in which product, studied in which people, for which outcome?</strong> {cites("englund-2023", "nhs-cbpm", pre=pre)}</p>
         </div>
         {chain(pre)}
       </div>
@@ -298,16 +300,17 @@ def page_cannabinoids():
 
     <section class="section section-alt" aria-labelledby="ecs-title">
       <div class="wrap prose-measure">
-        <h2 id="ecs-title">A signalling system already present in the body</h2>
-        <p>The body produces its own signalling molecules, called endocannabinoids. Anandamide and 2-AG are examples. The endocannabinoid system includes these molecules, receptors such as CB1 and CB2, and enzymes involved in making and breaking down the signals. It is involved in communication between cells. {cites("iuphar-cannabinoid-receptors", pre=pre)}</p>
-        <p>Its existence does not mean that adding a cannabinoid will improve health or correct a deficiency.</p>
+        <h2 id="ecs-title">Cannabinoid receptors: what laboratory studies show</h2>
+        <p>Compounds such as THC act on cannabinoid receptors, including CB1. In cell experiments, including a model of nerve cells that carries CB1 receptors naturally, THC and 2-AG, another compound that activates CB1, both activated CB1 signalling; CBD reduced that signalling. {cites("laprairie-2015", pre=pre)}</p>
+        <p>A laboratory mechanism is a reason to investigate, not evidence that adding a cannabinoid will improve health.</p>
       </div>
     </section>
 
     <section class="section section-light" aria-labelledby="actions-title">
       <div class="wrap prose-measure">
         <h2 id="actions-title">Different compounds, different actions</h2>
-        <p>THC can produce intoxication and alter memory and perception. CBD does not typically produce the THC-like high. “Non-intoxicating” is the useful distinction: it does not mean CBD has no effects on the brain or body. {cites("englund-2013", "englund-2023", "fda-cannabis-cbd", pre=pre)}</p>
+        <p>In experiments in people, THC impaired memory and produced temporary psychotic symptoms such as paranoia. {cites("englund-2013", "englund-2023", pre=pre)}</p>
+        <p>CBD does not typically produce a “high”; NHS England describes it as not psychoactive. {cites("nhs-cbpm", pre=pre)} That does not mean CBD has no effects on the brain or body: the UK product information for one CBD medicine lists sleepiness among its side effects. {cites("epidyolex-smpc", pre=pre)}</p>
         <p>CBD is being investigated for several possible medical applications. Whether it helps depends on the product, the population and the outcome being studied. A possible mechanism is a reason to investigate a treatment, not proof of clinical benefit. {cites("mcguire-2018", "boggs-2018", pre=pre)}</p>
         <p>Other cannabinoid names, including CBG, CBN and THCV, may appear in research or product descriptions. Each requires its own evidence assessment; CBD or THC findings cannot be assigned to another molecule. This introductory page makes no treatment claims for these compounds.</p>
         <p><a href="cbd-thc.html">CBD and THC: different effects, complex interactions</a></p>
@@ -332,7 +335,7 @@ def page_cannabinoids():
       </div>
     </section>'''
     return dict(path="science/cannabinoids.html", title="Understanding cannabinoids", h1="Cannabis, cannabinoids and medicines",
-                desc="Plain-language foundations: the difference between cannabis, cannabinoids, formulations and medicines, the endocannabinoid system, and why route and product matter.",
+                desc="Plain-language foundations: the difference between cannabis, cannabinoids, formulations and medicines, cannabinoid receptors, and why route and product matter.",
                 body=body)
 
 
@@ -346,10 +349,10 @@ def page_cbd_thc():
     c = lambda *ids: cites(*ids, pre=pre)
     panels = "".join([
         compare_panel("cmp-effects", "Effects",
-                      [f"Activates cannabinoid receptors, including CB1. {c('iuphar-cannabinoid-receptors')}",
-                       f"Can produce intoxication (a “high”), changes in perception and impaired memory. {c('englund-2013', 'englund-2023')}"],
+                      [f"Activates the cannabinoid receptor CB1 in cell experiments. {c('laprairie-2015')}",
+                       f"In experiments in people, impaired memory and produced temporary psychotic symptoms such as paranoia. {c('englund-2013', 'englund-2023')}"],
                       [f"Has different, more complex pharmacology. In cell experiments it can reduce CB1 signalling (negative allosteric modulation); that is a laboratory finding, not a clinical effect. {c('laprairie-2015')}",
-                       f"Does not typically produce the THC-like high. “Non-intoxicating” does not mean it has no effects on the brain or body. {c('fda-cannabis-cbd')}"]),
+                       f"Does not typically produce a “high”; NHS England describes it as not psychoactive. {c('nhs-cbpm')} It still has effects: sleepiness is a listed side effect of one CBD medicine. {c('epidyolex-smpc')}"]),
         compare_panel("cmp-clinical", "Clinical evidence",
                       [f"In experimental settings, THC can produce temporary psychotic symptoms. {c('englund-2013')}",
                        f"Observational research links daily use, and especially daily use of high-potency cannabis, with higher odds of psychotic disorder. This is an association, not a prediction for any individual. {c('diforti-2019')}",
@@ -378,7 +381,7 @@ def page_cbd_thc():
       <div class="wrap">
         <div class="prose-measure">
           <h2 id="distinct-title">Two distinct compounds</h2>
-          <p>THC and CBD are distinct compounds. THC activates cannabinoid receptors and can produce a high, changes in perception and impaired memory. CBD has different pharmacology and does not typically produce that intoxicating effect. They are not simple opposites. {c("iuphar-cannabinoid-receptors", "englund-2023", "fda-cannabis-cbd")}</p>
+          <p>THC and CBD are distinct compounds. In cell experiments THC activates the cannabinoid receptor CB1, and in experiments in people it impaired memory and produced temporary psychotic symptoms. CBD has different pharmacology and does not typically produce a “high”. They are not simple opposites. {c("laprairie-2015", "englund-2013", "englund-2023", "nhs-cbpm")}</p>
         </div>
         <div class="sci-compare" data-sci-tabs="Compare THC and CBD">
           {panels}
@@ -434,8 +437,8 @@ def page_medicines():
     cat_rows = "".join(f'<tr><th scope="row" data-label="Category">{a}</th><td data-label="How to interpret it">{b}</td></tr>' for a, b in cats)
     ex = [("Epidyolex", "A CBD medicine", "The UK product information lists Epidyolex as an add-on treatment for seizures associated with Lennox–Gastaut or Dravet syndrome, together with clobazam, and for seizures associated with tuberous sclerosis complex, in patients aged 2 years and older.", "epidyolex-smpc"),
           ("Sativex", "A THC and CBD oromucosal spray", "For symptom improvement in adults with moderate to severe spasticity due to multiple sclerosis who have not responded adequately to other anti-spasticity medicines and who show clinically significant improvement during an initial trial of treatment.", "sativex-smpc"),
-          ("Nabilone", "A synthetic cannabinoid", "For nausea and vomiting caused by cancer chemotherapy that has not responded adequately to conventional anti-sickness treatments. Nabilone is a distinct compound, not another name for THC.", "nabilone-smpc")]
-    ex_cards = "".join(f'<article class="card sci-product"><p class="sci-product__kind">{k}</p><h3>{n}</h3><p>{t}</p><p>{c(i)}</p></article>' for n, k, t, i in ex)
+          ("Nabilone", "A synthetic cannabinoid", "For nausea and vomiting caused by cancer chemotherapy that has not responded adequately to conventional anti-sickness treatments. NHS England groups nabilone with synthetic cannabinoids that are structurally related to THC, rather than identical to it.", ("nabilone-smpc", "nhs-cbpm"))]
+    ex_cards = "".join(f'<article class="card sci-product"><p class="sci-product__kind">{k}</p><h3>{n}</h3><p>{t}</p><p>{c(*(i if isinstance(i, tuple) else (i,)))}</p></article>' for n, k, t, i in ex)
     dims = [("Published studies", "What was found, in whom, compared with what."), ("Regulatory authorisation", "Which product may be marketed, for which uses."),
             ("Clinical guidelines", "What is recommended in care, and for whom."), ("Legal access", "How a product can be supplied or obtained.")]
     dim_html = "".join(f'<li><strong>{a}</strong><span>{b}</span></li>' for a, b in dims)
@@ -450,7 +453,7 @@ def page_medicines():
           <p>The useful question is not simply whether something contains cannabis or CBD. It is what the product contains, how it is made, how it is administered, who it has been studied in and what its evidence supports.</p>
         </div>
         <div class="table-wrap table-wrap--stack sci-categories"><table><caption class="sci-caption">Four product categories</caption><thead><tr><th scope="col">Category</th><th scope="col">How to interpret it</th></tr></thead><tbody>{cat_rows}</tbody></table></div>
-        <p class="sci-cites-line">{c("mhra-specials", "nhs-cbpm", "fda-cannabis-cbd")}</p>
+        <p class="sci-cites-line">{c("mhra-specials", "nhs-cbpm")}</p>
       </div>
     </section>
 
@@ -610,9 +613,9 @@ def evidence_section():
 GLOSS = [
     ("g-cannabis", "Cannabis", "The plant and, in everyday usage, preparations made from it. Preparations vary widely in composition."),
     ("g-cannabinoid", "Cannabinoid", "A compound in this area of pharmacology, such as CBD or THC. Cannabinoids do not all have the same effects."),
-    ("g-cbd", "CBD (cannabidiol)", "A cannabinoid that does not typically produce the THC-like high. “Non-intoxicating” does not mean it has no effects on the brain or body."),
-    ("g-thc", "THC (delta-9-tetrahydrocannabinol)", "A cannabinoid that activates cannabinoid receptors and can produce intoxication, changes in perception and impaired memory."),
-    ("g-ecs", "Endocannabinoid system", "The body’s own signalling molecules (such as anandamide and 2-AG), the receptors they act on (such as CB1 and CB2) and the enzymes that make and break them down."),
+    ("g-cbd", "CBD (cannabidiol)", "A cannabinoid that does not typically produce a “high”. That does not mean it has no effects on the brain or body."),
+    ("g-thc", "THC (delta-9-tetrahydrocannabinol)", "A cannabinoid that activates the cannabinoid receptor CB1 in cell experiments and, in experiments in people, impaired memory and produced temporary psychotic symptoms."),
+    ("g-cb1", "CB1 receptor", "A cannabinoid receptor. In cell experiments, THC and 2-AG activated CB1 signalling, and CBD reduced that signalling. These are laboratory findings, not clinical effects."),
     ("g-nam", "Negative allosteric modulation", "A laboratory term: a compound binds a receptor at a different site and reduces the receptor’s response to other signals. A laboratory finding is not a clinical effect."),
     ("g-formulation", "Formulation", "The way ingredients are prepared and delivered, such as an oral solution, spray or capsule. Formulation, route and food can change exposure."),
     ("g-licensed", "Licensed medicine", "A particular product with an authorisation covering specified uses and conditions. The authorisation does not extend to other products containing the same compound."),

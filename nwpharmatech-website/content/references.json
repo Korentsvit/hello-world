@@ -696,8 +696,8 @@
       "finding": "Describes the cannabinoid receptors CB1 and CB2, the body’s own signalling molecules that act at them (such as anandamide and 2-AG), and other compounds that act at these receptors.",
       "limitations": "Receptor vocabulary and pharmacology; not evidence about clinical effects.",
       "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "metadata_check": "Not inspected: the IUPHAR/BPS Guide to Pharmacology family page now requires login (Web Boss, 27 Sep 2026). Primary check pending.",
+      "finding_check": "Not confirmed: no passage retrievable without credentials (Web Boss, 27 Sep 2026). No page statement cites this entry; its receptor statements were rewritten to rest on Laprairie 2015 (abstract) or removed."
     },
     {
       "id": "laprairie-2015",
@@ -720,11 +720,11 @@
       "population": "Cells expressing CB1 receptors (laboratory)",
       "product": "Cannabidiol applied to cells",
       "design": "Laboratory (cell) experiments",
-      "finding": "In cell experiments, CBD reduced CB1 signalling in response to THC and to the body’s own cannabinoid 2-AG, consistent with negative allosteric modulation of CB1.",
+      "finding": "In cell experiments, CBD reduced CB1 signalling in response to THC and to 2-AG (2-arachidonylglycerol), consistent with negative allosteric modulation of CB1.",
       "limitations": "A laboratory mechanism, not evidence of clinical protection in people.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: Europe PMC abstract record (PMID 26218440, PMC4621983, DOI 10.1111/bph.13250) (Web Boss, 27 Sep 2026)",
+      "finding_check": "Abstract level only: matches the abstract ('reduced the efficacy and potency of 2-arachidonylglycerol and Δ(9)-tetrahydrocannabinol'; 'a non-competitive negative allosteric modulator of CB1 receptors'). Full text not inspected; 'the body’s own cannabinoid' removed as not stated in the abstract (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "englund-2013",
@@ -746,12 +746,12 @@
       "url": "",
       "population": "48 healthy participants",
       "product": "Oral CBD or placebo before intravenous THC (experimental challenge)",
-      "design": "Randomised, double-blind, placebo-controlled experiment",
+      "design": "Randomised, placebo-controlled, between-subjects experiment",
       "finding": "CBD pretreatment reduced selected paranoia and memory outcomes after THC. The difference in the average positive-symptom (PANSS) score was not statistically significant.",
       "limitations": "Healthy volunteers; route and timing differ from ordinary cannabis use.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: PubMed 23042808 / Europe PMC abstract record (DOI 10.1177/0269881112460109) (Web Boss, 27 Sep 2026)",
+      "finding_check": "Abstract level only (subscription full text, not in PMC): n=22 CBD + 26 placebo = 48; oral CBD 600 mg 210 min before IV THC 1.5 mg; paranoia (SSPS) and memory (HVLT-R) outcomes favoured CBD (p<0.05); lower PANSS positive scores 'did not reach statistical significance'. 'Double-blind' removed from the design: not stated in the abstract (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "englund-2023",
@@ -776,9 +776,9 @@
       "design": "Randomised, double-blind, cross-over trial",
       "finding": "Adding more CBD to a fixed THC dose did not protect against the acute adverse effects measured.",
       "limitations": "An acute experiment with particular CBD:THC ratios; not every possible regimen.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: PMC10156730 open-access full paper (DOI 10.1038/s41386-022-01478-z) (Web Boss, 27 Sep 2026)",
+      "finding_check": "Full paper: 'Forty-six healthy, infrequent cannabis users'; vaporised cannabis with 10 mg THC and 0, 10, 20 or 30 mg CBD; 'no evidence that CBD protects against the acute adverse effects of cannabis' (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "zamarripa-2023",
@@ -803,9 +803,9 @@
       "design": "Randomised clinical trial (single doses)",
       "finding": "Giving a high oral CBD dose with THC increased THC exposure and impairment compared with the same THC dose alone.",
       "limitations": "Small, single doses; participants also took a mix of probe drugs used to measure drug-metabolising enzymes.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: PMC9926328 open-access full paper (DOI 10.1001/jamanetworkopen.2022.54752) (Web Boss, 27 Sep 2026)",
+      "finding_check": "Full paper: 18 healthy adults; brownies with placebo, 20 mg THC, or 20 mg THC + 640 mg CBD; higher THC Cmax and AUC and greater impairment with CBD; CYP probe cocktail (caffeine, omeprazole, losartan, dextromethorphan, midazolam) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "chesney-2025",
@@ -830,9 +830,9 @@
       "design": "Randomised, double-blind, placebo-controlled, cross-over trial",
       "finding": "CBD given before cannabis did not reduce its acute effects on memory or psychotic symptoms, and appeared to worsen them.",
       "limitations": "A combination experiment; it does not establish the effects of CBD alone, or of longer treatment, in another population.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: PMC12518716 open-access full paper (DOI 10.1038/s41386-025-02175-3). PubMed ID 40702165 is from the research brief and was not separately confirmed (Web Boss, 27 Sep 2026)",
+      "finding_check": "Full paper: n = 30 with schizophrenia or schizoaffective disorder plus comorbid cannabis use disorder; oral CBD 1000 mg or placebo three hours before vaporised cannabis; worse delayed recall and larger PANSS-positive increase with CBD; 'did not attenuate … but appeared to exacerbate them' (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "sativex-smpc",
@@ -857,9 +857,9 @@
       "design": "Regulatory product information",
       "finding": "The UK product information lists Sativex for symptom improvement in adults with moderate to severe spasticity due to multiple sclerosis who have not responded adequately to other anti-spasticity medicines and who show clinically significant improvement during an initial trial of treatment.",
       "limitations": "One product and one indication; not evidence about psychosis.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: electronic Medicines Compendium SmPC, product 602 (Web Boss, 27 Sep 2026)",
+      "finding_check": "Full SmPC: matches section 4.1 (symptom improvement in adults with moderate to severe MS spasticity who have not responded adequately to other anti-spasticity medication and who demonstrate clinically significant improvement during an initial trial of therapy) (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "nabilone-smpc",
@@ -880,13 +880,13 @@
       "pmid": "",
       "url": "https://www.medicines.org.uk/emc/product/12767/smpc",
       "population": "Patients receiving cancer chemotherapy",
-      "product": "Nabilone, a synthetic cannabinoid (a distinct compound; not THC and not NWPT-SM32300)",
+      "product": "Nabilone, a synthetic cannabinoid (a different product; not NWPT-SM32300)",
       "design": "Regulatory product information",
       "finding": "The UK product information lists nabilone for nausea and vomiting caused by cancer chemotherapy in patients who have not responded adequately to conventional anti-sickness treatments.",
-      "limitations": "A distinct synthetic compound and indication.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "limitations": "One product and one indication; not evidence about psychosis.",
+      "verification": "index",
+      "metadata_check": "Primary record: electronic Medicines Compendium SmPC, product 12767 (Web Boss, 27 Sep 2026)",
+      "finding_check": "Full SmPC: indication matches section 4.1; section 5.1 describes nabilone as 'a synthetic cannabinoid'. The SmPC does not say 'not THC'; that wording was removed. The medicines page's structural distinction from THC is cited to NHS England's CBPM page (nabilone grouped as structurally related to THC; dronabinol as identical), as summarised in Web Boss's note (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "mhra-specials",
@@ -911,9 +911,9 @@
       "design": "UK regulatory guidance (MHRA)",
       "finding": "Explains the framework under which unlicensed medicinal products can be supplied in the UK, which is separate from a marketing authorisation.",
       "limitations": "A category-level explanation; not patient eligibility or prescribing guidance.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: GOV.UK publication landing page (Web Boss, 27 Sep 2026)",
+      "finding_check": "Category level: the landing page describes guidance on supplying specially manufactured or ordered unlicensed products ('specials'), including CBPMs, ordered by authorised prescribers for individual patients. Guidance Note 14 PDF not separately quoted (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "nhs-cbpm",
@@ -938,9 +938,9 @@
       "design": "NHS England guidance",
       "finding": "Explains how cannabis-based products for medicinal use are described and supplied within the NHS in England.",
       "limitations": "A category-level explanation; not patient eligibility or prescribing guidance.",
-      "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "verification": "index",
+      "metadata_check": "Primary record: NHS England long-read page (Web Boss, 27 Sep 2026)",
+      "finding_check": "Category level: defines CBPM requirements; most products unlicensed; licensed examples (Epidyolex, Sativex); describes CBD as not psychoactive; synthetic cannabinoids grouped as identical in structure to THC (e.g. dronabinol) or structurally related (e.g. nabilone). Passages recorded by Web Boss as summaries, not full quotations (Web Boss, 27 Sep 2026). Not scientific sign-off."
     },
     {
       "id": "fda-cannabis-cbd",
@@ -966,8 +966,8 @@
       "finding": "Distinguishes the cannabis plant, individual cannabis-derived compounds such as CBD and THC, and specific approved products.",
       "limitations": "US regulatory context; UK indications are cited from UK product information.",
       "verification": "brief",
-      "metadata_check": "Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending.",
-      "finding_check": "Not confirmed: Not yet inspected by Claude or Web Boss: details reported in the Science research brief of 27 Sep 2026 (brief source register S1–S13), with search-index leads consistent where noted in records/SCIENCE-EXPANSION-NWPT-048.md. Primary check pending."
+      "metadata_check": "Partly inspected: page fetch incomplete (Web Boss, 27 Sep 2026). Primary check pending.",
+      "finding_check": "Not confirmed: the plant/compound/product distinction was not captured as a passage, and 'THC-like high' was not found on this page (Web Boss, 27 Sep 2026). No page statement cites this entry: the distinction now cites Englund 2023 and NHS England, and the 'high' statement cites NHS England."
     }
   ],
   "corrections": [

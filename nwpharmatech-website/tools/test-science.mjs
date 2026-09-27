@@ -29,7 +29,14 @@ const sci = fs.readFileSync(`${dir}/science.html`, "utf8");
 for (const id of ["investigating", "formulation", "chrp-title", "q2-h", "dg-title", "ar", "conceptual-platform"]) check(`science.html keeps #${id}`, sci.includes(`id="${id}"`));
 const ev = fs.readFileSync(`${dir}/evidence.html`, "utf8");
 if (baseEvidence) { const ids = [...baseEvidence.matchAll(/id="(ref-[a-z0-9-]+)"/g)].map((m) => m[1]); check(`all ${ids.length} existing evidence IDs preserved`, ids.every((i) => ev.includes(`id="${i}"`)), ids.filter((i) => !ev.includes(`id="${i}"`)).join(" ")); }
-check("11 new evidence entries, each marked 'Source check in progress'", NEW_IDS.every((i) => new RegExp(`id="ref-${i}"[\\s\\S]*?Source check in progress[\\s\\S]*?</article>`).test(ev)) && (ev.match(/nwpt-tag-pending/g) || []).length === 11);
+const PENDING_IDS = ["iuphar-cannabinoid-receptors", "fda-cannabis-cbd"]; // primary-source pass 27 Sep 2026: all others checked
+const cardOf = (i) => (ev.match(new RegExp(`id="ref-${i}"[\\s\\S]*?</article>`)) || [""])[0];
+check("11 new evidence entries; 'Source check in progress' only on IUPHAR/BPS and FDA", NEW_IDS.every((i) => cardOf(i) && cardOf(i).includes("Source check in progress") === PENDING_IDS.includes(i)) && (ev.match(/nwpt-tag-pending/g) || []).length === 2, NEW_IDS.filter((i) => cardOf(i).includes("Source check in progress") !== PENDING_IDS.includes(i)).join(" "));
+{
+  const refs = JSON.parse(fs.readFileSync(new URL("../content/references.json", import.meta.url), "utf8")).items.filter((r) => NEW_IDS.includes(r.id));
+  const dl = ["bib", "ris"].map((x) => fs.readFileSync(`${dir}/downloads/nwpharmatech-references.${x}`, "utf8"));
+  check("reference data and citation downloads agree: only IUPHAR/BPS and FDA still pending", refs.length === 11 && refs.every((r) => (r.verification === "brief") === PENDING_IDS.includes(r.id) && /Primary check pending/.test(r.metadata_check) === PENDING_IDS.includes(r.id)) && dl.every((t) => (t.match(/Source check pending/g) || []).length === 2));
+}
 const sciNew = (sci.match(/<!-- NWPT-048 routes start -->[\s\S]*?<!-- NWPT-048 routes end -->/) || [""])[0];
 const newHtml = PAGES.slice(1).map((p) => fs.readFileSync(`${dir}${p}.html`, "utf8")).join("\n") + sciNew;
 const text = newHtml.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
@@ -40,6 +47,8 @@ check("CBD-cancels-THC appears only as the question, answered 'Not reliably.'", 
 check("review note present on all five pages, no individual reviewer named", PAGES.every((p) => (p === "/science" ? sci : fs.readFileSync(`${dir}${p}.html`, "utf8")).includes("remains under ongoing review by the NWPharmaTech team")) && !/reviewed by (?:Dr|Prof|Professor)/i.test(text));
 check("further-reading card: funding and draft-status disclosure, plus About link (overview, cannabinoids, medicines)", ["/science", "/science/cannabinoids", "/science/cannabinoid-medicines"].every((p) => { const s = p === "/science" ? sci : fs.readFileSync(`${dir}${p}.html`, "utf8"); return s.includes("funded by NW PharmaTech Ltd") && s.includes("working draft") && s.includes('href="https://cannabinoidevidence.org/about"') && s.includes('href="https://cannabinoidevidence.org/"'); }));
 const citeIds = [...newHtml.matchAll(/evidence\.html#ref-([a-z0-9-]+)/g)].map((m) => m[1]);
+check("no Science page statement rests on a source whose check is still in progress", !citeIds.some((i) => PENDING_IDS.includes(i)), citeIds.filter((i) => PENDING_IDS.includes(i)).join(" "));
+check("checked wording: no 'THC-like high', no 'not another name for THC', CE.org 'review in progress'", !/THC-like high|not another name for THC|verification pending/i.test(text) && /working draft, with independent scientific and regulatory review in progress\./.test(text));
 check(`every citation on the Science pages points to an existing Evidence library entry (${new Set(citeIds).size} sources)`, citeIds.every((i) => ev.includes(`id="ref-${i}"`)), [...new Set(citeIds.filter((i) => !ev.includes(`id="ref-${i}"`)))].join(" "));
 check("NICE psychological-therapy statement cites CG178 only", /NICE advises against antipsychotics to prevent psychosis in this group\. <span class="sci-cites">Sources: <a class="nwpt-cite" href="\.\.\/evidence\.html#ref-nice-cg178">NICE CG178<\/a><\/span>/.test(newHtml));
 check("sitemap lists the four new pages", ["psychiatry", "cannabinoids", "cbd-thc", "cannabinoid-medicines"].every((p) => fs.readFileSync(`${dir}/sitemap.xml`, "utf8").includes(`/science/${p}.html`)));
