@@ -143,7 +143,7 @@ This is commit `fda155b`, separate from the interface changes; see `records/SOUR
 
 ## 7. Outstanding issues
 
-1. **Monitored inbox (Web Boss / Filipp).** The handoff points to `team@nwpharmatech.com`, the approved research-collaboration address from the Contact page. It is **not** the online-enquiry recipient. **Please confirm it is monitored** before publication. This could not be checked from here.
+1. **Monitored inbox: resolved (Filipp, 27 Sep 2026).** Filipp confirms that email to `team@nwpharmatech.com` is automatically forwarded to `filipp.korentsvit@nwpharmatech.com`. The handoff's destination is therefore monitored by the accountable owner. No site change was needed.
 2. **Primary-source verification (Web Boss).** 24 Evidence library cards remain checked against search-engine records only, and the CANTOP-RCT publication date is still unknown. Request: `records/SOURCE-METADATA-NWPT-047.md`.
 3. **Phone first screen.** At 390×844 the "Funding overview" quick link sits just below the first screen; the primary and secondary actions and "Research collaboration" are visible. Funding is also the third card in "Start here", directly below.
 4. **Phone agenda bar.** On the Work with us phone layout, the fixed "Your agenda" bar covers the bottom ~60px of content while scrolling. This is unchanged from production, and focused elements stay clear.
