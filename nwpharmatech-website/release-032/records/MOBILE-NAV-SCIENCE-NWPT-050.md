@@ -6,7 +6,7 @@
   1. `01d6eec`: menu fix (shared header, every page).
   2. `69ffcae`: Science pages on phones (CSS only).
   3. This record, screenshots and recordings.
-- **Status:** preview only. Enquiries, privacy, DNS and production are unchanged.
+- **Status:** published to production on 27 Sep 2026 as `af4ab606a16813252fda4bd6c280afaa1f473974` (see **Production publication** at the end). This SHA is the baseline for future website work. Enquiries, privacy and DNS are unchanged.
 
 ## 1. Mobile menu
 
@@ -96,3 +96,36 @@ The report was reproduced in Chromium at 360 × 780, 375 × 667 and 412 × 915. 
    - check that “Science overview” is below the header, that you can swipe to “Glossary”, and that Close returns you to the same place;
    - repeat with large system text and in landscape.
 3. Production publication follows Filipp's review of the preview.
+
+## Production publication (Web Boss, 27 Sep 2026)
+
+| Item | Value |
+|---|---|
+| Production SHA | `af4ab606a16813252fda4bd6c280afaa1f473974` |
+| Deployment ID | `1329321b-8006-4761-8c06-e1ad92f5a0e7` |
+| Deployed | 27 September 2026, 19:36:56 CEST |
+| Immutable URL | https://1329321b.nwpt-preview.pages.dev |
+| Rollback deployment ID | `b8788c49-3ddf-4f73-afe0-926321c125da` (previous production `5e926c8c592fcd8492e1fa2ff58a05ade7206d54`) |
+| Production verification | PASS (reported by Web Boss): the Science menu opens below the header, the first and last Science links are reachable, and Close restores the scroll position |
+| Phone gate | Filipp's check on his Android phone (reported by Web Boss as the phone gate for this release) |
+
+**Unchanged:** enquiries remain disabled; DNS, privacy and enquiry settings unchanged.
+
+**Testing distinctions, as recorded above:**
+- Claude's checks used Chromium with mobile emulation.
+- Larger text was emulated through the root font size; this is not the operating-system text setting.
+- Browser zoom was not tested.
+- The only physical-device check is Filipp's Android phone.
+- **Safari/iPhone remains untested.**
+
+**Baseline:** future website work starts from `af4ab606a16813252fda4bd6c280afaa1f473974`. This records-only commit is not deployed.
+
+## Backlog (carried forward from this release)
+
+Large-text overflow outside the Science pages, found at 150–200% emulated text. Each makes the phone lay the page out wider than the screen:
+
+1. **Shared footer:** `.footer-meta` is 19 px wider than a 320 px screen at 200% text (all pages).
+2. **Families page:** citations set to `nowrap` (`.nwpt-cite`) widen the layout at 150% and 200%.
+3. **Homepage people cards:** `.home-person-card` widens the layout at 150%, and the homepage brief panel does so at 200%.
+
+This closes NWPT-050.
