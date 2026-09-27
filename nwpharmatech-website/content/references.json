@@ -51,9 +51,9 @@
       "finding": "Describes how the high-risk state is defined and assessed, including attenuated psychotic symptoms and brief limited intermittent psychotic symptoms.",
       "limitations": "A narrative review, not a systematic estimate of outcomes.",
       "verification": "index",
-      "notes": "The 'genetic-risk-with-deterioration' check is closed as not applicable: the live card does not make that claim (checked 27 Sep 2026).",
+      "notes": "Genetic-risk sub-check closed as not applicable: the live card does not make that claim (the paper's 'Hr Criteria' passage names GRD, per Web Boss).",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Not confirmed: Web Boss's note confirms the record and abstract but quotes no passage on how the high-risk state is defined and assessed (APS, BLIPS); the live card is a paraphrase. Not scientific sign-off."
+      "finding_check": "Confirmed per Web Boss (PMC author manuscript PMC4356506, section 'Hr Criteria'; figure legend; Table 1): UHR inclusion requires 'attenuated psychotic symptoms (APS), brief limited intermittent psychotic episode (BLIP)' or GRD, with CAARMS/SIPS operational detail in Table 1. The card's 'brief limited intermittent psychotic symptoms' names the same pathway the paper calls an 'episode'. Page leaf in the published PDF not available. Not scientific sign-off."
     },
     {
       "id": "addington-2011",
@@ -157,11 +157,11 @@
       "finding": "Offer individual CBT, with or without family intervention. Do not offer antipsychotic medication to people at increased risk or to reduce the risk of or prevent psychosis.",
       "limitations": "Applies in England; guidance differs elsewhere.",
       "verification": "index",
-      "notes": "Published 12 February 2014; last updated and last reviewed 4 September 2026 (NICE guidance page, per Web Boss, 27 Sep 2026). Recommendation numbers not recorded.",
+      "notes": "Published 12 February 2014; last updated 4 September 2026 (NICE PDF cover). Recommendations 1.2.3.1 and 1.2.3.2, PDF page 10 of 38.",
       "published": "12 February 2014",
       "last_updated": "4 September 2026",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Direct inspection (Web Boss, 27 Sep 2026): 'offer individual cognitive behavioural therapy (CBT) with or without family intervention' and 'Do not offer antipsychotic medication: to people considered to be at increased risk of developing psychosis …' (excerpt truncated). Corroboration, not direct inspection: NICE's indexed official CG178 text includes the prevention clause under recommendation 1.2.3.2, as retrieved by Codex (27 Sep 2026; its direct PDF fetch was blocked). Pending: Web Boss to supply the complete saved 1.2.3.2 passage. Not scientific sign-off."
+      "finding_check": "Confirmed: recommendation 1.2.3.1 (first bullet: 'offer individual cognitive behavioural therapy (CBT) with or without family intervention') and 1.2.3.2 ('Do not offer antipsychotic medication: to people considered to be at increased risk of developing psychosis … or with the aim of decreasing the risk of or preventing psychosis'), official NICE CG178 PDF page 10 of 38, supplied by Web Boss and read directly by Claude, 27 Sep 2026. Not scientific sign-off."
     },
     {
       "id": "nice-cg155",
@@ -324,7 +324,7 @@
       "limitations": "Small, short, add-on treatment in established schizophrenia; not people at clinical high risk.",
       "verification": "index",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Not confirmed: Web Boss confirms design (CBD 1,000 mg/day add-on vs placebo, PANSS) but quotes no result; the positive-symptom, clinician-rating and tolerability statements need the full paper or abstract results. Not scientific sign-off."
+      "finding_check": "Confirmed at abstract level per Web Boss (PubMed abstract Results): PANSS positive treatment difference −1.4 (95% CI −2.5, −0.2); CGI-I −0.5 (−0.8, −0.1); 'CBD was well tolerated, and rates of adverse events were similar'. Full paper not accessible; no intra-article page. Not scientific sign-off."
     },
     {
       "id": "leweke-2012",
@@ -376,7 +376,7 @@
       "limitations": "Small; lower dose than some other studies; stable chronic patients.",
       "verification": "index",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Not confirmed: Web Boss reports the null finding is consistent with the PubMed record's framing but did not quote the result; exact wording needed from the full paper or abstract results. Not scientific sign-off."
+      "finding_check": "Confirmed at abstract level per Web Boss (PubMed/Springer abstract): no drug effect on MCCB (only placebo improved over time, p = 0.03); no significant drug × time on PANSS (p = 0.18); Conclusions: 'not associated with an improvement in MCCB or PANSS scores'. Full paper not accessible; no intra-article page. Not scientific sign-off."
     },
     {
       "id": "bhattacharyya-2018",
@@ -668,9 +668,9 @@
       "finding": "Described the safety and tolerability of single and repeated doses of purified CBD in healthy adults, and found that a high-fat meal increased CBD exposure.",
       "limitations": "Healthy volunteers; a different CBD product. A published correction exists.",
       "verification": "index",
-      "notes": "Exact food-effect fold changes not confirmed.",
+      "notes": "Food effect: Cmax 4.85-fold (90% CI 4.01–5.87) and AUCt 4.2-fold (90% CI 3.63–4.85) with a high-fat breakfast (§3.5, pp. 1061–1063).",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Partly confirmed: 'generally well tolerated' matches the quoted conclusion and the single and multiple-dose design matches the record; Web Boss reports a food effect on exposure but quotes no passage naming a high-fat meal. Exact published title still to be supplied. Not scientific sign-off."
+      "finding_check": "Confirmed: Abstract Results p. 1053 'A high-fat meal increased CBD plasma exposure (Cmax and AUCt) by 4.85- and 4.2-fold'; §3.5 pp. 1061–1063; 'CBD was generally well tolerated'. Read directly by Claude in the Europe PMC PDF supplied by Web Boss, 27 Sep 2026. Title correction to the published title prepared separately. Not scientific sign-off."
     }
   ],
   "corrections": [

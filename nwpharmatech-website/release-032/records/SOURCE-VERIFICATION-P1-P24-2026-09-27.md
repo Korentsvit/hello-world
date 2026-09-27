@@ -105,3 +105,23 @@ The Evidence library's 18 "et al.." and one "Bialer M.." (doubled full stop) are
 - **P16:** the abstract results or results section.
 - **P18:** the abstract results.
 - **P23:** the exact title and the food-effect passage, with its page.
+
+## Evidence follow-up received (27 Sep 2026): P3, P1, P16, P18, P23 resolved
+
+**Evidence:** Web Boss's follow-up pack, filed in `records/primary-source/followup-2026-09-27/`. It includes the official NICE CG178 PDF and the Taylor 2018 Europe PMC PDF. **Claude read those two PDFs directly.** P1, P16 and P18 rest on Web Boss's transcriptions: PMC author manuscript for P1, PubMed abstracts for P16 and P18.
+
+| # | Live claim | Supporting passage | Result |
+|---|---|---|---|
+| P3 card | "Offer individual CBT, with or without family intervention. Do not offer antipsychotic medication to people at increased risk or to reduce the risk of or prevent psychosis." | CG178 **1.2.3.1** "offer individual cognitive behavioural therapy (CBT) with or without family intervention …" and **1.2.3.2** "Do not offer antipsychotic medication: to people considered to be at increased risk of developing psychosis … or with the aim of decreasing the risk of or preventing psychosis." Official PDF, page 10 of 38 (**read directly by Claude**) | **Closed: supported.** The earlier codex corroboration is now confirmed by direct inspection. `d7f5dd5` stays unpublished and is superseded |
+| P3 Programme Room | "In England, psychological therapy is the recommended first step. NICE advises against antipsychotics to prevent psychosis in this group." | CG178 1.2.3.1 and 1.2.3.2 (adult guideline alone) | **Closed: supported by CG178 itself** |
+| P1 | "Describes how the high-risk state is defined and assessed, including attenuated psychotic symptoms and brief limited intermittent psychotic symptoms." | "Hr Criteria": "Inclusion requires the presence of 1 or more of the following: attenuated psychotic symptoms (APS), brief limited intermittent psychotic episode (BLIP), and … (GRD) …". Table 1 gives the CAARMS/SIPS operational detail (per Web Boss, PMC4356506) | **Closed: supported.** The paper says "episode" where the card says "symptoms". Both name the same UHR pathway, and the card makes no claim beyond that. Optional alignment below. The page leaf in the published PDF is not available. The genetic-risk sub-check stays **closed as not applicable**: the current site does not mention genetic risk anywhere; Web Boss's reference to a Clinical Need page naming it does not match the live site |
+| P16 | "Positive psychotic symptoms fell more with CBD than placebo (small difference), and clinicians more often rated patients as improved. Generally well tolerated." | PubMed abstract Results: PANSS positive −1.4 (95% CI −2.5, −0.2); CGI-I −0.5 (−0.8, −0.1); "CBD was well tolerated, and rates of adverse events were similar" | **Closed at abstract level.** The full paper is inaccessible, so there is no intra-article page |
+| P18 | "No improvement in cognition or symptoms compared with placebo." | Abstract: MCCB, "only placebo-treated subjects improved over time"; PANSS, "no significant drug × time interaction (p = 0.18)"; Conclusions, "not associated with an improvement in MCCB or PANSS scores" | **Closed at abstract level.** The full paper is inaccessible |
+| P23 finding | "…single and repeated doses … generally well tolerated … a high-fat meal increased CBD exposure." | Abstract p. 1053: "A high-fat meal increased CBD plasma exposure (Cmax and AUCt) by 4.85- and 4.2-fold"; §3.5 pp. 1061–1063; "CBD was generally well tolerated" (**read directly by Claude**) | **Closed: supported** |
+| P23 title | "A Phase I, randomized, double-blind, placebo-controlled, single ascending dose, multiple dose, and multiple dose food effect trial of the safety and tolerability of highly purified cannabidiol in healthy subjects" | Published (p. 1053): "A Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Ascending Dose, Multiple Dose, and Food Effect Trial of the Safety, Tolerability and Pharmacokinetics of Highly Purified Cannabidiol in Healthy Subjects" | **Correction needed.** A bibliographic website commit is prepared separately on production `91de637` |
+
+**Optional (not applied):** P1 could read "brief limited intermittent psychotic episodes" to match the paper's term. Not necessary for accuracy.
+
+**Outside this check (noted only):** the article "Why early intervention matters" describes the same three pathways, citing Yung et al. 2005 (CAARMS), which is not one of P1–P24.
+
+**Remaining gaps:** none for these five claims. P16 and P18 are supported only at abstract level; no full-paper page numbers are available. None of this is scientific sign-off.
