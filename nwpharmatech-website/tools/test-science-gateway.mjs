@@ -75,11 +75,13 @@ for (const [label, vp, mobile] of [["390", { width: 390, height: 844 }, true], [
 }
 // no JavaScript: old anchors land on relevant gateway content
 {
-  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false }); await stub(ctx); const pg = await ctx.newPage();
-  for (const id of ["investigating", "formulation"]) {
-    await pg.goto(srv.base + "/science#" + id, { waitUntil: "load" });
-    const r = await pg.evaluate((id) => { const e = document.getElementById(id); const s = e && (e.closest("section") || e); return e && { text: s.textContent.replace(/\s+/g, " "), link: !!s.querySelector('a[href="science/formulation.html"]') }; }, id);
-    check(`without JavaScript, /science#${id} lands on the programme introduction, which links to the formulation page`, !!r && /NWPT-SM32300/.test(r.text) && r.link, JSON.stringify(r).slice(0, 200));
+  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false, reducedMotion: "reduce" }); await stub(ctx); const pg = await ctx.newPage();
+  // every old anchor lands on a visible element on /science with an onward link to the matching content
+  const WANT = { investigating: "science/formulation.html", formulation: "science/formulation.html", "chrp-title": "science/formulation.html#chrp-title", "q2-h": "science/formulation.html#q2-h", "dg-title": "science/formulation.html#capsule-diagram", "dg-desc": "science/formulation.html#capsule-diagram", ar: "science/formulation.html#capsule-diagram", "conceptual-platform": "science/formulation.html#conceptual-platform" };
+  for (const [id, href] of Object.entries(WANT)) {
+    await pg.goto("about:blank"); await pg.goto(srv.base + "/science#" + id, { waitUntil: "load" }); await pg.waitForTimeout(300);
+    const r = await pg.evaluate(([id, href]) => { const e = document.getElementById(id); if (!e) return null; const box = e.getBoundingClientRect(); const hb = document.querySelector(".site-header").getBoundingClientRect().bottom; const scope = e.closest("li, section") || e; const a = scope.matches("section") ? scope.querySelector(`a[href="${href}"]`) : (e.closest("a") || scope.querySelector("a")); const ar = a && a.getBoundingClientRect(); return { path: location.pathname, vis: box.width > 0 && box.height > 0, inView: !!ar && ar.top >= hb - 2 && ar.bottom <= innerHeight, href: a && a.getAttribute("href"), text: a && a.textContent.trim().slice(0, 60) }; }, [id, href]);
+    check(`without JavaScript, /science#${id} lands on a visible link to the moved content (${href})`, !!r && r.path === "/science" && r.vis && r.inView && r.href === href && r.text.length > 5, JSON.stringify(r));
   }
   await ctx.close();
 }

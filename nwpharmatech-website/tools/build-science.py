@@ -651,6 +651,13 @@ def science_overview():
           <li id="formulation"><a href="science/formulation.html"><strong>NWPT formulation</strong><span>What the formulation is designed to do, what has been measured, and the open research question</span></a></li>
           <li><a href="programme-room.html"><strong>Programme Room</strong><span>What has been studied, what is planned and what remains unknown</span></a></li>
         </ul>
+        <p class="sci-intro-moved__label">On the formulation page:</p>
+        <ul class="sci-intro-moved" aria-label="Sections on the formulation page">
+          <li id="chrp-title"><a href="science/formulation.html#chrp-title">What CHR-P means</a></li>
+          <li id="q2-h"><a href="science/formulation.html#q2-h">Why investigate a micellar softgel?</a></li>
+          <li id="dg-title"><a id="dg-desc" href="science/formulation.html#capsule-diagram"><span id="ar">From capsule to measurement (diagram)</span></a></li>
+          <li id="conceptual-platform"><a href="science/formulation.html#conceptual-platform">Conceptual delivery motif</a></li>
+        </ul>
       </div>
     </section>
     <section class="section section-light" aria-labelledby="resources-title">

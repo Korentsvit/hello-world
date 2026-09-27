@@ -4356,3 +4356,8 @@ main.sci-page .sci-level, html:has(.sci-routes-section) main .badge { white-spac
     overflow-wrap: anywhere;
   }
 }
+/* NWPT-051: links to the sections moved to /science/formulation (also the no-JavaScript landing for old /science#... links) */
+.sci-intro-moved__label { margin: 1rem 0 0.25rem; font-size: 0.875rem; font-weight: 650; color: var(--ink-700); }
+.sci-intro-moved { margin: 0; padding-left: 1.1rem; }
+.sci-intro-moved li { margin: 0.2rem 0; }
+.sci-intro-moved a { display: inline-block; padding: 0.35rem 0; }

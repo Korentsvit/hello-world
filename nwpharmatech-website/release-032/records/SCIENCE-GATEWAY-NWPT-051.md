@@ -31,7 +31,7 @@ The page's main text falls from about 1,900 words to about 450 (measured in the 
 
 | Production location | Content | Now | Old link behaviour |
 |---|---|---|---|
-| `/science#chrp-title` | What CHR-P means; Why earlier intervention research matters | `/science/formulation#chrp-title` | forwarded to the same heading |
+| `/science#chrp-title` | What CHR-P means; Why earlier intervention research matters | `/science/formulation#chrp-title` | forwarded to the same heading; without JavaScript it lands on a link to it |
 | `/science#investigating` | The investigational formulation (softgel illustration) | `/science/formulation#investigating` | forwarded; without JavaScript it lands on the “Our programme” introduction on `/science`, which links onward |
 | (no id) | The unanswered question (membrane illustration); What is known vs what remains open; NWPharmaTech's role as sponsor | `/science/formulation`, same order | — |
 | `/science#formulation`, `#q2-h` | Why investigate a micellar softgel? (evidence rows and citations) | `/science/formulation#formulation`, `#q2-h` | forwarded; without JavaScript `#formulation` lands on the introduction |
@@ -41,6 +41,13 @@ The page's main text falls from about 1,900 words to about 450 (measured in the 
 | `/formulation` | redirect | `/science/formulation` (301) | — |
 
 Forwarding is done by `science-forward.js` on `/science`: `location.replace` for those ids, including on in-page hash changes.
+
+**Without JavaScript:** every one of the 8 old ids exists on `/science` as a visible element carrying an onward link.
+- `#investigating` is the “Our programme” section.
+- `#formulation` is its NWPT formulation link.
+- `#chrp-title`, `#q2-h`, `#dg-title`/`#dg-desc`/`#ar` and `#conceptual-platform` are entries in a short “On the formulation page” list in that introduction. Each links to the matching section on `/science/formulation` (the diagram entries link to `#capsule-diagram`).
+
+*(Added after review: the first candidate `dc73a5a` covered only `#investigating` and `#formulation` without JavaScript.)*
 
 **Unchanged:**
 - all Science URLs, and the ids on the Science subpages;
@@ -69,7 +76,7 @@ The NWPT-050 menu behaviour is unchanged: independent scrolling, the first and l
 
 | Test | Result |
 |---|---|
-| `tools/test-science-gateway.mjs` (new) | The moved section is byte-identical to production and every sentence appears on the new page. Every link, citation, image and video from production `/science` is kept. All 8 old anchors reach the same section, below the header, at 390 and 1363 px. Without JavaScript, `#investigating` and `#formulation` land on the introduction. Also covers: `/formulation` → 301; gateway order; both routes prominent; concise; images load, the video is present and axe is clean on `/science` and `/science/formulation`; the homepage card; Programme Room links; the menu link on every page; and no sideways panning for `/`, `/families`, `/science`, `/science/formulation` and `/evidence` at 320/360/390 px with 150/200% text. **68/68.** |
+| `tools/test-science-gateway.mjs` (new) | The moved section is byte-identical to production and every sentence appears on the new page. Every link, citation, image and video from production `/science` is kept. All 8 old anchors reach the same section, below the header, at 390 and 1363 px. Without JavaScript, all 8 old anchors land on a visible link to the moved content. Also covers: `/formulation` → 301; gateway order; both routes prominent; concise; images load, the video is present and axe is clean on `/science` and `/science/formulation`; the homepage card; Programme Room links; the menu link on every page; and no sideways panning for `/`, `/families`, `/science`, `/science/formulation` and `/evidence` at 320/360/390 px with 150/200% text. **74/74** (after the no-JavaScript fallback links were added). |
 | `tools/test-mobile-nav.mjs` (NWPT-050 regression) | **23/23 checks, 1,246 runs.** Production had 24 checks. The “anchored Science destinations land below the header” check runs only for menu links that include a `#`, and the only one (`science.html#investigating`) is now `science/formulation.html`. This run found one issue: the open menu overflowed by 17 px at 320 px with 200% text once pages fit the screen. It was fixed (padding cap) and re-run clean. |
 | `tools/test-science.mjs` | 108/108. Anchor checks were updated to the new locations: ids on `/science/formulation`, the fallbacks and the forwarder on `/science`, and `/formulation` → `/science/formulation`. |
 | `tools/test-science-phone.mjs` (with `/science/formulation` added) | 8/8 |
