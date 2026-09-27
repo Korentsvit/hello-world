@@ -278,7 +278,7 @@ export const WWU = {
    "unresolved": false,
    "stage": "Related stage: Stage 5 · Phase 2B — stage work status: Proposed",
    "question": null,
-   "text": "A larger UK trial of cannabidiol in this group (CANTOP-RCT) was funded but never started, which is one reason this question remains open.",
+   "text": "A larger UK trial of cannabidiol in this group (CANTOP-RCT) did not start owing to challenges in securing supply of the study drug, which is one reason this question remains open.",
    "actions": [
     "d"
    ],

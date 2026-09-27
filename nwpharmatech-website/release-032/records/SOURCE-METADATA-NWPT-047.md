@@ -34,7 +34,7 @@ The Evidence library wording is **unchanged**: "Bibliographic details and quoted
 | P5 | Addington et al. 2011 | 2011; PMID 21498462; DOI 10.1176/appi.ajp.2011.10081191 | Standard check only | |
 | P6 | Fusar-Poli et al. 2012 | 2012 | **DOI and PMID** (not held); confirm journal, volume and pages | |
 | P7 | Salazar de Pablo et al. 2021 | 2021; PMID 34259821; DOI 10.1001/jamapsychiatry.2021.0830 | Standard check only | |
-| P8 | CANTOP-RCT report | PMID 40096425 | **Publication date (month and year)**, report DOI, and NIHR Journals Library series, volume and issue (EME programme), from the NIHR Journals Library report page; confirm the PubMed 40096425 record matches. This is the only date shown as unknown in the brief | **Metadata: confirmed; card check open.** Web Boss evidence note, 27 Sep 2026 (`records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md`), from the official NIHR PDF, NCBI E-utilities (PubMed XML) and Crossref. **Published:** March 2025. **Recommended citation on the current PDF:** Efficacy Mech Eval 2026;13(7):197–214. **DOI:** 10.3310/YNFH9826. **PMID:** 40096425. **Not done:** the quoted finding ("funded but did not start because the study medicine could not be supplied") was not checked. **Title and authors:** corrected to the published title and named authors (see §3). The PubMed and NIHR web pages themselves could not be opened (reCAPTCHA / 403) |
+| P8 | CANTOP-RCT report | PMID 40096425 | **Publication date (month and year)**, report DOI, and NIHR Journals Library series, volume and issue (EME programme), from the NIHR Journals Library report page; confirm the PubMed 40096425 record matches. This is the only date shown as unknown in the brief | **Metadata: confirmed; card check open.** Web Boss evidence note, 27 Sep 2026 (`records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md`), from the official NIHR PDF, NCBI E-utilities (PubMed XML) and Crossref. **Published:** March 2025. **Recommended citation on the current PDF:** Efficacy Mech Eval 2026;13(7):197–214. **DOI:** 10.3310/YNFH9826. **PMID:** 40096425. **Finding:** replaced on 27 Sep 2026 with the sentence approved by Filipp ("The study did not start owing to challenges in securing supply of the study drug."), used on the site as a paraphrase without quotation marks. The supporting report passage and page are **not yet on file** (see §3). **Title and authors:** corrected to the published title and named authors (see §3). The PubMed and NIHR web pages themselves could not be opened (reCAPTCHA / 403) |
 | P9 | Stafford et al. 2013 | 2013; PMID 23335473; DOI 10.1136/bmj.f185 | Issue number (not held) | |
 | P10 | Davies et al. 2018 | 2018; PMID 29856551; DOI 10.1002/wps.20526 | Standard check only | |
 | P11 | Kane et al. 2016 | 2016; PMID 26481174; DOI 10.1176/appi.ajp.2015.15050632 | Standard check only | |
@@ -103,3 +103,19 @@ The publication month and the journal citation year are recorded as **separate f
 - **BibTeX and RIS:** now typed as a journal article.
 - **Dates:** "Published March 2025" stays separate from the citation year 2026.
 - **Finding:** the card's substantive finding remains **unverified** until checked against the report.
+
+**Finding replaced (27 Sep 2026, follow-up commit on 683d8cf).**
+- **Old wording:** "The trial was funded but did not start because the study medicine could not be supplied. It produced no efficacy results." (Evidence library card; `references.json`), and "…(CANTOP-RCT) was funded but never started, …" (Programme Room statement, Work with us card and brief).
+- **New wording:** The study did not start owing to challenges in securing supply of the study drug. It is Filipp's approved sentence, used as a paraphrase without quotation marks. The Programme Room statement now reads "…(CANTOP-RCT) did not start owing to challenges in securing supply of the study drug, which is one reason this question remains open."
+- **Removed:** "funded", which the approved sentence does not support. "It produced no efficacy results" is also dropped; the card's Limitations still say "Not an efficacy finding".
+
+**Supporting passage: to be filled in from Web Boss's inspection. Not supplied in this session and not invented here.**
+
+| Field | Value |
+|---|---|
+| Report passage (verbatim) | *not yet on file* |
+| Page (PDF page / printed page) | *not yet on file* |
+| Source file | Official NIHR PDF, https://njl-admin.nihr.ac.uk/document/download/2050125 (per the P8 note) |
+| Inspected by / date | Web Boss / *date to be recorded* |
+
+The only Web Boss note on file (`records/primary-source/P8-CANTOP-WebBoss-2026-09-27.md`) covers publication metadata and quotes no passage on why the study did not start. Claude could not open the PDF from its environment (proxy 403). When Web Boss supplies the passage and page, they go in this table in a record-only commit, with no site change.
