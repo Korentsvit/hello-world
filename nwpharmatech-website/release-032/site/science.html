@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=nwpt048" />
+  <link rel="stylesheet" href="styles.css?v=nwpt049" />
   
   <link rel="stylesheet" href="assets/nwpt/formulation/module.css?v=nwpt032" />
 </head>
@@ -55,6 +55,7 @@
                   <li><a href="work-with-us.html">Work with us</a></li>
                   <li><a href="study.html">Study progress</a></li>
                   <li><a href="programme.html#design-title">Study design</a></li>
+                  <li><a href="resources/public-synopsis.html">Study synopsis</a></li>
                   <li><a href="phase-1.html">Phase 1 study</a></li>
                   <li><a href="roadmap.html">Roadmap</a></li>
                 </ul>
@@ -77,12 +78,15 @@
                   <span class="nav-group__label">Science</span>
                   <span class="nav-group__chevron" aria-hidden="true"></span>
                 </button>
-                                <ul class="nav-dropdown" id="nav-dd-science">
-                  <li><a href="science.html#investigating">Investigational formulation</a></li>
-                  <li><a href="science.html#formulation">Formulation explainer</a></li>
+                                <ul class="nav-dropdown nav-dropdown--grouped" id="nav-dd-science">
+                  <li><a href="science.html">Science overview</a></li>
+                  <li class="nav-dropdown__route"><a href="science/psychiatry.html">Psychiatry &amp; evidence</a></li>
+                  <li class="nav-dropdown__route"><a href="science/cannabinoids.html">Understanding cannabinoids</a></li>
+                  <li class="nav-dropdown__sub"><a href="science/cbd-thc.html">CBD and THC</a></li>
+                  <li class="nav-dropdown__sub"><a href="science/cannabinoid-medicines.html">From cannabis to medicines</a></li>
+                  <li class="nav-dropdown__sep"><a href="science.html#investigating">NWPT formulation</a></li>
                   <li><a href="evidence.html">Evidence library</a></li>
-                  <li><a href="phase-1.html">Phase 1 study</a></li>
-                  <li><a href="resources/public-synopsis.html">Study synopsis</a></li>
+                  <li><a href="glossary.html">Glossary</a></li>
                 </ul>
               </li>
               <li class="nav-group">
@@ -130,13 +134,15 @@
     <header class="page-hero">
       <div class="wrap">
         <p class="eyebrow">Science</p>
-        <h1>CHR-P research &amp; our programme</h1>
+        <h1>The clinical questions and the compounds being studied</h1>
 
         <p class="lede">
-          What clinical high risk means, why earlier intervention research matters, and what this investigational programme is designed to ask.
+          Understanding our research means understanding two connected areas: the psychiatric conditions we are investigating, and the compounds and formulations being studied. Explore either route, then follow the evidence behind individual statements.
         </p>
         <nav class="secondary-nav" aria-label="Science resources">
-          <a href="science.html" aria-current="page">Science hub</a>
+          <a href="science.html" aria-current="page">Science overview</a>
+          <a href="science/psychiatry.html">Psychiatry &amp; evidence</a>
+          <a href="science/cannabinoids.html">Understanding cannabinoids</a>
           <a href="evidence.html">Evidence</a>
           <a href="glossary.html">Glossary</a>
           <a href="resources/public-synopsis.html">Public synopsis</a>
@@ -148,6 +154,56 @@
       </div>
     </header>
 
+    <!-- NWPT-048 routes start -->
+    <section class="section section-light sci-routes-section" aria-labelledby="routes-title">
+      <div class="wrap">
+        <h2 id="routes-title" class="sci-visually-hidden">Two learning routes</h2>
+        <div class="sci-routes">
+          <article class="sci-route">
+            <p class="sci-route__kicker">Route 1</p>
+            <h3 class="sci-route__title"><a href="science/psychiatry.html">Psychiatry &amp; evidence</a></h3>
+            <p>What does clinical high risk mean? What can existing care offer? What have studies found, and which questions remain unanswered? Start with the clinical context, then explore the research.</p>
+            <p class="sci-route__label">Start with a question</p>
+            <ul class="sci-route__questions">
+              <li><a href="updates/why-early-intervention-matters.html">What does clinical high risk of psychosis mean?</a></li>
+              <li><a href="updates/why-early-intervention-matters.html#current-care">What does current guidance recommend?</a></li>
+              <li><a href="science/psychiatry.html#cbd-studies">What have CBD studies in psychiatry found?</a></li>
+            </ul>
+            <p class="sci-route__cta"><a class="btn btn-primary" href="science/psychiatry.html">Explore psychiatry &amp; evidence</a></p>
+          </article>
+          <article class="sci-route">
+            <p class="sci-route__kicker">Route 2</p>
+            <h3 class="sci-route__title"><a href="science/cannabinoids.html">Understanding cannabinoids</a></h3>
+            <p>Cannabis is a plant containing many compounds. CBD and THC are different molecules with different effects. Learn how compounds, products, formulations and clinical evidence fit together.</p>
+            <p class="sci-route__label">Start with a question</p>
+            <ul class="sci-route__questions">
+              <li><a href="science/cannabinoids.html">How do cannabis, cannabinoids and medicines differ?</a></li>
+              <li><a href="science/cbd-thc.html#cancel">Does CBD cancel out THC?</a></li>
+              <li><a href="science/cannabinoid-medicines.html">Why are cannabinoid products not interchangeable?</a></li>
+            </ul>
+            <p class="sci-route__cta"><a class="btn btn-primary" href="science/cannabinoids.html">Explore cannabinoids</a></p>
+          </article>
+        </div>
+        <div class="callout caution sci-programme">
+          <p><strong>Our programme.</strong> NWPT-SM32300 is investigational. General cannabinoid research does not establish that it is effective. The <a href="programme-room.html">Programme Room</a> explains what has been studied, what is planned and what remains unknown; the <a href="#investigating">NWPT formulation</a> section explains what the formulation is designed to do and what has been measured.</p>
+        </div>
+        <ul class="sci-shared" role="list" aria-label="Shared resources">
+          <li><a href="evidence.html"><strong>Evidence library</strong><span>Sources behind statements on both routes</span></a></li>
+          <li><a href="glossary.html"><strong>Glossary</strong><span>Terms used across the Science pages</span></a></li>
+          <li><a href="resources/programme-brief.html"><strong>Programme brief</strong><span>The CHR-P programme at a glance</span></a></li>
+        </ul>
+        <div class="prose-measure">
+          <aside class="sci-further" aria-labelledby="further-o">
+          <p class="eyebrow">Further reading</p>
+          <h2 id="further-o">Explore the wider cannabinoid evidence</h2>
+          <p>CannabinoidEvidence.org provides an indication-based overview of cannabinoid research. Its development and hosting are funded by NW PharmaTech Ltd. The resource currently describes itself as a working draft, with independent scientific and regulatory verification pending. Read the original sources alongside its summaries; the citations on our own pages are listed in the <a href="evidence.html">Evidence library</a>.</p>
+          <p class="sci-further__links"><a class="btn btn-secondary" href="https://cannabinoidevidence.org/" rel="external noopener">Explore CannabinoidEvidence.org — external resource</a> <a href="https://cannabinoidevidence.org/about" rel="external noopener">Funding and editorial disclosures</a></p>
+        </aside>
+          <aside class="sci-review" aria-label="Review status"><p><strong>Ongoing review.</strong> This content remains under ongoing review by the NWPharmaTech team and may be updated as the evidence develops. It is educational information, not individual medical advice, and it is not independent scientific validation.</p><p class="sci-review__meta">Page updated 27 September 2026. Sources marked “Source check in progress” in the Evidence library are still being checked against the original publications.</p></aside>
+        </div>
+      </div>
+    </section>
+    <!-- NWPT-048 routes end -->
     <section class="section section-light" aria-labelledby="chrp-title">
       <div class="wrap">
         <h2 id="chrp-title">What CHR-P means</h2>

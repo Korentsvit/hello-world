@@ -121,3 +121,6 @@
 @media (forced-colors: active) {
   .nwpt-module:not(#nwpt-a):not(#nwpt-b) .nwpt-chip[aria-pressed="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
 }
+/* NWPT-048: entries whose source check against the original publication is still in progress */
+.nwpt-module:not(#nwpt-a):not(#nwpt-b) .nwpt-tag-pending { background: #fff; color: var(--nwpt-ink-soft); border: 1px dashed var(--nwpt-muted); }
+.nwpt-module:not(#nwpt-a):not(#nwpt-b) .nwpt-lib-note { max-width: var(--nwpt-measure); margin: -.25rem 0 1rem; font-size: .95rem; color: var(--nwpt-muted); }
