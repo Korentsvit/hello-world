@@ -82,3 +82,26 @@ The Evidence library's 18 "et al.." and one "Bialer M.." (doubled full stop) are
 - **P23:** the exact food-effect fold changes, and the exact PubMed title.
 - **P1:** the genetic-risk wording.
 - **P3:** CG178 recommendation numbers are not recorded.
+
+## Follow-up on P1, P3, P16, P18 and P23 (27 Sep 2026, against production `91de637`)
+
+**Evidence used:** Web Boss's pass notes (`records/primary-source/pass-2026-09-27/`). No further notes have been received. Each live claim on the Evidence library card, and any Programme Room or Work with us statement that cites the card, was compared with the passage he quoted.
+
+| # | Live claim | Evidence available | Result |
+|---|---|---|---|
+| P1 Fusar-Poli 2013 | "Describes how the high-risk state is defined and assessed, including attenuated psychotic symptoms and brief limited intermittent psychotic symptoms." | Record and abstract confirmed; no passage quoted on APS/BLIPS | **Open.** Needs a passage (abstract or body, with page) naming APS and BLIPS in the definition or assessment. The "genetic risk with deterioration" check is **closed as not applicable**, because the live card does not make that claim |
+| P3 NICE CG178 (card) | "Offer individual CBT, with or without family intervention. Do not offer antipsychotic medication to people at increased risk or to reduce the risk of or prevent psychosis." | Quoted: "offer individual cognitive behavioural therapy (CBT) with or without family intervention"; "Do not offer antipsychotic medication: to people considered to be at increased risk of developing psychosis …" | **Partly supported.** Sentence 1 and the first limb of sentence 2 are supported. "or to reduce the risk of or prevent psychosis" is **not** covered by the quoted text, which Web Boss cut off with an ellipsis. Recommendation numbers are not stated in his note |
+| P3 NICE CG178 (Programme Room, Clinical need) | "In England, psychological therapy is the recommended first step. NICE advises against antipsychotics to prevent psychosis in this group." | CG178 quote above; CG155 1.2.6 quoted: "…with the aim of decreasing the risk of psychosis" | **Supported.** Psychological therapy is recommended by both guidelines. Advising against antipsychotics "to prevent psychosis" is supported by CG155 1.2.6, and "in this group" by CG178 |
+| P16 McGuire 2018 | "Positive psychotic symptoms fell more with CBD than placebo (small difference), and clinicians more often rated patients as improved. Generally well tolerated." | Design confirmed (1,000 mg/day add-on, PANSS); no result quoted | **Open.** Needs the abstract results or full paper with page: the PANSS positive difference, the clinician global impression, and tolerability |
+| P18 Boggs 2018 | "No improvement in cognition or symptoms compared with placebo." | Web Boss: consistent with the PubMed record's aim and conclusion framing; not quoted | **Open.** Needs the quoted null results for cognition (MCCB) and symptoms (PANSS), with page |
+| P23 Taylor 2018 (card) | "Described the safety and tolerability of single and repeated doses of purified CBD in healthy adults, and found that a high-fat meal increased CBD exposure." | Quoted: "CBD was generally well tolerated"; design SAD/MD/food-effect confirmed; food effect reported by Web Boss, no quote naming a high-fat meal | **Partly supported.** Tolerability and the dosing design are supported. "high-fat meal increased … exposure" needs a quoted passage. The exact published title is still outstanding |
+| P23 Taylor 2018 (Programme Room, Formulation) | "…only about 6% of a dose is estimated to reach the bloodstream, and food changes absorption markedly (research on other CBD products)." | Perucca 2020 quoted: "approximately 6% … increases fourfold when … co-administered with a high-fat meal" | **Supported** by the co-cited Perucca 2020 passage |
+
+**Wording:** only P3's card has an element the available evidence does not reach. A correction that trims it to the supported text is prepared as a **separate website commit** for review; see the reply to Filipp. The other open cards need evidence, not rewording, and no evidence contradicts them.
+
+**Requests to Web Boss (unchanged, now itemised):**
+- **P1:** the passage on APS and BLIPS.
+- **P3:** the full text of the CG178 recommendation beginning "Do not offer antipsychotic medication:", and its number. It should be in his saved NICE HTML (`raw/`).
+- **P16:** the abstract results or results section.
+- **P18:** the abstract results.
+- **P23:** the exact title and the food-effect passage, with its page.

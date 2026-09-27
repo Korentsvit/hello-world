@@ -51,9 +51,9 @@
       "finding": "Describes how the high-risk state is defined and assessed, including attenuated psychotic symptoms and brief limited intermittent psychotic symptoms.",
       "limitations": "A narrative review, not a systematic estimate of outcomes.",
       "verification": "index",
-      "notes": "Genetic-risk-with-deterioration wording not confirmed as a statement in this paper.",
+      "notes": "The 'genetic-risk-with-deterioration' check is closed as not applicable: the live card does not make that claim (checked 27 Sep 2026).",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Not confirmed: the card's finding is a paraphrase, not a contiguous passage of the abstract (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Not confirmed: Web Boss's note confirms the record and abstract but quotes no passage on how the high-risk state is defined and assessed (APS, BLIPS); the live card is a paraphrase. Not scientific sign-off."
     },
     {
       "id": "addington-2011",
@@ -324,7 +324,7 @@
       "limitations": "Small, short, add-on treatment in established schizophrenia; not people at clinical high risk.",
       "verification": "index",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Not confirmed: full text needed for the symptom results (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Not confirmed: Web Boss confirms design (CBD 1,000 mg/day add-on vs placebo, PANSS) but quotes no result; the positive-symptom, clinician-rating and tolerability statements need the full paper or abstract results. Not scientific sign-off."
     },
     {
       "id": "leweke-2012",
@@ -376,7 +376,7 @@
       "limitations": "Small; lower dose than some other studies; stable chronic patients.",
       "verification": "index",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Not confirmed: exact null result to be checked in full text (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Not confirmed: Web Boss reports the null finding is consistent with the PubMed record's framing but did not quote the result; exact wording needed from the full paper or abstract results. Not scientific sign-off."
     },
     {
       "id": "bhattacharyya-2018",
@@ -670,7 +670,7 @@
       "verification": "index",
       "notes": "Exact food-effect fold changes not confirmed.",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Partly: food effect supported; exact fold changes not confirmed (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Partly confirmed: 'generally well tolerated' matches the quoted conclusion and the single and multiple-dose design matches the record; Web Boss reports a food effect on exposure but quotes no passage naming a high-fat meal. Exact published title still to be supplied. Not scientific sign-off."
     }
   ],
   "corrections": [
