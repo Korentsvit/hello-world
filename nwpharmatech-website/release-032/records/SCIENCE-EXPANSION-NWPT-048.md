@@ -4,7 +4,7 @@
 - **Base:** production `db61de444c3785cda56076a54066835e6a6f4a86`.
 - **Branch:** `claude/nwpt-science-expansion`.
 - **Not included:** privacy and enquiry configuration are unchanged.
-- **Status:** preview only. This is not independent scientific validation.
+- **Status:** published to production on 27 Sep 2026 as `09492775653cda7bca4681b71103ef714eecad36` (see **Production publication** at the end). This is not independent scientific validation.
 - **Follow-up (primary-source pass):** Web Boss's evidence pack `NWPT-SCIENCE-EVIDENCE-3d029959-2026-09-27` (inspection date 27 Sep 2026) reconciled on top of candidate `3d029959d5d08982fff35fd64de3c5840b2de01d`. See **Primary-source reconciliation** below; the tables keep the original status and add the outcome.
 
 ## How sources were handled
@@ -182,3 +182,35 @@ With the phone menu open, axe reports target-size on the header `.brand` link an
 4. **Primary-source pass for the 11 unresolved items** listed above, especially item 1 (the CannabinoidEvidence.org funding and draft-status wording) before any production publication.
 5. **Not tested here:** Safari/iPhone, as before.
 6. **Production publication** follows Filipp's review of the completed preview. This candidate does not authorise it.
+
+## Production publication (Web Boss, 27 Sep 2026)
+
+| Item | Value |
+|---|---|
+| Production SHA | `09492775653cda7bca4681b71103ef714eecad36`: matches the approved, tested candidate exactly |
+| Deployment ID | `aa482084-5cf2-47e8-b292-e239cd6bda3a` |
+| Deployed | 27 September 2026, 16:35:34 CEST |
+| Production URL | https://www.nwpharmatech.org |
+| Immutable URL | https://aa482084.nwpt-preview.pages.dev |
+| Rollback deployment ID | `45620d96-71a8-41de-a334-9b2d8397afe7` (previous production `db61de444c3785cda56076a54066835e6a6f4a86`) |
+| Hosted checks | All listed hosted checks passed (reported by Web Boss) |
+| Evidence record | `e744d6434e6e57a6ee46f9dbb6380ae3f6bec1c5` (records only; not deployed; the deployable site is identical to `0949277`) |
+
+**Unchanged by this release:**
+- Enquiries remain disabled.
+- Privacy configuration and DNS are unchanged.
+
+**Limits carried into production:**
+- Access levels:
+  - Englund 2013 and Laprairie 2015: checked at abstract level only.
+  - Englund 2023, Zamarripa 2023 and Chesney 2025: full paper.
+  - Sativex and nabilone SmPCs: full.
+  - MHRA specials and NHS England CBPMs: category level, with NHS passages recorded as Web Boss's summaries.
+  - Health Canada (professional reference Spring 2018, About cannabis, Cannabidiol (CBD)): Web Boss's HTML captures, reviewed by Claude. Dates modified for About cannabis and Cannabidiol (CBD) were not captured.
+- IUPHAR/BPS and FDA: withdrawn from the public library and kept internally (`public: false`) with their unresolved history.
+- Safari/iPhone: untested.
+- These checks are not independent scientific validation. The ongoing team-review note remains on the Science pages.
+
+**Next base:** the forthcoming Manus visual assets are to be integrated on a separate branch from production `09492775653cda7bca4681b71103ef714eecad36`.
+
+This closes the Science release (NWPT-048).
