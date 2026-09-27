@@ -8,7 +8,8 @@ let pass = 0, fail = 0; const check = (n, ok, d = "") => { ok ? pass++ : fail++;
 const srv = await serve(dir);
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
 const PAGES = ["/science", "/science/psychiatry", "/science/cannabinoids", "/science/cbd-thc", "/science/cannabinoid-medicines"];
-const NEW_IDS = ["iuphar-cannabinoid-receptors", "laprairie-2015", "englund-2013", "englund-2023", "zamarripa-2023", "chesney-2025", "sativex-smpc", "nabilone-smpc", "mhra-specials", "nhs-cbpm", "fda-cannabis-cbd"];
+const NEW_IDS = ["health-canada-hcp-2018", "health-canada-about-cannabis", "laprairie-2015", "englund-2013", "englund-2023", "zamarripa-2023", "chesney-2025", "sativex-smpc", "nabilone-smpc", "mhra-specials", "nhs-cbpm"];
+const WITHDRAWN = ["iuphar-cannabinoid-receptors", "fda-cannabis-cbd"]; // unresolved, uncited: kept internally only (public: false)
 const MENU = ["Science overview", "Psychiatry & evidence", "Understanding cannabinoids", "CBD and THC", "From cannabis to medicines", "NWPT formulation", "Evidence library", "Glossary"];
 const runAxe = async (pg) => { await pg.evaluate(axe); return pg.evaluate(async () => (await axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] } })).violations.map((x) => `${x.id}: ${x.nodes[0]?.target}`)); };
 const settle = (pg) => pg.evaluate(() => new Promise((res) => { let last = -1, same = 0; const t = () => { same = scrollY === last ? same + 1 : 0; last = scrollY; same >= 8 ? res() : requestAnimationFrame(t); }; t(); }));
@@ -29,13 +30,14 @@ const sci = fs.readFileSync(`${dir}/science.html`, "utf8");
 for (const id of ["investigating", "formulation", "chrp-title", "q2-h", "dg-title", "ar", "conceptual-platform"]) check(`science.html keeps #${id}`, sci.includes(`id="${id}"`));
 const ev = fs.readFileSync(`${dir}/evidence.html`, "utf8");
 if (baseEvidence) { const ids = [...baseEvidence.matchAll(/id="(ref-[a-z0-9-]+)"/g)].map((m) => m[1]); check(`all ${ids.length} existing evidence IDs preserved`, ids.every((i) => ev.includes(`id="${i}"`)), ids.filter((i) => !ev.includes(`id="${i}"`)).join(" ")); }
-const PENDING_IDS = ["iuphar-cannabinoid-receptors", "fda-cannabis-cbd"]; // primary-source pass 27 Sep 2026: all others checked
 const cardOf = (i) => (ev.match(new RegExp(`id="ref-${i}"[\\s\\S]*?</article>`)) || [""])[0];
-check("11 new evidence entries; 'Source check in progress' only on IUPHAR/BPS and FDA", NEW_IDS.every((i) => cardOf(i) && cardOf(i).includes("Source check in progress") === PENDING_IDS.includes(i)) && (ev.match(/nwpt-tag-pending/g) || []).length === 2, NEW_IDS.filter((i) => cardOf(i).includes("Source check in progress") !== PENDING_IDS.includes(i)).join(" "));
+check("11 public entries in the new section, none marked 'Source check in progress'; IUPHAR/BPS and FDA withdrawn", NEW_IDS.every((i) => cardOf(i)) && !/nwpt-tag-pending|Source check in progress/.test(ev) && WITHDRAWN.every((i) => !ev.includes(`ref-${i}`)) && /data-filter="cannabinoids">Cannabinoid science and medicines <span class="nwpt-chip-n">11</.test(ev));
 {
-  const refs = JSON.parse(fs.readFileSync(new URL("../content/references.json", import.meta.url), "utf8")).items.filter((r) => NEW_IDS.includes(r.id));
+  const all = JSON.parse(fs.readFileSync(new URL("../content/references.json", import.meta.url), "utf8")).items;
+  const refs = all.filter((r) => NEW_IDS.includes(r.id)), gone = all.filter((r) => WITHDRAWN.includes(r.id));
   const dl = ["bib", "ris"].map((x) => fs.readFileSync(`${dir}/downloads/nwpharmatech-references.${x}`, "utf8"));
-  check("reference data and citation downloads agree: only IUPHAR/BPS and FDA still pending", refs.length === 11 && refs.every((r) => (r.verification === "brief") === PENDING_IDS.includes(r.id) && /Primary check pending/.test(r.metadata_check) === PENDING_IDS.includes(r.id)) && dl.every((t) => (t.match(/Source check pending/g) || []).length === 2));
+  check("reference data and citation downloads agree: 11 public entries; withdrawn entries kept internally (public: false) with their history, absent from downloads", refs.length === 11 && refs.every((r) => r.public === true && r.verification !== "brief") && gone.length === 2 && gone.every((r) => r.public === false && /Primary check pending/.test(r.metadata_check) && /Withdrawn/.test(r.finding_check)) && dl.every((t) => !/Source check pending|guidetopharmacology|fda\.gov/.test(t) && /health-?canada/.test(t)));
+  check("Health Canada entries attribute the inspection to ChatGPT (reported by Filipp), not to Claude or Web Boss", refs.filter((r) => r.id.startsWith("health-canada")).every((r) => /Inspected directly by ChatGPT, as reported by Filipp/.test(r.metadata_check) && /Not opened by Claude/.test(r.metadata_check)));
 }
 const sciNew = (sci.match(/<!-- NWPT-048 routes start -->[\s\S]*?<!-- NWPT-048 routes end -->/) || [""])[0];
 const newHtml = PAGES.slice(1).map((p) => fs.readFileSync(`${dir}${p}.html`, "utf8")).join("\n") + sciNew;
@@ -47,8 +49,8 @@ check("CBD-cancels-THC appears only as the question, answered 'Not reliably.'", 
 check("review note present on all five pages, no individual reviewer named", PAGES.every((p) => (p === "/science" ? sci : fs.readFileSync(`${dir}${p}.html`, "utf8")).includes("remains under ongoing review by the NWPharmaTech team")) && !/reviewed by (?:Dr|Prof|Professor)/i.test(text));
 check("further-reading card: funding and draft-status disclosure, plus About link (overview, cannabinoids, medicines)", ["/science", "/science/cannabinoids", "/science/cannabinoid-medicines"].every((p) => { const s = p === "/science" ? sci : fs.readFileSync(`${dir}${p}.html`, "utf8"); return s.includes("funded by NW PharmaTech Ltd") && s.includes("working draft") && s.includes('href="https://cannabinoidevidence.org/about"') && s.includes('href="https://cannabinoidevidence.org/"'); }));
 const citeIds = [...newHtml.matchAll(/evidence\.html#ref-([a-z0-9-]+)/g)].map((m) => m[1]);
-check("no Science page statement rests on a source whose check is still in progress", !citeIds.some((i) => PENDING_IDS.includes(i)), citeIds.filter((i) => PENDING_IDS.includes(i)).join(" "));
-check("checked wording: no 'THC-like high', no 'not another name for THC', CE.org 'review in progress'", !/THC-like high|not another name for THC|verification pending/i.test(text) && /working draft, with independent scientific and regulatory review in progress\./.test(text));
+check("no Science page cites a withdrawn source", !citeIds.some((i) => WITHDRAWN.includes(i)), citeIds.filter((i) => WITHDRAWN.includes(i)).join(" "));
+check("checked wording: Health Canada distinction and endocannabinoid copy; no 'not psychoactive' or 'not another name for THC'; CE.org 'review in progress'", !/not another name for THC|verification pending|not psychoactive/i.test(text) && /CBD does not produce the THC-like high\. Non-intoxicating does not mean inactive or risk-free\./.test(text) && /The body produces signalling molecules called endocannabinoids, including anandamide and 2-AG\./.test(text) && /working draft, with independent scientific and regulatory review in progress\./.test(text));
 check(`every citation on the Science pages points to an existing Evidence library entry (${new Set(citeIds).size} sources)`, citeIds.every((i) => ev.includes(`id="ref-${i}"`)), [...new Set(citeIds.filter((i) => !ev.includes(`id="ref-${i}"`)))].join(" "));
 check("NICE psychological-therapy statement cites CG178 only", /NICE advises against antipsychotics to prevent psychosis in this group\. <span class="sci-cites">Sources: <a class="nwpt-cite" href="\.\.\/evidence\.html#ref-nice-cg178">NICE CG178<\/a><\/span>/.test(newHtml));
 check("sitemap lists the four new pages", ["psychiatry", "cannabinoids", "cbd-thc", "cannabinoid-medicines"].every((p) => fs.readFileSync(`${dir}/sitemap.xml`, "utf8").includes(`/science/${p}.html`)));
@@ -86,11 +88,13 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { widt
   check(`@${label} comparison: THC and CBD columns use neutral site colours (no red/green coding)`, colours.every((c) => !/rgb\((2[0-5]\d|1[5-9]\d), (\d{1,2}|1[0-4]\d), (\d{1,2}|1[0-4]\d)\)/.test(c)), colours.join(" "));
   // stacked study cards on phone
   if (phone) { const disp = await pg.$eval(".sci-studies td", (td) => getComputedStyle(td).display); check("@390 study table becomes stacked cards", disp === "block", disp); }
-  // keyboard focus clear of the sticky header on each new page (Tab and Shift+Tab, scrolling settled)
+  // keyboard focus clear of the sticky header on each new page (Tab and Shift+Tab, scrolling settled). The focused element's
+  // top edge must be below the header and a usable part of it on screen: all of a control, or at least 44px of a focusable
+  // content panel (a long panel may continue below the fold and scroll).
   for (const p of PAGES.slice(1)) {
     await pg.goto(srv.base + p, { waitUntil: "load" }); await pg.evaluate(() => document.activeElement?.blur()); const bad = []; let n = 0;
     for (const key of ["Tab", "Shift+Tab"]) for (let i = 0; i < 60; i++) { await pg.keyboard.press(key); await settle(pg);
-      const m = await pg.evaluate(() => { const a = document.activeElement; if (!a || !a.closest("main")) return null; const hb = document.querySelector(".site-header").getBoundingClientRect().bottom; const r = a.getBoundingClientRect(); return { el: (a.textContent || a.id).trim().slice(0, 40), ok: r.top >= hb - 1 && r.bottom <= innerHeight + 1 }; });
+      const m = await pg.evaluate(() => { const a = document.activeElement; if (!a || !a.closest("main")) return null; const hb = document.querySelector(".site-header").getBoundingClientRect().bottom; const r = a.getBoundingClientRect(); return { el: (a.textContent || a.id).trim().slice(0, 40), ok: r.top >= hb - 1 && Math.min(r.bottom, innerHeight) - r.top >= Math.min(r.height, 44) - 1 }; });
       if (m) { n++; if (!m.ok) bad.push(key + ":" + m.el); } }
     check(`@${label} ${p}: keyboard focus stays clear of the sticky header (${n} stops)`, n > 10 && !bad.length, bad.slice(0, 4).join(" | "));
   }

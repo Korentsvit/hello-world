@@ -32,15 +32,22 @@ def card(i):
 
 
 # ---------------------------------------------------------------- new Evidence library entries (NWPT-048)
-# status: primary-source pass by Web Boss, 27 Sep 2026 (records/SCIENCE-EXPANSION-NWPT-048.md). Entries in PENDING keep
-# "Source check in progress": IUPHAR/BPS (login wall) and FDA (partial fetch). No page statement cites them.
+# status: primary-source pass by Web Boss, 27 Sep 2026 (records/SCIENCE-EXPANSION-NWPT-048.md). IUPHAR/BPS and FDA were
+# unresolved and uncited, so they are withdrawn from the public library (history kept in content/references.json, public: false).
+# The two Health Canada entries rest on ChatGPT's direct inspection reported by Filipp (27 Sep 2026); passages requested from Web Boss.
 NEW = [
-    dict(id="iuphar-cannabinoid-receptors", kicker="Cannabinoid science", flag=("nwpt-tag-company", "Reference database"),
-         title="Cannabinoid receptors: IUPHAR/BPS Guide to Pharmacology",
-         pop="Not applicable", prod="Not applicable", design="Curated pharmacology database",
-         finding="Describes the cannabinoid receptors CB1 and CB2, the body’s own signalling molecules that act at them (such as anandamide and 2-AG), and other compounds that act at these receptors.",
-         limit="Receptor vocabulary and pharmacology; not evidence about clinical effects.",
-         src='IUPHAR/BPS Guide to Pharmacology. Cannabinoid receptors (family 13). <a href="https://www.guidetopharmacology.org/GRAC/FamilyDisplayForward?familyId=13" rel="external">Official source</a>'),
+    dict(id="health-canada-hcp-2018", kicker="Cannabinoid science", flag=("nwpt-tag-company", "Official information"),
+         title="Information for Health Care Professionals: Cannabis and cannabinoids (section 1.0, components of the endocannabinoid system)",
+         pop="Not applicable", prod="Not applicable", design="Health Canada reference for health care professionals (Spring 2018)",
+         finding="Describes the components of the endocannabinoid system: the cannabinoid receptors CB1 and CB2, endocannabinoids such as anandamide and 2-AG, and the enzymes that make and break them down.",
+         limit="A 2018 reference, used here only for basic biology; not current clinical, dosing or regulatory guidance.",
+         src='Health Canada. Information for Health Care Professionals: Cannabis and cannabinoids. Section 1.0. <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/information-medical-practitioners/information-health-care-professionals-cannabis-cannabinoids.html" rel="external">Official source</a>'),
+    dict(id="health-canada-about-cannabis", kicker="Cannabinoid science", flag=("nwpt-tag-company", "Official information"),
+         title="About cannabis: chemical substances in cannabis (THC and CBD)",
+         pop="Not applicable", prod="THC and CBD, two of the chemical substances in cannabis", design="Health Canada public information",
+         finding="Distinguishes THC and CBD: CBD does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free.",
+         limit="General information; not evidence about a particular product, dose or condition.",
+         src='Health Canada. About cannabis: chemical substances in cannabis. <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about.html" rel="external">Official source</a>'),
     dict(id="laprairie-2015", kicker="Cannabinoid science", flag=("nwpt-result-flag nwpt-result-inconclusive", "Laboratory"),
          title="Cannabidiol is a negative allosteric modulator of the cannabinoid CB1 receptor",
          pop="Cells expressing CB1 receptors (laboratory)", prod="Cannabidiol applied to cells", design="Laboratory (cell) experiments",
@@ -95,20 +102,14 @@ NEW = [
          finding="Explains how cannabis-based products for medicinal use are described and supplied within the NHS in England.",
          limit="A category-level explanation; not patient eligibility or prescribing guidance.",
          src='NHS England. Cannabis-based products for medicinal use (CBPMs). <a href="https://www.england.nhs.uk/long-read/cannabis-based-products-for-medicinal-use-cbpms/" rel="external">Official source</a>'),
-    dict(id="fda-cannabis-cbd", kicker="Medicines and regulation", flag=("nwpt-tag-company", "Official guidance"),
-         title="FDA regulation of cannabis and cannabis-derived products, including cannabidiol (CBD)",
-         pop="Not applicable", prod="Cannabis, cannabis-derived compounds and approved products", design="US regulatory questions and answers (FDA)",
-         finding="Distinguishes the cannabis plant, individual cannabis-derived compounds such as CBD and THC, and specific approved products.",
-         limit="US regulatory context; UK indications are cited from UK product information.",
-         src='US Food and Drug Administration. FDA regulation of cannabis and cannabis-derived products, including cannabidiol (CBD). <a href="https://www.fda.gov/news-events/public-health-focus/fda-regulation-cannabis-and-cannabis-derived-products-including-cannabidiol-cbd" rel="external">Official source</a>'),
 ]
 NEW_BY_ID = {n["id"]: n for n in NEW}
-PENDING = {"iuphar-cannabinoid-receptors", "fda-cannabis-cbd"}   # source check still in progress
+PENDING = set()   # entries whose source check is still in progress (none at present)
 SHORT = {  # citation labels
-    "iuphar-cannabinoid-receptors": "IUPHAR/BPS Guide to Pharmacology", "laprairie-2015": "Laprairie et al. 2015",
+    "health-canada-hcp-2018": "Health Canada 2018", "health-canada-about-cannabis": "Health Canada: about cannabis", "laprairie-2015": "Laprairie et al. 2015",
     "englund-2013": "Englund et al. 2013", "englund-2023": "Englund et al. 2023", "zamarripa-2023": "Zamarripa et al. 2023",
     "chesney-2025": "Chesney et al. 2025", "sativex-smpc": "Sativex SmPC", "nabilone-smpc": "Nabilone SmPC",
-    "mhra-specials": "MHRA: unlicensed medicines", "nhs-cbpm": "NHS England: CBPMs", "fda-cannabis-cbd": "FDA: cannabis and CBD",
+    "mhra-specials": "MHRA: unlicensed medicines", "nhs-cbpm": "NHS England: CBPMs",
     "epidyolex-smpc": "Epidyolex SmPC", "devinsky-2017": "Devinsky et al. 2017", "mcguire-2018": "McGuire et al. 2018",
     "boggs-2018": "Boggs et al. 2018", "leweke-2012": "Leweke et al. 2012", "bhattacharyya-2024": "Bhattacharyya et al. 2024",
     "bhattacharyya-2018": "Bhattacharyya et al. 2018", "diforti-2019": "Di Forti et al. 2019", "perucca-2020": "Perucca and Bialer 2020",
@@ -149,8 +150,9 @@ def sci_nav(current, pre):
 
 REVIEW = ('<aside class="sci-review" aria-label="Review status"><p><strong>Ongoing review.</strong> This content remains under ongoing review by the '
           'NWPharmaTech team and may be updated as the evidence develops. It is educational information, not individual medical advice, '
-          'and it is not independent scientific validation.</p><p class="sci-review__meta">Page updated ' + UPDATED + '. Sources marked '
-          '“Source check in progress” in the Evidence library are still being checked against the original publications.</p></aside>')
+          'and it is not independent scientific validation.</p><p class="sci-review__meta">Page updated ' + UPDATED + '.'
+          + (' Sources marked “Source check in progress” in the Evidence library are still being checked against the original publications.' if PENDING else '')
+          + '</p></aside>')
 
 
 def further_reading(pre):
@@ -300,9 +302,9 @@ def page_cannabinoids():
 
     <section class="section section-alt" aria-labelledby="ecs-title">
       <div class="wrap prose-measure">
-        <h2 id="ecs-title">Cannabinoid receptors: what laboratory studies show</h2>
-        <p>Compounds such as THC act on cannabinoid receptors, including CB1. In cell experiments, including a model of nerve cells that carries CB1 receptors naturally, THC and 2-AG, another compound that activates CB1, both activated CB1 signalling; CBD reduced that signalling. {cites("laprairie-2015", pre=pre)}</p>
-        <p>A laboratory mechanism is a reason to investigate, not evidence that adding a cannabinoid will improve health.</p>
+        <h2 id="ecs-title">A signalling system already present in the body</h2>
+        <p>The body produces signalling molecules called endocannabinoids, including anandamide and 2-AG. The endocannabinoid system includes these molecules, receptors such as CB1 and CB2, and enzymes involved in making and breaking down the signals. {cites("health-canada-hcp-2018", pre=pre)}</p>
+        <p>In cell experiments, THC and 2-AG both activated CB1 signalling, and CBD reduced that signalling. {cites("laprairie-2015", pre=pre)} A laboratory mechanism is a reason to investigate, not evidence that adding a cannabinoid will improve health or correct a deficiency.</p>
       </div>
     </section>
 
@@ -310,7 +312,7 @@ def page_cannabinoids():
       <div class="wrap prose-measure">
         <h2 id="actions-title">Different compounds, different actions</h2>
         <p>In experiments in people, THC impaired memory and produced temporary psychotic symptoms such as paranoia. {cites("englund-2013", "englund-2023", pre=pre)}</p>
-        <p>CBD does not typically produce a “high”; NHS England describes it as not psychoactive. {cites("nhs-cbpm", pre=pre)} That does not mean CBD has no effects on the brain or body: the UK product information for one CBD medicine lists sleepiness among its side effects. {cites("epidyolex-smpc", pre=pre)}</p>
+        <p>CBD does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free. {cites("health-canada-about-cannabis", pre=pre)} For example, the UK product information for one CBD medicine lists sleepiness among its side effects. {cites("epidyolex-smpc", pre=pre)}</p>
         <p>CBD is being investigated for several possible medical applications. Whether it helps depends on the product, the population and the outcome being studied. A possible mechanism is a reason to investigate a treatment, not proof of clinical benefit. {cites("mcguire-2018", "boggs-2018", pre=pre)}</p>
         <p>Other cannabinoid names, including CBG, CBN and THCV, may appear in research or product descriptions. Each requires its own evidence assessment; CBD or THC findings cannot be assigned to another molecule. This introductory page makes no treatment claims for these compounds.</p>
         <p><a href="cbd-thc.html">CBD and THC: different effects, complex interactions</a></p>
@@ -335,7 +337,7 @@ def page_cannabinoids():
       </div>
     </section>'''
     return dict(path="science/cannabinoids.html", title="Understanding cannabinoids", h1="Cannabis, cannabinoids and medicines",
-                desc="Plain-language foundations: the difference between cannabis, cannabinoids, formulations and medicines, cannabinoid receptors, and why route and product matter.",
+                desc="Plain-language foundations: the difference between cannabis, cannabinoids, formulations and medicines, the endocannabinoid system, and why route and product matter.",
                 body=body)
 
 
@@ -352,7 +354,7 @@ def page_cbd_thc():
                       [f"Activates the cannabinoid receptor CB1 in cell experiments. {c('laprairie-2015')}",
                        f"In experiments in people, impaired memory and produced temporary psychotic symptoms such as paranoia. {c('englund-2013', 'englund-2023')}"],
                       [f"Has different, more complex pharmacology. In cell experiments it can reduce CB1 signalling (negative allosteric modulation); that is a laboratory finding, not a clinical effect. {c('laprairie-2015')}",
-                       f"Does not typically produce a “high”; NHS England describes it as not psychoactive. {c('nhs-cbpm')} It still has effects: sleepiness is a listed side effect of one CBD medicine. {c('epidyolex-smpc')}"]),
+                       f"Does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free. {c('health-canada-about-cannabis')} Sleepiness is a listed side effect of one CBD medicine. {c('epidyolex-smpc')}"]),
         compare_panel("cmp-clinical", "Clinical evidence",
                       [f"In experimental settings, THC can produce temporary psychotic symptoms. {c('englund-2013')}",
                        f"Observational research links daily use, and especially daily use of high-potency cannabis, with higher odds of psychotic disorder. This is an association, not a prediction for any individual. {c('diforti-2019')}",
@@ -381,7 +383,7 @@ def page_cbd_thc():
       <div class="wrap">
         <div class="prose-measure">
           <h2 id="distinct-title">Two distinct compounds</h2>
-          <p>THC and CBD are distinct compounds. In cell experiments THC activates the cannabinoid receptor CB1, and in experiments in people it impaired memory and produced temporary psychotic symptoms. CBD has different pharmacology and does not typically produce a “high”. They are not simple opposites. {c("laprairie-2015", "englund-2013", "englund-2023", "nhs-cbpm")}</p>
+          <p>THC and CBD are distinct compounds. In cell experiments THC activates the cannabinoid receptor CB1, and in experiments in people it impaired memory and produced temporary psychotic symptoms. CBD has different pharmacology and does not produce the THC-like high. They are not simple opposites. {c("laprairie-2015", "englund-2013", "englund-2023", "health-canada-about-cannabis")}</p>
         </div>
         <div class="sci-compare" data-sci-tabs="Compare THC and CBD">
           {panels}
@@ -596,7 +598,7 @@ def evidence_section():
     s = f.read_text()
     cards = "".join(evidence_card(n) for n in NEW)
     sec = (f'<!-- NWPT-048 evidence start --><section class="nwpt-lib-section" data-section="cannabinoids" aria-labelledby="cat-cannabinoids"><h2 id="cat-cannabinoids">Cannabinoid science and medicines</h2>'
-           f'<p class="nwpt-lib-note">Added for the Science pages. Entries marked “Source check in progress” are summarised from the cited records and are still being checked against the original publications.</p>'
+           f'<p class="nwpt-lib-note">Added for the Science pages.{" Entries marked “Source check in progress” are summarised from the cited records and are still being checked against the original publications." if PENDING else ""}</p>'
            f'<div class="nwpt-study-cards">{cards}</div></section><!-- NWPT-048 evidence end -->')
     if "<!-- NWPT-048 evidence start -->" in s:
         s = re.sub(r"<!-- NWPT-048 evidence start -->.*?<!-- NWPT-048 evidence end -->", sec, s, flags=re.S)
@@ -613,8 +615,9 @@ def evidence_section():
 GLOSS = [
     ("g-cannabis", "Cannabis", "The plant and, in everyday usage, preparations made from it. Preparations vary widely in composition."),
     ("g-cannabinoid", "Cannabinoid", "A compound in this area of pharmacology, such as CBD or THC. Cannabinoids do not all have the same effects."),
-    ("g-cbd", "CBD (cannabidiol)", "A cannabinoid that does not typically produce a “high”. That does not mean it has no effects on the brain or body."),
+    ("g-cbd", "CBD (cannabidiol)", "A cannabinoid that does not produce the THC-like high. Non-intoxicating does not mean inactive or risk-free."),
     ("g-thc", "THC (delta-9-tetrahydrocannabinol)", "A cannabinoid that activates the cannabinoid receptor CB1 in cell experiments and, in experiments in people, impaired memory and produced temporary psychotic symptoms."),
+    ("g-ecs", "Endocannabinoid system", "Signalling molecules made by the body (endocannabinoids, such as anandamide and 2-AG), receptors such as CB1 and CB2, and enzymes involved in making and breaking down the signals."),
     ("g-cb1", "CB1 receptor", "A cannabinoid receptor. In cell experiments, THC and 2-AG activated CB1 signalling, and CBD reduced that signalling. These are laboratory findings, not clinical effects."),
     ("g-nam", "Negative allosteric modulation", "A laboratory term: a compound binds a receptor at a different site and reduces the receptor’s response to other signals. A laboratory finding is not a clinical effect."),
     ("g-formulation", "Formulation", "The way ingredients are prepared and delivered, such as an oral solution, spray or capsule. Formulation, route and food can change exposure."),

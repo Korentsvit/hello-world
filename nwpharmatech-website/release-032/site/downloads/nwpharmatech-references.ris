@@ -318,13 +318,19 @@ DO  - 10.1007/s40263-018-0578-5
 AN  - PMID:30374683
 ER  - 
 
-TY  - GEN
-ID  - nwpt048-iuphar-cannabinoid-receptors
-TI  - Cannabinoid receptors: IUPHAR/BPS Guide to Pharmacology
-AU  - IUPHAR/BPS Guide to Pharmacology
-T2  - IUPHAR/BPS Guide to Pharmacology
-UR  - https://www.guidetopharmacology.org/GRAC/FamilyDisplayForward?familyId=13
-N1  - Source check pending
+TY  - WEB
+ID  - nwpt048-health-canada-hcp-2018
+TI  - Information for Health Care Professionals: Cannabis and cannabinoids (section 1.0, components of the endocannabinoid system)
+AU  - Health Canada
+PY  - 2018
+UR  - https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/information-medical-practitioners/information-health-care-professionals-cannabis-cannabinoids.html
+ER  - 
+
+TY  - WEB
+ID  - nwpt048-health-canada-about-cannabis
+TI  - About cannabis: chemical substances in cannabis (THC and CBD)
+AU  - Health Canada
+UR  - https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/about.html
 ER  - 
 
 TY  - JOUR
@@ -402,13 +408,4 @@ TI  - Cannabis-based products for medicinal use (CBPMs)
 AU  - NHS England
 T2  - NHS England
 UR  - https://www.england.nhs.uk/long-read/cannabis-based-products-for-medicinal-use-cbpms/
-ER  - 
-
-TY  - GEN
-ID  - nwpt048-fda-cannabis-cbd
-TI  - FDA regulation of cannabis and cannabis-derived products, including cannabidiol (CBD)
-AU  - US Food and Drug Administration
-T2  - FDA
-UR  - https://www.fda.gov/news-events/public-health-focus/fda-regulation-cannabis-and-cannabis-derived-products-including-cannabidiol-cbd
-N1  - Source check pending
 ER  - 
