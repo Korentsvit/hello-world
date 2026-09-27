@@ -150,6 +150,12 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     check(`@${label} remove deletes the item and keeps focus in the agenda`, (await pg.textContent("[data-agenda-count]")) === "3" && (await pg.evaluate((h) => !!document.activeElement.closest(`[data-agenda-target="${h}"]`), host)));
     check(`@${label} visitor text kept after reorder`, (await pg.inputValue(`#${host}-q-0`)) === SECRET);
     if (phone) { await pg.keyboard.press("Escape"); check(`@${label} Escape closes the drawer and returns focus`, (await pg.evaluate(() => !document.getElementById("wwu-drawer").open && document.activeElement.id === "wwu-drawer-open"))); }
+    if (phone) { // the fixed agenda bar must never permanently cover content: at the end of the page everything scrolls clear of it
+      const under = await pg.evaluate(async () => { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }); await new Promise((r) => setTimeout(r, 250)); const bt = document.querySelector(".wwu-drawer-bar").getBoundingClientRect().top;
+        return [...document.querySelectorAll("a, button, input, textarea, p, li, h2, h3")].filter((e) => !e.closest(".wwu-drawer-bar, dialog") && e.offsetParent !== null).filter((e) => { const x = e.getBoundingClientRect(); return x.height > 0 && x.bottom > bt + 1 && x.top < innerHeight; }).map((e) => e.tagName + ": " + e.textContent.trim().slice(0, 40)); });
+      check(`@${label} phone: nothing left under the agenda bar at the end of the page`, !under.length, JSON.stringify(under));
+      await pg.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    }
     // brief
     await pg.waitForTimeout(350);
     const brief = await pg.evaluate(() => { const a = document.querySelector(".wwu-brief"); return { title: a.querySelector("h3").textContent, meta: a.querySelector(".wwu-brief__meta").textContent, items: a.querySelectorAll(".wwu-brief__items > li").length, company: a.querySelectorAll(".wwu-brief__company blockquote").length, visitor: [...a.querySelectorAll(".wwu-brief__visitor")].map((v) => v.textContent), refs: [...a.querySelectorAll(".wwu-brief__refs li")].map((l) => l.textContent), notice: a.querySelector(".wwu-brief__notice").textContent, xss: !!a.querySelector(".wwu-brief__visitor img") || !!window.__xss }; });
