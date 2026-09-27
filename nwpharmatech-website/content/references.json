@@ -161,7 +161,7 @@
       "published": "12 February 2014",
       "last_updated": "4 September 2026",
       "metadata_check": "Primary record (Web Boss, 27 Sep 2026)",
-      "finding_check": "Partly confirmed. 'Offer individual CBT with or without family intervention' matches the quoted recommendation; 'do not offer antipsychotic medication to people considered to be at increased risk' matches the quoted text, but the card's further limb 'or to reduce the risk of or prevent psychosis' is beyond the passage quoted (truncated with an ellipsis). Recommendation numbers 1.2.3.1 and 1.2.3.2 are as cited by Filipp and are not stated in Web Boss's note (Web Boss, 27 Sep 2026). Not scientific sign-off."
+      "finding_check": "Direct inspection (Web Boss, 27 Sep 2026): 'offer individual cognitive behavioural therapy (CBT) with or without family intervention' and 'Do not offer antipsychotic medication: to people considered to be at increased risk of developing psychosis …' (excerpt truncated). Corroboration, not direct inspection: NICE's indexed official CG178 text includes the prevention clause under recommendation 1.2.3.2, as retrieved by Codex (27 Sep 2026; its direct PDF fetch was blocked). Pending: Web Boss to supply the complete saved 1.2.3.2 passage. Not scientific sign-off."
     },
     {
       "id": "nice-cg155",
