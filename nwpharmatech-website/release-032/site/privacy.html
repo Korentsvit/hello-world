@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=nwpt053" />
+  <link rel="stylesheet" href="conversion.css?v=nwpt054" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -149,15 +150,29 @@
       <p>Discussion briefs are created in your browser. Printing a brief or saving it as a PDF does not send it to us.</p>
 
       <h2>Programme updates and online forms</h2>
-      <p>Today, contact is by email only. There is no public email-registration form on this website.</p>
-      <p>When programme-updates registration goes live, the form will collect your email address, and your name if you choose to provide it, so that NWPharmaTech can send the occasional programme news you requested. The form will also record your consent and use a double opt-in confirmation step. No programme updates will be sent until you confirm through the email link.</p>
-      <p>The form will use <strong>Buttondown</strong> as the email service provider (confirmation, delivery, unsubscribe) and <strong>Cloudflare Turnstile</strong> as an anti-abuse check (technical request signals such as IP address and browser/device signals may be processed to verify a submission). A submission may be refused when the check cannot be verified. Provider privacy terms apply to their processing. We will not use website forms to accept investments, payments, wallet addresses, or patient health information.</p>
+      <p>On the public production website these routes stay email-first. The pages say so when the online form is off, and nothing is sent from the page in that state. Research-collaboration enquiries on “Explore a research collaboration” stay on that same hold.</p>
+      <p>A preview deployment can switch on two separate forms: programme updates, and an exploratory financing enquiry. Both stay off unless the preview is explicitly switched on and the email service and the security check are configured. A missing setting is a refusal, not a success. Copying those settings onto www.nwpharmatech.org does not switch the forms on.</p>
+      <p><strong>Controller.</strong> NWPharmaTech Ltd, for this informational website. Privacy questions: <a href="mailto:team@nwpharmatech.com?subject=Privacy">team@nwpharmatech.com</a>. Final mailbox routing is still for Filipp Korentsvit to set before any production activation. The preview note for a financing enquiry is Filipp.korentsvit@nwpharmatech.com, with team@nwpharmatech.com remaining the press and general address. That routing is not a production setting. This notice is not a legal sign-off.</p>
+
+      <h2>Register for programme updates</h2>
+      <p><strong>Purpose.</strong> Occasional programme news you asked for. News only. Not a financing enquiry, not an investment waitlist, and not a request for health information. The updates form does not ask you to express interest in financing, and the financing form does not require this registration.</p>
+      <p>The form asks for your email address and, if you choose, your name, plus consent. You are not registered until you open the confirmation link in the email. The on-page message means the email service accepted the message for delivery. It is not proof that the message reached an inbox.</p>
+      <p><strong>Processors.</strong> Resend sends the message and holds the programme-updates contact, including the opt-in record. Cloudflare Turnstile is the anti-abuse check. Turnstile may process technical signals such as IP address and browser or device signals. A submission is refused when that check cannot be verified. Resend and Cloudflare publish their own privacy terms for that processing.</p>
+      <p>The confirmation email contains an unsubscribe link. Using it opts that address out of the programme-updates topic at Resend, so later programme-update sends on that topic are not sent to it. The page says so only after Resend shows the address as opted out. A financing enquiry is separate one-off mail and is not stopped by that link.</p>
+      <p><strong>Retention.</strong> This website does not keep its own subscriber database. Resend keeps the contact record, including whether the address is pending, confirmed, or unsubscribed. To ask for the contact to be removed, use the unsubscribe link or email team@nwpharmatech.com with the subject Privacy. This notice does not set Resend’s own backup retention.</p>
+      <p>The Resend contact needs a property named nwpt_updates and a programme-updates topic before the preview can record confirmation and unsubscribe. Until those exist, the form fails closed and does not claim that anyone was registered.</p>
+
+      <h2>Express interest in programme financing</h2>
+      <p><strong>Purpose.</strong> An exploratory, non-binding conversation about programme financing. It is not an offer, not an allocation, and not a payment. You cannot invest, pay, or connect a wallet on this website.</p>
+      <p>The form asks for your name, email address, an optional organisation and role, and your message. It does not ask you to register for programme updates, and it has no wallet, payment, or allocation field.</p>
+      <p>The same processors apply: Resend accepts the one-off message for delivery; Cloudflare Turnstile checks the submission. The reply-to address is the email address you typed. Acceptance on the page means Resend accepted the message for delivery. It does not mean the message reached an inbox, and it does not mean you have invested, paid, subscribed, or been allocated anything.</p>
+      <p><strong>Retention.</strong> Financing enquiries are one-off mail. This website does not keep a separate copy. The message remains in the recipient mailbox. To ask for deletion, email team@nwpharmatech.com with the subject Privacy and the reference from the confirmation, if you have one. How long that mailbox keeps mail is the mailbox provider’s practice. This notice does not promise a fixed deletion time.</p>
 
       <h2>Financing and document uploads</h2>
       <p>This public website does not accept investments, subscriptions, payments, wallet connections, or document uploads for diligence. Do not send financial account details by email.</p>
       <h2>Contact</h2>
       <p>Privacy questions about this website: <a href="mailto:team@nwpharmatech.com?subject=Privacy">team@nwpharmatech.com</a>.</p>
-      <p class="muted">Last updated: 26 September 2026.</p>
+      <p class="muted">Last updated: 26 September 2026. Conversion routes described: 28 September 2026.</p>
     </div></section>
   </main>
 

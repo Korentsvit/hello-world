@@ -12,6 +12,8 @@
  *   RESEND_API_KEY        email service key (secret)
  *   TURNSTILE_SITE_KEY    Turnstile widget key (plain variable; public)
  *   TURNSTILE_SECRET_KEY  Turnstile secret (secret; same name as /api/subscribe)
+ * The production hosts www.nwpharmatech.org and nwpharmatech.org stay unconfigured even when those
+ * settings are present. Switching them on is a separate change after a reviewed preview.
  * Test only (honoured only when ENQUIRY_TEST_MODE is "1"): ENQUIRY_PROVIDER_URL, TURNSTILE_VERIFY_URL.
  *
  * Company text in the email comes from ./_lib/wwu-cards.js (generated from the site's content), never from
@@ -19,6 +21,7 @@
  * such. Nothing from the request body is logged.
  */
 import { WWU } from "./_lib/wwu-cards.js";
+import { isProductionHost } from "./_lib/lanes.js";
 
 const JSON_HEADERS = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff" };
 const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: JSON_HEADERS });
@@ -66,12 +69,18 @@ function compose(input, reference) {
   return L.join("\n");
 }
 
-export async function onRequestGet({ env }) {
+export async function onRequestGet({ request, env }) {
+  // Production host stays held even if enquiry settings are copied onto the live project.
+  // A later activation has to change this on purpose, after Filipp reviews a preview.
+  if (isProductionHost(request)) {
+    return json({ configured: false, turnstileSiteKey: null, version: WWU.version, testMode: false });
+  }
   const s = settings(env);
   return json({ configured: s.configured, turnstileSiteKey: s.configured ? s.siteKey : null, version: WWU.version, testMode: s.test });
 }
 
 export async function onRequestPost({ request, env }) {
+  if (isProductionHost(request)) return json({ error: "Online enquiries are not set up yet.", code: "not_configured" }, 503);
   const s = settings(env);
   const len = Number(request.headers.get("content-length") || 0);
   if (len > 32768) return json({ error: "The enquiry is too long." }, 413);

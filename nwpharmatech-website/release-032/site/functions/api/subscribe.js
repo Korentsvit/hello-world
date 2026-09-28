@@ -1,148 +1,205 @@
 /**
- * Cloudflare Pages Function: POST /api/subscribe
+ * Cloudflare Pages Function: /api/subscribe
  *
- * Deliberately fails closed until both provider credentials are present.
- * Keep BUTTONDOWN_API_KEY and TURNSTILE_SECRET_KEY in Pages environment
- * variables; never put them in the repository or client-side code.
+ * Programme updates only (news). Not a financing form, not an investment waitlist, and not a health form.
+ * Double opt-in: POST asks Resend to accept a confirmation email. The address is not registered until
+ * GET /api/subscribe?action=confirm records an opt-in on the programme-updates topic.
+ * Unsubscribe is GET or POST /api/subscribe?action=unsubscribe. Both live on this file so Pages
+ * does not have a subscribe.js file and a subscribe/ directory at the same time.
+ *
+ * Buttondown is not called. The older draft under src/optional/signup/ is reference only.
+ *
+ * Fails closed unless NWPT_CONVERSION_MODE=preview, the host is not www, and all of these are set:
+ *   RESEND_API_KEY, TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY
+ *   UPDATES_FROM or ENQUIRY_FROM, UPDATES_TO or ENQUIRY_TO
+ *   UPDATES_SIGNING_SECRET (16+ characters), UPDATES_TOPIC_ID
+ * The Resend contact property nwpt_updates must accept the values pending, confirmed, and unsubscribed.
+ * Test URL overrides apply only when ENQUIRY_TEST_MODE=1.
  */
+import {
+  str, oneLine, json, emailOk, sha256hex, previewOpen, statusBody,
+  verifyTurnstile, sendEmail, signToken, bannedField, readBody, idemOk,
+} from "./_lib/lanes.js";
+import { updatesSettings, statusOf, topicOf, setStatus, setTopic, getContact, getTopics } from "./_lib/updates.js";
+import { onRequestGet as confirmGet, onRequestPost as confirmPost } from "./_lib/updates-confirm.js";
+import { onRequestGet as unsubGet, onRequestPost as unsubPost } from "./_lib/updates-unsubscribe.js";
 
-const JSON_HEADERS = {
-  "content-type": "application/json; charset=utf-8",
-  "cache-control": "no-store",
-  "x-content-type-options": "nosniff"
-};
+const VERSION = "updates-1";
+const CONFIRM_MS = 7 * 24 * 60 * 60 * 1000;
+const UNSUB_MS = 400 * 24 * 60 * 60 * 1000;
 
-function json(body, status = 200) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: JSON_HEADERS
-  });
+function notConfigured() {
+  return json({ error: "Programme updates are not set up yet. Nothing has been sent.", code: "not_configured" }, 503);
 }
 
-function text(value) {
-  return typeof value === "string" ? value.trim() : "";
+export async function onRequestGet({ request, env }) {
+  const action = new URL(request.url).searchParams.get("action");
+  if (action === "confirm") return confirmGet({ request, env });
+  if (action === "unsubscribe") return unsubGet({ request, env });
+  const s = updatesSettings(env || {});
+  const open = previewOpen(request, env || {}, s.ready);
+  return json(statusBody(open, s.siteKey, VERSION, "updates", s.test));
 }
 
-async function readInput(request) {
-  const contentType = request.headers.get("content-type") || "";
-  if (contentType.includes("application/json")) {
-    try {
-      return await request.json();
-    } catch {
-      return null;
+export async function onRequestPost({ request, env }) {
+  const action = new URL(request.url).searchParams.get("action");
+  if (action === "confirm") return confirmPost({ request, env });
+  if (action === "unsubscribe") return unsubPost({ request, env });
+  const s = updatesSettings(env || {});
+  if (!previewOpen(request, env || {}, s.ready)) return notConfigured();
+
+  const read = await readBody(request);
+  if (read.error) return read.error;
+  const body = read.body;
+  if (bannedField(body)) {
+    return json({ error: "This form cannot accept a wallet, payment, or allocation. Nothing has been sent.", sent: false }, 400);
+  }
+  if (str(body.website)) return json({ error: "The request could not be accepted. Nothing has been sent.", sent: false }, 400);
+
+  const email = str(body.email || body.email_address).toLowerCase();
+  const name = oneLine(str(body.name));
+  const consent = body.consent === true || ["yes", "on", "true", "1"].includes(str(body.consent).toLowerCase());
+  const errors = [];
+  if (!emailOk(email)) errors.push("Enter a valid email address.");
+  if (name.length > 100) errors.push("Name must be 100 characters or fewer.");
+  if (!consent) errors.push("Confirm that you want occasional programme news. This is not a financing enquiry.");
+  const idem = str(body.idempotencyKey);
+  if (!idemOk(idem)) errors.push("The request could not be read. Reload the page and try again.");
+  const tsToken = str(body.turnstileToken || body["cf-turnstile-response"]);
+  if (!tsToken) errors.push("Complete the security check.");
+  if (errors.length) return json({ error: errors.join(" "), sent: false }, 400);
+
+  const turnstile = await verifyTurnstile(s, request, tsToken, idem);
+  if (!turnstile.ok) return json({ error: turnstile.error, sent: false }, turnstile.status);
+
+  const loaded = await getContact(s, email);
+  if (loaded.status !== 404 && !loaded.ok) {
+    return json({ error: "The email service could not be reached. Nothing has been registered.", sent: false }, 502);
+  }
+  if (loaded.ok && loaded.data && loaded.data.unsubscribed === true) {
+    return json({
+      error: "This address is blocked from emails at the email service. Programme updates were not turned on. Nothing has been registered.",
+      sent: false,
+    }, 409);
+  }
+  const current = loaded.status === 404 ? "absent" : statusOf(loaded.data);
+  if (current === "confirmed") {
+    return json({
+      ok: true,
+      accepted: false,
+      already: true,
+      inboxConfirmed: false,
+      lane: "updates",
+      message: "This address is already registered for programme updates. You were not added again, and no new confirmation was required. This is news only, not a financing enquiry.",
+    }, 200);
+  }
+
+  const topics = await getTopics(s, email);
+  if (!topics.ok && topics.status !== 404) {
+    return json({ error: "The email service could not be reached. Nothing has been registered.", sent: false }, 502);
+  }
+  if (current === "absent" && topicOf(topics.data, s.topic) === "opt_in") {
+    await setStatus(s, email, "confirmed", name);
+    return json({
+      ok: true,
+      accepted: false,
+      already: true,
+      inboxConfirmed: false,
+      lane: "updates",
+      message: "This address is already registered for programme updates. You were not added again, and no new confirmation was required. This is news only, not a financing enquiry.",
+    }, 200);
+  }
+
+  const pending = await setStatus(s, email, "pending", name);
+  if (!pending.ok) {
+    return json({ error: "The email service did not accept the programme-updates record. Nothing has been registered.", sent: false }, 502);
+  }
+  const after = await getTopics(s, email);
+  if (topicOf(after.data, s.topic) === "opt_in" || topicOf(topics.data, s.topic) === "opt_in") {
+    const cleared = await setTopic(s, email, "opt_out");
+    if (!cleared.ok) {
+      return json({ error: "The email service did not accept the programme-updates record. Nothing has been registered.", sent: false }, 502);
     }
   }
 
-  try {
-    const form = await request.formData();
-    return Object.fromEntries(form.entries());
-  } catch {
-    return null;
-  }
-}
+  const origin = new URL(request.url).origin;
+  const now = Date.now();
+  const confirmTok = await signToken(s.signing, { e: email, p: "confirm", exp: now + CONFIRM_MS });
+  const unsubTok = await signToken(s.signing, { e: email, p: "unsub", exp: now + UNSUB_MS });
+  const confirmUrl = `${origin}/api/subscribe?action=confirm&token=${encodeURIComponent(confirmTok)}`;
+  const unsubUrl = `${origin}/api/subscribe?action=unsubscribe&token=${encodeURIComponent(unsubTok)}`;
+  const reference = "UPD-" + (await sha256hex(idem)).slice(0, 8).toUpperCase();
+  const stamp = (await sha256hex("upd:" + idem)).slice(0, 40);
 
-export async function onRequest(context) {
-  const { request, env } = context;
-
-  if (request.method !== "POST") {
-    return json({ error: "Method not allowed. Use POST." }, 405);
-  }
-
-  const input = await readInput(request);
-  if (!input || typeof input !== "object") {
-    return json({ error: "Send the form fields as JSON or form data." }, 400);
-  }
-
-  const email = text(input.email || input.email_address).toLowerCase();
-  const name = text(input.name);
-  const consent = input.consent === true || ["yes", "on", "true", "1"].includes(text(input.consent).toLowerCase());
-  const turnstileToken = text(input["cf-turnstile-response"] || input.turnstileToken || input.turnstile_token);
-
-  if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return json({ error: "Enter a valid email address." }, 400);
-  }
-  if (name.length > 100) {
-    return json({ error: "Name must be 100 characters or fewer." }, 400);
-  }
-  if (!consent) {
-    return json({ error: "Please confirm that you want to receive programme news." }, 400);
-  }
-
-  const buttondownKey = text(env.BUTTONDOWN_API_KEY);
-  const turnstileSecret = text(env.TURNSTILE_SECRET_KEY);
-
-  // Never claim success while either side of the protected integration is absent.
-  if (!buttondownKey || !turnstileSecret) {
-    return json({ error: "Email registration is not configured yet. Please try again later." }, 503);
-  }
-  if (!turnstileToken) {
-    return json({ error: "Complete the security check and try again." }, 400);
+  const team = await sendEmail(s, {
+    from: s.from,
+    to: [s.to],
+    reply_to: email,
+    subject: oneLine(`Programme updates request — ${email}`).slice(0, 200),
+    text: [
+      "Programme updates request from nwpharmatech.org",
+      `Reference: ${reference}`,
+      "Lane: updates",
+      "",
+      "News only. This is not a financing enquiry, not an offer, and not a health-information form.",
+      "The address is not registered until the person confirms from their own email.",
+      "",
+      `Email: ${email}`,
+      `Name: ${name || "(none given)"}`,
+      "",
+      "Provider acceptance of this message is not proof that it reached an inbox.",
+    ].join("\n"),
+    tags: [{ name: "lane", value: "updates" }, { name: "site", value: "nwpharmatech" }],
+    headers: { "X-NWPT-Lane": "updates", "X-NWPT-Reference": reference },
+  }, `upd-team-${stamp}`);
+  if (!team.ok) {
+    return json({ error: "The email service did not accept the programme-updates request. You have not been registered.", sent: false }, team.status === 429 ? 503 : 502);
   }
 
-  const verifyBody = new URLSearchParams({
-    secret: turnstileSecret,
-    response: turnstileToken
-  });
-  const clientIp = text(request.headers.get("CF-Connecting-IP"));
-  if (clientIp) verifyBody.set("remoteip", clientIp);
-
-  let turnstileResult;
-  try {
-    const verifyResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: { "content-type": "application/x-www-form-urlencoded" },
-      body: verifyBody
-    });
-    turnstileResult = await verifyResponse.json();
-  } catch {
-    return json({ error: "The security check is temporarily unavailable. Please try again." }, 502);
-  }
-
-  if (!turnstileResult || turnstileResult.success !== true) {
-    return json({ error: "The security check could not be verified. Please try again." }, 400);
-  }
-
-  const subscriber = {
-    email_address: email,
-    // Explicitly preserve Buttondown's double-opt-in state.
-    type: "unactivated"
-  };
-  if (name) subscriber.metadata = { name };
-  if (clientIp) subscriber.ip_address = clientIp;
-
-  // Optional: pin subscribers to a named newsletter when Pages env provides an id.
-  const listId = text(env.BUTTONDOWN_LIST_ID || env.BUTTONDOWN_NEWSLETTER_ID);
-  if (listId) {
-    subscriber.metadata = Object.assign({}, subscriber.metadata || {}, { list_id: listId });
-  }
-
-  let buttondownResponse;
-  try {
-    buttondownResponse = await fetch("https://api.buttondown.com/v1/subscribers", {
-      method: "POST",
-      headers: {
-        "authorization": `Token ${buttondownKey}`,
-        "content-type": "application/json",
-        "x-buttondown-collision-behavior": "add"
-      },
-      body: JSON.stringify(subscriber)
-    });
-  } catch {
-    return json({ error: "The email service is temporarily unavailable. Please try again." }, 502);
-  }
-
-  if (!buttondownResponse.ok) {
-    if (buttondownResponse.status === 429) {
-      return json({ error: "The email service is busy. Please try again later." }, 503);
-    }
-    if (buttondownResponse.status >= 400 && buttondownResponse.status < 500) {
-      return json({ error: "This email could not be registered. Check the address or try again later." }, 400);
-    }
-    return json({ error: "The email service could not accept the registration. Please try again." }, 502);
+  const visitor = await sendEmail(s, {
+    from: s.from,
+    to: [email],
+    reply_to: s.to,
+    subject: oneLine(`Confirm programme updates — ${email}`).slice(0, 200),
+    text: [
+      "Confirm programme updates",
+      "",
+      "You asked to receive occasional programme news from NWPharmaTech. You are not registered yet.",
+      "",
+      `Confirm: ${confirmUrl}`,
+      "",
+      "This is news only. It is not a financing enquiry, not an offer, and not a request for health information.",
+      "You cannot invest, pay, or connect a wallet on our website.",
+      "",
+      "Unsubscribe (this stops programme updates to this address):",
+      unsubUrl,
+      "",
+      "Acceptance by the email service is not proof that this message reached your inbox.",
+    ].join("\n"),
+    tags: [{ name: "lane", value: "updates" }, { name: "site", value: "nwpharmatech" }, { name: "kind", value: "confirm" }],
+    headers: {
+      "X-NWPT-Lane": "updates",
+      "X-NWPT-Reference": reference,
+      "List-Unsubscribe": `<${unsubUrl}>`,
+      "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+    },
+  }, `upd-vis-${stamp}`);
+  if (!visitor.ok) {
+    return json({ error: "The email service did not accept the confirmation message. You have not been registered.", sent: false }, visitor.status === 429 ? 503 : 502);
   }
 
   return json({
     ok: true,
-    message: "Check your inbox to confirm your subscription to programme news."
+    accepted: true,
+    inboxConfirmed: false,
+    registered: false,
+    reference,
+    lane: "updates",
+    message: "Our email service accepted a confirmation message for delivery to you. You are not registered for programme updates until you confirm from that email. Acceptance is not proof the message reached an inbox. This is news only, not a financing enquiry.",
   }, 202);
 }
+
+export async function onRequest() {
+  return json({ error: "Method not allowed." }, 405);
+}
+
