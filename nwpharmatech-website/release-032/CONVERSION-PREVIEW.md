@@ -1,12 +1,12 @@
 # Conversion preview — financing enquiry and programme updates
 
-**Status:** preview-ready candidate. Production is not activated.
+**Status:** financing enquiry and programme updates can open on www and the apex host when `NWPT_CONVERSION_MODE=production` and that lane’s settings are complete. Preview hosts still require `NWPT_CONVERSION_MODE=preview`. This change does not deploy.
 **Repository:** https://github.com/Korentsvit/hello-world
 **Production content this candidate starts from:** `fbd865d74fa7272f3eb06dd69c0c3a1c8fefe61d` (NWPT-052, the commit the ECS-video record says was published to www). The branch also contains the records commit `72bee37` directly above that SHA. The named branch `claude/nwpharmatech-website-bs459b` is behind that production SHA (it stops at NWPT-038), so this work is not based on it.
 **Publish directory:** `nwpharmatech-website/release-032/site/`
-**Out of scope:** Micelle / `nwpt-platform`, production DNS, the live Pages project’s production settings, and any flip of `/api/enquiry` or programme updates on www.
+**Out of scope:** Micelle / `nwpt-platform`, production DNS, Cloudflare project settings, and `/api/enquiry` (research collaboration stays off on www and the apex host).
 
-Do not deploy this to the production Pages project. Do not copy the preview environment variables onto production.
+Do not set `ENQUIRY_TEST_MODE` on the production Pages project. Copying the preview variable set, including `NWPT_CONVERSION_MODE=preview`, onto www does not switch the forms on.
 
 ## What a visitor can do
 
@@ -40,21 +40,26 @@ Unsubscribe sets the Resend contact property `nwpt_updates` to `unsubscribed` an
 
 Suggested preview routing, for Filipp to confirm before any activation: financing and the updates notification to `ENQUIRY_TO` (historically `Filipp.korentsvit@nwpharmatech.com`). Press and general stay `team@nwpharmatech.com`. `FINANCING_TO` / `UPDATES_TO` override the shared `ENQUIRY_TO` if the inboxes should differ.
 
-## Why www stays off
+## When financing and programme updates are on
 
-Both new lanes, and the existing research-collaboration `/api/enquiry`, fail closed when the request host is `www.nwpharmatech.org` or `nwpharmatech.org`, even if every secret is present. `GET` then returns `configured: false` and a null Turnstile site key. `POST` returns `503` with `code: "not_configured"` and does not call Resend.
+`/api/financing` and `/api/subscribe` (including confirm and unsubscribe) open only when that lane’s required settings are present and the mode matches the host. `GET` then returns `configured: true` and the Turnstile site key. Otherwise `GET` returns `configured: false` and a null site key, and `POST` returns `503` with `code: "not_configured"` and does not call Resend. The page keeps the email fallback.
 
-On any other host the new lanes also stay off unless `NWPT_CONVERSION_MODE` is exactly `preview` and every required setting below is present. A missing setting is a `503`, not a success.
+| Host | `NWPT_CONVERSION_MODE` | Financing and programme updates |
+| --- | --- | --- |
+| `www.nwpharmatech.org` or `nwpharmatech.org` | `production` | Open when that lane’s settings are complete |
+| `www.nwpharmatech.org` or `nwpharmatech.org` | `preview`, empty, or anything else | Held |
+| Any other host | `preview` | Open when that lane’s settings are complete |
+| Any other host | `production`, empty, or anything else | Held |
 
-Removing the production-host hold is a later change. It is not part of this candidate. Do not set `NWPT_CONVERSION_MODE` or `ENQUIRY_TEST_MODE` on the production Pages project.
+Research-collaboration `/api/enquiry` still fails closed on `www.nwpharmatech.org` and `nwpharmatech.org`, including when `NWPT_CONVERSION_MODE=production`. A missing setting on an otherwise matching host is a `503`, not a success. Do not set `ENQUIRY_TEST_MODE` on the production Pages project.
 
-## Preview environment variables
+## Environment variables
 
-Set these on the **preview** Pages environment only, after Filipp has created the Resend topic and contact property. Never commit them.
+Set these on the Pages environment that should serve the forms, after Filipp has created the Resend topic and contact property. Never commit them. Preview uses `NWPT_CONVERSION_MODE=preview`. www and the apex host use `NWPT_CONVERSION_MODE=production`. Do not set `ENQUIRY_TEST_MODE` on production.
 
 | Variable | Role |
 | --- | --- |
-| `NWPT_CONVERSION_MODE` | Must be `preview` |
+| `NWPT_CONVERSION_MODE` | `preview` on a non-production host. `production` on www or the apex host. Anything else stays off |
 | `RESEND_API_KEY` | Secret |
 | `TURNSTILE_SITE_KEY` | Public, returned only when the lane is configured |
 | `TURNSTILE_SECRET_KEY` | Secret |
@@ -71,7 +76,7 @@ In Resend, before a preview send will succeed end to end:
 
 `ENQUIRY_TEST_MODE`, `ENQUIRY_PROVIDER_URL`, `TURNSTILE_VERIFY_URL`, and `UPDATES_CONTACTS_URL` are for the automated mock only. Do not set them on a hosted preview.
 
-Research-collaboration `/api/enquiry` is unchanged in its field rules (`version: "wwu-1"`). On a non-production host it still turns on only when its own five settings are present. On www it now stays off regardless.
+Research-collaboration `/api/enquiry` is unchanged in its field rules (`version: "wwu-1"`). On a non-production host it still turns on only when its own five settings are present. On www and the apex host it stays off regardless of `NWPT_CONVERSION_MODE`.
 
 ## How Web PR preview-deploys
 
@@ -102,7 +107,7 @@ Show all six on the hosted preview, with a synthetic address. A mock, or an HTTP
 5. **Lane separation.** The updates form can be submitted with no financing fields. The financing form does not require programme updates.
 6. **Speech.** Investigational and not an offer. No control invests, pays, subscribes to an offering, or connects a wallet.
 
-Until those six are shown and Filipp gives a separate written activation, keep www email-first.
+Filipp approved activating financing enquiry and programme updates on www after the preview review. They turn on only when the production project sets `NWPT_CONVERSION_MODE=production` and the lane’s settings are complete. Until then, www stays email-first.
 
 ## Checks already run on this candidate
 
@@ -113,7 +118,7 @@ node tools/test-conversion.mjs
 node tools/test-conversion-browser.mjs
 ```
 
-The first file calls the functions with a mock Resend and Turnstile: fail-closed without settings, fail-closed on www even with settings, distinct subjects and tags, no contact created by a financing send, no topic opt-in before confirm, unsubscribe verified against the mock topic, a confirm link after unsubscribe does not opt back in, provider failure is not reported as acceptance, and the page copy checks above.
+The first file calls the functions with a mock Resend and Turnstile: fail-closed without settings, fail-closed on www when the mode is not `production` or a required setting is missing, open on www and the apex host when the mode is `production` and settings are complete, preview hosts unchanged under `preview`, distinct subjects and tags, no contact created by a financing send, no topic opt-in before confirm, unsubscribe verified against the mock topic, a confirm link after unsubscribe does not opt back in, provider failure is not reported as acceptance, and the page copy checks above.
 
 The browser file serves `release-032/site/` and checks the homepage, funding-use, science, and contact at phone and desktop widths, including the hidden forms and the “nothing has been sent” line, then a preview-configured contact journey through acceptance, confirm, and unsubscribe. It does not prove a real Resend delivery or a real Turnstile widget; those remain for the hosted preview.
 

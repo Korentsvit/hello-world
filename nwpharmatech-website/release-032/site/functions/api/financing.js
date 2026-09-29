@@ -4,12 +4,14 @@
  * Exploratory programme-financing enquiries. Not an investment, payment, allocation, or wallet path.
  * Separate from /api/enquiry (research collaboration) and from /api/subscribe (programme news).
  *
- * Fails closed unless NWPT_CONVERSION_MODE=preview, the host is not www, and all of these are set:
+ * Fails closed unless the host matches NWPT_CONVERSION_MODE and all of these are set:
  *   FINANCING_TO or ENQUIRY_TO
  *   FINANCING_FROM or ENQUIRY_FROM
  *   RESEND_API_KEY, TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY
+ * www.nwpharmatech.org and nwpharmatech.org require NWPT_CONVERSION_MODE=production.
+ * Any other host requires NWPT_CONVERSION_MODE=preview.
  * Test overrides (ENQUIRY_PROVIDER_URL, TURNSTILE_VERIFY_URL) apply only when ENQUIRY_TEST_MODE=1.
- * Never set NWPT_CONVERSION_MODE or ENQUIRY_TEST_MODE on the production Pages project.
+ * Do not set ENQUIRY_TEST_MODE on the production Pages project.
  */
 import {
   str, oneLine, json, emailOk, sha256hex, previewOpen, statusBody, providerSettings,
@@ -34,7 +36,7 @@ function notConfigured() {
 export async function onRequestGet({ request, env }) {
   const s = settings(env || {});
   const open = previewOpen(request, env || {}, s.ready);
-  return json(statusBody(open, s.siteKey, VERSION, "financing", s.test));
+  return json(statusBody(open, s.siteKey, VERSION, "financing", s.test, request));
 }
 
 export async function onRequestPost({ request, env }) {

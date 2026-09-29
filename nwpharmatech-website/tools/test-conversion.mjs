@@ -1,6 +1,8 @@
-// Conversion preview checks (financing enquiry and programme updates).
+// Conversion checks (financing enquiry and programme updates).
 //   node test-conversion.mjs
-// Direct function calls with a mock Resend and Turnstile. No production host is switched on.
+// Direct function calls with a mock Resend and Turnstile.
+// Preview hosts open only for NWPT_CONVERSION_MODE=preview.
+// www and the apex host open only for NWPT_CONVERSION_MODE=production with complete settings.
 // Static pages are checked for the two labels, the security line, lane separation, and the email fallback.
 import { onRequestGet as finGet, onRequestPost as finPost, onRequest as finOther } from "../release-032/site/functions/api/financing.js";
 import { onRequestGet as subGet, onRequestPost as subPost } from "../release-032/site/functions/api/subscribe.js";
@@ -30,6 +32,8 @@ const previewEnv = {
   TURNSTILE_VERIFY_URL: "https://turnstile.test/siteverify",
   UPDATES_CONTACTS_URL: "https://resend.test",
 };
+
+const productionEnv = { ...previewEnv, NWPT_CONVERSION_MODE: "production" };
 
 // Resend returns each contact property as { value, type }, not as a bare string.
 const asResend = (c) => ({ ...c, properties: Object.fromEntries(Object.entries(c.properties || {}).map(([k, v]) => [k, { value: v, type: "string" }])) });
@@ -153,6 +157,52 @@ const updBody = (over = {}) => ({
   check("research enquiry on a non-production host still reports configured when its own settings exist", enqLocal.configured === true && enqLocal.version === "wwu-1");
 }
 
+// --- production activation: open only for mode=production on www/apex, with complete settings ---
+{
+  const wwwFin = await (await finGet({ request: req("https://www.nwpharmatech.org/api/financing", "GET"), env: productionEnv })).json();
+  check("production financing GET on www is configured", wwwFin.configured === true && wwwFin.turnstileSiteKey === "site-key" && wwwFin.activation === "production" && wwwFin.lane === "financing" && !JSON.stringify(wwwFin).includes("re_test"));
+  const apexFin = await (await finGet({ request: req("https://nwpharmatech.org/api/financing", "GET"), env: productionEnv })).json();
+  check("production financing GET on the apex host is configured", apexFin.configured === true && apexFin.activation === "production" && apexFin.turnstileSiteKey === "site-key");
+  const wwwUpd = await (await subGet({ request: req("https://www.nwpharmatech.org/api/subscribe", "GET"), env: productionEnv })).json();
+  check("production updates GET on www is configured", wwwUpd.configured === true && wwwUpd.turnstileSiteKey === "site-key" && wwwUpd.activation === "production" && wwwUpd.lane === "updates");
+  const apexUpd = await (await subGet({ request: req("https://nwpharmatech.org:443/api/subscribe", "GET"), env: productionEnv })).json();
+  check("production updates GET on the apex host with a port is configured", apexUpd.configured === true && apexUpd.activation === "production");
+
+  const missingKey = { ...productionEnv, RESEND_API_KEY: "" };
+  const missingFin = await (await finGet({ request: req("https://www.nwpharmatech.org/api/financing", "GET"), env: missingKey })).json();
+  const missingFinPost = await finPost({ request: req("https://www.nwpharmatech.org/api/financing", "POST", finBody()), env: missingKey });
+  check("production www financing stays held when Resend is missing", missingFin.configured === false && missingFin.turnstileSiteKey === null && missingFin.activation === "held" && missingFinPost.status === 503 && (await missingFinPost.json()).code === "not_configured");
+  const missingTopic = { ...productionEnv, UPDATES_TOPIC_ID: "" };
+  const topicHeld = await (await subGet({ request: req("https://www.nwpharmatech.org/api/subscribe", "GET"), env: missingTopic })).json();
+  const topicPost = await subPost({ request: req("https://www.nwpharmatech.org/api/subscribe", "POST", updBody()), env: missingTopic });
+  const finStill = await (await finGet({ request: req("https://www.nwpharmatech.org/api/financing", "GET"), env: missingTopic })).json();
+  check("production www updates stay held when the topic id is missing", topicHeld.configured === false && topicHeld.activation === "held" && topicPost.status === 503);
+  check("a missing updates topic does not close financing", finStill.configured === true && finStill.activation === "production");
+  const noFinTo = { ...productionEnv, ENQUIRY_TO: "", FINANCING_TO: "", UPDATES_TO: "updates.preview@example.org" };
+  const finClosed = await (await finGet({ request: req("https://www.nwpharmatech.org/api/financing", "GET"), env: noFinTo })).json();
+  const updOpen = await (await subGet({ request: req("https://www.nwpharmatech.org/api/subscribe", "GET"), env: noFinTo })).json();
+  check("production financing stays held without a recipient while updates can stay open", finClosed.configured === false && finClosed.activation === "held" && updOpen.configured === true && updOpen.activation === "production");
+
+  const wrongMode = await (await finGet({ request: req("https://www.nwpharmatech.org/api/financing", "GET"), env: { ...productionEnv, NWPT_CONVERSION_MODE: "prod" } })).json();
+  const upperMode = await finPost({ request: req("https://nwpharmatech.org/api/financing", "POST", finBody()), env: { ...productionEnv, NWPT_CONVERSION_MODE: "PRODUCTION" } });
+  const emptyOnWww = await (await subGet({ request: req("https://www.nwpharmatech.org/api/subscribe", "GET"), env: { ...productionEnv, NWPT_CONVERSION_MODE: "" } })).json();
+  check("www stays held for a wrong, uppercase, or empty mode", wrongMode.configured === false && wrongMode.activation === "held" && upperMode.status === 503 && emptyOnWww.configured === false && emptyOnWww.turnstileSiteKey === null);
+
+  const previewHost = await (await finGet({ request: req("https://nwpt-837794c-preview.pages.dev/api/financing", "GET"), env: productionEnv })).json();
+  const localProd = await finPost({ request: req("http://127.0.0.1/api/financing", "POST", finBody()), env: productionEnv });
+  const lookalike = await (await subGet({ request: req("https://www.nwpharmatech.org.evil.example/api/subscribe", "GET"), env: productionEnv })).json();
+  check("production mode on an unapproved host stays held", previewHost.configured === false && previewHost.activation === "held" && previewHost.turnstileSiteKey === null && localProd.status === 503 && lookalike.configured === false);
+  const previewStill = await (await finGet({ request: req("https://nwpt-837794c-preview.pages.dev/api/financing", "GET"), env: previewEnv })).json();
+  check("preview mode on a non-www host stays configured", previewStill.configured === true && previewStill.activation === "preview" && previewStill.turnstileSiteKey === "site-key");
+
+  const enqWww = await (await enqGet({ request: req("https://www.nwpharmatech.org/api/enquiry", "GET"), env: productionEnv })).json();
+  const enqApex = await enqPost({ request: req("https://nwpharmatech.org/api/enquiry", "POST", {}), env: productionEnv });
+  check("research enquiry stays closed on www and apex when conversion mode is production", enqWww.configured === false && enqWww.turnstileSiteKey === null && enqApex.status === 503 && (await enqApex.json()).code === "not_configured");
+  const closedConfirm = await subGet({ request: req("https://www.nwpharmatech.org/api/subscribe?action=confirm&token=aaaa.bbbb", "GET"), env: previewEnv });
+  const closedUnsub = await subPost({ request: req("https://www.nwpharmatech.org/api/subscribe?action=unsubscribe&token=aaaa.bbbb", "POST"), env: { ...productionEnv, UPDATES_SIGNING_SECRET: "short" } });
+  check("confirm and unsubscribe stay closed when mode or settings do not match www", closedConfirm.status === 503 && closedUnsub.status === 503);
+}
+
 const mock = installMock();
 try {
   const open = await (await finGet({ request: req("http://127.0.0.1/api/financing", "GET"), env: previewEnv })).json();
@@ -222,6 +272,32 @@ try {
   check("provider failure is not reported as acceptance", failed.status === 502 && failedJson.sent === false && !failedJson.accepted);
 } finally {
   mock.restore();
+}
+
+const prodMock = installMock();
+try {
+  const sent = await finPost({ request: req("https://www.nwpharmatech.org/api/financing", "POST", finBody({ idempotencyKey: "financing-prod-key-0001", email: "ada.prod@example.org" })), env: productionEnv });
+  const sentJson = await sent.json();
+  check("production financing POST on www is acceptance and does not create an updates contact", sent.status === 202 && sentJson.accepted === true && sentJson.inboxConfirmed === false && prodMock.state.contacts.size === 0 && prodMock.state.emails[0].subject === "Programme financing enquiry — Preview Lab");
+
+  const upd = await subPost({ request: req("https://www.nwpharmatech.org/api/subscribe", "POST", updBody({ email: "news.prod@example.org", idempotencyKey: "updates-prod-key-00001" })), env: productionEnv });
+  const updJson = await upd.json();
+  const visitor = prodMock.state.emails.find((m) => m.subject.startsWith("Confirm programme updates — news.prod@example.org"));
+  check("production updates POST on www does not register before confirm", upd.status === 202 && updJson.registered === false && visitor && (prodMock.state.topics.get("news.prod@example.org") || {})["topic-programme-updates"] !== "opt_in");
+
+  const confirmUrl = visitor.text.match(/https?:\/\/\S+action=confirm&token=\S+/)[0];
+  const unsubUrl = visitor.text.match(/https?:\/\/\S+action=unsubscribe&token=\S+/)[0];
+  const withHost = (url, method) => new Request(url, { method, headers: { host: "www.nwpharmatech.org" } });
+  const confirmed = await subGet({ request: withHost(confirmUrl, "GET"), env: productionEnv });
+  check("production confirm on www registers", confirmed.status === 200 && /is now registered for occasional programme news/.test(await confirmed.text()) && prodMock.state.topics.get("news.prod@example.org")["topic-programme-updates"] === "opt_in");
+
+  const stopped = await subGet({ request: withHost(unsubUrl, "GET"), env: productionEnv });
+  check("production unsubscribe on www opts the address out", stopped.status === 200 && /will not be sent programme updates/.test(await stopped.text()) && prodMock.state.topics.get("news.prod@example.org")["topic-programme-updates"] === "opt_out" && prodMock.state.contacts.get("news.prod@example.org").properties.nwpt_updates === "unsubscribed");
+
+  const again = await subGet({ request: withHost(confirmUrl, "GET"), env: productionEnv });
+  check("production confirm after unsubscribe does not opt back in", /previously opted out/.test(await again.text()) && prodMock.state.topics.get("news.prod@example.org")["topic-programme-updates"] === "opt_out");
+} finally {
+  prodMock.restore();
 }
 
 const subscribeSrc = fs.readFileSync(path.join(root, "functions/api/subscribe.js"), "utf8");
