@@ -1,13 +1,12 @@
 /**
- * Shared helpers for the preview-only financing and programme-updates lanes.
+ * Shared helpers for the financing and programme-updates lanes.
  * Research-collaboration /api/enquiry keeps its own handler; it uses isProductionHost from here
- * so www cannot be switched on by copying environment variables.
+ * and does not read NWPT_CONVERSION_MODE, so production mode cannot switch that route on.
  *
- * Activation hold (this candidate):
- *   - Host www.nwpharmatech.org or nwpharmatech.org always fails closed.
- *   - Any other host fails closed unless NWPT_CONVERSION_MODE is exactly "preview"
- *     and every required setting for that lane is present.
- * Removing either hold is a separate change after Filipp reviews a preview. Do not do it here.
+ * Fail closed unless the lane's own settings are complete (`ready`) and the mode matches the host:
+ *   - www.nwpharmatech.org or nwpharmatech.org open only when NWPT_CONVERSION_MODE is exactly "production".
+ *   - Any other host opens only when NWPT_CONVERSION_MODE is exactly "preview".
+ * Any other mode, a missing setting, or a mismatched host stays off. Email fallback stays on the page.
  */
 
 const JSON_HEADERS = {
@@ -70,21 +69,27 @@ export function providerSettings(env) {
   };
 }
 
-/** Preview gate. `ready` is the lane's own secret check, already boolean. */
+/**
+ * Lane gate. `ready` is the lane's own secret check, already boolean.
+ * Production hosts (www and apex) open only for mode "production".
+ * Every other host opens only for mode "preview".
+ */
 export function previewOpen(request, env, ready) {
-  if (isProductionHost(request)) return false;
-  if (str(env.NWPT_CONVERSION_MODE) !== "preview") return false;
-  return !!ready;
+  if (!ready) return false;
+  const mode = str(env && env.NWPT_CONVERSION_MODE);
+  if (isProductionHost(request)) return mode === "production";
+  return mode === "preview";
 }
 
-export function statusBody(open, siteKey, version, lane, testMode) {
+export function statusBody(open, siteKey, version, lane, testMode, request) {
+  const activation = open ? (isProductionHost(request) ? "production" : "preview") : "held";
   return {
     configured: open,
     turnstileSiteKey: open ? siteKey : null,
     version,
     lane,
     testMode: open ? !!testMode : false,
-    activation: open ? "preview" : "held",
+    activation,
   };
 }
 

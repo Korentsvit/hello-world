@@ -9,12 +9,14 @@
  *
  * Buttondown is not called. The older draft under src/optional/signup/ is reference only.
  *
- * Fails closed unless NWPT_CONVERSION_MODE=preview, the host is not www, and all of these are set:
+ * Fails closed unless the host matches NWPT_CONVERSION_MODE and all of these are set:
  *   RESEND_API_KEY, TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY
  *   UPDATES_FROM or ENQUIRY_FROM, UPDATES_TO or ENQUIRY_TO
  *   UPDATES_SIGNING_SECRET (16+ characters), UPDATES_TOPIC_ID
+ * www.nwpharmatech.org and nwpharmatech.org require NWPT_CONVERSION_MODE=production.
+ * Any other host requires NWPT_CONVERSION_MODE=preview.
  * The Resend contact property nwpt_updates must accept the values pending, confirmed, and unsubscribed.
- * Test URL overrides apply only when ENQUIRY_TEST_MODE=1.
+ * Test URL overrides apply only when ENQUIRY_TEST_MODE=1. Do not set ENQUIRY_TEST_MODE on production.
  */
 import {
   str, oneLine, json, emailOk, sha256hex, previewOpen, statusBody,
@@ -38,7 +40,7 @@ export async function onRequestGet({ request, env }) {
   if (action === "unsubscribe") return unsubGet({ request, env });
   const s = updatesSettings(env || {});
   const open = previewOpen(request, env || {}, s.ready);
-  return json(statusBody(open, s.siteKey, VERSION, "updates", s.test));
+  return json(statusBody(open, s.siteKey, VERSION, "updates", s.test, request));
 }
 
 export async function onRequestPost({ request, env }) {

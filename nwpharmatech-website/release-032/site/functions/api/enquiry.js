@@ -13,7 +13,8 @@
  *   TURNSTILE_SITE_KEY    Turnstile widget key (plain variable; public)
  *   TURNSTILE_SECRET_KEY  Turnstile secret (secret; same name as /api/subscribe)
  * The production hosts www.nwpharmatech.org and nwpharmatech.org stay unconfigured even when those
- * settings are present. Switching them on is a separate change after a reviewed preview.
+ * settings are present, including when NWPT_CONVERSION_MODE=production. That flag opens only
+ * /api/financing and /api/subscribe. Switching research collaboration on is a separate change.
  * Test only (honoured only when ENQUIRY_TEST_MODE is "1"): ENQUIRY_PROVIDER_URL, TURNSTILE_VERIFY_URL.
  *
  * Company text in the email comes from ./_lib/wwu-cards.js (generated from the site's content), never from
@@ -70,8 +71,8 @@ function compose(input, reference) {
 }
 
 export async function onRequestGet({ request, env }) {
-  // Production host stays held even if enquiry settings are copied onto the live project.
-  // A later activation has to change this on purpose, after Filipp reviews a preview.
+  // Production host stays held even if enquiry settings, or NWPT_CONVERSION_MODE=production, are present.
+  // That mode opens financing and programme updates only. Switching this route on is a separate change.
   if (isProductionHost(request)) {
     return json({ configured: false, turnstileSiteKey: null, version: WWU.version, testMode: false });
   }
