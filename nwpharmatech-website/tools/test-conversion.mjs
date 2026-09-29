@@ -31,6 +31,9 @@ const previewEnv = {
   UPDATES_CONTACTS_URL: "https://resend.test",
 };
 
+// Resend returns each contact property as { value, type }, not as a bare string.
+const asResend = (c) => ({ ...c, properties: Object.fromEntries(Object.entries(c.properties || {}).map(([k, v]) => [k, { value: v, type: "string" }])) });
+
 function installMock() {
   const state = {
     contacts: new Map(),
@@ -70,8 +73,9 @@ function installMock() {
       if (method === "GET") {
         return Response.json({ data: Object.entries(map).map(([id, subscription]) => ({ id, subscription })) });
       }
-      const rows = Array.isArray(body) ? body : (body && body.topics) || [];
-      for (const row of rows) map[row.id] = row.subscription;
+      // Resend takes a bare array here and rejects { topics: [...] } with 422.
+      if (!Array.isArray(body)) return Response.json({ name: "validation_error", message: "Expected an array" }, { status: 422 });
+      for (const row of body) map[row.id] = row.subscription;
       state.topics.set(email, map);
       return Response.json({ object: "contact_topics" });
     }
@@ -79,7 +83,7 @@ function installMock() {
       const email = decodeURIComponent(contactPath[1]);
       if (method === "GET") {
         if (!state.contacts.has(email)) return Response.json({ message: "missing" }, { status: 404 });
-        return Response.json(state.contacts.get(email));
+        return Response.json(asResend(state.contacts.get(email)));
       }
       if (method === "PATCH") {
         if (!state.contacts.has(email)) return Response.json({ message: "missing" }, { status: 404 });

@@ -18,6 +18,9 @@ const TS_STUB = `window.turnstile={render:function(sel,o){var p=document.createE
 let pass = 0, fail = 0;
 const check = (name, ok, detail = "") => { ok ? pass++ : fail++; console.log(`${ok ? "ok  " : "FAIL"}  ${name}${ok ? "" : "  --  " + String(detail).slice(0, 400)}`); };
 
+// Resend returns each contact property as { value, type }, not as a bare string.
+const asResend = (c) => ({ ...c, properties: Object.fromEntries(Object.entries(c.properties || {}).map(([k, v]) => [k, { value: v, type: "string" }])) });
+
 function installMock() {
   const state = { contacts: new Map(), topics: new Map(), emails: [], verifySuccess: true };
   const original = globalThis.fetch;
@@ -44,8 +47,9 @@ function installMock() {
       if (!state.contacts.has(email)) return Response.json({ message: "missing" }, { status: 404 });
       const map = state.topics.get(email) || {};
       if (method === "GET") return Response.json({ data: Object.entries(map).map(([id, subscription]) => ({ id, subscription })) });
-      const rows = Array.isArray(body) ? body : (body && body.topics) || [];
-      for (const row of rows) map[row.id] = row.subscription;
+      // Resend takes a bare array here and rejects { topics: [...] } with 422.
+      if (!Array.isArray(body)) return Response.json({ name: "validation_error", message: "Expected an array" }, { status: 422 });
+      for (const row of body) map[row.id] = row.subscription;
       state.topics.set(email, map);
       return Response.json({ ok: true });
     }
@@ -57,7 +61,7 @@ function installMock() {
         current.properties = { ...current.properties, ...(body.properties || {}) };
         return Response.json({ id: "c" });
       }
-      return Response.json(state.contacts.get(email));
+      return Response.json(asResend(state.contacts.get(email)));
     }
     return Response.json({ message: "unmocked" }, { status: 500 });
   };
