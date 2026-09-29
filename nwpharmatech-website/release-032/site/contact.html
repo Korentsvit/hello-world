@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=nwpt053" />
+  <link rel="stylesheet" href="conversion.css?v=nwpt054" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -160,6 +161,34 @@
             <h3>Programme updates</h3>
             <p>Dated notes are on the <a href="updates/">Updates hub</a>. For questions about programme news, email us with the subject line below (news only — not an investment waitlist).</p>
             <a class="card-link" href="mailto:team@nwpharmatech.com?subject=Programme%20updates">Email · Programme updates</a>
+            <p id="updates-availability">Online form is not available on this site yet. Nothing has been sent from this page.</p>
+            <form id="updates-register-form" class="updates-form lane-form" method="post" action="/api/subscribe" hidden>
+              <h4>Register for programme updates</h4>
+              <p>Occasional programme news only. This form is not a financing enquiry, and you do not need it in order to express interest in financing. Do not include health information.</p>
+              <div class="form-field">
+                <label for="upd-email">Email address</label>
+                <input id="upd-email" name="email" type="email" autocomplete="email" required maxlength="254" inputmode="email">
+              </div>
+              <div class="form-field">
+                <label for="upd-name">Name <span class="fineprint">(optional)</span></label>
+                <input id="upd-name" name="name" type="text" autocomplete="name" maxlength="100">
+              </div>
+              <div class="form-field">
+                <label class="consent-field" for="upd-consent">
+                  <input id="upd-consent" name="consent" type="checkbox" value="yes" required>
+                  <span>I want occasional programme news. I understand I am not registered until I confirm from the email, and that this is not an investment waitlist.</span>
+                </label>
+              </div>
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="upd-website">Leave this empty</label>
+                <input id="upd-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+              <div id="updates-turnstile"></div>
+              <p id="updates-turnstile-err" class="form-note" role="alert"></p>
+              <button class="btn btn-primary" type="submit">Register for programme updates</button>
+              <p id="updates-result" class="form-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+              <p class="fineprint">Privacy: <a href="privacy.html">who receives this, which processors are used, and how an unsubscribe is honoured</a>.</p>
+            </form>
           </div>
           <div class="card" id="research">
             <h3>Research collaboration</h3>
@@ -177,6 +206,47 @@
             <p>Enquiry only — <strong>not</strong> an invest, subscribe, or pay path. Emailing does not confer eligibility, allocation, liquidity, or any investment right. See the <a href="faq.html">FAQ</a>.</p>
             <p>We are evaluating a platform-supported route for eligible investors to help finance the CHR-P research programme, including a permissioned digital record of participation at closing where that proves feasible. If a platform path cannot meet legal, operational or investor-access requirements, a conventional private placement with a legal investor register remains the fallback. These are development objectives, not live offering terms. Neither path is available on this website: production investment, payment and token issuance remain inactive. Community updates and discussion are separate from any regulated investment process.</p>
             <a class="card-link" href="mailto:team@nwpharmatech.com?subject=Financing%20enquiry">Email · Financing enquiry</a>
+            <p class="conversion-security">You cannot invest, pay, or connect a wallet on our website.</p>
+            <p id="financing-availability">Online form is not available on this site yet. Nothing has been sent from this page.</p>
+            <form id="financing-form" class="updates-form lane-form" method="post" action="/api/financing" hidden>
+              <h4>Express interest in programme financing</h4>
+              <p>Exploratory and non-binding. Not an offer, not an allocation, and not a payment. Programme updates are a separate form and are not required here.</p>
+              <div class="form-field">
+                <label for="fin-name">Name</label>
+                <input id="fin-name" name="name" type="text" autocomplete="name" required maxlength="100">
+              </div>
+              <div class="form-field">
+                <label for="fin-email">Email address</label>
+                <input id="fin-email" name="email" type="email" autocomplete="email" required maxlength="254" inputmode="email">
+              </div>
+              <div class="form-field">
+                <label for="fin-org">Organisation <span class="fineprint">(optional)</span></label>
+                <input id="fin-org" name="organisation" type="text" autocomplete="organization" maxlength="150">
+              </div>
+              <div class="form-field">
+                <label for="fin-role">Role <span class="fineprint">(optional)</span></label>
+                <input id="fin-role" name="role" type="text" autocomplete="organization-title" maxlength="100">
+              </div>
+              <div class="form-field">
+                <label for="fin-message">Message</label>
+                <textarea id="fin-message" name="message" required maxlength="3000" rows="5"></textarea>
+              </div>
+              <div class="form-field">
+                <label class="consent-field" for="fin-confirm">
+                  <input id="fin-confirm" name="confirmExploratory" type="checkbox" value="yes" required>
+                  <span>I understand this is an exploratory conversation only. It is not an investment, a payment, or a wallet connection, and it does not reserve an allocation.</span>
+                </label>
+              </div>
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="fin-website">Leave this empty</label>
+                <input id="fin-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+              <div id="financing-turnstile"></div>
+              <p id="financing-turnstile-err" class="form-note" role="alert"></p>
+              <button class="btn btn-primary" type="submit">Express interest in programme financing</button>
+              <p id="financing-result" class="form-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+              <p class="fineprint">Privacy: <a href="privacy.html">acceptance versus inbox delivery, retention, and deletion</a>. One-off mail, not a programme-updates registration.</p>
+            </form>
           </div>
         </div>
 
@@ -243,6 +313,7 @@
       <p class="footer-meta">www.nwpharmatech.org · <a href="privacy.html">Privacy notice</a></p>
     </div>
   </footer>
+  <script src="conversion.js?v=nwpt054" defer></script>
   <script src="nav.js?v=nwpt050" defer></script>
 </body>
 </html>
