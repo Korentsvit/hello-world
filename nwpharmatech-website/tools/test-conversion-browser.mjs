@@ -25,7 +25,7 @@ function installMock() {
     const u = new URL(String(url));
     const method = (init.method || "GET").toUpperCase();
     let body = null;
-    if (typeof init.body === "string" && init.body.startsWith("{")) body = JSON.parse(init.body);
+    if (typeof init.body === "string" && (init.body.startsWith("{") || init.body.startsWith("["))) body = JSON.parse(init.body);
     if (u.hostname === "turnstile.test") return Response.json({ success: state.verifySuccess });
     if (u.hostname === "resend.test" && u.pathname === "/emails") {
       state.emails.push(body);
@@ -44,7 +44,8 @@ function installMock() {
       if (!state.contacts.has(email)) return Response.json({ message: "missing" }, { status: 404 });
       const map = state.topics.get(email) || {};
       if (method === "GET") return Response.json({ data: Object.entries(map).map(([id, subscription]) => ({ id, subscription })) });
-      for (const row of body.topics || []) map[row.id] = row.subscription;
+      const rows = Array.isArray(body) ? body : (body && body.topics) || [];
+      for (const row of rows) map[row.id] = row.subscription;
       state.topics.set(email, map);
       return Response.json({ ok: true });
     }

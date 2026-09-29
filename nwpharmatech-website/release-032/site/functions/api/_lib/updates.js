@@ -18,7 +18,8 @@ export function updatesSettings(env) {
 
 export function statusOf(contact) {
   const props = contact && contact.properties;
-  const value = props && str(props.nwpt_updates);
+  const raw = props && props.nwpt_updates;
+  const value = str(typeof raw === "object" && raw ? raw.value : raw);
   if (value === "pending" || value === "confirmed" || value === "unsubscribed") return value;
   return "absent";
 }
@@ -50,7 +51,15 @@ export async function setStatus(s, email, status, firstName) {
 
 export async function setTopic(s, email, subscription) {
   const path = "/contacts/" + encodeURIComponent(email) + "/topics";
-  return resendFetch(s, path, "PATCH", { topics: [{ id: s.topic, subscription }] });
+  const patched = await resendFetch(s, path, "PATCH", [{ id: s.topic, subscription }]);
+  if (!patched.ok) return patched;
+  // Resend topic updates can lag briefly on read-after-write.
+  for (let i = 0; i < 6; i++) {
+    if (i) await new Promise((r) => setTimeout(r, 250 * i));
+    const check = await getTopics(s, email);
+    if (topicOf(check.data, s.topic) === subscription) return { ok: true, status: patched.status, data: check.data };
+  }
+  return { ok: false, status: 502, data: null };
 }
 
 export async function getContact(s, email) {

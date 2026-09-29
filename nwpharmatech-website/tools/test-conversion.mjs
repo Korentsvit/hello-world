@@ -45,7 +45,7 @@ function installMock() {
     const method = (init.method || "GET").toUpperCase();
     let body = null;
     if (init.body && typeof init.body !== "string") body = init.body;
-    else if (typeof init.body === "string" && init.body.startsWith("{")) body = JSON.parse(init.body);
+    else if (typeof init.body === "string" && (init.body.startsWith("{") || init.body.startsWith("["))) body = JSON.parse(init.body);
     else if (typeof init.body === "string") body = init.body;
     if (u.hostname === "turnstile.test") return Response.json({ success: state.verifySuccess });
     if (u.hostname === "resend.test" && u.pathname === "/emails") {
@@ -70,7 +70,8 @@ function installMock() {
       if (method === "GET") {
         return Response.json({ data: Object.entries(map).map(([id, subscription]) => ({ id, subscription })) });
       }
-      for (const row of body.topics || []) map[row.id] = row.subscription;
+      const rows = Array.isArray(body) ? body : (body && body.topics) || [];
+      for (const row of rows) map[row.id] = row.subscription;
       state.topics.set(email, map);
       return Response.json({ object: "contact_topics" });
     }
