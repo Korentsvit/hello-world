@@ -1,0 +1,189 @@
+{
+  "tag": "TEST-NWPT-PROD-20260929",
+  "base": "https://www.nwpharmatech.org",
+  "sha": "5591bede41b5f0a471d1ca954f184cae532828f6",
+  "deployId": "1828e642-7999-4865-b092-554517b54f4f",
+  "immutableUrl": "https://1828e642.nwpt-preview.pages.dev",
+  "rollbackDeployId": "ef7196a6-027d-475b-ae76-a707681b2865",
+  "rollbackSha": "fbd865d74fa7272f3eb06dd69c0c3a1c8fefe61d",
+  "startedAt": "2026-09-29T10:41:26.868Z",
+  "visitorFinancing": "filipp.korentsvit+finprod-2e2525@nwpharmatech.com",
+  "visitorUpdates": "filipp.korentsvit+updprod-2e2525@nwpharmatech.com",
+  "journeys": {
+    "turnstile_fin": {
+      "pass": true,
+      "length": 730,
+      "via": "cdp",
+      "meta": {
+        "finHidden": false,
+        "updHidden": false,
+        "tsWidgets": 0,
+        "tsErrors": [
+          "",
+          ""
+        ],
+        "pageUrl": "https://www.nwpharmatech.org/contact"
+      }
+    },
+    "financing": {
+      "status": 202,
+      "body": {
+        "ok": true,
+        "accepted": true,
+        "inboxConfirmed": false,
+        "reference": "FIN-220E436B",
+        "lane": "financing",
+        "message": "Our email service accepted your enquiry for delivery to the NWPharmaTech team. This confirms acceptance for delivery, not that it has reached an inbox. It does not mean you have invested, paid, subscribed, or been allocated anything."
+      },
+      "pass": true,
+      "reference": "FIN-220E436B",
+      "replyToExpected": "filipp.korentsvit+finprod-2e2525@nwpharmatech.com"
+    },
+    "financing_delivery": {
+      "pass": true,
+      "resendId": "01a0ecc1-63a3-7323-ac1e-0461677b29cb",
+      "subject": "Programme financing enquiry — TEST-NWPT-PROD-20260929 Org",
+      "to": [
+        "filipp.korentsvit@nwpharmatech.com"
+      ],
+      "reply_to": [
+        "filipp.korentsvit+finprod-2e2525@nwpharmatech.com"
+      ],
+      "last_event": "delivered",
+      "replyToOk": true,
+      "created_at": "2026-09-29 10:41:32.220000+00"
+    },
+    "turnstile_upd": {
+      "pass": true,
+      "length": 730,
+      "via": "cdp",
+      "meta": {
+        "finHidden": false,
+        "updHidden": false,
+        "tsWidgets": 0,
+        "tsErrors": [
+          "",
+          ""
+        ],
+        "pageUrl": "https://www.nwpharmatech.org/contact"
+      }
+    },
+    "updates_request": {
+      "status": 202,
+      "body": {
+        "ok": true,
+        "accepted": true,
+        "inboxConfirmed": false,
+        "registered": false,
+        "reference": "UPD-2799C3F6",
+        "lane": "updates",
+        "message": "Our email service accepted a confirmation message for delivery to you. You are not registered for programme updates until you confirm from that email. Acceptance is not proof the message reached an inbox. This is news only, not a financing enquiry."
+      },
+      "pass": true,
+      "reference": "UPD-2799C3F6"
+    },
+    "updates_confirm_email": {
+      "pass": true,
+      "resendId": "01a0ecc1-88f1-727e-920e-a39de30caa41",
+      "subject": "Confirm programme updates — filipp.korentsvit+updprod-2e2525@nwpharmatech.com",
+      "to": [
+        "filipp.korentsvit+updprod-2e2525@nwpharmatech.com"
+      ],
+      "last_event": "delivered"
+    },
+    "updates_confirm": {
+      "status": 200,
+      "heading": "Programme updates confirmed",
+      "nwpt_updates": {
+        "value": "confirmed",
+        "type": "string"
+      },
+      "topic": "opt_in",
+      "pass": true
+    },
+    "updates_unsubscribe": {
+      "status": 200,
+      "heading": "Programme updates stopped",
+      "nwpt_updates": {
+        "value": "unsubscribed",
+        "type": "string"
+      },
+      "topic": "opt_out",
+      "pass": true
+    },
+    "confirm_after_unsub_guard": {
+      "status": 200,
+      "heading": "This address was unsubscribed",
+      "nwpt_updates": {
+        "value": "unsubscribed",
+        "type": "string"
+      },
+      "stillOptedOut": true,
+      "reOptedIn": false,
+      "pass": true,
+      "note": "Old confirm after unsub must NOT re-subscribe"
+    }
+  },
+  "replyTo": {
+    "currentFin": {
+      "reference": "FIN-220E436B",
+      "resendId": "01a0ecc1-63a3-7323-ac1e-0461677b29cb",
+      "reply_to": [
+        "filipp.korentsvit+finprod-2e2525@nwpharmatech.com"
+      ],
+      "visitor": "filipp.korentsvit+finprod-2e2525@nwpharmatech.com",
+      "pass": true,
+      "last_event": "delivered"
+    }
+  },
+  "blockers": [],
+  "apiConfig": {
+    "financing": {
+      "configured": true,
+      "turnstileSiteKey": "0x4AAAAAAFEugrIHKzvfIiyX",
+      "version": "financing-1",
+      "lane": "financing",
+      "testMode": false,
+      "activation": "production"
+    },
+    "subscribe": {
+      "configured": true,
+      "turnstileSiteKey": "0x4AAAAAAFEugrIHKzvfIiyX",
+      "version": "updates-1",
+      "lane": "updates",
+      "testMode": false,
+      "activation": "production"
+    },
+    "enquiry": {
+      "configured": false,
+      "turnstileSiteKey": null,
+      "version": "wwu-1",
+      "testMode": false
+    },
+    "pass": true
+  },
+  "enquiryDisabled": {
+    "pass": true,
+    "body": {
+      "configured": false,
+      "turnstileSiteKey": null,
+      "version": "wwu-1",
+      "testMode": false
+    }
+  },
+  "finishedAt": "2026-09-29T10:41:51.101Z",
+  "summary": {
+    "turnstile_fin": true,
+    "financing": true,
+    "financing_delivery": true,
+    "turnstile_upd": true,
+    "updates_request": true,
+    "updates_confirm_email": true,
+    "updates_confirm": true,
+    "updates_unsubscribe": true,
+    "confirm_after_unsub_guard": true,
+    "apiConfig": true,
+    "replyTo": true,
+    "enquiryDisabled": true
+  }
+}
