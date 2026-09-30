@@ -134,7 +134,24 @@ The page has no other external facts: no study numbers, percentages, prices, inv
 
 **Setup:** Chromium 141.0.7390.37 (Playwright 1.56.1) on the Cloudflare Pages runtime (`wrangler pages dev`). Google Fonts is blocked here, so fallback fonts were used. No physical devices were tested; Safari/iPhone is untested.
 
-**`tools/test-digital-finance.mjs` (new): 73/73.**
+**Final candidate: `tools/test-digital-finance.mjs` 92/92.** (73/73 on the first candidate `4e7ca63`.)
+
+The final run adds these checks:
+- the approved wording;
+- no “patient eligibility”;
+- the full sponsor-control list;
+- the digital-rails framing, with the diligence qualifier exactly once;
+- `_headers` changed only by the two Web Analytics hosts in each CSP.
+
+It also adds these for `/api/event`:
+- One data point holds exactly the event, path, link ID, UTM tags and time.
+- Email, IP, wallet and name are never persisted, even when posted, and an `@` UTM tag is dropped.
+- Unknown events and pages, cross-origin posts, form posts, oversized bodies and invalid JSON are refused, and nothing is stored.
+- Without the binding it answers 503; other methods get 405.
+- In the browser, every event is sent to `/api/event` with only the allowed fields.
+- With Global Privacy Control or Do Not Track, nothing is sent.
+
+Tests carried over from the first candidate:
 - **Content locks:**
   - all 16 hard-lock sentences present;
   - ~US$10m never called a raise, a fully funded trial or a token sale;
@@ -160,7 +177,7 @@ The page has no other external facts: no study numbers, percentages, prices, inv
 
 **Regression suites (base `1406893` → this candidate):**
 
-| Suite | Base | Candidate |
+| Suite | Base | Final candidate |
 |---|---|---|
 | `test-mobile-nav.mjs` | 23/23 (1,247 runs) | 23/23 (1,248 runs; the new menu link is included) |
 | `test-nwpt034.mjs` | 35/35 | 35/35 |
@@ -180,9 +197,11 @@ The generators are consistent: re-running `build-programme-room.py`, `build-work
 | Mobile | 98 | 100 | 96 | 100 | 2.2 s | 0 ms | 0 |
 | Desktop | 100 | 100 | 96 | 100 | 0.5 s | 0 ms | 0 |
 
-- **Best practices (96):** the only deduction is the console error from the blocked Google Fonts request, which is specific to this environment.
+The final candidate returned the same scores.
+
+- **Best practices (96):** the deductions are console errors from the blocked Google Fonts request (specific to this environment), and, on the final candidate, the `/api/event` 503 that is expected locally because there is no `NWPT_EVENTS` binding. With the binding the endpoint answers 204.
 - **Remaining notes** apply to the site-wide `styles.css` (unused rules, not minified) and the existing render-blocking font stylesheet. They are unchanged here.
-- **Fixed during review:** a forced reflow in `dpf.js` (layout reads now happen before writes).
+- **Fixed during review:** forced reflows in `dpf.js`. Layout reads now happen before writes, and the first draw and reveal set-up run in the next animation frame, so this page's reflows are each under 1 ms. The rest is unattributed browser layout plus the site-wide `nav.js`.
 
 **Screenshots:** `records/screens-nwpt055/`, desktop 1440×900 and phone 390×844:
 - `*-hero.png` and `*-full.png`;
