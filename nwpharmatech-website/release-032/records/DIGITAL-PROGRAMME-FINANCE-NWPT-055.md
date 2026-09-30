@@ -51,30 +51,55 @@ The page has ten sections, in the brief's order, plus a short FAQ for progressiv
 
 `/programme-financing`, `/funding-use`, `/desci` and the `/funding` → `/funding-use` redirect are unchanged.
 
-## Analytics
+## Analytics (finalised 30 September 2026)
 
-The site has no analytics, and the privacy notice says it “is intended to operate without advertising cookies”. Privacy settings are a standing constraint, so `dpf.js` adds a **first-party event layer that sends nothing**:
-- Events go to `window.nwptAnalytics` and are dispatched as a `nwpt:analytics` DOM event.
-- An owner-approved sink can be attached later as `window.nwptAnalyticsSink(event)`, for example a first-party endpoint or Cloudflare Zaraz. Choosing and disclosing a sink is a privacy decision for Filipp.
+Two layers, as Filipp specified in the finalisation brief.
 
-| Event | When |
-|---|---|
-| `funding_digital_page_view` | page load |
-| `architecture_section_view` | the architecture section is 30% visible (once) |
-| `funding_use_click` | Funding use links |
-| `evidence_click` | Evidence links |
-| `desci_click` | DeSci link |
-| `programme_financing_cta_click` | Programme financing card |
-| `conversation_cta_click` | the three “Request a programme-financing conversation” / Contact links |
-| `faq_expand` | an FAQ answer is opened |
+**1. Cloudflare Web Analytics (site-wide, cookieless).**
+- Enabled on the Pages project by Web Boss (Pages → *Metrics* → Web Analytics); Cloudflare injects the beacon.
+- No site token is kept in the repository.
+- Every CSP in `_headers` now allows exactly `script-src https://static.cloudflareinsights.com` and `connect-src https://cloudflareinsights.com`. On the custom domain the beacon reports to same-origin `/cdn-cgi/rum`, which `'self'` already covers.
+- No other CSP change.
 
-**Fields:** `event`, `page`, `ts`, the UTM tags, and `cta` (placement), `target` (path) or `faq` (id). There are no identity, wallet or health fields.
+**2. First-party conversion events: `POST /api/event`** (`functions/api/event.js`, a Pages Function, i.e. a Cloudflare Worker).
+- **Stored per event** (Workers Analytics Engine binding **`NWPT_EVENTS`**, one data point):
+  - `indexes: [event]`
+  - `blobs: [event, path, link, utm_source, utm_medium, utm_campaign, utm_term, utm_content]`
+  - `doubles: [server time in ms]`
 
-**UTM cohort:** `utm_source`, `utm_medium`, `utm_campaign`, `utm_term` and `utm_content` only, sanitised, and kept in `sessionStorage` for the tab session. They are carried onto the page's own tracked links, so the Contact financing route receives the cohort. No other query data is read.
+  Analytics Engine also records its own write timestamp.
+- **Allowlisted:**
+  - the eight event names;
+  - the page path (`/funding/digital-programme-finance` only);
+  - the link identifier (`placement:/path#hash`, `faq:<id>` or `section:<id>`; anything else is stored empty);
+  - UTM values (letters, digits, space, `._-`, at most 100 characters).
+- **Never persisted:** email address, name, IP address, user agent, location, cookies, wallet or health data. The function reads only `Origin` and `Content-Type` from the request. A UTM tag containing `@` is dropped whole, and a value containing `@` can never be stored. Unknown fields are ignored.
+- **Refused:** cross-origin posts (403), other content types (415), bodies over 2 KB (413), invalid JSON or unknown events or pages (400), and other methods (405).
+- **Without the binding:** it stores nothing and answers 503, so analytics fail closed.
+- **Client (`dpf.js`):**
+  - each event is still pushed to `window.nwptAnalytics` and dispatched as `nwpt:analytics`;
+  - it is also sent with `navigator.sendBeacon`, falling back to `fetch` with `keepalive` and credentials omitted;
+  - nothing is sent when the browser signals Global Privacy Control or Do Not Track.
+- **UTM cohort:** kept in `sessionStorage` for the tab and carried onto the page's own tracked links, as before.
+
+| Event | When | Link identifier |
+|---|---|---|
+| `funding_digital_page_view` | page load | — |
+| `architecture_section_view` | architecture section 30% visible (once) | `section:architecture` |
+| `funding_use_click` | Funding use links | `objective:/funding-use.html`, `explore:/funding-use.html` |
+| `evidence_click` | Evidence links | `explore:/evidence.html`, `final:/evidence.html` |
+| `desci_click` | DeSci card | `explore:/desci.html` |
+| `programme_financing_cta_click` | Programme financing card | `explore:/programme-financing.html` |
+| `conversation_cta_click` | Contact financing links | `hero:`, `explore:`, `final:` + `/contact.html#financing` |
+| `faq_expand` | an FAQ answer opened | `faq:<id>` |
+
+**Privacy notice:** `privacy.html` gains two paragraphs under *Cookies and analytics* describing Cloudflare Web Analytics and the interaction records, including what they never contain and the GPC/DNT behaviour. The existing sentences are unchanged. This is not a legal sign-off.
+
+**Reading the data:** Cloudflare dashboard → Workers & Pages → Analytics Engine → the dataset bound as `NWPT_EVENTS` (SQL API), for example: `SELECT blob1 AS event, blob4 AS utm_source, count() FROM <dataset> GROUP BY event, utm_source`.
 
 ## Claim matrix
 
-Every external factual statement on the page and its source. “Site” means already published wording (or the unpublished `1406893` page it builds on). “Brief” means a new company statement taken from the NWPT-055 brief (30 September 2026) that is **not yet elsewhere on the site**; these need Filipp's confirmation before publication.
+Every external factual statement on the page and its source. “Site” means already published wording (or the unpublished `1406893` page it builds on). “Brief” means a company statement from the NWPT-055 brief (30 September 2026) that is not elsewhere on the site. Rows 12, 18, 19 and 23 use the wording Filipp approved in the finalisation brief.
 
 | # | Statement on the page | Source |
 |---|---|---|
@@ -89,18 +114,18 @@ Every external factual statement on the page and its source. “Site” means al
 | 9 | Ring-fenced vehicle limited to expressly granted CHR-P programme economics (proposed). | Site: `/governance` (“Any programme financing would be limited to expressly granted CHR-P economics”) |
 | 10 | Bank or custody accounts with dual-control release against operational milestones, not efficacy claims. | Site: `/funding-use` |
 | 11 | NWPharmaTech remains the pharmaceutical sponsor: protocol, dose, endpoints, safety, CMC, regulatory filings, core IP. | Site: `/governance` diagram; `/programme-financing`; `/about`; `/desci` |
-| 12 | NWPharmaTech also retains patient eligibility, licensing and commercial decisions, and manufacturing decisions. | **Brief** (manufacturing quality is on `/about` and `/desci`) |
+| 12 | NWPharmaTech retains sponsor authority, protocol responsibility, CMC/manufacturing, safety, regulatory submissions, IP, counterparties, and licensing and commercial decisions. Eligibility criteria remain within the sponsor-approved protocol; individual participant eligibility is determined by investigators/sites under the protocol and applicable oversight. | **Filipp, finalisation brief (30 Sep 2026)**, approved wording; manufacturing quality also on `/about` and `/desci` |
 | 13 | Investigators, ethics committees and regulators remain independent. | Site: `/programme-financing`; `/about` |
 | 14 | Capital supporters do not vote on clinical design, trial budget or sponsor decisions; transparent financing does not mean decentralised clinical governance; no tokenholder clinical governance. | Site: `/programme-financing` (first two); Brief (third, consistent with “Class A: DAO / community must not control trial budget or protocol”) |
 | 15 | A permissioned digital record at close is being evaluated where legally and operationally useful. | Site: `/proposed-token`; `/desci` |
 | 16 | A conventional register-first private placement remains the fallback. | Site: `/proposed-token`; `/governance`; `/how-it-works`; `/desci` |
 | 17 | No live public offering, public token sale, allocation, payment rail, mint or staking; you cannot invest, pay or connect a wallet here. | Site: `/programme-financing` (“no live public token … retail token sale”; “You cannot invest, pay, or connect a wallet on our website”); `/desci` (“production investment, payment and token issuance remain inactive”); footer |
-| 18 | No promise of liquidity, appreciation, interest or yield; no price chart. | Brief (consistent with `/proposed-token` “Distributions may be zero”) |
-| 19 | Future economic rights only under definitive private documentation, eligibility checks and applicable law. | Brief; footer (“offered only under applicable law to eligible investors through appropriate private channels”) |
+| 18 | No yield, liquidity or appreciation is promised; no price chart. | **Filipp, finalisation brief (30 Sep 2026)**, approved wording (consistent with `/proposed-token` “Distributions may be zero”) |
+| 19 | Any economic rights, if ultimately offered, would arise only under definitive private documentation, applicable eligibility requirements and applicable law; instrument, economics, jurisdictions and structure remain under evaluation. | **Filipp, finalisation brief (30 Sep 2026)**, approved wording; footer (“offered only under applicable law to eligible investors through appropriate private channels”) |
 | 20 | Programme financing: private conversations; structure under evaluation. | Site: `/programme-financing` (“We are opening private conversations”; “Structure options … remain under evaluation”) |
 | 21 | Process: conversation, diligence, structure, eligibility (KYC, investor and jurisdiction checks), close, report. | Brief; KYC on `/how-it-works` and `/proposed-token`; diligence materials on `/docs` and `/governance` |
-| 22 | Capital layer: private investors, strategic capital, impact capital, potential digital rails, milestone-linked deployment. | **Brief** |
-| 23 | Digital rails: provenance, accountability, coordination, transparency, programmability (each “potential” or under evaluation; clinical decisions remain off-chain). | **Brief**; `/desci`; `/proposed-token` |
+| 22 | Capital layer: private investors, strategic capital, impact capital, potential digital rails, milestone-linked deployment. | Brief; approved with the page design (30 Sep 2026) |
+| 23 | Digital infrastructure could support five potential capabilities (provenance, accountability, coordination, transparency, administrative programmability); none is operating today; subject to legal, technical and operating diligence. | **Filipp, finalisation brief (30 Sep 2026)**, approved framing; `/desci`; `/proposed-token` |
 | 24 | No public data room; diligence materials shared privately. | Site: `/docs` (“not published as an open offer”); `/governance` (“private diligence package for eligible counterparties”) |
 
 The page has no other external facts: no study numbers, percentages, prices, investor counts or transactions. The test enforces this.
@@ -163,10 +188,33 @@ The generators are consistent: re-running `build-programme-room.py`, `build-work
 - `*-hero.png` and `*-full.png`;
 - `*-s02` … `*-s11`: capital flow, architecture, split, process, objective, rails, status, FAQ, explore, final.
 
-## Open questions / assumptions
+## Finalisation (30 September 2026)
 
-1. **Base:** this candidate includes the unpublished `/programme-financing` page (`1406893`). Confirm it can ship together, or publish `1406893` first.
-2. **Analytics sink:** events are collected in the page but sent nowhere. Choose a first-party endpoint or Cloudflare Zaraz, and update the privacy notice, before any data leaves the browser.
-3. **Brief-only statements** (rows 12, 18, 19, 22, 23): confirm before publication.
-4. **Pre-existing, not changed:** `tools/build-science.py` no longer runs on this base. NWPT-054 hand-added a “Continue” block to `science.html` after the generator's managed section, so its safety check refuses. The Science pages were therefore edited in place (menu line only), which is the same result the generator would give.
-5. **Fonts:** Google Fonts is blocked in this environment, so screenshots and Lighthouse runs use fallback fonts. The hosted preview will use Sora and Source Serif 4.
+**1. Production base.**
+- Web Boss reported `/programme-financing` live from the `1406893` lineage. The repository's last production record is `5591bede` (`docs/production/PRODUCTION-BASELINE-5591bede/`).
+- This environment's network policy blocks `www.nwpharmatech.org`, so the live site could not be read from here.
+- The repository settles the release shape either way: `1406893` is a direct child of `5591bede`, and this candidate is a direct descendant of `1406893`.
+  - If `1406893` is live, the candidate is a clean child of it.
+  - If `5591bede` is live, this single deployment ships `/programme-financing` and `/funding/digital-programme-finance` together.
+  - Either way it is **one** production deployment. The handoff includes a pre-deploy check that the live `/programme-financing` matches `1406893`, and stops if production is anything else.
+
+**2. Governance wording.** “Patient eligibility” is gone from the page. The approved sentence (“Eligibility criteria remain within the sponsor-approved protocol. Individual participant eligibility is determined by investigators/sites under the protocol and applicable oversight.”) appears in three places: the sponsor layer, the *Stays with the sponsor* list and the FAQ. The sponsor-control list reads: sponsor authority; protocol, dose and endpoints; safety; CMC and manufacturing; regulatory submissions; IP; counterparties; licensing and commercial decisions.
+
+**3. Financing language.**
+- The FAQ reads “No yield, liquidity or appreciation is promised.” and “Any economic rights, if ultimately offered, would arise only under definitive private documentation, applicable eligibility requirements and applicable law.”
+- It adds “The instrument, economics, jurisdictions and structure remain under evaluation; nothing is final.”
+- The process qualifier (“Instrument, economic rights, jurisdictions and digital-record architecture remain under evaluation …”) is unchanged.
+
+**4. Digital rails.**
+- The intro reads “Digital infrastructure could support five potential capabilities. None of them is operating today. Subject to legal, technical and operating diligence.” The diligence sentence appears exactly once on the page.
+- Each card begins “Could …”, and “Programmability” is now “Administrative programmability”.
+
+**5. Analytics:** as above.
+
+**Pre-existing, not changed:**
+- `tools/build-science.py` no longer runs on this base, because NWPT-054 hand-edited `science.html`.
+- The privacy notice's earlier line “Online enquiries are not active; contact is by email.” predates NWPT-054, which opened financing and updates on www. It is outside this release, and should be updated separately if the forms are live.
+
+**Environment limits:**
+- Google Fonts is blocked here, so screenshots and Lighthouse runs use fallback fonts.
+- Safari/iPhone is untested.

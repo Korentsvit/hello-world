@@ -272,6 +272,7 @@
 .dpf-uses p { font-size: 0.9rem; line-height: 1.55; margin: 0; }
 
 /* 7 · rails */
+.dpf-rails__intro { max-width: 46rem; margin: -1.25rem 0 2.25rem; font-size: 1rem; line-height: 1.6; }
 .dpf-rails__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
 .dpf-rails__grid li {
   border: 1px solid var(--dpf-line); border-radius: 16px; padding: 1.4rem;
