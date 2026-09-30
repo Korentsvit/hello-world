@@ -2,13 +2,14 @@
 // accessibility. Cloudflare Pages runtime (wrangler pages dev) and Chromium.
 //   node test-digital-finance.mjs [site-dir] [base-sha]
 import { chromium } from "playwright-core"; import { serve } from "./lib/cf-serve.mjs";
-import fs from "node:fs"; import path from "node:path"; import { execFileSync } from "node:child_process";
+import fs from "node:fs"; import path from "node:path"; import { execFileSync } from "node:child_process"; import { pathToFileURL } from "node:url";
 const dir = path.resolve(process.argv[2] || "../release-032/site");
 const BASE = process.argv[3] || "1406893";
 const PAGE = "/funding/digital-programme-finance";
 const axe = fs.readFileSync(new URL("./node_modules/axe-core/axe.min.js", import.meta.url), "utf8");
 let pass = 0, fail = 0;
 const check = (n, ok, d = "") => { ok ? pass++ : fail++; console.log(`${ok ? "ok  " : "FAIL"}  ${n}${ok ? "" : "  --  " + String(d).slice(0, 500)}`); };
+const ELIG = "Eligibility criteria remain within the sponsor-approved protocol. Individual participant eligibility is determined by investigators/sites under the protocol and applicable oversight.";
 const flat = (h) => h.replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&mdash;/g, "—").replace(/\s+/g, " ").replace(/ ([.,;:])/g, "$1");
 const html = fs.readFileSync(path.join(dir, "funding/digital-programme-finance.html"), "utf8");
 const main = html.match(/<main[\s\S]*?<\/main>/)[0];
@@ -23,8 +24,11 @@ const LOCKS = [
   "Instrument, economic rights, jurisdictions and digital-record architecture remain under evaluation. Conventional register-first private placement remains available as the fallback.",
   "no live public offering, no public token sale, no token allocation, no payment rail, no minting and no staking",
   "You cannot invest, pay or connect a wallet here.",
-  "Any future economic rights would exist only under appropriate definitive private documentation, eligibility checks and applicable law.",
-  "There is no tokenholder clinical governance.", "Nothing here promises liquidity, appreciation",
+  "Any economic rights, if ultimately offered, would arise only under definitive private documentation, applicable eligibility requirements and applicable law.",
+  "There is no tokenholder clinical governance.", "No yield, liquidity or appreciation is promised.",
+  "Eligibility criteria remain within the sponsor-approved protocol. Individual participant eligibility is determined by investigators/sites under the protocol and applicable oversight.",
+  "The instrument, economics, jurisdictions and structure remain under evaluation; nothing is final.",
+  "Digital infrastructure could support five potential capabilities. None of them is operating today. Subject to legal, technical and operating diligence.",
   "Exploratory programme architecture. Not an offer or solicitation.",
   "Exploratory information only. No investment, token or allocation is being offered through this website.",
   "Transparent financing does not mean decentralised clinical governance.",
@@ -51,21 +55,63 @@ check("all six use-of-capital categories are shown without amounts", ["Clinical 
 check("status panel carries only statements already on this website (no live data claims)", ["Proposed next clinical study", "Not established", "Private conversations", "Under evaluation", "Not enabled", "NWPharmaTech"].every((v) => text.includes(v)) && /As stated on this website · last reviewed 30 September 2026/.test(text));
 check("no public data room", /No public data room/.test(text) && !/data-room|dataroom/i.test(main.replace('data-faq="data-room"', "")));
 check("one h1", (main.match(/<h1\b/g) || []).length === 1);
+check("individual patient eligibility is never attributed to NWPharmaTech", !/patient eligibility/i.test(text) && (text.split(ELIG).length - 1) >= 2, "");
+check("sponsor control position: authority, protocol, CMC/manufacturing, safety, regulatory, IP, counterparties, licensing and commercial decisions", ["Sponsor authority", "Protocol, dose and endpoints", "Safety", "CMC and manufacturing", "Regulatory submissions", "Counterparties", "Licensing and commercial decisions"].every((x) => main.includes(`<li>${x}</li>`)));
+{
+  const rails = [...main.match(/<ul class="dpf-rails__grid">[\s\S]*?<\/ul>/)[0].matchAll(/<h3>([^<]*)<\/h3><p>([^<]*)<\/p>/g)];
+  check("digital rails: five potential capabilities, each worded as 'Could …', diligence qualifier stated exactly once",
+    rails.length === 5 && rails.every((m) => /^Could /.test(m[2])) && JSON.stringify(rails.map((m) => m[1])) === JSON.stringify(["Provenance", "Accountability", "Coordination", "Transparency", "Administrative programmability"]) && text.split("Subject to legal, technical and operating diligence.").length === 2,
+    rails.map((m) => m[1] + ": " + m[2]).join(" | "));
+}
 
 // ---- isolation: every other change since the base is additive (menu entry, cross-links, sitemap)
 const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], { cwd: dir, encoding: "utf8" }).trim(); const rel = path.relative(repo, dir);
 const numstat = execFileSync("git", ["diff", "--numstat", BASE, "--", rel], { cwd: repo, encoding: "utf8" }).trim().split("\n").filter(Boolean).map((l) => l.split("\t"));
-const removed = numstat.filter(([, d]) => d !== "0" && d !== "-").map((x) => x[2]);
+const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWith("/_headers")).map((x) => x[2]);
+{ // _headers: the only change is the NWPT-055 comment and the two Cloudflare Web Analytics hosts in every CSP
+  const was = execFileSync("git", ["show", `${BASE}:${rel}/_headers`], { cwd: repo, encoding: "utf8" });
+  const now = fs.readFileSync(path.join(dir, "_headers"), "utf8");
+  const back = now.split("\n").filter((l) => !l.startsWith("# NWPT-055:")).join("\n")
+    .replaceAll("; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com", "")
+    .replaceAll(" https://static.cloudflareinsights.com", "").replaceAll(" https://cloudflareinsights.com", "");
+  check("_headers: only Cloudflare Web Analytics hosts added to each CSP (script-src static.cloudflareinsights.com, connect-src cloudflareinsights.com)", back === was && now.split("\n").filter((l) => /Content-Security-Policy:/.test(l)).every((l) => /script-src [^;]*https:\/\/static\.cloudflareinsights\.com/.test(l) && /connect-src [^;]*https:\/\/cloudflareinsights\.com/.test(l)));
+}
 check("existing site files only gain lines (nothing removed or rewritten)", !removed.length, removed.join(" "));
-const NEW = ["dpf.css", "dpf.js", "funding"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
+const NEW = ["dpf.css", "dpf.js", "funding", "functions/api/event.js", "_headers"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
 const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel, ...NEW], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
-const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$/.test(l));
+const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$|Cloudflare Web Analytics/.test(l));
 check("every added line is the menu entry, a cross-link or the sitemap entry", !unexpected.length, unexpected.slice(0, 5).join(" || "));
 const pages = execFileSync("git", ["ls-files", "--", rel], { cwd: repo, encoding: "utf8" }).split("\n").filter((f) => f.endsWith(".html"));
 const noEntry = pages.filter((f) => { const s = fs.readFileSync(path.join(repo, f), "utf8"); return s.includes(">Programme financing</a></li>") && !s.includes(">Digital programme finance</a></li>"); });
 check("every page with the Funding menu lists Digital programme finance", !noEntry.length, noEntry.join(" "));
 for (const [f, re] of [["programme-financing.html", /href="funding\/digital-programme-finance\.html">See the proposed structure visually/], ["funding-use.html", /href="funding\/digital-programme-finance\.html">Digital programme finance<\/a>\.<\/p>/], ["desci.html", /href="funding\/digital-programme-finance\.html">Digital programme finance<\/a>\.<\/p>/]])
   check(`cross-link from ${f}`, re.test(fs.readFileSync(path.join(dir, f), "utf8")));
+
+// ---- /api/event endpoint (the Worker), called directly with a mock Analytics Engine binding
+{
+  const { onRequestPost, onRequest } = await import(pathToFileURL(path.join(dir, "functions/api/event.js")).href);
+  const points = []; const env = { NWPT_EVENTS: { writeDataPoint: (p) => points.push(p) } };
+  const req = (body, headers = {}) => new Request("https://preview.example/api/event", { method: "POST", headers: { "content-type": "application/json", origin: "https://preview.example", ...headers }, body: typeof body === "string" ? body : JSON.stringify(body) });
+  const ok = { event: "conversation_cta_click", path: PAGE, link: "hero:/contact#financing", utm_source: "linkedin", utm_campaign: "chrp-q4", utm_content: "me@example.org", email: "a@b.org", ip: "1.2.3.4", wallet: "0xabc", name: "Jane" };
+  let r = await onRequestPost({ request: req(ok), env });
+  check("endpoint stores one data point: event, path, link id and UTM tags only, plus the time", r.status === 204 && points.length === 1 &&
+    JSON.stringify(points[0].blobs) === JSON.stringify(["conversation_cta_click", PAGE, "hero:/contact#financing", "linkedin", "", "chrp-q4", "", ""]) &&
+    JSON.stringify(points[0].indexes) === '["conversation_cta_click"]' && points[0].doubles.length === 1 && Math.abs(points[0].doubles[0] - Date.now()) < 5000,
+    JSON.stringify(points));
+  check("endpoint never persists an email address, IP, wallet or name (a UTM tag containing @ is dropped whole)", !JSON.stringify(points).match(/@|example|1\.2\.3\.4|0xabc|Jane/));
+  const before = points.length;
+  const cases = [
+    ["an unknown event", req({ ...ok, event: "invest_click" }), 400], ["another page", req({ ...ok, path: "/contact" }), 400],
+    ["a cross-origin post", req(ok, { origin: "https://evil.example" }), 403], ["a form post", req("event=x", { "content-type": "application/x-www-form-urlencoded" }), 415],
+    ["an oversized body", req({ ...ok, pad: "x".repeat(3000) }), 413], ["invalid JSON", req("{"), 400],
+  ];
+  for (const [label, request, want] of cases) { r = await onRequestPost({ request, env }); check(`endpoint refuses ${label} (${want}) and stores nothing`, r.status === want && points.length === before, String(r.status)); }
+  r = await onRequestPost({ request: req({ ...ok, link: "hero:mailto:someone" }), env });
+  check("endpoint drops a link identifier that is not a plain path/placement", r.status === 204 && points[points.length - 1].blobs[2] === "", JSON.stringify(points[points.length - 1]));
+  r = await onRequestPost({ request: req(ok), env: {} });
+  check("endpoint without the NWPT_EVENTS binding answers 503 and stores nothing", r.status === 503);
+  check("endpoint answers 405 to other methods", (await onRequest()).status === 405);
+}
 
 // ---- served
 const srv = await serve(dir);
@@ -88,14 +134,15 @@ try {
   // ---- analytics
   {
     const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } }); await stub(ctx);
-    const pg = await ctx.newPage(); const offsite = [];
+    const pg = await ctx.newPage(); const offsite = [], beacons = [];
+    pg.on("request", (r) => { if (r.url() === srv.base + "/api/event" && r.method() === "POST") beacons.push(r.postData() || ""); });
     pg.on("request", (r) => { if (!r.url().startsWith(srv.base) && !/^https:\/\/fonts\.(googleapis|gstatic)\.com\//.test(r.url())) offsite.push(r.url()); });
-    await pg.goto(srv.base + PAGE + "?utm_source=linkedin&utm_medium=social&utm_campaign=chrp-q4&email=a%40b.org&wallet=0xabc", { waitUntil: "load" });
+    await pg.goto(srv.base + PAGE + "?utm_source=linkedin&utm_medium=social&utm_campaign=chrp-q4&utm_content=me%40example.org&email=a%40b.org&wallet=0xabc", { waitUntil: "load" });
     await pg.evaluate(() => document.addEventListener("click", (e) => { if (e.target.closest("a")) e.preventDefault(); }));
     const ev = () => pg.evaluate(() => (window.nwptAnalytics || []).map((e) => ({ ...e })));
     let e = await ev();
     check("funding_digital_page_view fires once with the UTM cohort and without other query data",
-      e.length === 1 && e[0].event === "funding_digital_page_view" && e[0].utm_source === "linkedin" && e[0].utm_campaign === "chrp-q4" && !JSON.stringify(e).includes("a@b") && !JSON.stringify(e).includes("0xabc"), JSON.stringify(e));
+      e.length === 1 && e[0].event === "funding_digital_page_view" && e[0].utm_source === "linkedin" && e[0].utm_campaign === "chrp-q4" && !e[0].utm_content && !JSON.stringify(e).includes("a@b") && !JSON.stringify(e).includes("example") && !JSON.stringify(e).includes("0xabc"), JSON.stringify(e));
     const cta = await pg.getAttribute('.dpf-hero a[data-track="conversation_cta_click"]', "href");
     check("UTM cohort is carried onto the page's internal CTA links (and nothing else from the query)", /utm_source=linkedin/.test(cta) && /#financing$/.test(cta) && !/email|wallet/.test(cta), cta);
     for (const [sel, name] of [['.dpf-hero a[data-track="conversation_cta_click"]', "conversation_cta_click"], ['.dpf-objective a[data-track="funding_use_click"]', "funding_use_click"],
@@ -115,10 +162,31 @@ try {
     check("events carry only event, page, time, UTM tags and placement fields (no identity, wallet or health data)", keys.every((k) => ["event", "page", "ts", "cta", "target", "faq", "section", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].includes(k)), keys.join(","));
     const names = [...new Set(e.map((x) => x.event))].sort();
     check("all eight specified events are implemented", JSON.stringify(names) === JSON.stringify(["architecture_section_view", "conversation_cta_click", "desci_click", "evidence_click", "faq_expand", "funding_digital_page_view", "funding_use_click", "programme_financing_cta_click"]), names.join(","));
-    check("analytics send nothing off the site (only the site-wide Google Fonts stylesheet leaves the origin)", !offsite.length, offsite.join(" "));
+    await pg.waitForTimeout(400);
+    const posts = beacons.map((x) => { try { return JSON.parse(x); } catch { return { bad: x }; } });
+    check("every event is sent to the first-party /api/event with only event, path, link identifier and UTM tags (no email, even from a tagged link)",
+      posts.length === e.length && posts.every((x) => Object.keys(x).every((k) => ["event", "path", "link", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].includes(k)) && x.path === PAGE) && !beacons.join(" ").includes("@") && posts.some((x) => /^hero:\/contact(\.html)?#financing$/.test(x.link)) && posts.some((x) => x.link === "faq:ten-million"),
+      `${posts.length} vs ${e.length}: ${beacons.slice(0, 3).join(" ")}`);
+    check("custom analytics never leave the site (only the site-wide Google Fonts stylesheet leaves the origin)", !offsite.length, offsite.join(" "));
     await pg.goto(srv.base + PAGE, { waitUntil: "load" }); e = await ev();
     check("UTM cohort persists for the tab session after navigation without tags", e[0].utm_source === "linkedin", JSON.stringify(e[0]));
     await ctx.close();
+  }
+  for (const [label, init] of [["Global Privacy Control", () => Object.defineProperty(Navigator.prototype, "globalPrivacyControl", { get: () => true })], ["Do Not Track", () => Object.defineProperty(Navigator.prototype, "doNotTrack", { get: () => "1" })]]) {
+    const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } }); await stub(ctx); await ctx.addInitScript(init);
+    const pg = await ctx.newPage(); const sent = [];
+    pg.on("request", (r) => { if (r.url() === srv.base + "/api/event") sent.push(r.url()); });
+    await pg.goto(srv.base + PAGE, { waitUntil: "load" });
+    await pg.evaluate(() => document.addEventListener("click", (e) => { if (e.target.closest("a")) e.preventDefault(); }));
+    await pg.locator('.dpf-hero a[data-track="conversation_cta_click"]').click(); await pg.waitForTimeout(300);
+    const q = await pg.evaluate(() => window.nwptAnalytics.length);
+    check(`${label}: nothing is sent to /api/event (events stay in the page only)`, !sent.length && q === 2, `${sent.length} ${q}`);
+    await ctx.close();
+  }
+  {
+    const r = await fetch(srv.base + "/api/event", { method: "POST", headers: { "content-type": "application/json", origin: srv.base }, body: JSON.stringify({ event: "funding_digital_page_view", path: PAGE }) });
+    const g = await fetch(srv.base + "/api/event");
+    check("served /api/event: without its Analytics Engine binding it stores nothing and answers 503; GET is 405", r.status === 503 && g.status === 405, `${r.status} ${g.status}`);
   }
 
   // ---- layout, CLS, accessibility at desktop, phone, landscape and 200% text
