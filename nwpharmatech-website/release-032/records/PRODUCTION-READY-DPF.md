@@ -4,7 +4,8 @@
 
 **Start candidate (NWPT-055):** `4e7ca63502983c05a5c735e1b03513640b18675d`
 **Live parent already on www for `/programme-financing`:** `1406893ad9b6c02f2e7d7aaa7dc4b84bd36449c8`
-**Publish tip:** branch `cursor/nwpt-dpf-production-ready-09f3` HEAD. The full SHA is the commit that introduces this file; the pull request repeats it. Deploy that SHA, not `4e7ca635` alone.
+**Site commit (privacy, eligibility sentence, tests):** `15e38f117653603be24028a3747103f2ac36b7a9`
+**Publish tip:** HEAD of `cursor/nwpt-dpf-production-ready-09f3`. That commit’s parent is `15e38f117653603be24028a3747103f2ac36b7a9`. The pull request states the full HEAD SHA. Publish HEAD, not `4e7ca635` alone. The pages are the same in both commits; HEAD only stamps this SHA line.
 
 `/programme-financing` is unchanged in body copy. This tip is `1406893` plus the NWPT-055 page plus the two production fixes below, in one tree.
 
