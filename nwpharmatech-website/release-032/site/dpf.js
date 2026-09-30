@@ -144,10 +144,10 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
-  drawFlow();
+  onScroll();   // first draw in the next frame, not as a forced layout during start-up
 
   // ---- reveal cards that start below the fold (nothing already on screen is hidden, so nothing flashes)
-  if (motion && "IntersectionObserver" in window) {
+  if (motion && "IntersectionObserver" in window) window.requestAnimationFrame(function () {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
@@ -160,7 +160,7 @@
       el.style.transitionDelay = (i % 3) * 70 + "ms";
       io.observe(el);
     });
-  }
+  });
 
   if (reduce.addEventListener) {
     reduce.addEventListener("change", function () {
