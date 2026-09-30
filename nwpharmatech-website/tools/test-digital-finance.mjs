@@ -25,6 +25,8 @@ const LOCKS = [
   "You cannot invest, pay or connect a wallet here.",
   "Any future economic rights would exist only under appropriate definitive private documentation, eligibility checks and applicable law.",
   "There is no tokenholder clinical governance.", "Nothing here promises liquidity, appreciation",
+  "Eligibility criteria remain within the sponsor-approved protocol.",
+  "Individual participant eligibility is determined by investigators/sites under the protocol and applicable oversight.",
   "Exploratory programme architecture. Not an offer or solicitation.",
   "Exploratory information only. No investment, token or allocation is being offered through this website.",
   "Transparent financing does not mean decentralised clinical governance.",
@@ -51,16 +53,37 @@ check("all six use-of-capital categories are shown without amounts", ["Clinical 
 check("status panel carries only statements already on this website (no live data claims)", ["Proposed next clinical study", "Not established", "Private conversations", "Under evaluation", "Not enabled", "NWPharmaTech"].every((v) => text.includes(v)) && /As stated on this website · last reviewed 30 September 2026/.test(text));
 check("no public data room", /No public data room/.test(text) && !/data-room|dataroom/i.test(main.replace('data-faq="data-room"', "")));
 check("one h1", (main.match(/<h1\b/g) || []).length === 1);
+check("bare Patient eligibility label is gone; Filipp's participant-eligibility sentence is used", !/\bPatient eligibility\b/.test(text) && !/\bpatient eligibility\b/.test(text) && (text.match(/Individual participant eligibility is determined by investigators\/sites under the protocol and applicable oversight\./g) || []).length >= 3);
 
 // ---- isolation: every other change since the base is additive (menu entry, cross-links, sitemap)
 const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], { cwd: dir, encoding: "utf8" }).trim(); const rel = path.relative(repo, dir);
 const numstat = execFileSync("git", ["diff", "--numstat", BASE, "--", rel], { cwd: repo, encoding: "utf8" }).trim().split("\n").filter(Boolean).map((l) => l.split("\t"));
-const removed = numstat.filter(([, d]) => d !== "0" && d !== "-").map((x) => x[2]);
-check("existing site files only gain lines (nothing removed or rewritten)", !removed.length, removed.join(" "));
-const NEW = ["dpf.css", "dpf.js", "funding"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
-const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel, ...NEW], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
+const carve = new Set([`${rel}/privacy.html`, `${rel}/sitemap.xml`, `${rel}/dpf.css`]);
+const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !carve.has(f)).map((x) => x[2]);
+check("existing site files only gain lines, aside from the privacy notice, its sitemap date and dpf.css", !removed.length, removed.join(" "));
+const NEW = ["dpf.css", "dpf.js", "funding", "privacy.html"].map((f) => `:(exclude)${rel}/${f}`);   // page files, plus the privacy notice
+const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel, ...NEW, `:(exclude)${rel}/sitemap.xml`], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
 const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$/.test(l));
-check("every added line is the menu entry, a cross-link or the sitemap entry", !unexpected.length, unexpected.slice(0, 5).join(" || "));
+check("every added line outside privacy, dpf.css and the sitemap is the menu entry or a cross-link", !unexpected.length, unexpected.slice(0, 5).join(" || "));
+const sm = execFileSync("git", ["diff", "-U0", BASE, "--", `${rel}/sitemap.xml`], { cwd: repo, encoding: "utf8" }).split("\n");
+const smAdded = sm.filter((l) => l.startsWith("+") && !l.startsWith("+++"));
+const smRemoved = sm.filter((l) => l.startsWith("-") && !l.startsWith("---"));
+check("sitemap adds digital programme finance and moves only the privacy lastmod to 2026-09-30",
+  smAdded.length === 2 && smAdded.some((l) => l.includes("/funding/digital-programme-finance")) && smAdded.some((l) => l.includes("privacy.html") && l.includes("2026-09-30")) && smRemoved.length === 1 && /privacy\.html<\/loc><lastmod>2026-09-26/.test(smRemoved[0]),
+  smAdded.concat(smRemoved).join(" || "));
+const priv = fs.readFileSync(path.join(dir, "privacy.html"), "utf8");
+const pflat = flat(priv);
+for (const t of [
+  "window.nwptAnalytics", "nwpt:analytics", "sessionStorage", "nwpt-utm",
+  "They are not sent to NWPharmaTech and they are not sent to any other party.",
+  "Events stay on this website until a sink is approved and this notice is updated to name it. No sink is attached.",
+  "The page does not read wallet, health or identity data.",
+  "Last updated: 26 September 2026.",
+  "Digital programme finance browser events described: 30 September 2026.",
+]) check(`privacy notice: ${t.slice(0, 72)}`, pflat.includes(t));
+check("privacy notice names no third-party analytics vendor or sink", !/Google Analytics|googletagmanager|gtag\(|Zaraz|Meta Pixel|Segment|Mixpanel|Plausible|PostHog|facebook\.net/i.test(priv));
+const dpfJs = fs.readFileSync(path.join(dir, "dpf.js"), "utf8");
+check("analytics stay on-origin: no fetch, beacon or third-party host in dpf.js", !/\bfetch\s*\(|sendBeacon|XMLHttpRequest|google-analytics|googletagmanager|zaraz|plausible|segment\.com|mixpanel|posthog/i.test(dpfJs));
 const pages = execFileSync("git", ["ls-files", "--", rel], { cwd: repo, encoding: "utf8" }).split("\n").filter((f) => f.endsWith(".html"));
 const noEntry = pages.filter((f) => { const s = fs.readFileSync(path.join(repo, f), "utf8"); return s.includes(">Programme financing</a></li>") && !s.includes(">Digital programme finance</a></li>"); });
 check("every page with the Funding menu lists Digital programme finance", !noEntry.length, noEntry.join(" "));

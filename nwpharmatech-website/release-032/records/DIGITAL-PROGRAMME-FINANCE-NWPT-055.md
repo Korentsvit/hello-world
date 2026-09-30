@@ -1,5 +1,7 @@
 # NWPT-055 Digital programme finance (`/funding/digital-programme-finance`) — preview candidate
 
+> **30 September 2026.** Board approved the follow-up in `PRODUCTION-READY-DPF.md`. That tip updates the privacy notice for the no-send analytics layer and replaces the bare “Patient eligibility” label. Publish that tip. Do not attach an analytics sink. The notes below describe the `4e7ca635` preview candidate.
+
 - **Base:** `1406893` (`cursor/programme-financing-journey-2e1f`, “Add the programme-financing journey beside funding use”). That commit sits on current production `5591bede` and is itself **not yet published**. It is the only place `/programme-financing` exists, and the brief treats that route as existing. This candidate therefore carries `/programme-financing` with it. If that page should ship separately, publish `1406893` first or review both together.
 - **Branch:** `claude/nwpt-digital-programme-finance`.
 - **Status:** preview only; not deployed. Web Boss owns hosting. Enquiries, updates, privacy and DNS are unchanged.

@@ -228,6 +228,7 @@
 .dpf-layer--spo li::before { background: var(--dpf-cyan); border-radius: 1px; }
 .dpf-cols { columns: 2; column-gap: 1.5rem; }
 .dpf-cols li { break-inside: avoid; }
+.dpf-cols__full { column-span: all; margin-top: 0.75rem; }
 .dpf-shield { width: 0.8rem; height: 0.9rem; background: var(--dpf-cyan); clip-path: polygon(50% 0, 100% 18%, 100% 55%, 50% 100%, 0 55%, 0 18%); }
 
 /* 4 · split */
