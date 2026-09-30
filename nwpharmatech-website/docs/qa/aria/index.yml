@@ -1,0 +1,173 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is awaiting review and approval.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: /faq#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: /
+    - text: nw pharmatech
+  - button "Menu"
+- main:
+  - paragraph: Research programme · Clinical high risk of psychosis
+  - heading "Careful research for people at clinical high risk of psychosis" [level=1]
+  - paragraph: We are developing NWPT-SM32300, an investigational oral cannabidiol medicine, and planning a Phase 2B study. Whether it helps is not yet known. Finding out is the purpose of the research.
+  - link "Read the programme brief":
+    - /url: "#programme-brief"
+  - link "For young people and families":
+    - /url: /families
+  - figure "Conceptual visualization for scientific communication.":
+    - img "Conceptual scientific visualization of neural circuitry within a human brain."
+    - text: Conceptual visualization for scientific communication.
+  - region "The programme at a glance":
+    - paragraph: Programme brief
+    - heading "The programme at a glance" [level=2]
+    - paragraph: NWPharmaTech presents our research programme for people at clinical high risk of psychosis, explaining the clinical need, the science and the people behind it.
+    - paragraph:
+      - text: The programme centres on
+      - strong: NWPT-SM32300
+      - text: ", an investigational oral cannabidiol formulation, and a planned"
+      - strong: Phase 2B study
+      - text: evaluating dose response, symptoms, safety and tolerability.
+    - paragraph:
+      - text: "A financing route for the programme is under evaluation: platform-integrated financing is the preferred path, with a conventional register-first placement as the fallback ("
+      - link "funding and use of funds":
+        - /url: /funding-use
+      - text: ). Clinical decisions remain independent of financing, and the effectiveness of NWPT-SM32300 is unproven.
+    - link "Download the brief (PDF, 2 pages, 67 KB)":
+      - /url: /downloads/nwpharmatech-programme-brief.pdf
+    - link "Study progress and evidence":
+      - /url: /study
+    - paragraph: Brief updated 23 September 2026.
+  - region "The programme in 90 seconds":
+    - heading "The programme in 90 seconds" [level=2]
+    - list:
+      - listitem:
+        - paragraph: 1 · The clinical need
+        - heading "Young people at risk, with no licensed medicine" [level=3]
+        - paragraph:
+          - text: Some young people who seek help meet criteria for clinical high risk of psychosis. Kaplan–Meier estimates from an updated meta-analysis suggest that about one in four may develop psychosis within about three years; most do not.
+          - 'link "Source: Salazar de Pablo et al. 2021"':
+            - /url: /evidence#ref-salazar-2021
+        - paragraph:
+          - link "Clinical need":
+            - /url: /clinical-need
+      - listitem:
+        - paragraph: 2 · The investigational candidate
+        - heading "NWPT-SM32300" [level=3]
+        - paragraph: A 300 mg oral softgel capsule of highly purified cannabidiol, in a self-emulsifying (micellar) lipid formulation. It is investigational; not approved by any medicines regulator for any use.
+        - paragraph:
+          - link "Science and formulation":
+            - /url: /science
+      - listitem:
+        - paragraph: 3 · The planned study
+        - heading "A Phase 2B study in clinical high risk" [level=3]
+        - paragraph: Planned to evaluate dose response, symptoms, safety and tolerability in people at clinical high risk of psychosis.
+        - paragraph:
+          - 'link "The study: progress and evidence"':
+            - /url: /study
+      - listitem:
+        - paragraph: 4 · Current status
+        - heading "Phase 1 completed; Phase 2B planned" [level=3]
+        - paragraph: The Phase 1 study in healthy volunteers was completed on 10 December 2025. The Phase 2B study is not recruiting. Protocol being finalised.
+        - paragraph:
+          - link "Milestones and sources":
+            - /url: /study#milestones
+  - region "How we label what is known":
+    - heading "How we label what is known" [level=2]
+    - paragraph: Research sections carry one of these labels, so you can see how firm the evidence is.
+    - list "Strength of evidence":
+      - listitem: Established
+      - listitem: Emerging evidence
+      - listitem: Open question
+    - paragraph: Programme information Facts about our own studies, not a grade of evidence.
+    - paragraph:
+      - link "What each label means":
+        - /url: /evidence#labels
+  - region "Latest programme update":
+    - heading "Latest programme update" [level=2]
+    - article:
+      - paragraph:
+        - time: 30 March 2026
+        - text: · Operational
+      - heading "Phase 1 analysis outputs delivered" [level=3]
+      - paragraph: The statistical and pharmacokinetic analysis outputs for the Phase 1 study were delivered.
+      - paragraph:
+        - link "All programme updates":
+          - /url: /updates
+    - complementary:
+      - heading "Independent clinical decisions" [level=3]
+      - paragraph: Clinical decisions, such as study design, eligibility and safety, are kept independent of funding and financing. Each study needs approval from a medicines regulator and a research ethics committee before it can start.
+      - paragraph:
+        - link "People and governance":
+          - /url: /team
+  - region "Funding and financing":
+    - heading "Funding and financing" [level=2]
+    - paragraph: "We are evaluating a platform-supported route for eligible investors to help finance the CHR-P research programme, including a permissioned digital record of participation at closing where that proves feasible. If a platform path cannot meet legal, operational or investor-access requirements, a conventional private placement with a legal investor register remains the fallback. These are development objectives, not live offering terms. Neither path is available on this website: production investment, payment and token issuance remain inactive. Community updates and discussion are separate from any regulated investment process."
+    - paragraph:
+      - link "How funding works and how progress is reported":
+        - /url: /funding-use
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: /clinical-need
+    - listitem:
+      - link "Science and formulation":
+        - /url: /science
+    - listitem:
+      - link "Evidence library":
+        - /url: /evidence
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: /study
+    - listitem:
+      - link "Phase 1 study":
+        - /url: /phase-1
+    - listitem:
+      - link "For young people and families":
+        - /url: /families
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: /team
+    - listitem:
+      - link "Newsroom":
+        - /url: /newsroom
+    - listitem:
+      - link "Funding and financing":
+        - /url: /funding-use
+    - listitem:
+      - link "Questions and answers":
+        - /url: /faq
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: /legal
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: /faq#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: /legal
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

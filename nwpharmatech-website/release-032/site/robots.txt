@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /portal.html
+Disallow: /docs.html
+Disallow: /portal/
+Disallow: /admin/
+Disallow: /sandbox/
+
+Sitemap: https://www.nwpharmatech.org/sitemap.xml

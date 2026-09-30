@@ -1,0 +1,438 @@
+{
+  "_doc": "Single source for repeated facts. Pages use {{fact:id}}. Fields: value (public text), public (may appear on public pages), source (id in sources.json), verification (document | primary | registry-index | index | unconfirmed), as_of (ISO date the fact applies to), review (INTERNAL, never rendered). Production builds fail if a public page uses a fact whose verification is 'unconfirmed', or 'index'/'registry-index' without accept_for_production: true.",
+  "verification_levels": {
+    "document": "Taken from a company record (study data, company document). Authoritative for what the company did; not independent verification.",
+    "primary": "Checked against the original publication, registry or official page.",
+    "registry-index": "Checked against registry content via search-engine summaries; registry page not opened.",
+    "index": "Checked via search-engine summaries of publisher/PubMed/official pages; primary page not opened.",
+    "unconfirmed": "Not verified. Must not appear on a public page."
+  },
+  "facts": {
+    "site.as_of": {
+      "value": "23 September 2026",
+      "public": true,
+      "source": "brief-2026-09",
+      "verification": "document",
+      "as_of": "2026-09-23"
+    },
+    "company.name": {
+      "value": "NWPharmaTech Ltd",
+      "public": true,
+      "source": "companies-house",
+      "verification": "index",
+      "as_of": "2026-09-23",
+      "review": "Registered as NWPHARMATECH LTD. Sponsor field and signatures use 'NW PharmaTech Ltd'."
+    },
+    "company.number": {
+      "value": "13572461",
+      "public": true,
+      "source": "companies-house",
+      "verification": "index",
+      "as_of": "2026-09-23"
+    },
+    "company.jurisdiction": {
+      "value": "England and Wales",
+      "public": true,
+      "source": "companies-house",
+      "verification": "index",
+      "as_of": "2026-09-23",
+      "review": "Inferred from number format (no SC/NI prefix); confirm on the register page."
+    },
+    "company.registered_office": {
+      "value": "Kemp House, 160 City Road, London EC1V 2NX",
+      "public": true,
+      "source": "companies-house",
+      "verification": "index",
+      "as_of": "2026-09-23"
+    },
+    "company.head_office": {
+      "value": "5 Wisely Court, 37 Beaufort Gardens, London SW3 1PW",
+      "public": true,
+      "source": "signature-2026",
+      "verification": "document",
+      "as_of": "2026-07-14",
+      "review": "Spelling 'Wisely' vs 'Wisley' (planning register) unresolved."
+    },
+    "company.phone_display": {
+      "value": "+44 20 3693 3791",
+      "public": true,
+      "source": "signature-2026",
+      "verification": "document",
+      "as_of": "2026-07-14"
+    },
+    "company.phone_tel": {
+      "value": "+442036933791",
+      "public": true,
+      "source": "signature-2026",
+      "verification": "document",
+      "as_of": "2026-07-14"
+    },
+    "product.name": {
+      "value": "NWPT-SM32300",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07"
+    },
+    "product.dev_code": {
+      "value": "NW300EMCBD",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "product.form": {
+      "value": "oral softgel capsule",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07"
+    },
+    "product.strength": {
+      "value": "300 mg",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07"
+    },
+    "product.api": {
+      "value": "highly purified cannabidiol",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07"
+    },
+    "product.formulation": {
+      "value": "self-emulsifying (micellar) lipid formulation",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07",
+      "review": "Teaser: '32%-loading SEDDS', 'self-emulsifying micellar delivery'. Loading % not published pending CMC confirmation."
+    },
+    "product.formulation_partner": {
+      "value": "University of Toronto",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07"
+    },
+    "product.manufacturer": {
+      "value": "Thermo Fisher Scientific",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07",
+      "review": "Teaser: 'cGMP via Thermo Fisher (Patheon)'; Feb 2026 letter: GMP."
+    },
+    "product.thc": {
+      "value": "THC is not detected at the sensitivity of the validated test method",
+      "public": true,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07"
+    },
+    "product.capsule_gelatine": {
+      "value": "gelatine of bovine origin",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "product.status": {
+      "value": "investigational; not approved by any medicines regulator for any use",
+      "public": true,
+      "source": "brief-2026-09",
+      "verification": "document",
+      "as_of": "2026-09-23"
+    },
+    "phase1.title": {
+      "value": "A Phase 1 study to assess the safety and pharmacokinetics of novel cannabidiol (CBD) soft-gel capsule formulation (NW300EMCBD) in healthy subjects",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "phase1.nct": {
+      "value": "NCT07186283",
+      "public": true,
+      "source": "ctgov-nct07186283",
+      "verification": "registry-index",
+      "as_of": "2026-09-23"
+    },
+    "phase1.nct_url": {
+      "value": "https://clinicaltrials.gov/study/NCT07186283",
+      "public": true,
+      "source": "ctgov-nct07186283",
+      "verification": "registry-index",
+      "as_of": "2026-09-23"
+    },
+    "phase1.isrctn": {
+      "value": "ISRCTN25163383",
+      "public": true,
+      "source": "isrctn-25163383",
+      "verification": "registry-index",
+      "as_of": "2026-09-23"
+    },
+    "phase1.isrctn_url": {
+      "value": "https://www.isrctn.com/ISRCTN25163383",
+      "public": true,
+      "source": "isrctn-25163383",
+      "verification": "registry-index",
+      "as_of": "2026-09-23"
+    },
+    "phase1.sponsor": {
+      "value": "NWPharmaTech Ltd",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "phase1.population": {
+      "value": "14 healthy adult volunteers aged 18 to 55",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "phase1.n": {
+      "value": "14",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "phase1.design": {
+      "value": "randomised, open-label, three-period crossover",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "phase1.treatments": {
+      "value": "single oral doses of NWPT-SM32300 600 mg and 900 mg, and the licensed cannabidiol oral solution Epidyolex as comparator",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20",
+      "review": "Epidyolex dose recorded as 12 (mg/kg), frequency TWICE in TS; confirm wording from protocol before publishing the comparator dose."
+    },
+    "phase1.location": {
+      "value": "one clinical research unit in Leeds, United Kingdom",
+      "public": true,
+      "source": "isrctn-25163383",
+      "verification": "registry-index",
+      "as_of": "2026-09-23"
+    },
+    "phase1.first_consent": {
+      "value": "27 August 2025",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2025-08-27",
+      "review": "TS SSTDTC 2025-08-26; informed-consent records 2025-08-27; ClinicalTrials.gov start 22 Sep 2025. Unresolved."
+    },
+    "phase1.first_consent_iso": {
+      "value": "2025-08-27",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2025-08-27"
+    },
+    "phase1.end": {
+      "value": "10 December 2025",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2025-12-10"
+    },
+    "phase1.end_iso": {
+      "value": "2025-12-10",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2025-12-10"
+    },
+    "phase1.db_lock": {
+      "value": "11 March 2026",
+      "public": true,
+      "source": "tfl-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-11"
+    },
+    "phase1.db_lock_iso": {
+      "value": "2026-03-11",
+      "public": true,
+      "source": "tfl-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-11"
+    },
+    "phase1.outputs_delivered": {
+      "value": "30 March 2026",
+      "public": true,
+      "source": "tfl-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-30"
+    },
+    "phase1.outputs_delivered_iso": {
+      "value": "2026-03-30",
+      "public": true,
+      "source": "tfl-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-30"
+    },
+    "phase1.status": {
+      "value": "Completed",
+      "public": true,
+      "source": "ctgov-nct07186283",
+      "verification": "registry-index",
+      "as_of": "2026-09-23"
+    },
+    "phase1.results_status": {
+      "value": "Results have not been published yet.",
+      "public": true,
+      "source": "tfl-2026-03",
+      "verification": "document",
+      "as_of": "2026-09-23"
+    },
+    "phase1.sampling": {
+      "value": "blood samples for up to 192 hours (8 days) after each dose",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "phase1.interval": {
+      "value": "about 25 days between doses",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20",
+      "review": "Visit days 1, 26 and 51 (TV domain)."
+    },
+    "phase1.length": {
+      "value": "about 105 days per participant, including screening and follow-up",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20"
+    },
+    "phase1.dmc": {
+      "value": "no data monitoring committee",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20",
+      "review": "TS DMCIND = N. No general claim about whether a committee is usual is made: none is sourced."
+    },
+    "phase2b.population": {
+      "value": "people at clinical high risk of psychosis",
+      "public": true,
+      "source": "brief-2026-09",
+      "verification": "document",
+      "as_of": "2026-09-23"
+    },
+    "phase2b.aims": {
+      "value": "dose response, symptoms, safety and tolerability",
+      "public": true,
+      "source": "brief-2026-09",
+      "verification": "document",
+      "as_of": "2026-09-23"
+    },
+    "phase2b.status": {
+      "value": "Planned. Not recruiting.",
+      "public": true,
+      "source": "brief-2026-09",
+      "verification": "document",
+      "as_of": "2026-09-23"
+    },
+    "phase2b.protocol_status": {
+      "value": "Protocol being finalised",
+      "public": true,
+      "source": "update-2026-02",
+      "verification": "document",
+      "as_of": "2026-02-23",
+      "review": "Last documented status is Feb 2026; confirm it is still current."
+    },
+    "phase2b.regions": {
+      "value": "UK and Europe",
+      "public": false,
+      "source": "update-2026-02",
+      "verification": "document",
+      "as_of": "2026-02-23",
+      "review": "Plan in a private letter; Aug 2026 teaser focuses on a US acute schizophrenia study. Not published."
+    },
+    "phase2b.doses": {
+      "value": "",
+      "public": false,
+      "source": "brief-2026-09-b",
+      "verification": "unconfirmed",
+      "as_of": "",
+      "review": "Instruction refers to a proposed 300/600/900 mg range from a CHR-P design source that has not been supplied. Do not publish until the source is provided."
+    },
+    "evidence.transition_3y": {
+      "value": "about one in four",
+      "public": true,
+      "source": "verification-2026-09-23",
+      "verification": "index",
+      "as_of": "2021-07-14",
+      "review": "Salazar de Pablo 2021, JAMA Psychiatry abstract: pooled estimate 25% at 3 years (this summary). The separate Kaplan–Meier series is 8/14/20/27/35% at 6 months/1/2/3/10 years; the two are never combined (management correction, 26 Sep 2026, superseding NWPT-031 C1)."
+    },
+    "funding.expenditure_to_date": {
+      "value": "approximately US$5 million",
+      "public": false,
+      "source": "update-2026-02",
+      "verification": "document",
+      "as_of": "2026-02-23",
+      "review": "Company-reported capital invested; unaudited; not approved for publication."
+    },
+    "funding.planning_target": {
+      "value": "US$35 million Series A",
+      "public": false,
+      "source": "teaser-2026-08",
+      "verification": "document",
+      "as_of": "2026-08-07",
+      "review": "Supersedes US$50 million target in Feb 2026 letter. A planning target, not committed funding. Not approved for publication; potential financial promotion."
+    },
+    "funding.committed": {
+      "value": "",
+      "public": false,
+      "source": null,
+      "verification": "unconfirmed",
+      "as_of": "",
+      "review": "Not supplied."
+    },
+    "funding.cash_received": {
+      "value": "",
+      "public": false,
+      "source": null,
+      "verification": "unconfirmed",
+      "as_of": "",
+      "review": "Not supplied."
+    },
+    "evidence.check_method": {
+      "value": "Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages.",
+      "public": true,
+      "source": "verification-2026-09-23b",
+      "verification": "document",
+      "as_of": "2026-09-23",
+      "review": "Update to 'checked against the original publications' once primary verification is recorded."
+    },
+    "phase1.eligibility_summary": {
+      "value": "Participants were in good health and were not taking regular medicines. People with a history of mental disorder, cannabis use in the 28 days before screening, or abnormal liver tests were not eligible.",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20",
+      "review": "SDTM TI domain: IC1, IC5 (healthy), EC4 (regular medication within 28 days), EC10 (history of mental disorder), EC2 (cannabis products within 28 days), EC5 (abnormal liver tests)."
+    },
+    "phase1.meal": {
+      "value": "a standardised high-fat, high-calorie meal",
+      "public": true,
+      "source": "sdtm-ts-2026-03",
+      "verification": "document",
+      "as_of": "2026-03-20",
+      "review": "SDTM TI domain IC4: 'consuming the protocol specified high-fat, high-calorie meal in 30 minutes'. The protocol's reason for the meal is not in the record; do not state one."
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "_example": "Illustrative structure only. All values are fictional placeholders and must not be published.",
+  "title": "Programme report: Q_ YYYY",
+  "period": "DD Month YYYY to DD Month YYYY",
+  "published": "YYYY-MM-DD",
+  "changed": "…",
+  "support": "…",
+  "unresolved": "…",
+  "next": "…",
+  "review": {"scientific": "name, date", "editorial": "name, date", "approved": "name, date"}
+}

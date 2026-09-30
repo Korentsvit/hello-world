@@ -1,0 +1,153 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is awaiting review and approval.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: /faq#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: /
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "About":
+  - text: About
+  - list:
+    - listitem:
+      - link "People":
+        - /url: /team
+    - listitem:
+      - link "Funding and financing":
+        - /url: /funding-use
+    - listitem:
+      - link "Newsroom":
+        - /url: /newsroom
+    - listitem:
+      - link "Questions and answers":
+        - /url: /faq
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: /legal
+- main:
+  - paragraph: About
+  - heading "Newsroom" [level=1]
+  - paragraph: Key facts for journalists and others writing about the programme, how we report progress, and how we correct mistakes.
+  - region "Press kit":
+    - heading "Press kit" [level=2]
+    - heading "About us" [level=3]
+    - paragraph: NWPharmaTech Ltd is a UK company developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis. A Phase 1 study in healthy volunteers (NCT07186283) was completed on 10 December 2025; a Phase 2B study is planned. NWPT-SM32300 is not approved for any use and its effectiveness is unproven.
+    - table "Fact sheet (as of 23 September 2026)":
+      - caption: Fact sheet (as of 23 September 2026)
+      - rowgroup:
+        - row "Company NWPharmaTech Ltd, company number 13572461, England and Wales":
+          - rowheader "Company"
+          - cell "NWPharmaTech Ltd, company number 13572461, England and Wales"
+        - 'row "Investigational medicine NWPT-SM32300: 300 mg oral softgel capsule of highly purified cannabidiol"':
+          - rowheader "Investigational medicine"
+          - 'cell "NWPT-SM32300: 300 mg oral softgel capsule of highly purified cannabidiol"'
+        - row "Regulatory status investigational; not approved by any medicines regulator for any use":
+          - rowheader "Regulatory status"
+          - cell "investigational; not approved by any medicines regulator for any use"
+        - row "Completed study Phase 1, 14 healthy adult volunteers aged 18 to 55; NCT07186283, ISRCTN25163383; completed 10 December 2025":
+          - rowheader "Completed study"
+          - cell "Phase 1, 14 healthy adult volunteers aged 18 to 55; NCT07186283, ISRCTN25163383; completed 10 December 2025"
+        - 'row "Planned study Phase 2B in people at clinical high risk of psychosis: Planned. Not recruiting."':
+          - rowheader "Planned study"
+          - 'cell "Phase 2B in people at clinical high risk of psychosis: Planned. Not recruiting."'
+        - row "Media contact +44 20 3693 3791 (head office)":
+          - rowheader "Media contact"
+          - cell "+44 20 3693 3791 (head office)"
+    - complementary:
+      - heading "Downloads" [level=3]
+      - list:
+        - listitem:
+          - link "Programme brief (PDF, 2 pages, 67 KB)":
+            - /url: /downloads/nwpharmatech-programme-brief.pdf
+        - listitem:
+          - link "References (RIS)":
+            - /url: /downloads/nwpharmatech-references.ris
+      - heading "When writing about the programme" [level=3]
+      - paragraph: Please describe NWPT-SM32300 as investigational, and do not describe it as a treatment or cure. Results from other cannabidiol products are not results for NWPT-SM32300.
+      - paragraph:
+        - text: "Media enquiries:"
+        - link "contact details":
+          - /url: /contact
+        - text: .
+  - region "Progress":
+    - heading "Progress" [level=2]
+    - paragraph:
+      - text: Dated events are listed on the
+      - link "updates page":
+        - /url: /updates
+      - text: ", and study milestones with their sources on the"
+      - link "study page":
+        - /url: /study#milestones
+      - text: . No programme reports have been published.
+  - region "Corrections log":
+    - heading "Corrections log" [level=2]
+    - paragraph: No corrections have been made since publication.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: /clinical-need
+    - listitem:
+      - link "Science and formulation":
+        - /url: /science
+    - listitem:
+      - link "Evidence library":
+        - /url: /evidence
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: /study
+    - listitem:
+      - link "Phase 1 study":
+        - /url: /phase-1
+    - listitem:
+      - link "For young people and families":
+        - /url: /families
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: /team
+    - listitem:
+      - link "Newsroom":
+        - /url: /newsroom
+    - listitem:
+      - link "Funding and financing":
+        - /url: /funding-use
+    - listitem:
+      - link "Questions and answers":
+        - /url: /faq
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: /legal
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: /faq#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: /legal
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

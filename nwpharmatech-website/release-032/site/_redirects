@@ -1,0 +1,52 @@
+/funding /funding-use 301
+/funding/ /funding-use 301
+/people /team 301
+/people/ /team 301
+/funding.html /funding-use 301
+# NWPT-033: Board lock — /funding-use is canonical; the staging preview used /financing
+/financing /funding-use 301
+/financing/ /funding-use 301
+# NWPT-033: staging preview route for the clinical-need explainer
+/clinical-need /updates/why-early-intervention-matters 301
+/clinical-need/ /updates/why-early-intervention-matters 301
+/token.html /proposed-token 301
+/token /proposed-token 301
+/scenario-explorer /calculator 301
+/scenario-explorer.html /calculator 301
+/scenario-explorer/ /calculator 301
+/why-chrp-matters.html /updates/why-early-intervention-matters 301
+/why-chrp-matters /updates/why-early-intervention-matters 301
+/updates/why-chrp-matters.html /updates/why-early-intervention-matters 301
+/updates/why-chrp-matters /updates/why-early-intervention-matters 301
+/updates.html /updates/ 301
+/updates.html/ /updates/ 301
+
+# NWPT-030 Claude module aliases (skip if would shadow live pages)
+/phase-2b /study 301
+/phase-2b/ /study 301
+/phase2b /study 301
+/phase2b/ /study 301
+/phase1 /phase-1 301
+/phase1/ /phase-1 301
+/formulation /science/formulation 301
+/formulation/ /science/formulation 301
+/references /evidence 301
+/references/ /evidence 301
+/news /newsroom 301
+/news/ /newsroom 301
+/press /newsroom 301
+/press/ /newsroom 301
+/families/ /families 301
+/study/ /study 301
+/phase-1/ /phase-1 301
+/newsroom/ /newsroom 301
+
+# NWPT-034: no public email signup until a provider is live end to end
+/updates/register /updates/ 301
+/updates/register/ /updates/ 301
+/updates/register.html /updates/ 301
+
+# NWPT-035: the HTML brief's PDF is regenerated from the page (tools/print-html-brief.mjs); older versions point to it
+/resources/NWPharmaTech-CHRP-programme-brief-v2026-09-22.pdf /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf 301
+/resources/NWPharmaTech-CHRP-programme-brief-v2026-09-20.pdf /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf 301
+/downloads/nwpharmatech-programme-brief.pdf /downloads/nwpharmatech-programme-summary.pdf 301

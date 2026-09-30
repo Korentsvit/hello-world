@@ -1,0 +1,412 @@
+{
+ "id": "evidence-library",
+ "title": "Evidence library",
+ "source": {
+  "page": "evidence.html",
+  "template": "src/pages/evidence.html",
+  "staging_route": "/evidence",
+  "part": "the content of <main>"
+ },
+ "placement": {
+  "live_route": "/evidence",
+  "where": "The main content of the live /evidence page, between the live header and footer.",
+  "first_heading": "h1",
+  "page_title": "Evidence library | NWPharmaTech",
+  "page_description": "The published evidence behind the NWPharmaTech programme: clinical need, current care, prediction, interventions, CBD research and programme records, with limitations, negative findings, sources and links."
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 39842,
+   "sha256": "56fcbe8e27c51a65dadfcbbf1348e5874c3acd16f99698f7995ebf9354a46126"
+  },
+  "module.css": {
+   "bytes": 15654,
+   "sha256": "31b3e2468c30454704927418239c42ad86d8bad888389a1ca16aa3e2674dd139"
+  },
+  "module.js": {
+   "bytes": 3003,
+   "sha256": "d9133636c5d0917973a4a7df3ca81f433f8a0594ade081bc6a62e127b9b46499"
+  },
+  "preview.html": {
+   "bytes": 40703,
+   "sha256": "85ff37c6d82bbbda417d9f9bcdeaf4837c57de6e6ca8282687d0a46a7bc08c0a"
+  }
+ },
+ "left_out": [],
+ "facts": [
+  {
+   "id": "evidence.check_method",
+   "value": "Bibliographic details and quoted findings were checked against search-engine records of publisher, PubMed, registry and official pages.",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "evidence.transition_3y",
+   "value": "about one in four",
+   "verification": "index",
+   "as_of": "2021-07-14",
+   "source_label": null,
+   "production_ready": false
+  },
+  {
+   "id": "product.name",
+   "value": "NWPT-SM32300",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  }
+ ],
+ "references": [
+  {
+   "id": "addington-2011",
+   "short": "Addington et al. 2011",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "appiahkusi-2020",
+   "short": "Appiah-Kusi et al. 2020",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "bhattacharyya-2010",
+   "short": "Bhattacharyya et al. 2010",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "bhattacharyya-2018",
+   "short": "Bhattacharyya et al. 2018",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "bhattacharyya-2024",
+   "short": "Bhattacharyya et al. 2024",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "boggs-2018",
+   "short": "Boggs et al. 2018",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "cantop",
+   "short": "CANTOP-RCT report",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "davies-2018",
+   "short": "Davies et al. 2018",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "devinsky-2017",
+   "short": "Devinsky et al. 2017",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "diforti-2019",
+   "short": "Di Forti et al. 2019",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "epidyolex-smpc",
+   "short": "Epidyolex SmPC",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "fusarpoli-2012",
+   "short": "Fusar-Poli et al. 2012",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "fusarpoli-2013",
+   "short": "Fusar-Poli et al. 2013",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "kane-2016",
+   "short": "Kane et al. 2016",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "leweke-2012",
+   "short": "Leweke et al. 2012",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "mcguire-2018",
+   "short": "McGuire et al. 2018",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "nct07186283",
+   "short": "Phase 1 registry records",
+   "verification": "registry-index",
+   "production_ready": false
+  },
+  {
+   "id": "nice-cg155",
+   "short": "NICE CG155",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "nice-cg178",
+   "short": "NICE CG178",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "perucca-2020",
+   "short": "Perucca and Bialer 2020",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "salazar-2021",
+   "short": "Salazar de Pablo et al. 2021",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "salazar-prev-2021",
+   "short": "Salazar de Pablo et al. 2021 (prevalence)",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "stafford-2013",
+   "short": "Stafford et al. 2013",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "taylor-2018",
+   "short": "Taylor et al. 2018",
+   "verification": "index",
+   "production_ready": false
+  }
+ ],
+ "downloads": [
+  {
+   "file": "downloads/nwpharmatech-references.bib",
+   "href": "/downloads/nwpharmatech-references.bib",
+   "bytes": 8056,
+   "sha256": "faba8d5d7d5eaf0d4adaf3bc561de91c8c80c8f412cd5badb95bec5fe19777fa"
+  },
+  {
+   "file": "downloads/nwpharmatech-references.ris",
+   "href": "/downloads/nwpharmatech-references.ris",
+   "bytes": 6509,
+   "sha256": "4b13d0c203da16de333fac5387c5a31512fb79094df276d81d56c723c508090a"
+  }
+ ],
+ "assets": [],
+ "anchors": {
+  "ids": [
+   "ov-h",
+   "labels",
+   "labels-h",
+   "lib-h",
+   "cat-need",
+   "ref-fusarpoli-2013",
+   "ref-salazar-prev-2021",
+   "cat-care",
+   "ref-nice-cg178",
+   "ref-nice-cg155",
+   "cat-prediction",
+   "ref-addington-2011",
+   "ref-fusarpoli-2012",
+   "ref-salazar-2021",
+   "cat-interventions",
+   "ref-cantop",
+   "ref-stafford-2013",
+   "ref-davies-2018",
+   "ref-kane-2016",
+   "cat-cbd",
+   "ref-epidyolex-smpc",
+   "ref-devinsky-2017",
+   "ref-diforti-2019",
+   "ref-bhattacharyya-2010",
+   "ref-mcguire-2018",
+   "ref-leweke-2012",
+   "ref-boggs-2018",
+   "ref-bhattacharyya-2018",
+   "ref-appiahkusi-2020",
+   "ref-bhattacharyya-2024",
+   "ref-perucca-2020",
+   "ref-taylor-2018",
+   "cat-programme",
+   "ref-nct07186283",
+   "corr-h"
+  ],
+  "linked_from_site": [
+   "labels",
+   "ref-addington-2011",
+   "ref-bhattacharyya-2010",
+   "ref-bhattacharyya-2018",
+   "ref-bhattacharyya-2024",
+   "ref-boggs-2018",
+   "ref-cantop",
+   "ref-davies-2018",
+   "ref-diforti-2019",
+   "ref-epidyolex-smpc",
+   "ref-fusarpoli-2013",
+   "ref-leweke-2012",
+   "ref-mcguire-2018",
+   "ref-nice-cg155",
+   "ref-nice-cg178",
+   "ref-perucca-2020",
+   "ref-salazar-2021",
+   "ref-stafford-2013",
+   "ref-taylor-2018"
+  ]
+ },
+ "links": {
+  "pages": [
+   {
+    "page": "newsroom",
+    "href": "/newsroom#corrections"
+   }
+  ],
+  "external": [
+   "https://doi.org/10.1001/jamapsychiatry.2013.269",
+   "https://doi.org/10.1001/jamapsychiatry.2018.2309",
+   "https://doi.org/10.1001/jamapsychiatry.2021.0830",
+   "https://doi.org/10.1002/wps.20526",
+   "https://doi.org/10.1002/wps.21253",
+   "https://doi.org/10.1007/s00213-018-4885-9",
+   "https://doi.org/10.1007/s40263-018-0578-5",
+   "https://doi.org/10.1007/s40263-020-00741-5",
+   "https://doi.org/10.1016/S2215-0366(19)30048-3",
+   "https://doi.org/10.1038/npp.2009.184",
+   "https://doi.org/10.1038/tp.2012.15",
+   "https://doi.org/10.1056/NEJMoa1611618",
+   "https://doi.org/10.1136/bmj.f185",
+   "https://doi.org/10.1176/appi.ajp.2011.10081191",
+   "https://doi.org/10.1176/appi.ajp.2015.15050632",
+   "https://doi.org/10.1176/appi.ajp.2017.17030325",
+   "https://doi.org/10.1186/ISRCTN25163383",
+   "https://doi.org/10.3390/brainsci11111544",
+   "https://pubmed.ncbi.nlm.nih.gov/21498462/",
+   "https://pubmed.ncbi.nlm.nih.gov/22832859/",
+   "https://pubmed.ncbi.nlm.nih.gov/23165428/",
+   "https://pubmed.ncbi.nlm.nih.gov/23335473/",
+   "https://pubmed.ncbi.nlm.nih.gov/26481174/",
+   "https://pubmed.ncbi.nlm.nih.gov/28538134/",
+   "https://pubmed.ncbi.nlm.nih.gov/29241357/",
+   "https://pubmed.ncbi.nlm.nih.gov/29619533/",
+   "https://pubmed.ncbi.nlm.nih.gov/29856551/",
+   "https://pubmed.ncbi.nlm.nih.gov/30374683/",
+   "https://pubmed.ncbi.nlm.nih.gov/30902669/",
+   "https://pubmed.ncbi.nlm.nih.gov/31915861/",
+   "https://pubmed.ncbi.nlm.nih.gov/34259821/",
+   "https://pubmed.ncbi.nlm.nih.gov/34827543/",
+   "https://pubmed.ncbi.nlm.nih.gov/39279373/",
+   "https://pubmed.ncbi.nlm.nih.gov/40096425/",
+   "https://www.medicines.org.uk/emc/product/10781",
+   "https://www.nice.org.uk/guidance/cg155",
+   "https://www.nice.org.uk/guidance/cg178"
+  ]
+ },
+ "dependencies": [
+  {
+   "id": "newsroom",
+   "kind": "module",
+   "page": "newsroom",
+   "links": [
+    "/newsroom#corrections"
+   ],
+   "needs": "module newsroom imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  }
+ ],
+ "redirects": [
+  {
+   "from": "/references",
+   "to": "/evidence",
+   "status": 301,
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/references/",
+   "to": "/evidence",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /references/ (Cloudflare Pages treats it as a different path)"
+  }
+ ],
+ "javascript": [
+  "evidence filters"
+ ],
+ "csp": {
+  "script-src": [
+   "'self'"
+  ],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "clinical_design": {
+  "phase2b_statements": [
+   "Not an efficacy finding, and not the NWPharmaTech Phase 2B study."
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
+ "publication_blockers": [
+  "fact evidence.transition_3y (index) on evidence.html",
+  "reference addington-2011 (index) on evidence.html",
+  "reference appiahkusi-2020 (index) on evidence.html",
+  "reference bhattacharyya-2010 (index) on evidence.html",
+  "reference bhattacharyya-2018 (index) on evidence.html",
+  "reference bhattacharyya-2024 (index) on evidence.html",
+  "reference boggs-2018 (index) on evidence.html",
+  "reference cantop (index) on evidence.html",
+  "reference davies-2018 (index) on evidence.html",
+  "reference devinsky-2017 (index) on evidence.html",
+  "reference diforti-2019 (index) on evidence.html",
+  "reference epidyolex-smpc (index) on evidence.html",
+  "reference fusarpoli-2012 (index) on evidence.html",
+  "reference fusarpoli-2013 (index) on evidence.html",
+  "reference kane-2016 (index) on evidence.html",
+  "reference leweke-2012 (index) on evidence.html",
+  "reference mcguire-2018 (index) on evidence.html",
+  "reference nct07186283 (registry-index) on evidence.html",
+  "reference nice-cg155 (index) on evidence.html",
+  "reference nice-cg178 (index) on evidence.html",
+  "reference perucca-2020 (index) on evidence.html",
+  "reference salazar-2021 (index) on evidence.html",
+  "reference salazar-prev-2021 (index) on evidence.html",
+  "reference stafford-2013 (index) on evidence.html",
+  "reference taylor-2018 (index) on evidence.html",
+  "clinical design: compare the module's 1 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
+ ],
+ "optional_assets": []
+}

@@ -1,0 +1,22 @@
+{
+ "_doc": "Where each page lives on the live site, and the base paths of downloads and assets. Every internal link in modules/*/fragment.html is written from this map. To change a path, set it in src/integration-routes.json (same shape, any subset) and run python3 build.py.",
+ "pages": {
+  "clinical-need": "/clinical-need",
+  "contact": "/contact",
+  "evidence": "/evidence",
+  "families": "/families",
+  "faq": "/faq",
+  "funding-use": "/funding-use",
+  "index": "/",
+  "legal": "/legal",
+  "newsroom": "/newsroom",
+  "phase-1": "/phase-1",
+  "programme": "/programme",
+  "science": "/science",
+  "study": "/study",
+  "team": "/team",
+  "updates": "/updates"
+ },
+ "downloads": "/downloads/",
+ "assets": "/assets/"
+}

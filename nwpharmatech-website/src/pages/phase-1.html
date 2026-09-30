@@ -1,0 +1,88 @@
+---
+title: Phase 1 study
+description: The completed Phase 1 study of NWPT-SM32300 in healthy volunteers: what was studied, who took part, design, doses, comparator, measurements, results status, and what the study can and cannot establish.
+nav: phase-1
+section: programme
+---
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">The programme · Completed study</p>
+        <h1>Phase 1 study</h1>
+        <p class="lead">A study in {{fact:phase1.n}} healthy volunteers of how the body absorbs and handles {{fact:product.name}} after single doses, and of short-term tolerability. It was not a study of whether {{fact:product.name}} works.</p>
+        <p class="mt"><span class="st st-done">{{fact:phase1.status}}</span> <span class="small">Last study activity {{fact:phase1.end}} · Registered as <a href="{{fact:phase1.nct_url}}" rel="external">{{fact:phase1.nct}}</a> and <a href="{{fact:phase1.isrctn_url}}" rel="external">{{fact:phase1.isrctn}}</a></span></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="what-h">
+      <div class="container two-col">
+        <div class="prose">
+          <div class="section-head"><h2 id="what-h">What was studied</h2><span class="tag tag-company">Programme information</span></div>
+          <p>{{fact:product.name}} (development code {{fact:product.dev_code}}), a {{fact:product.strength}} {{fact:product.form}} of {{fact:product.api}}. The study compared how much cannabidiol reached the blood after {{fact:product.name}} and after Epidyolex, a licensed cannabidiol oral solution, and recorded side effects.</p>
+          <p class="small">Registered title: {{fact:phase1.title}}.</p>
+
+          <h2 id="who-h">Who took part</h2>
+          <p>{{fact:phase1.population}}, at {{fact:phase1.location}}. {{fact:phase1.eligibility_summary}}</p>
+        </div>
+        <aside class="aside">
+          {{block:dao_image:08-softgel-isolated-transparent.half}}
+          <h3>At a glance</h3>
+          <dl class="facts compact">
+            <div><dt>Participants</dt><dd>{{fact:phase1.n}} healthy adults</dd></div>
+            <div><dt>Design</dt><dd>{{fact:phase1.design}}</dd></div>
+            <div><dt>Doses</dt><dd>600 mg and 900 mg, single doses</dd></div>
+            <div><dt>Comparator</dt><dd>Epidyolex</dd></div>
+            <div><dt>Sponsor</dt><dd>{{fact:phase1.sponsor}}</dd></div>
+            <div><dt>Results</dt><dd>{{block:phase1_results_short}}</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="design-h">
+      <div class="container prose">
+        <h2 id="design-h">Study design, doses and comparator</h2>
+        <p>Each participant received three study doses, one in each of three periods, in a randomly assigned order (a <strong>crossover</strong> design, so each person acts as their own comparison). Participants knew which product they received (<strong>open-label</strong>).</p>
+        <ol class="design-steps">
+          <li><strong>{{fact:product.name}} 600 mg</strong>: a single dose by mouth.</li>
+          <li><strong>{{fact:product.name}} 900 mg</strong>: a single dose by mouth.</li>
+          <li><strong>Epidyolex</strong>: a licensed cannabidiol oral solution, as the comparator.</li>
+        </ol>
+        <p>There were {{fact:phase1.interval}}, with {{fact:phase1.sampling}}. Taking part lasted {{fact:phase1.length}}. Study procedures included {{fact:phase1.meal}}. Food, particularly fatty food, increases how much cannabidiol is absorbed. {{cite:perucca-2020}}</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="meas-h">
+      <div class="container prose">
+        <h2 id="meas-h">What was measured</h2>
+        {{block:phase1_measured}}
+        <p>The study had pre-specified stopping rules and did not use a data monitoring committee.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="results" aria-labelledby="res-h">
+      <div class="container prose">
+        <h2 id="res-h">Results publication status</h2>
+        {{block:phase1_results}}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="can-h">
+      <div class="container two-col equal">
+        <div>
+          <h2 id="can-h">What this study can establish</h2>
+          {{block:phase1_list:can_establish}}
+        </div>
+        <div>
+          <h2>What it cannot establish</h2>
+          {{block:phase1_list:cannot_establish}}
+          <p class="small">Evidence about whether {{fact:product.name}} helps people at clinical high risk of psychosis can only come from studies in that population, such as the planned <a href="study.html">Phase 2B study</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="hist-h">
+      <div class="container">
+        <h2 id="hist-h">Protocol history</h2>
+        {{block:protocol_history}}
+      </div>
+    </section>

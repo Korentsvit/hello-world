@@ -1,0 +1,212 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is awaiting review and approval.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: /faq#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: /
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The programme":
+  - text: The programme
+  - list:
+    - listitem:
+      - link "Programme overview":
+        - /url: /programme
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: /study
+    - listitem:
+      - link "Phase 1 study":
+        - /url: /phase-1
+    - listitem:
+      - link "Programme updates":
+        - /url: /updates
+- main:
+  - paragraph: The programme
+  - 'heading "The study: progress and evidence" [level=1]'
+  - paragraph: Where the NWPT-SM32300 study programme stands, what has been completed, and the sources behind each statement.
+  - region "Summary":
+    - heading "Summary" [level=2]
+    - paragraph:
+      - text: As of
+      - time: 23 September 2026
+    - term: What the study is intended to investigate
+    - definition: Whether NWPT-SM32300, an investigational oral cannabidiol medicine, shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.
+    - term: Current stage
+    - definition: "Phase 2B study: Planned. Not recruiting. Protocol being finalised."
+    - term: Completed so far
+    - definition: "Phase 1 study in 14 healthy volunteers: completed 10 December 2025; database locked 11 March 2026; analysis outputs delivered 30 March 2026."
+    - term: Next milestone
+    - definition: Finalisation of the Phase 2B protocol, reported as in progress in February 2026. No date has been announced.
+  - region "Public synopsis":
+    - heading "Public synopsis" [level=2]
+    - text: Programme information
+    - paragraph: The planned Phase 2B study will evaluate dose response, symptoms, safety and tolerability of NWPT-SM32300 in people at clinical high risk of psychosis. It follows a completed Phase 1 study in healthy volunteers, which looked at how the body absorbs and handles the medicine and at short-term tolerability.
+    - paragraph: The Phase 2B study is not recruiting. It can start only after regulatory and research ethics approval.
+    - complementary:
+      - heading "Programme brief" [level=3]
+      - paragraph: A summary of the programme, generated from the same facts as this page.
+      - paragraph:
+        - link "Download the brief (PDF, 2 pages, 67 KB)":
+          - /url: /downloads/nwpharmatech-programme-brief.pdf
+  - region "Milestones":
+    - heading "Milestones" [level=2]
+    - paragraph: Statuses are Planned, In progress or Completed. Dates are exact where a record gives one; otherwise we say what the record states.
+    - table "Clinical milestones":
+      - caption: Clinical milestones
+      - rowgroup:
+        - row "Milestone Status Date Source":
+          - columnheader "Milestone"
+          - columnheader "Status"
+          - columnheader "Date"
+          - columnheader "Source"
+      - rowgroup:
+        - 'row "Phase 1: first participants consented Status: Completed Date: 27 August 2025 Source: Phase 1 study records (NW PharmaTech)"':
+          - 'rowheader "Phase 1: first participants consented"'
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 27 August 2025"':
+            - text: "Date:"
+            - time: 27 August 2025
+          - 'cell "Source: Phase 1 study records (NW PharmaTech)"'
+        - 'row "Phase 1: last study activity Status: Completed Date: 10 December 2025 Source: Phase 1 study records (NW PharmaTech)"':
+          - 'rowheader "Phase 1: last study activity"'
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 10 December 2025"':
+            - text: "Date:"
+            - time: 10 December 2025
+          - 'cell "Source: Phase 1 study records (NW PharmaTech)"'
+        - 'row "Phase 1: database locked Status: Completed Date: 11 March 2026 Source: NWPharmaTech records (not published)"':
+          - 'rowheader "Phase 1: database locked"'
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 11 March 2026"':
+            - text: "Date:"
+            - time: 11 March 2026
+          - 'cell "Source: NWPharmaTech records (not published)"'
+        - 'row "Phase 2B: protocol finalised Status: In progress Date: As reported 23 February 2026 Source: NWPharmaTech records (not published)"':
+          - 'rowheader "Phase 2B: protocol finalised"'
+          - 'cell "Status: In progress"'
+          - 'cell "Date: As reported 23 February 2026"'
+          - 'cell "Source: NWPharmaTech records (not published)"'
+    - table "Operational milestones":
+      - caption: Operational milestones
+      - rowgroup:
+        - row "Milestone Status Date Source":
+          - columnheader "Milestone"
+          - columnheader "Status"
+          - columnheader "Date"
+          - columnheader "Source"
+      - rowgroup:
+        - 'row "Final formulation and GMP clinical supply for Phase 1 Status: Completed Date: Before Phase 1 dosing (2025) Source: NWPharmaTech records (not published)"':
+          - rowheader "Final formulation and GMP clinical supply for Phase 1"
+          - 'cell "Status: Completed"'
+          - 'cell "Date: Before Phase 1 dosing (2025)"'
+          - 'cell "Source: NWPharmaTech records (not published)"'
+        - 'row "Phase 1 analysis outputs delivered Status: Completed Date: 30 March 2026 Source: NWPharmaTech records (not published)"':
+          - rowheader "Phase 1 analysis outputs delivered"
+          - 'cell "Status: Completed"'
+          - 'cell "Date: 30 March 2026"':
+            - text: "Date:"
+            - time: 30 March 2026
+          - 'cell "Source: NWPharmaTech records (not published)"'
+    - paragraph: No funding milestones have been published.
+  - region "Registrations":
+    - heading "Registrations" [level=2]
+    - paragraph: "The completed Phase 1 study is registered on two public registries. Both entries describe the same study: a single-dose, three-period crossover study of NW300EMCBD (the development code for NWPT-SM32300) in healthy adults aged 18 to 55, sponsored by NWPharmaTech Ltd."
+    - table "Registry entries":
+      - caption: Registry entries
+      - rowgroup:
+        - row "Study Registry Identifier":
+          - columnheader "Study"
+          - columnheader "Registry"
+          - columnheader "Identifier"
+      - rowgroup:
+        - 'row "Phase 1 Registry: ClinicalTrials.gov Identifier: NCT07186283"':
+          - rowheader "Phase 1"
+          - 'cell "Registry: ClinicalTrials.gov"'
+          - 'cell "Identifier: NCT07186283"':
+            - text: "Identifier:"
+            - link "NCT07186283":
+              - /url: https://clinicaltrials.gov/study/NCT07186283
+        - 'row "Phase 1 Registry: ISRCTN Identifier: ISRCTN25163383"':
+          - rowheader "Phase 1"
+          - 'cell "Registry: ISRCTN"'
+          - 'cell "Identifier: ISRCTN25163383"':
+            - text: "Identifier:"
+            - link "ISRCTN25163383":
+              - /url: https://www.isrctn.com/ISRCTN25163383
+    - heading "Sponsor and oversight" [level=2]
+    - paragraph: In clinical trial law, the sponsor is the organisation that takes responsibility for starting, managing and financing a study. NWPharmaTech Ltd was the sponsor of the Phase 1 study.
+    - heading "Phase 1 study (completed)" [level=3]
+    - list:
+      - listitem: "Sponsor: NWPharmaTech Ltd."
+      - listitem: Pre-specified stopping rules, including stopping if one participant had a serious reaction possibly related to the study medicine, or two had severe reactions.
+      - listitem: No data monitoring committee was used.
+      - listitem: Statistical outputs were produced by an external biostatistics provider under documented quality testing.
+    - heading "Phase 2B study (planned)" [level=3]
+    - paragraph: NWPharmaTech is developing the proposed CHR-P programme. Formal study responsibilities will be documented before the study begins.
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: /clinical-need
+    - listitem:
+      - link "Science and formulation":
+        - /url: /science
+    - listitem:
+      - link "Evidence library":
+        - /url: /evidence
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: /study
+    - listitem:
+      - link "Phase 1 study":
+        - /url: /phase-1
+    - listitem:
+      - link "For young people and families":
+        - /url: /families
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: /team
+    - listitem:
+      - link "Newsroom":
+        - /url: /newsroom
+    - listitem:
+      - link "Funding and financing":
+        - /url: /funding-use
+    - listitem:
+      - link "Questions and answers":
+        - /url: /faq
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: /legal
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: /faq#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: /legal
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.

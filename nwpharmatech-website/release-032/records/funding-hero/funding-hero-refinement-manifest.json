@@ -1,0 +1,100 @@
+{
+  "project": "NWPharmaTech selected Funding/DAO hero refinement",
+  "version": "2026-09-26-final",
+  "source": "user-supplied nwpt-collective-funding-hero-21x9(1).webm",
+  "edit": "Original connected-assembly footage only; selected source interval 0.0\u20134.0 seconds; camera path aligned; 0.8-second forward light-release blend; no retiming and no new scene generation.",
+  "loop_duration_seconds": 3.25,
+  "web_files": [
+    {
+      "filename": "nwpt-collective-funding-hero-refined-21x9.webm",
+      "dimensions": "1280x548",
+      "width": 1280,
+      "height": 548,
+      "duration_seconds": 3.25,
+      "frame_rate": "24/1",
+      "codec": "vp9",
+      "file_size_bytes": 1142456,
+      "file_size_mb": 1.142,
+      "audio_tracks": 0
+    },
+    {
+      "filename": "nwpt-collective-funding-hero-refined-21x9.mp4",
+      "dimensions": "1280x548",
+      "width": 1280,
+      "height": 548,
+      "duration_seconds": 3.25,
+      "frame_rate": "24/1",
+      "codec": "h264",
+      "file_size_bytes": 1278024,
+      "file_size_mb": 1.278,
+      "audio_tracks": 0
+    },
+    {
+      "filename": "nwpt-collective-funding-hero-refined-4x3.webm",
+      "dimensions": "768x576",
+      "width": 768,
+      "height": 576,
+      "duration_seconds": 3.25,
+      "frame_rate": "24/1",
+      "codec": "vp9",
+      "file_size_bytes": 487924,
+      "file_size_mb": 0.488,
+      "audio_tracks": 0
+    },
+    {
+      "filename": "nwpt-collective-funding-hero-refined-4x3.mp4",
+      "dimensions": "768x576",
+      "width": 768,
+      "height": 576,
+      "duration_seconds": 3.25,
+      "frame_rate": "24/1",
+      "codec": "h264",
+      "file_size_bytes": 861227,
+      "file_size_mb": 0.861,
+      "audio_tracks": 0
+    }
+  ],
+  "posters": [
+    {
+      "filename": "nwpt-collective-funding-hero-refined-21x9-poster.webp",
+      "dimensions": "1280x548",
+      "file_size_bytes": 84346,
+      "file_size_mb": 0.084,
+      "selected_frame_seconds": 0.0
+    },
+    {
+      "filename": "nwpt-collective-funding-hero-refined-4x3-poster.webp",
+      "dimensions": "768x576",
+      "file_size_bytes": 66068,
+      "file_size_mb": 0.066,
+      "selected_frame_seconds": 0.0
+    }
+  ],
+  "master": {
+    "filename": "nwpt-collective-funding-hero-refined-master-prores.mov",
+    "dimensions": "1280x548",
+    "width": 1280,
+    "height": 548,
+    "duration_seconds": 3.25,
+    "frame_rate": "24/1",
+    "codec": "prores",
+    "file_size_bytes": 26024591,
+    "file_size_mb": 26.025,
+    "audio_tracks": 0
+  },
+  "master_note": "1280x548 ProRes 422 HQ derived directly from the newly edited source; not upscaled.",
+  "playback": {
+    "autoplay": true,
+    "muted": true,
+    "loop": true,
+    "plays_inline": true,
+    "reduced_motion": "show corresponding WebP poster"
+  },
+  "review_files": [
+    "review/nwpt-refined-desktop-three-loop-review.mp4",
+    "review/nwpt-refined-mobile-three-loop-review.mp4",
+    "review/desktop-and-phone-preview.jpg",
+    "review/desktop-headline-overlay-review.mp4",
+    "review/opening-midpoint-final-comparison.jpg"
+  ]
+}

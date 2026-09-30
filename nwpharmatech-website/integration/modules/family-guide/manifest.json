@@ -1,0 +1,158 @@
+{
+ "id": "family-guide",
+ "title": "Guide for young people and families",
+ "source": {
+  "page": "families.html",
+  "template": "src/pages/families.html",
+  "staging_route": "/families",
+  "part": "the content of <main>"
+ },
+ "placement": {
+  "live_route": "/families",
+  "where": "The main content of the live /families page, between the live header and footer.",
+  "first_heading": "h1",
+  "page_title": "For young people and families | NWPharmaTech",
+  "page_description": "A guide to clinical high risk of psychosis for young people and families: what it means, what an assessment involves, questions to ask, support with school, work and family life, and where to get help."
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 9738,
+   "sha256": "aff833af4b6a6e2129bdf6c454acc7ccf7dbd4d030c11f30fccddbaf3d06c4bf"
+  },
+  "module.css": {
+   "bytes": 8633,
+   "sha256": "d7c66fe6e89eabe70901ac931e2b48fcf9c2b530a323f6de3ac385a30770fb1e"
+  },
+  "preview.html": {
+   "bytes": 10572,
+   "sha256": "2d89559d36cc2bceefd7191c47f1afeef69cf46d9d6cc34d8dd63a217ec68682"
+  }
+ },
+ "left_out": [],
+ "facts": [
+  {
+   "id": "evidence.transition_3y",
+   "value": "about one in four",
+   "verification": "index",
+   "as_of": "2021-07-14",
+   "source_label": null,
+   "production_ready": false
+  }
+ ],
+ "references": [
+  {
+   "id": "fusarpoli-2013",
+   "short": "Fusar-Poli et al. 2013",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "nice-cg155",
+   "short": "NICE CG155",
+   "verification": "index",
+   "production_ready": false
+  },
+  {
+   "id": "salazar-2021",
+   "short": "Salazar de Pablo et al. 2021",
+   "verification": "index",
+   "production_ready": false
+  }
+ ],
+ "downloads": [
+  {
+   "file": "downloads/appointment-preparation-sheet.pdf",
+   "href": "/downloads/appointment-preparation-sheet.pdf",
+   "bytes": 43752,
+   "sha256": "f10ad5b3684aaabafda5951c2311faa032d721780f37ba98a1591587a79c309c"
+  }
+ ],
+ "assets": [],
+ "anchors": {
+  "ids": [
+   "means-h",
+   "assess-h",
+   "ask-h",
+   "life-h",
+   "routes-h"
+  ],
+  "linked_from_site": []
+ },
+ "links": {
+  "pages": [
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-fusarpoli-2013"
+   },
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-nice-cg155"
+   },
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-salazar-2021"
+   },
+   {
+    "page": "faq",
+    "href": "/faq#urgent-help"
+   }
+  ],
+  "external": [
+   "https://www.gov.uk/access-to-work",
+   "https://www.gov.uk/children-with-special-educational-needs",
+   "https://www.samhsa.gov/find-help/locators/esmi"
+  ]
+ },
+ "dependencies": [
+  {
+   "id": "urgent-help",
+   "kind": "page outside the package",
+   "page": "faq",
+   "links": [
+    "/faq#urgent-help"
+   ],
+   "needs": "a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch",
+   "blocks_publication": true,
+   "confirmed": null
+  },
+  {
+   "id": "evidence-library",
+   "kind": "module",
+   "page": "evidence",
+   "links": [
+    "/evidence#ref-fusarpoli-2013",
+    "/evidence#ref-nice-cg155",
+    "/evidence#ref-salazar-2021"
+   ],
+   "needs": "module evidence-library imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  }
+ ],
+ "redirects": [],
+ "javascript": [],
+ "csp": {
+  "script-src": [],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "clinical_design": {
+  "phase2b_statements": [],
+  "replaces_live_design": false,
+  "scope": null
+ },
+ "publication_blockers": [
+  "faq.html, appointment preparation sheet PDF: re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date",
+  "fact evidence.transition_3y (index) on families.html",
+  "reference fusarpoli-2013 (index) on families.html",
+  "reference nice-cg155 (index) on families.html",
+  "reference salazar-2021 (index) on families.html",
+  "dependency urgent-help: /faq#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)"
+ ],
+ "optional_assets": []
+}

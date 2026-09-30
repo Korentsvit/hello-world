@@ -1,0 +1,30 @@
+{
+  "_doc": "Data for evidence graphics. A graphic is published only when publish is true, which requires verification 'primary' for every value. Until then it is rendered to docs/graphics-preview/ for reviewers only.",
+  "prevalence": {
+    "publish": false,
+    "title": "How common clinical high risk of psychosis is, by sampled population",
+    "source_ref": "salazar-prev-2021",
+    "measure": "Pooled prevalence (%), with 95% confidence interval",
+    "rows": [
+      {"label": "General population samples", "estimate": 1.7, "low": 1.0, "high": 2.9, "studies": 13, "people": 26835},
+      {"label": "Clinical samples (help-seeking)", "estimate": 19.2, "low": 12.9, "high": 27.7, "studies": 22, "people": 10300}
+    ],
+    "verification": "index",
+    "verification_needed": "Open Salazar de Pablo et al., Brain Sci 2021;11(11):1544 (doi:10.3390/brainsci11111544) and confirm both estimates, CIs, study and participant counts in the abstract/results, and whether further subgroups (age, setting) are reported."
+  },
+  "transition": {
+    "publish": false,
+    "title": "Cumulative risk of developing psychosis over time (pooled meta-analytic estimates)",
+    "source_ref": "salazar-2021",
+    "measure": "Cumulative transition risk (%), meta-analytic pooled estimate with 95% confidence interval. Kaplan-Meier estimates from the same paper are deliberately NOT combined here.",
+    "rows": [
+      {"months": 6, "estimate": 9, "low": 7, "high": 10},
+      {"months": 12, "estimate": 15, "low": 13, "high": 16},
+      {"months": 24, "estimate": 19, "low": 17, "high": 22},
+      {"months": 36, "estimate": 25, "low": 22, "high": 29},
+      {"months": 48, "estimate": 27, "low": 23, "high": 30}
+    ],
+    "verification": "index",
+    "verification_needed": "Open Salazar de Pablo et al., JAMA Psychiatry 2021;78(9):970-978 (doi:10.1001/jamapsychiatry.2021.0830), Results/Table 2 or Figure, and confirm each pooled estimate and 95% CI at 6, 12, 24, 36 and 48 months (CIs from 18 months onward came from a summary that may quote another article). Confirm these are meta-analytic pooled estimates, not Kaplan-Meier."
+  }
+}

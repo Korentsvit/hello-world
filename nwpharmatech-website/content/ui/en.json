@@ -1,0 +1,140 @@
+{
+  "_doc": "Interface strings and navigation for locale 'en-GB'. Translations: copy to ui/<locale>.json and translate; clinical content must be translated and reviewed by a qualified human translator and clinical reviewer before publication (see docs/translation.md).",
+  "lang": "en-GB",
+  "site_name": "NWPharmaTech",
+  "skip": "Skip to main content",
+  "menu": "Menu",
+  "nav_main": "Main",
+  "nav_mobile": "Main (mobile)",
+  "brand_home": "NWPharmaTech home",
+  "notice_region": "Important notice",
+  "environment_region": "Environment",
+  "home": "Home",
+  "brief_link": "Programme brief",
+  "notice": "<strong>NWPT-SM32300 is an investigational medicine.</strong> It is not approved for any use, and whether it is effective is not known. <a href=\"faq.html#not-medical-advice\">This website is not medical advice.</a>",
+  "staging_banner": "<strong>Staging draft.</strong> Not the live website. Content is awaiting review and approval.",
+  "restricted_banner": "<strong>Restricted staging.</strong> Unapproved financing material for internal and legal review only. Access to this area does not confirm that anyone is eligible to invest. No investment, payment or token function is active.",
+  "source": "Source",
+  "primary_nav": [
+    [
+      "research",
+      "clinical-need.html",
+      "The research"
+    ],
+    [
+      "programme",
+      "programme.html",
+      "The programme"
+    ],
+    [
+      "people",
+      "team.html",
+      "People"
+    ],
+    [
+      "updates",
+      "updates.html",
+      "Updates"
+    ],
+    [
+      "funding",
+      "funding-use.html",
+      "Funding"
+    ],
+    [
+      "contact",
+      "contact.html",
+      "Contact"
+    ]
+  ],
+  "groups": [
+    {
+      "id": "research",
+      "title": "The research",
+      "items": [
+        [
+          "clinical-need",
+          "clinical-need.html",
+          "Clinical need"
+        ],
+        [
+          "science",
+          "science.html",
+          "Science and formulation"
+        ],
+        [
+          "evidence",
+          "evidence.html",
+          "Evidence library"
+        ],
+        [
+          "families",
+          "families.html",
+          "For young people and families"
+        ]
+      ]
+    },
+    {
+      "id": "programme",
+      "title": "The programme",
+      "items": [
+        [
+          "programme",
+          "programme.html",
+          "Programme overview"
+        ],
+        [
+          "study",
+          "study.html",
+          "The study: progress and evidence"
+        ],
+        [
+          "phase-1",
+          "phase-1.html",
+          "Phase 1 study"
+        ],
+        [
+          "updates",
+          "updates.html",
+          "Programme updates"
+        ]
+      ]
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "items": [
+        [
+          "people",
+          "team.html",
+          "People"
+        ],
+        [
+          "funding",
+          "funding-use.html",
+          "Funding and financing"
+        ],
+        [
+          "newsroom",
+          "newsroom.html",
+          "Newsroom"
+        ],
+        [
+          "faq",
+          "faq.html",
+          "Questions and answers"
+        ],
+        [
+          "contact",
+          "contact.html",
+          "Contact"
+        ],
+        [
+          "legal",
+          "legal.html",
+          "Legal, privacy and accessibility"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "_doc": "Dated programme updates (newest first after sorting). Only real events with a source; a public update's source must be citable publicly or a company record, never an instruction or a draft (content.py refuses the build otherwise). An update states what happened, not what is planned. 'kind' is clinical | operational | funding | publication.",
+  "updates": [
+    {"date": "2026-03-30", "kind": "operational", "title": "Phase 1 analysis outputs delivered", "body": "The statistical and pharmacokinetic analysis outputs for the Phase 1 study were delivered.", "source": "tfl-2026-03", "public": true},
+    {"date": "2026-03-11", "kind": "clinical", "title": "Phase 1 database locked", "body": "The Phase 1 study database was locked so that the final analysis could begin.", "source": "tfl-2026-03", "public": true},
+    {"date": "2025-12-10", "kind": "clinical", "title": "Phase 1 study completed", "body": "The last study activity took place in the Phase 1 study of NWPT-SM32300 in 14 healthy volunteers.", "source": "sdtm-ts-2026-03", "public": true},
+    {"date": "2025-08-27", "kind": "clinical", "title": "Phase 1 study started", "body": "The first healthy volunteers gave consent to take part in the UK Phase 1 study (NCT07186283), which compared single doses of NWPT-SM32300 with the licensed cannabidiol medicine Epidyolex.", "source": "sdtm-ts-2026-03", "public": true}
+  ]
+}

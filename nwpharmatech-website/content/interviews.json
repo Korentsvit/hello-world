@@ -1,0 +1,8 @@
+{
+  "_doc": "Optional interview modules. A module renders only when video, transcript and captions files all exist AND approved is true. Outlines are internal (docs/interviews/).",
+  "modules": {
+    "woods": {"person": "scott-woods", "title": "What clinical high risk means", "video": null, "poster": null, "transcript": null, "captions": null, "approved": false},
+    "kane": {"person": "john-kane", "title": "What early intervention has demonstrated", "video": null, "poster": null, "transcript": null, "captions": null, "approved": false},
+    "blest-hopley": {"person": "grace-blest-hopley", "title": "What the formulation research aims to establish", "video": null, "poster": null, "transcript": null, "captions": null, "approved": false}
+  }
+}

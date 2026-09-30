@@ -1,0 +1,41 @@
+{
+  "_doc": "Review items the team must complete before publication: checks, approvals and accuracy questions that were previously [TBC: ...] markers in templates. Never rendered. Every item with done: false is a publication blocker (build.py lists it; a production build is refused). 'page' says where the affected text appears; 'owner' is the role that closes the item. Set done: true only when the check or approval has actually happened, and record it where it belongs (for example the crisis-line 'checked' date in content/services.json). Missing optional assets (logo, renders, portraits, interviews) never go here: they are reported separately and never block.",
+  "items": [
+    {
+      "page": "faq.html, appointment preparation sheet PDF",
+      "item": "re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date",
+      "owner": "Site editor",
+      "done": false
+    },
+    {
+      "page": "funding-use.html, index.html, faq.html, legal.html, study.html, programme brief PDF",
+      "item": "board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)",
+      "owner": "Board and legal counsel",
+      "done": false
+    },
+    {
+      "page": "legal.html",
+      "item": "legal review of the full privacy notice, including the retention period and a data protection contact",
+      "owner": "Legal counsel",
+      "done": false
+    },
+    {
+      "page": "contact.html, footer",
+      "item": "confirm the spelling of the head-office address ('Wisely Court', as in the email signature, or possibly 'Wisley Court') and correct facts.json company.head_office if needed",
+      "owner": "NWPharmaTech management",
+      "done": false
+    },
+    {
+      "page": "study.html, updates.html",
+      "item": "reconcile the Phase 1 start date: company records give first consent on 27 August 2025, ClinicalTrials.gov gives a study start of 22 September 2025",
+      "owner": "Clinical operations",
+      "done": false
+    },
+    {
+      "page": "index.html, programme.html, study.html, programme brief PDF",
+      "item": "confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
+      "owner": "NWPharmaTech management",
+      "done": false
+    }
+  ]
+}

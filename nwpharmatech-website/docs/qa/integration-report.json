@@ -1,0 +1,1308 @@
+{
+ "generated": "2026-09-26T12:45:51.587Z",
+ "modules": [
+  "evidence-library",
+  "family-guide",
+  "formulation",
+  "newsroom",
+  "phase-1",
+  "study-hub"
+ ],
+ "checks": [
+  {
+   "name": "integration: the six agreed modules are exported",
+   "pass": true,
+   "detail": "evidence-library, family-guide, formulation, newsroom, phase-1, study-hub"
+  },
+  {
+   "name": "evidence-library: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (103 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.css underlines links explicitly (a live \"a { text-decoration: none }\" cannot remove it)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (min-width: 800px) | @media (max-width: 560px) | @media print | @media (min-width: 900px) | @media (min-width: 900px) | @media (max-width: 480px) | @media (max-width: 560px) | @media (forced-colors: active)"
+  },
+  {
+   "name": "evidence-library: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: all 42 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: manifest has 16 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: every dependency that blocks publication is a publication blocker",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: redirects are marked required (staging route) or optional (alias), and none points at its own path",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "evidence-library: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.js acts only inside its wrapper, with prefixed classes",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (57 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: module.css underlines links explicitly (a live \"a { text-decoration: none }\" cannot remove it)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media print | @media (min-width: 900px)"
+  },
+  {
+   "name": "family-guide: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: all 8 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: manifest has 16 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: every dependency that blocks publication is a publication blocker",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: redirects are marked required (staging route) or optional (alias), and none points at its own path",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "family-guide: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (41 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: module.css underlines links explicitly (a live \"a { text-decoration: none }\" cannot remove it)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media print | @media (min-width: 760px)"
+  },
+  {
+   "name": "formulation: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: all 3 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: manifest has 16 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: every dependency that blocks publication is a publication blocker",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: redirects are marked required (staging route) or optional (alias), and none points at its own path",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "formulation: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (52 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: module.css underlines links explicitly (a live \"a { text-decoration: none }\" cannot remove it)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (max-width: 560px) | @media print | @media (max-width: 560px)"
+  },
+  {
+   "name": "newsroom: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: all 5 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: manifest has 16 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: every dependency that blocks publication is a publication blocker",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: redirects are marked required (staging route) or optional (alias), and none points at its own path",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "newsroom: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (80 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: module.css underlines links explicitly (a live \"a { text-decoration: none }\" cannot remove it)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (max-width: 560px) | @media print | @media (max-width: 560px) | @media (min-width: 900px) | @media (max-width: 560px)"
+  },
+  {
+   "name": "phase-1: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: all 4 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: manifest has 16 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: every dependency that blocks publication is a publication blocker",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: redirects are marked required (staging route) or optional (alias), and none points at its own path",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "phase-1: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: every selector in module.css starts with .nwpt-module:not(#nwpt-a):not(#nwpt-b) (77 selectors)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: module.css underlines links explicitly (a live \"a { text-decoration: none }\" cannot remove it)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: module.css has no @font-face, @import, :root or url()",
+   "pass": true,
+   "detail": "@media (prefers-reduced-motion: reduce) | @media (min-width: 720px) | @supports selector(:has(a)) | @media (min-width: 900px) | @media (max-width: 560px) | @media print | @media (min-width: 900px) | @media (max-width: 560px)"
+  },
+  {
+   "name": "study-hub: every class in module.css carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: custom properties carry the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: fragment is one .nwpt-module wrapper with data-nwpt-module and lang=\"en-GB\"",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: every class in the fragment carries the nwpt- prefix",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: no inline scripts, styles or event handlers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: no site header, footer, navigation, notice bar, staging banner or skip link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: all 3 links resolve (routes.json, integration/ files, in-module anchors or external)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: manifest has 16 required sections",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: every dependency that blocks publication is a publication blocker",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: redirects are marked required (staging route) or optional (alias), and none points at its own path",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "study-hub: every redirect also has its trailing-slash form (Cloudflare treats /x/ as a different path)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: publication blockers are listed once each",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: manifest exports no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: manifest file hashes match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: module.js present only when the module needs behaviour",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: facts listed in the manifest are public",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview.html is noindex, with a strict CSP and no inline script or style",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: the urgent-help link is a dependency that blocks publication until a check is recorded, with the FAQ crisis-line review item",
+   "pass": true,
+   "detail": "{\"id\":\"urgent-help\",\"kind\":\"page outside the package\",\"page\":\"faq\",\"links\":[\"/faq#urgent-help\"],\"needs\":\"a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch\",\"blocks_publication\":true,\"confirmed\":null}"
+  },
+  {
+   "name": "docs/integration.md: one section per exported module",
+   "pass": true,
+   "detail": "study-hub, phase-1, formulation, evidence-library, family-guide, newsroom"
+  },
+  {
+   "name": "evidence-library: every #anchor docs/integration.md names in its section exists (6 named)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: docs/integration.md names every anchor other pages link to",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: docs/integration.md names every alias redirect",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: images named in docs/integration.md are the manifest's (optional) assets",
+   "pass": true,
+   "detail": "docs  manifest "
+  },
+  {
+   "name": "family-guide: every #anchor docs/integration.md names in its section exists (6 named)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: docs/integration.md names every anchor other pages link to",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: docs/integration.md names every alias redirect",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: images named in docs/integration.md are the manifest's (optional) assets",
+   "pass": true,
+   "detail": "docs  manifest "
+  },
+  {
+   "name": "formulation: every #anchor docs/integration.md names in its section exists (8 named)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: docs/integration.md names every anchor other pages link to",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: docs/integration.md names every alias redirect",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: images named in docs/integration.md are the manifest's (optional) assets",
+   "pass": true,
+   "detail": "docs assets/img/renders/nwpt-sm32300-softgel.jpg manifest assets/img/renders/nwpt-sm32300-softgel.jpg"
+  },
+  {
+   "name": "newsroom: every #anchor docs/integration.md names in its section exists (5 named)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: docs/integration.md names every anchor other pages link to",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: docs/integration.md names every alias redirect",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: images named in docs/integration.md are the manifest's (optional) assets",
+   "pass": true,
+   "detail": "docs  manifest "
+  },
+  {
+   "name": "phase-1: every #anchor docs/integration.md names in its section exists (2 named)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: docs/integration.md names every anchor other pages link to",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: docs/integration.md names every alias redirect",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: images named in docs/integration.md are the manifest's (optional) assets",
+   "pass": true,
+   "detail": "docs  manifest "
+  },
+  {
+   "name": "study-hub: every #anchor docs/integration.md names in its section exists (6 named)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: docs/integration.md names every anchor other pages link to",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: docs/integration.md names every alias redirect",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: images named in docs/integration.md are the manifest's (optional) assets",
+   "pass": true,
+   "detail": "docs  manifest "
+  },
+  {
+   "name": "content/: 8 files, public items only, no internal fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: people.json not exported (titles await management confirmation)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: only public, confirmed facts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: sources carry public labels only",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: sources.json lists only citable sources and those an exported item cites, and every cited one",
+   "pass": true,
+   "detail": "uncited: ; missing: "
+  },
+  {
+   "name": "content/: document history lists published versions only, without internal status notes",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "content/: no template tokens (fact placeholders replaced by their values)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "downloads/: exactly the files the modules link to",
+   "pass": true,
+   "detail": "needed downloads/nwpharmatech-references.bib,downloads/nwpharmatech-references.ris,downloads/appointment-preparation-sheet.pdf,downloads/nwpharmatech-programme-brief.pdf present downloads/appointment-preparation-sheet.pdf,downloads/nwpharmatech-programme-brief.pdf,downloads/nwpharmatech-references.bib,downloads/nwpharmatech-references.ris"
+  },
+  {
+   "name": "export is deterministic: two fresh exports and the built integration/ are byte-identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "routes: a path changed in src/integration-routes.json reaches every fragment link and download",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "routes: the manifest lists the redirects the new path needs (staging route required, alias optional)",
+   "pass": true,
+   "detail": "/evidence>/research/evidence:true, /references>/research/evidence:false, /evidence/>/research/evidence:true, /references/>/research/evidence:false"
+  },
+  {
+   "name": "routes: a .html live path is refused (Cloudflare Pages would redirect it)",
+   "pass": true,
+   "detail": "^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 522, in load_routes\n    raise ExportError(f\"route for '{pid}' must be an extensionless path starting with / (got {path!r}); \"\nbuildlib.export.ExportError: integration export: route for 'study' must be an extensionless path starting with / (got '/study.html'); Cloudflare Pages answers /x.html with a 308 to /x\n"
+  },
+  {
+   "name": "routes: a trailing-slash live path is refused (Cloudflare Pages redirects /x/ itself, so the redirect loops)",
+   "pass": true,
+   "detail": "^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 525, in load_routes\n    raise ExportError(f\"route for '{pid}' must not end with / (got {path!r}); Cloudflare Pages redirects \"\nbuildlib.export.ExportError: integration export: route for 'study' must not end with / (got '/study/'); Cloudflare Pages redirects between /x and /x/ itself, so a redirect rule to /x/ can loop\n"
+  },
+  {
+   "name": "routes: a live path with _redirects pattern syntax is refused",
+   "pass": true,
+   "detail": "/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 528, in load_routes\n    raise ExportError(f\"route for '{pid}' must be a plain path: letters, digits and . _ ~ % - between single \"\nbuildlib.export.ExportError: integration export: route for 'study' must be a plain path: letters, digits and . _ ~ % - between single slashes (got '/:slug'); _redirects reads :name and * as patterns\n"
+  },
+  {
+   "name": "routes: two pages on one live path are refused",
+   "pass": true,
+   "detail": ".py\", line 987, in export_modules\n    routes = load_routes(root, page_names)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 531, in load_routes\n    raise ExportError(f\"routes for '{live[path]}' and '{pid}' are both {path}\")\nbuildlib.export.ExportError: integration export: routes for 'evidence' and 'study' are both /evidence\n"
+  },
+  {
+   "name": "routes: a live path that another module's alias would take over is refused (/news: newsroom alias)",
+   "pass": true,
+   "detail": " study-hub: redirect /phase-2b/ -> /news: target is itself redirected (chain or loop)\n  study-hub: redirect /phase2b/ -> /news: target is itself redirected (chain or loop)\n  newsroom: redirect /news -> /newsroom shadows a live page (Cloudflare Pages already serves or redirects /news)\n  newsroom: redirect /news/ -> /newsroom shadows a live page (Cloudflare Pages already serves or redirects /news/)\n"
+  },
+  {
+   "name": "routes: swapped live paths are refused (each staging-route redirect would shadow the other page, a loop)",
+   "pass": true,
+   "detail": "elf redirected (chain or loop)\n  phase-1: redirect /phase1 -> /study: target is itself redirected (chain or loop)\n  phase-1: redirect /phase-1/ -> /study shadows a live page (Cloudflare Pages already serves or redirects /phase-1/)\n  phase-1: redirect /phase-1/ -> /study: target is itself redirected (chain or loop)\n  phase-1: redirect /phase1/ -> /study: target is itself redirected (chain or loop)\n"
+  },
+  {
+   "name": "routes: a live path equal to an alias drops that alias and keeps a one-hop redirect from every other address",
+   "pass": true,
+   "detail": "/newsroom>/press:true, /news>/press:false, /newsroom/>/press:true, /news/>/press:false | /science>/formulation:true, /science/>/formulation:true | /evidence>/references:true, /evidence/>/references:true"
+  },
+  {
+   "name": "dependency: a recorded check clears the urgent-help blocker; the FAQ crisis-line review item stays while the link is the staging /faq",
+   "pass": true,
+   "detail": "{\"id\":\"urgent-help\",\"kind\":\"page outside the package\",\"page\":\"faq\",\"links\":[\"/faq#urgent-help\"],\"needs\":\"a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch\",\"blocks_publication\":false,\"confirmed\":\"Test record: live urgent-help section checked\"}"
+  },
+  {
+   "name": "dependency: a check recorded for another address does not count (live path changed to /help); the sheet's crisis-line item stays",
+   "pass": true,
+   "detail": "[\"faq.html, appointment preparation sheet PDF: re-check each crisis-line number and service on nhs.uk, nidirect.gov.uk, samaritans.org, pieta.ie and 988lifeline.org immediately before launch, correct any number in content/services.json 'crisis_lines' (the only copy: it fills the urgent-help section and the sheet), then update its 'checked' date\",\"fact evidence.transition_3y (index) on families.html\",\"reference fusarpoli-2013 (index) on families.html\",\"reference nice-cg155 (index) on families.html\",\"reference salazar-2021 (index) on families.html\",\"dependency urgent-help: /help#urgent-help must reach a live page that gives urgent help by country: emergency numbers and crisis lines for the United Kingdom, Ireland and the United States, checked immediately before launch. Not confirmed on the live site; the recorded check was for /faq#urgent-help (record the check in src/integration-routes.json -> confirmed_dependencies and rebuild)\"]"
+  },
+  {
+   "name": "routes: a check recorded for an unknown dependency is refused",
+   "pass": true,
+   "detail": " ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/hello-world/nwpharmatech-website/buildlib/export.py\", line 547, in load_confirmed\n    raise ExportError(f\"integration-routes.json: confirmed_dependencies: unknown dependency '{k}' (known: {sorted(known)})\")\nbuildlib.export.ExportError: integration export: integration-routes.json: confirmed_dependencies: unknown dependency 'no-such' (known: ['urgent-help'])\n"
+  },
+  {
+   "name": "content/: a published document version is exported (without 'status'); unpublished ones are not",
+   "pass": true,
+   "detail": "[{\"version\":\"4\",\"date\":\"2026-09-23\",\"published\":true,\"change\":\"Current stage, completed work and next milestone taken from the study summary, as on the study page; results status taken from the Phase 1 record; financing paragraph as on the home page, with the investment statement limited to this website and the financing route; draft status and version date shown in the header.\",\"source_sha256\":\"d917781b836036f8595f41eede333905ee34a9823ec3f1cd471b81cd7f232cb5\"}]"
+  },
+  {
+   "name": "routes (default paths): under Cloudflare's runtime every live page answers 200 and each of the 14 manifest redirects takes one hop",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "routes (live paths on alias addresses, and a nested path): under Cloudflare's runtime every live page answers 200 and each of the 16 manifest redirects takes one hop",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: module.css applies and module.js runs",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "negative control: axe in the host page detects unmarked links when a host !important rule removes underlines (the documented limit)",
+   "pass": true,
+   "detail": "link-in-text-block(serious) x37: #ref-fusarpoli-2013 > .nwpt-source-line > a[rel=\"external\"]:nth-child(3)"
+  },
+  {
+   "name": "evidence-library: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "evidence-library: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "evidence-library: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: the host's generic class rules and custom properties do not change any module element (740 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: host rules for the content area (#content, .entry-content ancestors) do not override any property the module sets",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "negative control: the collision checks detect an unscoped rule and a host rule on a module class",
+   "pass": true,
+   "detail": "div.card (element 12): before [letter-spacing:normal; ::beforeletter-spacing:normal; ::afterletter-spacing:normal] after [letter-spacing:3px; ::beforeletter-spacing:3px; ::afterletter-spacing:3px] / section.nwpt-page-hero (element 1): before [letter-spacing:normal; ::beforeletter-spacing:normal; ::afterletter-spacing:normal] after [letter-spacing:3px; ::beforeletter-spacing:3px; ::afterletter-spacing:3px]"
+  },
+  {
+   "name": "family-guide: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "family-guide: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "family-guide: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: the host's generic class rules and custom properties do not change any module element (124 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "family-guide: host rules for the content area (#content, .entry-content ancestors) do not override any property the module sets",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":56}"
+  },
+  {
+   "name": "formulation: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":56},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":28}}"
+  },
+  {
+   "name": "formulation: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: the host's generic class rules and custom properties do not change any module element (73 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "formulation: host rules for the content area (#content, .entry-content ancestors) do not override any property the module sets",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "newsroom: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "newsroom: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: the host's generic class rules and custom properties do not change any module element (55 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "newsroom: host rules for the content area (#content, .entry-content ancestors) do not override any property the module sets",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "phase-1: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "phase-1: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: the host's generic class rules and custom properties do not change any module element (110 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "phase-1: host rules for the content area (#content, .entry-content ancestors) do not override any property the module sets",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: no horizontal scroll at 320px",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview loads under the strict CSP with no console errors",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview raises no securitypolicyviolation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: preview makes no request to another origin",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: module.css applies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: axe (WCAG 2.2 AA) finds no violations inside the module",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: axe finds no violations inside the module in the hostile host page (host resets link underlines)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: unthemed, the module inherits the live page's font, size and text colour, and has no background of its own",
+   "pass": true,
+   "detail": "{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48}"
+  },
+  {
+   "name": "study-hub: theme tokens set on :root change the font, heading font and colour, link and text colour, and halve spacing",
+   "pass": true,
+   "detail": "{\"d\":{\"font\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(31, 35, 40)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"hColor\":\"rgb(31, 35, 40)\",\"link\":\"rgb(0, 94, 184)\",\"space\":48},\"t\":{\"font\":\"Georgia, serif\",\"bodyFont\":\"system-ui, -apple-system, \\\"Segoe UI\\\", Roboto, Arial, sans-serif\",\"size\":\"16px\",\"bodySize\":\"16px\",\"color\":\"rgb(30, 30, 30)\",\"bodyColor\":\"rgb(31, 35, 40)\",\"bg\":\"rgba(0, 0, 0, 0)\",\"hFont\":\"\\\"Trebuchet MS\\\", sans-serif\",\"hColor\":\"rgb(0, 90, 50)\",\"link\":\"rgb(120, 20, 90)\",\"space\":24}}"
+  },
+  {
+   "name": "study-hub: axe finds no violations with the example theme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: host elements keep exactly their host styles when module.css is added (70 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: the host's generic class rules and custom properties do not change any module element (139 elements)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "study-hub: host rules for the content area (#content, .entry-content ancestors) do not override any property the module sets",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence-library: filter bar shown with JavaScript, 'All' pressed, every section visible",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"all\"],\"visible\":[\"need\",\"care\",\"prediction\",\"interventions\",\"cbd\",\"programme\"],\"cards\":24,\"all\":6,\"status\":\"\"}"
+  },
+  {
+   "name": "evidence-library: clicking a topic filter shows only that topic (need)",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"need\"],\"visible\":[\"need\"],\"cards\":2,\"all\":6,\"status\":\"Showing 2 sources in Clinical need\"}"
+  },
+  {
+   "name": "evidence-library: 'All' by keyboard shows every section again",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"all\"],\"visible\":[\"need\",\"care\",\"prediction\",\"interventions\",\"cbd\",\"programme\"],\"cards\":24,\"all\":6,\"status\":\"Showing 24 sources\"}"
+  },
+  {
+   "name": "evidence-library: Space on a filter works too",
+   "pass": true,
+   "detail": "{\"barVisible\":true,\"pressed\":[\"care\"],\"visible\":[\"care\"],\"cards\":2,\"all\":6,\"status\":\"Showing 2 sources in Current care\"}"
+  },
+  {
+   "name": "evidence-library: a source link to a card in a hidden topic shows every topic and moves to the card (#ref-salazar-2021)",
+   "pass": true,
+   "detail": "{\"hash\":\"#ref-salazar-2021\",\"shown\":true,\"inView\":true,\"pressed\":\"all\",\"status\":\"Showing 24 sources\"}"
+  },
+  {
+   "name": "evidence-library: an address naming a card in a hidden topic shows every topic and moves to the card (#ref-nice-cg178)",
+   "pass": true,
+   "detail": "{\"hash\":\"#ref-nice-cg178\",\"shown\":true,\"inView\":true,\"pressed\":\"all\",\"status\":\"Showing 24 sources\"}"
+  },
+  {
+   "name": "evidence-library: a live-page link outside the module to the card the address already names shows it (#ref-nice-cg178)",
+   "pass": true,
+   "detail": "{\"hash\":\"#ref-nice-cg178\",\"shown\":true,\"inView\":true,\"pressed\":\"all\",\"status\":\"Showing 24 sources\"}"
+  }
+ ]
+}

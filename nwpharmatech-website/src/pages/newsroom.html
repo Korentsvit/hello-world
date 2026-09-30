@@ -1,0 +1,66 @@
+---
+title: Newsroom
+description: Press kit, fact sheet, how progress is reported and the corrections log for the NWPharmaTech research programme.
+nav: newsroom
+section: about
+---
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">About</p>
+        <h1>Newsroom</h1>
+        <p class="lead">Key facts for journalists and others writing about the programme, how we report progress, and how we correct mistakes.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="kit-h">
+      <div class="container two-col">
+        <div class="prose">
+          <h2 id="kit-h">Press kit</h2>
+          <h3>About us</h3>
+          {{block:boilerplate}}
+          {{block:fact_sheet}}
+          {{block:press_photos}}
+        </div>
+        <aside class="aside">
+          <h3>Downloads</h3>
+          <ul class="plain">
+            <li><a href="downloads/nwpharmatech-programme-brief.pdf" download>Programme summary ({{block:pdf_label:nwpharmatech-programme-brief}})</a></li>
+            <li><a href="downloads/nwpharmatech-references.ris" download>References (RIS)</a></li>
+          </ul>
+          <h3>When writing about the programme</h3>
+          <p>Please describe {{fact:product.name}} as investigational, and do not describe it as a treatment or cure. Results from other cannabidiol products are not results for {{fact:product.name}}.</p>
+          <p>Media enquiries: <a href="contact.html">contact details</a>.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="rep-h">
+      <div class="container prose">
+        {{block:reports}}
+        <h2 id="rep-h">Progress</h2>
+        <p>Dated events are listed on the <a href="updates.html">updates page</a>, and study milestones with their sources on the <a href="study.html#milestones">study page</a>. No programme reports have been published.</p>
+      </div>
+    </section>
+
+    <section class="section" id="corrections" aria-labelledby="corr-h">
+      <div class="container prose">
+        <h2 id="corr-h">Corrections log</h2>
+        {{block:corrections_public}}
+      </div>
+    </section>
+
+    <!--optional:signup-->
+    <section class="section section-alt" id="signup" aria-labelledby="su-h">
+      <div class="container prose">
+        <h2 id="su-h">Email updates</h2>
+        <p>Get an email when we publish a programme report or a milestone. We will ask you to confirm your address, and every email has an unsubscribe link.</p>
+        <form class="signup" method="post" action="/api/subscribe" novalidate>
+          <div class="hp" aria-hidden="true"><label for="su-website">Leave empty</label><input id="su-website" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="form-row"><label for="su-email">Email address</label><input id="su-email" name="email" type="email" autocomplete="email" required aria-describedby="su-help su-msg"></div>
+          <p id="su-help" class="small">Used only to send programme updates. See our <a href="legal.html#privacy">privacy notice</a>.</p>
+          <button class="btn btn-primary" type="submit">Sign up</button>
+          <p id="su-msg" class="signup-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+    <!--/optional-->

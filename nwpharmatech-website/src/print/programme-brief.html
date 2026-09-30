@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>NWPharmaTech programme summary</title><meta name="expected-pages" content="2">
+<meta name="author" content="{{fact:company.name}}"><meta name="subject" content="Programme summary: {{fact:product.name}}">
+<style>
+  @page { size: A4; margin: 17mm 17mm 15mm; }
+  body { font: 10.5pt/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: #14212b; }
+  h1 { color: #00386e; font-size: 20pt; margin: 0 0 2pt; }
+  h2 { color: #005EB8; font-size: 12pt; margin: 12pt 0 4pt; break-after: avoid; }
+  header { border-bottom: 3px solid #005EB8; padding-bottom: 8pt; margin-bottom: 10pt; display: flex; justify-content: space-between; align-items: flex-end; }
+  .brand { font-weight: 700; color: #005EB8; font-size: 13pt; }
+  .brand span { font-weight: 400; }
+  .notice { background: #fff6f5; border-left: 4px solid #b3261e; padding: 6pt 9pt; margin: 8pt 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+  th, td { text-align: left; padding: 4pt 6pt; border-bottom: 1px solid #d9e2ea; vertical-align: top; }
+  th { width: 28%; color: #00386e; }
+  .small { font-size: 8.5pt; color: #5b6b77; }
+  ul { margin: 4pt 0; padding-left: 14pt; break-inside: avoid; }
+</style></head>
+<body>
+<header><div><p class="brand">{{block:brand:print}}</p><h1>Programme summary</h1></div><p class="small"><span class="doc-version">{{block:document_version:brief}} · {{block:document_date:brief}}{{block:document_status:brief}}</span></p></header>
+<main>
+  <p>NWPharmaTech presents our research programme for people at clinical high risk of psychosis, explaining the clinical need, the science and the people behind it.</p>
+  <p>The programme centres on <strong>{{fact:product.name}}</strong>, an investigational oral cannabidiol formulation, and a planned <strong>Phase 2B study</strong> evaluating {{fact:phase2b.aims}}. The website brings together accessible explanations, supporting evidence and programme updates, clearly distinguishing established findings from questions our research aims to answer.</p>
+  <p>A financing route for the programme is under evaluation: platform-integrated financing is the preferred path, with a conventional register-first placement as the fallback. These are development objectives, not live offering terms. Clinical decisions remain independent of financing, and the effectiveness of {{fact:product.name}} is unproven.</p>
+  <p class="notice"><strong>Investigational medicine.</strong> {{fact:product.name}} is {{fact:product.status}}. Its effectiveness is unproven. This brief is not medical advice and is not an offer of any security or token.</p>
+
+  <h2>Where the programme stands</h2>
+  <table>
+    <tr><th scope="row">Investigational medicine</th><td>{{fact:product.strength}} {{fact:product.form}}; {{fact:product.api}} in a {{fact:product.formulation}}; GMP manufacture</td></tr>
+    <tr><th scope="row">Completed</th><td>{{block:summary:completed}} Design: {{fact:phase1.design}}; {{fact:phase1.treatments}}. Registered as {{fact:phase1.nct}} and {{fact:phase1.isrctn}}. {{fact:phase1.results_status}}</td></tr>
+    <tr><th scope="row">Current stage</th><td>{{block:summary:stage}}</td></tr>
+    <tr><th scope="row">Next milestone</th><td>{{block:summary:next}}</td></tr>
+    <tr><th scope="row">Programme lead</th><td>Professor Scott Woods, CHR-P programme lead, in an individual capacity. Yale University does not sponsor or endorse the programme.</td></tr>
+    <tr><th scope="row">Financing</th><td>Preferred path under evaluation: platform-integrated programme financing with a permissioned token at close where feasible; a conventional register-first close remains the fallback. These are development objectives, not live offering terms. No investment is being accepted through this website or through the financing route described here.</td></tr>
+    <tr><th scope="row">Company</th><td>{{fact:company.name}}, company number {{fact:company.number}}, {{fact:company.jurisdiction}}</td></tr>
+  </table>
+
+  <h2>What is established, and what is not</h2>
+  <ul>
+    <li><strong>Established:</strong> in an updated meta-analysis, the pooled estimate was that {{fact:evidence.transition_3y}} people at clinical high risk developed psychosis within three years, and most do not; no medicine is licensed for this group; NICE advises against antipsychotics for prevention.</li>
+    <li><strong>Emerging:</strong> small, short studies of other CBD preparations in schizophrenia (mixed results) and in clinical high risk (brain activity, stress response, and one 21-day symptom study).</li>
+    <li><strong>Open:</strong> whether {{fact:product.name}} reduces symptoms, which dose is best, and its safety and tolerability in this population.</li>
+  </ul>
+  <p class="small">Full programme brief: www.nwpharmatech.org/resources/programme-brief · Sources, evidence labels and verification dates: {{block:site_url:evidence}} · Study milestones and sources: {{block:site_url:study}}</p>
+</main>
+</body></html>

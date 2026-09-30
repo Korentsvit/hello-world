@@ -1,0 +1,331 @@
+{
+ "id": "phase-1",
+ "title": "Phase 1 study",
+ "source": {
+  "page": "phase-1.html",
+  "template": "src/pages/phase-1.html",
+  "staging_route": "/phase-1",
+  "part": "the content of <main>"
+ },
+ "placement": {
+  "live_route": "/phase-1",
+  "where": "The main content of the live /phase-1 page, between the live header and footer.",
+  "first_heading": "h1",
+  "page_title": "Phase 1 study | NWPharmaTech",
+  "page_description": "The completed Phase 1 study of NWPT-SM32300 in healthy volunteers: what was studied, who took part, design, doses, comparator, measurements, results status, and what the study can and cannot establish."
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 7157,
+   "sha256": "ceecd51b59d9ca9cab7be4deacbfce67f3e431f248cb6d8b2dfe207f25cd8f7f"
+  },
+  "module.css": {
+   "bytes": 12011,
+   "sha256": "a042f6cc79969d7031b4d886748bff82f1c713f71e0132c38f56c09067a4aa98"
+  },
+  "preview.html": {
+   "bytes": 7964,
+   "sha256": "2e9beefe984c6a0b339550c670e6535712a1aa46d6ec7a9571420f6f4f373a8d"
+  }
+ },
+ "left_out": [
+  "Manus scientific portfolio image: the live site places these images itself."
+ ],
+ "facts": [
+  {
+   "id": "phase1.design",
+   "value": "randomised, open-label, three-period crossover",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.eligibility_summary",
+   "value": "Participants were in good health and were not taking regular medicines. People with a history of mental disorder, cannabis use in the 28 days before screening, or abnormal liver tests were not eligible.",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.end",
+   "value": "10 December 2025",
+   "verification": "document",
+   "as_of": "2025-12-10",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.interval",
+   "value": "about 25 days between doses",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.isrctn",
+   "value": "ISRCTN25163383",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ISRCTN25163383",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.isrctn_url",
+   "value": "https://www.isrctn.com/ISRCTN25163383",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ISRCTN25163383",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.length",
+   "value": "about 105 days per participant, including screening and follow-up",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.location",
+   "value": "one clinical research unit in Leeds, United Kingdom",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ISRCTN25163383",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.meal",
+   "value": "a standardised high-fat, high-calorie meal",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.n",
+   "value": "14",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.nct",
+   "value": "NCT07186283",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ClinicalTrials.gov NCT07186283",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.nct_url",
+   "value": "https://clinicaltrials.gov/study/NCT07186283",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ClinicalTrials.gov NCT07186283",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.population",
+   "value": "14 healthy adult volunteers aged 18 to 55",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.results_status",
+   "value": "Results have not been published yet.",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase1.sampling",
+   "value": "blood samples for up to 192 hours (8 days) after each dose",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.sponsor",
+   "value": "NWPharmaTech Ltd",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.status",
+   "value": "Completed",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ClinicalTrials.gov NCT07186283",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.title",
+   "value": "A Phase 1 study to assess the safety and pharmacokinetics of novel cannabidiol (CBD) soft-gel capsule formulation (NW300EMCBD) in healthy subjects",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "product.api",
+   "value": "highly purified cannabidiol",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.dev_code",
+   "value": "NW300EMCBD",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "product.form",
+   "value": "oral softgel capsule",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.name",
+   "value": "NWPT-SM32300",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.strength",
+   "value": "300 mg",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  }
+ ],
+ "references": [
+  {
+   "id": "perucca-2020",
+   "short": "Perucca and Bialer 2020",
+   "verification": "index",
+   "production_ready": false
+  }
+ ],
+ "downloads": [],
+ "assets": [],
+ "anchors": {
+  "ids": [
+   "what-h",
+   "who-h",
+   "design-h",
+   "meas-h",
+   "results",
+   "res-h",
+   "can-h",
+   "hist-h"
+  ],
+  "linked_from_site": [
+   "results"
+  ]
+ },
+ "links": {
+  "pages": [
+   {
+    "page": "evidence",
+    "href": "/evidence#ref-perucca-2020"
+   },
+   {
+    "page": "study",
+    "href": "/study"
+   }
+  ],
+  "external": [
+   "https://clinicaltrials.gov/study/NCT07186283",
+   "https://www.isrctn.com/ISRCTN25163383"
+  ]
+ },
+ "dependencies": [
+  {
+   "id": "evidence-library",
+   "kind": "module",
+   "page": "evidence",
+   "links": [
+    "/evidence#ref-perucca-2020"
+   ],
+   "needs": "module evidence-library imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  },
+  {
+   "id": "study-hub",
+   "kind": "module",
+   "page": "study",
+   "links": [
+    "/study"
+   ],
+   "needs": "module study-hub imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  }
+ ],
+ "redirects": [
+  {
+   "from": "/phase1",
+   "to": "/phase-1",
+   "status": 301,
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/phase1/",
+   "to": "/phase-1",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /phase1/ (Cloudflare Pages treats it as a different path)"
+  }
+ ],
+ "javascript": [],
+ "csp": {
+  "script-src": [],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "clinical_design": {
+  "phase2b_statements": [
+   "Evidence about whether NWPT-SM32300 helps people at clinical high risk of psychosis can only come from studies in that population, such as the planned Phase 2B study ."
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
+ "publication_blockers": [
+  "fact phase1.isrctn (registry-index) on phase-1.html",
+  "fact phase1.isrctn_url (registry-index) on phase-1.html",
+  "fact phase1.location (registry-index) on phase-1.html",
+  "fact phase1.nct (registry-index) on phase-1.html",
+  "fact phase1.nct_url (registry-index) on phase-1.html",
+  "fact phase1.status (registry-index) on phase-1.html",
+  "reference perucca-2020 (index) on phase-1.html",
+  "clinical design: compare the module's 1 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
+ ],
+ "optional_assets": []
+}

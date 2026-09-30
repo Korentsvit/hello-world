@@ -1,0 +1,63 @@
+---
+title: Investor journey (demonstration)
+nav_title: Investor journey
+description: Demonstration of the intended investor journey with synthetic data only. Inactive.
+---
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Restricted demonstration · synthetic data · inactive</p>
+        <h1>Intended investor journey</h1>
+        <p class="lead">Eligibility assessment, disclosures, identity checks, documents, subscription, ownership record, reporting. Each step shows who would deliver it. Every control is disabled, no data is collected, and the site refuses all submissions.</p>
+      </div>
+    </section>
+    <section class="section-tight">
+      <div class="container">
+        <div class="callout callout-important">
+          <h2>Important</h2>
+          <p>Being able to open this restricted area does <strong>not</strong> mean anyone is eligible to invest. Eligibility would be decided only by the selected regulated platform under applicable law. The person shown below is fictional ("Synthetic Investor A"); no real data appears.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="table-stack">
+            <caption>Who delivers each step</caption>
+            <thead><tr><th scope="col">Step</th><th scope="col">Delivered by</th><th scope="col">NWPharmaTech role</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1. Eligibility assessment</th><td data-label="Delivered by">Selected regulated platform</td><td data-label="NWPharmaTech role">Sets offer parameters with counsel; never decides individual eligibility</td></tr>
+              <tr><th scope="row">2. Disclosures</th><td data-label="Delivered by">Platform (displays and records acknowledgement)</td><td data-label="NWPharmaTech role">Provides approved offering and risk disclosures</td></tr>
+              <tr><th scope="row">3. Identity and AML checks</th><td data-label="Delivered by">Platform's regulated KYC/AML provider</td><td data-label="NWPharmaTech role">None; receives pass/fail only where lawful</td></tr>
+              <tr><th scope="row">4. Documents</th><td data-label="Delivered by">Platform (e-signature)</td><td data-label="NWPharmaTech role">Provides documents approved by counsel</td></tr>
+              <tr><th scope="row">5. Subscription and payment</th><td data-label="Delivered by">Platform and its regulated payment/escrow partner</td><td data-label="NWPharmaTech role">None; no payment handling on this website</td></tr>
+              <tr><th scope="row">6. Ownership record</th><td data-label="Delivered by">Register maintained by the vehicle's registrar; permissioned token issued by the platform's tokenisation service at closing where feasible (register-first fallback)</td><td data-label="NWPharmaTech role">Vehicle approves allotment at closing</td></tr>
+              <tr><th scope="row">7. Reporting</th><td data-label="Delivered by">Platform investor portal</td><td data-label="NWPharmaTech role">Supplies programme reports; the same public reports as everyone else</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="section section-alt">
+      <div class="container">
+        <h2>Demonstration screens (synthetic, inactive)</h2>
+        <ol class="journey">
+          <li class="journey-step"><h3>1. Eligibility assessment <span class="owner">Platform</span></h3>
+            <form aria-label="Eligibility (inactive demonstration)"><fieldset disabled><legend>Country and investor status</legend>
+              <div class="form-row"><label for="d-country">Country of residence</label><select id="d-country"><option>United Kingdom (synthetic)</option></select></div>
+              <div class="form-row"><label for="d-class">Investor classification</label><select id="d-class"><option>To be defined by counsel</option></select></div>
+            </fieldset></form>
+            <p class="small">Outcome shown by the platform, not by this site. Synthetic example: "Assessment pending".</p></li>
+          <li class="journey-step"><h3>2. Disclosures <span class="owner">Platform</span></h3>
+            <p>Risk summary, offering document and conflicts disclosures, each acknowledged separately. Synthetic example: 0 of 3 acknowledged.</p></li>
+          <li class="journey-step"><h3>3. Identity checks <span class="owner">Platform KYC provider</span></h3>
+            <p>Hand-off to the provider. This website never collects identity documents. Synthetic status: "Not started".</p></li>
+          <li class="journey-step"><h3>4. Documents <span class="owner">Platform e-signature</span></h3>
+            <p>Subscription agreement and vehicle documents. Synthetic status: "Not issued".</p></li>
+          <li class="journey-step"><h3>5. Subscription <span class="owner">Platform and payment partner</span></h3>
+            <form aria-label="Subscription (inactive demonstration)"><fieldset disabled><legend>Amount (synthetic)</legend>
+              <div class="form-row"><label for="d-amt">Amount</label><input id="d-amt" value="0 (synthetic)"></div>
+            </fieldset></form>
+            <p class="small">No payment details are ever entered on this website.</p></li>
+          <li class="journey-step"><h3>6. Ownership record <span class="owner">Registrar; platform tokenisation at closing where feasible</span></h3>
+            <p>Synthetic register entry: "Synthetic Investor A, 0 units, not issued". The register is the legal record in both routes.</p></li>
+          <li class="journey-step"><h3>7. Reporting <span class="owner">Platform portal</span></h3>
+            <p>Quarterly programme report (same content as the public report) and statements from the platform.</p></li>
+        </ol>
+      </div>
+    </section>

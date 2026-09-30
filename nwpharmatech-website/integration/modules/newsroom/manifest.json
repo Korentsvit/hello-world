@@ -1,0 +1,361 @@
+{
+ "id": "newsroom",
+ "title": "Newsroom",
+ "source": {
+  "page": "newsroom.html",
+  "template": "src/pages/newsroom.html",
+  "staging_route": "/newsroom",
+  "part": "the content of <main>"
+ },
+ "placement": {
+  "live_route": "/newsroom",
+  "where": "The main content of the live /newsroom page, between the live header and footer.",
+  "first_heading": "h1",
+  "page_title": "Newsroom | NWPharmaTech",
+  "page_description": "Press kit, fact sheet, how progress is reported and the corrections log for the NWPharmaTech research programme."
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 5188,
+   "sha256": "eb4d17ad26f4d33768bee3ec7deb700001062085628f9a9bbff19a4465c59f3a"
+  },
+  "module.css": {
+   "bytes": 7810,
+   "sha256": "3261162380ccf7b7be4730fce327ea2699fd72beb5af9773ae0cc2d9e0007c0f"
+  },
+  "preview.html": {
+   "bytes": 5991,
+   "sha256": "8143c1dc6ac8323f4c557b2e9f382028ff4744907f12fe13b9e15eba06d6853e"
+  }
+ },
+ "left_out": [],
+ "facts": [
+  {
+   "id": "company.jurisdiction",
+   "value": "England and Wales",
+   "verification": "index",
+   "as_of": "2026-09-23",
+   "source_label": "Companies House",
+   "production_ready": false
+  },
+  {
+   "id": "company.name",
+   "value": "NWPharmaTech Ltd",
+   "verification": "index",
+   "as_of": "2026-09-23",
+   "source_label": "Companies House",
+   "production_ready": false
+  },
+  {
+   "id": "company.number",
+   "value": "13572461",
+   "verification": "index",
+   "as_of": "2026-09-23",
+   "source_label": "Companies House",
+   "production_ready": false
+  },
+  {
+   "id": "company.phone_display",
+   "value": "+44 20 3693 3791",
+   "verification": "document",
+   "as_of": "2026-07-14",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase1.end",
+   "value": "10 December 2025",
+   "verification": "document",
+   "as_of": "2025-12-10",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.isrctn",
+   "value": "ISRCTN25163383",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ISRCTN25163383",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.nct",
+   "value": "NCT07186283",
+   "verification": "registry-index",
+   "as_of": "2026-09-23",
+   "source_label": "ClinicalTrials.gov NCT07186283",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.population",
+   "value": "14 healthy adult volunteers aged 18 to 55",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.population",
+   "value": "people at clinical high risk of psychosis",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.status",
+   "value": "Planned. Not recruiting.",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.api",
+   "value": "highly purified cannabidiol",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.form",
+   "value": "oral softgel capsule",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.name",
+   "value": "NWPT-SM32300",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.status",
+   "value": "investigational; not approved by any medicines regulator for any use",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.strength",
+   "value": "300 mg",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "site.as_of",
+   "value": "23 September 2026",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  }
+ ],
+ "references": [],
+ "downloads": [
+  {
+   "file": "downloads/nwpharmatech-programme-brief.pdf",
+   "href": "/downloads/nwpharmatech-programme-brief.pdf",
+   "bytes": 69873,
+   "sha256": "0516741c271cabb5959312cee0f31da2429006c760d8e1c1a7c1156c6008d013"
+  },
+  {
+   "file": "downloads/nwpharmatech-references.ris",
+   "href": "/downloads/nwpharmatech-references.ris",
+   "bytes": 6509,
+   "sha256": "4b13d0c203da16de333fac5387c5a31512fb79094df276d81d56c723c508090a"
+  }
+ ],
+ "assets": [
+  {
+   "file": "assets/img/people/daud-gutseriev.jpg",
+   "href": "/assets/img/people/daud-gutseriev.jpg",
+   "bytes": 2474,
+   "sha256": "a17297d090970cda53be05125976c46e0d5a8e36a9c1d2f97019149d50df2c73"
+  },
+  {
+   "file": "assets/img/people/filipp-korentsvit.jpg",
+   "href": "/assets/img/people/filipp-korentsvit.jpg",
+   "bytes": 2523,
+   "sha256": "c375e79f400e7f62f0996c418b8ea0694a78ff021325e4da7b47f68512551266"
+  },
+  {
+   "file": "assets/img/people/grace-blest-hopley.jpg",
+   "href": "/assets/img/people/grace-blest-hopley.jpg",
+   "bytes": 2817,
+   "sha256": "a9983633709238b37bc00a55e7f5c466630f065b8fe5e271e0ab678e41bfbc86"
+  },
+  {
+   "file": "assets/img/people/john-kane.jpg",
+   "href": "/assets/img/people/john-kane.jpg",
+   "bytes": 2377,
+   "sha256": "aa5006f78cf0c671ab841620101e61071982030561e29bb77bba1534a78831f0"
+  },
+  {
+   "file": "assets/img/people/richard-barker.jpg",
+   "href": "/assets/img/people/richard-barker.jpg",
+   "bytes": 2116,
+   "sha256": "95595cc43aec8ee4c68353e911f0f4d494c9a04e61c4461bc265f9bcc938f0aa"
+  },
+  {
+   "file": "assets/img/people/scott-woods.jpg",
+   "href": "/assets/img/people/scott-woods.jpg",
+   "bytes": 2201,
+   "sha256": "34d7450db3a43bbfcede157b722148155c5702d6b74d5053cfe0d3b9a987ff8a"
+  },
+  {
+   "file": "assets/img/people/trevor-jones.jpg",
+   "href": "/assets/img/people/trevor-jones.jpg",
+   "bytes": 2405,
+   "sha256": "dceaeb53a4cf4ded5a3ed4eefb5d64d96687e950f2ca1f0317112a129810d336"
+  }
+ ],
+ "anchors": {
+  "ids": [
+   "kit-h",
+   "rep-h",
+   "corrections",
+   "corr-h"
+  ],
+  "linked_from_site": [
+   "corrections"
+  ]
+ },
+ "links": {
+  "pages": [
+   {
+    "page": "contact",
+    "href": "/contact"
+   },
+   {
+    "page": "study",
+    "href": "/study#milestones"
+   },
+   {
+    "page": "updates",
+    "href": "/updates"
+   }
+  ],
+  "external": []
+ },
+ "dependencies": [
+  {
+   "id": "contact",
+   "kind": "page outside the package",
+   "page": "contact",
+   "links": [
+    "/contact"
+   ],
+   "needs": "a live page at /contact (set its path in src/integration-routes.json)",
+   "blocks_publication": false
+  },
+  {
+   "id": "study-hub",
+   "kind": "module",
+   "page": "study",
+   "links": [
+    "/study#milestones"
+   ],
+   "needs": "module study-hub imported first or at the same time, so these links and anchors resolve",
+   "blocks_publication": false
+  },
+  {
+   "id": "updates",
+   "kind": "page outside the package",
+   "page": "updates",
+   "links": [
+    "/updates"
+   ],
+   "needs": "a live page at /updates (set its path in src/integration-routes.json)",
+   "blocks_publication": false
+  }
+ ],
+ "redirects": [
+  {
+   "from": "/news",
+   "to": "/newsroom",
+   "status": 301,
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/press",
+   "to": "/newsroom",
+   "status": 301,
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/news/",
+   "to": "/newsroom",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /news/ (Cloudflare Pages treats it as a different path)"
+  },
+  {
+   "from": "/press/",
+   "to": "/newsroom",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /press/ (Cloudflare Pages treats it as a different path)"
+  }
+ ],
+ "javascript": [],
+ "csp": {
+  "script-src": [],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [
+   "'self'"
+  ],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "clinical_design": {
+  "phase2b_statements": [
+   "A Phase 1 study in healthy volunteers (NCT07186283) was completed on 10 December 2025; a Phase 2B study is planned.",
+   "Phase 2B in people at clinical high risk of psychosis: Planned."
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
+ "publication_blockers": [
+  "fact company.jurisdiction (index) on newsroom.html",
+  "fact company.name (index) on newsroom.html",
+  "fact company.number (index) on newsroom.html",
+  "fact phase1.isrctn (registry-index) on newsroom.html",
+  "fact phase1.nct (registry-index) on newsroom.html",
+  "people.json: no consent to publish recorded for Dr Scott W. Woods",
+  "people.json: biography of Dr Scott W. Woods checked only at index level",
+  "people.json: no consent to publish recorded for Dr John M. Kane",
+  "people.json: biography of Dr John M. Kane checked only at index level",
+  "people.json: no consent to publish recorded for Dr Grace Blest-Hopley",
+  "people.json: title for Filipp Korentsvit not confirmed by management (records-agree; shows 'Chief Executive Officer')",
+  "people.json: no consent to publish recorded for Filipp Korentsvit",
+  "people.json: title for Daud Gutseriev not confirmed by management (unconfirmed; no title shown)",
+  "people.json: no consent to publish recorded for Daud Gutseriev",
+  "people.json: title for Professor Richard Barker OBE not confirmed by management (unconfirmed; no title shown)",
+  "people.json: no consent to publish recorded for Professor Richard Barker OBE",
+  "people.json: biography of Professor Richard Barker OBE checked only at index level",
+  "people.json: title for Professor Trevor Jones CBE not confirmed by management (records-agree; shows 'Senior Adviser')",
+  "people.json: no consent to publish recorded for Professor Trevor Jones CBE",
+  "people.json: biography of Professor Trevor Jones CBE checked only at index level",
+  "clinical design: compare the module's 2 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
+ ],
+ "optional_assets": []
+}

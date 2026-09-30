@@ -1,0 +1,45 @@
+{
+  "_doc": "Image asset slots. An asset renders only if the file exists under src/ AND authorised is true (and, where a caption is used, caption_approved is true). Otherwise its slot renders nothing, or the stated fallback; no 'image pending' box is ever shown. Missing assets are reported by the build as optional and never block publication.",
+  "assets": {
+    "logo": {
+      "file": "assets/img/brand/nwpharmatech-logo.svg",
+      "alt": "NWPharmaTech",
+      "authorised": false,
+      "used_on": [
+        "header (all pages)",
+        "footer (all pages)",
+        "favicon",
+        "programme brief PDF (header)",
+        "appointment preparation sheet PDF (header)"
+      ],
+      "fallback": "interim mark (assets/img/mark.svg) with the text wordmark",
+      "note": "Official logo from the brand guidelines (Studio P+P, 2021). Supply as SVG; replace the file and set authorised to true."
+    },
+    "softgel-render": {
+      "file": "assets/img/renders/nwpt-sm32300-softgel.jpg",
+      "width": 1200,
+      "height": 900,
+      "alt": "Computer-generated render of an NWPT-SM32300 softgel capsule",
+      "caption": "NWPT-SM32300 300 mg oral softgel. Computer-generated render supplied by NWPharmaTech; not to scale. Investigational medicine.",
+      "authorised": false,
+      "caption_approved": false,
+      "used_on": [
+        "science.html#formulation (right column, above the capsule-to-measurement diagram)"
+      ],
+      "fallback": "nothing: the diagram fills the column on its own",
+      "note": "Actual corporate render only (no AI-generated image). 4:3 JPEG, at least 1200 x 900 px. Supply the file, then set authorised and caption_approved to true."
+    },
+    "micelle-render": {
+      "file": "assets/img/renders/micellar-dispersion.jpg",
+      "width": 1200,
+      "height": 900,
+      "alt": "Illustration of a lipid formulation dispersing into small droplets in water",
+      "caption": "Illustration of self-emulsification: the capsule contents disperse into very small droplets in water. Schematic; not to scale, and not an image of the body.",
+      "authorised": false,
+      "caption_approved": false,
+      "used_on": [],
+      "fallback": "nothing",
+      "note": "No agreed placement, so it renders nowhere even when supplied. If one is agreed, add {{block:asset:micelle-render}} to that page (see docs/asset-manifest.md)."
+    }
+  }
+}

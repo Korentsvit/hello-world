@@ -1,0 +1,220 @@
+{
+ "id": "study-hub",
+ "title": "Study progress",
+ "source": {
+  "page": "study.html",
+  "template": "src/pages/study.html",
+  "staging_route": "/study",
+  "part": "the content of <main>"
+ },
+ "placement": {
+  "live_route": "/study",
+  "where": "The main content of the live /study page, between the live header and footer.",
+  "first_heading": "h1",
+  "page_title": "The study: progress and evidence | NWPharmaTech",
+  "page_description": "The planned Phase 2B study of NWPT-SM32300 in people at clinical high risk of psychosis: current stage, completed work, milestones, registrations and oversight."
+ },
+ "files": {
+  "fragment.html": {
+   "bytes": 8367,
+   "sha256": "bb97c88dbaab492c1067cb603dab13370e1a6c831ca53ba8831b0b6c0529ee01"
+  },
+  "module.css": {
+   "bytes": 11891,
+   "sha256": "baf29aaadc01f1148d82b0b54731b9605343804c1e02b1aca121ccde82870a30"
+  },
+  "preview.html": {
+   "bytes": 9177,
+   "sha256": "4573b5ca965c5d854613e38f0ac05437074d9d2af3ae3c4e4f4481da1ffeabae"
+  }
+ },
+ "left_out": [],
+ "facts": [
+  {
+   "id": "company.name",
+   "value": "NWPharmaTech Ltd",
+   "verification": "index",
+   "as_of": "2026-09-23",
+   "source_label": "Companies House",
+   "production_ready": false
+  },
+  {
+   "id": "phase1.db_lock",
+   "value": "11 March 2026",
+   "verification": "document",
+   "as_of": "2026-03-11",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase1.end",
+   "value": "10 December 2025",
+   "verification": "document",
+   "as_of": "2025-12-10",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.n",
+   "value": "14",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "phase1.outputs_delivered",
+   "value": "30 March 2026",
+   "verification": "document",
+   "as_of": "2026-03-30",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.aims",
+   "value": "dose response, symptoms, safety and tolerability",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.population",
+   "value": "people at clinical high risk of psychosis",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.protocol_status",
+   "value": "Protocol being finalised",
+   "verification": "document",
+   "as_of": "2026-02-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "phase2b.status",
+   "value": "Planned. Not recruiting.",
+   "verification": "document",
+   "as_of": "2026-09-23",
+   "source_label": null,
+   "production_ready": true
+  },
+  {
+   "id": "product.dev_code",
+   "value": "NW300EMCBD",
+   "verification": "document",
+   "as_of": "2026-03-20",
+   "source_label": "Phase 1 study records (NW PharmaTech)",
+   "production_ready": true
+  },
+  {
+   "id": "product.name",
+   "value": "NWPT-SM32300",
+   "verification": "document",
+   "as_of": "2026-08-07",
+   "source_label": null,
+   "production_ready": true
+  }
+ ],
+ "references": [],
+ "downloads": [
+  {
+   "file": "downloads/nwpharmatech-programme-brief.pdf",
+   "href": "/downloads/nwpharmatech-programme-brief.pdf",
+   "bytes": 69873,
+   "sha256": "0516741c271cabb5959312cee0f31da2429006c760d8e1c1a7c1156c6008d013"
+  }
+ ],
+ "assets": [],
+ "anchors": {
+  "ids": [
+   "sum-h",
+   "synopsis-h",
+   "milestones",
+   "ms-h",
+   "reg-h",
+   "documents",
+   "doc-h"
+  ],
+  "linked_from_site": [
+   "milestones"
+  ]
+ },
+ "links": {
+  "pages": [],
+  "external": [
+   "https://clinicaltrials.gov/study/NCT07186283",
+   "https://www.isrctn.com/ISRCTN25163383"
+  ]
+ },
+ "dependencies": [],
+ "redirects": [
+  {
+   "from": "/phase-2b",
+   "to": "/study",
+   "status": 301,
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/phase2b",
+   "to": "/study",
+   "status": 301,
+   "kind": "alias",
+   "required": false,
+   "why": "short alias in src/redirects.txt; add it only if nothing on the live site already answers at this path (a page, file or redirect), otherwise skip it"
+  },
+  {
+   "from": "/phase-2b/",
+   "to": "/study",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /phase-2b/ (Cloudflare Pages treats it as a different path)"
+  },
+  {
+   "from": "/phase2b/",
+   "to": "/study",
+   "status": 301,
+   "kind": "alias, trailing-slash form",
+   "required": false,
+   "why": "the same redirect for /phase2b/ (Cloudflare Pages treats it as a different path)"
+  }
+ ],
+ "javascript": [],
+ "csp": {
+  "script-src": [],
+  "style-src": [
+   "'self'"
+  ],
+  "img-src": [],
+  "connect-src": [],
+  "font-src": [],
+  "frame-src": [],
+  "detail": "No inline scripts, style attributes, event handlers, fonts or third-party requests. The live policy can stay script-src 'self'; style-src 'self'. Links to other sites are ordinary links, not requests."
+ },
+ "clinical_design": {
+  "phase2b_statements": [
+   "Phase 2B study: Planned.",
+   "Finalisation of the Phase 2B protocol, reported as in progress in February 2026.",
+   "The planned Phase 2B study will evaluate dose response, symptoms, safety and tolerability of NWPT-SM32300 in people at clinical high risk of psychosis.",
+   "The Phase 2B study is not recruiting.",
+   "Phase 2B: protocol finalised",
+   "Phase 2B study (planned)"
+  ],
+  "replaces_live_design": false,
+  "scope": "States only population, aims and status. Doses, comparator, duration, endpoints and size are not stated because no CHR-P design source was supplied; nothing is taken from schizophrenia studies. Keep the live site's published design section."
+ },
+ "publication_blockers": [
+  "funding-use.html, index.html, faq.html, legal.html, study.html, programme brief PDF: board and legal approval of the funding and financing wording before publication, including whether the brief should again name investor audiences as management's original brief did ('including those in the crypto and mental-health communities'; removed here so that the brief matches the homepage)",
+  "study.html, updates.html: reconcile the Phase 1 start date: company records give first consent on 27 August 2025, ClinicalTrials.gov gives a study start of 22 September 2025",
+  "index.html, programme.html, study.html, programme brief PDF: confirm that 'Protocol being finalised' is still the Phase 2B status (last documented 23 February 2026), and give the next milestone date if one is set",
+  "fact company.name (index) on study.html",
+  "clinical design: compare the module's 6 Phase 2B statement(s) (manifest -> clinical_design) with the proposed CHR-P design published on the live site, and keep the live design section; this module does not replace it (CLINICAL-DESIGN-CHECK.md)"
+ ],
+ "optional_assets": []
+}

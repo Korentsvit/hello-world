@@ -1,0 +1,657 @@
+{
+  "_doc": "Profiles. Public fields render on team.html and the press kit; people with public: false are not rendered. 'role' is the title, shown only when role_status is 'confirmed' or 'records-agree'; it is null when 'unconfirmed'. buildlib/content.py checks both against 'role_records' (rules in docs/leadership-reconciliation.md): 'confirmed' needs a record from a management confirmation dated after 2026-09-23 whose wording contains the title; 'records-agree' needs two records whose 'title' agrees, at least one dated 2025 or later other than the August 2026 teaser, and no record giving a different title (unless marked 'compatible': held alongside it). A record's 'title' is the title as that record gives it and must appear in its 'wording'. No chair or committee title unless confirmed. 'descriptor' is a field of expertise, remit or neutral description, never a job title, and is always shown: it needs two 'descriptor_records', at least one not the teaser. Each responsibility needs a record dated 2025 or later other than the teaser. 'bio_verification' is a level from facts.json covering the bio and affiliations; below document/primary it blocks production, as for facts. 'consent_to_publish' is the person's written consent to the profile; false blocks production. Every title that is not 'confirmed' blocks production. Records, 'review' and 'sources' are internal. A portrait renders only if 'portrait.file' exists under src/assets AND 'portrait.authorised' is true; otherwise nothing is rendered in its place. 'disclosures' renders only when non-empty and sourced. Interview modules render only when complete (see interviews.json).",
+  "groups": [
+    {
+      "id": "clinical",
+      "title": "Clinical and scientific leadership"
+    },
+    {
+      "id": "management",
+      "title": "Management"
+    },
+    {
+      "id": "board",
+      "title": "Board and senior advisers"
+    }
+  ],
+  "people": [
+    {
+      "id": "scott-woods",
+      "group": "clinical",
+      "featured": true,
+      "public": true,
+      "name": "Dr Scott W. Woods",
+      "role": "CHR-P programme lead",
+      "role_status": "confirmed",
+      "role_records": [
+        {
+          "source": "outreach-2025-04",
+          "date": "2025-04-27",
+          "wording": "Drafted as from Dr John Kane and Dr Scott Woods 'on behalf of NW PharmaTech' about the CHR-P development programme; gives 'Professor of Psychiatry, Yale School of Medicine; Director, PRIME Clinic'; no programme title"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "wording": "'New: Dr. Scott Woods (Yale, CHR-P expert)'; 'Additional Advisor Input: Dr. Scott Woods (Yale, CHR-P diagnostics expert) on trial design' (the Phase 2 trial); no title"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "wording": "'Yale PRIME; CHR-P authority'; 'Developed with ... Yale (Scott Woods, PRIME)'; no title"
+        },
+        {
+          "source": "brief-2026-09-b",
+          "date": "2026-09-23",
+          "wording": "Management instruction (round 3): 'Make Scott Woods's CHR-P role prominent.'"
+        },
+        {
+          "source": "brief-2026-09-d",
+          "date": "2026-09-24",
+          "wording": "Management instruction (round 5): 'Scott Woods leads CHR-P.'"
+        },
+        {
+          "source": "brief-2026-09-f",
+          "date": "2026-09-26",
+          "wording": "Board correction pack NWPT-031 B2: 'Woods = CHR-P programme lead · individual capacity · Yale non-endorse'"
+        }
+      ],
+      "descriptor": "Clinical high risk of psychosis (CHR-P)",
+      "descriptor_records": [
+        {
+          "source": "outreach-2025-04",
+          "wording": "'Director, PRIME Clinic'; writes about the CHR-P development programme"
+        },
+        {
+          "source": "web3-2025-10",
+          "wording": "'CHR-P expert'; 'CHR-P diagnostics expert'"
+        },
+        {
+          "source": "teaser-2026-08",
+          "wording": "'CHR-P authority'"
+        }
+      ],
+      "responsibilities": [
+        {
+          "text": "Leads the CHR-P programme.",
+          "records": [
+            {
+              "source": "brief-2026-09-d",
+              "wording": "'Scott Woods leads CHR-P.'"
+            },
+            {
+              "source": "brief-2026-09-f",
+              "wording": "'Woods = CHR-P programme lead'"
+            }
+          ]
+        }
+      ],
+      "affiliations": [
+        "Professor of Psychiatry, Yale School of Medicine",
+        "Director, PRIME Clinic, which specialises in people at clinical high risk of psychosis"
+      ],
+      "bio": "Psychiatrist and researcher who has worked for many years on identifying and helping young people at clinical high risk of psychosis.",
+      "bio_verification": "index",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/scott-woods.jpg",
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
+      },
+      "consent_to_publish": false,
+      "interview": "woods",
+      "sources": [
+        "outreach-2025-04",
+        "web3-2025-10",
+        "teaser-2026-08",
+        "verification-2026-09-23",
+        "verification-2026-09-23b",
+        "brief-2026-09-c"
+      ],
+      "review": "No programme title in any record. Management (round 4) rejects the adviser framing. The responsibility line is W25's 'Advisor Input ... on trial design', limited to the planned Phase 2B; ask management how his role is described. Responsibility line withheld: the only record of his function (W25, 'Additional Advisor Input ... on trial design') sits beside Kane's W25 relapse-prevention design lead, which is not read as the planned CHR-P Phase 2B; the two are treated alike. Management to give his role wording.",
+      "capacity": "Individual capacity",
+      "statement": "Dr Woods contributes in an individual capacity. His Yale affiliation is given for identification only; Yale University does not endorse or sponsor the programme. Programme leadership is separate from the study sponsor role: NWPharmaTech is developing the proposed CHR-P programme, and formal study responsibilities will be documented before the study begins."
+    },
+    {
+      "id": "john-kane",
+      "group": "clinical",
+      "featured": false,
+      "public": true,
+      "name": "Dr John M. Kane",
+      "role": "Lead, Schizophrenia Programme",
+      "role_status": "confirmed",
+      "role_records": [
+        {
+          "source": "deck-2023-08",
+          "date": "2023-08-15",
+          "title": "Partner & Senior Psychiatric Advisor",
+          "wording": "'Partner & Senior Psychiatric Advisor'"
+        },
+        {
+          "source": "outreach-2025-04",
+          "date": "2025-04-27",
+          "wording": "Drafted as from Dr John Kane and Dr Scott Woods 'on behalf of NW PharmaTech'; no programme title"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "title": "Principal Investigator, relapse-prevention studies",
+          "wording": "'Principal Investigator, relapse-prevention studies'; 'Phase 2: Randomized event-driven relapse-prevention design, led by Prof. John Kane'"
+        },
+        {
+          "source": "board-circulation-2026-07",
+          "date": "2026-07-14",
+          "wording": "Recipient; no title stated"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "title": "SAB Chair",
+          "wording": "'SAB Chair; schizophrenia trial design'; 'clinical trial design led by Dr John Kane'"
+        },
+        {
+          "source": "brief-2026-09-f",
+          "date": "2026-09-26",
+          "wording": "Board correction pack NWPT-031 B2: 'Kane = Lead — Schizophrenia Programme (≠ CHR-P lead)'"
+        }
+      ],
+      "descriptor": "Clinical trial design",
+      "descriptor_records": [
+        {
+          "source": "web3-2025-10",
+          "wording": "'Phase 2: Randomized event-driven relapse-prevention design, led by Prof. John Kane'"
+        },
+        {
+          "source": "teaser-2026-08",
+          "wording": "'schizophrenia trial design'; 'clinical trial design led by Dr John Kane'"
+        }
+      ],
+      "responsibilities": [],
+      "affiliations": [
+        "Professor of Psychiatry and Molecular Medicine, Donald and Barbara Zucker School of Medicine at Hofstra/Northwell",
+        "Co-director, Institute for Behavioral Science, Feinstein Institutes for Medical Research"
+      ],
+      "bio": "Psychiatrist and schizophrenia researcher with long experience of leading clinical trials.",
+      "bio_verification": "index",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/john-kane.jpg",
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
+      },
+      "consent_to_publish": false,
+      "interview": "kane",
+      "sources": [
+        "deck-2023-08",
+        "web3-2025-10",
+        "teaser-2026-08",
+        "verification-2026-09-23",
+        "verification-2026-09-23b"
+      ],
+      "review": "Titles conflict across records; 'SAB Chair' is teaser-only (committee appointment: withheld). No responsibility line: W25's design lead is for a relapse-prevention design, and only the teaser links him to the current programme's trial design. Ask management whether he leads the CHR-P Phase 2B design."
+    },
+    {
+      "id": "grace-blest-hopley",
+      "group": "clinical",
+      "featured": false,
+      "public": true,
+      "name": "Dr Grace Blest-Hopley",
+      "role": "Partner & Chief Scientific Officer",
+      "role_status": "confirmed",
+      "role_records": [
+        {
+          "source": "deck-2023-08",
+          "date": "2023-08-15",
+          "title": "Partner & Chief Scientific Officer",
+          "wording": "'Partner & Chief Scientific Officer'"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "title": "CSO",
+          "wording": "'CSO, translational neuroscience (PhD King's College London; 10+ years cannabinoids/psychedelics research)'"
+        },
+        {
+          "source": "board-circulation-2026-07",
+          "date": "2026-07-14",
+          "wording": "Copied; no title stated"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "title": "CSO",
+          "wording": "'CSO; cannabinoid neuropharmacology'"
+        },
+        {
+          "source": "brief-2026-09-f",
+          "date": "2026-09-26",
+          "wording": "Board correction pack NWPT-031 B2: 'Grace: Partner & CSO · company scientific ≠ CHR-P programme lead'"
+        }
+      ],
+      "descriptor": "Cannabinoid neuropharmacology",
+      "descriptor_records": [
+        {
+          "source": "deck-2023-08",
+          "wording": "'Ph.D. in the actions and effects of cannabinoids at King's College London'"
+        },
+        {
+          "source": "web3-2025-10",
+          "wording": "'10+ years cannabinoids/psychedelics research'"
+        },
+        {
+          "source": "teaser-2026-08",
+          "wording": "'cannabinoid neuropharmacology'"
+        }
+      ],
+      "responsibilities": [],
+      "affiliations": [],
+      "bio": "Neuroscientist specialising in cannabinoid neuropharmacology. PhD from King's College London on the actions and effects of cannabinoids.",
+      "bio_verification": "document",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/grace-blest-hopley.jpg",
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
+      },
+      "consent_to_publish": false,
+      "interview": "blest-hopley",
+      "sources": [
+        "deck-2023-08",
+        "web3-2025-10",
+        "teaser-2026-08",
+        "verification-2026-09-23b"
+      ],
+      "review": "Specific responsibility for formulation research not documented; do not state it until confirmed. 'Responsible for the programme's scientific strategy' removed: inferred from the CSO title, which records give without a remit. Management to describe her responsibilities."
+    },
+    {
+      "id": "filipp-korentsvit",
+      "group": "management",
+      "featured": false,
+      "public": true,
+      "name": "Filipp Korentsvit",
+      "role": "Chief Executive Officer",
+      "role_status": "records-agree",
+      "role_records": [
+        {
+          "source": "deck-2023-08",
+          "date": "2023-08-15",
+          "title": "Co-Founder & Chief Executive Officer",
+          "wording": "'Co-Founder & Chief Executive Officer'"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "title": "Founder & CEO",
+          "wording": "'Founder & CEO, strategic architect'"
+        },
+        {
+          "source": "signature-2026",
+          "date": "2026-07-14",
+          "title": "Founding Partner",
+          "compatible": true,
+          "wording": "Email signature: 'Founding Partner' (held alongside the CEO title, not instead of it)"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "title": "CEO",
+          "wording": "'CEO; strategy; ex-Goldman Sachs'"
+        }
+      ],
+      "descriptor": "Company strategy",
+      "descriptor_records": [
+        {
+          "source": "web3-2025-10",
+          "wording": "'Founder & CEO, strategic architect'"
+        },
+        {
+          "source": "teaser-2026-08",
+          "wording": "'CEO; strategy'"
+        }
+      ],
+      "responsibilities": [
+        {
+          "text": "Leads company strategy.",
+          "records": [
+            {
+              "source": "web3-2025-10",
+              "wording": "'Founder & CEO, strategic architect'"
+            },
+            {
+              "source": "teaser-2026-08",
+              "wording": "'CEO; strategy'"
+            }
+          ]
+        }
+      ],
+      "affiliations": [],
+      "bio": "Previously an Executive Director at Goldman Sachs. BSc in Economics and Statistics, University College London.",
+      "bio_verification": "document",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/filipp-korentsvit.jpg",
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
+      },
+      "consent_to_publish": false,
+      "interview": null,
+      "sources": [
+        "deck-2023-08",
+        "web3-2025-10",
+        "teaser-2026-08",
+        "signature-2026"
+      ],
+      "review": "'Founding Partner' rests on the 2026 signature alone; add it only if management confirms."
+    },
+    {
+      "id": "daud-gutseriev",
+      "group": "management",
+      "featured": false,
+      "public": true,
+      "name": "Daud Gutseriev",
+      "role": null,
+      "role_status": "unconfirmed",
+      "role_records": [
+        {
+          "source": "deck-2023-08",
+          "date": "2023-08-15",
+          "title": "Co-Founder & Chief Operating Officer",
+          "wording": "'Co-Founder & Chief Operating Officer'"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "wording": "'Co-founders Moldaschl/Gutseriev'; no role title"
+        },
+        {
+          "source": "board-circulation-2026-07",
+          "date": "2026-07-14",
+          "wording": "Copied; no title stated"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "title": "COO",
+          "wording": "'COO; execution; ex-VTB Capital'"
+        }
+      ],
+      "descriptor": "Co-founder",
+      "descriptor_records": [
+        {
+          "source": "deck-2023-08",
+          "wording": "'Co-Founder & Chief Operating Officer'"
+        },
+        {
+          "source": "web3-2025-10",
+          "wording": "'Co-founders Moldaschl/Gutseriev'"
+        }
+      ],
+      "responsibilities": [],
+      "affiliations": [],
+      "bio": "Previously an Associate Director at VTB Capital in infrastructure and project financing. Executive MBA, University of Oxford Saïd Business School.",
+      "bio_verification": "document",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/daud-gutseriev.jpg",
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
+      },
+      "consent_to_publish": false,
+      "interview": null,
+      "sources": [
+        "deck-2023-08",
+        "web3-2025-10",
+        "teaser-2026-08"
+      ],
+      "review": "COO appears only in the 2023 deck and the 2026 teaser: no 2025-2026 record other than the teaser gives it, so the title and the teaser's 'execution' remit are withheld. Confirm his title and remit."
+    },
+    {
+      "id": "william-jarosz",
+      "group": "board",
+      "featured": false,
+      "public": false,
+      "name": "William Jarosz",
+      "role": null,
+      "role_status": "unconfirmed",
+      "role_records": [
+        {
+          "source": "deck-2023-08",
+          "date": "2023-08-15",
+          "title": "Partner & Executive Chairman of the Board of Directors",
+          "wording": "'Partner & Executive Chairman of the Board of Directors'"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "wording": "Not listed"
+        },
+        {
+          "source": "board-circulation-2026-07",
+          "date": "2026-07-14",
+          "wording": "Recipient; no title stated"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "title": "Executive Chairman",
+          "wording": "'Executive Chairman; biotech partnerships' (the same teaser names Richard Barker 'Non-Executive Chairman')"
+        }
+      ],
+      "descriptor": "Pharmaceutical business and finance",
+      "descriptor_records": [
+        {
+          "source": "deck-2023-08",
+          "wording": "'Accomplished business leader, with a background in finance and pharma'"
+        },
+        {
+          "source": "teaser-2026-08",
+          "wording": "'biotech partnerships'"
+        }
+      ],
+      "responsibilities": [],
+      "affiliations": [],
+      "bio": "Business leader with a background in finance and the pharmaceutical industry. JD, Harvard Law School; MA in Law and Diplomacy, Tufts University.",
+      "bio_verification": "document",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/william-jarosz.jpg",
+        "authorised": false
+      },
+      "consent_to_publish": false,
+      "interview": null,
+      "sources": [
+        "deck-2023-08",
+        "teaser-2026-08",
+        "brief-2026-09-c"
+      ],
+      "review": "Chair position contested (Jarosz 'Executive Chairman' and Barker 'Non-Executive Chairman' in the same teaser). Title withheld until management confirms who chairs the board.",
+      "public_note": "Not on the live eight-person roster; draft retained privately pending confirmation of his role (Filipp, 26 Sep 2026)."
+    },
+    {
+      "id": "richard-barker",
+      "group": "board",
+      "featured": false,
+      "public": true,
+      "name": "Professor Richard Barker OBE",
+      "role": null,
+      "role_status": "unconfirmed",
+      "role_records": [
+        {
+          "source": "deck-2023-08",
+          "date": "2023-08-15",
+          "title": "Partner & Senior Advisor, Head of Advisory Board",
+          "wording": "'Partner & Senior Advisor, Head of Advisory Board'"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "title": "Senior Advisors",
+          "wording": "'Richard Barker DPhil (precision health leader, Celgene NED), Trevor Jones FRS (...) — Senior Advisors'"
+        },
+        {
+          "source": "board-circulation-2026-07",
+          "date": "2026-07-14",
+          "wording": "Recipient; no title stated"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "title": "Non-Executive Chairman",
+          "wording": "'Non-Executive Chairman; ex-ABPI' (the same teaser names William Jarosz 'Executive Chairman')"
+        }
+      ],
+      "descriptor": "Life-sciences leadership",
+      "descriptor_records": [
+        {
+          "source": "deck-2023-08",
+          "wording": "'a senior leader in the global life sciences sector'"
+        },
+        {
+          "source": "web3-2025-10",
+          "wording": "'precision health leader, Celgene NED'"
+        }
+      ],
+      "responsibilities": [],
+      "affiliations": [],
+      "bio": "Director General of the Association of the British Pharmaceutical Industry (ABPI) from 2004 to 2011, former Chief Executive of Chiron, and former non-executive director of Celgene.",
+      "bio_verification": "index",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/richard-barker.jpg",
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
+      },
+      "consent_to_publish": false,
+      "interview": null,
+      "sources": [
+        "deck-2023-08",
+        "web3-2025-10",
+        "teaser-2026-08",
+        "verification-2026-09-23",
+        "brief-2026-09-c"
+      ],
+      "review": "2023 and 2025 records say Senior Adviser; the 2026 teaser says Non-Executive Chairman. Title withheld until management confirms."
+    },
+    {
+      "id": "gillian-cannon",
+      "group": "board",
+      "featured": false,
+      "public": true,
+      "name": "Dr Gillian Cannon",
+      "role": "Board Member",
+      "role_status": "records-agree",
+      "role_records": [
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "title": "Board Member & Commercial Strategy Advisor",
+          "wording": "'Board Member & Commercial Strategy Advisor (30+ years pharma, e.g., Merck)'"
+        },
+        {
+          "source": "board-circulation-2026-07",
+          "date": "2026-07-14",
+          "wording": "Recipient; no title stated"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "title": "NED",
+          "wording": "'NED; ex-Merck & Otsuka'"
+        }
+      ],
+      "descriptor": "Pharmaceutical commercial strategy",
+      "descriptor_records": [
+        {
+          "source": "web3-2025-10",
+          "wording": "'Commercial Strategy Advisor (30+ years pharma, e.g., Merck)'"
+        },
+        {
+          "source": "teaser-2026-08",
+          "wording": "'ex-Merck & Otsuka'"
+        }
+      ],
+      "responsibilities": [],
+      "affiliations": [],
+      "bio": "Pharmaceutical executive with senior roles at Merck and Otsuka.",
+      "bio_verification": "index",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/gillian-cannon.jpg",
+        "authorised": false
+      },
+      "consent_to_publish": false,
+      "interview": null,
+      "sources": [
+        "web3-2025-10",
+        "teaser-2026-08",
+        "verification-2026-09-23"
+      ],
+      "review": "Records agree on board membership; 'non-executive' is teaser-only. Confirm 'Non-Executive Director'. UCB is only in a search summary (reference-verification.md row 19), in no company record: not used."
+    },
+    {
+      "id": "trevor-jones",
+      "group": "board",
+      "featured": false,
+      "public": true,
+      "name": "Professor Trevor Jones CBE",
+      "role": "Senior Adviser",
+      "role_status": "records-agree",
+      "role_records": [
+        {
+          "source": "deck-2023-08",
+          "date": "2023-08-15",
+          "title": "Partner & Senior Regulatory and Clinical Advisor",
+          "wording": "'Partner & Senior Regulatory and Clinical Advisor'"
+        },
+        {
+          "source": "web3-2025-10",
+          "date": "2025-10-30",
+          "title": "Senior Advisors",
+          "wording": "'Richard Barker DPhil (...), Trevor Jones FRS (former Wellcome R&D head, Teva) — Senior Advisors'"
+        },
+        {
+          "source": "board-circulation-2026-07",
+          "date": "2026-07-14",
+          "wording": "Recipient; no title stated"
+        },
+        {
+          "source": "teaser-2026-08",
+          "date": "2026-08-07",
+          "wording": "Not listed"
+        }
+      ],
+      "descriptor": "Regulatory and clinical development",
+      "descriptor_records": [
+        {
+          "source": "deck-2023-08",
+          "wording": "'Senior Regulatory and Clinical Advisor'; 'Multi-decade career in senior roles in various pharma companies'"
+        },
+        {
+          "source": "web3-2025-10",
+          "wording": "'former Wellcome R&D head'"
+        }
+      ],
+      "responsibilities": [],
+      "affiliations": [
+        "Visiting Professor, King's College London"
+      ],
+      "bio": "Former research and development director at the Wellcome Foundation and former chair of the European Medicinal Cannabis Association.",
+      "bio_verification": "index",
+      "disclosures": [],
+      "portrait": {
+        "file": "assets/img/people/trevor-jones.jpg",
+        "authorised": true,
+        "authorisation": "Authorised portrait supplied by Filipp Korentsvit (CEO), extracted from the corporate pitch deck; integrated on the live site in NWPT-035 (Korentsvit/hello-world 4b0158f, production deployment c3e85514), 26 September 2026. File kept byte-identical to release-032/site/assets/team/."
+      },
+      "consent_to_publish": false,
+      "interview": null,
+      "sources": [
+        "deck-2023-08",
+        "web3-2025-10",
+        "board-circulation-2026-07",
+        "verification-leadership-2026-09-23",
+        "brief-2026-09-c"
+      ],
+      "review": "Restored (round 4). Bio limited to statements in company records that a web search summary confirmed (docs/leadership-reconciliation.md). Consent to publish and portrait not yet received."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+---
+title: The study: progress and evidence
+description: The planned Phase 2B study of NWPT-SM32300 in people at clinical high risk of psychosis: current stage, completed work, milestones, registrations and oversight.
+nav: study
+section: programme
+---
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">The programme</p>
+        <h1>The study: progress and evidence</h1>
+        <p class="lead">Where the {{fact:product.name}} study programme stands, what has been completed, and the sources behind each statement.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        {{block:study_summary}}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="synopsis-h">
+      <div class="container two-col">
+        <div class="prose">
+          <div class="section-head"><h2 id="synopsis-h">Public synopsis</h2><span class="tag tag-company">Programme information</span></div>
+          <p>The planned Phase 2B study will evaluate {{fact:phase2b.aims}} of {{fact:product.name}} in {{fact:phase2b.population}}. It follows a completed Phase 1 study in healthy volunteers, which looked at how the body absorbs and handles the medicine and at short-term tolerability.</p>
+          <p>The Phase 2B study is not recruiting. It can start only after regulatory and research ethics approval.</p>
+        </div>
+        <aside class="aside">
+          <h3>Programme brief</h3>
+          <p>A summary of the programme, generated from the same facts as this page.</p>
+          <p><a class="btn btn-primary" href="downloads/nwpharmatech-programme-brief.pdf" download>Programme summary ({{block:pdf_label:nwpharmatech-programme-brief}})</a></p>
+        </aside>
+      </div>
+      <div class="container">{{block:endpoints}}</div>
+    </section>
+
+    <section class="section section-alt" id="milestones" aria-labelledby="ms-h">
+      <div class="container">
+        <h2 id="ms-h">Milestones</h2>
+        <p class="status-note">Statuses are Planned, In progress or Completed. Dates are exact where a record gives one; otherwise we say what the record states.</p>
+        {{block:milestones:clinical}}
+        {{block:milestones:operational}}
+        {{block:milestones:funding}}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="reg-h">
+      <div class="container two-col">
+        <div class="prose">
+          <h2 id="reg-h">Registrations</h2>
+          <p>The completed Phase 1 study is registered on two public registries. Both entries describe the same study: a single-dose, three-period crossover study of {{fact:product.dev_code}} (the development code for {{fact:product.name}}) in healthy adults aged 18 to 55, sponsored by {{fact:company.name}}.</p>
+          {{block:registrations}}
+        </div>
+        <div class="prose">
+          <h2>Sponsor and oversight</h2>
+          <p>In clinical trial law, the sponsor is the organisation that takes responsibility for starting, managing and financing a study. {{fact:company.name}} was the sponsor of the Phase 1 study.</p>
+          {{block:oversight}}
+        </div>
+      </div>
+    </section>
+
+    {{block:document_history}}

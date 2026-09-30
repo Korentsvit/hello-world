@@ -1,0 +1,170 @@
+{
+  "_doc": "Content for /programme-room (tools/build-programme-room.py). Every statement is taken from the Evidence library cards, the Study progress records (study.html) or approved site wording. Items flagged in records/SOURCE-REGISTER.md as lacking source evidence (Phase 2B sponsor role; Phase 2B participant numbers, doses and duration) are deliberately not repeated. Two separate label sets: 'work' (the status of programme activity, per stage) and 'types' (what kind of source supports a statement, per source). Approval status is never inferred from missing public documentation. Source dates ('Source date', 'Record date') and website review dates ('Website page reviewed') are kept apart; an unknown date says 'Not available'.",
+  "reviewed": "26 September 2026",
+  "work": {
+    "background": {"label": "Background", "text": "Existing research that frames the programme. Not programme activity."},
+    "completed": {"label": "Completed", "text": "Programme activity recorded as completed, with its date."},
+    "in-progress": {"label": "In progress (reported)", "text": "Work that company records report as under way, with the date of the report."},
+    "proposed": {"label": "Proposed", "text": "Planned research described in company records. Its design may change."},
+    "open": {"label": "Open question", "text": "Not yet known. The panel says what research would answer it."}
+  },
+  "types": {
+    "published": {"label": "Published research", "text": "Peer-reviewed articles, reviews and funder study reports."},
+    "guidance": {"label": "Published guidance", "text": "National clinical guidelines."},
+    "registry": {"label": "Registry information", "text": "Entries in public trial registries (ClinicalTrials.gov, ISRCTN)."},
+    "company": {"label": "Company records", "text": "NWPharmaTech records and website pages; not independently published."}
+  },
+  "about_labels": {
+    "field": "The CHR-P field — no specific medicine",
+    "other-cbd": "Other CBD products — not NWPT-SM32300",
+    "nwpt": "NWPT-SM32300 programme"
+  },
+  "shortcuts": [
+    ["#now", "Where are we now?"],
+    ["#stage-phase-1", "What has been studied?"],
+    ["#stage-phase-2b", "What would Phase 2B investigate?"]
+  ],
+  "now": [
+    {"work": "completed", "title": "Phase 1 study", "text": "14 healthy volunteers. Study activity ended on 10 December 2025. Results have not yet been published.", "link": ["#stage-phase-1", "Stage 3: Phase 1"]},
+    {"work": "in-progress", "title": "Phase 2B protocol", "text": "Finalisation reported as in progress on 23 February 2026. No completion date has been announced.", "link": ["#stage-protocol", "Stage 4: Protocol"]},
+    {"work": "proposed", "title": "Phase 2B study", "text": "Planned. Not recruiting. It can start only after regulatory and research ethics approval.", "link": ["#stage-phase-2b", "Stage 5: Phase 2B"]},
+    {"work": "open", "title": "Whether it helps", "text": "Whether NWPT-SM32300 helps people at clinical high risk of psychosis. Finding out is the purpose of the research.", "link": ["#open-questions", "Open questions"]}
+  ],
+  "candidate": "NWPT-SM32300 is an investigational 300&nbsp;mg oral softgel of highly purified cannabidiol in a self-emulsifying (micellar) lipid formulation. It is not approved for any use.",
+  "milestones": {
+    "reviewed": "23 September 2026",
+    "rows": [
+      ["Before Phase&nbsp;1 dosing (2025); exact date not available", "Final formulation and GMP clinical supply for Phase&nbsp;1", "completed", "NWPharmaTech records (not published)"],
+      ["27 August 2025", "Phase&nbsp;1: first participants consented", "completed", "Phase&nbsp;1 study records (NWPharmaTech)"],
+      ["10 December 2025", "Phase&nbsp;1: last study activity", "completed", "Phase&nbsp;1 study records (NWPharmaTech)"],
+      ["23 February 2026 (as reported)", "Phase&nbsp;2B: protocol finalisation", "in-progress", "NWPharmaTech records (not published)"],
+      ["11 March 2026", "Phase&nbsp;1: database locked", "completed", "NWPharmaTech records (not published)"],
+      ["30 March 2026", "Phase&nbsp;1: analysis outputs delivered", "completed", "NWPharmaTech records (not published)"]
+    ]
+  },
+  "stages": [
+    {
+      "id": "need", "n": "1", "short": "Clinical need", "work": "background", "strip": "Background",
+      "note": "Existing research; not programme activity",
+      "title": "Why people at clinical high risk are a research priority",
+      "question": "What is known about people who meet criteria for clinical high risk of psychosis (CHR-P), and what care is recommended today?",
+      "known": [
+        "CHR-P is not a diagnosis of psychosis or schizophrenia, and most people in this group do not develop psychosis.",
+        "An updated meta-analysis estimated that about one in four people identified as CHR-P (pooled estimate, 25%) developed psychosis within three years.",
+        "In England, psychological therapy is the recommended first step. NICE advises against antipsychotics to prevent psychosis in this group.",
+        "No preventive intervention has been shown to work better than the others."
+      ],
+      "further": "Larger, well-designed trials in this group. For each intervention studied so far, the trials are few and small.",
+      "image": {"src": "assets/visuals-033/glass-thresholds-light", "sizes": [[768, 329], [1200, 514]], "focal": "68% 48%", "alt": "Translucent glass panels forming a sequence of thresholds in a light room.", "caption": "Conceptual illustration — not a clinical pathway."},
+      "sources": [
+        {"title": "Salazar de Pablo et al. — probability of transition to psychosis (updated meta-analysis), JAMA Psychiatry", "library": "evidence.html#ref-salazar-2021", "original": [["DOI", "https://doi.org/10.1001/jamapsychiatry.2021.0830"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/34259821/"]], "about": "field", "type": "published", "assessment": "Established", "dates": [["Source date", "Published 2021"]], "limit": "The pooled estimate and the separate Kaplan–Meier series are different analyses and are not combined. Estimates span services and criteria; individual risk varies."},
+        {"title": "NICE CG155 — psychosis and schizophrenia in children and young people", "library": "evidence.html#ref-nice-cg155", "original": [["NICE", "https://www.nice.org.uk/guidance/cg155"]], "about": "field", "type": "guidance", "assessment": "Established", "dates": [["Source date", "Published 23 January 2013; last updated 26 October 2016"]], "limit": "Applies in England; guidance differs elsewhere."},
+        {"title": "NICE CG178 — psychosis and schizophrenia in adults", "library": "evidence.html#ref-nice-cg178", "original": [["NICE", "https://www.nice.org.uk/guidance/cg178"]], "about": "field", "type": "guidance", "assessment": "Established", "dates": [["Source date", "Published 12 February 2014; last updated 4 September 2026"]], "limit": "Applies in England; guidance differs elsewhere."},
+        {"title": "Davies et al. — network meta-analysis of preventive interventions, World Psychiatry", "library": "evidence.html#ref-davies-2018", "original": [["DOI", "https://doi.org/10.1002/wps.20526"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/29856551/"]], "about": "field", "type": "published", "assessment": "Established; inconclusive result", "dates": [["Source date", "Published 2018"]], "limit": "Few, small trials per intervention."}
+      ]
+    },
+    {
+      "id": "formulation", "n": "2", "short": "Formulation", "work": "completed", "strip": "Completed · 2025",
+      "note": "Completed before Phase&nbsp;1 dosing in 2025",
+      "title": "An oral softgel designed for a poorly water-soluble medicine",
+      "question": "Is a fixed-strength micellar softgel a suitable way to give cannabidiol by mouth?",
+      "known": [
+        "Cannabidiol dissolves poorly in water. Taken by mouth while fasting, only about 6% of a dose is estimated to reach the bloodstream, and food changes absorption markedly (research on other CBD products).",
+        "NWPT-SM32300 is a 300&nbsp;mg softgel whose contents are designed to disperse into very small droplets in the gut.",
+        "The final formulation and GMP clinical supply were completed before Phase&nbsp;1 dosing in 2025 (company records)."
+      ],
+      "further": "Whether this formulation gives more consistent absorption than other CBD products. Phase&nbsp;1 measured absorption; its results have not been published. How much reaches the brain has not been measured.",
+      "image": {"src": "assets/visuals-037/30-formulation-bench-daylight", "sizes": [[768, 576], [1200, 900]], "focal": "60% 62%", "alt": "Gloved hands arranging translucent softgel prototypes and lipid formulation materials on a bright workbench.", "caption": "Conceptual editorial image of exploratory formulation work — not the programme’s manufacture or product."},
+      "sources": [
+        {"title": "Perucca and Bialer — oral cannabidiol bioavailability (review), CNS Drugs", "library": "evidence.html#ref-perucca-2020", "original": [["DOI", "https://doi.org/10.1007/s40263-020-00741-5"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/32504461/"]], "about": "other-cbd", "type": "published", "assessment": "Established", "dates": [["Source date", "Published 2020"]], "limit": "Review of other CBD preparations; figures vary between studies."},
+        {"title": "Taylor et al. — Phase 1 study of purified CBD, including a food-effect arm, CNS Drugs", "library": "evidence.html#ref-taylor-2018", "original": [["DOI", "https://doi.org/10.1007/s40263-018-0578-5"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/30374683/"]], "about": "other-cbd", "type": "published", "assessment": "Established", "dates": [["Source date", "Published 2018"]], "limit": "Healthy volunteers; a different CBD product. A published correction exists."},
+        {"title": "Study progress — final formulation and GMP clinical supply", "page": "study.html#milestones", "about": "nwpt", "type": "company", "dates": [["Record date", "Before Phase&nbsp;1 dosing (2025); exact date not available"], ["Website page reviewed", "23 September 2026"]], "limit": "NWPharmaTech records; not published."}
+      ]
+    },
+    {
+      "id": "phase-1", "n": "3", "short": "Phase 1", "work": "completed", "strip": "Completed · Dec 2025",
+      "note": "Study activity ended 10 December 2025; results not yet published",
+      "title": "Phase 1 in healthy volunteers: absorption and short-term tolerability",
+      "question": "How does the body absorb and handle NWPT-SM32300 after single doses, and how well is it tolerated in the short term, compared with a licensed cannabidiol oral solution?",
+      "known": [
+        "14 healthy adult volunteers; randomised, open-label, three-period crossover.",
+        "Sponsor of the Phase&nbsp;1 study: NWPharmaTech Ltd (as registered).",
+        "It was not a study of whether NWPT-SM32300 works.",
+        "Study activity ended on 10 December 2025. Results have not yet been published."
+      ],
+      "further": "The Phase&nbsp;1 results, once published, would show how NWPT-SM32300 was absorbed and tolerated after single doses. Effectiveness in people at clinical high risk would need a separate study, such as the planned Phase&nbsp;2B.",
+      "extra": [["Registrations", "NCT07186283 · ISRCTN25163383"], ["Dates", "<a href=\"#milestones\">Dated milestones</a>"]],
+      "image": {"src": "assets/filipp-032/softgel-isolated-dark", "sizes": [[768, 576], [1200, 900]], "focal": "50% 50%", "alt": "Conceptual cyan and amber investigational softgel on a dark background.", "caption": "Conceptual illustration of the investigational softgel — not a product photograph."},
+      "sources": [
+        {"title": "Phase 1 registration: NCT07186283 and ISRCTN25163383", "library": "evidence.html#ref-nct07186283", "original": [["ClinicalTrials.gov", "https://clinicaltrials.gov/study/NCT07186283"], ["ISRCTN", "https://doi.org/10.1186/ISRCTN25163383"]], "about": "nwpt", "type": "registry", "assessment": "Programme information", "dates": [["Source date", "Registered 2025; exact registration date not available"]], "limit": "Healthy volunteers and single doses: measures absorption and short-term tolerability, not effectiveness in clinical high risk of psychosis."},
+        {"title": "Study progress — Phase 1 milestones", "page": "study.html#milestones", "about": "nwpt", "type": "company", "dates": [["Record dates", "27 August 2025 to 30 March 2026"], ["Website page reviewed", "23 September 2026"]], "limit": "Database lock and analysis dates come from NWPharmaTech records (not published)."}
+      ]
+    },
+    {
+      "id": "protocol", "n": "4", "short": "Protocol", "work": "in-progress", "strip": "In progress · reported Feb 2026",
+      "note": "Reported as in progress on 23 February 2026",
+      "title": "Finalising the Phase 2B protocol",
+      "question": "What will the final design of the planned Phase&nbsp;2B study be, including its primary outcome details?",
+      "known": [
+        "Finalisation of the Phase&nbsp;2B protocol was reported as in progress on 23 February 2026 (company records).",
+        "Primary outcome details are being finalised.",
+        "No completion date has been announced."
+      ],
+      "further": "The finalised protocol, including its primary outcome, would establish exactly what the planned Phase&nbsp;2B study measures. The study can start only after regulatory and research ethics approval.",
+      "image": {"src": "assets/filipp-032/programme-pipeline-flow", "sizes": [[768, 432], [1200, 675]], "focal": "50% 50%", "alt": "Conceptual programme pipeline from cylinder through gates to a laboratory motif.", "caption": "Conceptual illustration of a development sequence — not evidence that any gate is completed."},
+      "sources": [
+        {"title": "Study progress — Phase 2B protocol finalisation (in progress)", "page": "study.html#milestones", "about": "nwpt", "type": "company", "dates": [["Record date", "23 February 2026 (as reported)"], ["Website page reviewed", "23 September 2026"]], "limit": "Company record; not published."},
+        {"title": "Public study synopsis", "page": "resources/public-synopsis.html", "about": "nwpt", "type": "company", "dates": [["Source date", "No separate issue date (company web page)"], ["Website page reviewed", "21 September 2026"]], "limit": "An overview, not a locked protocol."}
+      ]
+    },
+    {
+      "id": "phase-2b", "n": "5", "short": "Phase 2B", "work": "proposed", "strip": "Proposed · no date",
+      "note": "Planned. Not recruiting. No start date announced",
+      "title": "The planned Phase 2B study in people at clinical high risk",
+      "question": "What would the planned Phase&nbsp;2B study investigate?",
+      "known": [
+        "Status: planned. Not recruiting. The protocol is being finalised.",
+        "The Phase&nbsp;2B study can start only after regulatory and research ethics approval.",
+        "Oversight arrangements for the Phase&nbsp;2B study have not yet been published.",
+        "A larger UK trial of cannabidiol in this group (CANTOP-RCT) did not start owing to challenges in securing supply of the study drug, which is one reason this question remains open.",
+        "A small 21-day study of another CBD product in this group was published in 2024. Its findings are early, have not been confirmed in a larger trial, and do not apply directly to NWPT-SM32300."
+      ],
+      "further": "If it goes ahead: whether NWPT-SM32300 shows a dose response, changes symptoms, and is safe and tolerable in people at clinical high risk of psychosis.",
+      "image": {"src": "assets/manus/05-research-network", "sizes": [[768, 432], [1200, 675]], "focal": "70% 50%", "alt": "Three abstract research networks around a shared centre.", "caption": "Conceptual research-network illustration — does not depict participating sites or institutional endorsement."},
+      "sources": [
+        {"title": "Study progress — current stage, aims and oversight", "page": "study.html#sum-h", "about": "nwpt", "type": "company", "dates": [["Source date", "NWPharmaTech, September 2026"], ["Website page reviewed", "23 September 2026"]], "limit": "Phase 2B oversight arrangements not yet published."},
+        {"title": "Bhattacharyya S, Davies C, et al. — Cannabidiol as a treatment for patients who are clinically at high risk of developing psychosis: learnings from the CANTOP-RCT, NIHR Journals Library", "library": "evidence.html#ref-cantop", "original": [["DOI", "https://doi.org/10.3310/YNFH9826"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/40096425/"]], "about": "other-cbd", "type": "published", "assessment": "Not conducted", "dates": [["Source date", "Published March 2025 (NIHR Journals Library PDF and PubMed record)"], ["Journal citation", "Efficacy Mech Eval 2026;13(7):197–214 (recommended citation on the current NIHR PDF)"]], "limit": "Produced no efficacy results; included to explain why a larger trial is still missing."},
+        {"title": "Bhattacharyya et al. — 21-day symptom study of another CBD product in clinical high risk, World Psychiatry", "library": "evidence.html#ref-bhattacharyya-2024", "original": [["DOI", "https://doi.org/10.1002/wps.21253"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/39279373/"]], "about": "other-cbd", "type": "published", "assessment": "Emerging evidence", "dates": [["Source date", "Published 2024"]], "limit": "Very small, three weeks, short-letter format; not yet confirmed in a larger trial."}
+      ]
+    },
+    {
+      "id": "later", "n": "6", "short": "Longer term", "work": "open", "strip": "Open question",
+      "note": "A longer-term question, not the current primary aim",
+      "title": "Could psychosis be delayed or prevented?",
+      "question": "Can transition to psychosis be delayed or prevented?",
+      "known": [
+        "No preventive intervention has been shown to work better than the others.",
+        "This is a longer-term question, not the current primary aim of the programme."
+      ],
+      "further": "An adequately powered trial with long follow-up, if prevention were pursued as a primary objective. Positive results on symptoms would not, by themselves, show prevention.",
+      "sources": [
+        {"title": "Davies et al. — no preventive intervention shown to be better than others, World Psychiatry", "library": "evidence.html#ref-davies-2018", "original": [["DOI", "https://doi.org/10.1002/wps.20526"], ["PubMed", "https://pubmed.ncbi.nlm.nih.gov/29856551/"]], "about": "field", "type": "published", "assessment": "Established; inconclusive result", "dates": [["Source date", "Published 2018"]], "limit": "Few, small trials per intervention."},
+        {"title": "Science — what is known and what remains open", "page": "science/formulation.html#investigating", "about": "nwpt", "type": "company", "dates": [["Source date", "No separate issue date (company web page)"], ["Website page last updated", "22 September 2026 (site map record; no review date is shown on the page)"]], "limit": "Summarises the questions; not a result."}
+      ]
+    }
+  ],
+  "open_questions": [
+    ["Does NWPT-SM32300 reduce symptoms in people at clinical high risk?", "Not established. It would take the results of a pre-specified clinical study such as the planned Phase 2B.", "phase-2b"],
+    ["Is there a dose response, and which dose would be best?", "Not established. Dose response is one of the planned study’s aims.", "phase-2b"],
+    ["Is it safe and well tolerated in this population?", "Not established. Phase 1 involved healthy volunteers and single doses only.", "phase-1"],
+    ["Does the formulation give more consistent absorption than other CBD products?", "Not published. Phase 1 measured absorption; its results are awaited.", "formulation"],
+    ["How much reaches the brain?", "No study has measured it.", "formulation"],
+    ["Can transition to psychosis be delayed or prevented?", "A longer-term question needing a separately powered trial with long follow-up.", "later"]
+  ],
+  "explore": [
+    ["evidence.html", "Evidence library", "Every source cited here, with its population, design, findings and limitations."],
+    ["study.html", "Study progress", "Milestones, registrations and oversight, each with its source."],
+    ["phase-1.html", "Phase 1 study", "What was studied, what it can and cannot establish, and results status."],
+    ["science/formulation.html", "Science and formulation", "Why investigate CBD in this setting, and how the softgel is designed."]
+  ]
+}

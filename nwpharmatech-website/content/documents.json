@@ -1,0 +1,97 @@
+{
+  "_doc": "Public document register and substantive change history, newest version first. Only versions with published: true appear on the public page (study.html 'Document history'); until one is published that section is omitted. The newest version number is printed in the PDF header (render.py b_document_version), so changing it regenerates the PDF. While the newest version is unpublished, its 'status' is printed after it (b_document_status), for example 'Version 4 · 23 September 2026 · Draft for review': a status such as 'Draft for review', never an instruction to the reader. Once that version is published, no status is printed. The status of older versions is never rendered.",
+  "documents": [
+    {
+      "id": "brief",
+      "title": "Programme summary",
+      "file": "downloads/nwpharmatech-programme-brief.pdf",
+      "public": true,
+      "history": [
+        {
+          "version": "8",
+          "date": "2026-09-26",
+          "published": true,
+          "change": "Retitled 'Programme summary': the primary programme brief is the HTML brief and its PDF; this two-page summary points to it. Content otherwise as version 7.",
+          "source_sha256": "32da0e710693ea4fd196f26215bca4147e7d28d450ddc310c174b648742779df",
+          "publication": "Approved for publication by management (Filipp Korentsvit), 26 September 2026. Management publication approval; no scientific reviewer sign-off is implied."
+        },
+        {
+          "version": "7",
+          "date": "2026-09-26",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Aligned with the HTML programme brief (v2026-09-26): programme lead added (Professor Scott Woods, CHR-P programme lead, individual capacity; Yale does not sponsor or endorse). Transition figure (pooled estimate), Phase 1 status and financing wording unchanged and now shared by both documents.",
+          "source_sha256": "ead16ec39b612b11c8109bc4a41220a7b991533d44e1ecd441732d288d1d917c"
+        },
+        {
+          "version": "6",
+          "date": "2026-09-26",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Transition figure: the one-in-four summary is the pooled estimate from Salazar de Pablo 2021 (25% at 3 years), not a Kaplan–Meier figure (the separate Kaplan–Meier series is 27% at 3 years). Financing row: preferred path under evaluation, with a permissioned token at close where feasible; register-first fallback; development objectives, not live offering terms.",
+          "source_sha256": "cef9665146c4f432abf6da3f84d4c4832cc1df44b1aafc4e890b146a9db3c02e"
+        },
+        {
+          "version": "5",
+          "date": "2026-09-26",
+          "published": false,
+          "status": "Draft for review",
+          "change": "NWPT-031 corrections: financing route described as under evaluation (preferred platform-integrated, register-first fallback; development objectives, not live offering terms); Salazar 2021 transition estimate described as Kaplan–Meier, not pooled.",
+          "source_sha256": "4fb3566aca2b2536fe208478e4a44f42d995d986a45f8e6f20f3b16f5a1e07ae"
+        },
+        {
+          "version": "4",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Current stage, completed work and next milestone taken from the study summary, as on the study page; results status taken from the Phase 1 record; financing paragraph as on the home page, with the investment statement limited to this website and the financing route; draft status and version date shown in the header.",
+          "source_sha256": "d917781b836036f8595f41eede333905ee34a9823ec3f1cd471b81cd7f232cb5"
+        },
+        {
+          "version": "3",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Staging draft (not published)",
+          "change": "Generated from the shared content source; adds study stage, completed work and next milestone."
+        },
+        {
+          "version": "2",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Staging draft (not published)",
+          "change": "Adds completed Phase 1 study and registry identifiers."
+        },
+        {
+          "version": "1",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Staging draft (not published)",
+          "change": "First draft from the website brief."
+        }
+      ]
+    },
+    {
+      "id": "appointment-sheet",
+      "title": "Appointment preparation sheet",
+      "file": "downloads/appointment-preparation-sheet.pdf",
+      "public": true,
+      "history": [
+        {
+          "version": "2",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Draft for review",
+          "change": "Adds a header with the logo slot, version, date and draft status; crisis lines for every UK nation, from the same list as the Q&A page, with the date they were checked.",
+          "source_sha256": "a56b4e5d23d3730ddfb6235fceda37232ad69a728b8bf14424f33ccc945f6e96"
+        },
+        {
+          "version": "1",
+          "date": "2026-09-23",
+          "published": false,
+          "status": "Staging draft (not published)",
+          "change": "First version."
+        }
+      ]
+    }
+  ]
+}

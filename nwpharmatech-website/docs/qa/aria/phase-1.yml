@@ -1,0 +1,191 @@
+- link "Skip to main content":
+  - /url: "#main"
+- complementary "Environment":
+  - strong: Staging draft.
+  - text: Not the live website. Content is awaiting review and approval.
+- complementary "Important notice":
+  - strong: NWPT-SM32300 is an investigational medicine.
+  - text: It is not approved for any use, and whether it is effective is not known.
+  - link "This website is not medical advice.":
+    - /url: /faq#not-medical-advice
+- banner:
+  - link "NWPharmaTech home":
+    - /url: /
+    - text: nw pharmatech
+  - button "Menu"
+- navigation "The programme":
+  - text: The programme
+  - list:
+    - listitem:
+      - link "Programme overview":
+        - /url: /programme
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: /study
+    - listitem:
+      - link "Phase 1 study":
+        - /url: /phase-1
+    - listitem:
+      - link "Programme updates":
+        - /url: /updates
+- main:
+  - paragraph: The programme · Completed study
+  - heading "Phase 1 study" [level=1]
+  - paragraph: A study in 14 healthy volunteers of how the body absorbs and handles NWPT-SM32300 after single doses, and of short-term tolerability. It was not a study of whether NWPT-SM32300 works.
+  - paragraph:
+    - text: Completed Last study activity 10 December 2025 · Registered as
+    - link "NCT07186283":
+      - /url: https://clinicaltrials.gov/study/NCT07186283
+    - text: and
+    - link "ISRCTN25163383":
+      - /url: https://www.isrctn.com/ISRCTN25163383
+  - region "What was studied":
+    - heading "What was studied" [level=2]
+    - text: Programme information
+    - paragraph: NWPT-SM32300 (development code NW300EMCBD), a 300 mg oral softgel capsule of highly purified cannabidiol. The study compared how much cannabidiol reached the blood after NWPT-SM32300 and after Epidyolex, a licensed cannabidiol oral solution, and recorded side effects.
+    - paragraph: "Registered title: A Phase 1 study to assess the safety and pharmacokinetics of novel cannabidiol (CBD) soft-gel capsule formulation (NW300EMCBD) in healthy subjects."
+    - heading "Who took part" [level=2]
+    - paragraph: 14 healthy adult volunteers aged 18 to 55, at one clinical research unit in Leeds, United Kingdom. Participants were in good health and were not taking regular medicines. People with a history of mental disorder, cannabis use in the 28 days before screening, or abnormal liver tests were not eligible.
+    - complementary:
+      - figure "Development visualization. Not a final commercial product.":
+        - img "Isolated translucent turquoise and amber investigational softgel."
+        - text: Development visualization. Not a final commercial product.
+      - heading "At a glance" [level=3]
+      - term: Participants
+      - definition: 14 healthy adults
+      - term: Design
+      - definition: randomised, open-label, three-period crossover
+      - term: Doses
+      - definition: 600 mg and 900 mg, single doses
+      - term: Comparator
+      - definition: Epidyolex
+      - term: Sponsor
+      - definition: NWPharmaTech Ltd
+      - term: Results
+      - definition: Not yet published
+  - region "Study design, doses and comparator":
+    - heading "Study design, doses and comparator" [level=2]
+    - paragraph:
+      - text: Each participant received three study doses, one in each of three periods, in a randomly assigned order (a
+      - strong: crossover
+      - text: design, so each person acts as their own comparison). Participants knew which product they received (
+      - strong: open-label
+      - text: ).
+    - list:
+      - listitem:
+        - strong: NWPT-SM32300 600 mg
+        - text: ": a single dose by mouth."
+      - listitem:
+        - strong: NWPT-SM32300 900 mg
+        - text: ": a single dose by mouth."
+      - listitem:
+        - strong: Epidyolex
+        - text: ": a licensed cannabidiol oral solution, as the comparator."
+    - paragraph:
+      - text: There were about 25 days between doses, with blood samples for up to 192 hours (8 days) after each dose. Taking part lasted about 105 days per participant, including screening and follow-up. Study procedures included a standardised high-fat, high-calorie meal. Food, particularly fatty food, increases how much cannabidiol is absorbed.
+      - 'link "Source: Perucca and Bialer 2020"':
+        - /url: /evidence#ref-perucca-2020
+  - region "What was measured":
+    - heading "What was measured" [level=2]
+    - term: Absorption
+    - definition: How much cannabidiol and two of its breakdown products (7-hydroxy-CBD and 7-carboxy-CBD) reached the blood over time, and how quickly (pharmacokinetics).
+    - term: Safety and tolerability
+    - definition: Adverse events, blood and urine tests, vital signs, heart tracings (ECG), gut symptoms, and a structured suicidality questionnaire (C-SSRS).
+    - paragraph: The study had pre-specified stopping rules and did not use a data monitoring committee.
+  - region "Results publication status":
+    - heading "Results publication status" [level=2]
+    - paragraph: Not yet published
+    - paragraph: Results have not been published yet.
+  - region "What this study can establish":
+    - heading "What this study can establish" [level=2]
+    - list:
+      - listitem: How NWPT-SM32300 is absorbed after single doses in healthy adults, compared with a licensed cannabidiol medicine.
+      - listitem: Short-term safety and tolerability of single doses in healthy adults.
+    - heading "What it cannot establish" [level=2]
+    - list:
+      - listitem: Whether NWPT-SM32300 reduces symptoms or prevents psychosis in anyone.
+      - listitem: Whether it is safe with repeated daily dosing, in young people, or in people at clinical high risk.
+      - listitem: "Whether it is bioequivalent to, or better tolerated than, another product: the study was small and not designed to show either."
+      - listitem: Whether it reaches or acts on the brain.
+    - paragraph:
+      - text: Evidence about whether NWPT-SM32300 helps people at clinical high risk of psychosis can only come from studies in that population, such as the planned
+      - link "Phase 2B study":
+        - /url: /study
+      - text: .
+  - region "Protocol history":
+    - heading "Protocol history" [level=2]
+    - table "Phase 1 eligibility criteria versions":
+      - caption: Phase 1 eligibility criteria versions
+      - rowgroup:
+        - row "Version Date Substantive change":
+          - columnheader "Version"
+          - columnheader "Date"
+          - columnheader "Substantive change"
+      - rowgroup:
+        - 'row "Eligibility criteria version 2 Date: Date not recorded in the source Change: Original eligibility criteria."':
+          - rowheader "Eligibility criteria version 2"
+          - 'cell "Date: Date not recorded in the source"'
+          - 'cell "Change: Original eligibility criteria."'
+        - 'row "Eligibility criteria version 3 Date: Date not recorded in the source Change: Clarified timing of physical examinations (full examination at screening, symptom-directed examination at baseline) and the wording of the exclusion for recent participation in other trials."':
+          - rowheader "Eligibility criteria version 3"
+          - 'cell "Date: Date not recorded in the source"'
+          - 'cell "Change: Clarified timing of physical examinations (full examination at screening, symptom-directed examination at baseline) and the wording of the exclusion for recent participation in other trials."'
+- contentinfo:
+  - paragraph: nw pharmatech
+  - paragraph: A research programme developing NWPT-SM32300, an investigational oral cannabidiol medicine, for people at clinical high risk of psychosis.
+  - paragraph: "NWPharmaTech Ltd, registered in England and Wales, company number 13572461. Registered office: Kemp House, 160 City Road, London EC1V 2NX."
+  - heading "Research and programme" [level=2]
+  - list:
+    - listitem:
+      - link "Clinical need":
+        - /url: /clinical-need
+    - listitem:
+      - link "Science and formulation":
+        - /url: /science
+    - listitem:
+      - link "Evidence library":
+        - /url: /evidence
+    - listitem:
+      - 'link "The study: progress and evidence"':
+        - /url: /study
+    - listitem:
+      - link "Phase 1 study":
+        - /url: /phase-1
+    - listitem:
+      - link "For young people and families":
+        - /url: /families
+  - heading "Information" [level=2]
+  - list:
+    - listitem:
+      - link "Programme brief (PDF, 2 pages, 67 KB)":
+        - /url: /downloads/nwpharmatech-programme-brief.pdf
+    - listitem:
+      - link "People":
+        - /url: /team
+    - listitem:
+      - link "Newsroom":
+        - /url: /newsroom
+    - listitem:
+      - link "Funding and financing":
+        - /url: /funding-use
+    - listitem:
+      - link "Questions and answers":
+        - /url: /faq
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Legal, privacy and accessibility":
+        - /url: /legal
+  - region "Need help now?":
+    - heading "Need help now?" [level=2]
+    - paragraph: We cannot respond to emergencies. If someone is in immediate danger, call your local emergency number.
+    - paragraph:
+      - 'link "Urgent help by country: UK, Ireland, United States"':
+        - /url: /faq#urgent-help
+  - paragraph:
+    - text: Nothing on this website is an offer or solicitation to buy or sell any security, token or other financial product. See
+    - link "legal information":
+      - /url: /legal
+    - text: .
+  - paragraph: © 2026 NWPharmaTech Ltd.
