@@ -105,7 +105,61 @@ The page has no other external facts: no study numbers, percentages, prices, inv
 
 ## Checks (30 September 2026)
 
-RESULTS_PLACEHOLDER
+**Setup:** Chromium 141.0.7390.37 (Playwright 1.56.1) on the Cloudflare Pages runtime (`wrangler pages dev`). Google Fonts is blocked here, so fallback fonts were used. No physical devices were tested; Safari/iPhone is untested.
+
+**`tools/test-digital-finance.mjs` (new): 73/73.**
+- **Content locks:**
+  - all 16 hard-lock sentences present;
+  - ~US$10m never called a raise, a fully funded trial or a token sale;
+  - title, description and headings free of token-sale, crypto, ICO, presale, coin, yield and APY positioning;
+  - no control that invests, buys, pays, mints, stakes, subscribes or connects a wallet;
+  - no form, input or third-party script;
+  - no invented figures;
+  - no DSMB attribution;
+  - six use categories with no amounts;
+  - status panel limited to site statements;
+  - no public data room.
+- **Isolation:** existing files only gain lines (the menu entry, three cross-links and the sitemap entry), and every page with the Funding menu has the new entry.
+- **Routes:** the page returns 200; `.html` redirects to it; `/funding` and `/funding/` still redirect to `/funding-use`; `/programme-financing`, `/funding-use`, `/desci` and `/contact` return 200; all 11 internal links resolve; the calls to action go to Contact `#financing`.
+- **Analytics:** all eight events fire. Payloads carry only event, page, time, UTM and placement fields, and query data such as an email or wallet address is ignored. The UTM cohort is carried onto internal links and persists for the tab session. Nothing leaves the origin except the site's existing Google Fonts stylesheet.
+- **Layout** at 1440×900, 1366×768, 1024×768, 390×844, 360×740, 320×640, 844×390 landscape and 390 at 200% text: no horizontal overflow and no clipped element; layout shift 0.0000 at every size; every revealed card visible after scrolling. The primary call to action is above the fold at 1440×900 and 1366×768.
+- **Accessibility:** axe WCAG 2.2 A/AA clean at 1440, at 390, at 390 with 200% text, and with reduced motion.
+- **Motion:**
+  - the flow track is scroll-linked (0 at the top, full after the flow, all 7 steps lit);
+  - the hero animates;
+  - the architecture tabs work by keyboard, and the rings follow the selection;
+  - reduced motion has no animation, reveal or parallax, and the flow is drawn in full;
+  - without JavaScript, all layers are shown, nothing is invisible and the flow is drawn in full.
+
+**Regression suites (base `1406893` → this candidate):**
+
+| Suite | Base | Candidate |
+|---|---|---|
+| `test-mobile-nav.mjs` | 23/23 (1,247 runs) | 23/23 (1,248 runs; the new menu link is included) |
+| `test-nwpt034.mjs` | 35/35 | 35/35 |
+| `test-homepage-discoverability.mjs` | 41/41 | 41/41 |
+| `test-science-phone.mjs` | 8/8 | 8/8 |
+| `test-science-gateway.mjs` | 74/74 | 74/74 |
+| `test-programme-room.mjs` | 175/175 | 175/175 |
+| `test-work-with-us.mjs` | 185/185 | 185/185 |
+| `test-conversion.mjs` (financing and updates) | 63/63 | 63/63 |
+
+The generators are consistent: re-running `build-programme-room.py`, `build-work-with-us.py` and `build-digital-finance.py` changes nothing.
+
+**Lighthouse 13.5** (local, Cloudflare runtime):
+
+| | Performance | Accessibility | Best practices | SEO | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|
+| Mobile | 98 | 100 | 96 | 100 | 2.2 s | 0 ms | 0 |
+| Desktop | 100 | 100 | 96 | 100 | 0.5 s | 0 ms | 0 |
+
+- **Best practices (96):** the only deduction is the console error from the blocked Google Fonts request, which is specific to this environment.
+- **Remaining notes** apply to the site-wide `styles.css` (unused rules, not minified) and the existing render-blocking font stylesheet. They are unchanged here.
+- **Fixed during review:** a forced reflow in `dpf.js` (layout reads now happen before writes).
+
+**Screenshots:** `records/screens-nwpt055/`, desktop 1440×900 and phone 390×844:
+- `*-hero.png` and `*-full.png`;
+- `*-s02` … `*-s11`: capital flow, architecture, split, process, objective, rails, status, FAQ, explore, final.
 
 ## Open questions / assumptions
 

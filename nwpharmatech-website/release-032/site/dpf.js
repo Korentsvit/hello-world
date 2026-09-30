@@ -100,13 +100,12 @@
   var steps = flow ? Array.prototype.slice.call(flow.querySelectorAll(".dpf-flow__step")) : [];
   function drawFlow() {
     if (!flow) return;
+    // read all layout first, then write, so the browser lays out once per frame
     var r = flow.getBoundingClientRect(), line = window.innerHeight * 0.6;
+    var on = steps.map(function (s) { var b = s.getBoundingClientRect(); return !motion || b.top + b.height * 0.4 < line; });
     var p = motion ? Math.max(0, Math.min(1, (line - r.top) / Math.max(1, r.height))) : 1;
     flow.style.setProperty("--dpf-p", p.toFixed(3));
-    steps.forEach(function (s) {
-      var b = s.getBoundingClientRect();
-      s.classList.toggle("is-on", !motion || b.top + b.height * 0.4 < line);
-    });
+    steps.forEach(function (s, i) { s.classList.toggle("is-on", on[i]); });
   }
 
   // ---- hero: pause off screen, gentle parallax
@@ -140,8 +139,10 @@
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     var sel = ".dpf-flow__step, .dpf-layer-cards, .dpf-rings, .dpf-split__col, .dpf-steps__list li, .dpf-uses li, .dpf-rails__grid li, .dpf-status, .dpf-explore__grid li, .dpf-figure";
-    root.querySelectorAll(sel).forEach(function (el, i) {
-      if (el.getBoundingClientRect().top < window.innerHeight) return;
+    var vh = window.innerHeight, els = Array.prototype.slice.call(root.querySelectorAll(sel));
+    var below = els.map(function (el) { return el.getBoundingClientRect().top >= vh; });
+    els.forEach(function (el, i) {
+      if (!below[i]) return;
       el.setAttribute("data-reveal", "");
       el.style.transitionDelay = (i % 3) * 70 + "ms";
       io.observe(el);

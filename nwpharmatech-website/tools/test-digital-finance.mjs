@@ -57,7 +57,8 @@ const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], { cwd: dir, e
 const numstat = execFileSync("git", ["diff", "--numstat", BASE, "--", rel], { cwd: repo, encoding: "utf8" }).trim().split("\n").filter(Boolean).map((l) => l.split("\t"));
 const removed = numstat.filter(([, d]) => d !== "0" && d !== "-").map((x) => x[2]);
 check("existing site files only gain lines (nothing removed or rewritten)", !removed.length, removed.join(" "));
-const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
+const NEW = ["dpf.css", "dpf.js", "funding"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
+const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel, ...NEW], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
 const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$/.test(l));
 check("every added line is the menu entry, a cross-link or the sitemap entry", !unexpected.length, unexpected.slice(0, 5).join(" || "));
 const pages = execFileSync("git", ["ls-files", "--", rel], { cwd: repo, encoding: "utf8" }).split("\n").filter((f) => f.endsWith(".html"));
