@@ -2,7 +2,7 @@
 
 > **1 October 2026 — rebased onto live production `5c7af8d96aaef7f6d02b82aa9b705117733cb519`.** That SHA is the www tip (Cloudflare Pages project `nwpt-preview`, deployment `59c3fea1-7aea-4260-a69c-7f8da23cd126`, parent `15e38f117653603be24028a3747103f2ac36b7a9`). This candidate is a descendant of it. It has not been deployed, and production has not been overwritten.
 >
-> **Candidate tip:** HEAD of `cursor/nwpt-055-rebase-onto-live-d653`. Live `5c7af8d96aaef7f6d02b82aa9b705117733cb519` is an ancestor. The pull request records the full HEAD SHA. Deploy that HEAD only after Filipp’s plain GO. Do not deploy `ea97bff3f96db614429273ecb8c634f4bab8c780` (`5c7af8d` is not an ancestor of that parallel tip).
+> **Candidate:** rebase commit `a2c65484c613ed7401c9c050c79f47f0a9d3f95b` on `cursor/nwpt-055-rebase-onto-live-d653`. Live `5c7af8d96aaef7f6d02b82aa9b705117733cb519` is an ancestor. The commit that names this SHA does not change `site/`. Deploy branch HEAD after Filipp’s plain GO; the pull request records that full SHA. Do not deploy `ea97bff3f96db614429273ecb8c634f4bab8c780` (`5c7af8d` is not an ancestor of that parallel tip).
 >
 > **Kept from live `5c7af8d`:** the Digital programme finance page and its source (participant-eligibility sentence, `.dpf-cols__full`, published rails and returns copy), `dpf.css`, `/programme-financing`, and `PRODUCTION-READY-DPF.md` (the note for what is live, including the no-send layer on that deployment).
 >
@@ -119,7 +119,9 @@ The page has no other external facts: no study numbers, percentages, prices, inv
 
 ## Checks (30 September 2026)
 
-The figures in this section are the preview run on the `4e7ca635` lineage. They are not a measurement of the 1 October rebase. The rebase keeps that page copy and adds `/api/event`; re-run `tools/test-digital-finance.mjs`, `tools/test-conversion.mjs` and `tools/test-work-with-us.mjs` against this candidate before deploy.
+The figures in this section are the preview run on the `4e7ca635` lineage. They are not a measurement of the 1 October rebase.
+
+**Rebase checks (1 October 2026), local Cloudflare Pages runtime, no `NWPT_EVENTS` binding:** `test-digital-finance.mjs` 94 passed, 0 failed; `test-conversion.mjs` 63 passed, 0 failed; `test-work-with-us.mjs` 185 passed, 0 failed. The browser was Google Chrome 148.0.7778.96. No visit counts were collected.
 
 **Setup:** Chromium 141.0.7390.37 (Playwright 1.56.1) on the Cloudflare Pages runtime (`wrangler pages dev`). Google Fonts is blocked here, so fallback fonts were used. No physical devices were tested; Safari/iPhone is untested.
 
