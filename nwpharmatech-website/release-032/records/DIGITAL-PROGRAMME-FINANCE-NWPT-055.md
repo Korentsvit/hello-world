@@ -1,6 +1,14 @@
 # NWPT-055 Digital programme finance (`/funding/digital-programme-finance`) — preview candidate
 
-> **30 September 2026.** Board approved the follow-up in `PRODUCTION-READY-DPF.md`. That tip updates the privacy notice for the no-send analytics layer and replaces the bare “Patient eligibility” label. Publish that tip. Do not attach an analytics sink. The notes below describe the `4e7ca635` preview candidate.
+> **1 October 2026 — rebased onto live production `5c7af8d96aaef7f6d02b82aa9b705117733cb519`.** That SHA is the www tip (Cloudflare Pages project `nwpt-preview`, deployment `59c3fea1-7aea-4260-a69c-7f8da23cd126`, parent `15e38f117653603be24028a3747103f2ac36b7a9`). This candidate is a descendant of it. It has not been deployed, and production has not been overwritten.
+>
+> **Candidate:** rebase commit `a2c65484c613ed7401c9c050c79f47f0a9d3f95b` on `cursor/nwpt-055-rebase-onto-live-d653`. Live `5c7af8d96aaef7f6d02b82aa9b705117733cb519` is an ancestor. The commit that names this SHA does not change `site/`. Deploy branch HEAD after Filipp’s plain GO; the pull request records that full SHA. Do not deploy `ea97bff3f96db614429273ecb8c634f4bab8c780` (`5c7af8d` is not an ancestor of that parallel tip).
+>
+> **Kept from live `5c7af8d`:** the Digital programme finance page and its source (participant-eligibility sentence, `.dpf-cols__full`, published rails and returns copy), `dpf.css`, `/programme-financing`, and `PRODUCTION-READY-DPF.md` (the note for what is live, including the no-send layer on that deployment).
+>
+> **Brought from `ea97bff3`:** privacy notice (forms live since NWPT-054; Cloudflare Web Analytics and `POST /api/event`), `dpf.js` (sendBeacon/fetch, Global Privacy Control / Do Not Track, UTM values containing `@` dropped, first draw in the next frame), `functions/api/event.js`, the Web Analytics hosts in `_headers`, and `WEB-PR-HANDOFF-NWPT-055.md`. Bindings, Web Analytics, DNS and `NWPT_CONVERSION_MODE` are not changed in this commit.
+>
+> **Not brought:** the parallel tip’s further page-copy pass (rails beginning “Could …”, “No yield, liquidity or appreciation is promised.”, the restructured sponsor list). The notes under “What was built” describe the `4e7ca635` preview. `PRODUCTION-READY-DPF.md` describes what is already on www.
 
 - **Base:** `1406893` (`cursor/programme-financing-journey-2e1f`, “Add the programme-financing journey beside funding use”). That commit sits on current production `5591bede` and is itself **not yet published**. It is the only place `/programme-financing` exists, and the brief treats that route as existing. This candidate therefore carries `/programme-financing` with it. If that page should ship separately, publish `1406893` first or review both together.
 - **Branch:** `claude/nwpt-digital-programme-finance`.
@@ -53,24 +61,28 @@ The page has ten sections, in the brief's order, plus a short FAQ for progressiv
 
 ## Analytics
 
-The site has no analytics, and the privacy notice says it “is intended to operate without advertising cookies”. Privacy settings are a standing constraint, so `dpf.js` adds a **first-party event layer that sends nothing**:
-- Events go to `window.nwptAnalytics` and are dispatched as a `nwpt:analytics` DOM event.
-- An owner-approved sink can be attached later as `window.nwptAnalyticsSink(event)`, for example a first-party endpoint or Cloudflare Zaraz. Choosing and disclosing a sink is a privacy decision for Filipp.
+On live production `5c7af8d`, `dpf.js` still only pushes events to `window.nwptAnalytics` and dispatches `nwpt:analytics`. Nothing is sent. That behaviour is recorded in `PRODUCTION-READY-DPF.md`. This rebased candidate is the first tree that names a sink, and it is not deployed.
 
-| Event | When |
-|---|---|
-| `funding_digital_page_view` | page load |
-| `architecture_section_view` | the architecture section is 30% visible (once) |
-| `funding_use_click` | Funding use links |
-| `evidence_click` | Evidence links |
-| `desci_click` | DeSci link |
-| `programme_financing_cta_click` | Programme financing card |
-| `conversation_cta_click` | the three “Request a programme-financing conversation” / Contact links |
-| `faq_expand` | an FAQ answer is opened |
+**1. Cloudflare Web Analytics (site-wide, cookieless), described for the deploy after GO.** The CSP in `_headers` allows `script-src https://static.cloudflareinsights.com` and `connect-src https://cloudflareinsights.com`. No token is stored in the repository. This commit does not enable Web Analytics on the Pages project.
 
-**Fields:** `event`, `page`, `ts`, the UTM tags, and `cta` (placement), `target` (path) or `faq` (id). There are no identity, wallet or health fields.
+**2. First-party conversion events: `POST /api/event`** (`functions/api/event.js`). With a Workers Analytics Engine binding named `NWPT_EVENTS`, one data point is written: `indexes: [event]`, `blobs: [event, path, link, utm_source, utm_medium, utm_campaign, utm_term, utm_content]`, `doubles: [server time in ms]`. Without the binding the function stores nothing and answers 503. This commit does not create that binding.
 
-**UTM cohort:** `utm_source`, `utm_medium`, `utm_campaign`, `utm_term` and `utm_content` only, sanitised, and kept in `sessionStorage` for the tab session. They are carried onto the page's own tracked links, so the Contact financing route receives the cohort. No other query data is read.
+Allowlisted events are the eight names below, and the only page path is `/funding/digital-programme-finance`. Unknown fields are ignored. A UTM value containing `@` is dropped whole. The function does not read or store IP address, user agent, cookies, wallet or health data. Cross-origin posts are 403; other content types 415; bodies over 2 KB 413; invalid JSON or unknown events or pages 400; other methods 405.
+
+`dpf.js` still pushes each event to `window.nwptAnalytics` and dispatches `nwpt:analytics`. It also sends the allowlisted fields with `navigator.sendBeacon`, falling back to `fetch` with `keepalive`. Nothing is sent when the browser signals Global Privacy Control or Do Not Track. UTM tags stay in `sessionStorage` under `nwpt-utm` for the tab and are copied onto this page’s tracked links.
+
+| Event | When | Link identifier |
+|---|---|---|
+| `funding_digital_page_view` | page load | — |
+| `architecture_section_view` | the architecture section is 30% visible (once) | `section:architecture` |
+| `funding_use_click` | Funding use links | placement plus the on-site path |
+| `evidence_click` | Evidence links | placement plus the on-site path |
+| `desci_click` | DeSci link | placement plus the on-site path |
+| `programme_financing_cta_click` | Programme financing card | placement plus the on-site path |
+| `conversation_cta_click` | the Contact financing links | placement plus the on-site path |
+| `faq_expand` | an FAQ answer is opened | `faq:<id>` |
+
+The privacy notice dated 1 October 2026 describes the two forms that have been on www since NWPT-054, Cloudflare Web Analytics, and this endpoint. It does not invent a retention period. It is not a legal sign-off.
 
 ## Claim matrix
 
@@ -106,6 +118,10 @@ Every external factual statement on the page and its source. “Site” means al
 The page has no other external facts: no study numbers, percentages, prices, investor counts or transactions. The test enforces this.
 
 ## Checks (30 September 2026)
+
+The figures in this section are the preview run on the `4e7ca635` lineage. They are not a measurement of the 1 October rebase.
+
+**Rebase checks (1 October 2026), local Cloudflare Pages runtime, no `NWPT_EVENTS` binding:** `test-digital-finance.mjs` 94 passed, 0 failed; `test-conversion.mjs` 63 passed, 0 failed; `test-work-with-us.mjs` 185 passed, 0 failed. The browser was Google Chrome 148.0.7778.96. No visit counts were collected.
 
 **Setup:** Chromium 141.0.7390.37 (Playwright 1.56.1) on the Cloudflare Pages runtime (`wrangler pages dev`). Google Fonts is blocked here, so fallback fonts were used. No physical devices were tested; Safari/iPhone is untested.
 
@@ -166,7 +182,7 @@ The generators are consistent: re-running `build-programme-room.py`, `build-work
 ## Open questions / assumptions
 
 1. **Base:** this candidate includes the unpublished `/programme-financing` page (`1406893`). Confirm it can ship together, or publish `1406893` first.
-2. **Analytics sink:** events are collected in the page but sent nowhere. Choose a first-party endpoint or Cloudflare Zaraz, and update the privacy notice, before any data leaves the browser.
+2. **Analytics sink:** live `5c7af8d` still sends nothing. This candidate’s sink is `POST /api/event`, fail-closed without `NWPT_EVENTS`, plus the CSP hosts for Cloudflare Web Analytics. Web PR sets the binding and the Web Analytics toggle only after Filipp’s plain GO, using `WEB-PR-HANDOFF-NWPT-055.md`. This commit does not change those project settings.
 3. **Brief-only statements** (rows 12, 18, 19, 22, 23): confirm before publication.
 4. **Pre-existing, not changed:** `tools/build-science.py` no longer runs on this base. NWPT-054 hand-added a “Continue” block to `science.html` after the generator's managed section, so its safety check refuses. The Science pages were therefore edited in place (menu line only), which is the same result the generator would give.
 5. **Fonts:** Google Fonts is blocked in this environment, so screenshots and Lighthouse runs use fallback fonts. The hosted preview will use Sora and Source Serif 4.
