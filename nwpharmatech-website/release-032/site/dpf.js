@@ -2,10 +2,12 @@
  * - Motion (only when prefers-reduced-motion is not set): scroll-linked capital-flow track, reveal of cards below the
  *   fold, gentle hero parallax, and hero animations paused while the hero is off screen. Transform/opacity only.
  * - Architecture tabs: without JavaScript all three layers are shown; with it they become an ARIA tablist.
- * - Analytics: first-party event layer only. Events are pushed to window.nwptAnalytics and dispatched as a DOM
- *   "nwpt:analytics" event; nothing is sent over the network. An owner-approved sink can be attached later as
- *   window.nwptAnalyticsSink(event). No wallet, health or identity data is read or recorded. UTM tags are the only
- *   cohort data: kept for this tab's session and carried onto this page's internal links.
+ * - Analytics: each event is pushed to window.nwptAnalytics, dispatched as a DOM "nwpt:analytics" event, and sent
+ *   to this site's own endpoint POST /api/event (functions/api/event.js). The payload holds only the event name,
+ *   page path, UTM tags and a CTA/link identifier; the endpoint adds the time. Nothing is sent when the browser
+ *   signals Global Privacy Control or Do Not Track. No wallet, health or identity data is read or recorded. UTM tags
+ *   are the only cohort data: kept for this tab's session and carried onto this page's internal links.
+ *   Page views and performance are also counted by Cloudflare Web Analytics (cookieless), injected by the host.
  */
 (function () {
   var root = document.querySelector("[data-dpf]");
@@ -17,7 +19,8 @@
   // ---- analytics
   var UTM = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
   var KEY = "nwpt-utm";
-  var clean = function (v) { return String(v).slice(0, 100).replace(/[^\w .\-]/g, ""); };
+  // a tag containing "@" is dropped whole, so nothing derived from an email address is kept or sent
+  var clean = function (v) { v = String(v); return v.indexOf("@") >= 0 ? "" : v.slice(0, 100).replace(/[^\w .\-]/g, ""); };
   var cohort = (function () {
     var out = {}, found = false, q = new URLSearchParams(window.location.search);
     UTM.forEach(function (k) { var v = q.get(k); if (v && clean(v)) { out[k] = clean(v); found = true; } });
@@ -31,13 +34,23 @@
     return out;
   })();
   var queue = window.nwptAnalytics = window.nwptAnalytics || [];
+  var optedOut = navigator.globalPrivacyControl === true || navigator.doNotTrack === "1" || window.doNotTrack === "1";
+  function send(evt) {
+    if (optedOut) return;
+    var link = evt.cta ? evt.cta + ":" + evt.target : evt.faq ? "faq:" + evt.faq : evt.section ? "section:" + evt.section : "";
+    var body = { event: evt.event, path: evt.page, link: link };
+    UTM.forEach(function (k) { if (evt[k]) body[k] = evt[k]; });
+    body = JSON.stringify(body);
+    try { if (navigator.sendBeacon && navigator.sendBeacon("/api/event", new Blob([body], { type: "application/json" }))) return; } catch (e) { /* fall back to fetch */ }
+    try { window.fetch("/api/event", { method: "POST", body: body, headers: { "content-type": "application/json" }, keepalive: true, credentials: "omit" }).catch(function () {}); } catch (e) { /* analytics never break the page */ }
+  }
   function track(name, props) {
     var evt = { event: name, page: PAGE, ts: Date.now() };
     Object.keys(cohort).forEach(function (k) { evt[k] = cohort[k]; });
     Object.keys(props || {}).forEach(function (k) { evt[k] = props[k]; });
     queue.push(evt);
     try { window.dispatchEvent(new CustomEvent("nwpt:analytics", { detail: evt })); } catch (e) { /* old browsers */ }
-    if (typeof window.nwptAnalyticsSink === "function") { try { window.nwptAnalyticsSink(evt); } catch (e) { /* sink errors never break the page */ } }
+    send(evt);
   }
   if (Object.keys(cohort).length) {
     root.querySelectorAll("a[data-track]").forEach(function (a) {
@@ -131,10 +144,10 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
-  drawFlow();
+  onScroll();   // first draw in the next frame, not as a forced layout during start-up
 
   // ---- reveal cards that start below the fold (nothing already on screen is hidden, so nothing flashes)
-  if (motion && "IntersectionObserver" in window) {
+  if (motion && "IntersectionObserver" in window) window.requestAnimationFrame(function () {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
@@ -147,7 +160,7 @@
       el.style.transitionDelay = (i % 3) * 70 + "ms";
       io.observe(el);
     });
-  }
+  });
 
   if (reduce.addEventListener) {
     reduce.addEventListener("change", function () {
