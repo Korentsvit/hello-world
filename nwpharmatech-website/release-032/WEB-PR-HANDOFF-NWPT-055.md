@@ -20,6 +20,8 @@ npx wrangler@4 pages deployment list --project-name <production project> --envir
 
 ## 2. Project settings (production and preview environments)
 
+The production project is **`nwpt-preview`** (aliases `www.nwpharmatech.org` and `nwpharmatech.org`), per `docs/production/PRODUCTION-BASELINE-5591bede/` on `830f086`.
+
 1. **Workers Analytics Engine binding.** Pages project → Settings → Functions (Bindings) → *Analytics Engine*:
    - Variable name: **`NWPT_EVENTS`**
    - Dataset: **`nwpt_events`**
@@ -27,6 +29,14 @@ npx wrangler@4 pages deployment list --project-name <production project> --envir
    Without this binding `/api/event` stores nothing and answers 503. The page works either way.
 2. **Cloudflare Web Analytics.** Pages project → *Metrics* → enable Web Analytics (automatic beacon injection). No token goes in the repository. The CSP in `_headers` already allows `static.cloudflareinsights.com` (script) and `cloudflareinsights.com` (connect).
 3. **No other settings change.** Keep `NWPT_CONVERSION_MODE`, the Resend/Turnstile settings, DNS and the production branch exactly as they are.
+
+**What `/api/event` guarantees (tested in `tools/test-digital-finance.mjs`):**
+- No `NWPT_EVENTS` binding means nothing is stored (503).
+- Malformed or oversized requests (400, 413, 415) and cross-origin posts (403) are rejected.
+- Fields not on the allowlist are discarded.
+- A UTM value containing `@` is discarded whole.
+- No IP address, user agent, cookie or fingerprint is read or stored.
+- The page sends nothing when the browser signals Global Privacy Control or Do Not Track.
 
 ## 3. Deploy (from inside the publish directory, so `functions/` is compiled)
 
@@ -54,7 +64,7 @@ The output must include “Compiled Worker successfully” and “Uploading Func
 | Browser console on the new page and on `/contact` | no CSP errors; Web Analytics beacon loads |
 | DevTools → Network on the new page | `POST /api/event` → **204** on load and on CTA clicks (503 means the binding is missing) |
 | A visit with `?utm_source=test&utm_content=a@b.com` | after a few minutes, Analytics Engine shows the event with `utm_source=test` and an **empty** `utm_content` |
-| `/privacy` | *Cookies and analytics* has the two new paragraphs |
+| `/privacy` | describes the two live forms, Cloudflare Web Analytics, the event endpoint and its limited fields; “Last updated: 1 October 2026” |
 | `/api/financing` and `/api/subscribe` GET | unchanged from NWPT-054 |
 | Reduced motion (OS setting) | the page is static and every section is shown |
 
@@ -73,4 +83,6 @@ Promote the previous production deployment (record its deployment ID before depl
 
 ## 6. Receipt to return
 
-Production SHA, deployment ID, publish time (CEST), rollback deployment ID and SHA, the live base found in step 1, and the step 4 results (including one Analytics Engine row). Safari/iPhone remains untested unless you check it.
+Production SHA, deployment ID, publish time (CEST), rollback deployment ID and SHA, the live base found in step 1, and the step 4 results (including one Analytics Engine row).
+
+**Live-device check (yours):** Safari on iPhone is untested by Claude. Please open `/funding/digital-programme-finance` and `/privacy` on an iPhone and report anything that looks wrong.

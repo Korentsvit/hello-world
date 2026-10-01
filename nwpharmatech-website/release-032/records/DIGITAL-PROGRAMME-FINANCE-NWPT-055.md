@@ -134,7 +134,7 @@ The page has no other external facts: no study numbers, percentages, prices, inv
 
 **Setup:** Chromium 141.0.7390.37 (Playwright 1.56.1) on the Cloudflare Pages runtime (`wrangler pages dev`). Google Fonts is blocked here, so fallback fonts were used. No physical devices were tested; Safari/iPhone is untested.
 
-**Final candidate: `tools/test-digital-finance.mjs` 92/92.** (73/73 on the first candidate `4e7ca63`.)
+**Final candidate: `tools/test-digital-finance.mjs` 93/93** (92 before the privacy correction). (73/73 on the first candidate `4e7ca63`.)
 
 The final run adds these checks:
 - the approved wording;
@@ -230,9 +230,19 @@ The final candidate returned the same scores.
 
 **5. Analytics:** as above.
 
+**Privacy notice (corrected 1 October 2026).**
+- The obsolete line “Online enquiries are not active; contact is by email.” is replaced with an accurate description of the two forms that have been live on www since NWPT-054 (financing enquiry and programme updates), with research-collaboration enquiries by email.
+- The preview-only passages (“A preview deployment can switch on…”, mailbox routing “before any production activation”, the Resend set-up note) now describe the live behaviour.
+- *Cookies and analytics* now covers Cloudflare Web Analytics, the first-party event endpoint and its limited fields. It states that there is no advertising tracking and no investor identity, wallet or health data.
+- Retention is described as deletion at the end of the Cloudflare Workers Analytics Engine retention period. No period is invented.
+- `test-conversion.mjs` and `test-work-with-us.mjs` pinned the old sentences, so their privacy assertions were updated to the corrected text.
+
+**NWPT-056 (logged separately; does not block NWPT-055):** `tools/build-science.py` parity. The generator refuses to run because NWPT-054 hand-edited `science.html`. The Science pages in this release carry only the menu line.
+
+**Safari/iPhone:** left to Web Boss's live-device check.
+
 **Pre-existing, not changed:**
 - `tools/build-science.py` no longer runs on this base, because NWPT-054 hand-edited `science.html`.
-- The privacy notice's earlier line “Online enquiries are not active; contact is by email.” predates NWPT-054, which opened financing and updates on www. It is outside this release, and should be updated separately if the forms are live.
 
 **Environment limits:**
 - Google Fonts is blocked here, so screenshots and Lighthouse runs use fallback fonts.

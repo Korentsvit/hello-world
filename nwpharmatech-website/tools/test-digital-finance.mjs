@@ -67,7 +67,16 @@ check("sponsor control position: authority, protocol, CMC/manufacturing, safety,
 // ---- isolation: every other change since the base is additive (menu entry, cross-links, sitemap)
 const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], { cwd: dir, encoding: "utf8" }).trim(); const rel = path.relative(repo, dir);
 const numstat = execFileSync("git", ["diff", "--numstat", BASE, "--", rel], { cwd: repo, encoding: "utf8" }).trim().split("\n").filter(Boolean).map((l) => l.split("\t"));
-const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWith("/_headers")).map((x) => x[2]);
+const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWith("/_headers") && !f.endsWith("/privacy.html")).map((x) => x[2]);
+{ // privacy notice: corrected to the live forms (NWPT-054) and the NWPT-055 analytics; nothing else in it changes
+  const priv = flat(fs.readFileSync(path.join(dir, "privacy.html"), "utf8"));
+  const must = ["Two online forms are open on this website", "Research-collaboration enquiries are made by email", "There is no advertising tracking on this website.", "Cloudflare Web Analytics",
+    "this website’s own event endpoint, run on Cloudflare", "Each record holds only the interaction name, the page path, the time, any campaign tags (UTM) in the link you arrived by, and which link or section was used.",
+    "does not record your name, email address, IP address, browser or device details, investor identity, wallet details or any health information", "A campaign tag that contains an email address is discarded",
+    "deleted automatically when that service’s retention period ends; this website does not set a longer period", "If that storage is not configured, nothing is recorded.", "Global Privacy Control or Do Not Track", "Last updated: 1 October 2026."];
+  const miss = must.filter((m) => !priv.includes(m));
+  check("privacy notice: live forms, both analytics layers, the limited fields, no advertising/investor/wallet/health data, retention by the Cloudflare product (no invented period)", !miss.length && !/Online enquiries are not active|preview deployment can switch|Final mailbox routing|\b\d+ (days|months|weeks)\b/.test(priv), miss.join(" | "));
+}
 { // _headers: the only change is the NWPT-055 comment and the two Cloudflare Web Analytics hosts in every CSP
   const was = execFileSync("git", ["show", `${BASE}:${rel}/_headers`], { cwd: repo, encoding: "utf8" });
   const now = fs.readFileSync(path.join(dir, "_headers"), "utf8");
@@ -77,7 +86,7 @@ const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWi
   check("_headers: only Cloudflare Web Analytics hosts added to each CSP (script-src static.cloudflareinsights.com, connect-src cloudflareinsights.com)", back === was && now.split("\n").filter((l) => /Content-Security-Policy:/.test(l)).every((l) => /script-src [^;]*https:\/\/static\.cloudflareinsights\.com/.test(l) && /connect-src [^;]*https:\/\/cloudflareinsights\.com/.test(l)));
 }
 check("existing site files only gain lines (nothing removed or rewritten)", !removed.length, removed.join(" "));
-const NEW = ["dpf.css", "dpf.js", "funding", "functions/api/event.js", "_headers"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
+const NEW = ["dpf.css", "dpf.js", "funding", "functions/api/event.js", "_headers", "privacy.html"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
 const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel, ...NEW], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
 const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$|Cloudflare Web Analytics/.test(l));
 check("every added line is the menu entry, a cross-link or the sitemap entry", !unexpected.length, unexpected.slice(0, 5).join(" || "));

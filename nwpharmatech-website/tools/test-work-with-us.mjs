@@ -46,12 +46,12 @@ const cardAction = (id) => `.wwu-act[data-card="${id}"]`;
     check(`nav link ${t} reaches the page in at most one redirect`, r2.status === 200); }
   // privacy notice: Part A (browser-only workspace) applied; Part B (enquiry form) not applied
   const priv = (await (await fetch(srv.base + "/privacy")).text()).replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
-  for (const t of ["We do not run an account system or payment system. The “Explore a research collaboration” page keeps your planning notes in your browser only, as described below. Online enquiries are not active; contact is by email.",
+  for (const t of ["We do not run an account system or payment system. The “Explore a research collaboration” page keeps your planning notes in your browser only, as described below. Two online forms are open on this website: an exploratory programme-financing enquiry and a programme-updates registration, both described below. Research-collaboration enquiries are made by email; that page’s online form is not active. You can always contact us by email instead of using a form.",
     "Your optional answers, agenda and questions are stored in your browser for this tab’s session. Browser session-restoration features may preserve them. You can clear your answers and remove agenda items using the page controls. These planning contents are not sent to NWPharmaTech.",
     "To show whether online enquiries are available, the page makes one extra request to this website. That request contains none of your answers, agenda items or questions.",
     "Links you copy from the page contain only the page’s content version and the identifiers of the public topics and cards you selected. They never include your answers, your questions or any contact details.",
     "Discussion briefs are created in your browser. Printing a brief or saving it as a PDF does not send it to us.",
-    "Last updated: 26 September 2026."]) check(`privacy notice contains: ${t.slice(0, 60)}…`, priv.includes(t));
+    "Last updated: 1 October 2026."]) check(`privacy notice contains: ${t.slice(0, 60)}…`, priv.includes(t));
   check("privacy notice: no static-site claim, no deletion guarantee, no research-enquiry Part B wording", !/These pages are static|removed when you close the tab|Research collaboration enquiries|to be confirmed|\[[A-Z ]+/i.test(priv));
   const contact = await (await fetch(srv.base + "/contact")).text();
   check("Contact page keeps its research link to Work with us", /<a class="card-link" href="work-with-us\.html">Explore a research collaboration<\/a>/.test(contact) && contact.includes('href="mailto:team@nwpharmatech.com?subject=Research%20collaboration"'));
