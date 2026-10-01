@@ -67,7 +67,7 @@ check("sponsor control position: authority, protocol, CMC/manufacturing, safety,
 // ---- isolation: every other change since the base is additive (menu entry, cross-links, sitemap)
 const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], { cwd: dir, encoding: "utf8" }).trim(); const rel = path.relative(repo, dir);
 const numstat = execFileSync("git", ["diff", "--numstat", BASE, "--", rel], { cwd: repo, encoding: "utf8" }).trim().split("\n").filter(Boolean).map((l) => l.split("\t"));
-const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWith("/_headers") && !f.endsWith("/privacy.html")).map((x) => x[2]);
+const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWith("/_headers") && !f.endsWith("/privacy.html") && !f.endsWith("/sitemap.xml")).map((x) => x[2]);
 { // privacy notice: corrected to the live forms (NWPT-054) and the NWPT-055 analytics; nothing else in it changes
   const priv = flat(fs.readFileSync(path.join(dir, "privacy.html"), "utf8"));
   const must = ["Two online forms are open on this website", "Research-collaboration enquiries are made by email", "There is no advertising tracking on this website.", "Cloudflare Web Analytics",
@@ -86,10 +86,25 @@ const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWi
   check("_headers: only Cloudflare Web Analytics hosts added to each CSP (script-src static.cloudflareinsights.com, connect-src cloudflareinsights.com)", back === was && now.split("\n").filter((l) => /Content-Security-Policy:/.test(l)).every((l) => /script-src [^;]*https:\/\/static\.cloudflareinsights\.com/.test(l) && /connect-src [^;]*https:\/\/cloudflareinsights\.com/.test(l)));
 }
 check("existing site files only gain lines (nothing removed or rewritten)", !removed.length, removed.join(" "));
-const NEW = ["dpf.css", "dpf.js", "funding", "functions/api/event.js", "_headers", "privacy.html"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
+const NEW = ["dpf.css", "dpf.js", "funding", "functions/api/event.js", "_headers", "privacy.html", "sitemap.xml"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
 const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel, ...NEW], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
 const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$|Cloudflare Web Analytics/.test(l));
 check("every added line is the menu entry, a cross-link or the sitemap entry", !unexpected.length, unexpected.slice(0, 5).join(" || "));
+{ // sitemap (reconciled with production 15e38f1): adds the new page; privacy lastmod follows the 1 October notice
+  const sm = execFileSync("git", ["diff", "-U0", BASE, "--", `${rel}/sitemap.xml`], { cwd: repo, encoding: "utf8" }).split("\n");
+  const smAdded = sm.filter((l) => l.startsWith("+") && !l.startsWith("+++")), smRemoved = sm.filter((l) => l.startsWith("-") && !l.startsWith("---"));
+  check("sitemap adds digital programme finance and moves only the privacy lastmod (to 2026-10-01)",
+    smAdded.length === 2 && smAdded.some((l) => l.includes("/funding/digital-programme-finance")) && smAdded.some((l) => l.includes("privacy.html") && l.includes("2026-10-01")) && smRemoved.length === 1 && /privacy\.html<\/loc><lastmod>2026-09-26/.test(smRemoved[0]),
+    smAdded.concat(smRemoved).join(" || "));
+}
+{ // carried from production 15e38f1, adapted to the approved first-party endpoint
+  const priv = fs.readFileSync(path.join(dir, "privacy.html"), "utf8");
+  check("privacy notice names no third-party analytics vendor or advertising sink (only Cloudflare, the host)", !/Google Analytics|googletagmanager|gtag\(|Zaraz|Meta Pixel|Segment|Mixpanel|Plausible|PostHog|facebook\.net/i.test(priv));
+  check("privacy notice no longer says events are never sent (superseded by the approved /api/event)", !/No sink is attached|not sent to NWPharmaTech and they are not sent to any other party/.test(priv));
+  const js = fs.readFileSync(path.join(dir, "dpf.js"), "utf8");
+  const targets = [...js.matchAll(/(?:sendBeacon|fetch)\(\s*"([^"]+)"/g)].map((m) => m[1]);
+  check("dpf.js sends only to the same-origin /api/event (no third-party host, no XMLHttpRequest)", targets.length >= 2 && targets.every((t) => t === "/api/event") && !/XMLHttpRequest|google-analytics|googletagmanager|zaraz|plausible|segment\.com|mixpanel|posthog|https?:\/\//i.test(js.replace(/\/\*![\s\S]*?\*\//, "")), targets.join(","));
+}
 const pages = execFileSync("git", ["ls-files", "--", rel], { cwd: repo, encoding: "utf8" }).split("\n").filter((f) => f.endsWith(".html"));
 const noEntry = pages.filter((f) => { const s = fs.readFileSync(path.join(repo, f), "utf8"); return s.includes(">Programme financing</a></li>") && !s.includes(">Digital programme finance</a></li>"); });
 check("every page with the Funding menu lists Digital programme finance", !noEntry.length, noEntry.join(" "));

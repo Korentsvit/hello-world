@@ -2,6 +2,8 @@
 
 > **30 September 2026.** Board approved the follow-up in `PRODUCTION-READY-DPF.md`. That tip updates the privacy notice for the no-send analytics layer and replaces the bare “Patient eligibility” label. Publish that tip. Do not attach an analytics sink. The notes below describe the `4e7ca635` preview candidate.
 
+> **1 October 2026: reconciled onto live production.** Live is `5c7af8d` (deploy `59c3fea1`): `4e7ca63` plus Cursor's `15e38f1` and `5c7af8d`. The approved finalisation (`e755e95`, `d417dff`, `ea97bff`, built in parallel on `4e7ca63`) has been replayed onto `5c7af8d` on `claude/nwpt-055-on-live`, followed by one reconciliation commit. See **Reconciliation with live production** at the end. `ea97bff` is obsolete.
+
 - **Base:** `1406893` (`cursor/programme-financing-journey-2e1f`, “Add the programme-financing journey beside funding use”). That commit sits on current production `5591bede` and is itself **not yet published**. It is the only place `/programme-financing` exists, and the brief treats that route as existing. This candidate therefore carries `/programme-financing` with it. If that page should ship separately, publish `1406893` first or review both together.
 - **Branch:** `claude/nwpt-digital-programme-finance`.
 - **Status:** preview only; not deployed. Web Boss owns hosting. Enquiries, updates, privacy and DNS are unchanged.
@@ -247,3 +249,23 @@ The final candidate returned the same scores.
 **Environment limits:**
 - Google Fonts is blocked here, so screenshots and Lighthouse runs use fallback fonts.
 - Safari/iPhone is untested.
+
+## Reconciliation with live production (1 October 2026)
+
+**Live base:** `5c7af8d96aaef7f6d02b82aa9b705117733cb519`. Its parent is `15e38f1` (Cursor), whose parent is `4e7ca63`. The finalisation commits were replayed onto it one by one (`2934e83`, `26cb980`, `2bfc39d`), then one reconciliation commit was added. Nothing was force-pushed.
+
+| File | Live change (`15e38f1` / `5c7af8d`) | Finalisation change | Resolution |
+|---|---|---|---|
+| Page and source: sponsor layer | “Patient eligibility” removed; approved sentence added as a full-width list item (`dpf-cols__full`) | Fuller approved sponsor list (sponsor authority; CMC and manufacturing; counterparties; licensing and commercial decisions) and the same sentence as a note | **Finalisation.** The same sentence is kept, with the list Filipp approved on 30 September. Both sides drop “Patient eligibility”. |
+| Page and source: *Stays with the sponsor* | Sentence as a final bullet | “Eligibility criteria in the protocol”, with the sentence beneath; adds counterparties and licensing/commercial | **Finalisation** (same sentence; approved list) |
+| Page and source: governance FAQ | Sentence appended | Sentence plus the fuller sponsor list | **Finalisation** |
+| `dpf.css` | `.dpf-cols__full` rule | — | **Kept** (live rule preserved; unused by the final markup and harmless) |
+| `privacy.html`: analytics | New section saying events stay in the browser and “No sink is attached” | Cloudflare Web Analytics and `/api/event` disclosed, with fields, exclusions and retention | **Finalisation.** Filipp's 30 September analytics decision supersedes “no sink”. Live's still-true details are **carried over**: UTM tags kept in this tab's session storage, copied only onto the page's same-site links, and other address information ignored. |
+| `privacy.html`: last-updated line | “… Digital programme finance browser events described: 30 September 2026.” | “Last updated: 1 October 2026. Online forms and analytics described: 1 October 2026.” | **Finalisation** (the whole notice is current as of 1 October) |
+| `sitemap.xml` | Privacy `lastmod` 2026-09-26 → 2026-09-30 | — | **Advanced** to 2026-10-01 to match the notice |
+| `test-digital-finance.mjs` | Eligibility checks; privacy “no sink” checks; no-fetch check; sitemap check; vendor check | Approved-wording, endpoint, CSP and privacy checks | **Merged.** The finalisation checks are kept. The live sitemap and vendor checks are carried over (sitemap date updated). The live “no fetch / no sink” checks are replaced by “sends only to same-origin `/api/event`” and “the notice no longer says no sink”. |
+| `records/PRODUCTION-READY-DPF.md` | Added | — | **Kept**, with a superseded-for-next-deploy banner |
+| This record | Banner added | Finalisation sections | **Both kept** |
+
+No navigation, `/programme-financing`, `/funding-use`, `/desci`, contact or forms, `_headers`, shared styles or scripts, or function changes were made on the live side, so none needed reconciling there.
+

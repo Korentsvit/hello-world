@@ -1,5 +1,7 @@
 # PRODUCTION-READY — Digital programme finance
 
+> **Superseded for the next deploy (1 October 2026).** This note describes live `5c7af8d`. The approved NWPT-055 finalisation is reconciled on top of it on `claude/nwpt-055-on-live`; deploy that head per `WEB-PR-HANDOFF-NWPT-055.md`. Filipp's 30 September decision replaces the “do not attach an analytics sink” instruction below with Cloudflare Web Analytics and the first-party `/api/event` endpoint.
+
 **Status:** board approved for preview publish. Not deployed from this workspace.
 
 **Start candidate (NWPT-055):** `4e7ca63502983c05a5c735e1b03513640b18675d`

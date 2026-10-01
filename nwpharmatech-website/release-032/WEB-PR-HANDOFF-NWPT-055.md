@@ -1,22 +1,23 @@
-# NWPT-055: hand-off to Web Boss (production)
+# NWPT-055: hand-off to Web Boss (production, fast-forward from live)
 
-**Release:** `/funding/digital-programme-finance` (Digital programme finance) together with `/programme-financing`, in **one** production deployment.
-**Branch:** `claude/nwpt-digital-programme-finance`
-**Candidate SHA:** the head of that branch, which Filipp relays with this hand-off. The site files at that head are exactly those checked in `records/DIGITAL-PROGRAMME-FINANCE-NWPT-055.md`.
+**Release:** the approved NWPT-055 finalisation (approved wording, `/api/event`, Cloudflare Web Analytics support, corrected privacy notice) on top of what is live.
+**Live base:** `5c7af8d96aaef7f6d02b82aa9b705117733cb519` (deploy `59c3fea1`). That deployment already serves `/programme-financing` and `/funding/digital-programme-finance`.
+**Branch:** `claude/nwpt-055-on-live` (a direct descendant of `5c7af8d`; a fast-forward from live).
+**Candidate SHA:** the head of that branch, which Filipp relays with this hand-off. `ea97bff` on `claude/nwpt-digital-programme-finance` is **obsolete**; do not deploy it.
 **Publish directory:** `nwpharmatech-website/release-032/site/`
-**Approval:** Filipp approved the design, the architecture and the final wording on 30 September 2026.
+**Approval:** Filipp approved the design, the architecture and the final wording on 30 September and 1 October 2026.
+**Supersedes:** `records/PRODUCTION-READY-DPF.md` (Cursor, 30 September) for the next deploy. Its “do not attach an analytics sink” instruction is replaced by Filipp's analytics decision of 30 September (section 2).
 
-## 1. Before deploying: confirm the live base (stop if it is neither of these)
-
-The repository's lineage is `5591bede` (NWPT-054 production record) → `1406893` (`/programme-financing`) → this candidate. The candidate is correct if production is **either** `5591bede` **or** `1406893`.
+## 1. Before deploying: confirm the live base (stop if it is not `5c7af8d`)
 
 ```sh
 # the commit hash recorded on the live production deployment
-npx wrangler@4 pages deployment list --project-name <production project> --environment production | head
+npx wrangler@4 pages deployment list --project-name nwpt-preview --environment production | head
+git merge-base --is-ancestor 5c7af8d96aaef7f6d02b82aa9b705117733cb519 <CANDIDATE SHA> && echo "fast-forward OK"
 ```
 
-- **`1406893…` or `5591bede…`:** proceed. This one deployment ships whatever is missing (`/programme-financing` if production is `5591bede`) plus the new page. Do not deploy `1406893` separately.
-- **Anything else:** do not deploy. Report the live hash; the candidate must be rebased onto it first.
+- **`5c7af8d…` (deploy `59c3fea1…`):** proceed. This deployment is a fast-forward of what is live.
+- **Anything else:** do not deploy. Report the live hash; the candidate must be reconciled with it first.
 
 ## 2. Project settings (production and preview environments)
 
@@ -47,7 +48,7 @@ git checkout --detach <CANDIDATE SHA>
 git rev-parse HEAD
 git status --porcelain --untracked-files=all   # must print nothing
 cd nwpharmatech-website/release-032/site
-npx wrangler@4 pages deploy . --project-name <project> --branch <branch> --commit-hash <CANDIDATE SHA>
+npx wrangler@4 pages deploy . --project-name nwpt-preview --branch main --commit-hash <CANDIDATE SHA>
 ```
 
 The output must include “Compiled Worker successfully” and “Uploading Functions bundle”. Do not use `--commit-dirty`.
