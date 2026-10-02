@@ -42,6 +42,11 @@ for (const t of ["Early-intervention CHR-P research often needs careful, long st
   "Investors would not own the medicine or patient data.", "Most visitors are not investors, and should not need to be.",
   "Community follow or membership is not an investment entitlement, and community updates and discussion are separate from any regulated investment process."])
   check(`migrated from /desci: “${t.slice(0, 70)}…”`, dpf.includes(t));
+{ // every link labelled "Funding overview" (homepage hero quick link, route card) goes to /programme-financing
+  const home = fs.readFileSync(path.join(dir, "index.html"), "utf8");
+  const hrefs = [...home.matchAll(/<a [^>]*href="([^"]+)"[^>]*>(?:(?!<\/a>)[\s\S])*?Funding overview(?:(?!<\/a>)[\s\S])*?<\/a>/g)].map((m) => m[1]);
+  check("homepage: every “Funding overview” link goes to /programme-financing", hrefs.length >= 3 && hrefs.every((h) => /(^|\/)programme-financing\.html$/.test(h)), hrefs.join(" "));
+}
 const pf = fs.readFileSync(path.join(dir, "programme-financing.html"), "utf8");
 check("general-investor landing stays /programme-financing (first menu item; its own hero unchanged)", /id="nav-dd-funding">\s*<li><a href="programme-financing\.html" aria-current="page">Funding overview/.test(pf) && /Programme financing for an investigational CHR-P programme/.test(pf));
 

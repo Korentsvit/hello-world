@@ -10,7 +10,7 @@ const axe = fs.readFileSync(new URL("./node_modules/axe-core/axe.min.js", import
 let pass = 0, fail = 0; const check = (n, ok, d = "") => { ok ? pass++ : fail++; console.log(`${ok ? "ok  " : "FAIL"}  ${n}${ok ? "" : "  --  " + String(d).slice(0, 300)}`); };
 const srv = await serve(dir);
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
-const WANT = ["programme-room.html", "work-with-us.html", "funding-use.html"];
+const WANT = ["programme-room.html", "work-with-us.html", "programme-financing.html"];   // NWPT-057: "Funding overview" → /programme-financing
 for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { width: 1363, height: 936 }]]) {
   const ctx = await b.newContext({ viewport: vp, reducedMotion: "reduce" }); await ctx.route((u) => !u.href.startsWith(srv.base), (r) => r.fulfill({ status: 200, body: "" }));
   const pg = await ctx.newPage(); const errs = [], reqs = []; pg.on("pageerror", (e) => errs.push(e.message)); pg.on("request", (r) => reqs.push(r.url()));
@@ -18,7 +18,7 @@ for (const [label, vp] of [["390", { width: 390, height: 844 }], ["1363", { widt
   const cta = await pg.$$eval(".cine-hero .cta-row a", (as) => as.map((a) => [a.getAttribute("href"), a.textContent.trim(), a.classList.contains("btn-primary")]));
   check(`@${label} hero: Programme Room is the primary action, the brief the secondary`, JSON.stringify(cta) === JSON.stringify([["programme-room.html", "Explore the Programme Room", true], ["resources/programme-brief.html", "Read programme brief", false]]), JSON.stringify(cta));
   const quick = await pg.$$eval(".cine-hero .hero-quick a", (as) => as.map((a) => [a.getAttribute("href"), a.textContent.trim()]));
-  check(`@${label} hero quick links: research collaboration and funding overview`, JSON.stringify(quick) === JSON.stringify([["work-with-us.html", "Research collaboration"], ["funding-use.html", "Funding overview"]]), JSON.stringify(quick));
+  check(`@${label} hero quick links: research collaboration and funding overview`, JSON.stringify(quick) === JSON.stringify([["work-with-us.html", "Research collaboration"], ["programme-financing.html", "Funding overview"]]), JSON.stringify(quick));
   const eyebrows = await pg.$$eval("main .eyebrow", (xs) => xs.map((x) => x.textContent.trim()));
   check(`@${label} one "Start here" section only; no competing introductions`, eyebrows.filter((e) => /^start here$/i.test(e)).length === 1 && !eyebrows.includes("Explore online") && !/programme in three steps/i.test(await pg.textContent("main")) && (await pg.locator(".home-brief-band").count()) === 0, JSON.stringify(eyebrows));
   const brief = await pg.$$eval(".home-explore .home-start__brief a.btn", (as) => as.map((a) => a.getAttribute("href")));
