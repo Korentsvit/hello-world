@@ -45,6 +45,8 @@ for (const t of ["Early-intervention CHR-P research often needs careful, long st
 { // every link labelled "Funding overview" (homepage hero quick link, route card) goes to /programme-financing
   const home = fs.readFileSync(path.join(dir, "index.html"), "utf8");
   const hrefs = [...home.matchAll(/<a [^>]*href="([^"]+)"[^>]*>(?:(?!<\/a>)[\s\S])*?Funding overview(?:(?!<\/a>)[\s\S])*?<\/a>/g)].map((m) => m[1]);
+  check("homepage: Funding overview route card is titled “How the CHR-P programme could be financed” and opens /programme-financing",
+    /<a class="route-card" href="programme-financing\.html">[\s\S]*?<span class="route-card__kicker">Funding overview<\/span>\s*<h3 class="route-card__title">How the CHR-P programme could be financed<\/h3>/.test(home));
   check("homepage: every “Funding overview” link goes to /programme-financing", hrefs.length >= 3 && hrefs.every((h) => /(^|\/)programme-financing\.html$/.test(h)), hrefs.join(" "));
 }
 const pf = fs.readFileSync(path.join(dir, "programme-financing.html"), "utf8");
