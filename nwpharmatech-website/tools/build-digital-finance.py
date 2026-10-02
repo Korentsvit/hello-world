@@ -23,7 +23,7 @@ URL = "https://www.nwpharmatech.org/funding/digital-programme-finance"
 TITLE = "Digital Programme Finance | NWPharmaTech CHR-P Programme"
 DESC = ("How NWPharmaTech is evaluating regulated private programme finance, milestone accountability and digital "
         "transparency for its investigational CHR-P development programme.")
-LABEL = "Digital programme finance"
+LABEL = "Digital finance &amp; DeSci"   # NWPT-057 menu label (menus are maintained by build-funding-ia.py)
 
 MENU_ITEM = re.compile(r'^(?P<ind>[ \t]*)<li><a href="(?P<pre>/|(?:\.\./)*)programme-financing\.html"(?: aria-current="page")?>Programme financing</a></li>\n', re.M)
 
@@ -54,7 +54,7 @@ def build_page():
         s, n = re.subn(pat, lambda m, v=val: v, s, count=1)
         assert n == 1, pat
     s = re.sub(r'(<link rel="stylesheet" href="\.\./styles\.css\?v=[a-z0-9]+" />\n)',
-               lambda m: m.group(1) + f'  <link rel="stylesheet" href="../dpf.css?v={V}" />\n', s, count=1)
+               lambda m: m.group(1) + f'  <link rel="stylesheet" href="../dpf.css?v={V}" />\n  <link rel="stylesheet" href="../funding-nav.css?v=nwpt057" />\n', s, count=1)
     s = s.replace(' aria-current="page"', "")
     s, n = re.subn(rf'(<a href="\.\./funding/digital-programme-finance\.html")(>{LABEL}</a>)', r'\1 aria-current="page"\2', s, count=1)
     assert n == 1, "menu entry missing in shell"
@@ -71,9 +71,5 @@ def build_page():
 
 
 if __name__ == "__main__":
-    changed = [str(p.relative_to(SITE)) for p in sorted(SITE.rglob("*.html")) if p != OUT and ensure_nav(p)]
-    missing = [str(p.relative_to(SITE)) for p in sorted(SITE.rglob("*.html"))
-               if "programme-financing.html\">Programme financing</a></li>" in p.read_text() and f">{LABEL}</a></li>" not in p.read_text()]
-    assert not missing, f"menu entry not added: {missing}"
     built = build_page()
-    print(f"menu entry added to {len(changed)} page(s); page {'written' if built else 'unchanged'}: {OUT.relative_to(SITE)}")
+    print(f"page {'written' if built else 'unchanged'}: {OUT.relative_to(SITE)}")

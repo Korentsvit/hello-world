@@ -1,0 +1,24 @@
+/*! NWPharmaTech — NWPT-057 funding sub-navigation (Overview | Use of funds | Digital finance & DeSci).
+ * Shared by /programme-financing, /funding-use and /funding/digital-programme-finance. */
+.funding-subnav { border-bottom: 1px solid var(--line, #e0e4e6); background: var(--canvas, #f8f8f7); }
+.funding-subnav__inner {
+  width: min(100% - 2.5rem, var(--measure-xl, 64rem)); margin-inline: auto;
+  display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; padding-block: 0.35rem;
+}
+.funding-subnav a {
+  display: inline-flex; align-items: center; min-height: 2.75rem;
+  font: 500 0.875rem/1.3 var(--font-body, system-ui, sans-serif); color: var(--ink-600, #536177);
+  text-decoration: none; border-bottom: 2px solid transparent;
+}
+.funding-subnav a:hover { color: var(--ink-900, #0a1728); }
+.funding-subnav a[aria-current="page"] { color: var(--ink-900, #0a1728); border-bottom-color: var(--blue-600, #1767e8); font-weight: 600; }
+.funding-subnav a:focus-visible { outline: 2px solid var(--focus, #1767e8); outline-offset: 2px; border-radius: 4px; }
+.funding-subnav--dark { background: var(--navy-950, #050b14); border-bottom-color: rgba(148, 178, 220, 0.15); }
+.funding-subnav--dark .funding-subnav__inner { width: min(100% - 2.5rem, 76rem); }
+.funding-subnav--dark a { color: #a9b6c8; }
+.funding-subnav--dark a:hover, .funding-subnav--dark a[aria-current="page"] { color: #f4f7fb; }
+.funding-subnav--dark a[aria-current="page"] { border-bottom-color: #5eead4; }
+.funding-subnav--dark a:focus-visible { outline-color: #5eead4; }
+@media (max-width: 600px) {
+  .funding-subnav__inner, .funding-subnav--dark .funding-subnav__inner { width: min(100% - 2rem, 76rem); gap: 0 1rem; }
+}

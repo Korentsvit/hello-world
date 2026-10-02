@@ -50,3 +50,7 @@
 /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-22.pdf /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf 301
 /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-20.pdf /resources/NWPharmaTech-CHRP-programme-brief-v2026-09-26.pdf 301
 /downloads/nwpharmatech-programme-brief.pdf /downloads/nwpharmatech-programme-summary.pdf 301
+# NWPT-057: /desci is retired; its content lives on Digital finance & DeSci
+/desci /funding/digital-programme-finance 301
+/desci/ /funding/digital-programme-finance 301
+/desci.html /funding/digital-programme-finance 301

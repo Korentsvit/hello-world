@@ -85,10 +85,13 @@ const removed = numstat.filter(([, d, f]) => d !== "0" && d !== "-" && !f.endsWi
     .replaceAll(" https://static.cloudflareinsights.com", "").replaceAll(" https://cloudflareinsights.com", "");
   check("_headers: only Cloudflare Web Analytics hosts added to each CSP (script-src static.cloudflareinsights.com, connect-src cloudflareinsights.com)", back === was && now.split("\n").filter((l) => /Content-Security-Policy:/.test(l)).every((l) => /script-src [^;]*https:\/\/static\.cloudflareinsights\.com/.test(l) && /connect-src [^;]*https:\/\/cloudflareinsights\.com/.test(l)));
 }
-check("existing site files only gain lines (nothing removed or rewritten)", !removed.length, removed.join(" "));
+// NWPT-057 (funding IA, checked in test-funding-ia.mjs): Funding menu labels, funding sub-navigation, retired /desci
+const IA = /<li><a href="[^"]*(how-it-works|funding-use|programme-financing|digital-programme-finance|faq)\.html"( aria-current="page")?>(How funding could work|Use of funds|Programme financing|Digital programme finance|Questions|Funding overview|Digital finance &amp; DeSci)<\/a><\/li>|funding-subnav|funding-nav\.css|desci|NWPT-057/;
+const iaOnly = (f) => f.endsWith("/desci.html") || execFileSync("git", ["diff", "-U0", BASE, "--", f], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => /^-[^-]/.test(l)).every((l) => IA.test(l));
+check("existing site files only gain lines (nothing removed or rewritten apart from the NWPT-057 funding IA)", removed.every(iaOnly), removed.filter((f) => !iaOnly(f)).join(" "));
 const NEW = ["dpf.css", "dpf.js", "funding", "functions/api/event.js", "_headers", "privacy.html", "sitemap.xml"].map((f) => `:(exclude)${rel}/${f}`);   // the page's own new files
 const added = execFileSync("git", ["diff", "-U0", BASE, "--", rel, ...NEW], { cwd: repo, encoding: "utf8" }).split("\n").filter((l) => l.startsWith("+") && !l.startsWith("+++"));
-const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$|Cloudflare Web Analytics/.test(l));
+const unexpected = added.filter((l) => !/digital-programme-finance|^\+\s*·\s*$|Cloudflare Web Analytics/.test(l) && !IA.test(l));
 check("every added line is the menu entry, a cross-link or the sitemap entry", !unexpected.length, unexpected.slice(0, 5).join(" || "));
 { // sitemap (reconciled with production 15e38f1): adds the new page; privacy lastmod follows the 1 October notice
   const sm = execFileSync("git", ["diff", "-U0", BASE, "--", `${rel}/sitemap.xml`], { cwd: repo, encoding: "utf8" }).split("\n");
@@ -105,10 +108,10 @@ check("every added line is the menu entry, a cross-link or the sitemap entry", !
   const targets = [...js.matchAll(/(?:sendBeacon|fetch)\(\s*"([^"]+)"/g)].map((m) => m[1]);
   check("dpf.js sends only to the same-origin /api/event (no third-party host, no XMLHttpRequest)", targets.length >= 2 && targets.every((t) => t === "/api/event") && !/XMLHttpRequest|google-analytics|googletagmanager|zaraz|plausible|segment\.com|mixpanel|posthog|https?:\/\//i.test(js.replace(/\/\*![\s\S]*?\*\//, "")), targets.join(","));
 }
-const pages = execFileSync("git", ["ls-files", "--", rel], { cwd: repo, encoding: "utf8" }).split("\n").filter((f) => f.endsWith(".html"));
-const noEntry = pages.filter((f) => { const s = fs.readFileSync(path.join(repo, f), "utf8"); return s.includes(">Programme financing</a></li>") && !s.includes(">Digital programme finance</a></li>"); });
-check("every page with the Funding menu lists Digital programme finance", !noEntry.length, noEntry.join(" "));
-for (const [f, re] of [["programme-financing.html", /href="funding\/digital-programme-finance\.html">See the proposed structure visually/], ["funding-use.html", /href="funding\/digital-programme-finance\.html">Digital programme finance<\/a>\.<\/p>/], ["desci.html", /href="funding\/digital-programme-finance\.html">Digital programme finance<\/a>\.<\/p>/]])
+const pages = execFileSync("git", ["ls-files", "--", rel], { cwd: repo, encoding: "utf8" }).split("\n").filter((f) => f.endsWith(".html") && fs.existsSync(path.join(repo, f)));
+const noEntry = pages.filter((f) => { const s = fs.readFileSync(path.join(repo, f), "utf8"); return s.includes('id="nav-dd-funding"') && !s.includes(">Digital finance &amp; DeSci</a></li>"); });
+check("every page with the Funding menu lists Digital finance & DeSci", !noEntry.length, noEntry.join(" "));
+for (const [f, re] of [["programme-financing.html", /href="funding\/digital-programme-finance\.html">See the proposed structure visually/], ["funding-use.html", /href="funding\/digital-programme-finance\.html">Digital programme finance<\/a>\.<\/p>/]])
   check(`cross-link from ${f}`, re.test(fs.readFileSync(path.join(dir, f), "utf8")));
 
 // ---- /api/event endpoint (the Worker), called directly with a mock Analytics Engine binding
@@ -147,7 +150,8 @@ try {
   check("route: /funding/digital-programme-finance 200; .html redirects to it; /funding and /funding/ still go to /funding-use",
     r1.status === 200 && [301, 308].includes(r2.status) && /\/funding\/digital-programme-finance$/.test(r2.headers.get("location")) && /\/funding-use$/.test(r3.headers.get("location") || "") && /\/funding-use$/.test(r4.headers.get("location") || ""),
     `${r1.status} ${r2.status} ${r2.headers.get("location")} ${r3.status} ${r3.headers.get("location")} ${r4.status} ${r4.headers.get("location")}`);
-  for (const p of ["/programme-financing", "/funding-use", "/desci", "/contact"]) check(`route kept: ${p} 200`, (await st(p)).status === 200);
+  for (const p of ["/programme-financing", "/funding-use", "/contact"]) check(`route kept: ${p} 200`, (await st(p)).status === 200);
+  { const r = await st("/desci"); check("/desci redirects (301) to the Digital finance & DeSci page (NWPT-057)", r.status === 301 && r.headers.get("location") === "/funding/digital-programme-finance", `${r.status} ${r.headers.get("location")}`); }
   const hrefs = [...new Set([...main.matchAll(/href="([^"#]+)(#[^"]*)?"/g)].map((m) => m[1]).filter((h) => !/^https?:|^mailto:/.test(h)))];
   const broken = [];
   for (const h of hrefs) { const u = new URL(h, srv.base + PAGE); const r = await fetch(u, { redirect: "follow" }); if (r.status !== 200) broken.push(`${h} ${r.status}`); }
