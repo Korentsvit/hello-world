@@ -27,12 +27,15 @@
     .chrp-article .section { padding: clamp(2rem, 5vw, 3.25rem) 0 clamp(3rem, 7vw, 4.5rem); }
     .chrp-article .page-hero { padding-bottom: clamp(1.75rem, 4vw, 2.5rem); }
     .chrp-article .lede { max-width: 40rem; }
+    .chrp-article h2 { margin-top: 2.25rem; }
+    .chrp-article h2:first-of-type { margin-top: 0; }
     .section ul.chrp-paths {
       list-style: none;
       padding: 0;
       margin: 0;
       max-width: none;
-      display: grid;
+      display: flex;
+      flex-direction: column;
       gap: 0.85rem;
     }
     .section ul.chrp-paths li {
@@ -51,13 +54,9 @@
       margin-bottom: 0.35rem;
     }
     .section ul.chrp-paths li.chrp-separate {
-      background: var(--white);
+      background: var(--amber-soft);
       border-left: 3px solid var(--amber);
       box-shadow: none;
-    }
-    @media (min-width: 720px) {
-      .section ul.chrp-paths { grid-template-columns: 1fr 1fr; }
-      .section ul.chrp-paths li.chrp-separate { grid-column: 1 / -1; }
     }
     .chrp-sources {
       margin: 0;
