@@ -117,22 +117,6 @@ export const WWU = {
     ]
    ]
   },
-  "form-design": {
-   "kind": "Finding",
-   "unresolved": false,
-   "stage": "Related stage: Stage 2 · Formulation — stage work status: Completed",
-   "question": null,
-   "text": "NWPT-SM32300 is a 300 mg softgel whose contents are designed to disperse into very small droplets in the gut.",
-   "actions": [
-    "d"
-   ],
-   "refs": [
-    [
-     "Science — what is known and what remains open",
-     "https://www.nwpharmatech.org/science/formulation#investigating"
-    ]
-   ]
-  },
   "form-open": {
    "kind": "Limitation",
    "unresolved": false,
